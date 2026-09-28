@@ -1,6 +1,6 @@
 # Repository structure and incremental roadmap
 
-This is the implementation order for the revised [Architecture Baseline V1](02-architecture-baseline-v1.md) and [ADR-0004](../adr/0004-local-gp-propagation-for-current-orbit.md). The repository contains a working standard-GP adapter, deterministic Orekit orbital core, quality policy and PostgreSQL element history in `backend/`; API and frontend directories below are **planned**. The [ISS-E SupGP source-selection gate](../telemetry/iss-supgp-source-selection.md) retains standard GP as `PRIMARY` and defers SupGP pending exact segment semantics.
+This is the implementation order for the revised [Architecture Baseline V1](02-architecture-baseline-v1.md) and [ADR-0004](../adr/0004-local-gp-propagation-for-current-orbit.md). The repository contains a working standard-GP adapter, deterministic Orekit orbital core, quality policy, PostgreSQL element history and current-state read API in `backend/`; the frontend remains planned. The [ISS-E SupGP source-selection gate](../telemetry/iss-supgp-source-selection.md) retains standard GP as `PRIMARY` and defers SupGP pending exact segment semantics.
 
 ## Current documentation
 
@@ -23,7 +23,7 @@ MISSION1/
 │       │   ├── propagation/    # Orekit TLE/SGP4-SDP4, TEME/ITRF/WGS84
 │       │   └── persistence/    # PostgreSQL element-set adapter
 │       ├── source/orbital/celestrak/  # GP HTTPS adapter
-│       └── api/                # current-orbit REST, source status
+│       └── api/                # current-orbit REST; source status later
 ├── docs/
 └── frontend/                   # added for Cesium in MVP2
 ```
@@ -35,8 +35,8 @@ The package tree is illustrative; dependency direction and ownership matter more
 1. **Completed — MVP1 orbital core:** one Spring Boot/Maven backend with CelesTrak `CATNR=25544&FORMAT=TLE` adapter, source-element domain record, Orekit 13.1.8 TLE propagation and offline deterministic parsing/propagation tests. A real fixture and independent reference values are recorded in `backend/README.md`.
 2. **Completed — orbital quality/freshness policy:** [versioned current-state policy](../telemetry/orbital-quality-policy.md) distinguishes retrieval age, element epoch age, signed propagation offset, source health and computation outcomes. Its 24-hour boundary is **MISSION1-defined**, not the CelesTrak two-hour download rule or an accuracy guarantee. Standard GP remains primary; SupGP segment selection remains deferred.
 3. **Completed — PostgreSQL element history:** [Flyway schema and JDBC adapter](../telemetry/orbital-element-history.md) retain validated sets and repeated retrieval observations with database-enforced identity. A latest-usable query uses source epoch and observed time; no scheduler or source-health event store was introduced.
-4. **Next single task — current orbital-state application service and first read-only REST endpoint:** use persisted elements, the quality evaluator and an explicit evaluation clock to return computed state with source/element/propagation times, frames/units and no-data/invalid/stale outcomes. Keep provider acquisition explicit and respect [CelesTrak usage policy](https://celestrak.org/usage-policy.php); source-status and scheduled fetch policy need separate bounded work. This completes the first read path without claiming live onboard telemetry.
-5. In MVP2 add scheduled element refresh and cache policy, bounded historical/near-future `state(t)` evaluation, justified track sampling and Cesium Earth View. Keep backend state update cadence separate from element cadence and browser rendering rate; interpolate display states only with clear lineage. Use REST polling until a measured need justifies WebSocket.
+4. **Completed — current orbital-state application service and read-only REST endpoint:** `GET /api/iss/state` computes from `latestUsable(now)` using one injected clock instant, Orekit, and the existing quality policy. Its [contract](../../backend/README.md#current-orbital-state-api) exposes source lineage, explicit units, computed classification and structured no-data/errors. It makes no provider request and does not claim live onboard telemetry.
+5. **Next single task — provider-respecting CelesTrak refresh orchestration and source-health tracking:** refresh independently of API reads, apply [CelesTrak usage policy](https://celestrak.org/usage-policy.php), preserve last valid elements and record acquisition health separately from orbital quality. Later in MVP2 add bounded historical/near-future `state(t)` evaluation, justified track sampling and Cesium Earth View. Keep backend state update cadence separate from element cadence and browser rendering rate; interpolate display states only with clear lineage. Use REST polling until a measured need justifies WebSocket.
 
 ## Phase gates
 

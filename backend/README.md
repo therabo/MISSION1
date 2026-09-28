@@ -1,6 +1,6 @@
 # MISSION1 orbital core
 
-This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies the PostgreSQL migration but makes **no external ISS request**. The sole acquisition operation is an explicit `OrbitalElementsSource.fetch()` call; there is no scheduler, API, or UI in this milestone.
+This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies the PostgreSQL migration but makes **no external ISS request**. The sole acquisition operation is an explicit `OrbitalElementsSource.fetch()` call; there is no scheduler or UI in this milestone.
 
 ## Data path and meaning
 
@@ -10,15 +10,52 @@ This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn 
 
 `OrekitOrbitalPropagator.propagate(elements, Instant)` creates a fresh `TLEPropagator` for each call. Orekit selects SGP4/SDP4 and returns TEME position and velocity at the requested time. Orekit then transforms the same state to **ITRF 2020 with IERS 2010 conventions and full EOP corrections** (`simpleEOP=false`), and `OneAxisEllipsoid` with Orekit WGS84 constants computes geodetic latitude, longitude and ellipsoidal altitude. `OrbitalState` is `COMPUTED_FROM_ORBITAL_ELEMENTS` and links to the source set through its hash, epoch, provider, upstream lineage, URI and retrieval time. Its signed `propagationOffset` is `propagationTime − elementEpoch`; current freshness instead uses `evaluationTime − elementEpoch`, and retrieval age uses `evaluationTime − retrievedAt`. A request near “now” is still a calculation from older elements, not onboard telemetry.
 
-Canonical units are meters for Cartesian position and WGS84 altitude, meters/second for Cartesian velocity, radians for angles, and `Instant`/`Duration` for times and age. Both Cartesian states name their frames. No presentation conversions are performed. The low-level propagator returns `UNKNOWN`; it throws on invalid input or computation failure. The `OrbitalQualityEvaluator` takes a retained set (or `null`), explicit evaluation and propagation times, and separate source acquisition health. It returns a coordinate-bearing `GOOD`, `STALE`, or `UNKNOWN` state, or a coordinate-free `NO_DATA`/`INVALID` result with a stable reason. The [versioned current-state policy](../docs/telemetry/orbital-quality-policy.md) defines the MISSION1 24-hour epoch-age boundary and its limits; neither successful computation nor `GOOD` certifies positional accuracy.
+Canonical units are meters for Cartesian position and WGS84 altitude, meters/second for Cartesian velocity, radians for angles, and `Instant`/`Duration` for times and age. Both Cartesian states name their frames. Only the API converts geodetic angles to degrees. The low-level propagator returns `UNKNOWN`; it throws on invalid input or computation failure. The `OrbitalQualityEvaluator` takes a retained set (or `null`), explicit evaluation and propagation times, and separate source acquisition health. It returns a coordinate-bearing `GOOD`, `STALE`, or `UNKNOWN` state, or a coordinate-free `NO_DATA`/`INVALID` result with a stable reason. The [versioned current-state policy](../docs/telemetry/orbital-quality-policy.md) defines the MISSION1 24-hour epoch-age boundary and its limits; neither successful computation nor `GOOD` certifies positional accuracy.
 
 ## PostgreSQL element history
 
 The `OrbitalElementSetRepository` port and Spring JDBC adapter accept an already obtained, validated set through `storeIfNew`. The adapter revalidates the TLE and its epoch/hash/catalog metadata, then atomically stores a unique source set and its retrieval observation. Flyway owns the schema. `findById`, bounded `recent(limit)`, and `latestUsable(asOf)` reconstruct domain objects. See [element-history semantics](../docs/telemetry/orbital-element-history.md) for identity, ordering, and timestamp rules. No fetched set is silently inserted on startup, and no quality result or computed orbital state is stored.
 
-For local development, run `docker compose up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. The current non-web process verifies the connection, applies migrations and exits; there is no long-running endpoint yet. The root Compose file contains only PostgreSQL. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose down` stops the database while retaining the named volume; `docker compose down -v` deliberately removes local database history.
+For local development, run `docker compose up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. Flyway applies the migration and the HTTP server starts on port 8080. The root Compose file contains only PostgreSQL. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose down` stops the database while retaining the named volume; `docker compose down -v` deliberately removes local database history.
 
 `mvn test` and `mvn verify` run the existing offline orbital tests plus PostgreSQL integration tests using Testcontainers. Docker must be available for the latter. Those tests use the frozen real TLE fixture and a clearly marked test-only altered revision, never CelesTrak network calls or H2.
+
+## Current orbital state API
+
+`GET /api/iss/state` reads only the persisted element history. It captures one UTC instant, selects `latestUsable(now)` (epoch and retrieval time both no later than now), propagates that set with the existing Orekit path, and applies `orbital-current-v1` at the same instant. The endpoint never fetches CelesTrak; an empty database is expected to return 503 until a separate acquisition process stores a set. This is a **current-time computation from previously retrieved elements**, never live onboard ISS position telemetry. No current CelesTrak health is reported because acquisition health is not yet monitored or stored. Historical data availability does not prove provider availability.
+
+This HTTP 200 example was recorded during the local check on 2026-09-28. It uses the frozen, previously retrieved real TLE fixture and a request-time Orekit computation; it is not a live onboard measurement or a production fallback:
+
+```json
+{
+  "satellite": { "noradCatalogNumber": 25544 },
+  "propagationTime": "2026-09-28T15:42:33.884625Z",
+  "state": {
+    "frame": "TEME",
+    "positionMeters": { "x": -4576163.0332699055, "y": 4654362.09928317, "z": -1924575.7290375482 },
+    "velocityMetersPerSecond": { "x": -4686.502871824431, "y": -2294.8556528583485, "z": 5597.579576609157 }
+  },
+  "geodetic": { "datum": "WGS84", "latitudeDegrees": -16.526524907495478,
+                "longitudeDegrees": -108.5573298380022, "altitudeMeters": 428604.3645357017 },
+  "source": {
+    "provider": "CELESTRAK_GP", "upstreamOrigin": "USSF_GP_VIA_CELESTRAK",
+    "elementEpoch": "2026-09-28T03:24:39.835008Z",
+    "retrievedAt": "2026-09-28T13:58:32Z", "publishedAt": null,
+    "elementSha256": "151bdb4cf2b7128ac815aa975736ffec0c28211751963e8be7263aad7b7abc71",
+    "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS"
+  },
+  "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+  "quality": {
+    "status": "GOOD", "reason": "NONE", "policy": "orbital-current-v1",
+    "elementAgeSeconds": 44274.049617, "retrievalAgeSeconds": 6241.884625,
+    "propagationOffsetSeconds": 44274.049617
+  }
+}
+```
+
+The response uses SI Cartesian units, WGS84 ellipsoidal altitude in meters, and geodetic angles converted from canonical radians to degrees at the API boundary. Longitude follows Orekit's `[-180°, +180°]` convention. `elementEpoch` is the TLE solution epoch, `retrievedAt` is MISSION1 observation time, and nullable `publishedAt` is provider publication time when verified; none is substituted for another. `elementSha256` identifies the source content without exposing raw TLE lines or a database key. Ages are signed decimal seconds; `propagationOffsetSeconds` is propagation time minus element epoch. `GOOD` and `STALE` are MISSION1 recency judgments, not accuracy guarantees or stored properties of the TLE. A computed `STALE` state remains HTTP 200 with coordinates and an explicit stale reason.
+
+Errors use `application/problem+json` with a stable `type` URN, status, title and safe detail. `503` with `urn:mission1:problem:no-orbital-elements` means no set was both observed and eligible at evaluation time. Invalid stored metadata yields `500` with `orbital-data-integrity-error`; an invalid selected TLE yields `invalid-orbital-elements`; Orekit/EOP/transform failures yield `orbital-calculation-failed`. Unexpected server errors yield `orbital-internal-error`. Failures return no fake coordinates. A successful response does not assert that CelesTrak is currently healthy.
 
 ## Reproducible Orekit data
 
