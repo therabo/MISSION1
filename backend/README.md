@@ -1,6 +1,6 @@
 # MISSION1 orbital core
 
-This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup creates the orbital components but makes **no external request**. The sole acquisition operation is an explicit `OrbitalElementsSource.fetch()` call; there is no scheduler, API, persistence, or UI in this milestone.
+This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies the PostgreSQL migration but makes **no external ISS request**. The sole acquisition operation is an explicit `OrbitalElementsSource.fetch()` call; there is no scheduler, API, or UI in this milestone.
 
 ## Data path and meaning
 
@@ -11,6 +11,14 @@ This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn 
 `OrekitOrbitalPropagator.propagate(elements, Instant)` creates a fresh `TLEPropagator` for each call. Orekit selects SGP4/SDP4 and returns TEME position and velocity at the requested time. Orekit then transforms the same state to **ITRF 2020 with IERS 2010 conventions and full EOP corrections** (`simpleEOP=false`), and `OneAxisEllipsoid` with Orekit WGS84 constants computes geodetic latitude, longitude and ellipsoidal altitude. `OrbitalState` is `COMPUTED_FROM_ORBITAL_ELEMENTS` and links to the source set through its hash, epoch, provider, upstream lineage, URI and retrieval time. Its signed `propagationOffset` is `propagationTime − elementEpoch`; current freshness instead uses `evaluationTime − elementEpoch`, and retrieval age uses `evaluationTime − retrievedAt`. A request near “now” is still a calculation from older elements, not onboard telemetry.
 
 Canonical units are meters for Cartesian position and WGS84 altitude, meters/second for Cartesian velocity, radians for angles, and `Instant`/`Duration` for times and age. Both Cartesian states name their frames. No presentation conversions are performed. The low-level propagator returns `UNKNOWN`; it throws on invalid input or computation failure. The `OrbitalQualityEvaluator` takes a retained set (or `null`), explicit evaluation and propagation times, and separate source acquisition health. It returns a coordinate-bearing `GOOD`, `STALE`, or `UNKNOWN` state, or a coordinate-free `NO_DATA`/`INVALID` result with a stable reason. The [versioned current-state policy](../docs/telemetry/orbital-quality-policy.md) defines the MISSION1 24-hour epoch-age boundary and its limits; neither successful computation nor `GOOD` certifies positional accuracy.
+
+## PostgreSQL element history
+
+The `OrbitalElementSetRepository` port and Spring JDBC adapter accept an already obtained, validated set through `storeIfNew`. The adapter revalidates the TLE and its epoch/hash/catalog metadata, then atomically stores a unique source set and its retrieval observation. Flyway owns the schema. `findById`, bounded `recent(limit)`, and `latestUsable(asOf)` reconstruct domain objects. See [element-history semantics](../docs/telemetry/orbital-element-history.md) for identity, ordering, and timestamp rules. No fetched set is silently inserted on startup, and no quality result or computed orbital state is stored.
+
+For local development, run `docker compose up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. The current non-web process verifies the connection, applies migrations and exits; there is no long-running endpoint yet. The root Compose file contains only PostgreSQL. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose down` stops the database while retaining the named volume; `docker compose down -v` deliberately removes local database history.
+
+`mvn test` and `mvn verify` run the existing offline orbital tests plus PostgreSQL integration tests using Testcontainers. Docker must be available for the latter. Those tests use the frozen real TLE fixture and a clearly marked test-only altered revision, never CelesTrak network calls or H2.
 
 ## Reproducible Orekit data
 
