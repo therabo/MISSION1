@@ -10,6 +10,7 @@ import org.mission1.orbital.domain.DataClassification;
 import org.mission1.orbital.domain.GeodeticPoint;
 import org.mission1.orbital.domain.OrbitalElementSet;
 import org.mission1.orbital.domain.OrbitalState;
+import org.mission1.orbital.domain.OrbitalQualityReason;
 import org.mission1.orbital.domain.Quality;
 import org.mission1.orbital.domain.Vector3;
 import org.orekit.bodies.OneAxisEllipsoid;
@@ -36,22 +37,43 @@ public final class OrekitOrbitalPropagator {
     public OrbitalState propagate(OrbitalElementSet elements, Instant propagationTime) {
         Objects.requireNonNull(elements);
         Objects.requireNonNull(propagationTime);
+        final TLE tle;
         try {
-            TLE tle = parser.parseTle(elements.line1(), elements.line2());
+            tle = parser.parseTle(elements.line1(), elements.line2());
             Instant parsedEpoch = tle.getDate().toInstant(data.timeScales());
             if (tle.getSatelliteNumber() != elements.catalogNumber() || !parsedEpoch.equals(elements.elementEpoch())
                     || !TleElementParser.digest(elements.line1(), elements.line2()).equals(elements.sha256())) {
                 throw new IllegalArgumentException("Element metadata differs from TLE content");
             }
-            AbsoluteDate date = new AbsoluteDate(propagationTime, data.utc());
+        } catch (RuntimeException failure) {
+            throw new OrbitalCalculationException(OrbitalQualityReason.INVALID_ORBITAL_ELEMENTS,
+                    "Invalid ISS orbital elements", failure);
+        }
+        final AbsoluteDate date;
+        try {
+            date = new AbsoluteDate(propagationTime, data.utc());
             data.requireEopCoverage(date);
+        } catch (OrbitalCalculationException failure) {
+            throw failure;
+        } catch (RuntimeException failure) {
+            throw new OrbitalCalculationException(OrbitalQualityReason.EOP_DATA_UNAVAILABLE,
+                    "Required orbital time/EOP data unavailable", failure);
+        }
+        final PVCoordinates temePv;
+        final SpacecraftState state;
+        try {
             // A new propagator per call avoids sharing its mutable state across callers.
             TLEPropagator propagator = TLEPropagator.selectExtrapolator(tle, data.teme());
-            SpacecraftState state = propagator.propagate(date);
+            state = propagator.propagate(date);
             if (state.getFrame() != data.teme()) {
                 throw new IllegalStateException("Unexpected TLE propagation frame");
             }
-            PVCoordinates temePv = state.getPVCoordinates();
+            temePv = state.getPVCoordinates();
+        } catch (RuntimeException failure) {
+            throw new OrbitalCalculationException(OrbitalQualityReason.PROPAGATION_FAILED,
+                    "ISS TLE propagation failed", failure);
+        }
+        try {
             PVCoordinates itrfPv = state.getPVCoordinates(data.earthFixed());
             org.orekit.bodies.GeodeticPoint point = earth.transform(itrfPv.getPosition(), data.earthFixed(), date);
             return new OrbitalState(propagationTime,
@@ -63,8 +85,8 @@ public final class OrekitOrbitalPropagator {
                     elements.retrievedAt(),
                     DataClassification.COMPUTED_FROM_ORBITAL_ELEMENTS, Quality.UNKNOWN);
         } catch (RuntimeException failure) {
-            if (failure instanceof OrbitalCalculationException alreadyExplicit) throw alreadyExplicit;
-            throw new OrbitalCalculationException("ISS orbital propagation failed", failure);
+            throw new OrbitalCalculationException(OrbitalQualityReason.TRANSFORMATION_FAILED,
+                    "ISS frame or WGS84 transformation failed", failure);
         }
     }
 

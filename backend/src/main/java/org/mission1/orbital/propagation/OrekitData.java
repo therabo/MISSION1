@@ -9,6 +9,7 @@ import org.orekit.time.AbsoluteDate;
 import org.orekit.time.UTCScale;
 import org.orekit.time.TimeScales;
 import org.orekit.utils.IERSConventions;
+import org.mission1.orbital.domain.OrbitalQualityReason;
 
 /** Private Orekit context: packaged UTC–TAI and EOP only; no machine-global data path. */
 public final class OrekitData {
@@ -48,7 +49,8 @@ public final class OrekitData {
 
     public void requireEopCoverage(AbsoluteDate date) {
         if (date.compareTo(eop.getStartDate()) < 0 || date.compareTo(eop.getEndDate()) > 0) {
-            throw new OrbitalCalculationException("Propagation time is outside bundled EOP coverage: " + date.toString(utc));
+            throw new OrbitalCalculationException(OrbitalQualityReason.EOP_DATA_UNAVAILABLE,
+                    "Propagation time is outside bundled EOP coverage: " + date.toString(utc));
         }
     }
 }

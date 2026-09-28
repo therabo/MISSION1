@@ -1,6 +1,6 @@
 package org.mission1.orbital.domain;
 
-/** No orbital freshness or accuracy policy has been approved for this milestone. */
+/** Canonical application quality vocabulary; no value is a positional accuracy estimate. */
 public enum Quality {
-    UNKNOWN
+    GOOD, STALE, NO_DATA, INVALID, OUT_OF_RANGE, UNKNOWN
 }

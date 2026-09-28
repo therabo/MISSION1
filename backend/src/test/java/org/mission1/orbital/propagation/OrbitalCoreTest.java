@@ -58,7 +58,7 @@ class OrbitalCoreTest {
 
     @Test void propagatesAtEpochAgainstIndependentSgp4AndSkyfieldReference() {
         OrbitalState state = propagator.propagate(fixture(), EPOCH);
-        assertEquals(Duration.ZERO, state.elementAge());
+        assertEquals(Duration.ZERO, state.propagationOffset());
         assertEquals("TEME", state.teme().frame());
         assertEquals("ITRF_2020_IERS_2010", state.earthFixed().frame());
         // Independent python-sgp4 2.25 TEME state, converted km→m and km/s→m/s.
@@ -77,7 +77,7 @@ class OrbitalCoreTest {
     @Test void propagatesAtKnownLaterInstantAndPreservesLineageAndAge() {
         OrbitalElementSet elements = fixture();
         OrbitalState state = propagator.propagate(elements, LATER);
-        assertEquals(Duration.ofHours(1), state.elementAge());
+        assertEquals(Duration.ofHours(1), state.propagationOffset());
         assertVectorNear(new Vector3(5_245_553.221649, 875_882.115212, -4_235_873.375230),
                 state.teme().positionMeters(), 0.01);
         assertVectorNear(new Vector3(-3_859.158777, 5_515.945720, -3_646.518240),
@@ -100,7 +100,7 @@ class OrbitalCoreTest {
     @Test void fixedTimeIsDeterministicAndAgeIsSigned() {
         OrbitalElementSet elements = fixture();
         assertEquals(propagator.propagate(elements, LATER), propagator.propagate(elements, LATER));
-        assertEquals(Duration.ofHours(-1), propagator.propagate(elements, EPOCH.minusSeconds(3600)).elementAge());
+        assertEquals(Duration.ofHours(-1), propagator.propagate(elements, EPOCH.minusSeconds(3600)).propagationOffset());
     }
 
     @Test void rejectsTimeOutsideBundledEarthOrientationData() {

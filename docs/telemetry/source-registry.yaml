@@ -600,7 +600,7 @@ derived_products:
     verification_status: PARTIALLY_VERIFIED
     verification_date: 2026-09-28
     authoritative_evidence: [orekit_release, orekit_tle, orekit_tle_propagator, orekit_frames, orekit_earth_shape]
-    quality: 'MISSION1-computed element-age/parse/propagation/frame policy; no provider accuracy guarantee'
+    quality: 'MISSION1_DEFINED orbital-current-v1; 24 h current element-epoch-age boundary after structural and computational checks; source acquisition health separate; no provider accuracy guarantee'
     limitations: 'Approximate GP propagation, increasing uncertainty with age/maneuvers; not live onboard telemetry.'
     mvp_phase: MVP1
     implementation_readiness: READY_FOR_IMPLEMENTATION_WITH_VALIDATION_TESTS

@@ -12,7 +12,7 @@ public record OrbitalState(
         CartesianState earthFixed,
         GeodeticPoint wgs84,
         Instant elementEpoch,
-        Duration elementAge,
+        Duration propagationOffset,
         String elementSha256,
         String elementProvider,
         String elementUpstreamOrigin,
@@ -28,7 +28,7 @@ public record OrbitalState(
         Objects.requireNonNull(earthFixed);
         Objects.requireNonNull(wgs84);
         Objects.requireNonNull(elementEpoch);
-        Objects.requireNonNull(elementAge);
+        Objects.requireNonNull(propagationOffset);
         Objects.requireNonNull(elementSha256);
         Objects.requireNonNull(elementProvider);
         Objects.requireNonNull(elementUpstreamOrigin);
@@ -37,11 +37,21 @@ public record OrbitalState(
         if (!"TEME".equals(teme.frame()) || !"ITRF_2020_IERS_2010".equals(earthFixed.frame())) {
             throw new IllegalArgumentException("Orbital state frame mismatch");
         }
-        if (!Duration.between(elementEpoch, propagationTime).equals(elementAge)) {
-            throw new IllegalArgumentException("Element age must use element epoch");
+        if (!Duration.between(elementEpoch, propagationTime).equals(propagationOffset)) {
+            throw new IllegalArgumentException("Propagation offset must use element epoch");
         }
-        if (classification != DataClassification.COMPUTED_FROM_ORBITAL_ELEMENTS || quality != Quality.UNKNOWN) {
+        if (classification != DataClassification.COMPUTED_FROM_ORBITAL_ELEMENTS
+                || (quality != Quality.GOOD && quality != Quality.STALE && quality != Quality.UNKNOWN)) {
             throw new IllegalArgumentException("Unexpected state classification or quality");
         }
+    }
+
+    public OrbitalState withQuality(Quality assessedQuality) {
+        if (assessedQuality != Quality.GOOD && assessedQuality != Quality.STALE && assessedQuality != Quality.UNKNOWN) {
+            throw new IllegalArgumentException("A coordinate-bearing state cannot have this quality");
+        }
+        return new OrbitalState(propagationTime, teme, earthFixed, wgs84, elementEpoch, propagationOffset,
+                elementSha256, elementProvider, elementUpstreamOrigin, elementSourceUri, elementRetrievedAt,
+                classification, assessedQuality);
     }
 }
