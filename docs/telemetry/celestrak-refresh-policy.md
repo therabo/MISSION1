@@ -1,0 +1,17 @@
+# CelesTrak ISS GP refresh and source health
+
+Status: MISSION1 operational policy, implemented 2026-09-28. Scope: CelesTrak GP TLE for ISS/NORAD 25544 only.
+
+## Verified provider constraint
+
+[CelesTrak's usage policy](https://celestrak.org/usage-policy.php), updated 2026-05-22 and checked 2026-09-28, says GP data updates once every two hours, asks users to download only needed data once per update, and instructs automated clients to stop querying and report any non-200 response for investigation. Repeated excessive/error queries can be blocked. The selected single-object query is documented by [CelesTrak's GP format guide](https://celestrak.org/NORAD/documentation/gp-data-formats.php): `CATNR=25544&FORMAT=TLE`. These are **resource-use constraints**, not ISS element-epoch freshness or position-accuracy guarantees.
+
+## MISSION1 retrieval policy
+
+The default minimum interval and Spring fixed delay are **2 hours 10 minutes**. The ten-minute buffer reduces the chance of querying the same update window due to scheduler drift or unknown publication boundaries. The initial delay is also 2 hours 10 minutes: startup does not make an immediate request, even with an empty database, and rapid restarts do not make repeated attempts. Both settings are externalized, with validation requiring interval ≥ 2 hours and initial delay ≥ interval. Tests disable scheduling. One process and one scheduled task are assumed. Multi-instance deployment would need ownership/locking before automatic refresh is enabled on multiple replicas.
+
+At each evaluation, `shouldFetch(now, lastSuccessfulRetrieval)` permits a request when no successful observation exists or `now >= lastSuccessfulRetrieval + interval`. The in-process last attempt imposes the same minimum after a failed request. The last successful retrieval comes from `orbital_element_observations`, filtered to CelesTrak and catalog 25544. It is **not** selected by `latestUsable(asOf)` or by TLE element epoch. No provider request occurs during `GET /api/iss/state`. An eligible iteration makes one HTTP request, validates one ISS TLE and writes with `storeIfNew`. A repeated valid TLE can add another durable observation without another element-set row.
+
+HTTP 403 is classified `RATE_LIMITED_OR_BLOCKED`; any non-200 suspends automatic requests in the current process pending operator investigation. No immediate retry occurs. Network/timeout or invalid-200 responses become a degraded health result and wait for the next eligible scheduled cycle. A local read/write failure is a separate `PERSISTENCE_FAILURE`; it does not mark CelesTrak degraded or erase the last valid set. The health snapshot tracks current status (`UNKNOWN`, `HEALTHY`, `DEGRADED`), last attempt/failure, failure count/category and last valid refresh result. Its last-success timestamp is read from durable observations. Restart resets process-local failures/status to `UNKNOWN`, even when last-success history exists. No arbitrary `UNAVAILABLE` threshold or failure-history table is introduced.
+
+Four independent concepts must remain distinct: provider refresh policy ≠ age since MISSION1 retrieval ≠ TLE element-epoch age ≠ `orbital-current-v1` state quality. The 24-hour element-epoch boundary is a separate MISSION1 display policy. A valid cached state can be `GOOD` while acquisition health is `DEGRADED`, and a successful fetch of an old valid TLE can be `HEALTHY` while computed state is `STALE`.

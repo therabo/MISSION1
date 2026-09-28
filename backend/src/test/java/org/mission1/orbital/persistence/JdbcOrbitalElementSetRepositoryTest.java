@@ -63,6 +63,7 @@ class JdbcOrbitalElementSetRepositoryTest {
         assertNotNull(jdbc.queryForObject("SELECT count(*) FROM orbital_element_observations", Integer.class));
         assertTrue(repository.recent(10).isEmpty());
         assertTrue(repository.latestUsable(RETRIEVED).isEmpty());
+        assertTrue(repository.lastSuccessfulRetrieval("CELESTRAK_GP", 25544).isEmpty());
     }
 
     @Test
@@ -98,6 +99,8 @@ class JdbcOrbitalElementSetRepositoryTest {
         assertTrue(repeated.observationInserted());
         assertEquals(1, count("orbital_element_sets"));
         assertEquals(2, count("orbital_element_observations"));
+        assertEquals(later, repository.lastSuccessfulRetrieval("CELESTRAK_GP", 25544).orElseThrow());
+        assertTrue(repository.lastSuccessfulRetrieval("OTHER_PROVIDER", 25544).isEmpty());
         assertEquals(later, repository.findById(first.id()).orElseThrow().elements().retrievedAt());
         assertEquals(RETRIEVED, repository.latestUsable(RETRIEVED).orElseThrow().elements().retrievedAt());
     }

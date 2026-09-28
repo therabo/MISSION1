@@ -32,7 +32,8 @@ class CurrentOrbitalStateServiceTest {
     private final TleElementParser parser = new TleElementParser(data);
     private final OrbitalQualityEvaluator evaluator = new OrbitalQualityEvaluator(
             new OrekitOrbitalPropagator(data, parser), OrbitalFreshnessPolicy.standardGpCurrent());
-    private final CurrentOrbitalStateService service = new CurrentOrbitalStateService(repository, evaluator, clock);
+    private final CurrentOrbitalStateService service = new CurrentOrbitalStateService(
+            repository, evaluator, clock, new CelesTrakSourceHealthTracker());
 
     @Test
     void selectsAtOneCapturedInstantAndComputesGoodStateFromSelectedElements() {
@@ -44,6 +45,7 @@ class CurrentOrbitalStateServiceTest {
 
         verify(clock, times(1)).instant();
         verify(repository).latestUsable(NOW);
+        verify(repository).lastSuccessfulRetrieval(CelesTrakRefreshService.PROVIDER, 25544);
         verifyNoMoreInteractions(repository);
         assertEquals(selected, result.elements());
         assertEquals(NOW, result.evaluation().evaluationTime());

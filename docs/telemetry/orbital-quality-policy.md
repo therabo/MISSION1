@@ -10,7 +10,7 @@ Status: **MISSION1_DEFINED**, version `orbital-current-v1`, 2026-09-28. Applies 
 
 ## Independent dimensions and time definitions
 
-`SourceAcquisitionHealth` has `UNKNOWN`, `HEALTHY`, or `DEGRADED`, last attempt, last successful fetch, and an optional failure code. It describes the provider acquisition path and is supplied to the evaluator; this task does not implement a cache, fetching schedule, or durable status tracker. A failed fetch must not erase a previously validated set. A healthy fetch likewise cannot make an old-epoch set `GOOD`.
+`SourceAcquisitionHealth` has `UNKNOWN`, `HEALTHY`, or `DEGRADED`, last attempt, last successful fetch, last failure, consecutive count and sanitized failure category. It describes the provider acquisition path and is supplied to the evaluator. The later [refresh implementation](celestrak-refresh-policy.md) reconstructs last success from durable observations and tracks current failures in memory; it does not alter this quality policy. A failed fetch must not erase a previously validated set. A healthy fetch likewise cannot make an old-epoch set `GOOD`.
 
 For explicit `evaluationTime` and `propagationTime`, the evaluator records:
 
@@ -20,7 +20,7 @@ For explicit `evaluationTime` and `propagationTime`, the evaluator records:
 | `elementEpochAge` | `evaluationTime − elementEpoch` | Signed age of the orbital solution at assessment time; governs **current** freshness. |
 | `propagationOffset` | `propagationTime − elementEpoch` | Signed SGP4/SDP4 offset, including back-propagation. It is not retrieval age. |
 
-`OrbitalState` contains coordinates only after successful propagation, TEME → ITRF 2020 / IERS 2010 transformation, and WGS84 conversion. It keeps the element hash, epoch, provider/upstream, source URI, retrieval time, propagation time and `COMPUTED_FROM_ORBITAL_ELEMENTS` classification. `OrbitalEvaluation` adds the as-of time, ages, source health, quality reason and policy ID. No full TLE is duplicated in the quality result. Provider publication time remains unknown. These fields are domain information for a future API, not a DTO design.
+`OrbitalState` contains coordinates only after successful propagation, TEME → ITRF 2020 / IERS 2010 transformation, and WGS84 conversion. It keeps the element hash, epoch, provider/upstream, source URI, retrieval time, propagation time and `COMPUTED_FROM_ORBITAL_ELEMENTS` classification. `OrbitalEvaluation` adds the as-of time, ages, source health, quality reason and policy ID. No full TLE is duplicated in the quality result. Provider publication time remains unknown. The implemented REST DTO exposes the relevant fields without serializing this domain record directly.
 
 ## MISSION1-defined decision order
 

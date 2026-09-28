@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.sun.net.httpserver.HttpServer;
 import org.junit.jupiter.api.Test;
 import org.mission1.orbital.domain.DataClassification;
+import org.mission1.orbital.domain.SourceFailureCategory;
 import org.mission1.orbital.propagation.OrekitData;
 import org.mission1.orbital.propagation.TleElementParser;
 
@@ -36,11 +37,13 @@ class CelesTrakOrbitalElementsSourceTest {
 
     @Test void rejectsMalformedAndEmptyResponses() throws IOException {
         withResponse(200, "<html>error</html>", (source, requests) -> {
-            assertThrows(SourceFetchException.class, source::fetch);
+            assertEquals(SourceFailureCategory.INVALID_RESPONSE,
+                    assertThrows(SourceFetchException.class, source::fetch).category());
             assertEquals(1, requests.get());
         });
         withResponse(200, "", (source, requests) -> {
-            assertThrows(SourceFetchException.class, source::fetch);
+            assertEquals(SourceFailureCategory.INVALID_RESPONSE,
+                    assertThrows(SourceFetchException.class, source::fetch).category());
             assertEquals(1, requests.get());
         });
     }
@@ -51,7 +54,8 @@ class CelesTrakOrbitalElementsSourceTest {
                 + withChecksum(lines[1].substring(0, 2) + "99999" + lines[1].substring(7)) + "\n"
                 + withChecksum(lines[2].substring(0, 2) + "99999" + lines[2].substring(7)) + "\n";
         withResponse(200, wrongCatalog, (source, requests) -> {
-            assertThrows(SourceFetchException.class, source::fetch);
+            assertEquals(SourceFailureCategory.WRONG_SATELLITE,
+                    assertThrows(SourceFetchException.class, source::fetch).category());
             assertEquals(1, requests.get());
         });
     }
@@ -60,6 +64,7 @@ class CelesTrakOrbitalElementsSourceTest {
         withResponse(403, "blocked", (source, requests) -> {
             SourceFetchException failure = assertThrows(SourceFetchException.class, source::fetch);
             assertEquals(403, failure.httpStatus());
+            assertEquals(SourceFailureCategory.RATE_LIMITED_OR_BLOCKED, failure.category());
             assertEquals(1, requests.get());
         });
     }

@@ -13,25 +13,27 @@ import org.mission1.orbital.domain.SourceAcquisitionHealth;
 public final class CurrentOrbitalStateService {
     public record CurrentState(OrbitalElementSet elements, OrbitalEvaluation evaluation) { }
 
-    private static final SourceAcquisitionHealth UNMONITORED_SOURCE =
-            new SourceAcquisitionHealth(SourceAcquisitionHealth.Status.UNKNOWN, null, null, null);
-
     private final OrbitalElementSetRepository repository;
     private final OrbitalQualityEvaluator evaluator;
     private final Clock clock;
+    private final CelesTrakSourceHealthTracker health;
 
     public CurrentOrbitalStateService(OrbitalElementSetRepository repository,
-                                     OrbitalQualityEvaluator evaluator, Clock clock) {
+                                     OrbitalQualityEvaluator evaluator, Clock clock,
+                                     CelesTrakSourceHealthTracker health) {
         this.repository = Objects.requireNonNull(repository);
         this.evaluator = Objects.requireNonNull(evaluator);
         this.clock = Objects.requireNonNull(clock);
+        this.health = Objects.requireNonNull(health);
     }
 
     public CurrentState current() {
         Instant now = clock.instant();
         OrbitalElementSet elements = repository.latestUsable(now)
                 .orElseThrow(NoCurrentOrbitalStateException::new).elements();
-        OrbitalEvaluation evaluation = evaluator.evaluate(elements, now, now, UNMONITORED_SOURCE);
+        SourceAcquisitionHealth sourceHealth = health.snapshot(repository.lastSuccessfulRetrieval(
+                CelesTrakRefreshService.PROVIDER, CelesTrakRefreshService.ISS_CATALOG_NUMBER).orElse(null));
+        OrbitalEvaluation evaluation = evaluator.evaluate(elements, now, now, sourceHealth);
         if (evaluation.quality() == Quality.INVALID || evaluation.state() == null) {
             throw new CurrentOrbitalStateCalculationException(evaluation.reason());
         }

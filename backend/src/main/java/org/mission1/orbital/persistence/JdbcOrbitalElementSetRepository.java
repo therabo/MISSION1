@@ -104,6 +104,17 @@ public class JdbcOrbitalElementSetRepository implements OrbitalElementSetReposit
     }
 
     @Override
+    public Optional<Instant> lastSuccessfulRetrieval(String provider, int catalogNumber) {
+        Objects.requireNonNull(provider);
+        return Optional.ofNullable(jdbc.queryForObject("""
+                SELECT max(o.retrieved_at)
+                FROM orbital_element_observations o
+                JOIN orbital_element_sets s ON s.id = o.element_set_id
+                WHERE s.provider = ? AND s.catalog_number = ?
+                """, (rs, row) -> instantOrNull(rs, 1), provider, catalogNumber));
+    }
+
+    @Override
     public List<Stored> recent(int limit) {
         if (limit < 1 || limit > 100) throw new IllegalArgumentException("History limit must be 1..100");
         return jdbc.query(SELECT_WITH_LATEST_OBSERVATION + OBSERVATION_END
@@ -166,6 +177,11 @@ public class JdbcOrbitalElementSetRepository implements OrbitalElementSetReposit
     }
 
     private static Instant instantOrNull(ResultSet rs, String column) throws SQLException {
+        OffsetDateTime value = rs.getObject(column, OffsetDateTime.class);
+        return value == null ? null : value.toInstant();
+    }
+
+    private static Instant instantOrNull(ResultSet rs, int column) throws SQLException {
         OffsetDateTime value = rs.getObject(column, OffsetDateTime.class);
         return value == null ? null : value.toInstant();
     }

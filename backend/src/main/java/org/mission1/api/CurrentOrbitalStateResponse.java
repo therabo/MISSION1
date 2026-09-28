@@ -5,6 +5,7 @@ import java.time.Instant;
 
 import org.mission1.orbital.application.CurrentOrbitalStateService.CurrentState;
 import org.mission1.orbital.domain.Vector3;
+import org.mission1.orbital.domain.SourceAcquisitionHealth;
 
 /** Public units and lineage for a current computation; no domain or Orekit type is serialized. */
 public record CurrentOrbitalStateResponse(
@@ -14,7 +15,8 @@ public record CurrentOrbitalStateResponse(
         Geodetic geodetic,
         Source source,
         String classification,
-        Assessment quality) {
+        Assessment quality,
+        SourceHealth sourceHealth) {
 
     public record Satellite(int noradCatalogNumber) { }
     public record Components(double x, double y, double z) {
@@ -29,6 +31,16 @@ public record CurrentOrbitalStateResponse(
     public record Assessment(String status, String reason, String policy,
                              double elementAgeSeconds, double retrievalAgeSeconds,
                              double propagationOffsetSeconds) { }
+    public record SourceHealth(String status, Instant lastAttemptAt, Instant lastSuccessAt,
+                               Instant lastFailureAt, int consecutiveFailures,
+                               String lastFailureCategory, String lastSuccessfulResult) {
+        static SourceHealth from(SourceAcquisitionHealth health) {
+            return new SourceHealth(health.status().name(), health.lastAttemptAt(),
+                    health.lastSuccessfulFetchAt(), health.lastFailureAt(), health.consecutiveFailures(),
+                    health.lastFailureCategory() == null ? null : health.lastFailureCategory().name(),
+                    health.lastSuccessfulResult());
+        }
+    }
 
     public static CurrentOrbitalStateResponse from(CurrentState current) {
         var elements = current.elements();
@@ -47,7 +59,8 @@ public record CurrentOrbitalStateResponse(
                 state.classification().name(),
                 new Assessment(evaluation.quality().name(), evaluation.reason().name(), evaluation.policyId(),
                         seconds(evaluation.elementEpochAge()), seconds(evaluation.retrievalAge()),
-                        seconds(evaluation.propagationOffset())));
+                        seconds(evaluation.propagationOffset())),
+                SourceHealth.from(evaluation.sourceHealth()));
     }
 
     private static double seconds(Duration duration) {

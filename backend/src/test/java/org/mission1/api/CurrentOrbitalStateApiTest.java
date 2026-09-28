@@ -100,6 +100,9 @@ class CurrentOrbitalStateApiTest {
                 .andExpect(jsonPath("$.quality.status").value("GOOD"))
                 .andExpect(jsonPath("$.quality.reason").value("NONE"))
                 .andExpect(jsonPath("$.quality.policy").value("orbital-current-v1"))
+                .andExpect(jsonPath("$.sourceHealth.status").value("UNKNOWN"))
+                .andExpect(jsonPath("$.sourceHealth.lastSuccessAt").value(RETRIEVED.toString()))
+                .andExpect(jsonPath("$.sourceHealth.consecutiveFailures").value(0))
                 .andExpect(jsonPath("$.quality.retrievalAgeSeconds").value(3600.0))
                 .andExpect(jsonPath("$.quality.elementAgeSeconds",
                         closeTo(Duration.between(elements.elementEpoch(), NOW).toNanos() / 1e9, 1e-6)))

@@ -183,10 +183,13 @@ class OrbitalQualityEvaluatorTest {
     }
 
     private static SourceAcquisitionHealth healthy() {
-        return new SourceAcquisitionHealth(Status.HEALTHY, RETRIEVED, RETRIEVED, null);
+        return new SourceAcquisitionHealth(Status.HEALTHY, RETRIEVED, RETRIEVED,
+                null, 0, null, "FETCHED_NEW_ELEMENT");
     }
 
     private static SourceAcquisitionHealth degraded() {
-        return new SourceAcquisitionHealth(Status.DEGRADED, RETRIEVED.plusSeconds(3600), RETRIEVED, "HTTP_503");
+        return new SourceAcquisitionHealth(Status.DEGRADED, RETRIEVED.plusSeconds(3600), RETRIEVED,
+                RETRIEVED.plusSeconds(3600), 1,
+                org.mission1.orbital.domain.SourceFailureCategory.HTTP_ERROR, "FETCHED_NEW_ELEMENT");
     }
 }

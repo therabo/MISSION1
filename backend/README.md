@@ -1,6 +1,6 @@
 # MISSION1 orbital core
 
-This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies the PostgreSQL migration but makes **no external ISS request**. The sole acquisition operation is an explicit `OrbitalElementsSource.fetch()` call; there is no scheduler or UI in this milestone.
+This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. A delayed scheduler runs the separate CelesTrak refresh service; there is no UI in this milestone.
 
 ## Data path and meaning
 
@@ -22,9 +22,9 @@ For local development, run `docker compose up -d --wait postgres` from the repos
 
 ## Current orbital state API
 
-`GET /api/iss/state` reads only the persisted element history. It captures one UTC instant, selects `latestUsable(now)` (epoch and retrieval time both no later than now), propagates that set with the existing Orekit path, and applies `orbital-current-v1` at the same instant. The endpoint never fetches CelesTrak; an empty database is expected to return 503 until a separate acquisition process stores a set. This is a **current-time computation from previously retrieved elements**, never live onboard ISS position telemetry. No current CelesTrak health is reported because acquisition health is not yet monitored or stored. Historical data availability does not prove provider availability.
+`GET /api/iss/state` reads only the persisted element history and the in-process source-health snapshot. It captures one UTC instant, selects `latestUsable(now)` (epoch and retrieval time both no later than now), propagates that set with the existing Orekit path, and applies `orbital-current-v1` at the same instant. The endpoint never fetches CelesTrak; an empty database returns 503 until scheduled acquisition stores a set. This is a **current-time computation from previously retrieved elements**, never live onboard ISS position telemetry. Historical data availability does not prove provider availability.
 
-This HTTP 200 example was recorded during the local check on 2026-09-28. It uses the frozen, previously retrieved real TLE fixture and a request-time Orekit computation; it is not a live onboard measurement or a production fallback:
+The state fields in this HTTP 200 example were recorded during the local check on 2026-09-28; `sourceHealth` illustrates the post-restart snapshot for the same stored fixture. It uses the frozen, previously retrieved real TLE fixture and a request-time Orekit computation; it is not a live onboard measurement or a production fallback:
 
 ```json
 {
@@ -49,11 +49,27 @@ This HTTP 200 example was recorded during the local check on 2026-09-28. It uses
     "status": "GOOD", "reason": "NONE", "policy": "orbital-current-v1",
     "elementAgeSeconds": 44274.049617, "retrievalAgeSeconds": 6241.884625,
     "propagationOffsetSeconds": 44274.049617
+  },
+  "sourceHealth": {
+    "status": "UNKNOWN", "lastAttemptAt": null,
+    "lastSuccessAt": "2026-09-28T13:58:32Z", "lastFailureAt": null,
+    "consecutiveFailures": 0, "lastFailureCategory": null,
+    "lastSuccessfulResult": null
   }
 }
 ```
 
 The response uses SI Cartesian units, WGS84 ellipsoidal altitude in meters, and geodetic angles converted from canonical radians to degrees at the API boundary. Longitude follows Orekit's `[-180°, +180°]` convention. `elementEpoch` is the TLE solution epoch, `retrievedAt` is MISSION1 observation time, and nullable `publishedAt` is provider publication time when verified; none is substituted for another. `elementSha256` identifies the source content without exposing raw TLE lines or a database key. Ages are signed decimal seconds; `propagationOffsetSeconds` is propagation time minus element epoch. `GOOD` and `STALE` are MISSION1 recency judgments, not accuracy guarantees or stored properties of the TLE. A computed `STALE` state remains HTTP 200 with coordinates and an explicit stale reason.
+
+`sourceHealth` is operational acquisition status, separate from `quality`. On restart, status and failure count reset to `UNKNOWN`/zero; `lastSuccessAt` is reconstructed from durable retrieval observations and does **not** imply `HEALTHY`. Valid new or repeated data makes status `HEALTHY`; provider/validation failure makes it `DEGRADED`. No arbitrary failure-count threshold for `UNAVAILABLE` is used. A local database failure returns `PERSISTENCE_FAILURE` from refresh without blaming CelesTrak. The prior valid orbital set remains available after a provider failure, and its quality continues to depend on element epoch through `orbital-current-v1`.
+
+## Automatic CelesTrak refresh
+
+The default `mission1.orbital.celestrak.refresh.enabled=true` uses Spring scheduling with a fixed **delay** of `PT2H10M` and initial delay of `PT2H10M`. Override via `MISSION1_CELESTRAK_REFRESH_ENABLED`, `MISSION1_CELESTRAK_REFRESH_INTERVAL`, and `MISSION1_CELESTRAK_REFRESH_INITIAL_DELAY`. The interval must be at least two hours and initial delay must be at least the interval; invalid settings fail startup. Set enabled to `false` for debugging or controlled tests. The startup delay prevents repeated application restarts from generating immediate CelesTrak requests. On each tick, the service checks the last durable CelesTrak/ISS retrieval observation and the last in-process attempt; it fetches only when the minimum interval has elapsed. TLE **element epoch is never used for fetch eligibility**. A valid duplicate TLE adds a new observation at its actual receipt time and leaves the element-set row unique.
+
+One eligible cycle makes one request: scheduler → eligibility → CelesTrak HTTPS → response/TLE validation → `storeIfNew` → refresh result and health. There is no immediate retry. The adapter uses its receipt clock after HTTP 200 and truncates to PostgreSQL microseconds; the service uses one captured UTC time for eligibility and attempt state. A non-200 response, including 403, suspends further automatic requests in this process and logs a concise warning for operator investigation. Suspension and failure count reset on restart, but the full initial delay still applies. A transient network/timeout or valid-HTTP malformed response waits until the next eligible cycle. The scheduler is safe from overlap inside one process; multi-instance scheduler ownership is **not** coordinated and requires a separate decision before horizontal deployment.
+
+This is **MISSION1 operational policy**, chosen with a ten-minute buffer beyond [CelesTrak's approximately two-hour GP update/download guidance](https://celestrak.org/usage-policy.php) to avoid repeatedly hitting the same provider update window. It is not TLE epoch freshness, retrieval age, or positional-accuracy guidance. Orbital state quality remains governed by `orbital-current-v1` and its independent 24-hour element-epoch boundary. See [refresh policy](../docs/telemetry/celestrak-refresh-policy.md).
 
 Errors use `application/problem+json` with a stable `type` URN, status, title and safe detail. `503` with `urn:mission1:problem:no-orbital-elements` means no set was both observed and eligible at evaluation time. Invalid stored metadata yields `500` with `orbital-data-integrity-error`; an invalid selected TLE yields `invalid-orbital-elements`; Orekit/EOP/transform failures yield `orbital-calculation-failed`. Unexpected server errors yield `orbital-internal-error`. Failures return no fake coordinates. A successful response does not assert that CelesTrak is currently healthy.
 
