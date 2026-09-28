@@ -1,0 +1,74 @@
+:root {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e9f4f5;
+  background: #07111d;
+  font-synthesis: none;
+  --surface: rgba(8, 23, 36, .91);
+  --surface-soft: rgba(13, 35, 49, .84);
+  --border: rgba(126, 184, 194, .22);
+  --muted: #9bb5bd;
+  --accent: #69e2dc;
+  --good: #7ce4b2;
+  --warning: #ffc17b;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; }
+button { font: inherit; }
+.app-shell { position: relative; width: 100%; height: 100%; min-height: 480px; overflow: hidden; background: #07111d; }
+.earth-view { position: absolute; inset: 0; }
+.earth-view .cesium-viewer, .earth-view .cesium-widget { width: 100%; height: 100%; }
+.earth-view .cesium-widget-credits { right: 12px; left: auto; bottom: 8px; font-size: 10px; }
+.top-brand { position: absolute; top: 24px; left: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; color: #e9f4f5; font-size: 12px; font-weight: 800; letter-spacing: .19em; text-shadow: 0 1px 10px #001; }
+.top-brand em { color: #a6c7ce; font-style: normal; font-weight: 500; }
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--accent); border-radius: 8px; background: #0b2833; color: var(--accent); font-size: 16px; letter-spacing: -.08em; }
+.brand-mark span { font-size: 9px; align-self: end; padding-bottom: 8px; }
+.top-actions { position: absolute; z-index: 2; top: 23px; right: 24px; display: flex; align-items: center; gap: 10px; }
+.scene-chip, .top-actions button { min-height: 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: #d9edef; font-size: 10px; font-weight: 700; letter-spacing: .09em; }
+.scene-chip { display: flex; align-items: center; gap: 8px; padding: 0 13px; }
+.scene-chip .dot, .legend-dot { width: 7px; height: 7px; border-radius: 50%; background: #e9a363; box-shadow: 0 0 0 3px rgba(233, 163, 99, .15); }
+.scene-chip .dot.is-on, .legend-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(105, 226, 220, .16); }
+.top-actions button { padding: 0 15px; cursor: pointer; transition: background .2s, border-color .2s; }
+.top-actions button:hover:not(:disabled) { background: #123844; border-color: var(--accent); }
+.top-actions button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.top-actions button:disabled { opacity: .5; cursor: not-allowed; }
+.status-panel { position: absolute; z-index: 2; top: 82px; left: 24px; bottom: 35px; width: min(356px, calc(100vw - 48px)); overflow-y: auto; padding: 23px 23px 20px; border: 1px solid var(--border); border-radius: 13px; background: var(--surface); box-shadow: 0 20px 70px rgba(0,0,0,.32); backdrop-filter: blur(18px); scrollbar-width: thin; }
+.eyebrow, .mini-label { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
+.panel-head h1 { margin: 8px 0 2px; font-size: 27px; font-weight: 620; letter-spacing: -.045em; }
+.panel-head p { margin: 0; color: #acc7cd; font-size: 12px; }
+.time-card { display: flex; flex-direction: column; gap: 5px; margin-top: 23px; padding: 15px; border: 1px solid rgba(102, 225, 217, .24); border-radius: 9px; background: linear-gradient(135deg, rgba(20, 69, 76, .57), rgba(10, 36, 51, .68)); }
+.time-card strong { font-size: 16px; font-weight: 610; font-variant-numeric: tabular-nums; }
+.time-card > span:last-child { color: var(--muted); font-size: 10px; }
+.notice { display: flex; flex-direction: column; gap: 5px; margin-top: 15px; padding: 11px 12px; border: 1px solid rgba(255, 193, 123, .38); border-radius: 8px; background: rgba(119, 73, 30, .21); color: #ffdab3; font-size: 11px; line-height: 1.45; }
+.notice-title { color: #ffcf94; font-weight: 750; text-transform: uppercase; letter-spacing: .09em; }
+.panel-section { margin-top: 22px; }
+.section-title { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.section-title h2 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .025em; }
+.section-title span { color: #82a6ae; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+.section-note { margin: 9px 0 6px; color: var(--muted); font-size: 11px; }
+dl { margin: 8px 0 0; }
+.data-line { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 12px; line-height: 1.4; }
+.data-line dt { flex: 0 0 105px; color: var(--muted); }
+.data-line dd { min-width: 0; margin: 0; text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.status-value { font-weight: 760; letter-spacing: .045em; }
+.status-value.good { color: var(--good); }
+.status-value.warning { color: var(--warning); }
+.status-value.muted { color: #c4d4d9; }
+.provenance .data-line { font-size: 11px; }
+.provenance-note { margin: 22px 0 0; padding-top: 13px; border-top: 1px solid var(--border); color: #a6c0c7; font-size: 11px; line-height: 1.55; }
+.provenance-note a { color: #a9ebe7; text-decoration: underline; text-underline-offset: 2px; }
+.scene-legend { position: absolute; right: 22px; bottom: 31px; z-index: 2; display: flex; align-items: center; gap: 9px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-soft); color: #d9edef; font-size: 10px; }
+.legend-rule { display: inline-block; width: 17px; height: 2px; margin-left: 10px; background: var(--accent); }
+@media (max-width: 720px) {
+  .top-brand { top: 13px; left: 12px; gap: 8px; font-size: 10px; }
+  .top-brand em { display: none; }
+  .top-actions { top: 12px; right: 12px; }
+  .scene-chip { display: none; }
+  .top-actions button { min-height: 34px; padding: 0 10px; }
+  .status-panel { top: auto; right: 9px; bottom: 34px; left: 9px; width: auto; max-height: min(51vh, 490px); padding: 15px; border-radius: 11px; }
+  .panel-head h1 { font-size: 20px; }
+  .time-card { margin-top: 13px; }
+  .panel-section { margin-top: 15px; }
+  .scene-legend { display: none; }
+  .earth-view .cesium-widget-credits { bottom: 5px; right: 9px; }
+}
