@@ -4,16 +4,23 @@ import java.net.URI;
 
 import org.mission1.orbital.application.CurrentOrbitalStateCalculationException;
 import org.mission1.orbital.application.NoCurrentOrbitalStateException;
+import org.mission1.orbital.application.InvalidOrbitalSampleRequestException;
 import org.mission1.orbital.domain.OrbitalQualityReason;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-/** Safe, stable HTTP failures for the current-state read path. */
-@RestControllerAdvice(assignableTypes = CurrentOrbitalStateController.class)
+/** Safe, stable HTTP failures for the orbital read paths. */
+@RestControllerAdvice(assignableTypes = {CurrentOrbitalStateController.class, OrbitalSamplesController.class})
 public final class CurrentOrbitalStateErrors {
+    @ExceptionHandler({InvalidOrbitalSampleRequestException.class, MethodArgumentTypeMismatchException.class})
+    ProblemDetail invalidWindow(Exception failure) {
+        return problem(HttpStatus.BAD_REQUEST, "invalid-orbital-sample-window", "Invalid orbital sample window",
+                "Use bounded whole-second pastSeconds, futureSeconds and stepSeconds values; see the API contract.");
+    }
     @ExceptionHandler(NoCurrentOrbitalStateException.class)
     ProblemDetail noData(NoCurrentOrbitalStateException failure) {
         return problem(HttpStatus.SERVICE_UNAVAILABLE, "no-orbital-elements", "Orbital state unavailable",

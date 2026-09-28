@@ -13,6 +13,7 @@ import org.mission1.orbital.application.OrbitalElementSetRepository;
 import org.mission1.orbital.application.CelesTrakRefreshPolicy;
 import org.mission1.orbital.application.CelesTrakRefreshService;
 import org.mission1.orbital.application.CelesTrakSourceHealthTracker;
+import org.mission1.orbital.application.OrbitalSampleWindowService;
 import org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -44,6 +45,11 @@ class OrbitalConfiguration {
     }
     @Bean CelesTrakOrbitalElementsSource celesTrakSource(Clock utcClock, TleElementParser parser) {
         return new CelesTrakOrbitalElementsSource(utcClock, parser);
+    }
+    @Bean OrbitalSampleWindowService orbitalSampleWindowService(OrbitalElementSetRepository repository,
+            OrekitOrbitalPropagator propagator, OrbitalQualityEvaluator evaluator,
+            CelesTrakSourceHealthTracker health, Clock utcClock) {
+        return new OrbitalSampleWindowService(repository, propagator, evaluator, health, utcClock);
     }
     @Bean CelesTrakSourceHealthTracker celesTrakSourceHealthTracker() {
         return new CelesTrakSourceHealthTracker();

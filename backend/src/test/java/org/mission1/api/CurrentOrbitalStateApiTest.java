@@ -16,6 +16,8 @@ import java.time.Instant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mission1.orbital.application.OrbitalElementSetRepository;
+import org.mission1.orbital.application.OrbitalSampleWindow;
+import org.mission1.orbital.application.OrbitalSampleWindowService;
 import org.mission1.orbital.domain.OrbitalElementSet;
 import org.mission1.orbital.propagation.TleElementParser;
 import org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSource;
@@ -58,6 +60,7 @@ class CurrentOrbitalStateApiTest {
     @Autowired OrbitalElementSetRepository repository;
     @Autowired TleElementParser parser;
     @Autowired JdbcTemplate jdbc;
+    @Autowired OrbitalSampleWindowService windowService;
     @MockitoBean Clock clock;
     @MockitoBean CelesTrakOrbitalElementsSource source;
 
@@ -203,6 +206,142 @@ class CurrentOrbitalStateApiTest {
                 .andExpect(jsonPath("$.type").value("urn:mission1:problem:orbital-calculation-failed"))
                 .andExpect(jsonPath("$.status").value(500))
                 .andExpect(jsonPath("$.state").doesNotExist());
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void sampleWindowReturnsOneNamedElementSetAndEarthFixedPositions() throws Exception {
+        OrbitalElementSet elements = fixture(RETRIEVED);
+        repository.storeIfNew(elements);
+        mvc.perform(get("/api/iss/orbit/samples"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.generatedAt").value(NOW.toString()))
+                .andExpect(jsonPath("$.windowStart").value(NOW.minusSeconds(120).toString()))
+                .andExpect(jsonPath("$.windowEnd").value(NOW.plusSeconds(600).toString()))
+                .andExpect(jsonPath("$.stepSeconds").value(10))
+                .andExpect(jsonPath("$.samples.length()").value(73))
+                .andExpect(jsonPath("$.samples[0].time").value(NOW.minusSeconds(120).toString()))
+                .andExpect(jsonPath("$.samples[12].time").value(NOW.toString()))
+                .andExpect(jsonPath("$.samples[72].time").value(NOW.plusSeconds(600).toString()))
+                .andExpect(jsonPath("$.frame").value("ITRF_2020_IERS_2010"))
+                .andExpect(jsonPath("$.positionUnit").value("m"))
+                // Independent Skyfield ITRS/WGS84 reference at NOW; its EOP handling differs.
+                .andExpect(jsonPath("$.samples[12].xMeters", closeTo(134_780.612238, 150)))
+                .andExpect(jsonPath("$.samples[12].yMeters", closeTo(6_707_125.324273, 150)))
+                .andExpect(jsonPath("$.samples[12].zMeters", closeTo(1_074_731.933559, 150)))
+                .andExpect(jsonPath("$.currentGeodetic.latitudeDegrees", closeTo(9.158314655, 0.002)))
+                .andExpect(jsonPath("$.currentGeodetic.longitudeDegrees", closeTo(88.848788318, 0.002)))
+                .andExpect(jsonPath("$.source.elementSha256").value(elements.sha256()))
+                .andExpect(jsonPath("$.source.elementEpoch").value(elements.elementEpoch().toString()))
+                .andExpect(jsonPath("$.source.retrievedAt").value(RETRIEVED.toString()))
+                .andExpect(jsonPath("$.source.provider").value("CELESTRAK_GP"))
+                .andExpect(jsonPath("$.source.propagationMethod").value("OREKIT_TLE_SGP4_SDP4"))
+                .andExpect(jsonPath("$.classification").value("COMPUTED_FROM_ORBITAL_ELEMENTS"))
+                .andExpect(jsonPath("$.timeSemantics.past").value("RECONSTRUCTED_FROM_SELECTED_ORBITAL_ELEMENTS"))
+                .andExpect(jsonPath("$.timeSemantics.future").value("COMPUTED_PREDICTION_FROM_ORBITAL_ELEMENTS"))
+                .andExpect(jsonPath("$.qualityAtGeneratedAt.status").value("GOOD"))
+                .andExpect(jsonPath("$.qualityAtGeneratedAt.policy").value("orbital-current-v1"))
+                .andExpect(jsonPath("$.sourceHealth.status").value("UNKNOWN"));
+        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM orbital_element_sets", Integer.class));
+        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM orbital_element_observations", Integer.class));
+        verify(clock, times(1)).instant();
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void staleElementsStillYieldSampleWindowAndExplicitStaleQuality() throws Exception {
+        OrbitalElementSet elements = fixture(RETRIEVED);
+        repository.storeIfNew(elements);
+        Instant staleNow = elements.elementEpoch().plus(Duration.ofHours(25));
+        when(clock.instant()).thenReturn(staleNow);
+        mvc.perform(get("/api/iss/orbit/samples"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.qualityAtGeneratedAt.status").value("STALE"))
+                .andExpect(jsonPath("$.qualityAtGeneratedAt.reason").value("ELEMENT_TOO_OLD"))
+                .andExpect(jsonPath("$.samples.length()").value(73));
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void noElementsReturns503ForSampleWindow() throws Exception {
+        mvc.perform(get("/api/iss/orbit/samples"))
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(jsonPath("$.type").value("urn:mission1:problem:no-orbital-elements"))
+                .andExpect(jsonPath("$.samples").doesNotExist());
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void explicitShortWindowUsesInclusiveTimeGrid() throws Exception {
+        repository.storeIfNew(fixture(RETRIEVED));
+        mvc.perform(get("/api/iss/orbit/samples?pastSeconds=0&futureSeconds=30&stepSeconds=5"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.samples.length()").value(7))
+                .andExpect(jsonPath("$.windowStart").value(NOW.toString()))
+                .andExpect(jsonPath("$.windowEnd").value(NOW.plusSeconds(30).toString()))
+                .andExpect(jsonPath("$.samples[0].time").value(NOW.toString()))
+                .andExpect(jsonPath("$.samples[6].time").value(NOW.plusSeconds(30).toString()));
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void invalidSampleBoundsReturn400ProblemDetail() throws Exception {
+        for (String path : new String[] {
+                "/api/iss/orbit/samples?pastSeconds=-1",
+                "/api/iss/orbit/samples?futureSeconds=1201",
+                "/api/iss/orbit/samples?stepSeconds=0",
+                "/api/iss/orbit/samples?stepSeconds=31",
+                "/api/iss/orbit/samples?pastSeconds=121",
+                "/api/iss/orbit/samples?pastSeconds=300&futureSeconds=1200&stepSeconds=30",
+                "/api/iss/orbit/samples?pastSeconds=300&futureSeconds=900&stepSeconds=5",
+                "/api/iss/orbit/samples?futureSeconds=abc"
+        }) {
+            mvc.perform(get(path))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
+                    .andExpect(jsonPath("$.type").value("urn:mission1:problem:invalid-orbital-sample-window"));
+        }
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void samplePropagationFailureReturnsSanitized500() throws Exception {
+        repository.storeIfNew(fixture(RETRIEVED));
+        when(clock.instant()).thenReturn(Instant.parse("2050-01-01T00:00:00Z"));
+        mvc.perform(get("/api/iss/orbit/samples"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.type").value("urn:mission1:problem:orbital-calculation-failed"))
+                .andExpect(jsonPath("$.samples").doesNotExist());
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void defaultWindowCostAndPayloadStaySmall() throws Exception {
+        repository.storeIfNew(fixture(RETRIEVED));
+        var bounds = new OrbitalSampleWindow(120, 600, 10);
+        windowService.generate(bounds); // Warm class loading and Orekit data access.
+        long[] nanoseconds = new long[10];
+        for (int index = 0; index < nanoseconds.length; index++) {
+            long began = System.nanoTime();
+            windowService.generate(bounds);
+            nanoseconds[index] = System.nanoTime() - began;
+        }
+        java.util.Arrays.sort(nanoseconds);
+        byte[] body = mvc.perform(get("/api/iss/orbit/samples"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsByteArray();
+        assertTrue(body.length < 20_000);
+        System.out.printf("ORBIT_WINDOW samples=%d payloadBytes=%d medianGenerationMs=%.2f%n",
+                bounds.sampleCount(), body.length, nanoseconds[5] / 1_000_000.0);
+        var maximumCount = new OrbitalSampleWindow(300, 600, 5);
+        windowService.generate(maximumCount);
+        long beganMaximum = System.nanoTime();
+        windowService.generate(maximumCount);
+        double maximumGenerationMs = (System.nanoTime() - beganMaximum) / 1_000_000.0;
+        byte[] maximumBody = mvc.perform(get("/api/iss/orbit/samples?pastSeconds=300&futureSeconds=600&stepSeconds=5"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsByteArray();
+        assertTrue(maximumBody.length < 35_000);
+        System.out.printf("ORBIT_WINDOW samples=%d payloadBytes=%d warmGenerationMs=%.2f%n",
+                maximumCount.sampleCount(), maximumBody.length, maximumGenerationMs);
         verifyNoInteractions(source);
     }
 

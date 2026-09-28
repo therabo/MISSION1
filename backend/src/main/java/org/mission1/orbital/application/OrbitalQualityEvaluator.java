@@ -41,6 +41,21 @@ public final class OrbitalQualityEvaluator {
                     evaluationTime, propagationTime, sourceHealth);
         }
 
+        return assessComputed(elements, evaluationTime, computed, sourceHealth);
+    }
+
+    /** Assess a state already produced from the selected set, avoiding a second propagation. */
+    public OrbitalEvaluation assessComputed(OrbitalElementSet elements, Instant evaluationTime,
+                                            OrbitalState computed, SourceAcquisitionHealth sourceHealth) {
+        Objects.requireNonNull(elements);
+        Objects.requireNonNull(evaluationTime);
+        Objects.requireNonNull(computed);
+        Objects.requireNonNull(sourceHealth);
+        if (!elements.sha256().equals(computed.elementSha256())) {
+            throw new IllegalArgumentException("Computed state and selected elements differ");
+        }
+        Instant propagationTime = computed.propagationTime();
+
         Duration epochAge = Duration.between(elements.elementEpoch(), evaluationTime);
         if (!evaluationTime.equals(propagationTime)) {
             return result(elements, computed.withQuality(Quality.UNKNOWN), Quality.UNKNOWN,

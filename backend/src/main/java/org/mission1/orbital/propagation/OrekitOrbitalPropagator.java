@@ -2,6 +2,8 @@ package org.mission1.orbital.propagation;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.hipparchus.geometry.euclidean.threed.Vector3D;
@@ -35,8 +37,14 @@ public final class OrekitOrbitalPropagator {
     }
 
     public OrbitalState propagate(OrbitalElementSet elements, Instant propagationTime) {
+        return propagateAll(elements, List.of(propagationTime)).getFirst();
+    }
+
+    /** One validated TLE and one request-local propagator for a coherent sample window. */
+    public List<OrbitalState> propagateAll(OrbitalElementSet elements, List<Instant> times) {
         Objects.requireNonNull(elements);
-        Objects.requireNonNull(propagationTime);
+        Objects.requireNonNull(times);
+        if (times.isEmpty()) throw new IllegalArgumentException("At least one propagation time is required");
         final TLE tle;
         try {
             tle = parser.parseTle(elements.line1(), elements.line2());
@@ -49,45 +57,55 @@ public final class OrekitOrbitalPropagator {
             throw new OrbitalCalculationException(OrbitalQualityReason.INVALID_ORBITAL_ELEMENTS,
                     "Invalid ISS orbital elements", failure);
         }
-        final AbsoluteDate date;
+        final TLEPropagator propagator;
         try {
-            date = new AbsoluteDate(propagationTime, data.utc());
-            data.requireEopCoverage(date);
-        } catch (OrbitalCalculationException failure) {
-            throw failure;
-        } catch (RuntimeException failure) {
-            throw new OrbitalCalculationException(OrbitalQualityReason.EOP_DATA_UNAVAILABLE,
-                    "Required orbital time/EOP data unavailable", failure);
-        }
-        final PVCoordinates temePv;
-        final SpacecraftState state;
-        try {
-            // A new propagator per call avoids sharing its mutable state across callers.
-            TLEPropagator propagator = TLEPropagator.selectExtrapolator(tle, data.teme());
-            state = propagator.propagate(date);
-            if (state.getFrame() != data.teme()) {
-                throw new IllegalStateException("Unexpected TLE propagation frame");
-            }
-            temePv = state.getPVCoordinates();
+            propagator = TLEPropagator.selectExtrapolator(tle, data.teme());
         } catch (RuntimeException failure) {
             throw new OrbitalCalculationException(OrbitalQualityReason.PROPAGATION_FAILED,
-                    "ISS TLE propagation failed", failure);
+                    "ISS TLE propagator could not be constructed", failure);
         }
-        try {
-            PVCoordinates itrfPv = state.getPVCoordinates(data.earthFixed());
-            org.orekit.bodies.GeodeticPoint point = earth.transform(itrfPv.getPosition(), data.earthFixed(), date);
-            return new OrbitalState(propagationTime,
-                    new CartesianState(vector(temePv.getPosition()), vector(temePv.getVelocity()), "TEME"),
-                    new CartesianState(vector(itrfPv.getPosition()), vector(itrfPv.getVelocity()), "ITRF_2020_IERS_2010"),
-                    new GeodeticPoint(point.getLatitude(), point.getLongitude(), point.getAltitude()),
-                    elements.elementEpoch(), Duration.between(elements.elementEpoch(), propagationTime),
-                    elements.sha256(), elements.provider(), elements.upstreamOrigin(), elements.sourceUri(),
-                    elements.retrievedAt(),
-                    DataClassification.COMPUTED_FROM_ORBITAL_ELEMENTS, Quality.UNKNOWN);
-        } catch (RuntimeException failure) {
-            throw new OrbitalCalculationException(OrbitalQualityReason.TRANSFORMATION_FAILED,
-                    "ISS frame or WGS84 transformation failed", failure);
+        List<OrbitalState> results = new ArrayList<>(times.size());
+        for (Instant propagationTime : times) {
+            Objects.requireNonNull(propagationTime);
+            final AbsoluteDate date;
+            try {
+                date = new AbsoluteDate(propagationTime, data.utc());
+                data.requireEopCoverage(date);
+            } catch (OrbitalCalculationException failure) {
+                throw failure;
+            } catch (RuntimeException failure) {
+                throw new OrbitalCalculationException(OrbitalQualityReason.EOP_DATA_UNAVAILABLE,
+                        "Required orbital time/EOP data unavailable", failure);
+            }
+            final SpacecraftState state;
+            final PVCoordinates temePv;
+            try {
+                state = propagator.propagate(date);
+                if (state.getFrame() != data.teme()) {
+                    throw new IllegalStateException("Unexpected TLE propagation frame");
+                }
+                temePv = state.getPVCoordinates();
+            } catch (RuntimeException failure) {
+                throw new OrbitalCalculationException(OrbitalQualityReason.PROPAGATION_FAILED,
+                        "ISS TLE propagation failed", failure);
+            }
+            try {
+                PVCoordinates itrfPv = state.getPVCoordinates(data.earthFixed());
+                org.orekit.bodies.GeodeticPoint point = earth.transform(itrfPv.getPosition(), data.earthFixed(), date);
+                results.add(new OrbitalState(propagationTime,
+                        new CartesianState(vector(temePv.getPosition()), vector(temePv.getVelocity()), "TEME"),
+                        new CartesianState(vector(itrfPv.getPosition()), vector(itrfPv.getVelocity()), "ITRF_2020_IERS_2010"),
+                        new GeodeticPoint(point.getLatitude(), point.getLongitude(), point.getAltitude()),
+                        elements.elementEpoch(), Duration.between(elements.elementEpoch(), propagationTime),
+                        elements.sha256(), elements.provider(), elements.upstreamOrigin(), elements.sourceUri(),
+                        elements.retrievedAt(),
+                        DataClassification.COMPUTED_FROM_ORBITAL_ELEMENTS, Quality.UNKNOWN));
+            } catch (RuntimeException failure) {
+                throw new OrbitalCalculationException(OrbitalQualityReason.TRANSFORMATION_FAILED,
+                        "ISS frame or WGS84 transformation failed", failure);
+            }
         }
+        return List.copyOf(results);
     }
 
     private static Vector3 vector(Vector3D source) {
