@@ -11,6 +11,9 @@ const glb = readFileSync(new URL('../../public/models/iss-vtad-webp.glb', import
 const inventory = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-model-inventory.json', import.meta.url), 'utf8')) as {
   nodes: Array<{ index: number; name: string; parent: number | null; mesh: string | null }>;
 };
+const review = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-semantic-review.json', import.meta.url), 'utf8')) as {
+  nodes: Array<{ nodeIndex: number; assetNodeName: string; meshIndices: number[]; reviewClass: string; mappingStatus: string; proposedSemanticId: string | null; configurationStatus: string }>;
+};
 
 interface AssetJson {
   nodes: Array<{ name: string; mesh?: number; children?: number[] }>;
@@ -54,10 +57,20 @@ describe('NASA ISS model asset', () => {
       expect(mapping.status).toBe('VERIFIED');
       expect(semanticMapping(mapping.nodeIndex)).toEqual(mapping);
     }
-    expect(semanticMapping(0)).toEqual({ status: 'UNMAPPED' });
+    expect(semanticMapping(2)).toEqual({ status: 'UNMAPPED' });
+    expect(review.nodes).toHaveLength(asset.nodes.length);
+    for (const item of review.nodes) {
+      expect(item.assetNodeName).toBe(asset.nodes[item.nodeIndex].name);
+      expect(item.meshIndices).toEqual(asset.nodes[item.nodeIndex].mesh === undefined ? [] : [asset.nodes[item.nodeIndex].mesh]);
+      expect(['CLEAR_CANDIDATE', 'AMBIGUOUS_NAME', 'TECHNICAL_NODE', 'GENERIC_GEOMETRY', 'UNKNOWN']).toContain(item.reviewClass);
+      const mapping = ISS_MODEL.semanticMappings.find((entry) => entry.nodeIndex === item.nodeIndex);
+      expect(item.mappingStatus).toBe(mapping?.status ?? 'UNMAPPED');
+      expect(item.proposedSemanticId).toBe(mapping?.componentId ?? null);
+      expect(item.configurationStatus).toBe(mapping?.configurationStatus ?? 'CURRENT_STATUS_UNVERIFIED');
+    }
   });
 
-  it('tags only the direct primitives of the three verified nodes with feature metadata', () => {
+  it('tags only the direct primitives of verified nodes with feature metadata', () => {
     const asset = glbJson();
     expect(asset.extensionsUsed).toContain('EXT_mesh_features');
     expect(asset.extensionsUsed).toContain('EXT_structural_metadata');
@@ -78,7 +91,7 @@ describe('NASA ISS model asset', () => {
         const mapping = ISS_MODEL.semanticMappings.find((entry) => entry.nodeIndex === nodeIndex);
         expect(mapping).toBeDefined();
         expect(metadata.featureIds).toEqual([{
-          featureCount: 3, attribute: 0, propertyTable: 0, label: ISS_MODEL.semanticFeatureSet,
+          featureCount: ISS_MODEL.semanticMappings.length, attribute: 0, propertyTable: 0, label: ISS_MODEL.semanticFeatureSet,
         }]);
         const featureAccessor = asset.accessors[primitive.attributes._FEATURE_ID_0];
         expect(featureAccessor.count).toBe(asset.accessors[primitive.attributes.POSITION].count);
@@ -89,11 +102,11 @@ describe('NASA ISS model asset', () => {
         }
       }
     }
-    expect([...tagged].sort((a, b) => a - b)).toEqual([84, 95, 97]);
+    expect([...tagged].sort((a, b) => a - b)).toEqual(ISS_MODEL.semanticMappings.map((mapping) => mapping.nodeIndex).sort((a, b) => a - b));
     const table = asset.extensions.EXT_structural_metadata.propertyTables[0];
-    expect(table.count).toBe(3);
+    expect(table.count).toBe(ISS_MODEL.semanticMappings.length);
     const codesOffset = asset.bufferViews[table.properties.moduleCode.values].byteOffset;
-    expect([...glb.subarray(binaryStart + codesOffset, binaryStart + codesOffset + 3)]).toEqual([1, 2, 3]);
+    expect([...glb.subarray(binaryStart + codesOffset, binaryStart + codesOffset + table.count)]).toEqual(ISS_MODEL.semanticMappings.map((mapping) => mapping.moduleCode));
   });
 
   it('keeps asset alignment distinct from unavailable station attitude', () => {
@@ -112,12 +125,19 @@ describe('NASA ISS model asset', () => {
 
 describe('model presentation', () => {
   it('resolves only matching verified feature IDs and metadata at inspectable distance', () => {
-    expect(ISS_MODEL.semanticMappings.map((entry) => entry.componentId)).toEqual(['DESTINY', 'COLUMBUS', 'HARMONY']);
+    expect(ISS_MODEL.semanticMappings.slice(0, 3).map((entry) => [entry.componentId, entry.featureId, entry.moduleCode])).toEqual([
+      ['DESTINY', 0, 1], ['COLUMBUS', 1, 2], ['HARMONY', 2, 3],
+    ]);
+    expect(new Set(ISS_MODEL.semanticMappings.map((entry) => entry.componentId)).size).toBe(ISS_MODEL.semanticMappings.length);
     for (const mapping of ISS_MODEL.semanticMappings) {
       expect(resolveVerifiedModulePick(mapping.featureId, mapping.moduleCode)).toEqual(mapping);
+      expect(mapping.identityEvidenceUrl).toMatch(/^https:\/\//);
+      expect(mapping.configurationEvidenceUrl).toMatch(/^https:\/\//);
+      expect(mapping.configurationStatus).not.toBe(mapping.status);
     }
+    expect(ISS_MODEL.semanticMappings.find((entry) => entry.componentId === 'PIRS')?.configurationStatus).toBe('REMOVED_FROM_CURRENT_STATION');
     expect(resolveVerifiedModulePick(0, 2)).toBeNull();
-    expect(resolveVerifiedModulePick(3, 4)).toBeNull();
+    expect(resolveVerifiedModulePick(999, 1000)).toBeNull();
     expect(resolveVerifiedModulePick(undefined, undefined)).toBeNull();
     expect(modulePickingAvailable('ready', 600)).toBe(true);
     expect(modulePickingAvailable('ready', MAX_MODULE_PICK_DISTANCE_METERS)).toBe(true);

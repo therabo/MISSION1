@@ -3,6 +3,7 @@ import rawManifest from './issModelManifest.json';
 export type ModelLoadStatus = 'loading' | 'ready' | 'failed';
 export type Representation = 'none' | 'marker' | 'model' | 'model-with-label';
 export type MappingStatus = 'VERIFIED' | 'PARTIALLY_VERIFIED' | 'UNMAPPED';
+export type ConfigurationStatus = 'CURRENT_CONFIRMED' | 'REMOVED_FROM_CURRENT_STATION' | 'CURRENT_STATUS_UNVERIFIED';
 
 export interface SemanticMapping {
   nodeIndex: number;
@@ -12,6 +13,15 @@ export interface SemanticMapping {
   featureId: number;
   moduleCode: number;
   status: MappingStatus;
+  componentType: string;
+  agency?: string;
+  role?: string;
+  parentComponentId?: string;
+  identityEvidenceUrl: string;
+  identityVerifiedOn: string;
+  configurationStatus: ConfigurationStatus;
+  configurationEvidenceUrl?: string;
+  configurationEvidenceDate?: string;
 }
 
 export interface IssModelManifest {
@@ -72,6 +82,17 @@ export function parseModelManifest(input: unknown): IssModelManifest {
     moduleCodes.add(mapping.moduleCode as number);
     componentIds.add(mapping.componentId as string);
     if (!['VERIFIED', 'PARTIALLY_VERIFIED', 'UNMAPPED'].includes(mapping.status as string)) throw new Error('Invalid mapping status');
+    if (typeof mapping.componentType !== 'string' || !mapping.componentType ||
+        typeof mapping.identityEvidenceUrl !== 'string' || !/^https:\/\//.test(mapping.identityEvidenceUrl) ||
+        typeof mapping.identityVerifiedOn !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(mapping.identityVerifiedOn) ||
+        !['CURRENT_CONFIRMED', 'REMOVED_FROM_CURRENT_STATION', 'CURRENT_STATUS_UNVERIFIED'].includes(mapping.configurationStatus as string)) {
+      throw new Error('Invalid semantic evidence or configuration status');
+    }
+    if (mapping.configurationStatus !== 'CURRENT_STATUS_UNVERIFIED' &&
+        (typeof mapping.configurationEvidenceUrl !== 'string' || !/^https:\/\//.test(mapping.configurationEvidenceUrl) ||
+         typeof mapping.configurationEvidenceDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(mapping.configurationEvidenceDate))) {
+      throw new Error('Missing configuration evidence');
+    }
   }
   return manifest as unknown as IssModelManifest;
 }

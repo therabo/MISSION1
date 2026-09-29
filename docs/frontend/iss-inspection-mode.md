@@ -14,7 +14,7 @@ The 1.6-second entry uses documented `Camera.lookAt` poses along a smooth curve 
 
 The user can drag around the station and wheel or pinch to zoom. Cesium's close-view zoom factor is **0.01**; Overview restores 5. The model's off-origin bounds receive a small display-only centering translation so the station, rather than an empty nearby point, is the visual pivot. The asset's physical scale remains 1 and its bounded display enlargement remains **NOT TO SCALE**. Orbital position, altitude and path are unchanged. `CAMERA TRACKING FRAME = ENU` is a navigation choice. `MODEL DISPLAY ORIENTATION = DISPLAY_ONLY_LOCAL_ENU` and `SPACECRAFT ATTITUDE = UNAVAILABLE` are separate facts; ENU is never claimed as real ISS attitude.
 
-The path and far locator hide during Inspection and return in Overview. Direct `ModelFeature` picking selects only the hash-bound Destiny, Columbus and Harmony semantic identities. Other geometry stays `UNMAPPED`; empty or unmapped clicks clear selection. The information panel contains static NASA asset identity and states **“Live module telemetry: unavailable.”** Occluded or very small tagged surfaces may not yield a feature hit.
+The path and far locator hide during Inspection and return in Overview. Direct `ModelFeature` picking selects the 14 hash-bound `VERIFIED` identities in the [semantic map](iss-semantic-map.md), including Destiny, Columbus and Harmony with unchanged feature IDs. Other geometry stays `UNMAPPED`; empty or unmapped clicks clear selection. The information panel separates geometry identity from current configuration, explicitly marks Pirs as removed in 2021, and states **“Live module telemetry: unavailable.”** Occluded or very small tagged surfaces may not yield a feature hit.
 
 ## Return and failure
 

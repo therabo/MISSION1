@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add per-vertex feature IDs to three uniquely named NASA VTAD node meshes.
+"""Add per-vertex feature IDs to verified NASA VTAD node meshes.
 
 Run against the phase-0 WebP GLB, not the 44 MB NASA source. All original
 buffer ranges and glTF accessors are preserved; only metadata is appended.
@@ -12,11 +12,20 @@ import sys
 from pathlib import Path
 
 BASE_SHA256 = "e5ad5beb2f1ea4364c964f316a072775d8f9d4c4bfed126932aa07a85f438360"
-MODULES = (
-    (97, "09 Destiny Space Laboratory", 0, 1),
-    (84, "27 Columbus Space Laboratory", 1, 2),
-    (95, "26 Harmony Node 2", 2, 3),
-)
+MANIFEST = Path(__file__).resolve().parents[1] / "src/cesium/issModelManifest.json"
+
+
+def verified_modules() -> tuple[tuple[int, str, int, int], ...]:
+    mappings = json.loads(MANIFEST.read_text())["semanticMappings"]
+    modules = tuple(
+        (item["nodeIndex"], item["nodeName"], item["featureId"], item["moduleCode"])
+        for item in mappings if item["status"] == "VERIFIED"
+    )
+    if [item[2] for item in modules] != list(range(len(modules))):
+        raise ValueError("Verified feature IDs must be contiguous and manifest-ordered")
+    if [item[3] for item in modules] != list(range(1, len(modules) + 1)):
+        raise ValueError("Verified module codes must be contiguous and manifest-ordered")
+    return modules
 
 
 def pad(data: bytes, alignment: int, fill: bytes) -> bytes:
@@ -24,6 +33,7 @@ def pad(data: bytes, alignment: int, fill: bytes) -> bytes:
 
 
 def transform(source: Path, destination: Path) -> None:
+    modules = verified_modules()
     raw = source.read_bytes()
     if hashlib.sha256(raw).hexdigest() != BASE_SHA256:
         raise ValueError("Input is not the pinned phase-0 WebP GLB")
@@ -48,7 +58,7 @@ def transform(source: Path, destination: Path) -> None:
         if "mesh" in node:
             mesh_users.setdefault(node["mesh"], []).append(index)
 
-    for node_index, expected_name, feature_id, _ in MODULES:
+    for node_index, expected_name, feature_id, _ in modules:
         node = document["nodes"][node_index]
         if node["name"] != expected_name or mesh_users[node["mesh"]] != [node_index]:
             raise ValueError(f"Ambiguous mesh ownership for node {node_index}")
@@ -72,16 +82,16 @@ def transform(source: Path, destination: Path) -> None:
             })
             primitive["attributes"]["_FEATURE_ID_0"] = accessor_index
             primitive.setdefault("extensions", {})["EXT_mesh_features"] = {
-                "featureIds": [{"featureCount": 3, "attribute": 0,
+                "featureIds": [{"featureCount": len(modules), "attribute": 0,
                                 "propertyTable": 0, "label": "missionModule"}]
             }
 
     binary.extend(b"\0" * ((-len(binary)) % 8))
     codes_offset = len(binary)
-    binary.extend(bytes(module[3] for module in MODULES))
+    binary.extend(bytes(module[3] for module in modules))
     codes_view = len(document["bufferViews"])
     document["bufferViews"].append({
-        "buffer": 0, "byteOffset": codes_offset, "byteLength": len(MODULES)
+        "buffer": 0, "byteOffset": codes_offset, "byteLength": len(modules)
     })
     document["extensionsUsed"].extend(("EXT_mesh_features", "EXT_structural_metadata"))
     document.setdefault("extensions", {})["EXT_structural_metadata"] = {
@@ -92,7 +102,7 @@ def transform(source: Path, destination: Path) -> None:
             }}},
         },
         "propertyTables": [{
-            "class": "missionModule", "count": len(MODULES),
+            "class": "missionModule", "count": len(modules),
             "properties": {"moduleCode": {"values": codes_view}},
         }],
     }

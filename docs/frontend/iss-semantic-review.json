@@ -1,0 +1,2248 @@
+{
+  "asset": "NASA VTAD ISS_stationary.glb, pinned WebP derivative",
+  "reviewedOn": "2026-09-29",
+  "nodes": [
+    {
+      "nodeIndex": 0,
+      "assetNodeName": "13 Pirs Docking Compartment (DC) and Airlock",
+      "meshIndices": [
+        0
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "PIRS",
+      "displayName": "Pirs",
+      "componentCategory": "Docking compartment",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/pirs-docking-compartment/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2021/07/26/progress-77-and-pirs-undocked-from-station/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "REMOVED_FROM_CURRENT_STATION",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 1,
+      "assetNodeName": "34 Poisk (MRM-2) Mini Research Module",
+      "meshIndices": [
+        1
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "POISK",
+      "displayName": "Poisk",
+      "componentCategory": "Mini research module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/19/progress-96-cargo-spacecraft-docks-to-station-to-resupply-crew/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 2,
+      "assetNodeName": "panel_01_p.001",
+      "meshIndices": [
+        2
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 3,
+      "assetNodeName": "panel_01_s.001",
+      "meshIndices": [
+        3
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 4,
+      "assetNodeName": "panel_02_p.001",
+      "meshIndices": [
+        4
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 5,
+      "assetNodeName": "panel_02_s.001",
+      "meshIndices": [
+        5
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 6,
+      "assetNodeName": "panel_03_p.001",
+      "meshIndices": [
+        6
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 7,
+      "assetNodeName": "panel_03_s.001",
+      "meshIndices": [
+        7
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 8,
+      "assetNodeName": "panel_04_p.001",
+      "meshIndices": [
+        8
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 9,
+      "assetNodeName": "panel_04_s.001",
+      "meshIndices": [
+        9
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 10,
+      "assetNodeName": "panel_05_p",
+      "meshIndices": [
+        10
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 11,
+      "assetNodeName": "panel_05_s",
+      "meshIndices": [
+        11
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 12,
+      "assetNodeName": "panel_06_p",
+      "meshIndices": [
+        12
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 13,
+      "assetNodeName": "panel_06_s",
+      "meshIndices": [
+        13
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 14,
+      "assetNodeName": "panel_07_p",
+      "meshIndices": [
+        14
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 15,
+      "assetNodeName": "panel_07_s",
+      "meshIndices": [
+        15
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 16,
+      "assetNodeName": "panel_08_p",
+      "meshIndices": [
+        16
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 17,
+      "assetNodeName": "panel_08_s",
+      "meshIndices": [
+        17
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 18,
+      "assetNodeName": "panel_09_p",
+      "meshIndices": [
+        18
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 19,
+      "assetNodeName": "panel_09_s",
+      "meshIndices": [
+        19
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 20,
+      "assetNodeName": "panel_bracket_p",
+      "meshIndices": [
+        20
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 21,
+      "assetNodeName": "panel_bracket_s",
+      "meshIndices": [
+        21
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 22,
+      "assetNodeName": "05 Zvezda (SM) Service Module",
+      "meshIndices": [
+        22
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "ZVEZDA",
+      "displayName": "Zvezda",
+      "componentCategory": "Service module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/24/advanced-health-tech-research-continues-to-protect-astronaut-health/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 23,
+      "assetNodeName": "39 Rassvet (MRM-1) Mini Research Module",
+      "meshIndices": [
+        23
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "RASSVET",
+      "displayName": "Rassvet",
+      "componentCategory": "Mini research module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/16/cargo-mission-and-crew-13-updates-station-research-maintenance-continue/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 24,
+      "assetNodeName": "01 Zarya - (FGB) Funtional Cargo Block",
+      "meshIndices": [
+        24
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "ZARYA",
+      "displayName": "Zarya",
+      "componentCategory": "Functional cargo block",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/05/18/crew-unloads-dragon-and-begins-new-space-experiments/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 25,
+      "assetNodeName": "03 (PMA) Pressurized Mating Adapter 1",
+      "meshIndices": [
+        25
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 26,
+      "assetNodeName": "06 Z1 Truss",
+      "meshIndices": [
+        26
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 27,
+      "assetNodeName": "10 (ESP) External Stowage Platform 1",
+      "meshIndices": [
+        27
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 28,
+      "assetNodeName": "29 DEXTRE.003",
+      "meshIndices": [
+        28
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 29,
+      "assetNodeName": "29 DEXTRE.002",
+      "meshIndices": [
+        29
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 30,
+      "assetNodeName": "29 DEXTRE.009",
+      "meshIndices": [
+        30
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 31,
+      "assetNodeName": "29 DEXTRE.008",
+      "meshIndices": [
+        31
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 32,
+      "assetNodeName": "29 DEXTRE.007",
+      "meshIndices": [
+        32
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 33,
+      "assetNodeName": "29 DEXTRE.006",
+      "meshIndices": [
+        33
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 34,
+      "assetNodeName": "29 DEXTRE.005",
+      "meshIndices": [
+        34
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 35,
+      "assetNodeName": "29 DEXTRE.004",
+      "meshIndices": [
+        35
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 36,
+      "assetNodeName": "29 DEXTRE.015",
+      "meshIndices": [
+        36
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 37,
+      "assetNodeName": "29 DEXTRE.014",
+      "meshIndices": [
+        37
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 38,
+      "assetNodeName": "29 DEXTRE.013",
+      "meshIndices": [
+        38
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 39,
+      "assetNodeName": "29 DEXTRE.012",
+      "meshIndices": [
+        39
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 40,
+      "assetNodeName": "29 DEXTRE.011",
+      "meshIndices": [
+        40
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 41,
+      "assetNodeName": "29 DEXTRE.010",
+      "meshIndices": [
+        41
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 42,
+      "assetNodeName": "29 DEXTRE.001",
+      "meshIndices": [
+        42
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 43,
+      "assetNodeName": "29 DEXTRE",
+      "meshIndices": [
+        43
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Dextre assembly is split across numbered nodes; direct-node feature would cover only part of it."
+    },
+    {
+      "nodeIndex": 44,
+      "assetNodeName": "11 Canadarm2_08",
+      "meshIndices": [
+        44
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 45,
+      "assetNodeName": "11 Canadarm2_07",
+      "meshIndices": [
+        45
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 46,
+      "assetNodeName": "11 Canadarm2_06",
+      "meshIndices": [
+        46
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 47,
+      "assetNodeName": "11 Canadarm2_05",
+      "meshIndices": [
+        47
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 48,
+      "assetNodeName": "11 Canadarm2_04",
+      "meshIndices": [
+        48
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 49,
+      "assetNodeName": "11 Canadarm2_03",
+      "meshIndices": [
+        49
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 50,
+      "assetNodeName": "11 Canadarm2_02",
+      "meshIndices": [
+        50
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 51,
+      "assetNodeName": "11 Canadarm2",
+      "meshIndices": [
+        51
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Canadarm2 assembly is split across numbered nodes; direct-node feature would cover only part of it."
+    },
+    {
+      "nodeIndex": 52,
+      "assetNodeName": "15 (MBS) Mobile Base System",
+      "meshIndices": [
+        52
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 53,
+      "assetNodeName": "16 S1 Truss_02",
+      "meshIndices": [
+        53
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 54,
+      "assetNodeName": "23 S4 Truss_01",
+      "meshIndices": [
+        54
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 55,
+      "assetNodeName": "23 S4 Truss_02",
+      "meshIndices": [
+        55
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 56,
+      "assetNodeName": "32 S6 Truss_01",
+      "meshIndices": [
+        56
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 57,
+      "assetNodeName": "32 S6 Truss_02",
+      "meshIndices": [
+        57
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 58,
+      "assetNodeName": "32 S6 Truss",
+      "meshIndices": [
+        58
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 59,
+      "assetNodeName": "24 S5 Truss",
+      "meshIndices": [
+        59
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 60,
+      "assetNodeName": "23 S4 Truss",
+      "meshIndices": [
+        60
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 61,
+      "assetNodeName": "25 (ESP) External Stowage Platform 3",
+      "meshIndices": [
+        61
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 62,
+      "assetNodeName": "36 Express Logistics Carrier (ELC) 2",
+      "meshIndices": [
+        62
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 63,
+      "assetNodeName": "41 Express Logistics Carrier (ELC) 4",
+      "meshIndices": [
+        63
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 64,
+      "assetNodeName": "42 Alpha Magnetic Spectrometer (AMS 2)",
+      "meshIndices": [
+        64
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 65,
+      "assetNodeName": "22 S3 Truss",
+      "meshIndices": [
+        65
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 66,
+      "assetNodeName": "44 Enhanced ISS Boom Assembly (EIBA)",
+      "meshIndices": [
+        66
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 67,
+      "assetNodeName": "16 S1 Truss",
+      "meshIndices": [
+        67
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 68,
+      "assetNodeName": "17 P1 Truss_02",
+      "meshIndices": [
+        68
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 69,
+      "assetNodeName": "08 P6 Truss_01",
+      "meshIndices": [
+        69
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 70,
+      "assetNodeName": "08 P6 Truss_02",
+      "meshIndices": [
+        70
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 71,
+      "assetNodeName": "08 P6 Truss",
+      "meshIndices": [
+        71
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 72,
+      "assetNodeName": "20 P4 Truss_01",
+      "meshIndices": [
+        72
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 73,
+      "assetNodeName": "20 P4 Truss_02",
+      "meshIndices": [
+        73
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 74,
+      "assetNodeName": "21 P5 Truss",
+      "meshIndices": [
+        74
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 75,
+      "assetNodeName": "20 P4 Truss",
+      "meshIndices": [
+        75
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 76,
+      "assetNodeName": "35 Express Logistics Carrier (ELC) 1",
+      "meshIndices": [
+        76
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 77,
+      "assetNodeName": "43 Express Logistics Carrier (ELC) 3",
+      "meshIndices": [
+        77
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 78,
+      "assetNodeName": "19 P3 Truss",
+      "meshIndices": [
+        78
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 79,
+      "assetNodeName": "17 P1 Truss",
+      "meshIndices": [
+        79
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 80,
+      "assetNodeName": "14 S0 Truss",
+      "meshIndices": [
+        80
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 81,
+      "assetNodeName": "04 (PMA) Pressurized Mating Adapter 2",
+      "meshIndices": [
+        81
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 82,
+      "assetNodeName": "RapidScat_dish",
+      "meshIndices": [
+        82
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 83,
+      "assetNodeName": "45 RapidScat",
+      "meshIndices": [
+        83
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Historical RapidScat payload is outside fixed station-element scope."
+    },
+    {
+      "nodeIndex": 84,
+      "assetNodeName": "27 Columbus Space Laboratory",
+      "meshIndices": [
+        84
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "COLUMBUS",
+      "displayName": "Columbus",
+      "componentCategory": "Laboratory module",
+      "identityEvidenceUrl": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Columbus/Columbus_laboratory",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/16/cargo-mission-and-crew-13-updates-station-research-maintenance-continue/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 85,
+      "assetNodeName": "28 Kibo Space Laboratory (PSM) Pressurized Stowage Module",
+      "meshIndices": [
+        85
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Asset says Pressurized Stowage Module and PSM; JAXA calls the distinct element ELM-PS. Resolve designation before mapping."
+    },
+    {
+      "nodeIndex": 86,
+      "assetNodeName": "31 Robotic Arm.005",
+      "meshIndices": [
+        86
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 87,
+      "assetNodeName": "31 Robotic Arm.004",
+      "meshIndices": [
+        87
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 88,
+      "assetNodeName": "31 Robotic Arm.003",
+      "meshIndices": [
+        88
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 89,
+      "assetNodeName": "31 Robotic Arm.002",
+      "meshIndices": [
+        89
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 90,
+      "assetNodeName": "31 Robotic Arm.001",
+      "meshIndices": [
+        90
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 91,
+      "assetNodeName": "31 Robotic Arm",
+      "meshIndices": [
+        91
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic Robotic Arm name relies on hierarchy for JEMRMS identity; external identity alone does not identify this mesh."
+    },
+    {
+      "nodeIndex": 92,
+      "assetNodeName": "33 Kibo Space Laboratory Exposed Platform",
+      "meshIndices": [
+        92
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "KIBO_EXPOSED_FACILITY",
+      "displayName": "Kibo Exposed Facility",
+      "componentCategory": "External experiment facility",
+      "identityEvidenceUrl": "https://humans-in-space.jaxa.jp/en/kibo/structure/",
+      "configurationEvidenceUrl": "https://humans-in-space.jaxa.jp/en/kibo/structure/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Kibo Exposed Facility is mapped at facility level, not as generic Kibo."
+    },
+    {
+      "nodeIndex": 93,
+      "assetNodeName": "CATS",
+      "meshIndices": [
+        93
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 94,
+      "assetNodeName": "30 Kibo Space Laboratory (PSM) Pressurized Module",
+      "meshIndices": [
+        94
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "KIBO_PRESSURIZED_MODULE",
+      "displayName": "Kibo Pressurized Module",
+      "componentCategory": "Laboratory module",
+      "identityEvidenceUrl": "https://humans-in-space.jaxa.jp/en/kibo/structure/",
+      "configurationEvidenceUrl": "https://humans-in-space.jaxa.jp/en/kibo/structure/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 95,
+      "assetNodeName": "26 Harmony Node 2",
+      "meshIndices": [
+        95
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "HARMONY",
+      "displayName": "Harmony",
+      "componentCategory": "Node module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/harmony-module/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/01/esa-nasa-astronauts-suit-up-for-navigation-science-maintenance-spacewalk/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 96,
+      "assetNodeName": "Destiny_Window_Cover",
+      "meshIndices": [
+        96
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 97,
+      "assetNodeName": "09 Destiny Space Laboratory",
+      "meshIndices": [
+        97
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "DESTINY",
+      "displayName": "Destiny",
+      "componentCategory": "Laboratory module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/24/advanced-health-tech-research-continues-to-protect-astronaut-health/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 98,
+      "assetNodeName": "18 ESP External Stowage Platform 2",
+      "meshIndices": [
+        98
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 99,
+      "assetNodeName": "12 Quest Airlock",
+      "meshIndices": [
+        99
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "QUEST",
+      "displayName": "Quest",
+      "componentCategory": "Airlock",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/01/esa-nasa-astronauts-suit-up-for-navigation-science-maintenance-spacewalk/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 100,
+      "assetNodeName": "07 (PMA) Pressurized Mating Adapter 3",
+      "meshIndices": [
+        100
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Explicit asset designation; semantic picking deferred pending complete assembly coverage and browser evidence."
+    },
+    {
+      "nodeIndex": 101,
+      "assetNodeName": "38 Cupola.001",
+      "meshIndices": [
+        101
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 102,
+      "assetNodeName": "38 Cupola.002",
+      "meshIndices": [
+        102
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 103,
+      "assetNodeName": "38 Cupola.003",
+      "meshIndices": [
+        103
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 104,
+      "assetNodeName": "38 Cupola.004",
+      "meshIndices": [
+        104
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 105,
+      "assetNodeName": "38 Cupola.005",
+      "meshIndices": [
+        105
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 106,
+      "assetNodeName": "38 Cupola.006",
+      "meshIndices": [
+        106
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 107,
+      "assetNodeName": "38 Cupola.007",
+      "meshIndices": [
+        107
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Suffix or broad label does not establish an independently selectable component."
+    },
+    {
+      "nodeIndex": 108,
+      "assetNodeName": "ISS",
+      "meshIndices": [
+        108
+      ],
+      "reviewClass": "TECHNICAL_NODE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Scene or asset container; not an individual station component."
+    },
+    {
+      "nodeIndex": 109,
+      "assetNodeName": "38 Cupola",
+      "meshIndices": [
+        109
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "CUPOLA",
+      "displayName": "Cupola",
+      "componentCategory": "Observation module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/04/06/crew-kicks-off-week-prepping-for-cygnus-cargo-mission/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Only directly owned Cupola geometry is tagged; numbered child pieces remain unmapped."
+    },
+    {
+      "nodeIndex": 110,
+      "assetNodeName": "37 Tranquility Node 3",
+      "meshIndices": [
+        110
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "TRANQUILITY",
+      "displayName": "Tranquility",
+      "componentCategory": "Node module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/08/astronaut-health-lunar-and-earth-photography-fill-crews-research-schedule/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 111,
+      "assetNodeName": "40 Leonardo_Raffaello Perm Multi-Purpose Logistics Module (PMM)",
+      "meshIndices": [
+        111
+      ],
+      "reviewClass": "AMBIGUOUS_NAME",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Asset label joins Leonardo and Raffaello, two distinct logistics-module names; do not choose a PMM identity from this label."
+    },
+    {
+      "nodeIndex": 112,
+      "assetNodeName": "02 Unity Node 1",
+      "meshIndices": [
+        112
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "VERIFIED",
+      "proposedSemanticId": "UNITY",
+      "displayName": "Unity",
+      "componentCategory": "Node module",
+      "identityEvidenceUrl": "https://www.nasa.gov/international-space-station/international-space-station-assembly-elements/",
+      "configurationEvidenceUrl": "https://www.nasa.gov/blogs/spacestation/2026/09/25/nasa-northrop-grumman-complete-cygnus-xl-space-station-reboost-2/",
+      "evidenceDate": "2026-09-29",
+      "configurationStatus": "CURRENT_CONFIRMED",
+      "note": "Exact asset designation and authoritative component reference; direct mesh ownership checked."
+    },
+    {
+      "nodeIndex": 113,
+      "assetNodeName": "_root",
+      "meshIndices": [],
+      "reviewClass": "TECHNICAL_NODE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Scene or asset container; not an individual station component."
+    },
+    {
+      "nodeIndex": 114,
+      "assetNodeName": "panel_01_p",
+      "meshIndices": [
+        113
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 115,
+      "assetNodeName": "hinge_02_p",
+      "meshIndices": [
+        114
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 116,
+      "assetNodeName": "panel_03_p",
+      "meshIndices": [
+        115
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 117,
+      "assetNodeName": "hinge_04_p",
+      "meshIndices": [
+        116
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 118,
+      "assetNodeName": "hinge_01_p",
+      "meshIndices": [
+        117
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 119,
+      "assetNodeName": "panel_02_p",
+      "meshIndices": [
+        118
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 120,
+      "assetNodeName": "hinge_03_p",
+      "meshIndices": [
+        119
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 121,
+      "assetNodeName": "panel_04_p",
+      "meshIndices": [
+        120
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 122,
+      "assetNodeName": "panel_01_s",
+      "meshIndices": [
+        121
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 123,
+      "assetNodeName": "hinge_02_s",
+      "meshIndices": [
+        122
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 124,
+      "assetNodeName": "panel_03_s",
+      "meshIndices": [
+        123
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 125,
+      "assetNodeName": "hinge_04_s",
+      "meshIndices": [
+        124
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 126,
+      "assetNodeName": "hinge_03_s",
+      "meshIndices": [
+        125
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 127,
+      "assetNodeName": "panel_04_s",
+      "meshIndices": [
+        126
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 128,
+      "assetNodeName": "panel_02_s",
+      "meshIndices": [
+        127
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 129,
+      "assetNodeName": "hinge_01_s",
+      "meshIndices": [
+        128
+      ],
+      "reviewClass": "GENERIC_GEOMETRY",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "Generic panel, hinge, dish or cover geometry; no independent station-component identity."
+    },
+    {
+      "nodeIndex": 130,
+      "assetNodeName": "OCO3",
+      "meshIndices": [
+        129
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "OCO-3 payload is outside fixed station-element scope."
+    },
+    {
+      "nodeIndex": 131,
+      "assetNodeName": "ECOStress",
+      "meshIndices": [
+        130
+      ],
+      "reviewClass": "CLEAR_CANDIDATE",
+      "mappingStatus": "UNMAPPED",
+      "proposedSemanticId": null,
+      "displayName": null,
+      "componentCategory": null,
+      "identityEvidenceUrl": null,
+      "configurationEvidenceUrl": null,
+      "evidenceDate": null,
+      "configurationStatus": "CURRENT_STATUS_UNVERIFIED",
+      "note": "ECOSTRESS payload is outside fixed station-element scope."
+    }
+  ]
+}
