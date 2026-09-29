@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Add per-vertex feature IDs to verified NASA VTAD node meshes.
 
-Run against the phase-0 WebP GLB, not the 44 MB NASA source. All original
-buffer ranges and glTF accessors are preserved; only metadata is appended.
+Run against the pinned lossless, deduplicated NASA GLB. All original buffer
+ranges and glTF accessors are preserved; only metadata and a sampler policy
+are added.
 """
 
 import hashlib
@@ -11,7 +12,7 @@ import struct
 import sys
 from pathlib import Path
 
-BASE_SHA256 = "e5ad5beb2f1ea4364c964f316a072775d8f9d4c4bfed126932aa07a85f438360"
+BASE_SHA256 = "ce2548b56741ee764de7e1d593f1c50785a54150ebc500ed5424a4f5bdf8f657"
 MANIFEST = Path(__file__).resolve().parents[1] / "src/cesium/issModelManifest.json"
 
 
@@ -36,7 +37,7 @@ def transform(source: Path, destination: Path) -> None:
     modules = verified_modules()
     raw = source.read_bytes()
     if hashlib.sha256(raw).hexdigest() != BASE_SHA256:
-        raise ValueError("Input is not the pinned phase-0 WebP GLB")
+        raise ValueError("Input is not the pinned deduplicated NASA GLB")
     if raw[:4] != b"glTF" or struct.unpack_from("<I", raw, 4)[0] != 2:
         raise ValueError("Expected glTF 2.0 GLB")
     json_length, json_type = struct.unpack_from("<II", raw, 12)
@@ -93,7 +94,14 @@ def transform(source: Path, destination: Path) -> None:
     document["bufferViews"].append({
         "buffer": 0, "byteOffset": codes_offset, "byteLength": len(modules)
     })
-    document["extensionsUsed"].extend(("EXT_mesh_features", "EXT_structural_metadata"))
+    # Source images are power-of-two PNGs. Explicit trilinear minification
+    # requires Cesium/WebGL to generate mipmaps for stable distant detail.
+    # Linear magnification retains full 1024px/512px source detail up close.
+    document["samplers"] = [{"magFilter": 9729, "minFilter": 9987,
+                              "wrapS": 10497, "wrapT": 10497}]
+    for texture in document["textures"]:
+        texture["sampler"] = 0
+    document.setdefault("extensionsUsed", []).extend(("EXT_mesh_features", "EXT_structural_metadata"))
     document.setdefault("extensions", {})["EXT_structural_metadata"] = {
         "schema": {
             "id": "mission1VerifiedIssModules",

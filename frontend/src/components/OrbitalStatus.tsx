@@ -97,6 +97,6 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, model
     </section>
 
     <p className="model-note">{ISS_MODEL.credit}. 3D model display: NOT TO SCALE, enlarged for map readability. Orbital position and altitude are unchanged. Display pose: local ENU only; it does not represent ISS attitude. <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA source</a>.</p>
-    <p className="provenance-note">Computed from CelesTrak orbital elements with Orekit. Past arc is reconstructed; future arc is GP/TLE propagation. Neither is onboard position telemetry. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://www.naturalearthdata.com/">Natural Earth II</a>; night lights: <a href="https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps/">NASA Black Marble 2016</a> historical composite, not live city activity.</p>
+    <p className="provenance-note">Computed from CelesTrak orbital elements with Orekit. Past arc is reconstructed; future arc is GP/TLE propagation. Neither is onboard position telemetry. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble: Next Generation day tiles and historical Black Marble 2016 night tiles, with local imagery fallback. Night lights are not live city activity.</p>
   </aside>;
 }

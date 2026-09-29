@@ -7,7 +7,7 @@ import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { createVisualWindow, modelPositionAt } from './visualWindow';
 import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForDistance, resolveVerifiedModulePick, semanticMapping } from './modelPresentation';
 
-const glb = readFileSync(new URL('../../public/models/iss-vtad-webp.glb', import.meta.url));
+const glb = readFileSync(new URL('../../public/models/iss-vtad-source-png.glb', import.meta.url));
 const inventory = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-model-inventory.json', import.meta.url), 'utf8')) as {
   nodes: Array<{ index: number; name: string; parent: number | null; mesh: string | null }>;
 };
@@ -20,6 +20,9 @@ interface AssetJson {
   meshes: Array<{ name?: string; primitives: Array<{ attributes: Record<string, number>; extensions?: { EXT_mesh_features?: { featureIds: Array<{ featureCount: number; attribute: number; propertyTable: number; label: string }> } } }> }>;
   accessors: Array<{ bufferView?: number; count: number }>;
   bufferViews: Array<{ byteOffset: number; byteStride?: number }>;
+  images: Array<{ mimeType: string; bufferView: number }>;
+  textures: Array<{ sampler: number }>;
+  samplers: Array<{ magFilter: number; minFilter: number; wrapS: number; wrapT: number }>;
   extensionsUsed: string[];
   extensions: { EXT_structural_metadata: { propertyTables: Array<{ count: number; properties: { moduleCode: { values: number } } }> } };
 }
@@ -36,7 +39,7 @@ function glbJson(): AssetJson {
 describe('NASA ISS model asset', () => {
   it('uses the selected local GLB with verified source and factual credit', () => {
     expect(parseModelManifest(ISS_MODEL)).toEqual(ISS_MODEL);
-    expect(ISS_MODEL.uri).toBe('/models/iss-vtad-webp.glb');
+    expect(ISS_MODEL.uri).toBe('/models/iss-vtad-source-png.glb');
     expect(ISS_MODEL.credit).toBe('ISS 3D model: NASA VTAD');
     expect(createHash('sha256').update(glb).digest('hex')).toBe(ISS_MODEL.runtimeSha256);
     expect(() => parseModelManifest({ ...ISS_MODEL, uri: 'https://example.com/iss.glb' })).toThrow();
@@ -75,7 +78,7 @@ describe('NASA ISS model asset', () => {
     expect(asset.extensionsUsed).toContain('EXT_mesh_features');
     expect(asset.extensionsUsed).toContain('EXT_structural_metadata');
     expect(ISS_MODEL.semanticFeatureSet).toBe('missionModule');
-    expect(ISS_MODEL.baseRuntimeSha256).toBe('e5ad5beb2f1ea4364c964f316a072775d8f9d4c4bfed126932aa07a85f438360');
+    expect(ISS_MODEL.baseRuntimeSha256).toBe('ce2548b56741ee764de7e1d593f1c50785a54150ebc500ed5424a4f5bdf8f657');
     const jsonLength = glb.readUInt32LE(12);
     const binaryStart = 20 + jsonLength + 8;
     const tagged = new Set<number>();
@@ -107,6 +110,23 @@ describe('NASA ISS model asset', () => {
     expect(table.count).toBe(ISS_MODEL.semanticMappings.length);
     const codesOffset = asset.bufferViews[table.properties.moduleCode.values].byteOffset;
     expect([...glb.subarray(binaryStart + codesOffset, binaryStart + codesOffset + table.count)]).toEqual(ISS_MODEL.semanticMappings.map((mapping) => mapping.moduleCode));
+  });
+
+  it('keeps every lossless NASA texture at its source dimensions with trilinear mip filtering', () => {
+    const asset = glbJson();
+    expect(asset.images).toHaveLength(19);
+    expect(asset.images.every((image) => image.mimeType === 'image/png')).toBe(true);
+    const binaryStart = 20 + glb.readUInt32LE(12) + 8;
+    const dimensions = asset.images.map((image) => {
+      const offset = binaryStart + asset.bufferViews[image.bufferView].byteOffset;
+      expect(glb.subarray(offset, offset + 8).toString('hex')).toBe('89504e470d0a1a0a');
+      return [glb.readUInt32BE(offset + 16), glb.readUInt32BE(offset + 20)];
+    });
+    expect(dimensions.every(([width, height]) => width === height && [512, 1024].includes(width))).toBe(true);
+    expect(new Set(dimensions.map(([width]) => width))).toEqual(new Set([512, 1024]));
+    expect(asset.textures).toHaveLength(19);
+    expect(asset.textures.every((texture) => texture.sampler === 0)).toBe(true);
+    expect(asset.samplers).toEqual([{ magFilter: 9729, minFilter: 9987, wrapS: 10497, wrapT: 10497 }]);
   });
 
   it('keeps asset alignment distinct from unavailable station attitude', () => {

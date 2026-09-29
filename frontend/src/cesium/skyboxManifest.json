@@ -1,0 +1,40 @@
+{
+  "source": "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.jpg",
+  "sourceSha256": "1e08506a6b18d151be51964f424a7327465eea64887eff7080753aadeff0a1ba",
+  "sourceWidth": 16384,
+  "sourceHeight": 8192,
+  "faceSize": 2048,
+  "projection": "plate-carree celestial RA/Dec to TEME-axis cube directions",
+  "faces": {
+    "positiveX": {
+      "url": "/skybox/tycho-positiveX.png",
+      "sha256": "1944fb5a164a3a16342ccb0b88f9bd3477b4b646d442a714cbcbec9ecb9fc8b5",
+      "bytes": 2362615
+    },
+    "negativeX": {
+      "url": "/skybox/tycho-negativeX.png",
+      "sha256": "bd5f71111eccab2f0eb0fd30bb71162414f83798bfe6983b3ae9d33133f23df5",
+      "bytes": 2198516
+    },
+    "positiveY": {
+      "url": "/skybox/tycho-positiveY.png",
+      "sha256": "28f5fd817b31f2e55732bf0ea320146b16277a77fae10196c5fb2ba2bde28685",
+      "bytes": 3137564
+    },
+    "negativeY": {
+      "url": "/skybox/tycho-negativeY.png",
+      "sha256": "b23b672e3dc32a901b0b17024e974ab195feff3028c868de695a982e9ecced33",
+      "bytes": 3324966
+    },
+    "positiveZ": {
+      "url": "/skybox/tycho-positiveZ.png",
+      "sha256": "8c3f1cef8816280f05b6154e47594ffc2cedb1d033960261ec17a3a6900ff992",
+      "bytes": 2922147
+    },
+    "negativeZ": {
+      "url": "/skybox/tycho-negativeZ.png",
+      "sha256": "3bff8fc4b4ce9bec5287a9a47aee73fb2c7d7b7a9384844e654616fe5f0b395e",
+      "bytes": 3475488
+    }
+  }
+}

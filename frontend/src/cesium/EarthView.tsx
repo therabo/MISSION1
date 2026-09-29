@@ -8,6 +8,7 @@ import {
   ClockStep,
   Color,
   ConstantProperty,
+  Credit,
   EllipsoidTerrainProvider,
   EasingFunction,
   ImageryLayer,
@@ -21,6 +22,7 @@ import {
   Math as CesiumMath,
   ScreenSpaceEventType,
   SingleTileImageryProvider,
+  SkyBox,
   TileMapServiceImageryProvider,
   TimeInterval,
   TimeIntervalCollection,
@@ -37,6 +39,9 @@ import type { VisualWindow } from './visualWindow';
 import { approachTargetAt, canInspect, cameraTrackingFrame, closeApproachPose, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
+import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
+import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
+import skyboxManifest from './skyboxManifest.json';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
@@ -107,16 +112,47 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
         fullscreenButton: false,
         shouldAnimate: true,
         scene3DOnly: true,
+        useBrowserRecommendedResolution: GRAPHICS_QUALITY.useBrowserRecommendedResolution,
+        msaaSamples: GRAPHICS_QUALITY.msaaSamples,
       });
     } catch {
       errorCallback.current('3D Earth could not start. Check browser WebGL support.');
       return;
     }
     viewer.current = instance;
+    instance.resolutionScale = resolutionScaleForDpr(globalThis.window.devicePixelRatio);
+    instance.scene.postProcessStages.fxaa.enabled = !instance.scene.msaaSupported;
+    instance.scene.highDynamicRange = GRAPHICS_QUALITY.highDynamicRange && instance.scene.highDynamicRangeSupported;
+    instance.scene.sunBloom = GRAPHICS_QUALITY.sunBloom;
+    const diagnostics = import.meta.env.DEV && new URLSearchParams(globalThis.location.search).has('graphicsDiagnostics');
+    let frames = 0;
+    let frameWindowStart = performance.now();
+    const removeDiagnostics = diagnostics ? instance.scene.postRender.addEventListener(() => {
+      frames += 1;
+      const elapsed = performance.now() - frameWindowStart;
+      if (elapsed < 5000) return;
+      console.info('[graphics] frames', JSON.stringify({ mode: viewMode.current, fps: +(frames * 1000 / elapsed).toFixed(1),
+        canvas: [instance.scene.canvas.width, instance.scene.canvas.height] }));
+      frames = 0;
+      frameWindowStart = performance.now();
+    }) : null;
+    if (diagnostics) console.info('[graphics] capabilities', JSON.stringify({
+      dpr: globalThis.window.devicePixelRatio,
+      resolutionScale: instance.resolutionScale,
+      msaaSupported: instance.scene.msaaSupported,
+      msaaSamples: instance.scene.msaaSamples,
+      fxaa: instance.scene.postProcessStages.fxaa.enabled,
+      maximumCubeMapSize: instance.scene.maximumCubeMapSize,
+      hdrSupported: instance.scene.highDynamicRangeSupported,
+      hdr: instance.scene.highDynamicRange,
+    }));
     instance.scene.globe.baseColor = Color.fromCssColorString('#18394a');
     enableEarthLighting(instance.scene.globe);
     instance.scene.backgroundColor = Color.fromCssColorString('#040b14');
-    if (instance.scene.sun) instance.scene.sun.show = true;
+    if (instance.scene.sun) {
+      instance.scene.sun.show = true;
+      instance.scene.sun.glowFactor = GRAPHICS_QUALITY.sunGlowFactor;
+    }
     if (instance.scene.skyBox) instance.scene.skyBox.show = true;
     instance.camera.setView({ destination: Cartesian3.fromDegrees(20, 12, 22_000_000) });
     instance.clock.clockRange = ClockRange.UNBOUNDED;
@@ -124,10 +160,11 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
     instance.clock.multiplier = 1;
     instance.clock.shouldAnimate = true;
 
-    // The bundled Natural Earth II tiles are local, token-free, and usable offline.
-    const loadNightLights = (): void => {
+    // Keep Natural Earth II beneath NASA tiles, so a failed or slow request
+    // cannot leave a blank globe. The local night image is the outage fallback.
+    const loadLocalNightLights = (): void => {
       void SingleTileImageryProvider.fromUrl(NIGHT_LIGHTS.url, {
-        credit: 'Earth night-lights imagery: NASA Black Marble, 2016',
+        credit: 'Earth night-lights fallback: NASA Black Marble, 2016',
       }).then((provider) => {
         if (destroyed) return;
         const layer = new ImageryLayer(provider, {
@@ -140,14 +177,73 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
         if (!destroyed) errorCallback.current('Earth night-lights imagery is unavailable.');
       });
     };
-    void TileMapServiceImageryProvider.fromUrl(buildModuleUrl('Assets/Textures/NaturalEarthII'))
-      .then((provider) => {
-        if (!destroyed) instance.imageryLayers.add(new ImageryLayer(provider));
-      })
-      .catch(() => {
-        if (!destroyed) errorCallback.current('Earth imagery is unavailable; the ellipsoid remains usable.');
-      })
-      .finally(() => { if (!destroyed) loadNightLights(); });
+    void (async () => {
+      try {
+        const provider = await TileMapServiceImageryProvider.fromUrl(buildModuleUrl('Assets/Textures/NaturalEarthII'));
+        if (destroyed) return;
+        instance.imageryLayers.add(new ImageryLayer(provider));
+      } catch {
+        if (!destroyed) errorCallback.current('Local Earth imagery is unavailable.');
+      }
+      const probeStarted = performance.now();
+      const [dayAvailable, nightAvailable] = await Promise.all([
+        gibsAvailable(DAY_IMAGERY), gibsAvailable(NIGHT_IMAGERY),
+      ]);
+      if (destroyed) return;
+      if (diagnostics) console.info('[graphics] GIBS probes', JSON.stringify({dayAvailable, nightAvailable,
+        elapsedMs: Math.round(performance.now() - probeStarted)}));
+      if (dayAvailable) {
+        const provider = gibsProvider(DAY_IMAGERY);
+        const layer = new ImageryLayer(provider);
+        // The omitted maximumAnisotropy uses Cesium's highest supported value.
+        instance.imageryLayers.add(layer);
+        provider.errorEvent.addEventListener(() => {
+          if (!destroyed && instance.imageryLayers.contains(layer)) instance.imageryLayers.remove(layer);
+        });
+      }
+      if (nightAvailable) {
+        const provider = gibsProvider(NIGHT_IMAGERY);
+        const layer = new ImageryLayer(provider, {
+          dayAlpha: NIGHT_IMAGERY.dayAlpha,
+          nightAlpha: NIGHT_IMAGERY.nightAlpha,
+          brightness: 1.8,
+        });
+        instance.imageryLayers.add(layer);
+        provider.errorEvent.addEventListener(() => {
+          if (destroyed || !instance.imageryLayers.contains(layer)) return;
+          instance.imageryLayers.remove(layer);
+          loadLocalNightLights();
+        });
+      } else {
+        loadLocalNightLights();
+      }
+    })();
+
+    // Decode every face before replacing the bundled skybox. Cesium uses
+    // TEME axes; the NASA map is a historical celestial visualization.
+    if (instance.scene.maximumCubeMapSize >= skyboxManifest.faceSize) {
+      const keys = ['positiveX', 'negativeX', 'positiveY', 'negativeY', 'positiveZ', 'negativeZ'] as const;
+      const skyboxStarted = performance.now();
+      void Promise.all(keys.map((key) => new Promise<HTMLImageElement>((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = skyboxManifest.faces[key].url;
+      }))).then((images) => {
+        if (destroyed) return;
+        const oldSkyBox = instance.scene.skyBox;
+        instance.scene.skyBox = new SkyBox({ sources: Object.fromEntries(keys.map((key, index) => [key, images[index]])) as {
+          positiveX: HTMLImageElement; negativeX: HTMLImageElement; positiveY: HTMLImageElement;
+          negativeY: HTMLImageElement; positiveZ: HTMLImageElement; negativeZ: HTMLImageElement;
+        } });
+        instance.creditDisplay.addStaticCredit(new Credit('<a href="https://svs.gsfc.nasa.gov/3572" target="_blank" rel="noopener noreferrer">Star map: NASA GSFC SVS Tycho II</a>'));
+        if (diagnostics) console.info('[graphics] skybox decoded', Math.round(performance.now() - skyboxStarted), 'ms');
+        if (oldSkyBox) instance.scene.postRender.addEventListener(function releaseOldSkyBox() {
+          instance.scene.postRender.removeEventListener(releaseOldSkyBox);
+          if (!oldSkyBox.isDestroyed()) oldSkyBox.destroy();
+        });
+      }).catch(() => { /* Bundled Cesium stars remain visible. */ });
+    }
 
     const markerVisibility = new ConstantProperty(true);
     let displayCenteringOffset: Cartesian3 | null = null;
@@ -285,6 +381,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
       id: ISS_MODEL.id,
       credit: ISS_MODEL.credit,
       showCreditsOnScreen: true,
+      incrementallyLoadTextures: false,
     }).then((loaded) => {
       if (destroyed) {
         loaded.destroy();
@@ -298,8 +395,19 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
         modelCallback.current(modelStatus.current);
       });
       loaded.readyEvent.addEventListener(() => {
+        // readyEvent occurs after non-streaming textures, draw commands, and
+        // feature tables are created. A missing semantic node blocks reveal.
+        if (!ISS_MODEL.semanticMappings.every((mapping) => loaded.getNode(mapping.nodeName))) {
+          modelStatus.current = modelLoadTransition(modelStatus.current, 'failed');
+          modelCallback.current(modelStatus.current);
+          return;
+        }
         modelStatus.current = modelLoadTransition(modelStatus.current, 'loaded');
-        if (modelStatus.current === 'ready') modelCallback.current('ready', performance.now() - loadStarted);
+        if (modelStatus.current === 'ready') {
+          const loadMs = performance.now() - loadStarted;
+          modelCallback.current('ready', loadMs);
+          if (diagnostics) console.info('[graphics] ISS textures and features ready', Math.round(loadMs), 'ms');
+        }
       });
       instance.scene.primitives.add(loaded);
       model.current = loaded;
@@ -319,6 +427,14 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
       const position = valid ? modelPositionAt(current, sceneTime, new Cartesian3()) : undefined;
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       const hit = instance.scene.pick(event.position);
+      if (diagnostics) console.info('[graphics] pick', JSON.stringify({
+        position: [event.position.x, event.position.y],
+        mode: viewMode.current,
+        distance: distance === null ? null : Math.round(distance),
+        featureId: hit instanceof ModelFeature ? hit.featureId : null,
+        moduleCode: hit instanceof ModelFeature ? hit.getProperty('moduleCode') : null,
+        hit: hit instanceof ModelFeature ? 'feature' : hit ? 'other' : 'empty',
+      }));
       let pick: IssPick = { kind: hit ? 'other' : 'empty' };
       if (hit instanceof ModelFeature) {
         pick = { kind: 'iss-feature', module: resolveVerifiedModulePick(hit.featureId, hit.getProperty('moduleCode')) };
@@ -409,6 +525,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
     instance.clock.onTick.addEventListener(tick);
     return () => {
       destroyed = true;
+      removeDiagnostics?.();
       instance.clock.onTick.removeEventListener(tick);
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;
