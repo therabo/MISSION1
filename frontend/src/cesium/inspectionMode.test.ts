@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { Cartesian3, Cartesian4, JulianDate, Matrix4 } from 'cesium';
+import { Cartesian3, Cartesian4, Ellipsoid, JulianDate, Matrix4 } from 'cesium';
 import { orbitalPayload } from '../test/orbitalFixture';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { createVisualWindow, modelPositionAt } from './visualWindow';
 import { ISS_MODEL } from './modelPresentation';
-import { approachTargetAt, canInspect, cameraTrackingFrame, closeApproachPose, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
+import { approachMinimumPixelSize, canInspect, cameraTrackingFrame, earthOccludes, exitMinimumPixelSize, inspectionCartesianOffset, INITIAL_VIEW_MODE, inspectionPresentation, interpolateUnitDirection, movingApproachOffset, movingApproachPathClear, nextViewMode, pickAction, radialAcquisitionPosition, rebaseApproachStartTime } from './inspectionMode';
 
 describe('ISS inspection mode', () => {
   it('enters, exits, and repeats without changing the orbital property or clock', () => {
@@ -37,27 +37,105 @@ describe('ISS inspection mode', () => {
     expect(Cartesian3.dot(new Cartesian3(east.x, east.y, east.z), position)).toBeCloseTo(0, 5);
   });
 
-  it('targets the bounded future sampled position without changing sample or scene time', () => {
+  it('uses the current bounded sampled position as the camera target at every scene time', () => {
     const visual = createVisualWindow(parseOrbitalWindow(orbitalPayload()));
     const property = visual.position;
     const time = JulianDate.fromIso8601('2026-09-28T15:00:00Z');
     const iso = JulianDate.toIso8601(time);
-    const expected = modelPositionAt(visual, JulianDate.addSeconds(time, 3.6, new JulianDate()), new Cartesian3());
-    expect(approachTargetAt(visual, time, 3.6)).toEqual(expected);
+    const first = modelPositionAt(visual, time, new Cartesian3());
+    const later = modelPositionAt(visual, JulianDate.addSeconds(time, 2, new JulianDate()), new Cartesian3());
+    expect(first).toBeDefined();
+    expect(later).toBeDefined();
+    expect(Cartesian3.distance(first!, later!)).toBeGreaterThan(10_000);
     expect(visual.position).toBe(property);
     expect(JulianDate.toIso8601(time)).toBe(iso);
-    expect(approachTargetAt(visual, JulianDate.fromIso8601('2026-09-28T15:09:59Z'), 3.6)).toBeUndefined();
+    expect(modelPositionAt(visual, JulianDate.fromIso8601('2026-09-28T15:10:01Z'), new Cartesian3())).toBeUndefined();
   });
 
-  it('joins the moving close approach at its starting pose and finishes at the inspection offset', () => {
-    const start = { heading: -2.9, pitch: 0.15, range: 60_000 };
-    const end = { heading: 0.61, pitch: -0.17, range: 340 };
-    expect(closeApproachPose(start, end, 0)).toEqual(start);
-    const middle = closeApproachPose(start, end, 0.5);
-    expect(middle.range).toBeLessThan(start.range);
-    expect(middle.range).toBeGreaterThan(end.range);
-    expect(closeApproachPose(start, end, 1).range).toBeCloseTo(end.range);
-    expect(closeApproachPose(start, end, 1).pitch).toBeCloseTo(end.pitch);
+  it('converges through one moving ENU target and joins the inspection pivot', () => {
+    const visual = createVisualWindow(parseOrbitalWindow(orbitalPayload()));
+    const start = new Cartesian3(0, 0, 16_000_000);
+    const end = inspectionCartesianOffset(Math.PI / 5, -Math.PI / 18, 340, new Cartesian3());
+    expect(Cartesian3.magnitude(end)).toBeCloseTo(340);
+    const offset = new Cartesian3();
+    let previousRange = Infinity;
+    for (let step = 0; step <= 20; step++) {
+      const p = step / 20;
+      const time = JulianDate.addSeconds(JulianDate.fromIso8601('2026-09-28T15:00:00Z'), p * 5, new JulianDate());
+      const target = modelPositionAt(visual, time, new Cartesian3())!;
+      const frame = cameraTrackingFrame(target);
+      const camera = Matrix4.multiplyByPoint(frame, movingApproachOffset(start, end, p, offset), new Cartesian3());
+      const range = Cartesian3.distance(camera, target);
+      expect(range).toBeLessThanOrEqual(previousRange + 0.01);
+      expect(earthOccludes(camera, target)).toBe(false);
+      previousRange = range;
+    }
+    expect(movingApproachOffset(start, end, 0, offset)).toEqual(start);
+    expect(movingApproachOffset(start, end, 1, offset)).toEqual(end);
+    expect(previousRange).toBeCloseTo(340);
+    expect(movingApproachPathClear(modelPositionAt(visual, JulianDate.fromIso8601('2026-09-28T15:00:00Z'), new Cartesian3())!, start, end)).toBe(true);
+  });
+
+  it('keeps an occulted acquisition path above Earth and clears line of sight', () => {
+    const station = new Cartesian3(6_800_000, 0, 0);
+    const start = new Cartesian3(-17_000_000, 0, 0);
+    expect(earthOccludes(start, station)).toBe(true);
+    const camera = new Cartesian3();
+    for (let step = 0; step <= 20; step++) {
+      radialAcquisitionPosition(start, station, step / 20, camera);
+      expect(Cartesian3.magnitude(camera)).toBeGreaterThan(6_700_000);
+    }
+    expect(earthOccludes(camera, station)).toBe(false);
+  });
+
+  it('climbs before rotating a polar start across the equator', () => {
+    const start = Cartesian3.fromDegrees(0, 85, 1_000);
+    const station = Cartesian3.fromDegrees(180, 0, 420_000);
+    const camera = new Cartesian3();
+    expect(Cartesian3.distance(radialAcquisitionPosition(start, station, 0, camera), start)).toBeLessThan(0.001);
+    for (let step = 1; step <= 100; step++) {
+      radialAcquisitionPosition(start, station, step / 100, camera);
+      expect(Ellipsoid.WGS84.cartesianToCartographic(camera)!.height).toBeGreaterThan(999);
+    }
+    expect(earthOccludes(camera, station)).toBe(false);
+  });
+
+  it('turns the camera through opposite directions without an undefined vector', () => {
+    const direction = interpolateUnitDirection(new Cartesian3(1, 0, 0), new Cartesian3(-1, 0, 0), 0.5, new Cartesian3());
+    expect(Cartesian3.magnitude(direction)).toBeCloseTo(1);
+    expect(Math.abs(direction.x)).toBeLessThan(1e-10);
+    expect(Number.isFinite(direction.y) && Number.isFinite(direction.z)).toBe(true);
+  });
+
+  it('grows the display-only footprint continuously without changing geometry scale', () => {
+    expect(approachMinimumPixelSize(72, 0)).toBe(72);
+    expect(approachMinimumPixelSize(72, 1)).toBe(150);
+    let previous = 72;
+    for (let step = 1; step <= 20; step++) {
+      const size = approachMinimumPixelSize(72, step / 20);
+      expect(size).toBeGreaterThanOrEqual(previous);
+      previous = size;
+    }
+    expect(exitMinimumPixelSize(72, 150, 0)).toBe(150);
+    expect(exitMinimumPixelSize(72, 150, 1)).toBe(72);
+    expect(exitMinimumPixelSize(72, 120, 0.5)).toBe(96);
+  });
+
+  it('adopts a replacement sampled window without restarting camera progress', () => {
+    const original = createVisualWindow(parseOrbitalWindow(orbitalPayload()));
+    const payload = orbitalPayload();
+    const samples = payload.samples as Array<{ xMeters: number }>;
+    for (const sample of samples) sample.xMeters += 1_000;
+    const replacement = createVisualWindow(parseOrbitalWindow(payload));
+    const before = JulianDate.fromIso8601('2026-09-28T15:00:02Z');
+    const after = JulianDate.fromIso8601('2026-09-28T15:00:06Z');
+    const start = JulianDate.fromIso8601('2026-09-28T15:00:00Z');
+    const oldElapsed = JulianDate.secondsDifference(before, start);
+    rebaseApproachStartTime(start, before, after);
+    expect(JulianDate.secondsDifference(after, start)).toBe(oldElapsed);
+    expect(Cartesian3.distance(modelPositionAt(original, after, new Cartesian3())!,
+      modelPositionAt(replacement, after, new Cartesian3())!)).toBeCloseTo(1_000);
+    expect(original.position).not.toBe(replacement.position);
   });
 
   it('routes ISS representations from overview and only verified features in inspection', () => {
