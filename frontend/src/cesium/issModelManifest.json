@@ -1,0 +1,21 @@
+{
+  "id": "nasa-vtad-iss-stationary-2019",
+  "uri": "/models/iss-vtad-webp.glb",
+  "sourcePage": "https://science.nasa.gov/resource/international-space-station-3d-model/",
+  "sourceOrganization": "NASA Visualization Technology Applications and Development (VTAD)",
+  "credit": "ISS 3D model: NASA VTAD",
+  "sourceSha256": "26dba905b4b7555edbcb0c5f5a61b5c18659f5166076ab27dbb0e64025759fca",
+  "runtimeSha256": "e5ad5beb2f1ea4364c964f316a072775d8f9d4c4bfed126932aa07a85f438360",
+  "physicalScale": 1,
+  "displayScaleMode": "DISPLAY_ENHANCED_SCALE",
+  "displayMinimumPixelSize": 72,
+  "displayMaximumScale": 20000,
+  "assetAlignment": "IDENTITY",
+  "displayOrientation": "DISPLAY_ONLY_LOCAL_ENU",
+  "attitude": "UNAVAILABLE",
+  "semanticMappings": [
+    { "nodeIndex": 97, "nodeName": "09 Destiny Space Laboratory", "componentId": "DESTINY", "status": "VERIFIED" },
+    { "nodeIndex": 84, "nodeName": "27 Columbus Space Laboratory", "componentId": "COLUMBUS", "status": "VERIFIED" },
+    { "nodeIndex": 95, "nodeName": "26 Harmony Node 2", "componentId": "HARMONY", "status": "VERIFIED" }
+  ]
+}

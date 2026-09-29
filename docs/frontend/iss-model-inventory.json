@@ -1,0 +1,1390 @@
+{
+  "asset": "iss-vtad-webp.glb",
+  "nodes": [
+    {
+      "index": 0,
+      "name": "13 Pirs Docking Compartment (DC) and Airlock",
+      "parent": 22,
+      "mesh": "Sphere.002",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_03_dull",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 1,
+      "name": "34 Poisk (MRM-2) Mini Research Module",
+      "parent": 22,
+      "mesh": "Sphere.002",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_03_dull",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 2,
+      "name": "panel_01_p.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 3,
+      "name": "panel_01_s.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 4,
+      "name": "panel_02_p.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 5,
+      "name": "panel_02_s.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 6,
+      "name": "panel_03_p.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "panel_03_s.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "panel_04_p.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 9,
+      "name": "panel_04_s.001",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 10,
+      "name": "panel_05_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 11,
+      "name": "panel_05_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 12,
+      "name": "panel_06_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 13,
+      "name": "panel_06_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 14,
+      "name": "panel_07_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 15,
+      "name": "panel_07_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 16,
+      "name": "panel_08_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 17,
+      "name": "panel_08_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 18,
+      "name": "panel_09_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 19,
+      "name": "panel_09_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_02_dull",
+        "olive *",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 20,
+      "name": "panel_bracket_p",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "olive *"
+      ]
+    },
+    {
+      "index": 21,
+      "name": "panel_bracket_s",
+      "parent": 22,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "olive *"
+      ]
+    },
+    {
+      "index": 22,
+      "name": "05 Zvezda (SM) Service Module",
+      "parent": 24,
+      "mesh": "sm_ext_sm.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_03_dull",
+        "ISS_AO_02"
+      ]
+    },
+    {
+      "index": 23,
+      "name": "39 Rassvet (MRM-1) Mini Research Module",
+      "parent": 24,
+      "mesh": "Sphere.002",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_03_dull",
+        "ISS_AO_04"
+      ]
+    },
+    {
+      "index": 24,
+      "name": "01 Zarya - (FGB) Funtional Cargo Block",
+      "parent": 25,
+      "mesh": "Sphere.002",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_AO_02"
+      ]
+    },
+    {
+      "index": 25,
+      "name": "03 (PMA) Pressurized Mating Adapter 1",
+      "parent": 112,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_AO_01",
+        "ISS_AO_02"
+      ]
+    },
+    {
+      "index": 26,
+      "name": "06 Z1 Truss",
+      "parent": 112,
+      "mesh": "z1_ext_01.001",
+      "materials": [
+        "ISS_01_dark *",
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_AO_03",
+        "foil_silver"
+      ]
+    },
+    {
+      "index": 27,
+      "name": "10 (ESP) External Stowage Platform 1",
+      "parent": 97,
+      "mesh": "z1_ext_01.001",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 28,
+      "name": "29 DEXTRE.003",
+      "parent": 29,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 29,
+      "name": "29 DEXTRE.002",
+      "parent": 42,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 30,
+      "name": "29 DEXTRE.009",
+      "parent": 31,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 31,
+      "name": "29 DEXTRE.008",
+      "parent": 32,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 32,
+      "name": "29 DEXTRE.007",
+      "parent": 33,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 33,
+      "name": "29 DEXTRE.006",
+      "parent": 34,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 34,
+      "name": "29 DEXTRE.005",
+      "parent": 35,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 35,
+      "name": "29 DEXTRE.004",
+      "parent": 42,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 36,
+      "name": "29 DEXTRE.015",
+      "parent": 37,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 37,
+      "name": "29 DEXTRE.014",
+      "parent": 38,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 38,
+      "name": "29 DEXTRE.013",
+      "parent": 39,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 39,
+      "name": "29 DEXTRE.012",
+      "parent": 40,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 40,
+      "name": "29 DEXTRE.011",
+      "parent": 41,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 41,
+      "name": "29 DEXTRE.010",
+      "parent": 42,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 42,
+      "name": "29 DEXTRE.001",
+      "parent": 43,
+      "mesh": "armA_SY_joint.000",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 43,
+      "name": "29 DEXTRE",
+      "parent": 44,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 44,
+      "name": "11 Canadarm2_08",
+      "parent": 45,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 45,
+      "name": "11 Canadarm2_07",
+      "parent": 46,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 46,
+      "name": "11 Canadarm2_06",
+      "parent": 47,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 47,
+      "name": "11 Canadarm2_05",
+      "parent": 48,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 48,
+      "name": "11 Canadarm2_04",
+      "parent": 49,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 49,
+      "name": "11 Canadarm2_03",
+      "parent": 50,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 50,
+      "name": "11 Canadarm2_02",
+      "parent": 51,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 51,
+      "name": "11 Canadarm2",
+      "parent": 52,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 52,
+      "name": "15 (MBS) Mobile Base System",
+      "parent": 80,
+      "mesh": "mss_mbs.001",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_03_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 53,
+      "name": "16 S1 Truss_02",
+      "parent": 67,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 54,
+      "name": "23 S4 Truss_01",
+      "parent": 59,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 55,
+      "name": "23 S4 Truss_02",
+      "parent": 59,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 56,
+      "name": "32 S6 Truss_01",
+      "parent": 58,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 57,
+      "name": "32 S6 Truss_02",
+      "parent": 58,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 58,
+      "name": "32 S6 Truss",
+      "parent": 59,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_03"
+      ]
+    },
+    {
+      "index": 59,
+      "name": "24 S5 Truss",
+      "parent": 60,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 60,
+      "name": "23 S4 Truss",
+      "parent": 65,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_03",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 61,
+      "name": "25 (ESP) External Stowage Platform 3",
+      "parent": 65,
+      "mesh": "ESP3.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 62,
+      "name": "36 Express Logistics Carrier (ELC) 2",
+      "parent": 65,
+      "mesh": "esp2_lo.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 63,
+      "name": "41 Express Logistics Carrier (ELC) 4",
+      "parent": 65,
+      "mesh": "esp2_lo.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 64,
+      "name": "42 Alpha Magnetic Spectrometer (AMS 2)",
+      "parent": 65,
+      "mesh": "AMS2.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 65,
+      "name": "22 S3 Truss",
+      "parent": 67,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 66,
+      "name": "44 Enhanced ISS Boom Assembly (EIBA)",
+      "parent": 67,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 67,
+      "name": "16 S1 Truss",
+      "parent": 80,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 68,
+      "name": "17 P1 Truss_02",
+      "parent": 79,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 69,
+      "name": "08 P6 Truss_01",
+      "parent": 71,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 70,
+      "name": "08 P6 Truss_02",
+      "parent": 71,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 71,
+      "name": "08 P6 Truss",
+      "parent": 74,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_03"
+      ]
+    },
+    {
+      "index": 72,
+      "name": "20 P4 Truss_01",
+      "parent": 74,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 73,
+      "name": "20 P4 Truss_02",
+      "parent": 74,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 74,
+      "name": "21 P5 Truss",
+      "parent": 75,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 75,
+      "name": "20 P4 Truss",
+      "parent": 78,
+      "mesh": "p6_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_AO_03",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 76,
+      "name": "35 Express Logistics Carrier (ELC) 1",
+      "parent": 78,
+      "mesh": "esp2_lo.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 77,
+      "name": "43 Express Logistics Carrier (ELC) 3",
+      "parent": 78,
+      "mesh": "esp2_lo.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_08"
+      ]
+    },
+    {
+      "index": 78,
+      "name": "19 P3 Truss",
+      "parent": 79,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 79,
+      "name": "17 P1 Truss",
+      "parent": 80,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_04_dull",
+        "ISS_AO_05"
+      ]
+    },
+    {
+      "index": 80,
+      "name": "14 S0 Truss",
+      "parent": 97,
+      "mesh": "s0_ani.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_02_dark *",
+        "ISS_02_dull",
+        "ISS_04_dull",
+        "ISS_AO_04"
+      ]
+    },
+    {
+      "index": 81,
+      "name": "04 (PMA) Pressurized Mating Adapter 2",
+      "parent": 95,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_AO_01",
+        "ISS_AO_02"
+      ]
+    },
+    {
+      "index": 82,
+      "name": "RapidScat_dish",
+      "parent": 83,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 83,
+      "name": "45 RapidScat",
+      "parent": 84,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_07",
+        "foil_silver"
+      ]
+    },
+    {
+      "index": 84,
+      "name": "27 Columbus Space Laboratory",
+      "parent": 95,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_02_dull",
+        "ISS_AO_01",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 85,
+      "name": "28 Kibo Space Laboratory (PSM) Pressurized Stowage Module",
+      "parent": 94,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_03_shiny_n",
+        "ISS_AO_01",
+        "ISS_AO_04"
+      ]
+    },
+    {
+      "index": 86,
+      "name": "31 Robotic Arm.005",
+      "parent": 87,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 87,
+      "name": "31 Robotic Arm.004",
+      "parent": 88,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 88,
+      "name": "31 Robotic Arm.003",
+      "parent": 89,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 89,
+      "name": "31 Robotic Arm.002",
+      "parent": 90,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 90,
+      "name": "31 Robotic Arm.001",
+      "parent": 91,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 91,
+      "name": "31 Robotic Arm",
+      "parent": 94,
+      "mesh": "jem_layers_jemrms.001",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 92,
+      "name": "33 Kibo Space Laboratory Exposed Platform",
+      "parent": 94,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 93,
+      "name": "CATS",
+      "parent": 94,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull"
+      ]
+    },
+    {
+      "index": 94,
+      "name": "30 Kibo Space Laboratory (PSM) Pressurized Module",
+      "parent": 95,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull",
+        "ISS_03_shiny_n",
+        "ISS_AO_01",
+        "ISS_AO_04"
+      ]
+    },
+    {
+      "index": 95,
+      "name": "26 Harmony Node 2",
+      "parent": 97,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_AO_01"
+      ]
+    },
+    {
+      "index": 96,
+      "name": "Destiny_Window_Cover",
+      "parent": 97,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull"
+      ]
+    },
+    {
+      "index": 97,
+      "name": "09 Destiny Space Laboratory",
+      "parent": 112,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_03_shiny_n",
+        "ISS_AO_01",
+        "ISS_AO_03"
+      ]
+    },
+    {
+      "index": 98,
+      "name": "18 ESP External Stowage Platform 2",
+      "parent": 99,
+      "mesh": "esp2_lo.000",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_04_dull",
+        "ISS_AO_07"
+      ]
+    },
+    {
+      "index": 99,
+      "name": "12 Quest Airlock",
+      "parent": 112,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_03_dull",
+        "ISS_03_shiny_n",
+        "ISS_AO_01",
+        "ISS_AO_04"
+      ]
+    },
+    {
+      "index": 100,
+      "name": "07 (PMA) Pressurized Mating Adapter 3",
+      "parent": 110,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_AO_01",
+        "ISS_AO_02"
+      ]
+    },
+    {
+      "index": 101,
+      "name": "38 Cupola.001",
+      "parent": 109,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 102,
+      "name": "38 Cupola.002",
+      "parent": 109,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 103,
+      "name": "38 Cupola.003",
+      "parent": 109,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 104,
+      "name": "38 Cupola.004",
+      "parent": 109,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 105,
+      "name": "38 Cupola.005",
+      "parent": 109,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 106,
+      "name": "38 Cupola.006",
+      "parent": 109,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 107,
+      "name": "38 Cupola.007",
+      "parent": 109,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_04_dull"
+      ]
+    },
+    {
+      "index": 108,
+      "name": "ISS",
+      "parent": 109,
+      "mesh": "Plane.000",
+      "materials": []
+    },
+    {
+      "index": 109,
+      "name": "38 Cupola",
+      "parent": 110,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_04_dull",
+        "ISS_AO_01"
+      ]
+    },
+    {
+      "index": 110,
+      "name": "37 Tranquility Node 3",
+      "parent": 112,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_AO_01"
+      ]
+    },
+    {
+      "index": 111,
+      "name": "40 Leonardo_Raffaello Perm Multi-Purpose Logistics Module (PMM)",
+      "parent": 112,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_AO_01",
+        "ISS_AO_06"
+      ]
+    },
+    {
+      "index": 112,
+      "name": "02 Unity Node 1",
+      "parent": 113,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_01_shiny_n",
+        "ISS_AO_01"
+      ]
+    },
+    {
+      "index": 113,
+      "name": "_root",
+      "parent": null,
+      "mesh": null,
+      "materials": []
+    },
+    {
+      "index": 114,
+      "name": "panel_01_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 115,
+      "name": "hinge_02_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 116,
+      "name": "panel_03_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 117,
+      "name": "hinge_04_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 118,
+      "name": "hinge_01_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 119,
+      "name": "panel_02_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 120,
+      "name": "hinge_03_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 121,
+      "name": "panel_04_p",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 122,
+      "name": "panel_01_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 123,
+      "name": "hinge_02_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 124,
+      "name": "panel_03_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 125,
+      "name": "hinge_04_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 126,
+      "name": "hinge_03_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 127,
+      "name": "panel_04_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 128,
+      "name": "panel_02_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull",
+        "shiny_panel"
+      ]
+    },
+    {
+      "index": 129,
+      "name": "hinge_01_s",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_02_dull"
+      ]
+    },
+    {
+      "index": 130,
+      "name": "OCO3",
+      "parent": null,
+      "mesh": "Cube.008",
+      "materials": [
+        "ISS_01_dull",
+        "ISS_03_dull.001",
+        "base_metal",
+        "white"
+      ]
+    },
+    {
+      "index": 131,
+      "name": "ECOStress",
+      "parent": null,
+      "mesh": "Cylinder.022",
+      "materials": [
+        "ISS_01_dark *",
+        "ISS_01_dull",
+        "ISS_03_dull.002",
+        "ecostress",
+        "ecostress metal",
+        "ecostressWhite",
+        "plastic black"
+      ]
+    }
+  ]
+}

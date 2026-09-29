@@ -1,10 +1,13 @@
 import type { OrbitalDelivery, BufferStatus } from '../orbital/bufferState';
+import { ISS_MODEL } from '../cesium/modelPresentation';
+import type { ModelLoadStatus } from '../cesium/modelPresentation';
 
 interface OrbitalStatusProps {
   delivery: OrbitalDelivery;
   buffer: BufferStatus;
   sceneTimeMs: number | null;
   sceneError: string | null;
+  modelState: { status: ModelLoadStatus; loadMs: number | null };
 }
 
 function utc(value: string | null | undefined): string {
@@ -28,7 +31,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, modelState }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -71,6 +74,11 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError }: Orb
         {line('Source acquisition', health?.status ?? 'UNKNOWN', `status-value ${health?.status === 'HEALTHY' ? 'good' : health?.status === 'DEGRADED' ? 'warning' : 'muted'}`)}
         {line('API delivery', delivery.status.toUpperCase(), `status-value ${delivery.status === 'ready' ? 'good' : 'warning'}`)}
         {line('Sample buffer', bufferText, `status-value ${buffer === 'active' ? 'good' : 'warning'}`)}
+        {line('3D model', modelState.status === 'ready' && modelState.loadMs !== null
+          ? `READY · ${(modelState.loadMs / 1000).toFixed(1)} s`
+          : modelState.status.toUpperCase(),
+        `status-value ${modelState.status === 'ready' ? 'good' : modelState.status === 'failed' ? 'warning' : 'muted'}`)}
+        {line('Attitude', 'UNAVAILABLE', 'status-value muted')}
       </dl>
     </section>
 
@@ -86,6 +94,7 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError }: Orb
       </dl>
     </section>
 
+    <p className="model-note">{ISS_MODEL.credit}. 3D model display: NOT TO SCALE, enlarged for map readability. Orbital position and altitude are unchanged. Display pose: local ENU only; it does not represent ISS attitude. <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA source</a>.</p>
     <p className="provenance-note">Computed from CelesTrak orbital elements with Orekit. Past arc is reconstructed; future arc is GP/TLE propagation. Neither is onboard position telemetry. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://www.naturalearthdata.com/">Natural Earth II</a>.</p>
   </aside>;
 }
