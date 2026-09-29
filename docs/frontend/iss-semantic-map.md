@@ -50,3 +50,5 @@ The orbital position is a current request-time **computed propagation** from the
 ## Reproduction and limitations
 
 The manifest’s stable semantic IDs do not depend on node or feature numbers. Its `nodeIndex`, `nodeName`, `featureId`, and `moduleCode` are asset-specific. The [enrichment script](../../frontend/scripts/add-verified-module-features.py) reads verified entries in manifest order, pins the deduplicated lossless PNG base hash, verifies exclusive mesh ownership, and tags only directly owned primitives. The first three feature IDs remain 0/1/2. Unknown and unmapped hits never resolve via a nearest-node fallback. The [model record](iss-model.md) holds the byte hashes, validation and browser acceptance record.
+
+The [current-geometry assessment](iss-current-geometry-assessment.md) leaves the existing 14 identities and feature IDs untouched. A future approved derivative must retain stable application IDs while regenerating asset-specific node/mesh/feature mappings and evidence; `NAUKA`, `PRICHAL`, and `IROSA_*` are prospective IDs only, not current runtime identities.

@@ -2,6 +2,8 @@
 
 Selection gate: **`MODEL_READY_FOR_INTEGRATION`**. This record covers the first detailed station geometry in the Cesium Earth View. It does not establish a current ISS configuration, onboard position measurement, station attitude, or moving hardware state.
 
+The [current-geometry assessment](iss-current-geometry-assessment.md) (2026-09-30) compares official VTAD and NASA/JSC IGOAL files, modern component coverage and exact-transform feasibility. Its selected strategy is `KEEP_CURRENT_VTAD`; this production geometry and its semantic derivative have **not** been updated to a current station configuration.
+
 ## Authoritative candidates inspected
 
 All candidates came from official NASA Science resource pages and were inspected as GLB files, including their glTF JSON, hierarchy and accessor extents. Sizes below are original downloads. NASA resource pages for A, B and IGOAL do not establish a precise station configuration date; no current-configuration claim is made for them.
