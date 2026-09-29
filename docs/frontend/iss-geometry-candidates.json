@@ -203,5 +203,78 @@
       "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
     }
   ],
+  "registrationGate": {
+    "checkedOn": "2026-09-30",
+    "analysis": "iss-geometry-registration.md",
+    "sourceVariant": "IGOAL_GITHUB_2024_GLB",
+    "latestFbxGeometryNumericallyRegistered": false,
+    "anchorClassification": "VERIFIED_SAME_COMPONENT",
+    "fitAnchors": ["Unity", "Destiny", "Harmony", "Columbus", "Zarya", "Zvezda", "Kibo PM"],
+    "holdoutAnchors": ["Tranquility", "Poisk", "Rassvet", "Cupola"],
+    "excludedAmbiguousCorrespondence": ["VTAD Quest / IGOAL Airlock"],
+    "excludedConfigurationSpecific": ["Pirs", "MLM", "RSNode", "iROSA", "Bishop", "visiting vehicles"],
+    "scale": {
+      "classification": "UNIFORM_SCALE_APPROXIMATE",
+      "independentCandidateIgoalWorldToVtad": 9.838543354421132,
+      "independentBasis": "2024/2026 FBX principal-node coordinate factor 0.0254 divided by 2024 named GLB root magnitude; checked against multiple physical module lengths",
+      "fitEstimate": 10.371281047095763,
+      "componentLongestExtentRatio": {
+        "Unity": 10.3162, "Destiny": 10.6157, "Harmony": 9.9067,
+        "Tranquility": 9.8172, "Columbus": 12.98, "Kibo PM": 9.5636,
+        "Zarya": 10.3474, "Zvezda": 4.7108, "Poisk": 11.7356,
+        "Rassvet": 11.2619, "Cupola": 10.2018
+      },
+      "meanRatio": 10.1325,
+      "medianRatio": 10.3162,
+      "ratioSpread": 8.2691,
+      "maximumDeviationFromMedian": 5.6054
+    },
+    "axis": {
+      "vtadGlbRoot": "identity",
+      "igoalNamedGlbRootScale": [-0.002581682987511158, -0.002581682987511158, -0.002581682987511158],
+      "igoalNamedGlbRootDeterminantSign": "negative",
+      "fbxUpAxis": "+Z",
+      "gltfUpAxis": "+Y",
+      "sourceToVtadFrameContract": "NOT_VERIFIED"
+    },
+    "fit": {
+      "method": "named direct-mesh AABB centers, Umeyama SVD; independent scale also tested",
+      "classification": "IGOAL_VTAD_TRANSFORM_APPROXIMATE",
+      "independentScaleIgoalWorldToVtad": 9.838543354421132,
+      "rotationWithGlbRootReflection": [
+        [0.00799246, 0.01209398, -0.99989492],
+        [0.01680345, 0.99978405, 0.01222695],
+        [-0.99982687, 0.01689941, -0.00778751]
+      ],
+      "rotationDeterminant": -1,
+      "translationVtadUnits": [-0.19111982, 5.13073092, 4.68420106],
+      "fitRmsVtadUnits": 0.94825,
+      "holdoutRmsVtadUnits": 1.00901,
+      "holdoutMaximumVtadUnits": 1.30668,
+      "holdout": {
+        "Tranquility": {"centerResidual": 0.77009, "aabbIoU": 0.6561},
+        "Poisk": {"centerResidual": 1.30668, "aabbIoU": 0.24903},
+        "Rassvet": {"centerResidual": 0.96203, "aabbIoU": 0.51602},
+        "Cupola": {"centerResidual": 0.92004, "aabbIoU": 0.268}
+      },
+      "productionTransformApproved": false
+    },
+    "naukaAttachment": "NAUKA_ATTACHMENT_TRANSFORM_DERIVABLE",
+    "naukaAttachmentScope": "Same-source IGOAL relative placement only; no verified VTAD docking frame",
+    "prichalIdentity": "PRICHAL_IDENTITY_STRONGLY_SUPPORTED",
+    "prichalAttachment": "PRICHAL_ATTACHMENT_TRANSFORM_DERIVABLE",
+    "prichalAttachmentScope": "Same-source MLM-to-RSNode transform only; asset-node alias and global frame remain unverified",
+    "iRosaTransforms": "IROSA_TRANSFORMS_PARTIALLY_VERIFIED",
+    "iRosaSourceGroups": [
+      {"node": "IROSA_Deployed_P62B", "channel": "P6/2B", "parent": "P6_2B_Array"},
+      {"node": "IROSA_Deployed_P64B", "channel": "P6/4B", "parent": "P6_4B_Array"},
+      {"node": "IROSA_Deployed_P44A", "channel": "P4/4A", "parent": "P4_Array_4A"},
+      {"node": "IROSA_Deployed_S43A", "channel": "S4/3A", "parent": "S4_Array_3A"},
+      {"node": "IROSA_Deployed_S41A", "channel": "S4/1A", "parent": "S4_Array_1A"},
+      {"node": "IROSA_Deployed_S61B", "channel": "S6/1B", "parent": "S6_1B_Array"}
+    ],
+    "pirsRemoval": "PIRS_REMOVAL_DETERMINISTIC",
+    "extensionDecision": "CURRENT_VTAD_REMAINS_UNMODIFIED"
+  },
   "decision": "KEEP_CURRENT_VTAD"
 }
