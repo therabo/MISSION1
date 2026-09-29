@@ -8,6 +8,7 @@ interface OrbitalStatusProps {
   sceneTimeMs: number | null;
   sceneError: string | null;
   modelState: { status: ModelLoadStatus; loadMs: number | null };
+  inspecting: boolean;
 }
 
 function utc(value: string | null | undefined): string {
@@ -31,7 +32,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, modelState }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, modelState, inspecting }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -41,7 +42,7 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, model
   return <aside className="status-panel" aria-label="ISS orbital status">
     <div className="panel-head">
       <span className="eyebrow">ORBITAL STATE / ISS</span>
-      <h1>Earth View</h1>
+      <h1>{inspecting ? 'ISS Inspection' : 'Earth View'}</h1>
       <p>Current propagated ISS position</p>
     </div>
 
