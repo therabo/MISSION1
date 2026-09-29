@@ -23,19 +23,20 @@ export default function App() {
   const buffer = bufferStatus(delivery.window, sceneTimeMs);
 
   const inspecting = viewMode === 'ENTERING_INSPECTION' || viewMode === 'ISS_INSPECTION';
+  const approaching = viewMode === 'ENTERING_INSPECTION';
 
   return <main className={`app-shell ${inspecting ? 'is-inspecting' : ''}`}>
     <EarthView window={delivery.window} inspectionRequest={inspectionRequest} overviewRequest={overviewRequest} onSceneTime={onSceneTime} onSceneError={onSceneError} onModelStatus={onModelStatus} onModuleSelection={onModuleSelection} onViewModeChange={setViewMode} />
-    <div className="top-brand" aria-hidden="true"><span className="brand-mark">M<span>1</span></span><span>MISSION1 <em>/ {inspecting ? 'ISS INSPECTION' : 'EARTH VIEW'}</em></span></div>
+    <div className="top-brand" aria-hidden="true"><span className="brand-mark">M<span>1</span></span><span>MISSION1 <em>/ {approaching ? 'APPROACHING ISS' : inspecting ? 'ISS INSPECTION' : 'EARTH VIEW'}</em></span></div>
     <div className="top-actions">
       <span className="scene-chip"><span className={`dot ${buffer === 'active' ? 'is-on' : ''}`} />{buffer === 'active' ? 'ORBITAL BUFFER ACTIVE' : buffer === 'expired' ? 'BUFFER EXPIRED' : 'AWAITING DATA'}</span>
       {inspecting
         ? <button type="button" className="back-button" onClick={() => setOverviewRequest((value) => value + 1)}>Back to Earth View</button>
         : <button type="button" onClick={() => setInspectionRequest((value) => value + 1)} disabled={!delivery.window || buffer !== 'active' || modelState.status !== 'ready'}>Inspect ISS</button>}
     </div>
-    <OrbitalStatus delivery={delivery} buffer={buffer} sceneTimeMs={sceneTimeMs} sceneError={sceneError} modelState={modelState} inspecting={inspecting} />
+    <OrbitalStatus delivery={delivery} buffer={buffer} sceneTimeMs={sceneTimeMs} sceneError={sceneError} modelState={modelState} inspecting={inspecting} approaching={approaching} />
     {selectedModule && <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} />}
-    {inspecting && <div className="inspection-hint"><strong>Drag to orbit the ISS · Scroll to zoom</strong><span>Model not to scale · Attitude unavailable</span></div>}
+    {inspecting && <div className="inspection-hint"><strong>{approaching ? 'Approaching moving ISS target' : 'Drag to orbit the ISS · Scroll to zoom'}</strong><span>Model not to scale · Attitude unavailable</span></div>}
     {!inspecting && <div className="scene-legend" aria-label="Trajectory legend">
       <span className="legend-dot" /> ISS computed position
       <span className="legend-rule" /> Recent / future GP propagation

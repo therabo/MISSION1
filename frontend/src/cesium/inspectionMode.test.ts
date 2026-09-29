@@ -4,7 +4,7 @@ import { orbitalPayload } from '../test/orbitalFixture';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { createVisualWindow, modelPositionAt } from './visualWindow';
 import { ISS_MODEL } from './modelPresentation';
-import { canInspect, cameraTrackingFrame, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
+import { approachTargetAt, canInspect, cameraTrackingFrame, closeApproachPose, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 
 describe('ISS inspection mode', () => {
   it('enters, exits, and repeats without changing the orbital property or clock', () => {
@@ -35,6 +35,29 @@ describe('ISS inspection mode', () => {
     expect(Matrix4.getTranslation(frame, new Cartesian3())).toEqual(position);
     const east = Matrix4.getColumn(frame, 0, new Cartesian4());
     expect(Cartesian3.dot(new Cartesian3(east.x, east.y, east.z), position)).toBeCloseTo(0, 5);
+  });
+
+  it('targets the bounded future sampled position without changing sample or scene time', () => {
+    const visual = createVisualWindow(parseOrbitalWindow(orbitalPayload()));
+    const property = visual.position;
+    const time = JulianDate.fromIso8601('2026-09-28T15:00:00Z');
+    const iso = JulianDate.toIso8601(time);
+    const expected = modelPositionAt(visual, JulianDate.addSeconds(time, 3.6, new JulianDate()), new Cartesian3());
+    expect(approachTargetAt(visual, time, 3.6)).toEqual(expected);
+    expect(visual.position).toBe(property);
+    expect(JulianDate.toIso8601(time)).toBe(iso);
+    expect(approachTargetAt(visual, JulianDate.fromIso8601('2026-09-28T15:09:59Z'), 3.6)).toBeUndefined();
+  });
+
+  it('joins the moving close approach at its starting pose and finishes at the inspection offset', () => {
+    const start = { heading: -2.9, pitch: 0.15, range: 60_000 };
+    const end = { heading: 0.61, pitch: -0.17, range: 340 };
+    expect(closeApproachPose(start, end, 0)).toEqual(start);
+    const middle = closeApproachPose(start, end, 0.5);
+    expect(middle.range).toBeLessThan(start.range);
+    expect(middle.range).toBeGreaterThan(end.range);
+    expect(closeApproachPose(start, end, 1).range).toBeCloseTo(end.range);
+    expect(closeApproachPose(start, end, 1).pitch).toBeCloseTo(end.pitch);
   });
 
   it('routes ISS representations from overview and only verified features in inspection', () => {

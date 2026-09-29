@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef } from 'react';
 import {
   buildModuleUrl,
+  BoundingSphere,
   Cartesian2,
   Cartesian3,
   ClockRange,
@@ -8,6 +9,7 @@ import {
   Color,
   ConstantProperty,
   EllipsoidTerrainProvider,
+  EasingFunction,
   ImageryLayer,
   HeadingPitchRange,
   JulianDate,
@@ -18,6 +20,7 @@ import {
   NearFarScalar,
   Math as CesiumMath,
   ScreenSpaceEventType,
+  SingleTileImageryProvider,
   TileMapServiceImageryProvider,
   TimeInterval,
   TimeIntervalCollection,
@@ -31,8 +34,9 @@ import { ISS_MODEL, labelVisible, markerVisible, modelLoadTransition, modelVisib
 import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPresentation';
 import { createVisualWindow, modelPositionAt } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
-import { canInspect, cameraTrackingFrame, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
+import { approachTargetAt, canInspect, cameraTrackingFrame, closeApproachPose, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
+import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
@@ -45,8 +49,11 @@ interface EarthViewProps {
   onViewModeChange: (mode: ViewMode) => void;
 }
 
-const ENTRY_DURATION_MS = 1600;
+export const APPROACH_DURATION_SECONDS = 3.6;
+export const CLOSE_DURATION_MS = 1800;
+export const APPROACH_RANGE_METERS = 60_000;
 const EXIT_DURATION_SECONDS = 1.2;
+const MAX_INSPECTION_RANGE_METERS = 2_000;
 // ENU offset: station-centered, with the camera just above its local horizon.
 export const INSPECTION_OFFSET = { heading: CesiumMath.toRadians(35), pitch: CesiumMath.toRadians(-10), range: 340 };
 
@@ -62,7 +69,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
   const representation = useRef<Representation>('none');
   const viewMode = useRef<ViewMode>(INITIAL_VIEW_MODE);
   const cameraSnapshot = useRef<CameraSnapshot | null>(null);
-  const entry = useRef<{ startMs: number; heading: number; pitch: number; range: number } | null>(null);
+  const entry = useRef<{ stage: 'approach' } | { stage: 'close'; startMs: number; heading: number; pitch: number; range: number } | null>(null);
   const enterInspection = useRef<(() => void) | null>(null);
   const exitInspection = useRef<(() => void) | null>(null);
   const initializedClock = useRef(false);
@@ -107,6 +114,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
     }
     viewer.current = instance;
     instance.scene.globe.baseColor = Color.fromCssColorString('#18394a');
+    enableEarthLighting(instance.scene.globe);
     instance.scene.backgroundColor = Color.fromCssColorString('#040b14');
     if (instance.scene.sun) instance.scene.sun.show = true;
     if (instance.scene.skyBox) instance.scene.skyBox.show = true;
@@ -117,13 +125,29 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
     instance.clock.shouldAnimate = true;
 
     // The bundled Natural Earth II tiles are local, token-free, and usable offline.
+    const loadNightLights = (): void => {
+      void SingleTileImageryProvider.fromUrl(NIGHT_LIGHTS.url, {
+        credit: 'Earth night-lights imagery: NASA Black Marble, 2016',
+      }).then((provider) => {
+        if (destroyed) return;
+        const layer = new ImageryLayer(provider, {
+          dayAlpha: NIGHT_LIGHTS.dayAlpha,
+          nightAlpha: NIGHT_LIGHTS.nightAlpha,
+          brightness: 1.8,
+        });
+        instance.imageryLayers.add(layer);
+      }).catch(() => {
+        if (!destroyed) errorCallback.current('Earth night-lights imagery is unavailable.');
+      });
+    };
     void TileMapServiceImageryProvider.fromUrl(buildModuleUrl('Assets/Textures/NaturalEarthII'))
       .then((provider) => {
         if (!destroyed) instance.imageryLayers.add(new ImageryLayer(provider));
       })
       .catch(() => {
         if (!destroyed) errorCallback.current('Earth imagery is unavailable; the ellipsoid remains usable.');
-      });
+      })
+      .finally(() => { if (!destroyed) loadNightLights(); });
 
     const markerVisibility = new ConstantProperty(true);
     let displayCenteringOffset: Cartesian3 | null = null;
@@ -180,6 +204,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
     const leaveInspection = (): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
       entry.current = null;
+      instance.camera.cancelFlight();
       selectModule(null);
       instance.trackedEntity = undefined;
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
@@ -211,18 +236,38 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
         direction: Cartesian3.clone(instance.camera.directionWC),
         up: Cartesian3.clone(instance.camera.upWC),
       };
-      const inverse = Matrix4.inverseTransformation(cameraTrackingFrame(position), new Matrix4());
-      const local = Matrix4.multiplyByPoint(inverse, instance.camera.positionWC, new Cartesian3());
-      entry.current = {
-        startMs: performance.now(),
-        heading: Math.atan2(local.x, local.y),
-        pitch: Math.atan2(local.z, Math.hypot(local.x, local.y)),
-        range: Cartesian3.magnitude(local),
-      };
+      const futurePosition = approachTargetAt(current, instance.clock.currentTime, APPROACH_DURATION_SECONDS);
+      if (!futurePosition) return;
       instance.camera.cancelFlight();
       instance.scene.screenSpaceCameraController.enableInputs = false;
       instance.scene.screenSpaceCameraController.zoomFactor = 0.01;
+      entry.current = { stage: 'approach' };
       setMode('ENTER');
+      // Fly in world space first: the entire globe remains in the camera path.
+      // The end target is read from the bounded backend sample window at the
+      // expected arrival time, not extrapolated from an independent orbit.
+      instance.camera.flyToBoundingSphere(new BoundingSphere(futurePosition, 0), {
+        offset: new HeadingPitchRange(INSPECTION_OFFSET.heading, INSPECTION_OFFSET.pitch, APPROACH_RANGE_METERS),
+        duration: APPROACH_DURATION_SECONDS,
+        easingFunction: EasingFunction.QUADRATIC_IN_OUT,
+        complete: () => {
+          if (destroyed || viewMode.current !== 'ENTERING_INSPECTION' || entry.current?.stage !== 'approach') return;
+          const now = active.current;
+          const target = now && modelPositionAt(now, instance.clock.currentTime, new Cartesian3());
+          if (!target) { leaveInspection(); return; }
+          const inverse = Matrix4.inverseTransformation(cameraTrackingFrame(target), new Matrix4());
+          const local = Matrix4.multiplyByPoint(inverse, instance.camera.positionWC, new Cartesian3());
+          entry.current = {
+            stage: 'close', startMs: performance.now(),
+            heading: Math.atan2(local.x, local.y),
+            pitch: Math.atan2(local.z, Math.hypot(local.x, local.y)),
+            range: Cartesian3.magnitude(local),
+          };
+        },
+        cancel: () => {
+          if (!destroyed && viewMode.current === 'ENTERING_INSPECTION' && entry.current?.stage === 'approach') leaveInspection();
+        },
+      });
     };
     enterInspection.current = startInspection;
 
@@ -289,6 +334,7 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
 
     const scenePosition = new Cartesian3();
     const cameraOffset = new Cartesian3();
+    const trackingFrame = new Matrix4();
     const tick = (): void => {
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
       const current = active.current;
@@ -299,20 +345,21 @@ export const EarthView = memo(function EarthView({ window, inspectionRequest, ov
         selectModule(null);
       }
       if (position && viewMode.current === 'ISS_INSPECTION') {
-        // The camera's local offset changes with user orbit/zoom input. Move only
-        // its ENU origin to the new sample position; never restore entry HPR.
+        // Keep the camera's current local orbit while the ISS ENU frame moves.
+        // A long drag can produce a globe-sized offset; keep inspection close.
+        const frame = cameraTrackingFrame(position, trackingFrame);
         Cartesian3.clone(instance.camera.position, cameraOffset);
-        instance.camera.lookAtTransform(cameraTrackingFrame(position), cameraOffset);
+        const range = Cartesian3.magnitude(cameraOffset);
+        if (range > MAX_INSPECTION_RANGE_METERS) {
+          Cartesian3.multiplyByScalar(cameraOffset, MAX_INSPECTION_RANGE_METERS / range, cameraOffset);
+        }
+        instance.camera.lookAtTransform(frame, cameraOffset);
       }
-      if (position && entry.current && iss.current) {
+      if (position && entry.current?.stage === 'close' && iss.current) {
         const flight = entry.current;
-        const progress = Math.min(1, (performance.now() - flight.startMs) / ENTRY_DURATION_MS);
-        const eased = progress * progress * (3 - 2 * progress);
-        const headingDifference = Math.atan2(Math.sin(INSPECTION_OFFSET.heading - flight.heading), Math.cos(INSPECTION_OFFSET.heading - flight.heading));
-        const heading = flight.heading + headingDifference * eased;
-        const pitch = flight.pitch + (INSPECTION_OFFSET.pitch - flight.pitch) * eased;
-        const range = Math.exp(Math.log(flight.range) * (1 - eased) + Math.log(INSPECTION_OFFSET.range) * eased);
-        instance.camera.lookAt(position, new HeadingPitchRange(heading, pitch, range));
+        const progress = Math.min(1, (performance.now() - flight.startMs) / CLOSE_DURATION_MS);
+        const pose = closeApproachPose(flight, INSPECTION_OFFSET, progress);
+        instance.camera.lookAt(position, new HeadingPitchRange(pose.heading, pose.pitch, pose.range));
         if (progress === 1) {
           entry.current = null;
           instance.scene.screenSpaceCameraController.enableInputs = true;

@@ -1,5 +1,6 @@
 import type { ModelLoadStatus, SemanticMapping } from './modelPresentation';
-import { Cartesian3, Matrix4, Transforms } from 'cesium';
+import { Cartesian3, JulianDate, Matrix4, Transforms } from 'cesium';
+import { modelPositionAt, type VisualWindow } from './visualWindow';
 
 export type ViewMode = 'EARTH_OVERVIEW' | 'ENTERING_INSPECTION' | 'ISS_INSPECTION' | 'EXITING_INSPECTION';
 export type ViewEvent = 'ENTER' | 'ENTRY_COMPLETE' | 'EXIT' | 'EXIT_COMPLETE';
@@ -17,6 +18,27 @@ export function nextViewMode(mode: ViewMode, event: ViewEvent): ViewMode {
 /** A camera navigation frame at the existing sampled position, never ISS attitude. */
 export function cameraTrackingFrame(position: Cartesian3, result?: Matrix4): Matrix4 {
   return Transforms.eastNorthUpToFixedFrame(position, undefined, result);
+}
+
+/** Choose only a sampled, in-window target for the expected world-space arrival. */
+export function approachTargetAt(window: VisualWindow, sceneTime: JulianDate, seconds: number): Cartesian3 | undefined {
+  const arrival = JulianDate.addSeconds(sceneTime, seconds, new JulianDate());
+  return modelPositionAt(window, arrival, new Cartesian3());
+}
+
+/** Logarithmic range gives visible travel over several orders of magnitude. */
+export function closeApproachPose(start: { heading: number; pitch: number; range: number },
+                                  end: { heading: number; pitch: number; range: number },
+                                  progress: number): { heading: number; pitch: number; range: number } {
+  if (progress <= 0) return { ...start };
+  if (progress >= 1) return { ...end };
+  const eased = progress * progress * (3 - 2 * progress);
+  const headingDifference = Math.atan2(Math.sin(end.heading - start.heading), Math.cos(end.heading - start.heading));
+  return {
+    heading: start.heading + headingDifference * eased,
+    pitch: start.pitch + (end.pitch - start.pitch) * eased,
+    range: Math.exp(Math.log(start.range) * (1 - eased) + Math.log(end.range) * eased),
+  };
 }
 export type IssPick =
   | { kind: 'iss-entity' | 'iss-model' }
