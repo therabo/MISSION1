@@ -1,6 +1,8 @@
 import type { ViewMode } from '../cesium/inspectionMode';
 import { SOURCE_LABELS } from '../cesium/trajectorySelection';
 import type { TrajectorySource } from '../cesium/trajectorySelection';
+import { TRAJECTORY_ACCENTS } from '../cesium/trajectoryRendering';
+import type { CSSProperties } from 'react';
 
 interface Props {
   selectedSource: TrajectorySource;
@@ -14,10 +16,10 @@ export function TrajectorySelector({selectedSource, viewMode, oemReason, sourceN
   return <div className="scene-legend trajectory-selector" aria-label="Position / trajectory source">
       <span className="mini-label">POSITION / TRAJECTORY SOURCE</span>
       <div className="source-options" role="group" aria-label="Choose position and trajectory source">
-        <button type="button" aria-pressed={selectedSource === 'PRIMARY_GP_TLE'} disabled={viewMode !== 'EARTH_OVERVIEW'} onClick={() => onSelect('PRIMARY_GP_TLE')}>
+        <button type="button" style={{'--source-accent': TRAJECTORY_ACCENTS.PRIMARY_GP_TLE} as CSSProperties} aria-pressed={selectedSource === 'PRIMARY_GP_TLE'} disabled={viewMode !== 'EARTH_OVERVIEW'} onClick={() => onSelect('PRIMARY_GP_TLE')}>
           <i aria-hidden="true" />MISSION1 GP/TLE
         </button>
-        <button type="button" aria-pressed={selectedSource === 'NASA_OEM'} disabled={viewMode !== 'EARTH_OVERVIEW' || !!oemReason} onClick={() => onSelect('NASA_OEM')}>
+        <button type="button" style={{'--source-accent': TRAJECTORY_ACCENTS.NASA_OEM} as CSSProperties} aria-pressed={selectedSource === 'NASA_OEM'} disabled={viewMode !== 'EARTH_OVERVIEW' || !!oemReason} onClick={() => onSelect('NASA_OEM')}>
           <i aria-hidden="true" />NASA OEM
         </button>
       </div>

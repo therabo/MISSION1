@@ -1,0 +1,2020 @@
+[
+  {
+    "source": "PRIMARY_GP_TLE",
+    "final": {
+      "time": "2026-09-30T15:46:05.866808000002493Z",
+      "source": "PRIMARY_GP_TLE",
+      "mode": "ISS_INSPECTION",
+      "primary": {
+        "xyz": [
+          -2718197.363324711,
+          -6174855.2015270945,
+          -882571.6177546069
+        ],
+        "geo": {
+          "lat": -7.499414873515116,
+          "lon": -113.7592971800077,
+          "alt": 426367.7529757911
+        }
+      },
+      "oem": {
+        "xyz": [
+          -2716446.8261299613,
+          -6175564.856898801,
+          -880248.6194992149
+        ],
+        "geo": {
+          "lat": -7.479962923317416,
+          "lon": -113.7432625177768,
+          "alt": 426009.9193950639
+        }
+      },
+      "separation": 2994.0461104246688,
+      "screenSeparation": null,
+      "physicalSelected": [
+        -2718197.363324711,
+        -6174855.2015270945,
+        -882571.6177546069
+      ],
+      "modelCenter": [
+        -2718197.363324711,
+        -6174855.201527093,
+        -882571.6177546069
+      ],
+      "displayLift": 1.862645149230957e-9,
+      "minimumPixelSize": 158,
+      "order": [
+        {
+          "i": 0
+        },
+        {
+          "i": 1
+        },
+        {
+          "i": 2,
+          "source": "NASA_OEM",
+          "layer": 0,
+          "color": "rgb(113,147,156)",
+          "alpha": 0.020800000000000003
+        },
+        {
+          "i": 3,
+          "source": "NASA_OEM",
+          "layer": 1,
+          "color": "rgb(113,147,156)",
+          "alpha": 0.08
+        },
+        {
+          "i": 4,
+          "source": "PRIMARY_GP_TLE",
+          "layer": 0,
+          "color": "rgb(83,217,205)",
+          "alpha": 0.221
+        },
+        {
+          "i": 5,
+          "source": "PRIMARY_GP_TLE",
+          "layer": 1,
+          "color": "rgb(83,217,205)",
+          "alpha": 0.85
+        }
+      ]
+    },
+    "handoffs": [
+      {
+        "position": 0,
+        "direction": 7.863603750729536e-11,
+        "up": 7.828087211500576e-11
+      }
+    ],
+    "frames": [
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.99999999844,
+        "range": 16573491.745632272,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.99999999844,
+        "range": 16573491.745632272,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.99999999844,
+        "range": 16573491.745632272,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8907080000008136Z",
+        "lift": 74983.99799767372,
+        "range": 16568799.328299094,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.9081079999996291Z",
+        "lift": 74924.7584256003,
+        "range": 16551343.193255734,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.9500080000016169Z",
+        "lift": 74607.98113876155,
+        "range": 16457189.389367796,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.990907999999763Z",
+        "lift": 74070.93411078857,
+        "range": 16296274.80333038,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.029408000000330503Z",
+        "lift": 73370.12429037108,
+        "range": 16085342.2566463,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.06710799999927985Z",
+        "lift": 72509.77966260673,
+        "range": 15826060.80347829,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.10350800000196614Z",
+        "lift": 71524.14117058026,
+        "range": 15529488.797596682,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.19550800000251911Z",
+        "lift": 68409.21805805143,
+        "range": 14601625.850666437,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.2566079999996873Z",
+        "lift": 65896.17761474192,
+        "range": 13868212.65609118,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.30160799999976007Z",
+        "lift": 63845.01764692668,
+        "range": 13281724.97617388,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.3382080000010319Z",
+        "lift": 62063.36931400745,
+        "range": 12781904.581544172,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.3797080000003916Z",
+        "lift": 59931.32529085494,
+        "range": 12196112.183960285,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.4514079999989917Z",
+        "lift": 56001.658429209165,
+        "range": 11153042.080958383,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.4935080000013841Z",
+        "lift": 53569.83043096447,
+        "range": 10531963.069700412,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.5416079999995418Z",
+        "lift": 50698.38336962473,
+        "range": 9822976.43174073,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.5973080000021582Z",
+        "lift": 47272.85937275533,
+        "range": 9011800.504573898,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.6619080000000395Z",
+        "lift": 43201.69766063573,
+        "range": 8096437.443438722,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.7239079999999376Z",
+        "lift": 39235.163391254195,
+        "range": 7254704.5458394205,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.7864079999999376Z",
+        "lift": 35219.1093096217,
+        "range": 6451619.689387953,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.8546079999996437Z",
+        "lift": 30864.78283812093,
+        "range": 5634906.133707894,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.915607999999338Z",
+        "lift": 27037.18543275209,
+        "range": 4961444.7902987795,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.9885080000021844Z",
+        "lift": 22601.133435463762,
+        "range": 4230064.240297361,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.06340799999998126Z",
+        "lift": 18264.850583089068,
+        "range": 3562305.794892917,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.14070800000081363Z",
+        "lift": 14099.115898507389,
+        "range": 2959729.12135227,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.24240800000006857Z",
+        "lift": 9226.704094454719,
+        "range": 2292676.118440693,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.34110799999871233Z",
+        "lift": 5312.635964347652,
+        "range": 1768706.1264536695,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.4354079999993701Z",
+        "lift": 2472.730876981318,
+        "range": 1366936.3912123214,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.5328080000017508Z",
+        "lift": 614.218684775113,
+        "range": 1038042.0455205747,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.6234079999994719Z",
+        "lift": 0.45874635382229395,
+        "range": 797602.9688704073,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.7220080000006419Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 594438.4608412357,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.7320080000008602Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 576753.9965833222,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.8288080000020273Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 429135.3903876089,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.8432080000002316Z",
+        "lift": 1.862645149230957e-9,
+        "range": 410475.3010033146,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.3279079999992973Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 87688.86260145415,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.3427080000001297Z",
+        "lift": 1.862645149230957e-9,
+        "range": 83586.38739904625,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.3573080000023765Z",
+        "lift": 1.923496793240577e-9,
+        "range": 79726.86034984201,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.3738080000021Z",
+        "lift": 1.862645149230957e-9,
+        "range": 75578.77789217359,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.396708000000217Z",
+        "lift": 1.862645149230957e-9,
+        "range": 70176.93989682889,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.429707999999664Z",
+        "lift": 1.862645149230957e-9,
+        "range": 63065.94015164921,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.4622079999990092Z",
+        "lift": 1.041250292910165e-9,
+        "range": 56770.67220568853,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.5365079999992304Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 44657.29892270687,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6633079999992333Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 29718.937864200336,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.7331079999967187Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 23796.10322194371,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.7445079999997688Z",
+        "lift": 1.862645149230957e-9,
+        "range": 22951.494308491263,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.8151079999970534Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 18370.405512109464,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.8244079999985843Z",
+        "lift": 1.862645149230957e-9,
+        "range": 17842.334864622208,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.8405079999993177Z",
+        "lift": 1.862645149230957e-9,
+        "range": 16965.40275085116,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.8566079999964131Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 16133.584209888031,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.876007999999274Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 15187.876624658324,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.9106079999965004Z",
+        "lift": 1.862645149230957e-9,
+        "range": 13643.359737503866,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.07570799999848532Z",
+        "lift": 1.862645149230957e-9,
+        "range": 8259.7464131902,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.14320799999768496Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 6764.1757143907325,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.15730799999982992Z",
+        "lift": 1.862645149230957e-9,
+        "range": 6490.638662017423,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.2273079999995389Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 5300.852472990792,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.2405079999989539Z",
+        "lift": 1.862645149230957e-9,
+        "range": 5104.675596730545,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.2573080000001937Z",
+        "lift": 9.313225746154785e-10,
+        "range": 4866.560858883676,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.273907999997391Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 4643.3679731600405,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.2905079999982263Z",
+        "lift": 1.862645149230957e-9,
+        "range": 4431.547497655761,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.32420799999817973Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 4034.040770238119,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.4850079999996524Z",
+        "lift": 1.862645149230957e-9,
+        "range": 2617.9560165856783,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.5530079999989539Z",
+        "lift": 1.862645149230957e-9,
+        "range": 2199.522399427393,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.5934079999969981Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1988.5834687125443,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.6581079999959911Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1699.4125808440872,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.6739079999970272Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1636.7993072318977,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.7307079999973212Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1434.1773787362783,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.7405079999989539Z",
+        "lift": 9.313225746154785e-10,
+        "range": 1402.4820252018194,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.75720799999908195Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1350.4992586285641,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.7738079999999172Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1301.2520578222977,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.7934079999977257Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1246.0522804971731,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.8246079999971698Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1164.3313854932921,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.855808000000252Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1089.5611350340873,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.9291079999966314Z",
+        "lift": 1.862645149230957e-9,
+        "range": 937.7915419362813,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.05830799999966985Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 735.4170402903325,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.12370799999735027Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 657.4319987837457,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.13310799999635492Z",
+        "lift": 1.862645149230957e-9,
+        "range": 647.3321648400873,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.19870799999807787Z",
+        "lift": 1.862645149230957e-9,
+        "range": 583.6746392069456,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.2082079999981943Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 575.3737002570347,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.22380799999882584Z",
+        "lift": 1.862645149230957e-9,
+        "range": 562.207186376312,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.24040799999602314Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 548.8082333143442,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.260707999996157Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 533.2420176992581,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.2971079999952053Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 507.45216399048877,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.45320799999717565Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 422.9880688549398,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.5169079999959649Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 398.5756524054915,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.524807999998302Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 395.894135492258,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.587307999998302Z",
+        "lift": 1.862645149230957e-9,
+        "range": 377.1645703676585,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.59550799999669835Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 375.0209180194498,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.607107999994696Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 372.10755265987325,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.6240079999970476Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 368.10861123712505,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.647607999995671Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 363.000410553446,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.6822079999965354Z",
+        "lift": 9.313225746154785e-10,
+        "range": 356.4844444654677,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8367079999970883Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.67388182490896,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8414079999965907Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.522187607056,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8572079999976268Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.15365778927554,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.873807999998462Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0019416711545,
+        "pivotError": null
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.8974079999970854Z",
+        "lift": 1.041250292910165e-9,
+        "range": 340.000000000194,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.928807999998753Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000004035,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.9607079999968846Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000007448,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.9947079999965354Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000007788,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.14780799999789451Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000013939,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.15730799999801093Z",
+        "lift": 9.313225746154785e-10,
+        "range": 340.0000000016928,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.17370799999662268Z",
+        "lift": 9.313225746154785e-10,
+        "range": 340.0000000019587,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.1905079999978625Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.00000000165574,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.207007999997586Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.00000000191176,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.2354079999968235Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.00000000178323,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.2674079999960668Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.00000000069167,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.30140799999571755Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000013792,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.44950799999787705Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000002267,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.457007999997586Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000006492,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.4737079999977141Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000014357,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.4904079999978421Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 340.0000000014036,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.5061079999977665Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.00000000136293,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.5332079999989219Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.00000000130854,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.5648080000009941Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000015936,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.6013080000011541Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 340.00000000150237,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.7670080000007147Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000003661,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.77370800000062445Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.00000000008197,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.7907080000004498Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.999999999796,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.8072080000001733Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.9999999998204,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.8319080000001122Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999996723,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.866808000002493Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999985647,
+        "pivotError": 0
+      }
+    ],
+    "locked": true
+  },
+  {
+    "source": "NASA_OEM",
+    "final": {
+      "time": "2026-09-30T15:46:06.09570800000801682Z",
+      "source": "NASA_OEM",
+      "mode": "ISS_INSPECTION",
+      "primary": {
+        "xyz": [
+          -2717368.900395659,
+          -6175414.886794923,
+          -881216.7199019138
+        ],
+        "geo": {
+          "lat": -7.487836833432829,
+          "lon": -113.750943006969,
+          "alt": 426368.0656789967
+        }
+      },
+      "oem": {
+        "xyz": [
+          -2715609.9387073554,
+          -6176104.581136105,
+          -878890.9065698973
+        ],
+        "geo": {
+          "lat": -7.468384168405506,
+          "lon": -113.7349114395764,
+          "alt": 425989.12332313386
+        }
+      },
+      "separation": 2996.5033223013115,
+      "screenSeparation": 3041.1230925737073,
+      "physicalSelected": [
+        -2715609.9387073554,
+        -6176104.581136105,
+        -878890.9065698973
+      ],
+      "modelCenter": [
+        -2715609.9387073554,
+        -6176104.581136103,
+        -878890.9065698973
+      ],
+      "displayLift": 1.862645149230957e-9,
+      "minimumPixelSize": 158,
+      "order": [
+        {
+          "i": 0
+        },
+        {
+          "i": 1
+        },
+        {
+          "i": 2,
+          "source": "PRIMARY_GP_TLE",
+          "layer": 0,
+          "color": "rgb(113,147,156)",
+          "alpha": 0.020800000000000003
+        },
+        {
+          "i": 3,
+          "source": "PRIMARY_GP_TLE",
+          "layer": 1,
+          "color": "rgb(113,147,156)",
+          "alpha": 0.08
+        },
+        {
+          "i": 4,
+          "source": "NASA_OEM",
+          "layer": 0,
+          "color": "rgb(237,184,106)",
+          "alpha": 0.221
+        },
+        {
+          "i": 5,
+          "source": "NASA_OEM",
+          "layer": 1,
+          "color": "rgb(237,184,106)",
+          "alpha": 0.85
+        }
+      ]
+    },
+    "handoffs": [
+      {
+        "position": 0,
+        "direction": 7.272360602334001e-11,
+        "up": 7.226941442602987e-11
+      }
+    ],
+    "frames": [
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.9999999978,
+        "range": 16573544.547040045,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.9999999978,
+        "range": 16573544.547040045,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8759079999999813Z",
+        "lift": 74999.9999999978,
+        "range": 16573544.547040045,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:45:59.8933080000024347Z",
+        "lift": 74977.90385139322,
+        "range": 16567061.206144204,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.05170800000087183Z",
+        "lift": 72881.4481122669,
+        "range": 15938112.481244598,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.05990799999926821Z",
+        "lift": 72686.97387290261,
+        "range": 15879502.169233663,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.07650800000010349Z",
+        "lift": 72269.49330516583,
+        "range": 15753735.964122618,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.09350799999992887Z",
+        "lift": 71809.6145849839,
+        "range": 15615341.982529614,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.12800799999968149Z",
+        "lift": 70779.12743121992,
+        "range": 15306097.74352214,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.16740799999752198Z",
+        "lift": 69450.39546480941,
+        "range": 14909804.105328841,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.20600799999920127Z",
+        "lift": 68001.06552495496,
+        "range": 14481524.691905707,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.24980800000048475Z",
+        "lift": 66191.88793940014,
+        "range": 13953740.346747758,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.2931079999980284Z",
+        "lift": 64244.627865689814,
+        "range": 13395119.35354508,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.3323080000009213Z",
+        "lift": 62357.066956752504,
+        "range": 12863703.027501471,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.37160799999765004Z",
+        "lift": 60356.26689438432,
+        "range": 12311810.68587026,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.41160799999852316Z",
+        "lift": 58218.86968291375,
+        "range": 11735678.660026269,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.4527080000007118Z",
+        "lift": 55927.83575035614,
+        "range": 11133945.213014422,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.4970080000020971Z",
+        "lift": 53364.037663249066,
+        "range": 10480303.145646472,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.539308000003075Z",
+        "lift": 50837.68731700732,
+        "range": 9856790.784416186,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.5814080000000104Z",
+        "lift": 48260.13159533172,
+        "range": 9241759.623556662,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.6259079999999813Z",
+        "lift": 45481.04956268082,
+        "range": 8602471.819550907,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.6714080000001559Z",
+        "lift": 42596.65126879225,
+        "range": 7964894.310250151,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.7213080000019545Z",
+        "lift": 39402.131283762144,
+        "range": 7289175.546408197,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.7672080000011192Z",
+        "lift": 36452.26406747989,
+        "range": 6693058.365651806,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.8139080000000831Z",
+        "lift": 33456.99839999211,
+        "range": 6114484.586360126,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.8635080000021844Z",
+        "lift": 30301.38551708818,
+        "range": 5533233.569091135,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.9206080000003567Z",
+        "lift": 26727.49429846099,
+        "range": 4908723.172009745,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:00.9677080000019487Z",
+        "lift": 23848.060705614873,
+        "range": 4430532.03483694,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.019108000000414904Z",
+        "lift": 20798.521289340253,
+        "range": 3947087.571981288,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.07410800000070594Z",
+        "lift": 17667.768718362568,
+        "range": 3473746.060969148,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.1224080000010872Z",
+        "lift": 15052.862648336724,
+        "range": 3094664.874958303,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.17640800000117451Z",
+        "lift": 12302.562860581416,
+        "range": 2709885.752273533,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.2309080000013637Z",
+        "lift": 9738.143440169091,
+        "range": 2361340.332395733,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.28650800000286836Z",
+        "lift": 7368.872060971313,
+        "range": 2044479.0321497833,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.32190800000171294Z",
+        "lift": 6003.429578943116,
+        "range": 1861858.1377125473,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.35820800000328745Z",
+        "lift": 4728.122407360743,
+        "range": 1689119.1232159806,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.3912080000027345Z",
+        "lift": 3685.154528018858,
+        "range": 1544165.713593619,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.4270080000042071Z",
+        "lift": 2686.305350260729,
+        "range": 1399187.9471316617,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.5117080000036367Z",
+        "lift": 916.4767265745619,
+        "range": 1102631.8235976435,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.5787080000027345Z",
+        "lift": 160.73495373825364,
+        "range": 909101.344240069,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.6235080000042217Z",
+        "lift": 0.422796759446743,
+        "range": 797369.9391636114,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.629108000002816Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 784318.0121743382,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.6433080000060727Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 752090.2518233011,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.6603080000058981Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 715100.8422248317,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.6875080000045273Z",
+        "lift": 1.862645149230957e-9,
+        "range": 659371.7653896679,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.73500800000510935Z",
+        "lift": 1.862645149230957e-9,
+        "range": 571545.7594601145,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.762908000004245Z",
+        "lift": 1.862645149230957e-9,
+        "range": 525147.2423271565,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.798108000002685Z",
+        "lift": 1.041250292910165e-9,
+        "range": 471612.3924769099,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.8316080000022339Z",
+        "lift": 1.862645149230957e-9,
+        "range": 425446.548886021,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:01.865908000003401Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 382605.9230512074,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.12290800000300806Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 169842.68766214504,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.12960800000291783Z",
+        "lift": 1.862645149230957e-9,
+        "range": 166233.31700928876,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.190708000003724Z",
+        "lift": 1.862645149230957e-9,
+        "range": 136594.2605534828,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.19640800000343006Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 134109.24964229466,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.2098080000050686Z",
+        "lift": 1.041250292910165e-9,
+        "range": 128440.8907689238,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.22980800000550516Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 120416.36210565682,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.26440800000273157Z",
+        "lift": 1.862645149230957e-9,
+        "range": 107684.86290221995,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.3485080000045855Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 82031.46230574005,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.4757080000035785Z",
+        "lift": 1.862645149230957e-9,
+        "range": 54345.66383260103,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.53980800000499585Z",
+        "lift": 1.862645149230957e-9,
+        "range": 44184.665180998,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.5497080000041024Z",
+        "lift": 1.862645149230957e-9,
+        "range": 42796.86215080472,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6235080000042217Z",
+        "lift": 1.862645149230957e-9,
+        "range": 33757.15132112608,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6325080000042362Z",
+        "lift": 1.862645149230957e-9,
+        "range": 32797.223949122534,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6435080000046582Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 31661.89901219703,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6603080000058981Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 30005.289441711906,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.6967080000049464Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 26715.078831925053,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.7360080000053131Z",
+        "lift": 1.862645149230957e-9,
+        "range": 23578.26384119442,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.9120080000047892Z",
+        "lift": 1.862645149230957e-9,
+        "range": 13584.484873818818,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:02.977708000003986Z",
+        "lift": 1.862645149230957e-9,
+        "range": 11102.860054521107,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.05090800000289164Z",
+        "lift": 1.862645149230957e-9,
+        "range": 8896.274690168024,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.06090800000310992Z",
+        "lift": 9.313225746154785e-10,
+        "range": 8633.460181469873,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.07660800000303425Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 8237.59972492187,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.09240800000407035Z",
+        "lift": 1.862645149230957e-9,
+        "range": 7858.960782995941,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.11320800000430609Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 7388.999416338763,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.18870800000513555Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 5924.031034902503,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.19730800000616Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 5778.491630076442,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.2227080000047863Z",
+        "lift": 1.862645149230957e-9,
+        "range": 5371.17306375415,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.257608000003529Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 4862.426468732698,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.29060800000297604Z",
+        "lift": 1.862645149230957e-9,
+        "range": 4430.308045560294,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.3278080000054615Z",
+        "lift": 1.862645149230957e-9,
+        "range": 3994.00750531271,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.3632080000043061Z",
+        "lift": 1.862645149230957e-9,
+        "range": 3623.369374446634,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.5376080000023649Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 2286.904401516908,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.5450080000046Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 2244.4107553577946,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.5598080000054324Z",
+        "lift": 1.862645149230957e-9,
+        "range": 2162.208748412047,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.57660800000303425Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 2073.216131189668,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.606208000004699Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1926.889712023299,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.6404080000047543Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1773.1030085444886,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.6763080000073387Z",
+        "lift": 1.862645149230957e-9,
+        "range": 1627.5407906657101,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.71260800000345625Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1495.1414334645162,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.8775080000050366Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 1041.3219945725261,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.9415080000053422Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 915.0661860865332,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:03.9496080000026268Z",
+        "lift": 1.862645149230957e-9,
+        "range": 900.6406140022216,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.020908000004055793Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 786.7512217257986,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.03060800000275776Z",
+        "lift": 1.041250292910165e-9,
+        "range": 772.9241500942112,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.04300800000419258Z",
+        "lift": 1.862645149230957e-9,
+        "range": 755.7792576985082,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.06030800000553427Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 732.8184088539156,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.08710800000335439Z",
+        "lift": 1.862645149230957e-9,
+        "range": 699.3409601716965,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.12370800000462623Z",
+        "lift": 1.862645149230957e-9,
+        "range": 657.4321267230661,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.28290800000468153Z",
+        "lift": 1.041250292910165e-9,
+        "range": 517.200400627305,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.3473080000076152Z",
+        "lift": 1.862645149230957e-9,
+        "range": 475.9787874974856,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.35970800000541203Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 468.8791729563445,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.4325080000053276Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 432.0560163597517,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.4430080000056478Z",
+        "lift": 1.862645149230957e-9,
+        "range": 427.38328622402236,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.4597080000057758Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 420.2599172011959,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.4763080000066111Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 413.54360635280557,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.4950080000053276Z",
+        "lift": 1.862645149230957e-9,
+        "range": 406.3980595757785,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.5311080000028596Z",
+        "lift": 1.862645149230957e-9,
+        "range": 393.80787723538833,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.6910080000052403Z",
+        "lift": 1.862645149230957e-9,
+        "range": 355.00732735376874,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.7538080000067566Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 346.5206673046318,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.7610080000067683Z",
+        "lift": 1.862645149230957e-9,
+        "range": 345.77370243482,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8269080000045506Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 341.0521414618569,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8431080000045768Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.472066408342,
+        "pivotError": null
+      },
+      {
+        "mode": "ENTERING_INSPECTION",
+        "time": "2026-09-30T15:46:04.8600080000069283Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.1111222683513,
+        "pivotError": null
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.87640800000554Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000001434,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.8943080000080954Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.0000000001253,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:04.9265080000077432Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999992041,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.08690800000658783Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.99999999904696,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.15490800000588933Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999984925,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.16110800000569725Z",
+        "lift": 9.385703304198744e-10,
+        "range": 339.9999999980263,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.2288080000089394Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.999999998672,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.24300800000855816Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.9999999985718,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.25990800000727177Z",
+        "lift": 9.385703304198744e-10,
+        "range": 339.9999999985484,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.2763080000095215Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.99999999836615,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.29310800000712334Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.99999999837826,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.3271080000067741Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999988853,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.4972080000079586Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.9999999986066,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.5778080000090995Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 340.0000000002719,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.6547080000073038Z",
+        "lift": 1.041250292910165e-9,
+        "range": 340.0000000000031,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.6606080000055954Z",
+        "lift": 1.862645149230957e-9,
+        "range": 340.000000000382,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.6764080000066315Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.99999999940025,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.6931080000067595Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999949614,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.7168080000101327Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999982015,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.7535080000088783Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999997241,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.78790800000751915Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999894817,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.820108000007167Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.999999998423,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.8537080000078276Z",
+        "lift": 1.9199706733309015e-9,
+        "range": 339.9999999976419,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.8896080000067741Z",
+        "lift": 1.8662795822463695e-9,
+        "range": 339.9999999978337,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:05.9224080000076356Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999768005,
+        "pivotError": 0
+      },
+      {
+        "mode": "ISS_INSPECTION",
+        "time": "2026-09-30T15:46:06.09570800000801682Z",
+        "lift": 1.862645149230957e-9,
+        "range": 339.99999999727544,
+        "pivotError": 0
+      }
+    ],
+    "locked": true
+  }
+]

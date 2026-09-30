@@ -1,13 +1,16 @@
 import {
   ArcType, Cartesian3, Color, GeometryInstance, Material,
-  PolylineGeometry, PolylineMaterialAppearance, Primitive,
+  PolylineGeometry, PolylineMaterialAppearance, Primitive, type PrimitiveCollection,
 } from 'cesium';
 import type { ComparisonResponse, TrajectorySample } from '../orbital/comparison';
 import type { TrajectorySource } from './trajectorySelection';
 
+// Distinct selected accents make a switch visible even for subpixel-coincident paths.
+export const TRAJECTORY_ACCENTS = { PRIMARY_GP_TLE: '#53d9cd', NASA_OEM: '#edb86a' } as const;
+
 export const FORWARD_TRAIL = {
-  direction: 'FUTURE_DIRECTION_ONLY', horizonRevolutions: 0.85, gapSeconds: 40,
-  activeColor: '#53d9cd', inactiveColor: '#71939c', activeAlpha: 0.85, inactiveAlpha: 0.12,
+  direction: 'FUTURE_DIRECTION_ONLY', horizonRevolutions: 0.85, gapSeconds: 75,
+  inactiveColor: '#71939c', activeAlpha: 0.85, inactiveAlpha: 0.08,
   layers: [
     { name: 'halo', width: 20, alphaScale: 0.26, glowPower: 0.35 },
     { name: 'body', width: 8, alphaScale: 1, glowPower: 0.22 },
@@ -33,7 +36,7 @@ export function forwardOpacity(sampleMs: number, startMs: number, endMs: number)
 export function trailMaterial(alphaScale: number, glowPower: number): Material {
   return new Material({ strict: true, translucent: true, fabric: {
     type: 'Mission1ForwardTrail',
-    uniforms: { trailColor: Color.fromCssColorString(FORWARD_TRAIL.activeColor),
+    uniforms: { trailColor: Color.fromCssColorString(TRAJECTORY_ACCENTS.PRIMARY_GP_TLE),
       maximumAlpha: FORWARD_TRAIL.activeAlpha * alphaScale, forwardStart: 0, forwardEnd: 0.85 },
     materials: { edgeGlow: { type: 'PolylineGlow', uniforms: { color: Color.WHITE, glowPower, taperPower: 1 } } },
     components: {
@@ -78,7 +81,10 @@ export function createTrajectoryTrails(response: ComparisonResponse): Trajectory
   return { generatedMs: Date.parse(response.generatedAt), trails };
 }
 
-const activeColor = Color.fromCssColorString(FORWARD_TRAIL.activeColor);
+const activeColors = {
+  PRIMARY_GP_TLE: Color.fromCssColorString(TRAJECTORY_ACCENTS.PRIMARY_GP_TLE),
+  NASA_OEM: Color.fromCssColorString(TRAJECTORY_ACCENTS.NASA_OEM),
+};
 const inactiveColor = Color.fromCssColorString(FORWARD_TRAIL.inactiveColor);
 
 export function updateTrail(trail: ForwardTrail, sceneMs: number, active: TrajectorySource): void {
@@ -88,9 +94,19 @@ export function updateTrail(trail: ForwardTrail, sceneMs: number, active: Trajec
   for (const [index, layer] of trail.layers.entries()) {
     layer.material.uniforms.forwardStart = (startMs - trail.startMs) / span;
     layer.material.uniforms.forwardEnd = Math.max(layer.material.uniforms.forwardStart + 1e-6, (endMs - trail.startMs) / span);
-    layer.material.uniforms.trailColor = selected ? activeColor : inactiveColor;
+    layer.material.uniforms.trailColor = selected ? activeColors[trail.source] : inactiveColor;
     layer.material.uniforms.maximumAlpha = (selected ? FORWARD_TRAIL.activeAlpha : FORWARD_TRAIL.inactiveAlpha) * FORWARD_TRAIL.layers[index].alphaScale;
   }
+}
+
+/** Inactive halo/body, then selected halo/body. Reorders retained primitives only.
+ * Native OIT can combine translucent fragments independent of this order; selected
+ * opacity and source accent also establish dominance without disabling globe depth.
+ */
+export function orderTrails(group: TrajectoryTrails, active: TrajectorySource, collection: PrimitiveCollection): void {
+  const ordered = [...group.trails.filter((trail) => trail.source !== active),
+    ...group.trails.filter((trail) => trail.source === active)];
+  for (const trail of ordered) for (const layer of trail.layers) collection.raiseToTop(layer.primitive);
 }
 
 export function showTrails(group: TrajectoryTrails, visible: boolean): void {

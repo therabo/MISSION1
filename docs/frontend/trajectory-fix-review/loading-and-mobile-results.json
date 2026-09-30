@@ -1,0 +1,64 @@
+[
+  {
+    "flavor": "development",
+    "early": {
+      "marker": true,
+      "inspectDisabled": true,
+      "oemDisabled": true
+    },
+    "ready": {
+      "marker": false,
+      "model": true,
+      "source": "PRIMARY_GP_TLE",
+      "trailSources": [
+        "PRIMARY_GP_TLE"
+      ]
+    },
+    "mobile": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "selector": {
+        "x": 131.296875,
+        "y": 58,
+        "width": 249.703125,
+        "height": 123.5,
+        "top": 58,
+        "right": 381,
+        "bottom": 181.5,
+        "left": 131.296875
+      }
+    },
+    "errors": []
+  },
+  {
+    "flavor": "production",
+    "early": {
+      "marker": true,
+      "inspectDisabled": true,
+      "oemDisabled": true
+    },
+    "ready": {
+      "marker": false,
+      "model": true,
+      "source": "PRIMARY_GP_TLE",
+      "trailSources": [
+        "PRIMARY_GP_TLE"
+      ]
+    },
+    "mobile": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "selector": {
+        "x": 131.296875,
+        "y": 58,
+        "width": 249.703125,
+        "height": 123.5,
+        "top": 58,
+        "right": 381,
+        "bottom": 181.5,
+        "left": 131.296875
+      }
+    },
+    "errors": []
+  }
+]

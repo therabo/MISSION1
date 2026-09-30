@@ -125,9 +125,9 @@ dl { margin: 8px 0 0; }
 .source-options { display: flex; gap: 6px; }
 .source-options button { display: flex; align-items: center; gap: 7px; min-height: 38px; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: #102531; color: #bfd0d5; padding: 8px 10px; font: inherit; font-size: 11px; cursor: pointer; }
 .source-options button i { width: 7px; height: 7px; border: 1px solid currentColor; border-radius: 50%; flex: none; }
-.source-options button[aria-pressed="true"] { border-color: var(--accent); color: #d8fffb; background: #16414a; }
-.source-options button[aria-pressed="true"] i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px #53d9cd55; }
-.source-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.source-options button[aria-pressed="true"] { border-color: var(--source-accent); color: #e9faf9; background: color-mix(in srgb, var(--source-accent) 18%, #102531); }
+.source-options button[aria-pressed="true"] i { background: var(--source-accent); border-color: var(--source-accent); box-shadow: 0 0 6px color-mix(in srgb, var(--source-accent) 33%, transparent); }
+.source-options button:focus-visible { outline: 2px solid var(--source-accent); outline-offset: 3px; }
 .source-options button:disabled { cursor: not-allowed; opacity: .6; }
 .source-options button[aria-pressed="true"]:disabled { opacity: 1; }
 .source-notice { margin: 0; color: var(--warning); font-size: 11px; line-height: 1.4; }

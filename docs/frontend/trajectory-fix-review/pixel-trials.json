@@ -1,0 +1,78 @@
+{
+  "size": [
+    {
+      "size": 92,
+      "widthCSS": 35.0,
+      "heightCSS": 78.5,
+      "boundsDevice": [
+        1309,
+        548,
+        1378,
+        704
+      ]
+    },
+    {
+      "size": 88,
+      "widthCSS": 33.5,
+      "heightCSS": 75.0,
+      "boundsDevice": [
+        1311,
+        552,
+        1377,
+        701
+      ]
+    },
+    {
+      "size": 84,
+      "widthCSS": 32.0,
+      "heightCSS": 72.0,
+      "boundsDevice": [
+        1313,
+        555,
+        1376,
+        698
+      ]
+    },
+    {
+      "size": 80,
+      "widthCSS": 31.0,
+      "heightCSS": 68.0,
+      "boundsDevice": [
+        1314,
+        559,
+        1375,
+        694
+      ]
+    }
+  ],
+  "gap": [
+    {
+      "gapSeconds": 40,
+      "clearMarginCSS": 0.0
+    },
+    {
+      "gapSeconds": 50,
+      "clearMarginCSS": 0.0
+    },
+    {
+      "gapSeconds": 60,
+      "clearMarginCSS": 1.0
+    },
+    {
+      "gapSeconds": 75,
+      "clearMarginCSS": 7.0710678118654755
+    },
+    {
+      "gapSeconds": 90,
+      "clearMarginCSS": 13.82931668593933
+    },
+    {
+      "gapSeconds": 105,
+      "clearMarginCSS": 20.862646045025066
+    },
+    {
+      "gapSeconds": 120,
+      "clearMarginCSS": 27.586228448267445
+    }
+  ]
+}

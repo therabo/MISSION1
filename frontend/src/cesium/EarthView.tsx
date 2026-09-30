@@ -41,11 +41,12 @@ import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
 import skyboxManifest from './skyboxManifest.json';
-import { createTrajectoryTrails, showTrails, updateTrail } from './trajectoryRendering';
+import { createTrajectoryTrails, orderTrails, showTrails, updateTrail } from './trajectoryRendering';
 import type { TrajectoryTrails } from './trajectoryRendering';
 import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
 import type { SampledPositionProperty } from 'cesium';
+import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, displayLiftForMode, modelDisplayPosition } from './earthViewPresentation';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
@@ -98,6 +99,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     { stage: 'acquire'; startTime: JulianDate; startPosition: Cartesian3; startDirection: Cartesian3; startUp: Cartesian3 } |
     { stage: 'moving'; startTime: JulianDate; startOffset: Cartesian3; endOffset: Cartesian3;
       startDirection: Cartesian3; startUp: Cartesian3 } | null>(null);
+  const displayEntryStart = useRef<JulianDate | null>(null);
   const enterInspection = useRef<(() => void) | null>(null);
   const exitInspection = useRef<(() => void) | null>(null);
   const initializedClock = useRef(false);
@@ -338,11 +340,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       // Native globe depth remains; no world-space offsets or depth overrides.
       for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current);
     };
-    const orderTrails = (group: TrajectoryTrails): void => {
-      for (const trail of group.trails) if (trail.source === selectedSourceRef.current) {
-        for (const layer of trail.layers) instance.scene.primitives.raiseToTop(layer.primitive);
-      }
-    };
     let orderedSource: TrajectorySource | null = null;
     const removeReadyListener = instance.scene.preRender.addEventListener(() => {
       const pending = pendingPrimaryLine.current;
@@ -350,7 +347,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       removeTrail(primaryLine.current);
       primaryLine.current = pending;
       pendingPrimaryLine.current = null;
-      orderTrails(pending);
+      orderTrails(pending, selectedSourceRef.current, instance.scene.primitives);
       orderedSource = selectedSourceRef.current;
       showTrails(pending, viewMode.current === 'EARTH_OVERVIEW');
     });
@@ -373,7 +370,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (primaryLine.current) {
         styleTrails(primaryLine.current, sceneMs);
         if (orderedSource !== selectedSourceRef.current) {
-          orderTrails(primaryLine.current);
+          orderTrails(primaryLine.current, selectedSourceRef.current, instance.scene.primitives);
           orderedSource = selectedSourceRef.current;
         }
       }
@@ -395,13 +392,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (primaryLine.current) showTrails(primaryLine.current, presentation.pathVisible);
     };
 
-    let exitPresentation: { startMs: number; size: number } | null = null;
+    let displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS;
+    let exitPresentation: { startMs: number; size: number; liftMeters: number } | null = null;
 
     const leaveInspection = (): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
       entry.current = null;
+      displayEntryStart.current = null;
       instance.camera.cancelFlight();
-      exitPresentation = { startMs: performance.now(), size: model.current?.minimumPixelSize ?? ISS_MODEL.displayMinimumPixelSize };
+      exitPresentation = { startMs: performance.now(), size: model.current?.minimumPixelSize ?? ISS_MODEL.displayMinimumPixelSize,
+        liftMeters: displayLiftMeters };
       selectModule(null);
       instance.trackedEntity = undefined;
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
@@ -461,6 +461,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       instance.scene.screenSpaceCameraController.enableInputs = false;
       instance.scene.screenSpaceCameraController.zoomFactor = 0.01;
       const moving = movingEntryAt(position);
+      displayEntryStart.current = JulianDate.clone(instance.clock.currentTime);
       entry.current = earthOccludes(instance.camera.positionWC, position) ||
         !movingApproachPathClear(position, moving.startOffset, moving.endOffset)
         ? {
@@ -556,6 +557,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     }, ScreenSpaceEventType.LEFT_CLICK);
 
     const scenePosition = new Cartesian3();
+    const displayPosition = new Cartesian3();
     const cameraOffset = new Cartesian3();
     const trackingFrame = new Matrix4();
     const approachWorldPosition = new Cartesian3();
@@ -660,6 +662,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
               upDegrees: CesiumMath.toDegrees(Cartesian3.angleBetween(beforeUp, instance.camera.upWC)),
             }));
             entry.current = null;
+            displayEntryStart.current = null;
             instance.scene.screenSpaceCameraController.enableInputs = true;
             setMode('ENTRY_COMPLETE');
           }
@@ -669,6 +672,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         model.current.minimumPixelSize = exitMinimumPixelSize(ISS_MODEL.displayMinimumPixelSize,
           exitPresentation.size, (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000));
       }
+      // Camera targets, marker and readout always use the physical selected point.
+      // The model alone loses its Overview lift smoothly during early entry.
+      displayLiftMeters = displayLiftForMode(viewMode.current,
+        displayEntryStart.current ? JulianDate.secondsDifference(instance.clock.currentTime, displayEntryStart.current) / APPROACH_DURATION_SECONDS : null,
+        exitPresentation ? { startLift: exitPresentation.liftMeters,
+          progress: (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000) } : null);
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       if (selectedModule.current && !modulePickingAvailable(modelStatus.current, distance)) selectModule(null);
       representation.current = representationForState(valid && !!position, modelStatus.current);
@@ -690,11 +699,10 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (model.current) {
         model.current.show = modelVisible(representation.current) && !!position;
         if (model.current.show && model.current.ready && position) {
-          // Center the asset's off-origin bounds on the sampled orbital point.
+          // Center the asset's off-origin bounds on the separate model display point.
           // This is a display translation, not a change to orbital position or attitude.
-          // DISPLAY_ONLY_EARTH_VIEW_OFFSET = 0: browser review found no lift necessary.
-          // Model visibility is sufficient without a silhouette; Inspection stays naturally lit.
-          const frame = Transforms.eastNorthUpToFixedFrame(position);
+          // The physical selected position remains untouched. Inspection has zero lift.
+          const frame = Transforms.eastNorthUpToFixedFrame(modelDisplayPosition(position, displayLiftMeters, displayPosition));
           if (!displayCenteringOffset) {
             model.current.modelMatrix = frame;
             const inverse = Matrix4.inverseTransformation(frame, new Matrix4());
@@ -735,6 +743,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       enterInspection.current = null;
       exitInspection.current = null;
       entry.current = null;
+      displayEntryStart.current = null;
       selectedModule.current = null;
       iss.current = null;
       viewer.current = null;
@@ -756,6 +765,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       // A refreshed backend window may realign scene time. Preserve the elapsed
       // camera animation while both camera and model use the new scene instant.
       if (entry.current) rebaseApproachStartTime(entry.current.startTime, instance.clock.currentTime, estimatedNow);
+      if (displayEntryStart.current) rebaseApproachStartTime(displayEntryStart.current, instance.clock.currentTime, estimatedNow);
       instance.clock.currentTime = estimatedNow;
       initializedClock.current = true;
     }
