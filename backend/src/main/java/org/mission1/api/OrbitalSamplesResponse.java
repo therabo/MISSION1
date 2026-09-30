@@ -11,7 +11,7 @@ import org.mission1.orbital.domain.Vector3;
 /** Compact Earth-fixed positions with response-level lineage and current-time quality. */
 public record OrbitalSamplesResponse(
         Instant generatedAt, Instant windowStart, Instant windowEnd, int stepSeconds,
-        String frame, String positionUnit, String classification, TimeSemantics timeSemantics,
+        String frame, String positionUnit, String velocityUnit, String classification, TimeSemantics timeSemantics,
         Source source, Assessment qualityAtGeneratedAt,
         CurrentOrbitalStateResponse.SourceHealth sourceHealth,
         CurrentGeodetic currentGeodetic, List<Sample> samples) {
@@ -25,10 +25,13 @@ public record OrbitalSamplesResponse(
                              double elementAgeSeconds, double retrievalAgeSeconds) { }
     public record CurrentGeodetic(String datum, double latitudeDegrees, double longitudeDegrees,
                                   double altitudeMeters) { }
-    public record Sample(Instant time, double xMeters, double yMeters, double zMeters) {
+    public record Sample(Instant time, double xMeters, double yMeters, double zMeters,
+                         double vxMetersPerSecond, double vyMetersPerSecond, double vzMetersPerSecond) {
         static Sample from(OrbitalState state) {
             Vector3 point = state.earthFixed().positionMeters();
-            return new Sample(state.propagationTime(), point.x(), point.y(), point.z());
+            Vector3 velocity = state.earthFixed().velocityMetersPerSecond();
+            return new Sample(state.propagationTime(), point.x(), point.y(), point.z(),
+                    velocity.x(), velocity.y(), velocity.z());
         }
     }
 
@@ -38,7 +41,7 @@ public record OrbitalSamplesResponse(
         var current = evaluation.state();
         List<Sample> samples = window.samples().stream().map(Sample::from).toList();
         return new OrbitalSamplesResponse(window.generatedAt(), samples.getFirst().time(), samples.getLast().time(),
-                window.bounds().stepSeconds(), "ITRF_2020_IERS_2010", "m",
+                window.bounds().stepSeconds(), "ITRF_2020_IERS_2010", "m", "m/s",
                 "COMPUTED_FROM_ORBITAL_ELEMENTS",
                 new TimeSemantics("RECONSTRUCTED_FROM_SELECTED_ORBITAL_ELEMENTS",
                         "COMPUTED_CURRENT_FROM_ORBITAL_ELEMENTS", "COMPUTED_PREDICTION_FROM_ORBITAL_ELEMENTS"),

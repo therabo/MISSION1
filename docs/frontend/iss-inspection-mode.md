@@ -1,5 +1,19 @@
 # ISS Inspection Mode
 
+## Trajectory visual orientation and closer Inspection — 2026-09-30
+
+The selected bounded physical position **and ITRF velocity at the same scene UTC** now drive one shared visualization/navigation frame: X forward along velocity, Y left, Z orthogonalized WGS84 up. The verified pinned VTAD axis conversion gives render-local +X forward and +Z up; no additional asset rotation is required. `TRAJECTORY_ALIGNED_VISUAL_ORIENTATION` is a presentation choice. Verified onboard attitude remains `UNAVAILABLE`.
+
+The five-second moving approach arrives on the exact rear axis at **119 m** in the canonical desktop viewport, versus the measured previous **340 m** (65% reduction). Its perspective FOV eases to 85°; narrow aspect ratios widen the range. Camera placement supplies the close view: physical scale stays 1 and minimumPixelSize stays 80 throughout. Lift 75 km and white silhouette 0.5 / alpha 0.12 still fade to zero by 1.75 s, and Back restores their captured values, the Overview camera/FOV and all controller settings. The final camera pivot is physical.
+
+Inspection keeps Cesium's station-centered native drag orbit with spin inertia 0.7. Native zoom is disabled only there; public wheel/pinch actions change the local pivot range proportionally, with fractional input precision, bounded per-event changes, a directional geometry clearance and a 2 km maximum. Translation/look/tilt are restricted. No second orbit controller, external source, browser propagator or attitude feed is added. One model and its verified feature IDs persist.
+
+The existing REST products add `velocityUnit:m/s` and `vxMetersPerSecond/vyMetersPerSecond/vzMetersPerSecond` in the same ITRF frame as XYZ. GP delivers its existing Orekit Earth-fixed PV. OEM evaluates the analytic derivative of its existing bounded source Hermite polynomial and transforms the complete PV through Orekit, including Earth rotation. Browser degree-one velocity interpolation is bounded and separate from the unchanged degree-one physical position interpolation. Velocities never come from lifted model positions or screen coordinates.
+
+[Axes, numerical epochs, camera/zoom measurements, browser evidence and validation](inspection-orientation-review/README.md). The next milestone remains **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**, not started.
+
+Earlier dated evidence below records preceding milestones; the section above describes the current behavior.
+
 Earth Overview and ISS Inspection share one Cesium Viewer, clock, ISS entity, preloaded model primitive and bounded backend-derived SampledPositionProperty in the fixed Earth frame. One selected physical sampled position drives the scene and camera: default GP/TLE propagation or explicitly selected NASA OEM predicted ephemeris. Neither is onboard position telemetry. The model is a historical NASA VTAD asset with display-only ENU orientation; spacecraft attitude remains unavailable.
 
 ## Why the earlier approach failed

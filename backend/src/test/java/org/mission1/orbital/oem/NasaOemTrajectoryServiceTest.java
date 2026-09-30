@@ -43,6 +43,18 @@ class NasaOemTrajectoryServiceTest {
         assertTrue(result.samples().size() > 100);
         assertTrue(result.samples().size() <= orbit.samples().size());
         assertEquals(NOW, result.samples().getFirst().time());
+        // Independently differentiate delivered Earth-fixed positions. A merely
+        // rotated inertial velocity misses ~400m/s of Earth rotation here.
+        for (int i = 1; i < result.samples().size() - 1; i++) {
+            var a = result.samples().get(i - 1);
+            var b = result.samples().get(i + 1);
+            var v = result.samples().get(i);
+            double seconds = java.time.Duration.between(a.time(), b.time()).toNanos() / 1e9;
+            double error = Math.sqrt(Math.pow((b.xMeters() - a.xMeters()) / seconds - v.vxMetersPerSecond(), 2)
+                    + Math.pow((b.yMeters() - a.yMeters()) / seconds - v.vyMetersPerSecond(), 2)
+                    + Math.pow((b.zMeters() - a.zMeters()) / seconds - v.vzMetersPerSecond(), 2));
+            assertTrue(error < 3, "Earth-fixed Hermite derivative mismatch: " + error);
+        }
         assertTrue(result.samples().stream().allMatch(s -> Math.sqrt(s.xMeters() * s.xMeters()
                 + s.yMeters() * s.yMeters() + s.zMeters() * s.zMeters()) > 6_000_000));
         assertEquals(orbit.evaluation().state().elementSha256(), orbit.elements().sha256());

@@ -138,7 +138,7 @@ describe('NASA ISS model asset', () => {
     expect(() => parseModelManifest({ ...ISS_MODEL, displayMinimumPixelSize: NaN })).toThrow();
     expect(() => parseModelManifest({ ...ISS_MODEL, displayMaximumScale: Infinity })).toThrow();
     expect(ISS_MODEL.assetAlignment).toBe('IDENTITY');
-    expect(ISS_MODEL.displayOrientation).toBe('DISPLAY_ONLY_LOCAL_ENU');
+    expect(ISS_MODEL.displayOrientation).toBe('TRAJECTORY_ALIGNED_VISUAL_ORIENTATION');
     expect(ISS_MODEL.attitude).toBe('UNAVAILABLE');
   });
 });

@@ -42,3 +42,11 @@ Errors use `application/problem+json` with stable `type`, `status`, `title`, and
 | Unexpected internal failure | 500 | `urn:mission1:problem:orbital-internal-error` |
 
 No error returns invented coordinates. The contract is additive to `/api/iss/state`; no existing client must migrate. Refer to the [Earth View delivery decision](../architecture/04-earth-view-orbital-delivery.md) for interpolation, polling, buffering, and scope.
+
+## Additive physical velocity delivery — 2026-09-30
+
+Each sample additionally includes `vxMetersPerSecond`, `vyMetersPerSecond`, `vzMetersPerSecond`; its product declares `velocityUnit = m/s`. Position and velocity use the same sample UTC and `ITRF_2020_IERS_2010`. These are Earth-fixed velocities, not TEME or inertial speed. Existing XYZ/time/lineage/quality and coverage are unchanged. Legacy position-only consumers can ignore the new fields; the current frontend requires finite nonzero velocities and the explicit unit, and ships with the backend. There is no inferred velocity fallback.
+
+GP forwards its existing Orekit Earth-fixed PV. NASA OEM differentiates the same bounded cubic Hermite source-position polynomial and transforms the full EME2000 PV at that epoch with Orekit (including the Earth-rotation contribution). This is computed processing of source-provided **predicted** ephemeris, never measured onboard motion or attitude. Browser position and velocity use separate bounded degree-one properties; position interpolation is deliberately unchanged. Visual alignment is along that evaluated velocity and does not assert exact source accuracy or equality with the derivative of the browser's piecewise-linear position path.
+
+Default short-response cost measured 18,534 bytes / 12.00 ms median; maximum 181-sample response 43,885 bytes / 19.92 ms warm generation in the local test. The payload guard grows from 35 KB to 50 KB for the maximum window to account for three velocity components. No request cadence or propagation operation is added. [Numerical and browser review](../frontend/inspection-orientation-review/README.md).

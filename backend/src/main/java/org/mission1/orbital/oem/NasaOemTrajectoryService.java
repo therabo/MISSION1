@@ -13,10 +13,12 @@ import org.mission1.orbital.propagation.OrekitData;
 import org.mission1.source.orbital.nasa.NasaOemSource;
 import org.mission1.source.orbital.nasa.NasaOemXmlParser;
 import org.orekit.time.AbsoluteDate;
+import org.orekit.utils.PVCoordinates;
 
 /** Optional comparison read path. NASA failures never change the GP/TLE current state. */
 public final class NasaOemTrajectoryService {
-    public record Sample(Instant time, double xMeters, double yMeters, double zMeters) { }
+    public record Sample(Instant time, double xMeters, double yMeters, double zMeters,
+                         double vxMetersPerSecond, double vyMetersPerSecond, double vzMetersPerSecond) { }
     public record Source(Instant creationDate, Instant startTime, Instant stopTime,
             Instant retrievedAt, Instant httpLastModified, String sha256, String sourceUrl) { }
     public record Result(String availability, String reason, Source source, List<Sample> samples) { }
@@ -114,10 +116,14 @@ public final class NasaOemTrajectoryService {
             if (span > 600) throw new IllegalArgumentException("Unexplained OEM source gap");
             double u = Duration.between(a.epoch(), time).toNanos() / 1e9 / span;
             Vector3D position = hermite(a, b, span, u);
+            Vector3D velocity = hermiteVelocity(a, b, span, u);
             AbsoluteDate date = new AbsoluteDate(time, data.utc());
             data.requireEopCoverage(date);
-            Vector3D fixed = data.eme2000().getTransformTo(data.earthFixed(), date).transformPosition(position);
-            output.add(new Sample(time, fixed.getX(), fixed.getY(), fixed.getZ()));
+            // Transform the complete PV: velocity includes the rotating-frame term.
+            PVCoordinates fixed = data.eme2000().getTransformTo(data.earthFixed(), date)
+                    .transformPVCoordinates(new PVCoordinates(position, velocity));
+            output.add(new Sample(time, fixed.getPosition().getX(), fixed.getPosition().getY(), fixed.getPosition().getZ(),
+                    fixed.getVelocity().getX(), fixed.getVelocity().getY(), fixed.getVelocity().getZ()));
         }
         return List.copyOf(output);
     }
@@ -130,5 +136,15 @@ public final class NasaOemTrajectoryService {
                 .add(a.velocityMetersPerSecond().scalarMultiply((u3 - 2 * u2 + u) * span))
                 .add(b.positionMeters().scalarMultiply(-2 * u3 + 3 * u2))
                 .add(b.velocityMetersPerSecond().scalarMultiply((u3 - u2) * span));
+    }
+
+    /** Analytic time derivative of the existing bounded source-position Hermite polynomial. */
+    private static Vector3D hermiteVelocity(NasaOemDocument.StateVector a, NasaOemDocument.StateVector b,
+                                           double span, double u) {
+        double u2 = u * u;
+        return a.positionMeters().scalarMultiply((6 * u2 - 6 * u) / span)
+                .add(a.velocityMetersPerSecond().scalarMultiply(3 * u2 - 4 * u + 1))
+                .add(b.positionMeters().scalarMultiply((-6 * u2 + 6 * u) / span))
+                .add(b.velocityMetersPerSecond().scalarMultiply(3 * u2 - 2 * u));
     }
 }

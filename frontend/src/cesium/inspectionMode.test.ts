@@ -107,9 +107,9 @@ describe('ISS inspection mode', () => {
     expect(Number.isFinite(direction.y) && Number.isFinite(direction.z)).toBe(true);
   });
 
-  it('grows the display-only footprint continuously without changing geometry scale', () => {
+  it('keeps the minimum footprint unchanged; close framing comes from camera range', () => {
     expect(approachMinimumPixelSize(72, 0)).toBe(72);
-    expect(approachMinimumPixelSize(72, 1)).toBe(150);
+    expect(approachMinimumPixelSize(72, 1)).toBe(72);
     let previous = 72;
     for (let step = 1; step <= 20; step++) {
       const size = approachMinimumPixelSize(72, step / 20);

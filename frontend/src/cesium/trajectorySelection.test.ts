@@ -17,7 +17,7 @@ function setup() {
   const time = Date.parse(response.generatedAt);
   payload.windowEnd = new Date(time + 20_000).toISOString();
   payload.stepSeconds = 10;
-  payload.samples = [0, 10, 20].map((seconds) => ({ time: new Date(time + seconds * 1000).toISOString(), xMeters: 6_800_000, yMeters: seconds * 1000, zMeters: 0 }));
+  payload.samples = [0, 10, 20].map((seconds) => ({ time: new Date(time + seconds * 1000).toISOString(), xMeters: 6_800_000, yMeters: seconds * 1000, zMeters: 0, vxMetersPerSecond: 0, vyMetersPerSecond: 1000, vzMetersPerSecond: 0 }));
   const primary = createVisualWindow(parseOrbitalWindow(payload, 0));
   response.oem.samples = response.oem.samples.map((sample) => ({...sample, xMeters:sample.xMeters + 3000}));
   return { response, primary, oem: oemPositionProperty(response), time: JulianDate.fromIso8601(response.generatedAt), sceneMs: time };

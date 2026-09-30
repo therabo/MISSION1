@@ -4,7 +4,7 @@
 - Date: **2026-09-30**
 - Scope: orbital comparison source, persistence and Earth View delivery
 
-The text below records the original milestone. ADR-0006 retains the source adapter, persistence and frame choices while replacing visualization and temporal-window decisions.
+The later dated ADR-0006 visual-frame clarification adds bounded ITRF velocity delivery without changing this source pipeline. The text below records the original milestone. ADR-0006 retains the source adapter, persistence and frame choices while replacing visualization and temporal-window decisions.
 
 ## Context
 

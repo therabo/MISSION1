@@ -59,7 +59,7 @@ export function footprintDistance(point: Pixel, hull: Pixel[]): number {
 
 // Conservative bounds of the pinned ce23515c6bf4 NASA GLB, measured from all
 // POSITION vertices after node transforms. Cesium's default glTF axis conversion
-// maps source (X,Y,Z) to ENU (Z,X,Y). No spacecraft attitude is inferred.
+// maps source (X,Y,Z) to render-local (Z,X,Y). No spacecraft attitude is inferred.
 export const MODEL_DISPLAY_BOUNDS = {
   minimum: [-33.2, -56, -29.1], maximum: [25.5, 56, 39.8],
 } as const;

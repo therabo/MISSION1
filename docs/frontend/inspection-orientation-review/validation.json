@@ -1,0 +1,44 @@
+{
+  "baselineCommit": "3834026874757d5c994e7f1d3f7b2aafc3dc4571",
+  "frontend": {
+    "tests": 84,
+    "files": 17,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "knownWarning": "existing Cesium bundle exceeds 500KB advisory"
+  },
+  "backend": {
+    "tests": 82,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "mvnTest": "PASS",
+    "mvnVerify": "PASS",
+    "java": "21"
+  },
+  "browser": {
+    "development": "PASS",
+    "servedProduction": "PASS",
+    "livePrimaryAndOem": "PASS",
+    "noTemporaryQaGetter": "PASS",
+    "forcedGibsOutageFallback": "PASS",
+    "earlierNaturalGibsCorsFailures": "recorded separately; existing local fallback verified"
+  },
+  "artifacts": {
+    "productionJavaScript": {
+      "url": "http://127.0.0.1:4173/assets/index-LCIvlTyu.js",
+      "sha256": "557dcc3645a22f284a6d573cab8c730569ae88907c590865acfe5a8a173d49ce"
+    },
+    "modelPath": "frontend/public/models/iss-vtad-source-png.glb",
+    "modelBytes": 32735516,
+    "modelSha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f"
+  },
+  "physicalRecordedPositionsAndTimes": {
+    "shortBufferSamples": 73,
+    "primaryComparisonSamples": 181,
+    "oemComparisonSamples": 181,
+    "comparisonWithPriorEvidence": "IDENTICAL"
+  },
+  "temporaryBaselinePreview": "STOPPED",
+  "externalContextTracked": false
+}

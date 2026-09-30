@@ -358,7 +358,7 @@ class CurrentOrbitalStateApiTest {
         double maximumGenerationMs = (System.nanoTime() - beganMaximum) / 1_000_000.0;
         byte[] maximumBody = mvc.perform(get("/api/iss/orbit/samples?pastSeconds=300&futureSeconds=600&stepSeconds=5"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsByteArray();
-        assertTrue(maximumBody.length < 35_000);
+        assertTrue(maximumBody.length < 50_000);
         System.out.printf("ORBIT_WINDOW samples=%d payloadBytes=%d warmGenerationMs=%.2f%n",
                 maximumCount.sampleCount(), maximumBody.length, maximumGenerationMs);
         verifyNoInteractions(source);

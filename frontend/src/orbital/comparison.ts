@@ -3,6 +3,9 @@ export interface TrajectorySample {
   xMeters: number;
   yMeters: number;
   zMeters: number;
+  vxMetersPerSecond?: number;
+  vyMetersPerSecond?: number;
+  vzMetersPerSecond?: number;
 }
 
 export interface ComparisonResponse {
@@ -11,6 +14,7 @@ export interface ComparisonResponse {
     classification: 'COMPUTED_FROM_ORBITAL_ELEMENTS';
     frame: 'ITRF_2020_IERS_2010';
     positionUnit: 'm';
+    velocityUnit: 'm/s';
     orbitalPeriodSeconds: number;
     currentSampleIndex: number;
     source: { provider: string; elementEpoch: string; elementSha256: string };
@@ -22,6 +26,7 @@ export interface ComparisonResponse {
     sourceFrame: 'EME2000';
     frame: 'ITRF_2020_IERS_2010';
     positionUnit: 'm';
+    velocityUnit: 'm/s';
     availability: 'AVAILABLE' | 'DEGRADED' | 'UNAVAILABLE';
     reason: string;
     source: null | {
@@ -55,6 +60,8 @@ function samples(value: unknown, max: number): TrajectorySample[] {
     const time = instant(point.time);
     if (time <= previous) throw new Error('Comparison samples out of order');
     previous = time;
+    if (![point.vxMetersPerSecond, point.vyMetersPerSecond, point.vzMetersPerSecond].every(v => typeof v === 'number' && Number.isFinite(v)) ||
+        Math.hypot(point.vxMetersPerSecond as number, point.vyMetersPerSecond as number, point.vzMetersPerSecond as number) < 1) throw new Error('Invalid comparison velocity');
     const coordinates = [point.xMeters, point.yMeters, point.zMeters];
     if (!coordinates.every((number) => typeof number === 'number' && Number.isFinite(number)) ||
         Math.hypot(...coordinates as number[]) < 6_000_000 || Math.hypot(...coordinates as number[]) > 10_000_000) {
@@ -69,7 +76,7 @@ export function parseComparison(payload: unknown): ComparisonResponse {
   const generated = instant(root.generatedAt);
   const primary = object(root.primary);
   if (primary.classification !== 'COMPUTED_FROM_ORBITAL_ELEMENTS' ||
-      primary.frame !== 'ITRF_2020_IERS_2010' || primary.positionUnit !== 'm' ||
+      primary.frame !== 'ITRF_2020_IERS_2010' || primary.positionUnit !== 'm' || primary.velocityUnit !== 'm/s' ||
       primary.currentSampleIndex !== 0 || typeof primary.orbitalPeriodSeconds !== 'number' ||
       primary.orbitalPeriodSeconds < 5_000 || primary.orbitalPeriodSeconds > 7_000) {
     throw new Error('Unsupported primary comparison product');
@@ -90,7 +97,7 @@ export function parseComparison(payload: unknown): ComparisonResponse {
   const oem = object(root.oem);
   if (oem.classification !== 'SOURCE_PROVIDED_PREDICTED_EPHEMERIS' ||
       oem.sampleMethod !== 'CUBIC_HERMITE_FROM_SOURCE_POSITION_VELOCITY' ||
-      oem.sourceFrame !== 'EME2000' || oem.frame !== 'ITRF_2020_IERS_2010' || oem.positionUnit !== 'm' ||
+      oem.sourceFrame !== 'EME2000' || oem.frame !== 'ITRF_2020_IERS_2010' || oem.positionUnit !== 'm' || oem.velocityUnit !== 'm/s' ||
       !['AVAILABLE', 'DEGRADED', 'UNAVAILABLE'].includes(String(oem.availability)) ||
       typeof oem.reason !== 'string') throw new Error('Unsupported NASA comparison product');
   const oemSamples = samples(oem.samples, 181);

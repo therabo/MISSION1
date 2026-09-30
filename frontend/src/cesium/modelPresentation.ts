@@ -38,7 +38,7 @@ export interface IssModelManifest {
   displayMinimumPixelSize: number;
   displayMaximumScale: number;
   assetAlignment: 'IDENTITY';
-  displayOrientation: 'DISPLAY_ONLY_LOCAL_ENU';
+  displayOrientation: 'TRAJECTORY_ALIGNED_VISUAL_ORIENTATION';
   attitude: 'UNAVAILABLE';
   semanticFeatureSet: 'missionModule';
   semanticMappings: SemanticMapping[];
@@ -59,7 +59,7 @@ export function parseModelManifest(input: unknown): IssModelManifest {
       typeof manifest.displayMinimumPixelSize !== 'number' || !Number.isFinite(manifest.displayMinimumPixelSize) || manifest.displayMinimumPixelSize <= 0 ||
       typeof manifest.displayMaximumScale !== 'number' || !Number.isFinite(manifest.displayMaximumScale) ||
       manifest.displayMaximumScale < manifest.physicalScale || manifest.assetAlignment !== 'IDENTITY' ||
-      manifest.displayOrientation !== 'DISPLAY_ONLY_LOCAL_ENU' || manifest.attitude !== 'UNAVAILABLE' ||
+      manifest.displayOrientation !== 'TRAJECTORY_ALIGNED_VISUAL_ORIENTATION' || manifest.attitude !== 'UNAVAILABLE' ||
       manifest.semanticFeatureSet !== 'missionModule') {
     throw new Error('Unsupported ISS model scale or orientation semantics');
   }

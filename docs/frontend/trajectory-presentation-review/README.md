@@ -124,3 +124,7 @@ Updated frontend README, orbital-trajectory-rendering, rendering-quality, iss-in
 Limits: conservative footprint approximation depends on the pinned model/size policy and needs revalidation if these change. Measured gap ordering applies to reviewed camera ranges, not every oblique/occulted/extreme pose. The enhanced, lifted Overview station remains NOT TO SCALE; native Earth occultation is preserved. No data accuracy or live-telemetry claim follows from these visual improvements.
 
 Next single milestone: **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**. Not started.
+
+## Subsequent visual-frame milestone
+
+The later [trajectory-aligned Inspection review](../inspection-orientation-review/README.md) supersedes the ENU model/camera orientation, 340 m range and 80→158 minimum-footprint entry described here. Adaptive gap/style, lift/silhouette values and physical position interpolation remain. These original dated measurements are retained unchanged.

@@ -68,3 +68,9 @@ NASA SSCWeb's verified, TLE-derived `Geo` epoch positions remain a **secondary/r
 ## Test and operations priorities
 
 Offline tests freeze element lines, element epoch and requested UTC time. Include invalid checksums/catalog mismatch, propagation across supported cases, independent TEME PV reference, ITRF/WGS84 transformation, time/age boundaries, injected clock, database revisions and REST provenance. Do not compare Orekit only to itself. Keep a separate optional source smoke test so CI does not depend on public network availability. Log provider fetch/parse failure, last valid element age, propagation/frame failures and DB status separately from ISS health.
+
+## Trajectory-aligned visual inspection — 2026-09-30
+
+One selected physical ITRF position/velocity now supplies the shared model and moving-camera visual frame. Orientation is `TRAJECTORY_ALIGNED_VISUAL_ORIENTATION`; actual attitude remains unavailable. The rear camera arrives at 119 m (65% closer than 340 m), with 85° perspective FOV and narrow-aspect adaptation. Camera range supplies close framing; model scale 1 and minimumPixelSize 80 remain. Inspection-only wheel/pinch zoom is proportional, bounded and reversible; native drag orbits the physical station pivot. Back restores all Overview settings. Existing lift, silhouette, trails, source selection and feature picking remain.
+
+The existing sample responses add Earth-fixed velocity components and `velocityUnit:m/s`; GP uses existing Orekit PV, OEM the analytic source-Hermite derivative transformed as complete PV. Position samples, lineages, cadence, frames, storage and source classifications are unchanged. No infrastructure or new source is added. [Evidence and limitations](../frontend/inspection-orientation-review/README.md). Next single milestone: **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**, not started.

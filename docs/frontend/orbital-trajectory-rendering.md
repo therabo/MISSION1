@@ -1,5 +1,15 @@
 # Adaptive forward ISS trajectory presentation — 2026-09-30
 
+## Selected trajectory visual frame — 2026-09-30
+
+The selected bounded physical position and ITRF velocity at the same scene UTC now drive model rotation and the moving Inspection camera frame. GP forwards its existing Orekit Earth-fixed PV; OEM differentiates its existing source Hermite polynomial and transforms the complete PV, including Earth rotation. REST adds three velocity components and explicit m/s units. Separate bounded browser velocity interpolation leaves physical position interpolation, original trajectory vertices, provenance and source classifications unchanged.
+
+The verified asset has render-local +X forward / +Z up. Model-only lift changes translation separately; orientation is labeled `TRAJECTORY_ALIGNED_VISUAL_ORIENTATION`, with verified attitude still unavailable. Existing cyan/amber/inactive colors, continuous future-only 85% trails, adaptive screen-space gap, rounded starts and Overview silhouette remain. Inspection hides the paths, removes lift/silhouette and uses the same selected physical pivot. No RTN comparison is introduced.
+
+[Axis verification, numerical alignment, source switching and browser review](inspection-orientation-review/README.md). [Rear camera and navigation](iss-inspection-mode.md).
+
+Earlier dated evidence below records preceding milestones; the section above describes the current behavior.
+
 [ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md) retains selectable real products and its physical/display boundary. The [current verification record](trajectory-presentation-review/README.md) replaces the fixed 75-second start and disabled silhouette of `389736f`. Historical measurements below remain dated evidence.
 
 ## Current rendering

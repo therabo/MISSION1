@@ -1,5 +1,15 @@
 # Desktop rendering quality and asset reproducibility
 
+## Orientation and close-camera validation — 2026-09-30
+
+The selected physical position/velocity now supplies one shared trajectory visual frame for model and camera. Reused matrices/vectors avoid new per-frame transform allocations. Attitude remains unavailable. Physical scale 1 and minimumPixelSize 80 are unchanged; canonical camera range 340→119 m and smoothly eased 85° FOV supply close framing. Overview retains the 75 km model-only lift and white silhouette size 0.5 / alpha 0.12. Back restores captured camera, FOV and controller settings.
+
+At identical UTC, the visible raster footprint grows from 314.5×252.5 to 700.5×386 CSS px in a 1280×720 viewport / 2560×1440 backing buffer. Narrow 900×700 and mobile 390×844 framing pass. Two matched local performance comparisons against untouched 3834026 show median 11.793→11.679 FPS (−0.97%) and 12.593→12.706 (+0.89%). The historical approximately 25 FPS was not reproduced even by the untouched baseline in this session; these measurements support no material relative regression, not an absolute 25 FPS claim.
+
+[Raw performance windows, fixed raster pairs, axes, browser QA and limitations](inspection-orientation-review/README.md). [Inspection controls](iss-inspection-mode.md). RTN analysis remains deferred.
+
+Earlier dated evidence below records preceding milestones; the section above describes the current behavior.
+
 This pass changes presentation only. The selected scene position is GP/TLE computation or independently labeled NASA OEM predicted ephemeris; NASA Earth and sky images are historical reference imagery, and the NASA VTAD station model is historical geometry. None is live ISS telemetry.
 
 ## Renderer decision

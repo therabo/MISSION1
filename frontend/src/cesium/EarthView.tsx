@@ -18,13 +18,13 @@ import {
   Model,
   ModelFeature,
   NearFarScalar,
+  PerspectiveFrustum,
   Math as CesiumMath,
   ScreenSpaceEventType,
   SceneTransforms,
   SingleTileImageryProvider,
   SkyBox,
   TileMapServiceImageryProvider,
-  Transforms,
   Viewer,
   type Entity,
 } from 'cesium';
@@ -35,7 +35,7 @@ import { ISS_MODEL, labelVisible, markerVisible, modelLoadTransition, modelVisib
 import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPresentation';
 import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
-import { approachMinimumPixelSize, canInspect, cameraTrackingFrame, earthOccludes, exitMinimumPixelSize, inspectionCartesianOffset, INITIAL_VIEW_MODE, inspectionPresentation, interpolateUnitDirection, movingApproachOffset, movingApproachPathClear, nextViewMode, pickAction, radialAcquisitionPosition, rebaseApproachStartTime, smoothstep } from './inspectionMode';
+import { approachMinimumPixelSize, canInspect, earthOccludes, exitMinimumPixelSize, INITIAL_VIEW_MODE, inspectionPresentation, interpolateUnitDirection, movingApproachOffset, movingApproachPathClear, nextViewMode, pickAction, radialAcquisitionPosition, rebaseApproachStartTime, smoothstep } from './inspectionMode';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
@@ -47,6 +47,10 @@ import { effectiveSource, oemPositionProperty, selectedPositionAt } from './traj
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
 import type { SampledPositionProperty } from 'cesium';
 import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, displayLiftForMode, modelDisplayPosition, silhouetteForMode } from './earthViewPresentation';
+import { TrajectoryVisualFrame } from './trajectoryOrientation';
+import { makeVelocityProperty } from './velocityProperty';
+import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
+import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, projectedModelFootprint, TRAIL_CLEARANCE } from './trajectoryClearance';
 
 interface EarthViewProps {
@@ -67,11 +71,7 @@ interface EarthViewProps {
 export const APPROACH_DURATION_SECONDS = 5;
 const ACQUISITION_DURATION_SECONDS = 2.4;
 const EXIT_DURATION_SECONDS = 1.2;
-const MAX_INSPECTION_RANGE_METERS = 2_000;
-// ENU offset: station-centered, with the camera just above its local horizon.
-export const INSPECTION_OFFSET = { heading: CesiumMath.toRadians(35), pitch: CesiumMath.toRadians(-10), range: 340 };
-
-interface CameraSnapshot { position: Cartesian3; direction: Cartesian3; up: Cartesian3 }
+interface CameraSnapshot { position: Cartesian3; direction: Cartesian3; up: Cartesian3; fov: number }
 
 export const EarthView = memo(function EarthView({ window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
@@ -82,6 +82,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
   const primaryLine = useRef<TrajectoryTrails | null>(null);
   const pendingPrimaryLine = useRef<TrajectoryTrails | null>(null);
   const oemPosition = useRef<SampledPositionProperty | null>(null);
+  const oemVelocity = useRef<SampledProperty | null>(null);
   const selectedSourceRef = useRef<TrajectorySource>(selectedSource);
   const sourceUnavailableCallback = useRef(onSourceUnavailable);
   const positionCallback = useRef(onPosition);
@@ -90,6 +91,8 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
   positionCallback.current = onPosition;
   const positionAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
     selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
+  const velocityAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
+    (selectedSourceRef.current === 'NASA_OEM' ? oemVelocity.current : active.current?.velocity)?.getValue(time, result);
   const updateTrajectory = useRef<((sceneMs: number) => void) | null>(null);
   const model = useRef<Model | null>(null);
   const modelStatus = useRef<ModelLoadStatus>('loading');
@@ -146,6 +149,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       return;
     }
     viewer.current = instance;
+    const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
+    const visualFrame = new TrajectoryVisualFrame();
+    const sceneVelocity = new Cartesian3();
+    const modelDisplayFrame = new Matrix4();
+    const renderedModelMatrix = new Matrix4();
+    const centeringInverse = new Matrix4();
+    const frameAt = (position: Cartesian3, result: Matrix4) => {
+      const velocity = velocityAt(instance.clock.currentTime, sceneVelocity);
+      return velocity && visualFrame.update(position, velocity, result);
+    };
     instance.resolutionScale = resolutionScaleForDpr(globalThis.window.devicePixelRatio);
     instance.scene.postProcessStages.fxaa.enabled = !instance.scene.msaaSupported;
     instance.scene.highDynamicRange = GRAPHICS_QUALITY.highDynamicRange && instance.scene.highDynamicRangeSupported;
@@ -413,6 +426,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const next = nextViewMode(viewMode.current, event);
       if (viewMode.current === next) return;
       viewMode.current = next;
+      applyControls(next);
       modeCallback.current(next);
       const presentation = inspectionPresentation(next);
       if (primaryLine.current) showTrails(primaryLine.current, presentation.pathVisible);
@@ -420,7 +434,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
 
     let displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS;
     let silhouetteVisibility = 1;
-    let exitPresentation: { startMs: number; size: number; liftMeters: number; silhouetteVisibility: number } | null = null;
+    let exitPresentation: { startMs: number; size: number; liftMeters: number; silhouetteVisibility: number; fov: number } | null = null;
 
     const leaveInspection = (): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
@@ -428,12 +442,10 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       displayEntryStart.current = null;
       instance.camera.cancelFlight();
       exitPresentation = { startMs: performance.now(), size: model.current?.minimumPixelSize ?? ISS_MODEL.displayMinimumPixelSize,
-        liftMeters: displayLiftMeters, silhouetteVisibility };
+        liftMeters: displayLiftMeters, silhouetteVisibility, fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 };
       selectModule(null);
       instance.trackedEntity = undefined;
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
-      instance.scene.screenSpaceCameraController.enableInputs = true;
-      instance.scene.screenSpaceCameraController.zoomFactor = 5;
       setMode('EXIT');
       const saved = cameraSnapshot.current;
       const destination = saved?.position ?? Cartesian3.fromDegrees(20, 12, 22_000_000);
@@ -444,12 +456,14 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         complete: () => {
           if (destroyed) return;
           if (model.current) model.current.minimumPixelSize = ISS_MODEL.displayMinimumPixelSize;
+          if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = cameraSnapshot.current?.fov ?? Math.PI / 3;
           exitPresentation = null;
           setMode('EXIT_COMPLETE');
         },
         cancel: () => {
           if (destroyed) return;
           if (model.current) model.current.minimumPixelSize = ISS_MODEL.displayMinimumPixelSize;
+          if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = cameraSnapshot.current?.fov ?? Math.PI / 3;
           exitPresentation = null;
           setMode('EXIT_COMPLETE');
         },
@@ -458,12 +472,13 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     exitInspection.current = leaveInspection;
 
     const movingEntryAt = (position: Cartesian3) => {
-      const inverse = Matrix4.inverseTransformation(cameraTrackingFrame(position), new Matrix4());
+      const frame = frameAt(position, trackingFrame)!;
+      const inverse = Matrix4.inverseTransformation(frame, new Matrix4());
       return {
         stage: 'moving' as const,
         startTime: JulianDate.clone(instance.clock.currentTime),
         startOffset: Matrix4.multiplyByPoint(inverse, instance.camera.positionWC, new Cartesian3()),
-        endOffset: inspectionCartesianOffset(INSPECTION_OFFSET.heading, INSPECTION_OFFSET.pitch, INSPECTION_OFFSET.range, new Cartesian3()),
+        endOffset: rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3()),
         startDirection: Cartesian3.clone(instance.camera.directionWC),
         startUp: Cartesian3.clone(instance.camera.upWC),
       };
@@ -476,21 +491,20 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
       if (sceneMs < current.orbital.startMs || sceneMs > current.orbital.endMs) return;
       const position = positionAt(instance.clock.currentTime, new Cartesian3());
-      if (!position) return;
+      if (!position || !frameAt(position, trackingFrame)) return;
       // No camera route can start safely from inside the globe.
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
       cameraSnapshot.current = {
         position: Cartesian3.clone(instance.camera.positionWC),
         direction: Cartesian3.clone(instance.camera.directionWC),
         up: Cartesian3.clone(instance.camera.upWC),
+        fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3,
       };
       instance.camera.cancelFlight();
-      instance.scene.screenSpaceCameraController.enableInputs = false;
-      instance.scene.screenSpaceCameraController.zoomFactor = 0.01;
       const moving = movingEntryAt(position);
       displayEntryStart.current = JulianDate.clone(instance.clock.currentTime);
       entry.current = earthOccludes(instance.camera.positionWC, position) ||
-        !movingApproachPathClear(position, moving.startOffset, moving.endOffset)
+        !movingApproachPathClear(position, moving.startOffset, moving.endOffset, trackingFrame)
         ? {
           stage: 'acquire', startTime: JulianDate.clone(instance.clock.currentTime),
           startPosition: Cartesian3.clone(instance.camera.positionWC),
@@ -589,6 +603,23 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     const displayPosition = new Cartesian3();
     const cameraOffset = new Cartesian3();
     const trackingFrame = new Matrix4();
+    const zoomToRange = (range: number) => {
+      if (viewMode.current !== 'ISS_INSPECTION') return;
+      Cartesian3.clone(instance.camera.position, cameraOffset);
+      const oldRange = Cartesian3.magnitude(cameraOffset);
+      if (oldRange < 1e-6) return;
+      Cartesian3.multiplyByScalar(cameraOffset, range / oldRange, cameraOffset);
+      clampInspectionOffset(cameraOffset);
+      instance.camera.lookAtTransform(instance.camera.transform, cameraOffset);
+    };
+    instance.screenSpaceEventHandler.setInputAction((delta: number) => {
+      if (viewMode.current === 'ISS_INSPECTION') zoomToRange(inspectionZoomRange(Cartesian3.magnitude(instance.camera.position), delta));
+    }, ScreenSpaceEventType.WHEEL);
+    instance.screenSpaceEventHandler.setInputAction((event: unknown) => {
+      const pinch = event as { distance: { startPosition: Cartesian2; endPosition: Cartesian2 } };
+      if (viewMode.current === 'ISS_INSPECTION') zoomToRange(inspectionPinchRange(Cartesian3.magnitude(instance.camera.position),
+        pinch.distance.startPosition.y, pinch.distance.endPosition.y));
+    }, ScreenSpaceEventType.PINCH_MOVE);
     const approachWorldPosition = new Cartesian3();
     const approachDirection = new Cartesian3();
     const approachUp = new Cartesian3();
@@ -630,7 +661,8 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       }
       const current = active.current;
       const valid = current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
-      const position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
+      let position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
+      if (position && !frameAt(position, trackingFrame)) position = undefined;
       if (diagnostics && position && selectedSourceRef.current !== lastDiagnosticSource) {
         lastDiagnosticSource = selectedSourceRef.current;
         console.info('[trajectory-source]', JSON.stringify({ source: lastDiagnosticSource, time: JulianDate.toIso8601(instance.clock.currentTime),
@@ -641,20 +673,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         selectModule(null);
       }
       if (position && viewMode.current === 'ISS_INSPECTION') {
-        // Keep the camera's current local orbit while the ISS ENU frame moves.
-        // A long drag can produce a globe-sized offset; keep inspection close.
-        const frame = cameraTrackingFrame(position, trackingFrame);
+        // Keep native user orbit/zoom in the same moving visual frame as the model.
+        const frame = trackingFrame;
         Cartesian3.clone(instance.camera.position, cameraOffset);
-        const range = Cartesian3.magnitude(cameraOffset);
-        if (range > MAX_INSPECTION_RANGE_METERS) {
-          Cartesian3.multiplyByScalar(cameraOffset, MAX_INSPECTION_RANGE_METERS / range, cameraOffset);
-        }
+        clampInspectionOffset(cameraOffset);
         instance.camera.lookAtTransform(frame, cameraOffset);
       }
       if (position && entry.current?.stage === 'acquire' && viewMode.current === 'ENTERING_INSPECTION') {
         const flight = entry.current;
         const progress = Math.max(0, Math.min(1, JulianDate.secondsDifference(instance.clock.currentTime, flight.startTime) / ACQUISITION_DURATION_SECONDS));
-        const frame = cameraTrackingFrame(position, trackingFrame);
+        const frame = trackingFrame;
         radialAcquisitionPosition(flight.startPosition, position, progress, approachWorldPosition);
         setCameraTowardTarget(approachWorldPosition, position, frame, flight.startDirection, flight.startUp, smoothstep(progress));
         if (progress === 1) entry.current = movingEntryAt(position);
@@ -662,7 +690,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (position && entry.current?.stage === 'moving' && viewMode.current === 'ENTERING_INSPECTION') {
         const flight = entry.current;
         const progress = Math.max(0, Math.min(1, JulianDate.secondsDifference(instance.clock.currentTime, flight.startTime) / APPROACH_DURATION_SECONDS));
-        const frame = cameraTrackingFrame(position, trackingFrame);
+        const frame = trackingFrame;
+        if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov =
+          (cameraSnapshot.current?.fov ?? Math.PI / 3) * (1 - smoothstep(progress)) + CesiumMath.toRadians(85) * smoothstep(progress);
         movingApproachOffset(flight.startOffset, flight.endOffset, progress, cameraOffset);
         Matrix4.multiplyByPoint(frame, cameraOffset, approachWorldPosition);
         // The target can move after entry preflight; never apply an unsafe pose.
@@ -691,10 +721,13 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
             }));
             entry.current = null;
             displayEntryStart.current = null;
-            instance.scene.screenSpaceCameraController.enableInputs = true;
             setMode('ENTRY_COMPLETE');
           }
         }
+      }
+      if (exitPresentation && instance.camera.frustum instanceof PerspectiveFrustum) {
+        const p = smoothstep((performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000));
+        instance.camera.frustum.fov = exitPresentation.fov * (1 - p) + (cameraSnapshot.current?.fov ?? Math.PI / 3) * p;
       }
       if (exitPresentation && model.current) {
         model.current.minimumPixelSize = exitMinimumPixelSize(ISS_MODEL.displayMinimumPixelSize,
@@ -737,16 +770,15 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           // Center the asset's off-origin bounds on the separate model display point.
           // This is a display translation, not a change to orbital position or attitude.
           // The physical selected position remains untouched. Inspection has zero lift.
-          const frame = Transforms.eastNorthUpToFixedFrame(modelDisplayPosition(position, displayLiftMeters, displayPosition));
+          const frame = Matrix4.clone(trackingFrame, modelDisplayFrame);
+          Matrix4.setTranslation(frame, modelDisplayPosition(position, displayLiftMeters, displayPosition), frame);
           if (!displayCenteringOffset) {
             model.current.modelMatrix = frame;
-            const inverse = Matrix4.inverseTransformation(frame, new Matrix4());
+            Matrix4.inverseTransformation(frame, centeringInverse);
             displayCenteringOffset = Cartesian3.negate(
-              Matrix4.multiplyByPoint(inverse, model.current.boundingSphere.center, new Cartesian3()),
-              new Cartesian3(),
-            );
+              Matrix4.multiplyByPoint(centeringInverse, model.current.boundingSphere.center, new Cartesian3()), new Cartesian3());
           }
-          model.current.modelMatrix = Matrix4.multiplyByTranslation(frame, displayCenteringOffset, new Matrix4());
+          model.current.modelMatrix = Matrix4.multiplyByTranslation(frame, displayCenteringOffset, renderedModelMatrix);
         }
       }
       updateTrajectory.current?.(sceneMs);
@@ -775,6 +807,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       pendingPrimaryLine.current = null;
       primaryLine.current = null;
       oemPosition.current = null;
+      oemVelocity.current = null;
       updateTrajectory.current = null;
       enterInspection.current = null;
       exitInspection.current = null;
@@ -817,6 +850,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
   useEffect(() => {
     comparisonRef.current = comparison;
     oemPosition.current = comparison && comparison.oem.samples.length >= 2 ? oemPositionProperty(comparison) : null;
+    oemVelocity.current = comparison && comparison.oem.samples.length >= 2 ? makeVelocityProperty(comparison.oem.samples) : null;
     if (viewer.current) updateTrajectory.current?.(JulianDate.toDate(viewer.current.clock.currentTime).getTime());
   }, [comparison]);
 

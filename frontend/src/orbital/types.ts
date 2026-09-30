@@ -8,6 +8,7 @@ export interface OrbitalSamplesResponse {
   stepSeconds: number;
   frame: 'ITRF_2020_IERS_2010';
   positionUnit: 'm';
+  velocityUnit: 'm/s';
   classification: 'COMPUTED_FROM_ORBITAL_ELEMENTS';
   timeSemantics: {
     past: 'RECONSTRUCTED_FROM_SELECTED_ORBITAL_ELEMENTS';
@@ -53,6 +54,9 @@ export interface OrbitalSamplesResponse {
     xMeters: number;
     yMeters: number;
     zMeters: number;
+    vxMetersPerSecond: number;
+    vyMetersPerSecond: number;
+    vzMetersPerSecond: number;
   }>;
 }
 

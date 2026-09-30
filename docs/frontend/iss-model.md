@@ -1,5 +1,15 @@
 # ISS model asset and presentation record
 
+## Verified visual axes and trajectory orientation — 2026-09-30
+
+Transformed VTAD geometry places Harmony along source +Z from Zvezda and Cupola on the −Y side of Tranquility. Visual forward/backward are +Z/−Z, up/down +Y/−Y, left/right +X/−X. Cesium's default `(X,Y,Z)→(Z,X,Y)` conversion yields render +X forward, +Z up and +Y left. The residual asset correction is identity; source vertices, root/node transforms and feature IDs are unchanged. This visual-axis registration does not establish an engineering frame or actual ISS attitude.
+
+Selected physical ITRF velocity and WGS84 normal form the shared model/camera visualization frame. The model manifest declares `TRAJECTORY_ALIGNED_VISUAL_ORIENTATION`; verified attitude remains `UNAVAILABLE`. Lift affects only model translation. Physical scale 1 and minimumPixelSize 80 persist; the camera supplies closer Inspection at 119 m, with narrow-view adaptation. All 14 semantic features were selected through the actual UI in both builds and sources; Pirs remains historical/removed and module telemetry unavailable.
+
+[Transformed vertex measurements, three-epoch alignment errors and browser evidence](inspection-orientation-review/README.md). [Camera and navigation behavior](iss-inspection-mode.md).
+
+Earlier dated evidence below records preceding milestones; the section above describes the current behavior.
+
 Selection gate: **`MODEL_READY_FOR_INTEGRATION`**. This record covers the first detailed station geometry in the Cesium Earth View. It does not establish a current ISS configuration, onboard position measurement, station attitude, or moving hardware state.
 
 The [current-geometry assessment](iss-current-geometry-assessment.md) (2026-09-30) compares official VTAD and NASA/JSC IGOAL files, modern component coverage and exact-transform feasibility. Its selected strategy is `KEEP_CURRENT_VTAD`; this production geometry and its semantic derivative have **not** been updated to a current station configuration.

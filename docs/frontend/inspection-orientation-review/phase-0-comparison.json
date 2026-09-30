@@ -1,0 +1,2956 @@
+{
+  "generatedAt" : "2026-09-30T15:45:59.875908Z",
+  "primary" : {
+    "classification" : "COMPUTED_FROM_ORBITAL_ELEMENTS",
+    "frame" : "ITRF_2020_IERS_2010",
+    "positionUnit" : "m",
+    "velocityUnit" : "m/s",
+    "orbitalPeriodSeconds" : 5578.924303429717,
+    "currentSampleIndex" : 0,
+    "source" : {
+      "noradCatalogNumber" : 25544,
+      "provider" : "CELESTRAK_GP",
+      "upstreamOrigin" : "USSF_GP_VIA_CELESTRAK",
+      "sourceFormat" : "TLE",
+      "elementEpoch" : "2026-09-29T02:38:28.580928Z",
+      "retrievedAt" : "2026-09-29T18:50:20.789922Z",
+      "publishedAt" : null,
+      "elementSha256" : "c1278ac312d701dc21def7fbdefa271c7629648e65365277c17962c2d09086ea",
+      "classification" : "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "propagationMethod" : "OREKIT_TLE_SGP4_SDP4"
+    },
+    "qualityAtGeneratedAt" : {
+      "status" : "STALE",
+      "reason" : "ELEMENT_TOO_OLD",
+      "policy" : "orbital-current-v1",
+      "elementAgeSeconds" : 133651.29498,
+      "retrievalAgeSeconds" : 75339.085986
+    },
+    "sourceHealth" : {
+      "status" : "UNKNOWN",
+      "lastAttemptAt" : null,
+      "lastSuccessAt" : "2026-09-29T18:50:20.789922Z",
+      "lastFailureAt" : null,
+      "consecutiveFailures" : 0,
+      "lastFailureCategory" : null,
+      "lastSuccessfulResult" : null
+    },
+    "samples" : [ {
+      "time" : "2026-09-30T15:45:59.875908Z",
+      "xMeters" : -2739880.3474416845,
+      "yMeters" : -6160206.766879416,
+      "zMeters" : -918032.7634609179,
+      "vxMetersPerSecond" : 3603.9132619641323,
+      "vyMetersPerSecond" : -2481.4020538828195,
+      "vzMetersPerSecond" : 5913.466593909693
+    }, {
+      "time" : "2026-09-30T15:46:30.869931908Z",
+      "xMeters" : -2626711.7885092134,
+      "yMeters" : -6233621.500211711,
+      "zMeters" : -734227.8762861398,
+      "vxMetersPerSecond" : 3698.1454686087563,
+      "vyMetersPerSecond" : -2255.555140157174,
+      "vzMetersPerSecond" : 5946.004400953198
+    }, {
+      "time" : "2026-09-30T15:47:01.863955816Z",
+      "xMeters" : -2510675.7523551825,
+      "yMeters" : -6299999.484663755,
+      "zMeters" : -549526.8490428311,
+      "vxMetersPerSecond" : 3788.9302506396184,
+      "vyMetersPerSecond" : -2027.3730281550988,
+      "vzMetersPerSecond" : 5971.287303108397
+    }, {
+      "time" : "2026-09-30T15:47:32.857979724Z",
+      "xMeters" : -2391880.666359529,
+      "yMeters" : -6359272.393110595,
+      "zMeters" : -364155.0607164246,
+      "vxMetersPerSecond" : 3876.1662539955723,
+      "vyMetersPerSecond" : -1797.1174642328767,
+      "vzMetersPerSecond" : 5989.283164564538
+    }, {
+      "time" : "2026-09-30T15:48:03.852003632Z",
+      "xMeters" : -2270438.0507238684,
+      "yMeters" : -6411380.046011076,
+      "zMeters" : -178338.74675710304,
+      "vxMetersPerSecond" : 3959.755275652197,
+      "vyMetersPerSecond" : -1565.052408122099,
+      "vzMetersPerSecond" : 5999.968861063986
+    }, {
+      "time" : "2026-09-30T15:48:34.846027540Z",
+      "xMeters" : -2146462.4191478286,
+      "yMeters" : -6456270.474943191,
+      "zMeters" : 7695.2808079512,
+      "vxMetersPerSecond" : 4039.6023850433157,
+      "vyMetersPerSecond" : -1331.4437105886611,
+      "vzMetersPerSecond" : 6003.330316952495
+    }, {
+      "time" : "2026-09-30T15:49:05.840051448Z",
+      "xMeters" : -2020071.175236105,
+      "yMeters" : -6493899.976302951,
+      "zMeters" : 193719.9142103302,
+      "vxMetersPerSecond" : 4115.61604220535,
+      "vyMetersPerSecond" : -1096.5587878080523,
+      "vzMetersPerSecond" : 5999.362529315459
+    }, {
+      "time" : "2026-09-30T15:49:36.834075356Z",
+      "xMeters" : -1891384.5058586663,
+      "yMeters" : -6524233.1546787415,
+      "zMeters" : 379508.03132341587,
+      "vxMetersPerSecond" : 4187.708212109899,
+      "vyMetersPerSecond" : -860.6662937456138,
+      "vzMetersPerSecond" : 5988.069579115451
+    }, {
+      "time" : "2026-09-30T15:50:07.828099264Z",
+      "xMeters" : -1760525.2707468225,
+      "yMeters" : -6547242.956145631,
+      "zMeters" : 564832.7771911095,
+      "vxMetersPerSecond" : 4255.794475181765,
+      "vyMetersPerSecond" : -624.0357906465902,
+      "vzMetersPerSecond" : 5969.46462928503
+    }, {
+      "time" : "2026-09-30T15:50:38.822123171Z",
+      "xMeters" : -1627618.8887879876,
+      "yMeters" : -6562910.691310652,
+      "zMeters" : 749467.845290921,
+      "vxMetersPerSecond" : 4319.794133694339,
+      "vyMetersPerSecond" : -386.93741847348304,
+      "vzMetersPerSecond" : 5943.569909768543
+    }, {
+      "time" : "2026-09-30T15:51:09.816147079Z",
+      "xMeters" : -1492793.221066136,
+      "yMeters" : -6571226.048108967,
+      "zMeters" : 933187.758161745,
+      "vxMetersPerSecond" : 4379.630313872736,
+      "vyMetersPerSecond" : -149.64156383929057,
+      "vzMetersPerSecond" : 5910.41668954071
+    }, {
+      "time" : "2026-09-30T15:51:40.810170987Z",
+      "xMeters" : -1356178.4508514432,
+      "yMeters" : -6572187.09433742,
+      "zMeters" : 1115768.146910063,
+      "vxMetersPerSecond" : 4435.230063494932,
+      "vyMetersPerSecond" : 87.58147082232072,
+      "vzMetersPerSecond" : 5870.045235685458
+    }, {
+      "time" : "2026-09-30T15:52:11.804194895Z",
+      "xMeters" : -1217906.9605899844,
+      "yMeters" : -6565800.269951513,
+      "zMeters" : 1296986.0293093899,
+      "vxMetersPerSecond" : 4486.524444868582,
+      "vyMetersPerSecond" : 324.4617973763628,
+      "vzMetersPerSecond" : 5822.504759628719
+    }, {
+      "time" : "2026-09-30T15:52:42.798218803Z",
+      "xMeters" : -1078113.2061076323,
+      "yMeters" : -6552080.369149495,
+      "zMeters" : 1476620.0860124563,
+      "vxMetersPerSecond" : 4533.448623009164,
+      "vyMetersPerSecond" : 560.7302706625101,
+      "vzMetersPerSecond" : 5767.853350683401
+    }, {
+      "time" : "2026-09-30T15:53:13.792242711Z",
+      "xMeters" : -936933.588152539,
+      "yMeters" : -6531050.512300668,
+      "zMeters" : 1654450.9345164427,
+      "vxMetersPerSecond" : 4575.941948905876,
+      "vyMetersPerSecond" : 796.118815160324,
+      "vzMetersPerSecond" : 5706.157897086502
+    }, {
+      "time" : "2026-09-30T15:53:44.786266619Z",
+      "xMeters" : -794506.3213750627,
+      "yMeters" : -6502742.107794622,
+      "zMeters" : 1830261.400497045,
+      "vxMetersPerSecond" : 4613.9480377601385,
+      "vyMetersPerSecond" : 1030.3607490863633,
+      "vzMetersPerSecond" : 5637.49399474556
+    }, {
+      "time" : "2026-09-30T15:54:15.780290527Z",
+      "xMeters" : -650971.3012441788,
+      "yMeters" : -6467194.803858463,
+      "zMeters" : 2003836.7861298786,
+      "vxMetersPerSecond" : 4647.41484216094,
+      "vyMetersPerSecond" : 1263.191105097134,
+      "vzMetersPerSecond" : 5561.945843946679
+    }, {
+      "time" : "2026-09-30T15:54:46.774314435Z",
+      "xMeters" : -506469.96820918284,
+      "yMeters" : -6424456.43055865,
+      "zMeters" : 2174965.135032412,
+      "vxMetersPerSecond" : 4676.294720006654,
+      "vyMetersPerSecond" : 1494.346947639022,
+      "vzMetersPerSecond" : 5479.606134305716
+    }, {
+      "time" : "2026-09-30T15:55:17.768338343Z",
+      "xMeters" : -361145.17040106,
+      "yMeters" : -6374582.93196154,
+      "zMeters" : 2343437.493464782,
+      "vxMetersPerSecond" : 4700.54449728392,
+      "vyMetersPerSecond" : 1723.567685605232,
+      "vzMetersPerSecond" : 5390.575918274201
+    }, {
+      "time" : "2026-09-30T15:55:48.762362251Z",
+      "xMeters" : -215141.0241851071,
+      "yMeters" : -6317638.288708393,
+      "zMeters" : 2509048.167442417,
+      "vxMetersPerSecond" : 4720.125525561596,
+      "vyMetersPerSecond" : 1950.5953803850193,
+      "vzMetersPerSecond" : 5294.964473536553
+    }, {
+      "time" : "2026-09-30T15:56:19.756386159Z",
+      "xMeters" : -68602.77306665946,
+      "yMeters" : -6253694.431113739,
+      "zMeters" : 2671594.975419566,
+      "vxMetersPerSecond" : 4735.00373423173,
+      "vyMetersPerSecond" : 2175.1750485772927,
+      "vzMetersPerSecond" : 5192.889154660262
+    }, {
+      "time" : "2026-09-30T15:56:50.750410067Z",
+      "xMeters" : 78323.35493815038,
+      "yMeters" : -6182831.142967228,
+      "zMeters" : 2830879.4962132033,
+      "vxMetersPerSecond" : 4745.14967749808,
+      "vyMetersPerSecond" : 2397.054958942124,
+      "vzMetersPerSecond" : 5084.475234383763
+    }, {
+      "time" : "2026-09-30T15:57:21.744433975Z",
+      "xMeters" : 225490.29131467454,
+      "yMeters" : -6105135.956220912,
+      "zMeters" : 2986707.311859777,
+      "vxMetersPerSecond" : 4750.538576135477,
+      "vyMetersPerSecond" : 2615.986923174138,
+      "vzMetersPerSecond" : 4969.855734937994
+    }, {
+      "time" : "2026-09-30T15:57:52.738457883Z",
+      "xMeters" : 372750.2722713649,
+      "yMeters" : -6020704.036763491,
+      "zMeters" : 3138888.2450912627,
+      "vxMetersPerSecond" : 4751.150354058856,
+      "vyMetersPerSecond" : 2831.7265800835844,
+      "vzMetersPerSecond" : 4849.17124982456
+    }, {
+      "time" : "2026-09-30T15:58:23.732481791Z",
+      "xMeters" : 519954.9850199148,
+      "yMeters" : -5929638.06148796,
+      "zMeters" : 3287236.5911489557,
+      "vxMetersPerSecond" : 4746.969669755515,
+      "vyMetersPerSecond" : 3044.033672833314,
+      "vzMetersPerSecond" : 4722.569756473964
+    }, {
+      "time" : "2026-09-30T15:58:54.726505699Z",
+      "xMeters" : 666955.7149520926,
+      "yMeters" : -5832048.086873748,
+      "zMeters" : 3431571.3436558046,
+      "vxMetersPerSecond" : 4737.985942647133,
+      "vyMetersPerSecond" : 3252.672318896325,
+      "vzMetersPerSecond" : 4590.206420223773
+    }, {
+      "time" : "2026-09-30T15:59:25.720529607Z",
+      "xMeters" : 813603.4936035695,
+      "yMeters" : -5728051.409309789,
+      "zMeters" : 3571716.4142797943,
+      "vxMetersPerSecond" : 4724.193374429414,
+      "vyMetersPerSecond" : 3457.411272472884,
+      "vzMetersPerSecond" : 4452.243390065552
+    }, {
+      "time" : "2026-09-30T15:59:56.714553514Z",
+      "xMeters" : 959749.2469550986,
+      "yMeters" : -5617772.417436398,
+      "zMeters" : 3707500.8459445206,
+      "vxMetersPerSecond" : 4705.590965657043,
+      "vyMetersPerSecond" : 3658.0241788651942,
+      "vzMetersPerSecond" : 4308.849586605333
+    }, {
+      "time" : "2026-09-30T16:00:27.708577422Z",
+      "xMeters" : 1105243.9446926182,
+      "yMeters" : -5501342.436637136,
+      "zMeters" : 3838759.0193682634,
+      "vxMetersPerSecond" : 4682.182527224104,
+      "vyMetersPerSecond" : 3854.289821225517,
+      "vzMetersPerSecond" : 4160.200482666782
+    }, {
+      "time" : "2026-09-30T16:00:58.702601330Z",
+      "xMeters" : 1249938.7492021536,
+      "yMeters" : -5378899.566114451,
+      "zMeters" : 3965330.8526503174,
+      "vxMetersPerSecond" : 4653.9766874405595,
+      "vyMetersPerSecond" : 4045.992358567611,
+      "vzMetersPerSecond" : 4006.477877049149
+    }, {
+      "time" : "2026-09-30T16:01:29.696625238Z",
+      "xMeters" : 1393685.1650185352,
+      "yMeters" : -5250588.508639345,
+      "zMeters" : 4087061.9937864374,
+      "vxMetersPerSecond" : 4620.986894360723,
+      "vyMetersPerSecond" : 4232.921555639952,
+      "vzMetersPerSecond" : 3847.869661786307
+    }, {
+      "time" : "2026-09-30T16:02:00.690649146Z",
+      "xMeters" : 1536335.1881899019,
+      "yMeters" : -5116560.393338123,
+      "zMeters" : 4203804.005845362,
+      "vxMetersPerSecond" : 4583.231413667898,
+      "vyMetersPerSecond" : 4414.873004164543,
+      "vzMetersPerSecond" : 3684.5695834202743
+    }, {
+      "time" : "2026-09-30T16:02:31.684673054Z",
+      "xMeters" : 1677741.4555256884,
+      "yMeters" : -4976972.5917426385,
+      "zMeters" : 4315414.544664324,
+      "vxMetersPerSecond" : 4540.733322186432,
+      "vyMetersPerSecond" : 4591.648335453217,
+      "vzMetersPerSecond" : 3516.7769986721487
+    }, {
+      "time" : "2026-09-30T16:03:02.678696962Z",
+      "xMeters" : 1817757.3935678205,
+      "yMeters" : -4831988.527389456,
+      "zMeters" : 4421757.528881641,
+      "vxMetersPerSecond" : 4493.520497146406,
+      "vyMetersPerSecond" : 4763.055424303261,
+      "vzMetersPerSecond" : 3344.6966249400525
+    }, {
+      "time" : "2026-09-30T16:03:33.672720870Z",
+      "xMeters" : 1956237.3671675525,
+      "yMeters" : -4681777.47923207,
+      "zMeters" : 4522703.30215781,
+      "vxMetersPerSecond" : 4441.6256013083985,
+      "vyMetersPerSecond" : 4928.9085841463275,
+      "vzMetersPerSecond" : 3168.538286015375
+    }, {
+      "time" : "2026-09-30T16:04:04.666744778Z",
+      "xMeters" : 2093036.8275382542,
+      "yMeters" : -4526514.379139272,
+      "zMeters" : 4618128.787441781,
+      "vxMetersPerSecond" : 4385.086064059793,
+      "vyMetersPerSecond" : 5089.028753432795,
+      "vzMetersPerSecond" : 2988.516653401291
+    }, {
+      "time" : "2026-09-30T16:04:35.660768686Z",
+      "xMeters" : 2228012.459694043,
+      "yMeters" : -4366379.6037362665,
+      "zMeters" : 4707917.633149924,
+      "vxMetersPerSecond" : 4323.944058546022,
+      "vyMetersPerSecond" : 5243.243673292363,
+      "vzMetersPerSecond" : 2804.850983602611
+    }, {
+      "time" : "2026-09-30T16:05:06.654792594Z",
+      "xMeters" : 2361022.3289325014,
+      "yMeters" : -4201558.760970408,
+      "zMeters" : 4791960.351140718,
+      "vxMetersPerSecond" : 4258.246475202502,
+      "vyMetersPerSecond" : 5391.388056281882,
+      "vzMetersPerSecond" : 2617.76485173163
+    }, {
+      "time" : "2026-09-30T16:05:37.648816502Z",
+      "xMeters" : 2491926.026813097,
+      "yMeters" : -4032242.4713918255,
+      "zMeters" : 4870154.446374958,
+      "vxMetersPerSecond" : 4188.044891109066,
+      "vyMetersPerSecond" : 5533.303746826142,
+      "vzMetersPerSecond" : 2427.4858817612285
+    }, {
+      "time" : "2026-09-30T16:06:08.642840410Z",
+      "xMeters" : 2620584.8157505505,
+      "yMeters" : -3858626.1447886326,
+      "zMeters" : 4942404.538164096,
+      "vxMetersPerSecond" : 4113.395536142387,
+      "vyMetersPerSecond" : 5668.83987266381,
+      "vzMetersPerSecond" : 2234.2454737318676
+    }, {
+      "time" : "2026-09-30T16:06:39.636864318Z",
+      "xMeters" : 2746861.772688628,
+      "yMeters" : -3680909.7521696864,
+      "zMeters" : 5008622.472915585,
+      "vxMetersPerSecond" : 4034.3592553342437,
+      "vyMetersPerSecond" : 5797.852987936431,
+      "vzMetersPerSecond" : 2038.2785282066598
+    }, {
+      "time" : "2026-09-30T16:07:10.630888226Z",
+      "xMeters" : 2870621.9315127525,
+      "yMeters" : -3499297.593465808,
+      "zMeters" : 5068727.428296452,
+      "vxMetersPerSecond" : 3951.001467764418,
+      "vyMetersPerSecond" : 5920.207207780043,
+      "vzMetersPerSecond" : 1839.823168240307
+    }, {
+      "time" : "2026-09-30T16:07:41.624912134Z",
+      "xMeters" : 2991732.424134275,
+      "yMeters" : -3313998.0611910145,
+      "zMeters" : 5122646.008742441,
+      "vxMetersPerSecond" : 3863.392121993049,
+      "vyMetersPerSecond" : 6035.774334550287,
+      "vzMetersPerSecond" : 1639.120459111957
+    }, {
+      "time" : "2026-09-30T16:08:12.618936042Z",
+      "xMeters" : 3110062.6201343085,
+      "yMeters" : -3125223.400329535,
+      "zMeters" : 5170312.332245872,
+      "vxMetersPerSecond" : 3771.605648076353,
+      "vyMetersPerSecond" : 6144.433975771041,
+      "vzMetersPerSecond" : 1436.4141260612628
+    }, {
+      "time" : "2026-09-30T16:08:43.612959949Z",
+      "xMeters" : 3225484.2648655763,
+      "yMeters" : -2933189.4646985023,
+      "zMeters" : 5211668.108366426,
+      "vxMetersPerSecond" : 3675.720906190539,
+      "vyMetersPerSecond" : 6246.073653907643,
+      "vzMetersPerSecond" : 1231.9502702355492
+    }, {
+      "time" : "2026-09-30T16:09:14.606983857Z",
+      "xMeters" : 3337871.6159224547,
+      "yMeters" : -2738115.4700129577,
+      "zMeters" : 5246662.707417374,
+      "vxMetersPerSecond" : 3575.8211318627905,
+      "vyMetersPerSecond" : 6340.588908072736,
+      "vzMetersPerSecond" : 1025.9770830197835
+    }, {
+      "time" : "2026-09-30T16:09:45.601007765Z",
+      "xMeters" : 3447101.5778239723,
+      "yMeters" : -2540223.7439853447,
+      "zMeters" : 5275253.220765349,
+      "vxMetersPerSecond" : 3471.9938778582696,
+      "vyMetersPerSecond" : 6427.883387710978,
+      "vzMetersPerSecond" : 818.744559015134
+    }, {
+      "time" : "2026-09-30T16:10:16.595031673Z",
+      "xMeters" : 3553053.8348975475,
+      "yMeters" : -2339739.473558869,
+      "zMeters" : 5297404.512227027,
+      "vxMetersPerSecond" : 3364.3309525871127,
+      "vyMetersPerSecond" : 6507.868938442642,
+      "vzMetersPerSecond" : 610.5042077178354
+    }, {
+      "time" : "2026-09-30T16:10:47.589055581Z",
+      "xMeters" : 3655610.9820808573,
+      "yMeters" : -2136890.449786969,
+      "zMeters" : 5313089.260509538,
+      "vxMetersPerSecond" : 3252.92835539785,
+      "vyMetersPerSecond" : 6580.465679916015,
+      "vzMetersPerSecond" : 401.50876413725484
+    }, {
+      "time" : "2026-09-30T16:11:18.583079489Z",
+      "xMeters" : 3754658.6538673555,
+      "yMeters" : -1931906.8101162417,
+      "zMeters" : 5322287.992670166,
+      "vxMetersPerSecond" : 3137.886207858046,
+      "vyMetersPerSecond" : 6645.602076196053,
+      "vzMetersPerSecond" : 192.01189847651645
+    }, {
+      "time" : "2026-09-30T16:11:49.577103397Z",
+      "xMeters" : 3850085.6508672936,
+      "yMeters" : -1725020.778912263,
+      "zMeters" : 5324989.1085691415,
+      "vxMetersPerSecond" : 3019.3086820962626,
+      "vyMetersPerSecond" : 6703.214998150253,
+      "vzMetersPerSecond" : -17.732074995259268
+    }, {
+      "time" : "2026-09-30T16:12:20.571127305Z",
+      "xMeters" : 3941784.0641909805,
+      "yMeters" : -1516466.406025629,
+      "zMeters" : 5321188.896292316,
+      "vxMetersPerSecond" : 2897.3039253141465,
+      "vyMetersPerSecond" : 6753.249778314271,
+      "vzMetersPerSecond" : -227.46848973243186
+    }, {
+      "time" : "2026-09-30T16:12:51.565151213Z",
+      "xMeters" : 4029649.397417819,
+      "yMeters" : -1306479.3038057322,
+      "zMeters" : 5310891.538525903,
+      "vxMetersPerSecond" : 2771.9839807320095,
+      "vyMetersPerSecond" : 6795.6602580854415,
+      "vzMetersPerSecond" : -436.94261924377906
+    }, {
+      "time" : "2026-09-30T16:13:22.559175121Z",
+      "xMeters" : 4113580.6860575504,
+      "yMeters" : -1095296.3827738115,
+      "zMeters" : 5294109.109868692,
+      "vxMetersPerSecond" : 2643.4647048391926,
+      "vyMetersPerSecond" : 6830.4088272814015,
+      "vzMetersPerSecond" : -645.8999698290787
+    }, {
+      "time" : "2026-09-30T16:13:53.553199029Z",
+      "xMeters" : 4193480.61438932,
+      "yMeters" : -883155.5861906037,
+      "zMeters" : 5270861.565071063,
+      "vxMetersPerSecond" : 2511.8656808688897,
+      "vyMetersPerSecond" : 6857.466456055346,
+      "vzMetersPerSecond" : -854.0865735922006
+    }, {
+      "time" : "2026-09-30T16:14:24.547222937Z",
+      "xMeters" : 4269255.629557833,
+      "yMeters" : -670295.6237553805,
+      "zMeters" : 5241176.718196969,
+      "vxMetersPerSecond" : 2377.3101284075256,
+      "vyMetersPerSecond" : 6876.812719144319,
+      "vzMetersPerSecond" : -1061.249281590199
+    }, {
+      "time" : "2026-09-30T16:14:55.541246845Z",
+      "xMeters" : 4340816.052815301,
+      "yMeters" : -456955.70466702245,
+      "zMeters" : 5205090.212699696,
+      "vxMetersPerSecond" : 2239.924809050386,
+      "vyMetersPerSecond" : 6888.435812404654,
+      "vzMetersPerSecond" : -1267.136056992316
+    }, {
+      "time" : "2026-09-30T16:15:26.535270753Z",
+      "xMeters" : 4408076.1877708705,
+      "yMeters" : -243375.27030072128,
+      "zMeters" : 5162645.482423175,
+      "vxMetersPerSecond" : 2099.839928011562,
+      "vyMetersPerSecond" : 6892.332561578519,
+      "vzMetersPerSecond" : -1471.4962680693766
+    }, {
+      "time" : "2026-09-30T16:15:57.529294661Z",
+      "xMeters" : 4470954.425533423,
+      "yMeters" : -29793.726689580828,
+      "zMeters" : 5113893.703528355,
+      "vxMetersPerSecond" : 1957.1890315350893,
+      "vyMetersPerSecond" : 6888.508423229741,
+      "vzMetersPerSecond" : -1674.0809808738018
+    }, {
+      "time" : "2026-09-30T16:16:28.523318569Z",
+      "xMeters" : 4529373.346609285,
+      "yMeters" : 183549.8227053266,
+      "zMeters" : 5058893.737360436,
+      "vxMetersPerSecond" : 1812.1089003766162,
+      "vyMetersPerSecond" : 6876.977477655756,
+      "vzMetersPerSecond" : -1874.6432514207513
+    }, {
+      "time" : "2026-09-30T16:16:59.517342477Z",
+      "xMeters" : 4583259.81943778,
+      "yMeters" : 396416.84427320026,
+      "zMeters" : 4997712.064273284,
+      "vxMetersPerSecond" : 1664.739438370221,
+      "vyMetersPerSecond" : 6857.762413930119,
+      "vzMetersPerSecond" : -2072.938417183284
+    }, {
+      "time" : "2026-09-30T16:17:30.511366385Z",
+      "xMeters" : 4632545.095405153,
+      "yMeters" : 608569.6405540654,
+      "zMeters" : 4930422.70843561,
+      "vxMetersPerSecond" : 1515.2235572002785,
+      "vyMetersPerSecond" : 6830.894506603954,
+      "vzMetersPerSecond" : -2268.7243876882303
+    }, {
+      "time" : "2026-09-30T16:18:01.505390292Z",
+      "xMeters" : 4677164.90022077,
+      "yMeters" : 819771.6158792302,
+      "zMeters" : 4857107.1536526615,
+      "vxMetersPerSecond" : 1363.7070564094652,
+      "vyMetersPerSecond" : 6796.413584206352,
+      "vzMetersPerSecond" : -2461.761933977375
+    }, {
+      "time" : "2026-09-30T16:18:32.499414200Z",
+      "xMeters" : 4717059.521514414,
+      "yMeters" : 1029787.5409084861,
+      "zMeters" : 4777854.250224857,
+      "vxMetersPerSecond" : 1210.3384989064114,
+      "vyMetersPerSecond" : 6754.367989287687,
+      "vzMetersPerSecond" : -2651.814976726636
+    }, {
+      "time" : "2026-09-30T16:19:03.493438108Z",
+      "xMeters" : 4752173.8924933635,
+      "yMeters" : 1238383.8157232096,
+      "zMeters" : 4692760.112928508,
+      "vxMetersPerSecond" : 1055.269081948641,
+      "vyMetersPerSecond" : 6704.814529895082,
+      "vzMetersPerSecond" : -2838.6508726515717
+    }, {
+      "time" : "2026-09-30T16:19:34.487462016Z",
+      "xMeters" : 4782457.671545871,
+      "yMeters" : 1445328.7313599712,
+      "zMeters" : 4601928.010123348,
+      "vxMetersPerSecond" : 898.652503447661,
+      "vyMetersPerSecond" : 6647.818422308133,
+      "vzMetersPerSecond" : -3022.040699038584
+    }, {
+      "time" : "2026-09-30T16:20:05.481485924Z",
+      "xMeters" : 4807865.31762493,
+      "yMeters" : 1650392.7293991758,
+      "zMeters" : 4505468.244087696,
+      "vxMetersPerSecond" : 740.6448236587721,
+      "vyMetersPerSecond" : 6583.453224896744,
+      "vzMetersPerSecond" : -3201.759535988705
+    }, {
+      "time" : "2026-09-30T16:20:36.475509832Z",
+      "xMeters" : 4828356.1612778725,
+      "yMeters" : 1853348.6593726254,
+      "zMeters" : 4403498.022641813,
+      "vxMetersPerSecond" : 581.4043222207448,
+      "vyMetersPerSecond" : 6511.800762942983,
+      "vzMetersPerSecond" : -3377.5867460742575
+    }, {
+      "time" : "2026-09-30T16:21:07.469533740Z",
+      "xMeters" : 4843894.471156998,
+      "yMeters" : 2053972.0337501615,
+      "zMeters" : 4296141.322145572,
+      "vxMetersPerSecond" : 421.0913504992136,
+      "vyMetersPerSecond" : 6432.951044282631,
+      "vzMetersPerSecond" : -3549.306251044031
+    }, {
+      "time" : "2026-09-30T16:21:38.463557648Z",
+      "xMeters" : 4854449.515974254,
+      "yMeters" : 2252041.279953078,
+      "zMeters" : 4183528.7419709186,
+      "vxMetersPerSecond" : 259.86817961700507,
+      "vyMetersPerSecond" : 6347.002165602181,
+      "vzMetersPerSecond" : -3716.706805188095
+    }, {
+      "time" : "2026-09-30T16:22:09.457581556Z",
+      "xMeters" : 4859995.621498378,
+      "yMeters" : 2447337.9897507564,
+      "zMeters" : 4065797.3505517747,
+      "vxMetersPerSecond" : 97.89884336791621,
+      "vyMetersPerSecond" : 6254.060209316276,
+      "vzMetersPerSecond" : -3879.5822649690726
+    }, {
+      "time" : "2026-09-30T16:22:40.451605464Z",
+      "xMeters" : 4860512.222793084,
+      "yMeters" : 2639647.164886971,
+      "zMeters" : 3943090.5231419797,
+      "vxMetersPerSecond" : -64.65102276872133,
+      "vyMetersPerSecond" : 6154.239130823642,
+      "vzMetersPerSecond" : -4037.7318544819673
+    }, {
+      "time" : "2026-09-30T16:23:11.445629372Z",
+      "xMeters" : 4855983.911310349,
+      "yMeters" : 2828757.45928041,
+      "zMeters" : 3815557.7714087004,
+      "vxMetersPerSecond" : -227.61434726792268,
+      "vyMetersPerSecond" : 6047.660636099034,
+      "vzMetersPerSecond" : -4190.960426311874
+    }, {
+      "time" : "2026-09-30T16:23:42.439653280Z",
+      "xMeters" : 4846400.476800849,
+      "yMeters" : 3014461.4172389815,
+      "zMeters" : 3683354.5650167395,
+      "vxMetersPerSecond" : -390.8227923863044,
+      "vyMetersPerSecond" : 5934.454049509435,
+      "vzMetersPerSecond" : -4339.07871732093
+    }, {
+      "time" : "2026-09-30T16:24:13.433677188Z",
+      "xMeters" : 4831756.943898115,
+      "yMeters" : 3196555.707425171,
+      "zMeters" : 3546642.1453661076,
+      "vxMetersPerSecond" : -554.1069280823237,
+      "vyMetersPerSecond" : 5814.756171792263,
+      "vzMetersPerSecond" : -4481.903598892049
+    }, {
+      "time" : "2026-09-30T16:24:44.427701096Z",
+      "xMeters" : 4812053.603249635,
+      "yMeters" : 3374841.3522720127,
+      "zMeters" : 3405587.331660266,
+      "vxMetersPerSecond" : -717.2964098621947,
+      "vyMetersPerSecond" : 5688.711128151041,
+      "vzMetersPerSecond" : -4619.25832114289
+    }, {
+      "time" : "2026-09-30T16:25:15.421725004Z",
+      "xMeters" : 4787296.037076773,
+      "yMeters" : 3549123.952536325,
+      "zMeters" : 3260362.319503458,
+      "vxMetersPerSecond" : -880.2201603471215,
+      "vyMetersPerSecond" : 5556.470206455673,
+      "vzMetersPerSecond" : -4750.972750607097
+    }, {
+      "time" : "2026-09-30T16:25:46.415748912Z",
+      "xMeters" : 4757495.139050996,
+      "yMeters" : 3719213.906686005,
+      "zMeters" : 3111144.472234562,
+      "vxMetersPerSecond" : -1042.7065543424505,
+      "vyMetersPerSecond" : 5418.191685557004,
+      "vzMetersPerSecond" : -4876.883600879311
+    }, {
+      "time" : "2026-09-30T16:26:17.409772820Z",
+      "xMeters" : 4722667.128381362,
+      "yMeters" : 3884926.6248124675,
+      "zMeters" : 2958116.105226579,
+      "vxMetersPerSecond" : -1204.5836071594158,
+      "vyMetersPerSecond" : 5274.040653761027,
+      "vzMetersPerSecond" : -4996.834655709971
+    }, {
+      "time" : "2026-09-30T16:26:48.403796727Z",
+      "xMeters" : 4682833.557983014,
+      "yMeters" : 4046082.7368018245,
+      "zMeters" : 2801464.26339542,
+      "vxMetersPerSecond" : -1365.6791659606529,
+      "vyMetersPerSecond" : 5124.1888175285085,
+      "vzMetersPerSecond" : -5110.676984036058
+    }, {
+      "time" : "2026-09-30T16:27:19.397820635Z",
+      "xMeters" : 4638021.316835508,
+      "yMeters" : 4202508.2942526825,
+      "zMeters" : 2641380.4921481656,
+      "vxMetersPerSecond" : -1525.8211036030202,
+      "vyMetersPerSecond" : 4968.814300550663,
+      "vzMetersPerSecond" : -5218.269146455197
+    }, {
+      "time" : "2026-09-30T16:27:50.391844543Z",
+      "xMeters" : 4588262.625961435,
+      "yMeters" : 4354034.96636457,
+      "zMeters" : 2478060.6021227916,
+      "vxMetersPerSecond" : -1684.8375152458532,
+      "vyMetersPerSecond" : 4808.101433252957,
+      "vzMetersPerSecond" : -5319.477392580402
+    }, {
+      "time" : "2026-09-30T16:28:21.385868451Z",
+      "xMeters" : 4533595.028606383,
+      "yMeters" : 4500500.228812158,
+      "zMeters" : 2311704.4279009886,
+      "vxMetersPerSecond" : -1842.5569166131622,
+      "vyMetersPerSecond" : 4642.240533024665,
+      "vzMetersPerSecond" : -5414.17584885429
+    }, {
+      "time" : "2026-09-30T16:28:52.379892359Z",
+      "xMeters" : 4474061.374081461,
+      "yMeters" : 4641747.545831765,
+      "zMeters" : 2142515.5810856377,
+      "vxMetersPerSecond" : -1998.8084441357173,
+      "vyMetersPerSecond" : 4471.427675315457,
+      "vzMetersPerSecond" : -5502.2466962726585
+    }, {
+      "time" : "2026-09-30T16:29:23.373916267Z",
+      "xMeters" : 4409709.795406079,
+      "yMeters" : 4777626.545048181,
+      "zMeters" : 1970701.198019764,
+      "vxMetersPerSecond" : -2153.4220563833505,
+      "vyMetersPerSecond" : 4295.864455875186,
+      "vzMetersPerSecond" : -5583.580337574841
+    }, {
+      "time" : "2026-09-30T16:29:54.367940175Z",
+      "xMeters" : 4340593.680693004,
+      "yMeters" : 4907993.184790799,
+      "zMeters" : 1796471.6824969621,
+      "vxMetersPerSecond" : -2306.22873642627,
+      "vyMetersPerSecond" : 4115.757744438235,
+      "vzMetersPerSecond" : -5658.075553436191
+    }, {
+      "time" : "2026-09-30T16:30:25.361964083Z",
+      "xMeters" : 4266771.638246583,
+      "yMeters" : 5032709.913647974,
+      "zMeters" : 1620040.4438071216,
+      "vxMetersPerSecond" : -2457.0606947376427,
+      "vyMetersPerSecond" : 3931.319430177584,
+      "vzMetersPerSecond" : -5725.639647232484
+    }, {
+      "time" : "2026-09-30T16:30:56.355987991Z",
+      "xMeters" : 4188307.4553678795,
+      "yMeters" : 5151645.822006815,
+      "zMeters" : 1441623.630476262,
+      "vxMetersPerSecond" : -2605.7515722266744,
+      "vyMetersPerSecond" : 3742.7661592963327,
+      "vzMetersPerSecond" : -5786.18857796883
+    }, {
+      "time" : "2026-09-30T16:31:27.350011899Z",
+      "xMeters" : 4105270.050865003,
+      "yMeters" : 5264676.785342793,
+      "zMeters" : 1261439.8600775192,
+      "vxMetersPerSecond" : -2752.136642987252,
+      "vyMetersPerSecond" : 3550.3190651617697,
+      "vzMetersPerSecond" : -5839.647080990719
+    }, {
+      "time" : "2026-09-30T16:31:58.344035807Z",
+      "xMeters" : 4017733.4212892363,
+      "yMeters" : 5371685.599031513,
+      "zMeters" : 1079709.9454955976,
+      "vxMetersPerSecond" : -2896.0530163371977,
+      "vyMetersPerSecond" : 3354.2034914203473,
+      "vzMetersPerSecond" : -5885.948776128565
+    }, {
+      "time" : "2026-09-30T16:32:29.338059715Z",
+      "xMeters" : 3925776.580873926,
+      "yMeters" : 5472562.104509713,
+      "zMeters" : 896656.6180401614,
+      "vxMetersPerSecond" : -3037.3398377527365,
+      "vyMetersPerSecond" : 3154.648708536466,
+      "vzMetersPerSecond" : -5925.036262958966
+    }, {
+      "time" : "2026-09-30T16:33:00.332083623Z",
+      "xMeters" : 3829483.4955066834,
+      "yMeters" : 5567203.306381504,
+      "zMeters" : 712504.2478127918,
+      "vxMetersPerSecond" : -3175.8384881021993,
+      "vyMetersPerSecond" : 2951.887624416309,
+      "vzMetersPerSecond" : -5956.861202901959
+    }, {
+      "time" : "2026-09-30T16:33:31.326107531Z",
+      "xMeters" : 3728943.0100742606,
+      "yMeters" : 5655513.4808121,
+      "zMeters" : 527478.5617345717,
+      "vxMetersPerSecond" : -3311.3927811801473,
+      "vyMetersPerSecond" : 2746.156489249072,
+      "vzMetersPerSecond" : -5981.384387912425
+    }, {
+      "time" : "2026-09-30T16:34:02.320131439Z",
+      "xMeters" : 3624248.770201478,
+      "yMeters" : 5737404.274347199,
+      "zMeters" : 341806.3596627779,
+      "vxMetersPerSecond" : -3443.849158544628,
+      "vyMetersPerSecond" : 2537.694595650858,
+      "vzMetersPerSecond" : -5998.575795560984
+    }, {
+      "time" : "2026-09-30T16:34:33.314155347Z",
+      "xMeters" : 3515499.1377519416,
+      "yMeters" : 5812794.793541189,
+      "zMeters" : 155715.22901170218,
+      "vxMetersPerSecond" : -3573.0568816816462,
+      "vyMetersPerSecond" : 2326.7439742942515,
+      "vzMetersPerSecond" : -6008.4146303449825
+    }, {
+      "time" : "2026-09-30T16:35:04.308179255Z",
+      "xMeters" : 3402797.10046771,
+      "yMeters" : 5881611.685056385,
+      "zMeters" : -30566.74169049387,
+      "vxMetersPerSecond" : -3698.868220915123,
+      "vyMetersPerSecond" : 2113.54908577897,
+      "vzMetersPerSecond" : -6010.889351110141
+    }, {
+      "time" : "2026-09-30T16:35:35.302203163Z",
+      "xMeters" : 3286250.175811613,
+      "yMeters" : 5943789.20615802,
+      "zMeters" : -216811.24987421467,
+      "vxMetersPerSecond" : -3821.1386406947995,
+      "vyMetersPerSecond" : 1898.3565093398402,
+      "vzMetersPerSecond" : -6005.997684507805
+    }, {
+      "time" : "2026-09-30T16:36:06.296227070Z",
+      "xMeters" : 3165970.30913179,
+      "yMeters" : 5999269.285517542,
+      "zMeters" : -402790.06619564985,
+      "vxMetersPerSecond" : -3939.7269808821325,
+      "vyMetersPerSecond" : 1681.4146290242468,
+      "vzMetersPerSecond" : -5993.746624458473
+    }, {
+      "time" : "2026-09-30T16:36:37.290250978Z",
+      "xMeters" : 3042073.766250519,
+      "yMeters" : 6048001.574267727,
+      "zMeters" : -588275.3215988064,
+      "vxMetersPerSecond" : -4054.495633692701,
+      "vyMetersPerSecond" : 1462.9733179367786,
+      "vzMetersPerSecond" : -5974.152417632618
+    }, {
+      "time" : "2026-09-30T16:37:08.284274886Z",
+      "xMeters" : 2914681.020687991,
+      "yMeters" : 6089943.487228453,
+      "zMeters" : -773039.7936514342,
+      "vxMetersPerSecond" : -4165.310715889137,
+      "vyMetersPerSecond" : 1243.2836213100418,
+      "vzMetersPerSecond" : -5947.2405350139325
+    }, {
+      "time" : "2026-09-30T16:37:39.278298794Z",
+      "xMeters" : 2783916.635531039,
+      "yMeters" : 6125060.234341122,
+      "zMeters" : -956857.1918410631,
+      "vxMetersPerSecond" : -4272.0422359855675,
+      "vyMetersPerSecond" : 1022.5974388713959,
+      "vzMetersPerSecond" : -5913.04562964074
+    }, {
+      "time" : "2026-09-30T16:38:10.272322702Z",
+      "xMeters" : 2649909.140487856,
+      "yMeters" : 6153324.842126682,
+      "zMeters" : -1139502.4413237264,
+      "vxMetersPerSecond" : -4374.564256048411,
+      "vyMetersPerSecond" : 801.1672074782357,
+      "vzMetersPerSecond" : -5871.611480675822
+    }, {
+      "time" : "2026-09-30T16:38:41.266346610Z",
+      "xMeters" : 2512790.9034841675,
+      "yMeters" : 6174718.165557876,
+      "zMeters" : -1320751.9647295172,
+      "vxMetersPerSecond" : -4472.755047972316,
+      "vyMetersPerSecond" : 579.2455840855944,
+      "vzMetersPerSecond" : -5822.990923993205
+    }, {
+      "time" : "2026-09-30T16:39:12.260370518Z",
+      "xMeters" : 2372697.9980345257,
+      "yMeters" : 6189228.889883205,
+      "zMeters" : -1500383.9616161906,
+      "vxMetersPerSecond" : -4566.497243780187,
+      "vyMetersPerSecond" : 357.0851304095348,
+      "vzMetersPerSecond" : -5767.245769509415
+    }, {
+      "time" : "2026-09-30T16:39:43.254394426Z",
+      "xMeters" : 2229770.0657913005,
+      "yMeters" : 6196853.522824324,
+      "zMeters" : -1678178.6851548748,
+      "vxMetersPerSecond" : -4655.677979861923,
+      "vyMetersPerSecond" : 134.93799938096802,
+      "vzMetersPerSecond" : -5704.446705529497
+    }, {
+      "time" : "2026-09-30T16:40:14.248418334Z",
+      "xMeters" : 2084150.1747709392,
+      "yMeters" : 6197596.3770704605,
+      "zMeters" : -1853918.715655467,
+      "vxMetersPerSecond" : -4740.1890348873285,
+      "vyMetersPerSecond" : -86.944375790816,
+      "vzMetersPerSecond" : -5634.673190412493
+    }, {
+      "time" : "2026-09-30T16:40:45.242442242Z",
+      "xMeters" : 1935984.6734111095,
+      "yMeters" : 6191469.543180885,
+      "zMeters" : -2027389.2305438204,
+      "vxMetersPerSecond" : -4819.926961224441,
+      "vyMetersPerSecond" : -308.3115893805806,
+      "vzMetersPerSecond" : -5558.013331896107
+    }, {
+      "time" : "2026-09-30T16:41:16.236466150Z",
+      "xMeters" : 1785423.0406589275,
+      "yMeters" : 6178492.853005677,
+      "zMeters" : -2198378.2704094583,
+      "vxMetersPerSecond" : -4894.793209710226,
+      "vyMetersPerSecond" : -528.9145671613583,
+      "vzMetersPerSecond" : -5474.563754455207
+    }, {
+      "time" : "2026-09-30T16:41:47.230490058Z",
+      "xMeters" : 1632617.7322958093,
+      "yMeters" : 6158693.833747372,
+      "zMeters" : -2366677.0007682415,
+      "vxMetersPerSecond" : -4964.6942476536005,
+      "vyMetersPerSecond" : -748.505866128376,
+      "vzMetersPerSecond" : -5384.429455092011
+    }, {
+      "time" : "2026-09-30T16:42:18.224513966Z",
+      "xMeters" : 1477724.02372012,
+      "yMeters" : 6132107.652806202,
+      "zMeters" : -2532079.9691748326,
+      "vxMetersPerSecond" : -5029.541669968381,
+      "vyMetersPerSecond" : -966.8399693935685,
+      "vzMetersPerSecond" : -5287.7236479923795
+    }, {
+      "time" : "2026-09-30T16:42:49.218537874Z",
+      "xMeters" : 1320899.8493862264,
+      "yMeters" : 6098777.053565552,
+      "zMeters" : -2694385.3573620603,
+      "vxMetersPerSecond" : -5089.252303372742,
+      "vyMetersPerSecond" : -1183.673575777678,
+      "vzMetersPerSecond" : -5184.56759849253
+    }, {
+      "time" : "2026-09-30T16:43:20.212561782Z",
+      "xMeters" : 1162305.639076097,
+      "yMeters" : 6058752.282299934,
+      "zMeters" : -2853395.228070763,
+      "vxMetersPerSecond" : -5143.748303594239,
+      "vyMetersPerSecond" : -1398.7658836637293,
+      "vzMetersPerSecond" : -5075.09044683384
+    }, {
+      "time" : "2026-09-30T16:43:51.206585690Z",
+      "xMeters" : 1002104.1515337704,
+      "yMeters" : 6012091.006329914,
+      "zMeters" : -3008915.766264545,
+      "vxMetersPerSecond" : -5192.957245635509,
+      "vyMetersPerSecond" : -1611.8788684180986,
+      "vzMetersPerSecond" : -4959.429022193031
+    }, {
+      "time" : "2026-09-30T16:44:22.200609598Z",
+      "xMeters" : 840460.3048767839,
+      "yMeters" : 5958858.223779717,
+      "zMeters" : -3160757.514442256,
+      "vxMetersPerSecond" : -5236.8122069350975,
+      "vyMetersPerSecond" : -1822.7775536643971,
+      "vzMetersPerSecond" : -4837.727647484388
+    }, {
+      "time" : "2026-09-30T16:44:53.194633505Z",
+      "xMeters" : 677541.0050823512,
+      "yMeters" : 5899126.164936489,
+      "zMeters" : -3308735.6017527957,
+      "vxMetersPerSecond" : -5275.251843673754,
+      "vyMetersPerSecond" : -2031.2302751311565,
+      "vzMetersPerSecond" : -4710.137935458751
+    }, {
+      "time" : "2026-09-30T16:45:24.188657413Z",
+      "xMeters" : 513514.97191646416,
+      "yMeters" : 5832974.18558302,
+      "zMeters" : -3452669.9666913454,
+      "vxMetersPerSecond" : -5308.22046012286,
+      "vyMetersPerSecond" : -2237.0089374811973,
+      "vzMetersPerSecond" : -4576.818576582263
+    }, {
+      "time" : "2026-09-30T16:45:55.182681321Z",
+      "xMeters" : 348552.56293548085,
+      "yMeters" : 5760488.652498709,
+      "zMeters" : -3592385.573049279,
+      "vxMetersPerSecond" : -5335.66807115137,
+      "vyMetersPerSecond" : -2439.889263447851,
+      "vzMetersPerSecond" : -4437.935119286217
+    }, {
+      "time" : "2026-09-30T16:46:26.176705229Z",
+      "xMeters" : 182825.59559676424,
+      "yMeters" : 5681762.821338897,
+      "zMeters" : -3727712.618990423,
+      "vxMetersPerSecond" : -5357.550457995206,
+      "vyMetersPerSecond" : -2639.651035225412,
+      "vzMetersPerSecond" : -4293.6597430200245
+    }, {
+      "time" : "2026-09-30T16:46:57.170729137Z",
+      "xMeters" : 16507.167772803456,
+      "yMeters" : 5596896.707167878,
+      "zMeters" : -3858486.7389639085,
+      "vxMetersPerSecond" : -5373.829217376296,
+      "vyMetersPerSecond" : -2836.078327792645,
+      "vzMetersPerSecond" : -4144.171024688948
+    }, {
+      "time" : "2026-09-30T16:47:28.164753045Z",
+      "xMeters" : -150228.5231598625,
+      "yMeters" : 5505996.947885835,
+      "zMeters" : -3984549.198286094,
+      "vxMetersPerSecond" : -5384.471804100581,
+      "vyMetersPerSecond" : -3028.959734037275,
+      "vzMetersPerSecond" : -3989.653698960848
+    }, {
+      "time" : "2026-09-30T16:47:59.158776953Z",
+      "xMeters" : -317206.3624523794,
+      "yMeters" : 5409176.66080882,
+      "zMeters" : -4105747.0802038666,
+      "vxMetersPerSecond" : -5389.451567266118,
+      "vyMetersPerSecond" : -3218.0885815371794,
+      "vzMetersPerSecond" : -3830.2984129473657
+    }, {
+      "time" : "2026-09-30T16:48:30.152800861Z",
+      "xMeters" : -484250.5011410471,
+      "yMeters" : 5306555.292661581,
+      "zMeters" : -4221933.465273385,
+      "vxMetersPerSecond" : -5388.74778022477,
+      "vyMetersPerSecond" : -3403.26314089651,
+      "vzMetersPerSecond" : -3666.3014757464666
+    }, {
+      "time" : "2026-09-30T16:49:01.146824769Z",
+      "xMeters" : -651184.5400845604,
+      "yMeters" : 5198258.463241104,
+      "zMeters" : -4332967.602901428,
+      "vxMetersPerSecond" : -5382.3456644165,
+      "vyMetersPerSecond" : -3584.286825614543,
+      "vzMetersPerSecond" : -3497.8646033206683
+    }, {
+      "time" : "2026-09-30T16:49:32.140848677Z",
+      "xMeters" : -817831.7144193491,
+      "yMeters" : 5084417.803048434,
+      "zMeters" : -4438715.074912076,
+      "vxMetersPerSecond" : -5370.236407420638,
+      "vyMetersPerSecond" : -3760.9683831666125,
+      "vzMetersPerSecond" : -3325.1946591671804
+    }, {
+      "time" : "2026-09-30T16:50:03.134872585Z",
+      "xMeters" : -984015.0789378774,
+      "yMeters" : 4965170.785076213,
+      "zMeters" : -4539047.951015207,
+      "vxMetersPerSecond" : -5352.417174922587,
+      "vyMetersPerSecond" : -3933.122077996745,
+      "vzMetersPerSecond" : -3148.5033912167873
+    }, {
+      "time" : "2026-09-30T16:50:34.128896493Z",
+      "xMeters" : -1149557.6933012134,
+      "yMeters" : 4840660.551114034,
+      "zMeters" : -4633844.936067927,
+      "vxMetersPerSecond" : -5328.891117365126,
+      "vyMetersPerSecond" : -4100.567865508946,
+      "vzMetersPerSecond" : -2968.0071653756086
+    }, {
+      "time" : "2026-09-30T16:51:05.122920401Z",
+      "xMeters" : -1314282.8075941587,
+      "yMeters" : 4711035.732769307,
+      "zMeters" : -4722991.5090277875,
+      "vxMetersPerSecond" : -5299.667370994975,
+      "vyMetersPerSecond" : -4263.131557799533,
+      "vzMetersPerSecond" : -2783.926696109017
+    }, {
+      "time" : "2026-09-30T16:51:36.116944309Z",
+      "xMeters" : -1478014.0477891727,
+      "yMeters" : 4576450.267488277,
+      "zMeters" : -4806380.053515546,
+      "vxMetersPerSecond" : -5264.761053638083,
+      "vyMetersPerSecond" : -4420.6449809303285,
+      "vzMetersPerSecond" : -2596.4867744332096
+    }, {
+      "time" : "2026-09-30T16:52:07.110968217Z",
+      "xMeters" : -1640575.6009981995,
+      "yMeters" : 4437063.209834337,
+      "zMeters" : -4883909.979911246,
+      "vxMetersPerSecond" : -5224.193255328526,
+      "vyMetersPerSecond" : -4572.946123876378,
+      "vzMetersPerSecond" : -2405.9159936628503
+    }, {
+      "time" : "2026-09-30T16:52:38.104992125Z",
+      "xMeters" : -1801792.40035738,
+      "yMeters" : 4293038.538279737,
+      "zMeters" : -4955487.838919153,
+      "vxMetersPerSecond" : -5177.991023933555,
+      "vyMetersPerSecond" : -4719.879279261315,
+      "vzMetersPerSecond" : -2212.4464732375122
+    }, {
+      "time" : "2026-09-30T16:53:09.099016033Z",
+      "xMeters" : -1961490.3093907,
+      "yMeters" : 4144544.9577624593,
+      "zMeters" : -5021027.4265480405,
+      "vxMetersPerSecond" : -5126.187345913476,
+      "vyMetersPerSecond" : -4861.2951760046635,
+      "vzMetersPerSecond" : -2016.313580921455
+    }, {
+      "time" : "2026-09-30T16:53:40.093039941Z",
+      "xMeters" : -2119496.3057024977,
+      "yMeters" : 3991755.6982590556,
+      "zMeters" : -5080449.880459109,
+      "vxMetersPerSecond" : -5068.821122340674,
+      "vyMetersPerSecond" : -4997.051104018864,
+      "vzMetersPerSecond" : -1817.7556536535683
+    }, {
+      "time" : "2026-09-30T16:54:11.087063848Z",
+      "xMeters" : -2275638.663885683,
+      "yMeters" : 3834848.3095989684,
+      "zMeters" : -5133683.767644617,
+      "vxMetersPerSecond" : -5005.937140248775,
+      "vyMetersPerSecond" : -5127.011031146207,
+      "vzMetersPerSecond" : -1617.0137172964148
+    }, {
+      "time" : "2026-09-30T16:54:42.081087756Z",
+      "xMeters" : -2429747.137330467,
+      "yMeters" : 3674004.4528487166,
+      "zMeters" : -5180665.16341451,
+      "vxMetersPerSecond" : -4937.5860396643375,
+      "vyMetersPerSecond" : -5251.045712252625,
+      "vzMetersPerSecond" : -1414.3312054756911
+    }, {
+      "time" : "2026-09-30T16:55:13.075111664Z",
+      "xMeters" : -2581653.139222579,
+      "yMeters" : 3509409.6882872237,
+      "zMeters" : -5221337.721643746,
+      "vxMetersPerSecond" : -4863.824275784206,
+      "vyMetersPerSecond" : -5369.032791222928,
+      "vzMetersPerSecond" : -1209.9536778044296
+    }, {
+      "time" : "2026-09-30T16:55:44.069135572Z",
+      "xMeters" : -2731189.9220223,
+      "yMeters" : 3341253.2604803187,
+      "zMeters" : -5255652.7362951385,
+      "vxMetersPerSecond" : -4784.714077194908,
+      "vyMetersPerSecond" : -5480.856895236982,
+      "vzMetersPerSecond" : -1004.1285375503195
+    }, {
+      "time" : "2026-09-30T16:56:15.063159480Z",
+      "xMeters" : -2878192.755722983,
+      "yMeters" : 3169727.8804707504,
+      "zMeters" : -5283569.194180636,
+      "vxMetersPerSecond" : -4700.323399574238,
+      "vyMetersPerSecond" : -5586.409722069499,
+      "vzMetersPerSecond" : -797.104748995802
+    }, {
+      "time" : "2026-09-30T16:56:46.057183388Z",
+      "xMeters" : -3022499.1045786813,
+      "yMeters" : 2995029.505389118,
+      "zMeters" : -5305053.818962004,
+      "vxMetersPerSecond" : -4610.725875159593,
+      "vyMetersPerSecond" : -5685.590120330823,
+      "vzMetersPerSecond" : -589.1325546056007
+    }, {
+      "time" : "2026-09-30T16:57:17.051207296Z",
+      "xMeters" : -3163948.802201697,
+      "yMeters" : 2817357.1156829423,
+      "zMeters" : -5320081.106386578,
+      "vxMetersPerSecond" : -4516.000757963455,
+      "vyMetersPerSecond" : -5778.304162837236,
+      "vzMetersPerSecond" : -380.4631921306024
+    }, {
+      "time" : "2026-09-30T16:57:48.045231204Z",
+      "xMeters" : -3302384.2248973595,
+      "yMeters" : 2636912.4901748826,
+      "zMeters" : -5328633.3507576585,
+      "vxMetersPerSecond" : -4416.2328647446875,
+      "vyMetersPerSecond" : -5864.465213246128,
+      "vzMetersPerSecond" : -171.34861176180002
+    }, {
+      "time" : "2026-09-30T16:58:19.039255112Z",
+      "xMeters" : -3437650.4631012576,
+      "yMeters" : 2453899.9791612304,
+      "zMeters" : -5330700.662642474,
+      "vxMetersPerSecond" : -4311.512511726875,
+      "vyMetersPerSecond" : -5943.993986081761,
+      "vzMetersPerSecond" : 37.95880655543477
+    }, {
+      "time" : "2026-09-30T16:58:50.033279020Z",
+      "xMeters" : -3569595.4907946703,
+      "yMeters" : 2268526.275742681,
+      "zMeters" : -5326280.977824407,
+      "vxMetersPerSecond" : -4201.935447033248,
+      "vyMetersPerSecond" : -6016.818600270233,
+      "vzMetersPerSecond" : 247.2065355647886
+    }, {
+      "time" : "2026-09-30T16:59:21.027302928Z",
+      "xMeters" : -3698070.332753165,
+      "yMeters" : 2081000.1856025024,
+      "zMeters" : -5315380.057508133,
+      "vxMetersPerSecond" : -4087.6027788077076,
+      "vyMetersPerSecond" : -6082.8746262754075,
+      "vzMetersPerSecond" : 456.14218279440064
+    }, {
+      "time" : "2026-09-30T16:59:52.021326836Z",
+      "xMeters" : -3822929.2295229025,
+      "yMeters" : 1891532.3953783116,
+      "zMeters" : -5298011.479789289,
+      "vxMetersPerSecond" : -3968.620898905573,
+      "vyMetersPerSecond" : -6142.105126961236,
+      "vzMetersPerSecond" : 664.5137722398126
+    }, {
+      "time" : "2026-09-30T17:00:23.015350744Z",
+      "xMeters" : -3944029.799877799,
+      "yMeters" : 1700335.240034041,
+      "zMeters" : -5274196.622403016,
+      "vxMetersPerSecond" : -3845.101402414979,
+      "vyMetersPerSecond" : -6194.4606920340075,
+      "vzMetersPerSecond" : 872.0700255346718
+    }, {
+      "time" : "2026-09-30T17:00:54.009374652Z",
+      "xMeters" : -4061233.200879422,
+      "yMeters" : 1507622.4689231827,
+      "zMeters" : -5243964.636767753,
+      "vxMetersPerSecond" : -3717.161002127861,
+      "vyMetersPerSecond" : -6239.899466639921,
+      "vzMetersPerSecond" : 1078.560642533543
+    }, {
+      "time" : "2026-09-30T17:01:25.003398560Z",
+      "xMeters" : -4174404.2850517323,
+      "yMeters" : 1313609.0113903307,
+      "zMeters" : -5207352.41334352,
+      "vxMetersPerSecond" : -3584.921438937838,
+      "vyMetersPerSecond" : -6278.387173447073,
+      "vzMetersPerSecond" : 1283.736581217036
+    }, {
+      "time" : "2026-09-30T17:01:55.997422468Z",
+      "xMeters" : -4283411.754786441,
+      "yMeters" : 1118510.7416195185,
+      "zMeters" : -5164404.538327521,
+      "vxMetersPerSecond" : -3448.509387277195,
+      "vyMetersPerSecond" : -6309.897128751575,
+      "vzMetersPerSecond" : 1487.3503368180002
+    }, {
+      "time" : "2026-09-30T17:02:26.991446376Z",
+      "xMeters" : -4388128.3137316,
+      "yMeters" : 922544.2431023624,
+      "zMeters" : -5115173.2417106265,
+      "vxMetersPerSecond" : -3308.056355800125,
+      "vyMetersPerSecond" : -6334.410252393529,
+      "vzMetersPerSecond" : 1689.1562200757162
+    }, {
+      "time" : "2026-09-30T17:02:57.985470283Z",
+      "xMeters" : -4488430.815019991,
+      "yMeters" : 725926.5729053738,
+      "zMeters" : -5059718.336727326,
+      "vxMetersPerSecond" : -3163.6985831689094,
+      "vyMetersPerSecond" : -6351.915071490516,
+      "vzMetersPerSecond" : 1888.9106344832246
+    }, {
+      "time" : "2026-09-30T17:03:28.979494191Z",
+      "xMeters" : -4584200.406209534,
+      "yMeters" : 528875.0258771954,
+      "zMeters" : -4998107.150718025,
+      "vxMetersPerSecond" : -3015.576928795432,
+      "vyMetersPerSecond" : -6362.407717954574,
+      "vzMetersPerSecond" : 2086.3723524491434
+    }, {
+      "time" : "2026-09-30T17:03:59.973518099Z",
+      "xMeters" : -4675322.670724513,
+      "yMeters" : 331606.8990983218,
+      "zMeters" : -4930414.4474698985,
+      "vxMetersPerSecond" : -2863.836758512371,
+      "vyMetersPerSecond" : -6365.891919723243,
+      "vzMetersPerSecond" : 2281.3027901237656
+    }, {
+      "time" : "2026-09-30T17:04:30.967542007Z",
+      "xMeters" : -4761687.76570678,
+      "yMeters" : 134339.25662881043,
+      "zMeters" : -4856722.341039619,
+      "vxMetersPerSecond" : -2708.6278249607717,
+      "vyMetersPerSecond" : -6362.378985648438,
+      "vzMetersPerSecond" : 2473.4662808652265
+    }, {
+      "time" : "2026-09-30T17:05:01.961565915Z",
+      "xMeters" : -4843190.556060937,
+      "yMeters" : -62711.30514246039,
+      "zMeters" : -4777120.201132429,
+      "vxMetersPerSecond" : -2550.1041426724787,
+      "vyMetersPerSecond" : -6351.887783943416,
+      "vzMetersPerSecond" : 2662.630347064458
+    }, {
+      "time" : "2026-09-30T17:05:32.955589823Z",
+      "xMeters" : -4919730.744544931,
+      "yMeters" : -259328.8914303761,
+      "zMeters" : -4691704.550079438,
+      "vxMetersPerSecond" : -2388.423857664439,
+      "vyMetersPerSecond" : -6334.444714116004,
+      "vzMetersPerSecond" : 2848.5659701692675
+    }, {
+      "time" : "2026-09-30T17:06:03.949613731Z",
+      "xMeters" : -4991212.997745475,
+      "yMeters" : -455298.54180119466,
+      "zMeters" : -4600578.951473416,
+      "vxMetersPerSecond" : -2223.749111794521,
+      "vyMetersPerSecond" : -6310.083672150748,
+      "vzMetersPerSecond" : 3031.0478586827476
+    }, {
+      "time" : "2026-09-30T17:06:34.943637639Z",
+      "xMeters" : -5057547.067740678,
+      "yMeters" : -650406.462166219,
+      "zMeters" : -4503853.890529266,
+      "vxMetersPerSecond" : -2056.2459009753584,
+      "vyMetersPerSecond" : -6278.84600914091,
+      "vzMetersPerSecond" : 3209.854713894526
+    }, {
+      "time" : "2026-09-30T17:07:05.937661547Z",
+      "xMeters" : -5118647.909301722,
+      "yMeters" : -844440.2549544796,
+      "zMeters" : -4401646.646245552,
+      "vxMetersPerSecond" : -1886.0839282931456,
+      "vyMetersPerSecond" : -6240.780482816292,
+      "vzMetersPerSecond" : 3384.7694930768607
+    }, {
+      "time" : "2026-09-30T17:07:36.931685455Z",
+      "xMeters" : -5174435.792444217,
+      "yMeters" : -1037189.1478940658,
+      "zMeters" : -4294081.155445852,
+      "vxMetersPerSecond" : -1713.436451147643,
+      "vyMetersPerSecond" : -6195.943202163247,
+      "vzMetersPerSecond" : 3555.5796698689323
+    }, {
+      "time" : "2026-09-30T17:08:07.925709363Z",
+      "xMeters" : -5224836.410153685,
+      "yMeters" : -1228444.2209200198,
+      "zMeters" : -4181287.868795592,
+      "vxMetersPerSecond" : -1538.480122723013,
+      "vyMetersPerSecond" : -6144.397564875212,
+      "vzMetersPerSecond" : 3722.0774915342363
+    }, {
+      "time" : "2026-09-30T17:08:38.919733271Z",
+      "xMeters" : -5269780.9811082315,
+      "yMeters" : -1417998.6310290457,
+      "zMeters" : -4063403.598895556,
+      "vxMetersPerSecond" : -1361.3948277229106,
+      "vyMetersPerSecond" : -6086.214187525894,
+      "vzMetersPerSecond" : 3884.060232765329
+    }, {
+      "time" : "2026-09-30T17:09:09.913757179Z",
+      "xMeters" : -5309206.347220955,
+      "yMeters" : -1605647.8348565875,
+      "zMeters" : -3940571.3605628945,
+      "vxMetersPerSecond" : -1182.3635123771649,
+      "vyMetersPerSecond" : -6021.470828337591,
+      "vzMetersPerSecond" : 4041.330445688861
+    }, {
+      "time" : "2026-09-30T17:09:40.907781087Z",
+      "xMeters" : -5343055.065824282,
+      "yMeters" : -1791189.8087398014,
+      "zMeters" : -3812940.2034255946,
+      "vxMetersPerSecond" : -1001.5720087580817,
+      "vyMetersPerSecond" : -5950.252302424233,
+      "vzMetersPerSecond" : 4193.696205698901
+    }, {
+      "time" : "2026-09-30T17:10:11.901804995Z",
+      "xMeters" : -5371275.4963206565,
+      "yMeters" : -1974425.2660355764,
+      "zMeters" : -3680665.036964187,
+      "vxMetersPerSecond" : -819.2088534589047,
+      "vyMetersPerSecond" : -5872.650389395791,
+      "vzMetersPerSecond" : 4340.971352733914
+    }, {
+      "time" : "2026-09-30T17:10:42.895828903Z",
+      "xMeters" : -5393821.881125882,
+      "yMeters" : -2155157.871448955,
+      "zMeters" : -3543906.448151829,
+      "vxMetersPerSecond" : -635.4651007229315,
+      "vyMetersPerSecond" : -5788.763733223427,
+      "vzMetersPerSecond" : 4482.975727590064
+    }, {
+      "time" : "2026-09-30T17:11:13.889852811Z",
+      "xMeters" : -5410654.420715325,
+      "yMeters" : -2333194.4521865635,
+      "zMeters" : -3402830.511847257,
+      "vxMetersPerSecond" : -450.53413007254096,
+      "vyMetersPerSecond" : -5698.697734276998,
+      "vzMetersPerSecond" : 4619.535402858906
+    }, {
+      "time" : "2026-09-30T17:11:44.883876719Z",
+      "xMeters" : -5421739.342724634,
+      "yMeters" : -2508345.2053984324,
+      "zMeters" : -3257608.5941227973,
+      "vxMetersPerSecond" : -264.61144888150125,
+      "vyMetersPerSecond" : -5602.56443344159,
+      "vzMetersPerSecond" : 4750.482908049318
+    }, {
+      "time" : "2026-09-30T17:12:15.877900626Z",
+      "xMeters" : -5427048.964648092,
+      "yMeters" : -2680423.902370397,
+      "zMeters" : -3108417.148712168,
+      "vxMetersPerSecond" : -77.8944893024796,
+      "vyMetersPerSecond" : -5500.482388323275,
+      "vzMetersPerSecond" : 4875.6574484556095
+    }, {
+      "time" : "2026-09-30T17:12:46.871924534Z",
+      "xMeters" : -5426561.750366515,
+      "yMeters" : -2849248.088309524,
+      "zMeters" : -2955437.506756227,
+      "vxMetersPerSecond" : 109.41759929421244,
+      "vyMetersPerSecond" : -5392.576541398181,
+      "vzMetersPerSecond" : 4994.905117340059
+    }, {
+      "time" : "2026-09-30T17:13:17.865948442Z",
+      "xMeters" : -5420262.360066876,
+      "yMeters" : -3014639.278095542,
+      "zMeters" : -2798855.660129404,
+      "vxMetersPerSecond" : 297.1241628147865,
+      "vyMetersPerSecond" : -5278.978080212874,
+      "vzMetersPerSecond" : 5108.079100919045
+    }, {
+      "time" : "2026-09-30T17:13:48.859972350Z",
+      "xMeters" : -5408141.69351157,
+      "yMeters" : -3176423.147573713,
+      "zMeters" : -2638862.038520179,
+      "vxMetersPerSecond" : 485.0232594220954,
+      "vyMetersPerSecond" : -5159.8242895696,
+      "vzMetersPerSecond" : 5215.03987575783
+    }, {
+      "time" : "2026-09-30T17:14:19.853996258Z",
+      "xMeters" : -5390196.926578939,
+      "yMeters" : -3334429.720153499,
+      "zMeters" : -2475651.280365708,
+      "vxMetersPerSecond" : 672.911880835932,
+      "vyMetersPerSecond" : -5035.25839568398,
+      "vzMetersPerSecond" : 5315.65539814093
+    }, {
+      "time" : "2026-09-30T17:14:50.848020166Z",
+      "xMeters" : -5366431.540756923,
+      "yMeters" : -3488493.548377531,
+      "zMeters" : -2309421.9984004777,
+      "vxMetersPerSecond" : 860.5861773321807,
+      "vyMetersPerSecond" : -4905.429402611133,
+      "vzMetersPerSecond" : 5409.801284777688
+    }, {
+      "time" : "2026-09-30T17:15:21.842044074Z",
+      "xMeters" : -5336855.345731336,
+      "yMeters" : -3638453.8903788095,
+      "zMeters" : -2140376.539391411,
+      "vxMetersPerSecond" : 1047.8416865938095,
+      "vyMetersPerSecond" : -4770.491920700204,
+      "vzMetersPerSecond" : 5497.360984673864
+    }, {
+      "time" : "2026-09-30T17:15:52.836067982Z",
+      "xMeters" : -5301484.494768095,
+      "yMeters" : -3784154.8808589675,
+      "zMeters" : -1968720.7388704375,
+      "vxMetersPerSecond" : 1234.4735657097544,
+      "vyMetersPerSecond" : -4630.605987447254,
+      "vzMetersPerSecond" : 5578.22594151639
+    }, {
+      "time" : "2026-09-30T17:16:23.830091890Z",
+      "xMeters" : -5260341.492835569,
+      "yMeters" : -3925445.6964528626,
+      "zMeters" : -1794663.6709541176,
+      "vxMetersPerSecond" : 1420.2768261400993,
+      "vyMetersPerSecond" : -4485.936880783893,
+      "vzMetersPerSecond" : 5652.295746231406
+    }, {
+      "time" : "2026-09-30T17:16:54.824115798Z",
+      "xMeters" : -5213455.197577659,
+      "yMeters" : -4062180.714959535,
+      "zMeters" : -1618417.393596928,
+      "vxMetersPerSecond" : 1605.0465709956081,
+      "vyMetersPerSecond" : -4336.654925071778,
+      "vzMetersPerSecond" : 5719.4782792904825
+    }, {
+      "time" : "2026-09-30T17:17:25.818139706Z",
+      "xMeters" : -5160860.812556482,
+      "yMeters" : -4194219.6689098105,
+      "zMeters" : -1440196.6896004677,
+      "vxMetersPerSecond" : 1788.5782348233415,
+      "vyMetersPerSecond" : -4182.935289833215,
+      "vzMetersPerSecond" : 5779.689842373323
+    }, {
+      "time" : "2026-09-30T17:17:56.812163614Z",
+      "xMeters" : -5102599.873380022,
+      "yMeters" : -4321427.792328172,
+      "zMeters" : -1260218.8037175492,
+      "vxMetersPerSecond" : 1970.6678246758763,
+      "vyMetersPerSecond" : -4024.9577816924375,
+      "vzMetersPerSecond" : 5832.855279014704
+    }, {
+      "time" : "2026-09-30T17:18:27.806187522Z",
+      "xMeters" : -5038720.226165546,
+      "yMeters" : -4443675.961177082,
+      "zMeters" : -1078703.1761914652,
+      "vxMetersPerSecond" : 2151.11216263374,
+      "vyMetersPerSecond" : -3862.906629621471,
+      "vzMetersPerSecond" : 5878.908083891095
+    }, {
+      "time" : "2026-09-30T17:18:58.800211430Z",
+      "xMeters" : -4969275.998511538,
+      "yMeters" : -4560840.826996173,
+      "zMeters" : -895871.1730976216,
+      "vxMetersPerSecond" : 2329.7091290780218,
+      "vyMetersPerSecond" : -3696.9702638650824,
+      "vzMetersPerSecond" : 5917.790500422941
+    } ]
+  },
+  "oem" : {
+    "classification" : "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+    "sampleMethod" : "CUBIC_HERMITE_FROM_SOURCE_POSITION_VELOCITY",
+    "sourceFrame" : "EME2000",
+    "frame" : "ITRF_2020_IERS_2010",
+    "positionUnit" : "m",
+    "velocityUnit" : "m/s",
+    "availability" : "AVAILABLE",
+    "reason" : "NONE",
+    "source" : {
+      "creationDate" : "2026-09-28T17:13:16.701Z",
+      "startTime" : "2026-09-28T12:00:00Z",
+      "stopTime" : "2026-10-13T12:00:00Z",
+      "retrievedAt" : "2026-09-30T15:45:59.875908Z",
+      "httpLastModified" : "2026-09-28T17:27:12Z",
+      "sha256" : "14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433",
+      "sourceUrl" : "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml"
+    },
+    "samples" : [ {
+      "time" : "2026-09-30T15:45:59.875908Z",
+      "xMeters" : -2738301.5388320964,
+      "yMeters" : -6161322.62450029,
+      "zMeters" : -915766.2365902722,
+      "vxMetersPerSecond" : 3605.509813270229,
+      "vyMetersPerSecond" : -2478.4943511866923,
+      "vzMetersPerSecond" : 5913.572634089612
+    }, {
+      "time" : "2026-09-30T15:46:30.869931908Z",
+      "xMeters" : -2625077.3741877098,
+      "yMeters" : -6234629.093052454,
+      "zMeters" : -731958.370737336,
+      "vxMetersPerSecond" : 3700.0523261125936,
+      "vyMetersPerSecond" : -2251.627889482316,
+      "vzMetersPerSecond" : 5946.066516687874
+    }, {
+      "time" : "2026-09-30T15:47:01.863955816Z",
+      "xMeters" : -2508981.512678166,
+      "yMeters" : -6300881.631039524,
+      "zMeters" : -547256.6979687861,
+      "vxMetersPerSecond" : 3790.819714787465,
+      "vyMetersPerSecond" : -2023.3079592344693,
+      "vzMetersPerSecond" : 5971.249807515904
+    }, {
+      "time" : "2026-09-30T15:47:32.857979724Z",
+      "xMeters" : -2390130.687344685,
+      "yMeters" : -6360034.566951939,
+      "zMeters" : -361887.7690090227,
+      "vxMetersPerSecond" : 3877.8289196608134,
+      "vyMetersPerSecond" : -1793.4938669340204,
+      "vzMetersPerSecond" : 5989.12360357907
+    }, {
+      "time" : "2026-09-30T15:48:03.852003632Z",
+      "xMeters" : -2268641.125067816,
+      "yMeters" : -6412040.9531064825,
+      "zMeters" : -176078.1345128033,
+      "vxMetersPerSecond" : 3961.096391533956,
+      "vyMetersPerSecond" : -1562.1444849501745,
+      "vzMetersPerSecond" : 5999.687904926279
+    }, {
+      "time" : "2026-09-30T15:48:34.846027540Z",
+      "xMeters" : -2144628.5392067553,
+      "yMeters" : -6456852.568578027,
+      "zMeters" : 9945.654866622044,
+      "vxMetersPerSecond" : 4040.6388271043934,
+      "vyMetersPerSecond" : -1329.2187845573276,
+      "vzMetersPerSecond" : 6002.9427116060615
+    }, {
+      "time" : "2026-09-30T15:49:05.840051448Z",
+      "xMeters" : -2018208.1216499386,
+      "yMeters" : -6494419.922401314,
+      "zMeters" : 195957.04847750126,
+      "vxMetersPerSecond" : 4116.473168592776,
+      "vyMetersPerSecond" : -1094.6758368724277,
+      "vzMetersPerSecond" : 5998.888023666576
+    }, {
+      "time" : "2026-09-30T15:49:36.834075356Z",
+      "xMeters" : -1889494.5354358414,
+      "yMeters" : -6524692.256604152,
+      "zMeters" : 381729.4956695655,
+      "vxMetersPerSecond" : 4188.6166032172805,
+      "vyMetersPerSecond" : -858.4748141311718,
+      "vzMetersPerSecond" : 5987.523841155619
+    }, {
+      "time" : "2026-09-30T15:50:07.828099264Z",
+      "xMeters" : -1758602.1776904082,
+      "yMeters" : -6547617.711959714,
+      "zMeters" : 567036.1866900709,
+      "vxMetersPerSecond" : 4257.0103089958475,
+      "vyMetersPerSecond" : -620.6422557220629,
+      "vzMetersPerSecond" : 5968.785973846197
+    }, {
+      "time" : "2026-09-30T15:50:38.822123172Z",
+      "xMeters" : -1625655.948514007,
+      "yMeters" : -6563166.116361758,
+      "zMeters" : 751646.5063671289,
+      "vxMetersPerSecond" : 4321.09779525482,
+      "vyMetersPerSecond" : -382.7834106763818,
+      "vzMetersPerSecond" : 5942.666946190726
+    }, {
+      "time" : "2026-09-30T15:51:09.816147079Z",
+      "xMeters" : -1490790.521468874,
+      "yMeters" : -6571352.248116592,
+      "zMeters" : 935336.9440687143,
+      "vxMetersPerSecond" : 4380.852766502816,
+      "vyMetersPerSecond" : -145.55756436536035,
+      "vzMetersPerSecond" : 5909.427306962659
+    }, {
+      "time" : "2026-09-30T15:51:40.810170987Z",
+      "xMeters" : -1354140.2361627268,
+      "yMeters" : -6572195.003325235,
+      "zMeters" : 1117886.8034024409,
+      "vxMetersPerSecond" : 4436.271555868475,
+      "vyMetersPerSecond" : 91.08194524652514,
+      "vzMetersPerSecond" : 5869.0670562334435
+    }, {
+      "time" : "2026-09-30T15:52:11.804194895Z",
+      "xMeters" : -1215839.5415612468,
+      "yMeters" : -6565711.83158336,
+      "zMeters" : 1299075.3879603923,
+      "vxMetersPerSecond" : 4487.350774443552,
+      "vyMetersPerSecond" : 327.181796757196,
+      "vzMetersPerSecond" : 5821.586194077399
+    }, {
+      "time" : "2026-09-30T15:52:42.798218803Z",
+      "xMeters" : -1076022.987353013,
+      "yMeters" : -6551918.735488864,
+      "zMeters" : 1478682.001342869,
+      "vxMetersPerSecond" : 4534.087311355685,
+      "vyMetersPerSecond" : 562.788684069389,
+      "vzMetersPerSecond" : 5766.984720567663
+    }, {
+      "time" : "2026-09-30T15:53:13.792242711Z",
+      "xMeters" : -934825.2153353915,
+      "yMeters" : -6530830.270187335,
+      "zMeters" : 1656485.9471524307,
+      "vxMetersPerSecond" : 4576.478333826011,
+      "vyMetersPerSecond" : 797.949315093673,
+      "vzMetersPerSecond" : 5705.262635777169
+    }, {
+      "time" : "2026-09-30T15:53:44.786266619Z",
+      "xMeters" : -792380.9507380808,
+      "yMeters" : -6502459.542964743,
+      "zMeters" : 1832266.528993893,
+      "vxMetersPerSecond" : 4614.521287214606,
+      "vyMetersPerSecond" : 1032.7104104989148,
+      "vzMetersPerSecond" : 5636.419939778599
+    }, {
+      "time" : "2026-09-30T15:54:15.780290527Z",
+      "xMeters" : -648826.134162683,
+      "yMeters" : -6466820.067676824,
+      "zMeters" : 2005802.4843795765,
+      "vxMetersPerSecond" : 4648.057566837964,
+      "vyMetersPerSecond" : 1266.779958641101,
+      "vzMetersPerSecond" : 5560.415757627837
+    }, {
+      "time" : "2026-09-30T15:54:46.774314435Z",
+      "xMeters" : -504305.50733635575,
+      "yMeters" : -6423961.007327197,
+      "zMeters" : 2176878.2483192096,
+      "vxMetersPerSecond" : 4676.877818763222,
+      "vyMetersPerSecond" : 1498.4071674441304,
+      "vzMetersPerSecond" : 5477.7907472239895
+    }, {
+      "time" : "2026-09-30T15:55:17.768338343Z",
+      "xMeters" : -358963.6947819814,
+      "yMeters" : -6373964.167321136,
+      "zMeters" : 2345293.85616221,
+      "vxMetersPerSecond" : 4701.043629295189,
+      "vyMetersPerSecond" : 1727.378889420259,
+      "vzMetersPerSecond" : 5388.759692257357
+    }, {
+      "time" : "2026-09-30T15:55:48.762362251Z",
+      "xMeters" : -212945.31537192687,
+      "yMeters" : -6316911.086309144,
+      "zMeters" : 2510850.758811653,
+      "vxMetersPerSecond" : 4720.5318812546975,
+      "vyMetersPerSecond" : 1953.7445473860844,
+      "vzMetersPerSecond" : 5293.322592821454
+    }, {
+      "time" : "2026-09-30T15:56:19.756386159Z",
+      "xMeters" : -66395.69992739148,
+      "yMeters" : -6252881.769130965,
+      "zMeters" : 2673350.40717351,
+      "vxMetersPerSecond" : 4735.31975085421,
+      "vyMetersPerSecond" : 2177.5536929131727,
+      "vzMetersPerSecond" : 5191.479449009741
+    }, {
+      "time" : "2026-09-30T15:56:50.750410067Z",
+      "xMeters" : 80539.11788320448,
+      "yMeters" : -6181954.682845971,
+      "zMeters" : 2832594.2521566465,
+      "vxMetersPerSecond" : 4745.384708275069,
+      "vyMetersPerSecond" : 2398.8560049687567,
+      "vzMetersPerSecond" : 5083.230260915608
+    }, {
+      "time" : "2026-09-30T15:57:21.744433975Z",
+      "xMeters" : 227712.41066490952,
+      "yMeters" : -6104206.752805766,
+      "zMeters" : 2988383.7446728144,
+      "vxMetersPerSecond" : 4750.7045182389265,
+      "vyMetersPerSecond" : 2617.701288555108,
+      "vzMetersPerSecond" : 4968.575028632359
+    }, {
+      "time" : "2026-09-30T15:57:52.738457883Z",
+      "xMeters" : 374976.7664338369,
+      "yMeters" : -6019713.358768976,
+      "zMeters" : 3140520.3356366754,
+      "vxMetersPerSecond" : 4751.257240573924,
+      "vyMetersPerSecond" : 2834.139473346109,
+      "vzMetersPerSecond" : 4847.513752253275
+    }, {
+      "time" : "2026-09-30T15:58:23.732481791Z",
+      "xMeters" : 522182.2711157203,
+      "yMeters" : -5928554.70517227,
+      "zMeters" : 3288806.213709104,
+      "vxMetersPerSecond" : 4746.881508840085,
+      "vyMetersPerSecond" : 3047.46736153804,
+      "vzMetersPerSecond" : 4720.224086189648
+    }, {
+      "time" : "2026-09-30T15:58:54.726505699Z",
+      "xMeters" : 669178.2000464136,
+      "yMeters" : -5830853.460128836,
+      "zMeters" : 3433063.572404667,
+      "vxMetersPerSecond" : 4737.773236914856,
+      "vyMetersPerSecond" : 3256.305103339007,
+      "vzMetersPerSecond" : 4587.626078084766
+    }, {
+      "time" : "2026-09-30T15:59:25.720529607Z",
+      "xMeters" : 815818.8903035577,
+      "yMeters" : -5726748.886010993,
+      "zMeters" : 3573130.2248378787,
+      "vxMetersPerSecond" : 4723.951644310633,
+      "vyMetersPerSecond" : 3460.6732151449714,
+      "vzMetersPerSecond" : 4449.803809377828
+    }, {
+      "time" : "2026-09-30T15:59:56.714553515Z",
+      "xMeters" : 961957.6245342717,
+      "yMeters" : -5616378.751522678,
+      "zMeters" : 3708844.2501523565,
+      "vxMetersPerSecond" : 4705.375966571538,
+      "vyMetersPerSecond" : 3660.620979102346,
+      "vzMetersPerSecond" : 4306.757280176416
+    }, {
+      "time" : "2026-09-30T16:00:27.708577422Z",
+      "xMeters" : 1107446.4265887327,
+      "yMeters" : -5499879.29431678,
+      "zMeters" : 3840043.727490906,
+      "vxMetersPerSecond" : 4682.00573057057,
+      "vyMetersPerSecond" : 3856.197908372086,
+      "vzMetersPerSecond" : 4158.486490593132
+    }, {
+      "time" : "2026-09-30T16:00:58.702601330Z",
+      "xMeters" : 1252136.07038657,
+      "yMeters" : -5377385.213868646,
+      "zMeters" : 3966566.736012286,
+      "vxMetersPerSecond" : 4653.80075566503,
+      "vyMetersPerSecond" : 4047.453745643709,
+      "vzMetersPerSecond" : 4004.9914407261876
+    }, {
+      "time" : "2026-09-30T16:01:29.696625238Z",
+      "xMeters" : 1395876.0890192385,
+      "yMeters" : -5249029.66439917,
+      "zMeters" : 4088251.354865822,
+      "vxMetersPerSecond" : 4620.721154712093,
+      "vyMetersPerSecond" : 4234.4384617864835,
+      "vzMetersPerSecond" : 3846.2721306881585
+    }, {
+      "time" : "2026-09-30T16:02:00.690649146Z",
+      "xMeters" : 1538514.7821973134,
+      "yMeters" : -5114944.2495230995,
+      "zMeters" : 4204935.662025401,
+      "vxMetersPerSecond" : 4582.722507567354,
+      "vyMetersPerSecond" : 4417.197133708957,
+      "vzMetersPerSecond" : 3682.3252632577223
+    }, {
+      "time" : "2026-09-30T16:02:31.684673054Z",
+      "xMeters" : 1679898.7239522343,
+      "yMeters" : -4975272.760756735,
+      "zMeters" : 4316463.647299203,
+      "vxMetersPerSecond" : 4539.844927938359,
+      "vyMetersPerSecond" : 4594.599809992948,
+      "vzMetersPerSecond" : 3513.8045259282944
+    }, {
+      "time" : "2026-09-30T16:03:02.678696962Z",
+      "xMeters" : 1819884.9977016263,
+      "yMeters" : -4830195.995790309,
+      "zMeters" : 4422711.641541014,
+      "vxMetersPerSecond" : 4492.523680961022,
+      "vyMetersPerSecond" : 4765.99949188245,
+      "vzMetersPerSecond" : 3341.614999413457
+    }, {
+      "time" : "2026-09-30T16:03:33.672720870Z",
+      "xMeters" : 1958335.0119541432,
+      "yMeters" : -4679899.30122471,
+      "zMeters" : 4523565.9342128355,
+      "vxMetersPerSecond" : 4440.703035746249,
+      "vyMetersPerSecond" : 4931.44207035187,
+      "vzMetersPerSecond" : 3165.7566838278376
+    }, {
+      "time" : "2026-09-30T16:04:04.666744778Z",
+      "xMeters" : 2095108.4520829613,
+      "yMeters" : -4524566.596389244,
+      "zMeters" : 4618912.814780234,
+      "vxMetersPerSecond" : 4384.32753192197,
+      "vyMetersPerSecond" : 5090.973753997135,
+      "vzMetersPerSecond" : 2986.229579286323
+    }, {
+      "time" : "2026-09-30T16:04:35.660768686Z",
+      "xMeters" : 2230063.288769166,
+      "yMeters" : -4364380.36349779,
+      "zMeters" : 4708638.572712323,
+      "vxMetersPerSecond" : 4323.34198103033,
+      "vyMetersPerSecond" : 5244.641067822715,
+      "vzMetersPerSecond" : 2803.033685904032
+    }, {
+      "time" : "2026-09-30T16:05:06.654792594Z",
+      "xMeters" : 2363055.7863014303,
+      "yMeters" : -4199521.637938343,
+      "zMeters" : 4792629.497481796,
+      "vxMetersPerSecond" : 4257.691468143548,
+      "vyMetersPerSecond" : 5392.490851837213,
+      "vzMetersPerSecond" : 2616.169003796339
+    }, {
+      "time" : "2026-09-30T16:05:37.648816502Z",
+      "xMeters" : 2493940.511302455,
+      "yMeters" : -4030169.998413581,
+      "zMeters" : 4870771.878564936,
+      "vxMetersPerSecond" : 4187.321353027099,
+      "vyMetersPerSecond" : 5534.570260018567,
+      "vzMetersPerSecond" : 2425.635533078838
+    }, {
+      "time" : "2026-09-30T16:06:08.642840410Z",
+      "xMeters" : 2622570.2079459634,
+      "yMeters" : -3856504.0334017174,
+      "zMeters" : 4942952.084321797,
+      "vxMetersPerSecond" : 4112.158687625906,
+      "vyMetersPerSecond" : 5670.798010801189,
+      "vzMetersPerSecond" : 2231.4750585313022
+    }, {
+      "time" : "2026-09-30T16:06:39.636864318Z",
+      "xMeters" : 2748801.617688416,
+      "yMeters" : -3678721.0922805266,
+      "zMeters" : 5009073.166100607,
+      "vxMetersPerSecond" : 4032.7202486004835,
+      "vyMetersPerSecond" : 5800.099040043761,
+      "vzMetersPerSecond" : 2034.9148554663905
+    }, {
+      "time" : "2026-09-30T16:07:10.630888226Z",
+      "xMeters" : 2872509.8251793254,
+      "yMeters" : -3497040.2608025726,
+      "zMeters" : 5069073.3387278095,
+      "vxMetersPerSecond" : 3949.3289443195613,
+      "vyMetersPerSecond" : 5922.329926077118,
+      "vzMetersPerSecond" : 1836.5015520868799
+    }, {
+      "time" : "2026-09-30T16:07:41.624912134Z",
+      "xMeters" : 2993571.283038634,
+      "yMeters" : -3311680.052718079,
+      "zMeters" : 5122895.1671696715,
+      "vxMetersPerSecond" : 3861.9182086115948,
+      "vyMetersPerSecond" : 6037.530639411257,
+      "vzMetersPerSecond" : 1636.2351485072656
+    }, {
+      "time" : "2026-09-30T16:08:12.618936042Z",
+      "xMeters" : 3111860.3843593523,
+      "yMeters" : -3122857.7370205177,
+      "zMeters" : 5170481.216396025,
+      "vxMetersPerSecond" : 3770.4217096056286,
+      "vyMetersPerSecond" : 6145.741531724444,
+      "vzMetersPerSecond" : 1434.1156448424094
+    }, {
+      "time" : "2026-09-30T16:08:43.612959950Z",
+      "xMeters" : 3227249.4699962656,
+      "yMeters" : -2930789.3261494376,
+      "zMeters" : 5211774.051380268,
+      "vxMetersPerSecond" : 3674.7733514655174,
+      "vyMetersPerSecond" : 6247.003334783686,
+      "vzMetersPerSecond" : 1230.1430412075545
+    }, {
+      "time" : "2026-09-30T16:09:14.606983858Z",
+      "xMeters" : 3339608.835908564,
+      "yMeters" : -2735689.5642266297,
+      "zMeters" : 5246716.237099367,
+      "vxMetersPerSecond" : 3574.9072761193265,
+      "vyMetersPerSecond" : 6341.35715935855,
+      "vzMetersPerSecond" : 1024.3173377183211
+    }, {
+      "time" : "2026-09-30T16:09:45.601007765Z",
+      "xMeters" : 3448806.7405516007,
+      "yMeters" : -2537771.9153336617,
+      "zMeters" : 5275250.338533074,
+      "vxMetersPerSecond" : 3470.7578649900797,
+      "vyMetersPerSecond" : 6428.844494124222,
+      "vzMetersPerSecond" : 816.6385344974144
+    }, {
+      "time" : "2026-09-30T16:10:16.595031673Z",
+      "xMeters" : 3554709.696944039,
+      "yMeters" : -2337250.617634868,
+      "zMeters" : 5297320.313224212,
+      "vxMetersPerSecond" : 3362.354992597851,
+      "vyMetersPerSecond" : 6509.214984863637,
+      "vzMetersPerSecond" : 607.3676047445545
+    }, {
+      "time" : "2026-09-30T16:10:47.589055581Z",
+      "xMeters" : 3657198.908629061,
+      "yMeters" : -2134358.388528305,
+      "zMeters" : 5312899.741007148,
+      "vxMetersPerSecond" : 3250.597655065688,
+      "vyMetersPerSecond" : 6581.850969508191,
+      "vzMetersPerSecond" : 397.96662627048744
+    }, {
+      "time" : "2026-09-30T16:11:18.583079489Z",
+      "xMeters" : 3756174.700752614,
+      "yMeters" : -1929333.6571851382,
+      "zMeters" : 5321990.482874053,
+      "vxMetersPerSecond" : 3135.6268863877003,
+      "vyMetersPerSecond" : 6646.827520329471,
+      "vzMetersPerSecond" : 188.66199012380787
+    }, {
+      "time" : "2026-09-30T16:11:49.577103397Z",
+      "xMeters" : 3851536.3454035465,
+      "yMeters" : -1722413.3328755954,
+      "zMeters" : 5324595.5248629255,
+      "vxMetersPerSecond" : 3017.3697513048996,
+      "vyMetersPerSecond" : 6704.176158805048,
+      "vzMetersPerSecond" : -20.54630358853799
+    }, {
+      "time" : "2026-09-30T16:12:20.571127305Z",
+      "xMeters" : 3943180.85694826,
+      "yMeters" : -1513833.341393888,
+      "zMeters" : 5320717.853015119,
+      "vxMetersPerSecond" : 2895.7534977937303,
+      "vyMetersPerSecond" : 6753.928825611143,
+      "vzMetersPerSecond" : -229.65825475915938
+    }, {
+      "time" : "2026-09-30T16:12:51.565151213Z",
+      "xMeters" : 4031002.9977393886,
+      "yMeters" : -1303828.6120788874,
+      "zMeters" : 5310360.453375293,
+      "vxMetersPerSecond" : 2770.705558977419,
+      "vyMetersPerSecond" : 6796.117879781244,
+      "vzMetersPerSecond" : -438.6738632801547
+    }, {
+      "time" : "2026-09-30T16:13:22.559175121Z",
+      "xMeters" : 4114895.2838839693,
+      "yMeters" : -1092633.0648603789,
+      "zMeters" : 5293526.311991497,
+      "vxMetersPerSecond" : 2642.1535550328863,
+      "vyMetersPerSecond" : 6830.776097857526,
+      "vzMetersPerSecond" : -647.5931290431643
+    }, {
+      "time" : "2026-09-30T16:13:53.553199029Z",
+      "xMeters" : 4194747.99107126,
+      "yMeters" : -880479.5973311556,
+      "zMeters" : 5270218.414914608,
+      "vxMetersPerSecond" : 2510.025295094694,
+      "vyMetersPerSecond" : 6857.93667303438,
+      "vzMetersPerSecond" : -856.4160519409189
+    }, {
+      "time" : "2026-09-30T16:14:24.547222937Z",
+      "xMeters" : 4270451.971198702,
+      "yMeters" : -667604.0310546174,
+      "zMeters" : 5240445.107825056,
+      "vxMetersPerSecond" : 2374.638664878181,
+      "vyMetersPerSecond" : 6877.276853028134,
+      "vzMetersPerSecond" : -1064.5025765981215
+    }, {
+      "time" : "2026-09-30T16:14:55.541246845Z",
+      "xMeters" : 4341924.509218869,
+      "yMeters" : -454250.98991244053,
+      "zMeters" : 5204253.006916801,
+      "vxMetersPerSecond" : 2237.0119669732107,
+      "vyMetersPerSecond" : 6888.798091407889,
+      "vzMetersPerSecond" : -1270.5816067187175
+    }, {
+      "time" : "2026-09-30T16:15:26.535270753Z",
+      "xMeters" : 4409096.658615658,
+      "yMeters" : -240660.83084682003,
+      "zMeters" : 5161705.328152837,
+      "vxMetersPerSecond" : 2097.128320773749,
+      "vyMetersPerSecond" : 6892.581190152811,
+      "vzMetersPerSecond" : -1474.6189185918547
+    }, {
+      "time" : "2026-09-30T16:15:57.529294661Z",
+      "xMeters" : 4471897.3130884105,
+      "yMeters" : -27073.06624342967,
+      "zMeters" : 5112865.352598746,
+      "vxMetersPerSecond" : 1954.913254807845,
+      "vyMetersPerSecond" : 6888.647106267706,
+      "vzMetersPerSecond" : -1676.614512125268
+    }, {
+      "time" : "2026-09-30T16:16:28.523318569Z",
+      "xMeters" : 4530253.060018163,
+      "yMeters" : 186273.4475950487,
+      "zMeters" : 5057796.361322972,
+      "vxMetersPerSecond" : 1810.2924176795257,
+      "vyMetersPerSecond" : 6877.017226207043,
+      "vzMetersPerSecond" : -1876.5683872261284
+    }, {
+      "time" : "2026-09-30T16:16:59.517342477Z",
+      "xMeters" : 4584088.184221074,
+      "yMeters" : 399140.52398399403,
+      "zMeters" : 4996561.63539685,
+      "vxMetersPerSecond" : 1663.191579670832,
+      "vyMetersPerSecond" : 6857.713365433945,
+      "vzMetersPerSecond" : -2074.4805438010762
+    }, {
+      "time" : "2026-09-30T16:17:30.511366385Z",
+      "xMeters" : 4633324.671749172,
+      "yMeters" : 611290.6589887347,
+      "zMeters" : 4929224.455894601,
+      "vxMetersPerSecond" : 1513.5366349415788,
+      "vyMetersPerSecond" : 6830.75776779383,
+      "vzMetersPerSecond" : -2270.350981756172
+    }, {
+      "time" : "2026-09-30T16:18:01.505390293Z",
+      "xMeters" : 4677882.212325788,
+      "yMeters" : 822487.032952107,
+      "zMeters" : 4855848.108802743,
+      "vxMetersPerSecond" : 1361.2523730627363,
+      "vyMetersPerSecond" : 6796.15756477659,
+      "vzMetersPerSecond" : -2464.172467691581
+    }, {
+      "time" : "2026-09-30T16:18:32.499414201Z",
+      "xMeters" : 4717687.304505498,
+      "yMeters" : 1032489.6754319347,
+      "zMeters" : 4776508.418493057,
+      "vxMetersPerSecond" : 1207.1433786264292,
+      "vyMetersPerSecond" : 6753.792403240217,
+      "vzMetersPerSecond" : -2654.8625349756157
+    }, {
+      "time" : "2026-09-30T16:19:03.493438108Z",
+      "xMeters" : 4752699.775746518,
+      "yMeters" : 1241065.858545829,
+      "zMeters" : 4691318.137812203,
+      "vxMetersPerSecond" : 1051.9795386386793,
+      "vyMetersPerSecond" : 6704.111547502539,
+      "vzMetersPerSecond" : -2841.702690283891
+    }, {
+      "time" : "2026-09-30T16:19:34.487462016Z",
+      "xMeters" : 4782885.829101312,
+      "yMeters" : 1447988.968410364,
+      "zMeters" : 4600396.591019392,
+      "vxMetersPerSecond" : 895.6896828563944,
+      "vyMetersPerSecond" : 6647.123384196712,
+      "vzMetersPerSecond" : -3024.6929335577934
+    }, {
+      "time" : "2026-09-30T16:20:05.481485924Z",
+      "xMeters" : 4808209.462468972,
+      "yMeters" : 1653032.6574404747,
+      "zMeters" : 4503863.102384192,
+      "vxMetersPerSecond" : 738.2026866578536,
+      "vyMetersPerSecond" : 6582.836711843046,
+      "vzMetersPerSecond" : -3203.8332647199604
+    }, {
+      "time" : "2026-09-30T16:20:36.475509832Z",
+      "xMeters" : 4828632.470042669,
+      "yMeters" : 1855970.8571392163,
+      "zMeters" : 4401836.996175739,
+      "vxMetersPerSecond" : 579.4474729067763,
+      "vyMetersPerSecond" : 6511.260740639556,
+      "vzMetersPerSecond" : -3379.1236836985477
+    }, {
+      "time" : "2026-09-30T16:21:07.469533740Z",
+      "xMeters" : 4844114.443791272,
+      "yMeters" : 2056577.7908906336,
+      "zMeters" : 4294437.596665403,
+      "vxMetersPerSecond" : 419.35301378312806,
+      "vyMetersPerSecond" : 6432.405092256501,
+      "vzMetersPerSecond" : -3550.564190421117
+    }, {
+      "time" : "2026-09-30T16:21:38.463557648Z",
+      "xMeters" : 4854612.775088904,
+      "yMeters" : 2254627.9865400945,
+      "zMeters" : 4181784.2281268127,
+      "vxMetersPerSecond" : 257.8483328914872,
+      "vyMetersPerSecond" : 6346.279799601898,
+      "vzMetersPerSecond" : -3718.154784814639
+    }, {
+      "time" : "2026-09-30T16:22:09.457581556Z",
+      "xMeters" : 4860082.9136132635,
+      "yMeters" : 2449895.972738327,
+      "zMeters" : 4063996.6896582283,
+      "vxMetersPerSecond" : 94.944879820701,
+      "vyMetersPerSecond" : 6252.8418057043045,
+      "vzMetersPerSecond" : -3881.771201650798
+    }, {
+      "time" : "2026-09-30T16:22:40.451605464Z",
+      "xMeters" : 4860497.652559324,
+      "yMeters" : 2642159.678843586,
+      "zMeters" : 3941215.093054714,
+      "vxMetersPerSecond" : -68.14597213185377,
+      "vyMetersPerSecond" : 6152.595617280144,
+      "vzMetersPerSecond" : -4040.251644393132
+    }, {
+      "time" : "2026-09-30T16:23:11.445629372Z",
+      "xMeters" : 4855860.608044883,
+      "yMeters" : 2831217.3630098007,
+      "zMeters" : 3813605.0329576163,
+      "vxMetersPerSecond" : -231.04998225579715,
+      "vyMetersPerSecond" : 6045.9609881192155,
+      "vzMetersPerSecond" : -4193.345039658774
+    }, {
+      "time" : "2026-09-30T16:23:42.439653280Z",
+      "xMeters" : 4846176.593975349,
+      "yMeters" : 3016870.948255372,
+      "zMeters" : 3681333.475645907,
+      "vxMetersPerSecond" : -393.83020521661695,
+      "vyMetersPerSecond" : 5932.933236659109,
+      "vzMetersPerSecond" : -4341.051387403296
+    }, {
+      "time" : "2026-09-30T16:24:13.433677188Z",
+      "xMeters" : 4831448.469441402,
+      "yMeters" : 3198922.2181783016,
+      "zMeters" : 3544567.3873999408,
+      "vxMetersPerSecond" : -556.5497274743891,
+      "vyMetersPerSecond" : 5813.508047908354,
+      "vzMetersPerSecond" : -4483.370687581675
+    }, {
+      "time" : "2026-09-30T16:24:44.427701096Z",
+      "xMeters" : 4811677.137759555,
+      "yMeters" : 3377172.828320276,
+      "zMeters" : 3403473.7345014894,
+      "vxMetersPerSecond" : -719.2716656032504,
+      "vyMetersPerSecond" : 5687.681473601248,
+      "vzMetersPerSecond" : -4620.302940148303
+    }, {
+      "time" : "2026-09-30T16:25:15.421725004Z",
+      "xMeters" : 4786861.545564657,
+      "yMeters" : 3551424.3175355545,
+      "zMeters" : 3258219.4832337406,
+      "vxMetersPerSecond" : -882.0591646103467,
+      "vyMetersPerSecond" : 5555.449932345959,
+      "vzMetersPerSecond" : -4751.848145056979
+    }, {
+      "time" : "2026-09-30T16:25:46.415748912Z",
+      "xMeters" : 4756998.6819547955,
+      "yMeters" : 3721478.1193639324,
+      "zMeters" : 3108971.599881328,
+      "vxMetersPerSecond" : -1044.9753962536738,
+      "vyMetersPerSecond" : 5416.810209765889,
+      "vzMetersPerSecond" : -4878.006302260927
+    }, {
+      "time" : "2026-09-30T16:26:17.409772820Z",
+      "xMeters" : 4722085.486774253,
+      "yMeters" : 3887135.522377168,
+      "zMeters" : 2955899.219772466,
+      "vxMetersPerSecond" : -1207.7710318909062,
+      "vyMetersPerSecond" : 5271.827172512374,
+      "vzMetersPerSecond" : -4998.467734859706
+    }, {
+      "time" : "2026-09-30T16:26:48.403796728Z",
+      "xMeters" : 4682146.43330263,
+      "yMeters" : 4048215.1191705214,
+      "zMeters" : 2799194.063478869,
+      "vxMetersPerSecond" : -1369.189639901297,
+      "vyMetersPerSecond" : 5121.570634437482,
+      "vzMetersPerSecond" : -5112.402110743015
+    }, {
+      "time" : "2026-09-30T16:27:19.397820636Z",
+      "xMeters" : 4637227.283952983,
+      "yMeters" : 4204559.648189835,
+      "zMeters" : 2639058.9349250994,
+      "vxMetersPerSecond" : -1529.137943184291,
+      "vyMetersPerSecond" : 4966.277022385866,
+      "vzMetersPerSecond" : -5219.798935290573
+    }, {
+      "time" : "2026-09-30T16:27:50.391844544Z",
+      "xMeters" : 4587372.823041137,
+      "yMeters" : 4356012.712231655,
+      "zMeters" : 2475696.4591338006,
+      "vxMetersPerSecond" : -1687.6666995744254,
+      "vyMetersPerSecond" : 4805.928443472803,
+      "vzMetersPerSecond" : -5320.658208487795
+    }, {
+      "time" : "2026-09-30T16:28:21.385868451Z",
+      "xMeters" : 4532626.260028315,
+      "yMeters" : 4502417.364075759,
+      "zMeters" : 2309309.261133481,
+      "vxMetersPerSecond" : -1844.8267764389363,
+      "vyMetersPerSecond" : 4640.5073017893865,
+      "vzMetersPerSecond" : -5414.979930316609
+    }, {
+      "time" : "2026-09-30T16:28:52.379892359Z",
+      "xMeters" : 4473029.226105019,
+      "yMeters" : 4643616.115756672,
+      "zMeters" : 2140099.9659369835,
+      "vxMetersPerSecond" : -2000.6691493776395,
+      "vyMetersPerSecond" : 4469.996298884392,
+      "vzMetersPerSecond" : -5502.764100767414
+    }, {
+      "time" : "2026-09-30T16:29:23.373916267Z",
+      "xMeters" : 4408621.77086929,
+      "yMeters" : 4779450.94776257,
+      "zMeters" : 1968271.1985737083,
+      "vxMetersPerSecond" : -2155.2449008239255,
+      "vyMetersPerSecond" : 4294.378434304804,
+      "vzMetersPerSecond" : -5584.01071982083
+    }, {
+      "time" : "2026-09-30T16:29:54.367940175Z",
+      "xMeters" : 4339442.359029207,
+      "yMeters" : 4909763.318297988,
+      "zMeters" : 1794025.5840682448,
+      "vxMetersPerSecond" : -2308.605218695191,
+      "vyMetersPerSecond" : 4113.637006077466,
+      "vzMetersPerSecond" : -5658.719787460059
+    }, {
+      "time" : "2026-09-30T16:30:25.361964083Z",
+      "xMeters" : 4265533.743249323,
+      "yMeters" : 5034397.194206374,
+      "zMeters" : 1617570.436219916,
+      "vxMetersPerSecond" : -2460.1565388937756,
+      "vyMetersPerSecond" : 3928.1988617152647,
+      "vzMetersPerSecond" : -5726.447099070692
+    }, {
+      "time" : "2026-09-30T16:30:56.355987991Z",
+      "xMeters" : 4186970.4376113876,
+      "yMeters" : 5153230.176079775,
+      "zMeters" : 1439128.8593698442,
+      "vxMetersPerSecond" : -2608.966405916853,
+      "vyMetersPerSecond" : 3739.36656769866,
+      "vzMetersPerSecond" : -5786.931656028828
+    }, {
+      "time" : "2026-09-30T16:31:27.350011899Z",
+      "xMeters" : 4103837.0145567227,
+      "yMeters" : 5266158.555740858,
+      "zMeters" : 1258924.2744900677,
+      "vxMetersPerSecond" : -2755.0655135262036,
+      "vyMetersPerSecond" : 3547.1782542131873,
+      "vzMetersPerSecond" : -5840.211483707455
+    }, {
+      "time" : "2026-09-30T16:31:58.344035807Z",
+      "xMeters" : 4016216.947537765,
+      "yMeters" : 5373077.845515434,
+      "zMeters" : 1077179.9851318893,
+      "vxMetersPerSecond" : -2898.48898866391,
+      "vyMetersPerSecond" : 3351.6035547191354,
+      "vzMetersPerSecond" : -5886.286582123417
+    }, {
+      "time" : "2026-09-30T16:32:29.338059715Z",
+      "xMeters" : 3924192.618402182,
+      "yMeters" : 5473882.619800883,
+      "zMeters" : 894119.2948461049,
+      "vxMetersPerSecond" : -3039.2721408592774,
+      "vyMetersPerSecond" : 3152.6123104749745,
+      "vzMetersPerSecond" : -5925.156951293107
+    }, {
+      "time" : "2026-09-30T16:33:00.332083623Z",
+      "xMeters" : 3827845.311939832,
+      "yMeters" : 5568466.521382732,
+      "zMeters" : 709965.5071830094,
+      "vxMetersPerSecond" : -3177.450461155547,
+      "vyMetersPerSecond" : 2950.1745714918497,
+      "vzMetersPerSecond" : -5956.822591232423
+    }, {
+      "time" : "2026-09-30T16:33:31.326107531Z",
+      "xMeters" : 3727255.2099850522,
+      "yMeters" : 5656722.268123464,
+      "zMeters" : 524941.9256924125,
+      "vxMetersPerSecond" : -3313.059621315654,
+      "vyMetersPerSecond" : 2744.26059722381,
+      "vzMetersPerSecond" : -5981.283501956792
+    }, {
+      "time" : "2026-09-30T16:34:02.320131439Z",
+      "xMeters" : 3622501.404880412,
+      "yMeters" : 5738541.652440524,
+      "zMeters" : 339271.8788538377,
+      "vxMetersPerSecond" : -3446.1179491369408,
+      "vyMetersPerSecond" : 2534.836923967653,
+      "vzMetersPerSecond" : -5998.518073339379
+    }, {
+      "time" : "2026-09-30T16:34:33.314155347Z",
+      "xMeters" : 3513673.814032238,
+      "yMeters" : 5813826.956844031,
+      "zMeters" : 153184.50106004794,
+      "vxMetersPerSecond" : -3575.72964031433,
+      "vyMetersPerSecond" : 2322.9811236061087,
+      "vzMetersPerSecond" : -6008.211889116535
+    }, {
+      "time" : "2026-09-30T16:35:04.308179255Z",
+      "xMeters" : 3400888.556197199,
+      "yMeters" : 5882523.943777097,
+      "zMeters" : -33089.68704408329,
+      "vxMetersPerSecond" : -3701.5033602434823,
+      "vyMetersPerSecond" : 2109.695330896735,
+      "vzMetersPerSecond" : -6010.572675230762
+    }, {
+      "time" : "2026-09-30T16:35:35.302203163Z",
+      "xMeters" : 3284264.321576465,
+      "yMeters" : 5944587.651261432,
+      "zMeters" : -219323.40536257,
+      "vxMetersPerSecond" : -3823.456183666377,
+      "vyMetersPerSecond" : 1894.93821576449,
+      "vzMetersPerSecond" : -6005.600431730101
+    }, {
+      "time" : "2026-09-30T16:36:06.296227071Z",
+      "xMeters" : 3163919.267342193,
+      "yMeters" : 5999971.837951105,
+      "zMeters" : -405289.3738009072,
+      "vxMetersPerSecond" : -3941.6054314110534,
+      "vyMetersPerSecond" : 1678.6685527426644,
+      "vzMetersPerSecond" : -5993.295158662189
+    }, {
+      "time" : "2026-09-30T16:36:37.290250979Z",
+      "xMeters" : 3039971.0100163165,
+      "yMeters" : 6048628.986393397,
+      "zMeters" : -590760.3122660599,
+      "vxMetersPerSecond" : -4055.968669900122,
+      "vyMetersPerSecond" : 1460.8452221124787,
+      "vzMetersPerSecond" : -5973.656856074309
+    }, {
+      "time" : "2026-09-30T16:37:08.284274887Z",
+      "xMeters" : 2912536.6178675694,
+      "yMeters" : 6090510.306323263,
+      "zMeters" : -775508.9406664508,
+      "vxMetersPerSecond" : -4166.563710653669,
+      "vyMetersPerSecond" : 1241.4272110426402,
+      "vzMetersPerSecond" : -5946.685524013349
+    }, {
+      "time" : "2026-09-30T16:37:39.278298794Z",
+      "xMeters" : 2781732.6032734774,
+      "yMeters" : 6125565.738017171,
+      "zMeters" : -959307.978906037,
+      "vxMetersPerSecond" : -4273.408609793649,
+      "vyMetersPerSecond" : 1020.3736146958383,
+      "vzMetersPerSecond" : -5912.381162527049
+    }, {
+      "time" : "2026-09-30T16:38:10.272322702Z",
+      "xMeters" : 2647675.4908097973,
+      "yMeters" : 6153744.311970813,
+      "zMeters" : -1141929.7533843839,
+      "vxMetersPerSecond" : -4376.391333710408,
+      "vyMetersPerSecond" : 797.7550661471295,
+      "vzMetersPerSecond" : -5870.674815402462
+    }, {
+      "time" : "2026-09-30T16:38:41.266346610Z",
+      "xMeters" : 2510497.4156596083,
+      "yMeters" : 6175019.127988891,
+      "zMeters" : -1323145.6462451597,
+      "vxMetersPerSecond" : -4474.727354466512,
+      "vyMetersPerSecond" : 575.1704853720561,
+      "vzMetersPerSecond" : -5821.774949188877
+    }, {
+      "time" : "2026-09-30T16:39:12.260370518Z",
+      "xMeters" : 2370344.6185992295,
+      "yMeters" : 6189403.461841637,
+      "zMeters" : -1502738.7811681277,
+      "vxMetersPerSecond" : -4568.345580296054,
+      "vyMetersPerSecond" : 353.1138354002841,
+      "vzMetersPerSecond" : -5765.960568364218
+    }, {
+      "time" : "2026-09-30T16:39:43.254394426Z",
+      "xMeters" : 2227363.3494931664,
+      "yMeters" : 6196912.906367399,
+      "zMeters" : -1680494.8495232405,
+      "vxMetersPerSecond" : -4657.244355690982,
+      "vyMetersPerSecond" : 131.53543753522112,
+      "vzMetersPerSecond" : -5703.231673004269
+    }, {
+      "time" : "2026-09-30T16:40:14.248418334Z",
+      "xMeters" : 2081699.904957641,
+      "yMeters" : 6197561.514609072,
+      "zMeters" : -1856199.542682805,
+      "vxMetersPerSecond" : -4741.422319270559,
+      "vyMetersPerSecond" : -89.61439012288872,
+      "vzMetersPerSecond" : -5633.588263184607
+    }, {
+      "time" : "2026-09-30T16:40:45.242442242Z",
+      "xMeters" : 1933500.619246493,
+      "yMeters" : 6191361.799735136,
+      "zMeters" : -2029638.552021458,
+      "vxMetersPerSecond" : -4820.878403780954,
+      "vyMetersPerSecond" : -310.38533131532165,
+      "vzMetersPerSecond" : -5557.030338980533
+    }, {
+      "time" : "2026-09-30T16:41:16.236466150Z",
+      "xMeters" : 1782911.8551333314,
+      "yMeters" : 6178324.735004259,
+      "zMeters" : -2200597.568916167,
+      "vxMetersPerSecond" : -4895.611836089526,
+      "vyMetersPerSecond" : -530.827070266056,
+      "vzMetersPerSecond" : -5473.557900467075
+    }, {
+      "time" : "2026-09-30T16:41:47.230490058Z",
+      "xMeters" : 1630079.9947963953,
+      "yMeters" : 6158459.753771182,
+      "zMeters" : -2368862.2847462227,
+      "vxMetersPerSecond" : -4965.622137173577,
+      "vyMetersPerSecond" : -750.9892903212753,
+      "vzMetersPerSecond" : -5383.170947719012
+    }, {
+      "time" : "2026-09-30T16:42:18.224513966Z",
+      "xMeters" : 1475153.4007176934,
+      "yMeters" : 6131777.386538962,
+      "zMeters" : -2534218.04437973,
+      "vxMetersPerSecond" : -5030.660012770899,
+      "vyMetersPerSecond" : -970.5008180126339,
+      "vzMetersPerSecond" : -5285.884991423397
+    }, {
+      "time" : "2026-09-30T16:42:49.218537874Z",
+      "xMeters" : 1318294.4331584051,
+      "yMeters" : 6098325.011261528,
+      "zMeters" : -2696461.1541373553,
+      "vxMetersPerSecond" : -5090.339530900209,
+      "vyMetersPerSecond" : -1187.7276446252285,
+      "vzMetersPerSecond" : -5182.433083461631
+    }, {
+      "time" : "2026-09-30T16:43:20.212561782Z",
+      "xMeters" : 1159668.1601724,
+      "yMeters" : 6058177.316755318,
+      "zMeters" : -2855405.1167326393,
+      "vxMetersPerSecond" : -5144.698357370906,
+      "vyMetersPerSecond" : -1402.5493454520608,
+      "vzMetersPerSecond" : -5072.995747229314
+    }, {
+      "time" : "2026-09-30T16:43:51.206585690Z",
+      "xMeters" : 999439.8005473148,
+      "yMeters" : 6011407.995204684,
+      "zMeters" : -3010864.4196601487,
+      "vxMetersPerSecond" : -5193.716604463599,
+      "vyMetersPerSecond" : -1615.0209377229178,
+      "vzMetersPerSecond" : -4957.572982825118
+    }, {
+      "time" : "2026-09-30T16:44:22.200609598Z",
+      "xMeters" : 837775.1842896314,
+      "yMeters" : 5958089.031931408,
+      "zMeters" : -3162653.5504174847,
+      "vxMetersPerSecond" : -5237.374708619017,
+      "vyMetersPerSecond" : -1825.1975474534006,
+      "vzMetersPerSecond" : -4836.164790347604
+    }, {
+      "time" : "2026-09-30T16:44:53.194633506Z",
+      "xMeters" : 674840.7427820861,
+      "yMeters" : 5898290.702005597,
+      "zMeters" : -3310586.9965053154,
+      "vxMetersPerSecond" : -5275.653430963316,
+      "vyMetersPerSecond" : -2033.134407770407,
+      "vzMetersPerSecond" : -4708.771169895213
+    }, {
+      "time" : "2026-09-30T16:45:24.188657414Z",
+      "xMeters" : 510803.49866003264,
+      "yMeters" : 5832081.566959253,
+      "zMeters" : -3454479.245427357,
+      "vxMetersPerSecond" : -5308.533857773664,
+      "vyMetersPerSecond" : -2238.886857458416,
+      "vzMetersPerSecond" : -4575.392121566251
+    }, {
+      "time" : "2026-09-30T16:45:55.182681322Z",
+      "xMeters" : 345831.05572593864,
+      "yMeters" : 5759528.471534794,
+      "zMeters" : -3594144.784690376,
+      "vxMetersPerSecond" : -5335.9974009479265,
+      "vyMetersPerSecond" : -2442.510339460174,
+      "vzMetersPerSecond" : -4436.027645458916
+    }, {
+      "time" : "2026-09-30T16:46:26.176705230Z",
+      "xMeters" : 180094.83552437648,
+      "yMeters" : 5680704.488458303,
+      "zMeters" : -3729400.1652399916,
+      "vxMetersPerSecond" : -5357.765252633751,
+      "vyMetersPerSecond" : -2643.2021636004415,
+      "vzMetersPerSecond" : -4290.997076266477
+    }, {
+      "time" : "2026-09-30T16:46:57.170729137Z",
+      "xMeters" : 13771.250544817187,
+      "yMeters" : 5595724.188176979,
+      "zMeters" : -3860087.4298457503,
+      "vxMetersPerSecond" : -5373.926848923336,
+      "vyMetersPerSecond" : -2839.7716166954497,
+      "vzMetersPerSecond" : -4141.29414256033
+    }, {
+      "time" : "2026-09-30T16:47:28.164753045Z",
+      "xMeters" : -152966.5137549322,
+      "yMeters" : 5504714.656282609,
+      "zMeters" : -3986063.1176131195,
+      "vxMetersPerSecond" : -5384.485562380561,
+      "vyMetersPerSecond" : -3032.2693272417364,
+      "vzMetersPerSecond" : -3986.9657664941033
+    }, {
+      "time" : "2026-09-30T16:47:59.158776953Z",
+      "xMeters" : -319944.2370686978,
+      "yMeters" : 5407801.210123091,
+      "zMeters" : -4107183.8674685927,
+      "vxMetersPerSecond" : -5389.405027681505,
+      "vyMetersPerSecond" : -3220.752265633874,
+      "vzMetersPerSecond" : -3828.0119481876036
+    }, {
+      "time" : "2026-09-30T16:48:30.152800861Z",
+      "xMeters" : -486986.57716466207,
+      "yMeters" : 5305107.398128923,
+      "zMeters" : -4223306.318346513,
+      "vxMetersPerSecond" : -5388.649213695238,
+      "vyMetersPerSecond" : -3405.2776067533596,
+      "vzMetersPerSecond" : -3664.432687755908
+    }, {
+      "time" : "2026-09-30T16:49:01.146824769Z",
+      "xMeters" : -653917.0802979739,
+      "yMeters" : 5196754.993496276,
+      "zMeters" : -4334287.109184799,
+      "vxMetersPerSecond" : -5382.182424372991,
+      "vyMetersPerSecond" : -3585.9027284703698,
+      "vzMetersPerSecond" : -3496.2279853141104
+    }, {
+      "time" : "2026-09-30T16:49:32.140848677Z",
+      "xMeters" : -820558.1914287489,
+      "yMeters" : 5082863.987942267,
+      "zMeters" : -4439982.878924934,
+      "vxMetersPerSecond" : -5369.969299786994,
+      "vyMetersPerSecond" : -3762.685209912529,
+      "vzMetersPerSecond" : -3323.397840977309
+    }, {
+      "time" : "2026-09-30T16:50:03.134872585Z",
+      "xMeters" : -986731.226295867,
+      "yMeters" : 4963552.625199056,
+      "zMeters" : -4540250.254099944,
+      "vxMetersPerSecond" : -5351.950810414332,
+      "vyMetersPerSecond" : -3935.654392759536,
+      "vzMetersPerSecond" : -3145.937202846834
+    }, {
+      "time" : "2026-09-30T16:50:34.128896493Z",
+      "xMeters" : -1152254.3162298459,
+      "yMeters" : 4838953.235975836,
+      "zMeters" : -4634954.970527537,
+      "vxMetersPerSecond" : -5328.10595560826,
+      "vyMetersPerSecond" : -4103.647904680755,
+      "vzMetersPerSecond" : -2964.7319010752203
+    }, {
+      "time" : "2026-09-30T16:51:05.122920401Z",
+      "xMeters" : -1316953.361933569,
+      "yMeters" : 4709232.120334451,
+      "zMeters" : -4723997.780030764,
+      "vxMetersPerSecond" : -5298.767991062214,
+      "vyMetersPerSecond" : -4266.161229886992,
+      "vzMetersPerSecond" : -2780.5824531637986
+    }, {
+      "time" : "2026-09-30T16:51:36.116944309Z",
+      "xMeters" : -1480657.328135172,
+      "yMeters" : 4574558.277878882,
+      "zMeters" : -4807287.431675646,
+      "vxMetersPerSecond" : -5263.886528556395,
+      "vyMetersPerSecond" : -4423.249487084837,
+      "vzMetersPerSecond" : -2593.4888592363345
+    }, {
+      "time" : "2026-09-30T16:52:07.110968217Z",
+      "xMeters" : -1643193.6228181212,
+      "yMeters" : 4435098.995423464,
+      "zMeters" : -4884732.674532054,
+      "vxMetersPerSecond" : -5223.411502047023,
+      "vyMetersPerSecond" : -4574.96808119316,
+      "vzMetersPerSecond" : -2403.451119416744
+    }, {
+      "time" : "2026-09-30T16:52:38.104992125Z",
+      "xMeters" : -1804388.1072277515,
+      "yMeters" : 4291019.838144664,
+      "zMeters" : -4956242.257673676,
+      "vxMetersPerSecond" : -5177.293168961918,
+      "vyMetersPerSecond" : -4721.372701862483,
+      "vzMetersPerSecond" : -2210.4692338290856
+    }, {
+      "time" : "2026-09-30T16:53:09.099016033Z",
+      "xMeters" : -1964065.1059161928,
+      "yMeters" : 4142484.6407793933,
+      "zMeters" : -5021724.930178074,
+      "vxMetersPerSecond" : -5125.482111491883,
+      "vyMetersPerSecond" : -4862.519321987298,
+      "vzMetersPerSecond" : -2014.5432025975779
+    }, {
+      "time" : "2026-09-30T16:53:40.093039941Z",
+      "xMeters" : -2122047.4168281523,
+      "yMeters" : 3989655.4988692133,
+      "zMeters" : -5081089.441126648,
+      "vxMetersPerSecond" : -5067.929237875199,
+      "vyMetersPerSecond" : -4998.46419621439,
+      "vzMetersPerSecond" : -1815.6730258465748
+    }, {
+      "time" : "2026-09-30T16:54:11.087063849Z",
+      "xMeters" : -2278156.0532349423,
+      "yMeters" : 3832693.565498354,
+      "zMeters" : -5134244.847747664,
+      "vxMetersPerSecond" : -5004.55489315282,
+      "vyMetersPerSecond" : -5129.088655233602,
+      "vzMetersPerSecond" : -1613.9543603680368
+    }, {
+      "time" : "2026-09-30T16:54:42.081087757Z",
+      "xMeters" : -2432215.509765058,
+      "yMeters" : 3671779.9906009985,
+      "zMeters" : -5181121.305206214,
+      "vxMetersPerSecond" : -4935.839366162427,
+      "vyMetersPerSecond" : -5253.356113578324,
+      "vzMetersPerSecond" : -1410.738798607001
+    }, {
+      "time" : "2026-09-30T16:55:13.075111665Z",
+      "xMeters" : -2584066.5953273373,
+      "yMeters" : 3507114.8344177203,
+      "zMeters" : -5221682.786333863,
+      "vxMetersPerSecond" : -4862.041765979882,
+      "vyMetersPerSecond" : -5371.181141152398,
+      "vzMetersPerSecond" : -1206.4579766664688
+    }, {
+      "time" : "2026-09-30T16:55:44.069135573Z",
+      "xMeters" : -2733550.8573330557,
+      "yMeters" : 3338896.998915581,
+      "zMeters" : -5255896.274433031,
+      "vxMetersPerSecond" : -4783.101566505363,
+      "vyMetersPerSecond" : -5482.613796757293,
+      "vzMetersPerSecond" : -1001.111894670934
+    }, {
+      "time" : "2026-09-30T16:56:15.063159480Z",
+      "xMeters" : -2880507.971715918,
+      "yMeters" : 3167323.8291952414,
+      "zMeters" : -5283728.752809212,
+      "vxMetersPerSecond" : -4698.958532774252,
+      "vyMetersPerSecond" : -5587.704485432149,
+      "vzMetersPerSecond" : -794.7005527518502
+    }, {
+      "time" : "2026-09-30T16:56:46.057183388Z",
+      "xMeters" : -3024775.75203165,
+      "yMeters" : 2992591.1027359893,
+      "zMeters" : -5305147.204774351,
+      "vxMetersPerSecond" : -4609.552722474405,
+      "vyMetersPerSecond" : -5686.503957176445,
+      "vzMetersPerSecond" : -587.2239510209183
+    }, {
+      "time" : "2026-09-30T16:57:17.051207296Z",
+      "xMeters" : -3166190.1585237244,
+      "yMeters" : 2814893.018759135,
+      "zMeters" : -5320118.613641474,
+      "vxMetersPerSecond" : -4514.824487533093,
+      "vyMetersPerSecond" : -5779.063305586483,
+      "vzMetersPerSecond" : -378.6820896100862
+    }, {
+      "time" : "2026-09-30T16:57:48.045231204Z",
+      "xMeters" : -3304585.3072864795,
+      "yMeters" : 2634422.1875767168,
+      "zMeters" : -5328609.962728519,
+      "vxMetersPerSecond" : -4414.714475669507,
+      "vyMetersPerSecond" : -5865.433966521682,
+      "vzMetersPerSecond" : -169.0749686449309
+    }, {
+      "time" : "2026-09-30T16:58:19.039255112Z",
+      "xMeters" : -3439793.768893388,
+      "yMeters" : 2451372.3272170345,
+      "zMeters" : -5330590.563636669,
+      "vxMetersPerSecond" : -4309.270805193118,
+      "vyMetersPerSecond" : -5945.325167560612,
+      "vzMetersPerSecond" : 41.23039629308417
+    }, {
+      "time" : "2026-09-30T16:58:50.033279020Z",
+      "xMeters" : -3571663.5326805976,
+      "yMeters" : 2265955.899820706,
+      "zMeters" : -5326062.700482366,
+      "vxMetersPerSecond" : -4199.377134510769,
+      "vyMetersPerSecond" : -6018.1660893424,
+      "vzMetersPerSecond" : 250.7992061297982
+    }, {
+      "time" : "2026-09-30T16:59:21.027302928Z",
+      "xMeters" : -3700060.034970643,
+      "yMeters" : 2078389.9861007966,
+      "zMeters" : -5315053.118201186,
+      "vxMetersPerSecond" : -4085.1350886782157,
+      "vyMetersPerSecond" : -6084.0353820094915,
+      "vzMetersPerSecond" : 459.48645393718016
+    }, {
+      "time" : "2026-09-30T16:59:52.021326836Z",
+      "xMeters" : -3824847.4690707754,
+      "yMeters" : 1888890.0176960803,
+      "zMeters" : -5297589.139949542,
+      "vxMetersPerSecond" : -3966.478045498906,
+      "vyMetersPerSecond" : -6142.974870362721,
+      "vzMetersPerSecond" : 667.2921395980378
+    }, {
+      "time" : "2026-09-30T17:00:23.015350744Z",
+      "xMeters" : -3945887.967087684,
+      "yMeters" : 1697670.1240838459,
+      "zMeters" : -5273698.088887467,
+      "vxMetersPerSecond" : -3843.339624483203,
+      "vyMetersPerSecond" : -6195.026762377951,
+      "vzMetersPerSecond" : 874.2162629948032
+    }, {
+      "time" : "2026-09-30T17:00:54.009374652Z",
+      "xMeters" : -4063041.6075447733,
+      "yMeters" : 1504943.1205209955,
+      "zMeters" : -5243407.288178644,
+      "vxMetersPerSecond" : -3715.6536882765286,
+      "vyMetersPerSecond" : -6240.233648311554,
+      "vzMetersPerSecond" : 1080.2588240095338
+    }, {
+      "time" : "2026-09-30T17:01:25.003398560Z",
+      "xMeters" : -4176166.4228791595,
+      "yMeters" : 1310920.496345981,
+      "zMeters" : -5206744.060990441,
+      "vxMetersPerSecond" : -3583.3543446149656,
+      "vyMetersPerSecond" : -6278.638499447361,
+      "vzMetersPerSecond" : 1285.4198225239297
+    }, {
+      "time" : "2026-09-30T17:01:55.997422468Z",
+      "xMeters" : -4285118.4070812985,
+      "yMeters" : 1115812.4031535746,
+      "zMeters" : -5163735.730493885,
+      "vxMetersPerSecond" : -3446.3759480116573,
+      "vyMetersPerSecond" : -6310.284667013083,
+      "vzMetersPerSecond" : 1489.6992584193258
+    }, {
+      "time" : "2026-09-30T17:02:26.991446376Z",
+      "xMeters" : -4389754.993041425,
+      "yMeters" : 919832.4490869418,
+      "zMeters" : -5114416.80884618,
+      "vxMetersPerSecond" : -3305.106923852174,
+      "vyMetersPerSecond" : -6334.808930765535,
+      "vzMetersPerSecond" : 1692.3263460969886
+    }, {
+      "time" : "2026-09-30T17:02:57.985470284Z",
+      "xMeters" : -4489961.848951879,
+      "yMeters" : 723203.1725170072,
+      "zMeters" : -5058860.288792184,
+      "vxMetersPerSecond" : -3160.549872268855,
+      "vyMetersPerSecond" : -6352.219501793935,
+      "vzMetersPerSecond" : 1892.1954949377136
+    }, {
+      "time" : "2026-09-30T17:03:28.979494192Z",
+      "xMeters" : -4585636.974723827,
+      "yMeters" : 526143.5855289698,
+      "zMeters" : -4997151.87298012,
+      "vxMetersPerSecond" : -3012.669447647644,
+      "vyMetersPerSecond" : -6362.581348854295,
+      "vzMetersPerSecond" : 2089.2993738308314
+    }, {
+      "time" : "2026-09-30T17:03:59.973518100Z",
+      "xMeters" : -4676676.304977293,
+      "yMeters" : 328871.6799243279,
+      "zMeters" : -4929377.268254428,
+      "vxMetersPerSecond" : -2861.3972352337846,
+      "vyMetersPerSecond" : -6365.925286950441,
+      "vzMetersPerSecond" : 2283.6379826741077
+    }, {
+      "time" : "2026-09-30T17:04:30.967542008Z",
+      "xMeters" : -4762973.6566069005,
+      "yMeters" : 131604.4862916572,
+      "zMeters" : -4855622.181462718,
+      "vxMetersPerSecond" : -2706.6649962941797,
+      "vyMetersPerSecond" : -6362.282526631019,
+      "vzMetersPerSecond" : 2475.211321364839
+    }, {
+      "time" : "2026-09-30T17:05:01.961565916Z",
+      "xMeters" : -4844420.734265519,
+      "yMeters" : -65441.93824010342,
+      "zMeters" : -4775972.319455813,
+      "vxMetersPerSecond" : -2548.4046699262176,
+      "vyMetersPerSecond" : -6351.684673188072,
+      "vzMetersPerSecond" : 2664.0193897998865
+    }, {
+      "time" : "2026-09-30T17:05:32.955589823Z",
+      "xMeters" : -4920907.13589928,
+      "yMeters" : -262052.5222603511,
+      "zMeters" : -4690513.389090571,
+      "vxMetersPerSecond" : -2386.5483748127813,
+      "vyMetersPerSecond" : -6334.1637258700985,
+      "vzMetersPerSecond" : 2850.062187869697
+    }, {
+      "time" : "2026-09-30T17:06:03.949613731Z",
+      "xMeters" : -4992320.351528425,
+      "yMeters" : -458013.11854534503,
+      "zMeters" : -4599331.148354124,
+      "vxMetersPerSecond" : -2221.0298498507163,
+      "vyMetersPerSecond" : -6309.715217422548,
+      "vzMetersPerSecond" : 3033.309237770559
+    }, {
+      "time" : "2026-09-30T17:06:34.943637639Z",
+      "xMeters" : -5058557.153584853,
+      "yMeters" : -653106.0731233833,
+      "zMeters" : -4502526.274094177,
+      "vxMetersPerSecond" : -2052.8104517650136,
+      "vyMetersPerSecond" : -6278.236879519214,
+      "vzMetersPerSecond" : 3212.627582471771
+    }, {
+      "time" : "2026-09-30T17:07:05.937661547Z",
+      "xMeters" : -5119549.531675246,
+      "yMeters" : -847119.6128043272,
+      "zMeters" : -4400232.702874382,
+      "vxMetersPerSecond" : -1882.6036791913768,
+      "vyMetersPerSecond" : -6240.064951350862,
+      "vzMetersPerSecond" : 3387.4869963148435
+    }, {
+      "time" : "2026-09-30T17:07:36.931685455Z",
+      "xMeters" : -5175234.8668562975,
+      "yMeters" : -1039846.5416230187,
+      "zMeters" : -4292588.634905607,
+      "vxMetersPerSecond" : -1710.3435861792566,
+      "vyMetersPerSecond" : -6195.216618279907,
+      "vzMetersPerSecond" : 3557.887479219886
+    }, {
+      "time" : "2026-09-30T17:08:07.925709363Z",
+      "xMeters" : -5225548.497737982,
+      "yMeters" : -1231080.2021953221,
+      "zMeters" : -4179732.270401206,
+      "vxMetersPerSecond" : -1535.9643228097134,
+      "vyMetersPerSecond" : -6143.709448725769,
+      "vzMetersPerSecond" : 3723.8290311064784
+    }, {
+      "time" : "2026-09-30T17:08:38.919733271Z",
+      "xMeters" : -5270423.7234871965,
+      "yMeters" : -1420614.4875837774,
+      "zMeters" : -4061801.809577023,
+      "vxMetersPerSecond" : -1359.4001369508396,
+      "vyMetersPerSecond" : -6085.561393731989,
+      "vzMetersPerSecond" : 3885.3116518937254
+    }, {
+      "time" : "2026-09-30T17:09:09.913757179Z",
+      "xMeters" : -5309791.806885686,
+      "yMeters" : -1608243.8531500045,
+      "zMeters" : -3938935.4526514234,
+      "vxMetersPerSecond" : -1180.5853760111547,
+      "vyMetersPerSecond" : -6020.790786526433,
+      "vzMetersPerSecond" : 4042.3353415002225
+    }, {
+      "time" : "2026-09-30T17:09:40.907781087Z",
+      "xMeters" : -5343581.977442524,
+      "yMeters" : -1793763.3283927697,
+      "zMeters" : -3811271.399845315,
+      "vxMetersPerSecond" : -999.4544886919147,
+      "vyMetersPerSecond" : -5949.416342074361,
+      "vzMetersPerSecond" : 4194.900099844062
+    }, {
+      "time" : "2026-09-30T17:10:11.901804995Z",
+      "xMeters" : -5371721.914890446,
+      "yMeters" : -1976968.0734985876,
+      "zMeters" : -3678948.6903200033,
+      "vxMetersPerSecond" : -816.0709108167375,
+      "vyMetersPerSecond" : -5871.397410513196,
+      "vzMetersPerSecond" : 4342.831001139447
+    }, {
+      "time" : "2026-09-30T17:10:42.895828903Z",
+      "xMeters" : -5394160.998459602,
+      "yMeters" : -2157656.4570166203,
+      "zMeters" : -3542127.5733643216,
+      "vxMetersPerSecond" : -631.8051437711235,
+      "vyMetersPerSecond" : -5787.18438304492,
+      "vzMetersPerSecond" : 4485.066454346737
+    }, {
+      "time" : "2026-09-30T17:11:13.889852811Z",
+      "xMeters" : -5410880.652489969,
+      "yMeters" : -2335643.5396590047,
+      "zMeters" : -3400988.5145968692,
+      "vxMetersPerSecond" : -446.99445600768433,
+      "vyMetersPerSecond" : -5697.086708896958,
+      "vzMetersPerSecond" : 4621.46160573012
+    }, {
+      "time" : "2026-09-30T17:11:44.883876719Z",
+      "xMeters" : -5421863.071480686,
+      "yMeters" : -2510746.969608759,
+      "zMeters" : -3255712.5284728454,
+      "vxMetersPerSecond" : -261.57972441202133,
+      "vyMetersPerSecond" : -5601.106843333489,
+      "vzMetersPerSecond" : 4752.016455237242
+    }, {
+      "time" : "2026-09-30T17:12:15.877900627Z",
+      "xMeters" : -5427088.617550429,
+      "yMeters" : -2682784.4766423656,
+      "zMeters" : -3106480.629449074,
+      "vxMetersPerSecond" : -75.50183524983223,
+      "vyMetersPerSecond" : -5499.247587115481,
+      "vzMetersPerSecond" : 4876.731002815209
+    }, {
+      "time" : "2026-09-30T17:12:46.871924535Z",
+      "xMeters" : -5426535.820833839,
+      "yMeters" : -2851573.8826497197,
+      "zMeters" : -2953473.8319840333,
+      "vxMetersPerSecond" : 111.29831404521858,
+      "vyMetersPerSecond" : -5391.512086446113,
+      "vzMetersPerSecond" : 4995.605248410604
+    }, {
+      "time" : "2026-09-30T17:13:17.865948443Z",
+      "xMeters" : -5420181.3798319055,
+      "yMeters" : -3016933.1123872744,
+      "zMeters" : -2796873.1505378596,
+      "vxMetersPerSecond" : 298.8798133340139,
+      "vyMetersPerSecond" : -5277.903832935662,
+      "vzMetersPerSecond" : 5108.639191969507
+    }, {
+      "time" : "2026-09-30T17:13:48.859972351Z",
+      "xMeters" : -5408000.161831121,
+      "yMeters" : -3178680.204182704,
+      "zMeters" : -2636859.599571006,
+      "vxMetersPerSecond" : 487.3017381849594,
+      "vyMetersPerSecond" : -5158.426663553925,
+      "vzMetersPerSecond" : 5215.832833438021
+    }, {
+      "time" : "2026-09-30T17:14:19.853996259Z",
+      "xMeters" : -5389968.090095466,
+      "yMeters" : -3336633.2872066493,
+      "zMeters" : -2473617.0170693295,
+      "vxMetersPerSecond" : 676.1962206443864,
+      "vyMetersPerSecond" : -5033.1615708795025,
+      "vzMetersPerSecond" : 5316.835728154222
+    }, {
+      "time" : "2026-09-30T17:14:50.848020166Z",
+      "xMeters" : -5366094.357447825,
+      "yMeters" : -3490626.7773653762,
+      "zMeters" : -2307349.8879149603,
+      "vxMetersPerSecond" : 864.1730421971237,
+      "vyMetersPerSecond" : -4903.034552247891,
+      "vzMetersPerSecond" : 5411.009863670201
+    }, {
+      "time" : "2026-09-30T17:15:21.842044074Z",
+      "xMeters" : -5336409.886317184,
+      "yMeters" : -3640514.200379232,
+      "zMeters" : -2138269.3898430904,
+      "vxMetersPerSecond" : 1051.1629456164096,
+      "vyMetersPerSecond" : -4768.200764029825,
+      "vzMetersPerSecond" : 5498.378397097844
+    }, {
+      "time" : "2026-09-30T17:15:52.836067982Z",
+      "xMeters" : -5300944.512806891,
+      "yMeters" : -3786149.4741354752,
+      "zMeters" : -1966586.4558533353,
+      "vxMetersPerSecond" : 1237.2144996665304,
+      "vyMetersPerSecond" : -4628.647323784478,
+      "vzMetersPerSecond" : 5578.941328413123
+    }, {
+      "time" : "2026-09-30T17:16:23.830091890Z",
+      "xMeters" : -5259726.566399124,
+      "yMeters" : -3927386.121726568,
+      "zMeters" : -1792512.01894064,
+      "vxMetersPerSecond" : 1422.3763532066696,
+      "vyMetersPerSecond" : -4484.361635113363,
+      "vzMetersPerSecond" : 5652.6986575946385
+    }, {
+      "time" : "2026-09-30T17:16:54.824115798Z",
+      "xMeters" : -5212782.867631527,
+      "yMeters" : -4064077.280132126,
+      "zMeters" : -1616257.0121006304,
+      "vxMetersPerSecond" : 1606.6972337061175,
+      "vyMetersPerSecond" : -4335.331388090133,
+      "vzMetersPerSecond" : 5719.650384620511
+    }, {
+      "time" : "2026-09-30T17:17:25.818139706Z",
+      "xMeters" : -5160138.725475642,
+      "yMeters" : -4196075.709378915,
+      "zMeters" : -1438032.368329618,
+      "vxMetersPerSecond" : 1790.2259461614253,
+      "vyMetersPerSecond" : -4181.544559563201,
+      "vzMetersPerSecond" : 5779.796509468324
+    }, {
+      "time" : "2026-09-30T17:17:56.812163614Z",
+      "xMeters" : -5101817.9350916855,
+      "yMeters" : -4323233.801251223,
+      "zMeters" : -1258049.0206246155,
+      "vxMetersPerSecond" : 1973.0113716131384,
+      "vyMetersPerSecond" : -4022.989413567498,
+      "vzMetersPerSecond" : 5833.137032115155
+    }, {
+      "time" : "2026-09-30T17:18:27.806187522Z",
+      "xMeters" : -5037851.082414833,
+      "yMeters" : -4445406.933791675,
+      "zMeters" : -1076523.024742114,
+      "vxMetersPerSecond" : 2154.2511663216055,
+      "vyMetersPerSecond" : -3860.107908916397,
+      "vzMetersPerSecond" : 5879.240266027852
+    }, {
+      "time" : "2026-09-30T17:18:58.800211430Z",
+      "xMeters" : -4968306.397322146,
+      "yMeters" : -4562481.123058304,
+      "zMeters" : -893681.6156988334,
+      "vxMetersPerSecond" : 2332.946748700587,
+      "vyMetersPerSecond" : -3693.9841921049624,
+      "vzMetersPerSecond" : 5918.041330249989
+    } ]
+  }
+}

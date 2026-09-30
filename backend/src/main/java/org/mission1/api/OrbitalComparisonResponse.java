@@ -8,20 +8,20 @@ import org.mission1.orbital.oem.NasaOemTrajectoryService;
 
 /** Two separately classified trajectories; each can supply a bounded visualization position. */
 public record OrbitalComparisonResponse(Instant generatedAt, Primary primary, Oem oem) {
-    public record Primary(String classification, String frame, String positionUnit,
+    public record Primary(String classification, String frame, String positionUnit, String velocityUnit,
             double orbitalPeriodSeconds, int currentSampleIndex,
             OrbitalSamplesResponse.Source source,
             OrbitalSamplesResponse.Assessment qualityAtGeneratedAt,
             CurrentOrbitalStateResponse.SourceHealth sourceHealth,
             List<OrbitalSamplesResponse.Sample> samples) { }
     public record Oem(String classification, String sampleMethod, String sourceFrame,
-            String frame, String positionUnit, String availability, String reason,
+            String frame, String positionUnit, String velocityUnit, String availability, String reason,
             NasaOemTrajectoryService.Source source, List<NasaOemTrajectoryService.Sample> samples) { }
 
     public static OrbitalComparisonResponse from(FullOrbit orbit, NasaOemTrajectoryService.Result oem) {
         var elements = orbit.elements();
         var evaluation = orbit.evaluation();
-        var primary = new Primary("COMPUTED_FROM_ORBITAL_ELEMENTS", "ITRF_2020_IERS_2010", "m",
+        var primary = new Primary("COMPUTED_FROM_ORBITAL_ELEMENTS", "ITRF_2020_IERS_2010", "m", "m/s",
                 orbit.orbitalPeriodSeconds(), 0,
                 new OrbitalSamplesResponse.Source(elements.catalogNumber(), elements.provider(), elements.upstreamOrigin(),
                         elements.sourceFormat(), elements.elementEpoch(), elements.retrievedAt(), elements.publishedAt(),
@@ -33,7 +33,7 @@ public record OrbitalComparisonResponse(Instant generatedAt, Primary primary, Oe
                 orbit.samples().stream().map(OrbitalSamplesResponse.Sample::from).toList());
         return new OrbitalComparisonResponse(orbit.generatedAt(), primary,
                 new Oem("SOURCE_PROVIDED_PREDICTED_EPHEMERIS", "CUBIC_HERMITE_FROM_SOURCE_POSITION_VELOCITY",
-                        "EME2000", "ITRF_2020_IERS_2010", "m", oem.availability(), oem.reason(),
+                        "EME2000", "ITRF_2020_IERS_2010", "m", "m/s", oem.availability(), oem.reason(),
                         oem.source(), oem.samples()));
     }
 }

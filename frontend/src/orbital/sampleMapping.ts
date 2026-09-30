@@ -49,6 +49,7 @@ export function parseOrbitalWindow(payload: unknown, requestDurationMs = 0): Orb
   }
   expect(root.frame, 'ITRF_2020_IERS_2010', 'frame');
   expect(root.positionUnit, 'm', 'positionUnit');
+  expect(root.velocityUnit, 'm/s', 'velocityUnit');
   expect(root.classification, 'COMPUTED_FROM_ORBITAL_ELEMENTS', 'classification');
 
   const semantics = object(root.timeSemantics, 'timeSemantics');
@@ -108,6 +109,8 @@ export function parseOrbitalWindow(payload: unknown, requestDurationMs = 0): Orb
     const x = number(sample.xMeters, `samples[${index}].xMeters`);
     const y = number(sample.yMeters, `samples[${index}].yMeters`);
     const z = number(sample.zMeters, `samples[${index}].zMeters`);
+    const speed = Math.hypot(...['vxMetersPerSecond', 'vyMetersPerSecond', 'vzMetersPerSecond'].map(k => number(sample[k], k)));
+    if (speed < 1) throw new Error('Sample velocity is invalid');
     const radius = Math.hypot(x, y, z);
     if (radius < 6_000_000 || radius > 10_000_000) throw new Error('Sample radius is implausible for ISS');
   });

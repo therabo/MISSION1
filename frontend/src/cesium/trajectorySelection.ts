@@ -51,7 +51,7 @@ export function oemPositionProperty(response: ComparisonResponse): SampledPositi
   return makeSampledPosition(response.oem.samples);
 }
 
-/** One physical sampled target for model, approach and moving Inspection ENU pivot.
+/** One physical sampled target for model, approach and moving Inspection pivot.
  * A source change selects a property immediately, with no cross-source interpolation.
  * OEM remains bounded; the mandatory primary animation buffer gates both products.
  */

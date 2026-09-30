@@ -122,8 +122,7 @@ const pathOffset = new Cartesian3();
 const pathPosition = new Cartesian3();
 
 /** Sample the intended camera path once at entry; an Earth-intersecting path uses acquisition. */
-export function movingApproachPathClear(station: Cartesian3, startOffset: Cartesian3, endOffset: Cartesian3): boolean {
-  const frame = cameraTrackingFrame(station);
+export function movingApproachPathClear(station: Cartesian3, startOffset: Cartesian3, endOffset: Cartesian3, frame: Matrix4 = cameraTrackingFrame(station)): boolean {
   for (let step = 0; step <= 32; step++) {
     movingApproachOffset(startOffset, endOffset, step / 32, pathOffset);
     Matrix4.multiplyByPoint(frame, pathOffset, pathPosition);
@@ -133,8 +132,8 @@ export function movingApproachPathClear(station: Cartesian3, startOffset: Cartes
 }
 
 /** Presentation-only footprint; the GLB scale and sampled orbital position do not change. */
-export function approachMinimumPixelSize(farSize: number, progress: number): number {
-  return farSize + 78 * smoothstep(progress);
+export function approachMinimumPixelSize(farSize: number, _progress: number): number {
+  return farSize;
 }
 
 export function exitMinimumPixelSize(farSize: number, currentSize: number, progress: number): number {

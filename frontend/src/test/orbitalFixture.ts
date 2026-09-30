@@ -7,6 +7,7 @@ export function orbitalPayload(): Record<string, unknown> {
     stepSeconds: 10,
     frame: 'ITRF_2020_IERS_2010',
     positionUnit: 'm',
+    velocityUnit: 'm/s',
     classification: 'COMPUTED_FROM_ORBITAL_ELEMENTS',
     timeSemantics: {
       past: 'RECONSTRUCTED_FROM_SELECTED_ORBITAL_ELEMENTS',
@@ -39,9 +40,9 @@ export function orbitalPayload(): Record<string, unknown> {
       longitudeDegrees: 92.064565848349, altitudeMeters: 416440.6167916849,
     },
     samples: [
-      { time: '2026-09-28T14:59:50Z', xMeters: -201017.90290512424, yMeters: 6763786.6790144, zMeters: 611957.2480764382 },
-      { time: '2026-09-28T15:00:00Z', xMeters: -243964.3795801904, yMeters: 6767562.779805377, zMeters: 552206.5345118039 },
-      { time: '2026-09-28T15:00:10Z', xMeters: -286875.012187182, yMeters: 6770543.884322944, zMeters: 492385.3499294569 },
+      { time: '2026-09-28T14:59:50Z', xMeters: -201017.90290512424, yMeters: 6763786.6790144, zMeters: 611957.2480764382, vxMetersPerSecond: -4296.294269155388, vyMetersPerSecond: 417.3389906319478, vzMetersPerSecond: -5971.305011250112 },
+      { time: '2026-09-28T15:00:00Z', xMeters: -243964.3795801904, yMeters: 6767562.779805377, zMeters: 552206.5345118039, vxMetersPerSecond: -4292.9239870055135, vyMetersPerSecond: 337.8637432130352, vzMetersPerSecond: -5978.733579946136 },
+      { time: '2026-09-28T15:00:10Z', xMeters: -286875.012187182, yMeters: 6770543.884322944, zMeters: 492385.3499294569, vxMetersPerSecond: -4289.125671499871, vyMetersPerSecond: 258.34138587642013, vzMetersPerSecond: -5985.399079879417 },
     ],
   };
 }

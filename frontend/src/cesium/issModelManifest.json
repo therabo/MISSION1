@@ -12,7 +12,7 @@
   "displayMinimumPixelSize": 80,
   "displayMaximumScale": 20000,
   "assetAlignment": "IDENTITY",
-  "displayOrientation": "DISPLAY_ONLY_LOCAL_ENU",
+  "displayOrientation": "TRAJECTORY_ALIGNED_VISUAL_ORIENTATION",
   "attitude": "UNAVAILABLE",
   "semanticFeatureSet": "missionModule",
   "semanticMappings": [
