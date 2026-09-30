@@ -17,7 +17,7 @@ def inspect(path):
     version = struct.unpack_from("<I", data, 23)[0]
     if version != 7400:
         raise ValueError(f"Unsupported FBX version {version}")
-    models, connections, settings = {}, [], {}
+    models, connections, settings, header = {}, [], {}, {}
 
     def prop(offset):
         kind = chr(data[offset]); offset += 1
@@ -34,7 +34,8 @@ def inspect(path):
             return f"ARRAY:{kind}:{count}:{encoding}", offset + 12 + size
         raise ValueError((kind, offset))
 
-    def walk(offset, model=None, in_settings=False, in_connections=False):
+    def walk(offset, model=None, in_settings=False, in_connections=False,
+             in_header=False, in_creation_timestamp=False):
         end, count, prop_len, name_len = struct.unpack_from("<IIIB", data, offset)
         if not end:
             return offset + 13
@@ -51,6 +52,14 @@ def inspect(path):
             in_settings = True
         if name == "Connections":
             in_connections = True
+        if name == "FBXHeaderExtension":
+            in_header = True
+        if name == "CreationTimeStamp" and in_header:
+            in_creation_timestamp = True
+        if name == "Creator" and in_header and values:
+            header["creator"] = values[0]
+        if in_creation_timestamp and name in ("Year", "Month", "Day", "Hour", "Minute", "Second", "Millisecond") and values:
+            header.setdefault("creationTimeStamp", {})[name] = values[0]
         if name == "P" and len(values) >= 5:
             if model is not None:
                 models[model]["properties"][values[0]] = values[4:]
@@ -60,7 +69,8 @@ def inspect(path):
             connections.append(values)
         cursor = offset + 13 + name_len + prop_len
         while cursor < end - 13:
-            next_cursor = walk(cursor, model, in_settings, in_connections)
+            next_cursor = walk(cursor, model, in_settings, in_connections,
+                               in_header, in_creation_timestamp)
             if next_cursor <= cursor:
                 break
             cursor = next_cursor
@@ -76,7 +86,7 @@ def inspect(path):
         cursor = next_cursor
     parents = {link[1]: link[2] for link in connections if link[0] == "OO" and link[1] in models and link[2] in models}
     selected = ("SSREF", "MLM", "RSNode", "IROSA_Deployed_", "Zarya_FGB", "Zvezda_SM", "Node1", "USLab", "Columbus")
-    out = {"version": version, "settings": {k: settings.get(k) for k in
+    out = {"version": version, "header": header, "settings": {k: settings.get(k) for k in
            ("UpAxis", "UpAxisSign", "FrontAxis", "FrontAxisSign", "CoordAxis", "CoordAxisSign", "UnitScaleFactor", "OriginalUnitScaleFactor")},
            "models": []}
     for key, model in models.items():

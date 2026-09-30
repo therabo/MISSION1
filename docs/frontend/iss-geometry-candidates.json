@@ -276,5 +276,55 @@
     "pirsRemoval": "PIRS_REMOVAL_DETERMINISTIC",
     "extensionDecision": "CURRENT_VTAD_REMAINS_UNMODIFIED"
   },
+  "frameInterfaceSearch": {
+    "checkedOn": "2026-09-30",
+    "analysis": "iss-geometry-reference-frames.md",
+    "numericalRegistrationRerun": false,
+    "rerunReason": "No newly matched physical control point or independently constrained IGOAL-to-VTAD scale, origin, or axis mapping",
+    "sourceEvidence": {
+      "igoalPublisher": "https://science.nasa.gov/3d-resources/international-space-station-iss-d-igoal/",
+      "vtadPublisher": "https://science.nasa.gov/resource/international-space-station-3d-model/",
+      "publicIssFrameReport": "https://ntrs.nasa.gov/api/citations/20020066263/downloads/20020066263.pdf",
+      "publicIssFrameReportSha256": "5843b2dcfec62164f43cabc9b6c9e2a50906e1e5a602b3731fdb421a4f50337f",
+      "restrictedIssFrameStandard": "https://imlive.s3.amazonaws.com/Federal%20Government/ID42272755263273611130549092035837226177/SSP_30219-RevK.pdf",
+      "restrictedIssFrameStandardSha256": "9420576d0299d2435184cd3e287e7303427b9440872eeb55ec86630040264e00",
+      "restrictedStandardClassForProject": "DISCOVERY_ONLY"
+    },
+    "assetMetadata": {
+      "igoal2024Fbx": {"creator": "Blender (stable FBX IO) - 4.1.1 - 5.11.7", "unitScaleFactor": 1, "upAxis": "+Z", "frontAxis": "-Y", "coordAxis": "+X", "rootScale": [100, 100, 100]},
+      "igoal2024NamedGlb": {"generator": "Khronos glTF Blender I/O v4.2.57", "rootScale": [-0.002581682987511158, -0.002581682987511158, -0.002581682987511158], "fbxChildTranslationToGlbChildTranslation": "(x,y,z) -> (x,z,-y)", "axisConversionDeterminant": 1},
+      "igoal2026Fbx": {"creator": "Blender (stable FBX IO) - 5.0.1 - 5.14.0", "unitScaleFactor": 100, "upAxis": "+Z", "frontAxis": "-Y", "coordAxis": "+X", "rootScale": [1, 1, 1], "principalComponentLocalScaleApprox": 0.0254},
+      "igoal2026ScienceGlb": {"generator": "Khronos glTF Blender I/O v5.0.21", "singleFlattenedNode": true},
+      "vtadGlb": {"generator": "Khronos Blender glTF 2.0 I/O", "engineeringOriginDocumented": false},
+      "vtadUsdz": {"authoredMetersPerUnit": false, "authoredUpAxis": false, "meshesRootScale": [2.6788483, 2.6788483, 2.6788483]}
+    },
+    "evidenceMatrix": [
+      {"question": "IGOAL unit scale", "evidence": "FBX declarations differ between revisions and named GLB has presentation scale", "source": "M1/F3", "confidence": "ASSET_INTERNAL_EVIDENCE_ONLY", "productionConsequence": "UNIFORM_SCALE_APPROXIMATE"},
+      {"question": "VTAD unit scale", "evidence": "glTF metre convention and rough physical dimensions; no NASA engineering unit certificate", "source": "V1/M1/F3", "confidence": "APPROXIMATE", "productionConsequence": "EXACT_SCALE_NOT_VERIFIED"},
+      {"question": "axis mapping", "evidence": "2024 FBX-to-GLB child axis conversion is proper (x,y,z)->(x,z,-y); no IGOAL-to-VTAD asset-frame declaration", "source": "M1/F3", "confidence": "SOURCE_EXPORT_ONLY", "productionConsequence": "CROSS_ASSET_AXIS_NOT_VERIFIED"},
+      {"question": "handedness", "evidence": "glTF right-handed convention; named IGOAL GLB root has negative determinant", "source": "M1/F3", "confidence": "FILE_VERIFIED_AUTHORING_CAUSE_UNKNOWN", "productionConsequence": "KEEP_ROOT_REFLECTION_IN_DIAGNOSTICS"},
+      {"question": "IGOAL root semantics", "evidence": "2024 FBX +100 root versus named GLB negative uniform root; original scene/export notes unavailable", "source": "I2/M1", "confidence": "UNRESOLVED", "productionConsequence": "NO_ASSUMED_ROOT_REMOVAL"},
+      {"question": "VTAD origin", "evidence": "No publisher origin or frame mapping", "source": "V1/M1", "confidence": "UNRESOLVED", "productionConsequence": "NO_TRANSLATION_CONSTRAINT"},
+      {"question": "Nauka attachment", "evidence": "NASA confirms MLM=Nauka on SM nadir; IGOAL source relative object transform, no matched docking centers", "source": "R1/M1/F1", "confidence": "SOURCE_LOCAL_DERIVABLE", "productionConsequence": "NAUKA_ATTACHMENT_TRANSFORM_DERIVABLE"},
+      {"question": "Prichal identity", "evidence": "NASA calls Prichal the Russian Node Module; no exact RSNode asset-string alias", "source": "R1/I2/M1", "confidence": "STRONGLY_SUPPORTED", "productionConsequence": "PRICHAL_IDENTITY_STRONGLY_SUPPORTED"},
+      {"question": "Prichal attachment", "evidence": "NASA confirms Prichal docked to MLM; IGOAL RSNode relative transform, no matched docking centers", "source": "R1/M1/F1", "confidence": "SOURCE_LOCAL_DERIVABLE", "productionConsequence": "PRICHAL_ATTACHMENT_TRANSFORM_DERIVABLE"},
+      {"question": "common control points", "evidence": "S0 trunnions and CBM/docking/mast origins defined physically; no reproducible matching extraction from both assets", "source": "F1/F2/M1", "confidence": "DEFINITIONS_ONLY", "productionConsequence": "NO_CONTROL_POINT_REGISTRATION"}
+    ],
+    "iRosaParentEvidence": [
+      {"channel": "P6/2B", "node": "IROSA_Deployed_P62B", "parent": "P6_2B_Array", "nasaLocation": "P6 2B mast canister", "source": "A1/M1", "attachmentFrameVerified": false},
+      {"channel": "P6/4B", "node": "IROSA_Deployed_P64B", "parent": "P6_4B_Array", "nasaLocation": "P6 4B mast canister", "source": "A1/M1", "attachmentFrameVerified": false},
+      {"channel": "P4/4A", "node": "IROSA_Deployed_P44A", "parent": "P4_Array_4A", "nasaLocation": "P4 4A mast canister", "source": "A1/M1", "attachmentFrameVerified": false},
+      {"channel": "S4/3A", "node": "IROSA_Deployed_S43A", "parent": "S4_Array_3A", "nasaLocation": "S4 3A mast canister", "source": "A1/M1", "attachmentFrameVerified": false},
+      {"channel": "S4/1A", "node": "IROSA_Deployed_S41A", "parent": "S4_Array_1A", "nasaLocation": "S4 1A mast canister", "source": "A1/M1", "attachmentFrameVerified": false},
+      {"channel": "S6/1B", "node": "IROSA_Deployed_S61B", "parent": "S6_1B_Array", "nasaLocation": "S6 1B mast canister", "source": "A1/M1", "attachmentFrameVerified": false}
+    ],
+    "scaleDecision": "UNIFORM_SCALE_APPROXIMATE",
+    "registrationDecision": "IGOAL_VTAD_TRANSFORM_APPROXIMATE",
+    "naukaAttachment": "NAUKA_ATTACHMENT_TRANSFORM_DERIVABLE",
+    "prichalIdentity": "PRICHAL_IDENTITY_STRONGLY_SUPPORTED",
+    "prichalAttachment": "PRICHAL_ATTACHMENT_TRANSFORM_DERIVABLE",
+    "iRosaTransforms": "IROSA_TRANSFORMS_PARTIALLY_VERIFIED",
+    "extensionDecision": "CURRENT_VTAD_REMAINS_UNMODIFIED"
+  },
   "decision": "KEEP_CURRENT_VTAD"
 }
