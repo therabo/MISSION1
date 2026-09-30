@@ -1,0 +1,17 @@
+{
+  "frontendTests": 60,
+  "frontendTestFiles": 13,
+  "backend": {
+    "tests": 82,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "typecheck": "passed",
+  "productionBuild": "passed; existing Cesium chunk-size warning",
+  "mavenTest": "passed",
+  "mavenVerify": "passed",
+  "browser": "development and served production; real stored sources; QA-only availability/asset-delay proxies",
+  "nextMilestone": "GP/TLE \u2194 NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS; not started",
+  "gitDiffCheck": "passed"
+}

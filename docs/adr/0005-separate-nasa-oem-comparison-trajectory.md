@@ -1,8 +1,10 @@
 # ADR-0005: Keep NASA OEM as a separate comparison trajectory
 
-- Status: **Accepted**
+- Status: **Superseded** by [ADR-0006](0006-selectable-forward-trajectory-visualization.md)
 - Date: **2026-09-30**
 - Scope: orbital comparison source, persistence and Earth View delivery
+
+The text below records the original milestone. ADR-0006 retains the source adapter, persistence and frame choices while replacing visualization and temporal-window decisions.
 
 ## Context
 

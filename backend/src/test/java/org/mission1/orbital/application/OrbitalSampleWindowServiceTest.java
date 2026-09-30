@@ -62,7 +62,7 @@ class OrbitalSampleWindowServiceTest {
                 () -> new OrbitalSampleWindow(300, 1200, 30));
     }
 
-    @Test void fullOrbitSamplesOneCenteredMeanMotionRevolutionWithoutClosingTheFixedFramePath() throws IOException {
+    @Test void fullOrbitSamplesOnlyFutureMeanMotionRevolutionWithoutClosingTheFixedFramePath() throws IOException {
         var repository = mock(OrbitalElementSetRepository.class);
         var data = new OrekitData();
         var parser = new TleElementParser(data);
@@ -85,9 +85,9 @@ class OrbitalSampleWindowServiceTest {
         assertEquals(NOW, orbit.generatedAt());
         assertEquals(181, orbit.samples().size());
         assertEquals(86_400.0 / 15.48675883, orbit.orbitalPeriodSeconds(), 0.001);
-        assertEquals(NOW, orbit.samples().get(90).propagationTime());
+        assertEquals(NOW, orbit.samples().getFirst().propagationTime());
         assertTrue(IntStream.range(0, 181).allMatch(index -> orbit.samples().get(index).propagationTime()
-                .equals(NOW.plusNanos(Math.round((index - 90) * orbit.orbitalPeriodSeconds() / 180.0 * 1_000_000_000.0)))));
+                .equals(NOW.plusNanos(Math.round(index * orbit.orbitalPeriodSeconds() / 180.0 * 1_000_000_000.0)))));
         assertTrue(IntStream.range(1, 181).allMatch(index -> orbit.samples().get(index).propagationTime()
                 .isAfter(orbit.samples().get(index - 1).propagationTime())));
         assertTrue(orbit.samples().stream().allMatch(state -> elements.sha256().equals(state.elementSha256())));

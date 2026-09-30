@@ -1,0 +1,205 @@
+{
+  "measurement": "Adjacent sequential single-view development Overview; archived 054e825 frontend/backend vs final implementation; same stored real inputs and current scene epochs",
+  "viewportCss": [
+    1280,
+    720
+  ],
+  "drawingBuffer": [
+    2560,
+    1440
+  ],
+  "baseline": {
+    "windows": [
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":17.8,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:58:37.598Z",
+        "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":20.1,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:58:42.620Z",
+        "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":17.6,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:58:47.720Z",
+        "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":19.1,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:58:52.736Z",
+        "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":19.6,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:58:57.737Z",
+        "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+      }
+    ],
+    "min": 17.6,
+    "median": 19.1,
+    "max": 20.1
+  },
+  "final": {
+    "windows": [
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[645.7349359462415,367.0478549200267],\"fps\":19.1,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:59:23.607Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[647.2164890859981,369.0912100471285],\"fps\":17.6,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:59:28.735Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[648.7204575563534,371.1655374183841],\"fps\":19.4,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:59:33.940Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[650.2086211927831,373.2188794552053],\"fps\":19,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:59:39.097Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[651.7048659456129,375.2834496279298],\"fps\":19.3,\"canvas\":[2560,1440]}",
+        "timestamp": "2026-09-30T14:59:44.134Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      }
+    ],
+    "min": 17.6,
+    "median": 19.1,
+    "max": 19.4
+  },
+  "medianDifferenceFps": 0.0,
+  "historicalReferenceFps": 17.5,
+  "earlierSingleViewBaseline": [
+    {
+      "level": "info",
+      "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":22.9,\"canvas\":[2560,1440]}",
+      "timestamp": "2026-09-30T13:58:47.640Z",
+      "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+    },
+    {
+      "level": "info",
+      "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":21.1,\"canvas\":[2560,1440]}",
+      "timestamp": "2026-09-30T13:58:52.669Z",
+      "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+    },
+    {
+      "level": "info",
+      "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":20.2,\"canvas\":[2560,1440]}",
+      "timestamp": "2026-09-30T13:58:57.668Z",
+      "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+    },
+    {
+      "level": "info",
+      "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":23.1,\"canvas\":[2560,1440]}",
+      "timestamp": "2026-09-30T13:59:02.679Z",
+      "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+    },
+    {
+      "level": "info",
+      "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":20.2,\"canvas\":[2560,1440]}",
+      "timestamp": "2026-09-30T13:59:07.728Z",
+      "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+    }
+  ],
+  "limitations": "Local observation, different real scene epochs/cache activity. No GPU memory instrumentation or isolated microbenchmark. Earlier session baseline median21.1 vs later19.1 prompted the adjacent rerun rather than attributing the difference to the change.",
+  "sourceSelection": {
+    "viewportCss": [
+      2327,
+      1309
+    ],
+    "drawingBuffer": [
+      2559,
+      1439
+    ],
+    "primaryWindows": [
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1331.6286047514377,548.8782943212955],\"fps\":17.8,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:04:47.153Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1332.696076043459,550.7933248329376],\"fps\":22.3,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:04:52.185Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1333.7544070392403,552.7083931721115],\"fps\":20.3,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:04:57.365Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1334.8330399742497,554.6720223165421],\"fps\":20.2,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:05:02.514Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1420.2834696967575,673.8555510201685],\"fps\":19,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:05:07.573Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      }
+    ],
+    "oemWindows": [
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1321.7856087814885,601.0704513544052],\"fps\":23.1,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:07:24.133Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1322.5435514100993,602.7503212891397],\"fps\":22,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:07:29.168Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1323.2433357626744,604.3012918379834],\"fps\":17.2,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:07:34.174Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1323.9674981690848,605.9588875427155],\"fps\":20.3,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:07:39.198Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      },
+      {
+        "level": "info",
+        "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1324.6470875482794,607.5422538973077],\"fps\":19.8,\"canvas\":[2559,1439]}",
+        "timestamp": "2026-09-30T15:07:44.213Z",
+        "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+      }
+    ],
+    "primaryMedianFps": 20.2,
+    "oemMedianFps": 20.3,
+    "interpretation": "No measurable added selection cost in this local observation; same native viewport and buffer. This viewport differs from the archived-vs-final comparison. Epoch/cache/camera projection and system activity vary."
+  },
+  "discardedIncomparableOemObservation": {
+    "file": "oem-matched-fps.json",
+    "drawingBuffer": [
+      1238,
+      1590
+    ],
+    "note": "Browser focus changed viewport; this observation is not part of either matched comparison."
+  }
+}

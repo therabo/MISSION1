@@ -1,6 +1,6 @@
 # Desktop rendering quality and asset reproducibility
 
-This pass changes presentation only. The orbit remains computed by Orekit from the selected CelesTrak element set; NASA Earth and sky images are historical reference imagery, and the NASA VTAD station model is historical geometry. None is live ISS telemetry.
+This pass changes presentation only. The selected scene position is GP/TLE computation or independently labeled NASA OEM predicted ephemeris; NASA Earth and sky images are historical reference imagery, and the NASA VTAD station model is historical geometry. None is live ISS telemetry.
 
 ## Renderer decision
 
@@ -47,3 +47,15 @@ OEM uses uniform orange 5.5 px `PolylineDash`, alpha 0.92, 64 px cycle, `0x000f`
 See the linked record for development/production browser cases, outage/loading evidence, and matched local FPS observations. The existing Cesium bundle-size warning remains; this pass introduces no additional rendering dependency.
 
 Matched local DPR-2 comparison (2560×1440, 4× MSAA, one additional production view open) measured median Overview **17.8 FPS before / 17.5 FPS after** across five steady five-second windows: about −1.7%, without a material regression detected. A separate refined single-view 1600×900 observation was 44.9–48.2 FPS and is not directly comparable to the DPR-2 baseline. [Raw observations](trajectory-review/performance.json) retain capability and timestamp evidence.
+
+## Current selectable forward presentation — 2026-09-30
+
+The earlier presentation records above are historical. [ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md) replaces symmetric past/future fade and OEM dashes with two continuous 20/8 px halo/body products. Exact centerlines remain unshifted. Active cyan (`#53d9cd`, alpha 0.85) dominates subdued inactive (`#71939c`, alpha 0.12); the halo multiplier is 0.26. Glow powers are 0.35/0.22. Public Fabric applies inverse smoothstep between the 40 s future gap and the 0.85T horizon, zero outside that interval. No periodic phase wrap or end closure remains. Four small primitives now serve the two products; per-frame changes are uniforms only, with no new rendering dependency or geometry rebuild.
+
+Overview footprint is **96→92 px**, entry **92→170 px**, then a smooth return to 92. Three browser candidates were evaluated: smaller-only, smaller +5 km display lift, and that lift plus white 1 px/0.30-alpha silhouette. The selected least intrusive solution is smaller-only; `DISPLAY_ONLY_EARTH_VIEW_OFFSET=0`, silhouette omitted. The model remains on the selected physical position and the physical readout is unmodified. Both trails hide in Inspection. Readiness, original PNG textures, semantic picking, MSAA/FXAA, lighting, and resource lifecycle remain unchanged.
+
+See the [current review](orbital-trajectory-rendering.md) for source switching, day/night/terminator, loading/outage and sequential 2560×1440 FPS evidence. Previous 17.5 FPS is from a different multi-view workload; compare with the same-session archived baseline, not across different view counts.
+
+Final adjacent single-view comparison at 2560×1440: archived `054e825` median **19.1 FPS**, final PRIMARY median **19.1 FPS** (five steady windows each). Historical ~17.5 FPS used a different multi-view workload. [Raw evidence and caveats](trajectory-selection-review/performance.json); [current review](orbital-trajectory-rendering.md). One additional small trajectory primitive; source selection reuses geometry.
+
+Equal-native-viewport source-selection check at 2559×1439: PRIMARY median 20.2 FPS, OEM 20.3 FPS. No measurable selection penalty; viewport differs from the archived-vs-final comparison.

@@ -282,8 +282,8 @@ class CurrentOrbitalStateApiTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.primary.classification").value("COMPUTED_FROM_ORBITAL_ELEMENTS"))
                 .andExpect(jsonPath("$.primary.samples.length()").value(181))
-                .andExpect(jsonPath("$.primary.currentSampleIndex").value(90))
-                .andExpect(jsonPath("$.primary.samples[90].time").value(NOW.toString()))
+                .andExpect(jsonPath("$.primary.currentSampleIndex").value(0))
+                .andExpect(jsonPath("$.primary.samples[0].time").value(NOW.toString()))
                 .andExpect(jsonPath("$.oem.classification").value("SOURCE_PROVIDED_PREDICTED_EPHEMERIS"))
                 .andExpect(jsonPath("$.oem.availability").value("UNAVAILABLE"))
                 .andExpect(jsonPath("$.oem.samples.length()").value(0));

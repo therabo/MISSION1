@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { comparisonCanReplace } from '../cesium/trajectorySelection';
 import { parseComparison, type ComparisonResponse } from '../orbital/comparison';
 
 export interface ComparisonDelivery {
@@ -6,8 +7,20 @@ export interface ComparisonDelivery {
   status: 'loading' | 'ready' | 'unavailable';
 }
 
-export function useComparisonDelivery(): ComparisonDelivery {
+export function useComparisonDelivery(sceneTimeMs: number | null): ComparisonDelivery {
   const [delivery, setDelivery] = useState<ComparisonDelivery>({ response: null, status: 'loading' });
+  const scene = useRef(sceneTimeMs);
+  const accepted = useRef<ComparisonResponse | null>(null);
+  const pending = useRef<ComparisonResponse | null>(null);
+  scene.current = sceneTimeMs;
+  useEffect(() => {
+    const next = pending.current;
+    if (next && comparisonCanReplace(accepted.current, next, sceneTimeMs)) {
+      pending.current = null;
+      accepted.current = next;
+      setDelivery({ response: next, status: 'ready' });
+    }
+  }, [sceneTimeMs]);
   useEffect(() => {
     let stopped = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -18,9 +31,19 @@ export function useComparisonDelivery(): ComparisonDelivery {
         const response = await fetch('/api/iss/orbit/comparison', { signal: controller.signal });
         if (!response.ok) throw new Error('Comparison unavailable');
         const parsed = parseComparison(await response.json());
-        if (!stopped) setDelivery({ response: parsed, status: 'ready' });
+        if (!stopped) {
+          if (comparisonCanReplace(accepted.current, parsed, scene.current)) {
+            pending.current = null;
+            accepted.current = parsed;
+            setDelivery({ response: parsed, status: 'ready' });
+          } else pending.current = parsed;
+        }
       } catch {
-        if (!stopped && !controller.signal.aborted) setDelivery({ response: null, status: 'unavailable' });
+        if (!stopped && !controller.signal.aborted) {
+          accepted.current = null;
+          pending.current = null;
+          setDelivery({ response: null, status: 'unavailable' });
+        }
       } finally {
         controller = undefined;
         if (!stopped) timer = setTimeout(() => { void poll(); }, 120_000);

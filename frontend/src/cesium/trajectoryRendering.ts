@@ -1,111 +1,98 @@
 import {
-  ArcType, Cartesian2, Cartesian3, Color, GeometryInstance, Material,
-  PolylineDashMaterialProperty, PolylineGeometry, PolylineMaterialAppearance, Primitive,
+  ArcType, Cartesian3, Color, GeometryInstance, Material,
+  PolylineGeometry, PolylineMaterialAppearance, Primitive,
 } from 'cesium';
-import type { ComparisonResponse } from '../orbital/comparison';
+import type { ComparisonResponse, TrajectorySample } from '../orbital/comparison';
+import type { TrajectorySource } from './trajectorySelection';
 
-/** Pixel widths affect only the envelope; both layers share the exact ITRF centerline. */
-export const PRIMARY_TRAIL = {
-  minimumAlpha: 0.025,
-  maximumAlpha: 0.85,
+export const FORWARD_TRAIL = {
+  direction: 'FUTURE_DIRECTION_ONLY', horizonRevolutions: 0.85, gapSeconds: 40,
+  activeColor: '#53d9cd', inactiveColor: '#71939c', activeAlpha: 0.85, inactiveAlpha: 0.12,
   layers: [
     { name: 'halo', width: 20, alphaScale: 0.26, glowPower: 0.35 },
     { name: 'body', width: 8, alphaScale: 1, glowPower: 0.22 },
   ],
 } as const;
 
-export const OEM_DASH = { width: 5.5, alpha: 0.92, dashLength: 64, dashPattern: 0x000f } as const;
-
-/** 0 at the moving ISS; 1 half a revolution away. Periodic and symmetric. */
-export function oppositeSideDistance(sampleMs: number, sceneMs: number, periodSeconds: number): number {
-  const cycles = Math.abs(sampleMs - sceneMs) / (periodSeconds * 1000);
-  const phase = cycles - Math.floor(cycles);
-  return 2 * Math.min(phase, 1 - phase);
+export function forwardBounds(sceneMs: number, periodSeconds: number, coverageEndMs: number) {
+  return { startMs: sceneMs + FORWARD_TRAIL.gapSeconds * 1000,
+    endMs: Math.min(sceneMs + FORWARD_TRAIL.horizonRevolutions * periodSeconds * 1000, coverageEndMs) };
 }
 
-export function primaryOpacity(sampleMs: number, sceneMs: number, periodSeconds: number): number {
-  const d = oppositeSideDistance(sampleMs, sceneMs, periodSeconds);
-  return PRIMARY_TRAIL.minimumAlpha + (PRIMARY_TRAIL.maximumAlpha - PRIMARY_TRAIL.minimumAlpha) * (1 - d * d * (3 - 2 * d));
+/** Inverse smoothstep, monotonic and exactly zero at the real visible endpoint. */
+export function forwardOpacity(sampleMs: number, startMs: number, endMs: number): number {
+  if (sampleMs < startMs || sampleMs >= endMs || endMs <= startMs) return 0;
+  const u = (sampleMs - startMs) / (endMs - startMs);
+  return 1 - u * u * (3 - 2 * u);
 }
 
-export function primaryPositions(response: ComparisonResponse): Cartesian3[] {
-  return response.primary.samples.map((point) => new Cartesian3(point.xMeters, point.yMeters, point.zMeters));
-}
-
-/** Public Fabric composition of built-in Glow and Fade. No noise or engine overrides.
- * Fade supplies phase distance; inverse smoothstep preserves the symmetric envelope.
- * Keeping the emission cyan avoids the white core of unmodified PolylineGlow.
+/** Public Fabric composition retains the soft glow envelope. st.s is the uniform
+ * sample-time fraction. Clip the past/start gap and all times beyond the horizon.
+ * Only temporal uniforms and selection colors change per tick; geometry is exact.
  */
-export function trailMaterial(alphaScale: number, glowPower: number, phase: number): Material {
-  return new Material({
-    strict: true,
-    translucent: true,
-    fabric: {
-      type: 'Mission1OrbitalTrail',
-      uniforms: {
-        trailColor: Color.fromCssColorString('#53d9cd'),
-        minimumAlpha: PRIMARY_TRAIL.minimumAlpha * alphaScale,
-        maximumAlpha: PRIMARY_TRAIL.maximumAlpha * alphaScale,
-      },
-      materials: {
-        edgeGlow: { type: 'PolylineGlow', uniforms: { color: Color.WHITE, glowPower, taperPower: 1 } },
-        phaseFade: {
-          type: 'Fade',
-          uniforms: {
-            fadeInColor: new Color(1, 1, 1, 0), fadeOutColor: new Color(1, 1, 1, 1),
-            maximumDistance: 0.5, repeat: true, fadeDirection: new Cartesian2(1, 0), time: new Cartesian2(phase, 0),
-          },
-        },
-      },
-      components: {
-        emission: 'trailColor.rgb',
-        alpha: 'edgeGlow.alpha * mix(maximumAlpha, minimumAlpha, smoothstep(0.0, 1.0, phaseFade.alpha))',
-      },
+export function trailMaterial(alphaScale: number, glowPower: number): Material {
+  return new Material({ strict: true, translucent: true, fabric: {
+    type: 'Mission1ForwardTrail',
+    uniforms: { trailColor: Color.fromCssColorString(FORWARD_TRAIL.activeColor),
+      maximumAlpha: FORWARD_TRAIL.activeAlpha * alphaScale, forwardStart: 0, forwardEnd: 0.85 },
+    materials: { edgeGlow: { type: 'PolylineGlow', uniforms: { color: Color.WHITE, glowPower, taperPower: 1 } } },
+    components: {
+      emission: 'trailColor.rgb',
+      alpha: 'edgeGlow.alpha * maximumAlpha * step(forwardStart, materialInput.st.s) * (1.0 - smoothstep(forwardStart, forwardEnd, materialInput.st.s))',
     },
-  });
+  } });
 }
 
-export function oemMaterial(): PolylineDashMaterialProperty {
-  return new PolylineDashMaterialProperty({
-    color: Color.fromCssColorString('#ff984f').withAlpha(OEM_DASH.alpha), gapColor: Color.TRANSPARENT,
-    dashLength: OEM_DASH.dashLength, dashPattern: OEM_DASH.dashPattern,
-  });
-}
-
-export interface PrimaryTrail {
+export interface ForwardTrail {
+  readonly source: TrajectorySource;
   readonly positions: Cartesian3[];
   readonly layers: { primitive: Primitive; material: Material }[];
-  readonly generatedMs: number;
+  readonly startMs: number;
+  readonly endMs: number;
   readonly periodSeconds: number;
 }
+export interface TrajectoryTrails { generatedMs: number; trails: ForwardTrail[] }
 
-export function createPrimaryTrail(response: ComparisonResponse, sceneMs: number): PrimaryTrail {
-  const positions = primaryPositions(response);
-  const generatedMs = Date.parse(response.generatedAt);
-  const periodSeconds = response.primary.orbitalPeriodSeconds;
-  const phase = 0.5 + (sceneMs - generatedMs) / (periodSeconds * 1000);
-  const layers = PRIMARY_TRAIL.layers.map((layer) => {
-    const material = trailMaterial(layer.alphaScale, layer.glowPower, phase);
+function createTrail(source: TrajectorySource, samples: TrajectorySample[], periodSeconds: number): ForwardTrail {
+  const positions = samples.map((point) => new Cartesian3(point.xMeters, point.yMeters, point.zMeters));
+  const layers = FORWARD_TRAIL.layers.map((layer) => {
+    const material = trailMaterial(layer.alphaScale, layer.glowPower);
     const primitive = new Primitive({
       geometryInstances: new GeometryInstance({ geometry: new PolylineGeometry({
-        positions, width: layer.width, arcType: ArcType.NONE,
-        vertexFormat: PolylineMaterialAppearance.VERTEX_FORMAT,
+        positions, width: layer.width, arcType: ArcType.NONE, vertexFormat: PolylineMaterialAppearance.VERTEX_FORMAT,
       }) }),
       appearance: new PolylineMaterialAppearance({ material, translucent: true }),
-      // Hidden primitives prepare geometry before the complete group is revealed.
       show: false, asynchronous: true, allowPicking: false,
     });
     return { primitive, material };
   });
-  return { positions, layers, generatedMs, periodSeconds };
+  return { source, positions, layers, startMs: Date.parse(samples[0].time),
+    endMs: Date.parse(samples[samples.length - 1].time), periodSeconds };
 }
 
-/** Uniform-only fade update: no segment rebuilding or 15-second opacity steps. */
-export function updateTrailFade(trail: PrimaryTrail, sceneMs: number): void {
-  const phase = 0.5 + (sceneMs - trail.generatedMs) / (trail.periodSeconds * 1000);
-  for (const layer of trail.layers) layer.material.materials.phaseFade.uniforms.time.x = phase;
+export function createTrajectoryTrails(response: ComparisonResponse): TrajectoryTrails {
+  const trails = [createTrail('PRIMARY_GP_TLE', response.primary.samples, response.primary.orbitalPeriodSeconds)];
+  if (response.oem.availability !== 'UNAVAILABLE' && response.oem.samples.length >= 2) {
+    trails.push(createTrail('NASA_OEM', response.oem.samples, response.primary.orbitalPeriodSeconds));
+  }
+  return { generatedMs: Date.parse(response.generatedAt), trails };
 }
 
-export function showTrail(trail: PrimaryTrail, visible: boolean): void {
-  for (const layer of trail.layers) layer.primitive.show = visible;
+const activeColor = Color.fromCssColorString(FORWARD_TRAIL.activeColor);
+const inactiveColor = Color.fromCssColorString(FORWARD_TRAIL.inactiveColor);
+
+export function updateTrail(trail: ForwardTrail, sceneMs: number, active: TrajectorySource): void {
+  const { startMs, endMs } = forwardBounds(sceneMs, trail.periodSeconds, trail.endMs);
+  const span = trail.endMs - trail.startMs;
+  const selected = trail.source === active;
+  for (const [index, layer] of trail.layers.entries()) {
+    layer.material.uniforms.forwardStart = (startMs - trail.startMs) / span;
+    layer.material.uniforms.forwardEnd = Math.max(layer.material.uniforms.forwardStart + 1e-6, (endMs - trail.startMs) / span);
+    layer.material.uniforms.trailColor = selected ? activeColor : inactiveColor;
+    layer.material.uniforms.maximumAlpha = (selected ? FORWARD_TRAIL.activeAlpha : FORWARD_TRAIL.inactiveAlpha) * FORWARD_TRAIL.layers[index].alphaScale;
+  }
+}
+
+export function showTrails(group: TrajectoryTrails, visible: boolean): void {
+  for (const trail of group.trails) for (const layer of trail.layers) layer.primitive.show = visible;
 }

@@ -1,6 +1,8 @@
 import type { OrbitalDelivery, BufferStatus } from '../orbital/bufferState';
 import { ISS_MODEL } from '../cesium/modelPresentation';
 import type { ModelLoadStatus } from '../cesium/modelPresentation';
+import { SOURCE_LABELS } from '../cesium/trajectorySelection';
+import type { PositionSnapshot, TrajectorySource } from '../cesium/trajectorySelection';
 import type { ComparisonDelivery } from '../api/useComparisonDelivery';
 
 interface OrbitalStatusProps {
@@ -12,6 +14,8 @@ interface OrbitalStatusProps {
   modelState: { status: ModelLoadStatus; loadMs: number | null };
   inspecting: boolean;
   approaching: boolean;
+  selectedSource: TrajectorySource;
+  position: PositionSnapshot | null;
 }
 
 function utc(value: string | null | undefined): string {
@@ -35,18 +39,20 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, selectedSource, position }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
-  const dataTime = snapshot ? utc(snapshot.generatedAt) : 'Waiting for samples';
+  const physical = position?.source === selectedSource ? position : null;
+  const dataTime = physical ? utc(new Date(physical.timeMs).toISOString()) : 'Waiting for samples';
+  const nasaSelected = selectedSource === 'NASA_OEM';
   const bufferText = buffer === 'active' ? 'ACTIVE' : buffer === 'expired' ? 'EXPIRED' : 'WAITING';
 
   return <aside className="status-panel" aria-label="ISS orbital status">
     <div className="panel-head">
       <span className="eyebrow">ORBITAL STATE / ISS</span>
       <h1>{approaching ? 'Approaching ISS' : inspecting ? 'ISS Inspection' : 'Earth View'}</h1>
-      <p>Current propagated ISS position</p>
+      <p>{SOURCE_LABELS[selectedSource]}</p>
     </div>
 
     <div className="time-card">
@@ -62,32 +68,34 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
 
     <section className="panel-section">
       <div className="section-title"><h2>Position</h2><span>WGS84</span></div>
-      <p className="section-note">Backend coordinates at {dataTime}</p>
+      <p className="section-note">Physical sampled position at {dataTime}</p>
       <dl>
-        {line('Latitude', snapshot ? coordinate(snapshot.currentGeodetic.latitudeDegrees, 'N', 'S') : '—')}
-        {line('Longitude', snapshot ? coordinate(snapshot.currentGeodetic.longitudeDegrees, 'E', 'W') : '—')}
-        {line('Altitude', snapshot ? `${(snapshot.currentGeodetic.altitudeMeters / 1000).toFixed(1)} km` : '—')}
+        {line('Latitude', physical ? coordinate(physical.latitudeDegrees, 'N', 'S') : '—')}
+        {line('Longitude', physical ? coordinate(physical.longitudeDegrees, 'E', 'W') : '—')}
+        {line('Altitude', physical ? `${(physical.altitudeMeters / 1000).toFixed(1)} km` : '—')}
       </dl>
     </section>
 
     {!inspecting && <section className="panel-section">
       <div className="section-title"><h2>Trajectory comparison</h2><span>TWO SOURCES</span></div>
       <dl>
-        {line('ISS model', 'GP/TLE propagated')}
-        {line('Primary line', comparison.response ? 'FULL ORBIT · FADED' : 'WAITING')}
+        {line('ISS model', nasaSelected ? 'NASA predicted ephemeris' : 'GP/TLE propagated')}
+        {line('Primary line', comparison.response ? 'FORWARD · 85%' : 'WAITING')}
         {line('NASA OEM', comparison.response?.oem.availability ?? (comparison.status === 'unavailable' ? 'UNAVAILABLE' : 'WAITING'),
           `status-value ${comparison.response?.oem.availability === 'AVAILABLE' ? 'good' : 'warning'}`)}
         {comparison.response?.oem.source && line('OEM created', utc(comparison.response.oem.source.creationDate))}
       </dl>
-      <p className="section-note">OEM is a source-provided prediction for comparison. Neither line establishes actual ISS position.</p>
+      <p className="section-note">The selected source drives the model and Inspection. OEM remains a source-provided prediction.</p>
     </section>}
 
     <section className="panel-section">
       <div className="section-title"><h2>Data state</h2><span>INDEPENDENT</span></div>
       <dl>
-        {line('Orbital quality', quality?.status ?? 'NO DATA', `status-value ${quality?.status === 'GOOD' ? 'good' : quality?.status === 'STALE' ? 'warning' : 'muted'}`)}
-        {quality && quality.reason !== 'NONE' && line('Quality reason', quality.reason.replaceAll('_', ' '))}
-        {line('Source acquisition', health?.status ?? 'UNKNOWN', `status-value ${health?.status === 'HEALTHY' ? 'good' : health?.status === 'DEGRADED' ? 'warning' : 'muted'}`)}
+        {nasaSelected && line('Active OEM availability', comparison.response?.oem.availability ?? 'UNAVAILABLE', `status-value ${comparison.response?.oem.availability === 'AVAILABLE' ? 'good' : 'warning'}`)}
+        {nasaSelected && comparison.response?.oem.reason !== 'NONE' && line('OEM reason', comparison.response?.oem.reason.replaceAll('_', ' ') ?? 'UNAVAILABLE')}
+        {line('GP orbital quality', quality?.status ?? 'NO DATA', `status-value ${quality?.status === 'GOOD' ? 'good' : quality?.status === 'STALE' ? 'warning' : 'muted'}`)}
+        {quality && quality.reason !== 'NONE' && line('GP quality reason', quality.reason.replaceAll('_', ' '))}
+        {line('CelesTrak acquisition', health?.status ?? 'UNKNOWN', `status-value ${health?.status === 'HEALTHY' ? 'good' : health?.status === 'DEGRADED' ? 'warning' : 'muted'}`)}
         {line('API delivery', delivery.status.toUpperCase(), `status-value ${delivery.status === 'ready' ? 'good' : 'warning'}`)}
         {line('Sample buffer', bufferText, `status-value ${buffer === 'active' ? 'good' : 'warning'}`)}
         {line('3D model', modelState.status === 'ready' && modelState.loadMs !== null
@@ -99,18 +107,25 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
     </section>
 
     <section className="panel-section provenance">
-      <div className="section-title"><h2>Lineage</h2><span>GP / TLE</span></div>
-      <dl>
+      <div className="section-title"><h2>Active position lineage</h2><span>{nasaSelected ? 'NASA OEM' : 'GP / TLE'}</span></div>
+      <dl>{nasaSelected ? <>
+        {line('Product', 'NASA predicted ephemeris')}
+        {line('Created', utc(comparison.response?.oem.source?.creationDate))}
+        {line('Coverage starts', utc(comparison.response?.oem.source?.startTime))}
+        {line('Coverage ends', utc(comparison.response?.oem.source?.stopTime))}
+        {line('Retrieved', utc(comparison.response?.oem.source?.retrievedAt))}
+        {line('OEM hash', comparison.response?.oem.source?.sha256.slice(0, 12) ?? '—')}
+      </> : <>
         {line('Elements', snapshot ? `${snapshot.source.provider} · ${snapshot.source.upstreamOrigin}` : '—')}
         {line('Element epoch', utc(snapshot?.source.elementEpoch))}
         {line('Element age', quality ? age(quality.elementAgeSeconds) : '—')}
         {line('Retrieved', utc(snapshot?.source.retrievedAt))}
         {line('Last successful fetch', utc(health?.lastSuccessAt))}
         {line('Element hash', snapshot ? snapshot.source.elementSha256.slice(0, 12) : '—')}
-      </dl>
+      </>}</dl>
     </section>
 
     <p className="model-note">{ISS_MODEL.credit}. 3D model display: NOT TO SCALE, enlarged for map readability. Orbital position and altitude are unchanged. Display pose: local ENU only; it does not represent ISS attitude. <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA source</a>.</p>
-    <p className="provenance-note">The ISS model follows the CelesTrak GP/TLE state computed with Orekit. The full primary orbit is one computed revolution; its soft trail fades symmetrically with orbital phase distance from the ISS. The time-dependent Earth-fixed endpoints differ because Earth rotates during that revolution. The dashed NASA OEM line uses predicted source vectors with display interpolation. Neither product is onboard position telemetry or a ground truth claim. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble: Next Generation day tiles and historical Black Marble 2016 night tiles, with local imagery fallback. Night lights are not live city activity.</p>
+    <p className="provenance-note">The selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble day imagery and historical Black Marble 2016 night lights.</p>
   </aside>;
 }

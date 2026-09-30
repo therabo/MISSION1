@@ -1,13 +1,13 @@
 import { memo, useEffect, useRef } from 'react';
 import {
   buildModuleUrl,
-  ArcType,
   Cartesian2,
   Cartesian3,
   ClockRange,
   ClockStep,
   Color,
   ConstantProperty,
+  ConstantPositionProperty,
   Credit,
   Ellipsoid,
   EllipsoidTerrainProvider,
@@ -24,8 +24,6 @@ import {
   SingleTileImageryProvider,
   SkyBox,
   TileMapServiceImageryProvider,
-  TimeInterval,
-  TimeIntervalCollection,
   Transforms,
   Viewer,
   type Entity,
@@ -35,7 +33,7 @@ import type { OrbitalWindow } from '../orbital/types';
 import type { ComparisonResponse } from '../orbital/comparison';
 import { ISS_MODEL, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, representationForState, resolveVerifiedModulePick } from './modelPresentation';
 import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPresentation';
-import { createVisualWindow, modelPositionAt } from './visualWindow';
+import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
 import { approachMinimumPixelSize, canInspect, cameraTrackingFrame, earthOccludes, exitMinimumPixelSize, inspectionCartesianOffset, INITIAL_VIEW_MODE, inspectionPresentation, interpolateUnitDirection, movingApproachOffset, movingApproachPathClear, nextViewMode, pickAction, radialAcquisitionPosition, rebaseApproachStartTime, smoothstep } from './inspectionMode';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
@@ -43,12 +41,18 @@ import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
 import skyboxManifest from './skyboxManifest.json';
-import { OEM_DASH, createPrimaryTrail, oemMaterial, showTrail, updateTrailFade } from './trajectoryRendering';
-import type { PrimaryTrail } from './trajectoryRendering';
+import { createTrajectoryTrails, showTrails, updateTrail } from './trajectoryRendering';
+import type { TrajectoryTrails } from './trajectoryRendering';
+import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
+import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
+import type { SampledPositionProperty } from 'cesium';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
   comparison: ComparisonResponse | null;
+  selectedSource: TrajectorySource;
+  onSourceUnavailable: (reason: string) => void;
+  onPosition: (position: PositionSnapshot | null) => void;
   inspectionRequest: number;
   overviewRequest: number;
   onSceneTime: (timeMs: number) => void;
@@ -67,16 +71,23 @@ export const INSPECTION_OFFSET = { heading: CesiumMath.toRadians(35), pitch: Ces
 
 interface CameraSnapshot { position: Cartesian3; direction: Cartesian3; up: Cartesian3 }
 
-export const EarthView = memo(function EarthView({ window, comparison, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<Viewer | null>(null);
   const iss = useRef<Entity | null>(null);
   const active = useRef<VisualWindow | null>(null);
   const comparisonRef = useRef<ComparisonResponse | null>(null);
-  const primaryLine = useRef<PrimaryTrail | null>(null);
-  const pendingPrimaryLine = useRef<PrimaryTrail | null>(null);
-  const oemLine = useRef<Entity | null>(null);
-  const oemRenderedAt = useRef<string | null>(null);
+  const primaryLine = useRef<TrajectoryTrails | null>(null);
+  const pendingPrimaryLine = useRef<TrajectoryTrails | null>(null);
+  const oemPosition = useRef<SampledPositionProperty | null>(null);
+  const selectedSourceRef = useRef<TrajectorySource>(selectedSource);
+  const sourceUnavailableCallback = useRef(onSourceUnavailable);
+  const positionCallback = useRef(onPosition);
+  selectedSourceRef.current = selectedSource;
+  sourceUnavailableCallback.current = onSourceUnavailable;
+  positionCallback.current = onPosition;
+  const positionAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
+    selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
   const updateTrajectory = useRef<((sceneMs: number) => void) | null>(null);
   const model = useRef<Model | null>(null);
   const modelStatus = useRef<ModelLoadStatus>('loading');
@@ -142,7 +153,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
     const removeApproachDiagnostics = approachDiagnostics ? instance.scene.postRender.addEventListener((_scene, time) => {
       if (viewMode.current !== 'ENTERING_INSPECTION') return;
       const now = active.current;
-      const target = now && modelPositionAt(now, time, new Cartesian3());
+      const target = now && positionAt(time, new Cartesian3());
       if (!target) return;
       const wall = performance.now();
       if (wall - lastApproachLog < 400) return;
@@ -170,7 +181,9 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       frames += 1;
       const elapsed = performance.now() - frameWindowStart;
       if (elapsed < 5000) return;
-      console.info('[graphics] frames', JSON.stringify({ mode: viewMode.current, fps: +(frames * 1000 / elapsed).toFixed(1),
+      const target = positionAt(instance.clock.currentTime, new Cartesian3());
+      const pixel = target && SceneTransforms.worldToWindowCoordinates(instance.scene, target, new Cartesian2());
+      console.info('[graphics] frames', JSON.stringify({ mode: viewMode.current, modelScreen: pixel && [pixel.x, pixel.y], fps: +(frames * 1000 / elapsed).toFixed(1),
         canvas: [instance.scene.canvas.width, instance.scene.canvas.height] }));
       frames = 0;
       frameWindowStart = performance.now();
@@ -289,7 +302,9 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
     const labelVisibility = new ConstantProperty(true);
     let markerShown = true;
     let labelShown = true;
+    const markerPosition = new ConstantPositionProperty();
     iss.current = instance.entities.add({
+      position: markerPosition,
       name: 'ISS',
       show: false,
       point: {
@@ -312,24 +327,32 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
         scaleByDistance: new NearFarScalar(1_000_000, 1.1, 35_000_000, 0.8),
       },
     });
-    oemLine.current = instance.entities.add({
-      name: 'NASA OEM predicted ephemeris', show: false,
-      polyline: { positions: [], width: OEM_DASH.width, arcType: ArcType.NONE, material: oemMaterial() },
-    });
-    const removeTrail = (trail: PrimaryTrail | null): void => {
-      if (!trail) return;
-      for (const layer of trail.layers) {
+    const removeTrail = (group: TrajectoryTrails | null): void => {
+      if (!group) return;
+      for (const trail of group.trails) for (const layer of trail.layers) {
         instance.scene.primitives.remove(layer.primitive);
         layer.material.destroy();
       }
     };
+    const styleTrails = (group: TrajectoryTrails, sceneMs: number): void => {
+      // Native globe depth remains; no world-space offsets or depth overrides.
+      for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current);
+    };
+    const orderTrails = (group: TrajectoryTrails): void => {
+      for (const trail of group.trails) if (trail.source === selectedSourceRef.current) {
+        for (const layer of trail.layers) instance.scene.primitives.raiseToTop(layer.primitive);
+      }
+    };
+    let orderedSource: TrajectorySource | null = null;
     const removeReadyListener = instance.scene.preRender.addEventListener(() => {
       const pending = pendingPrimaryLine.current;
-      if (!pending || !pending.layers.every((layer) => layer.primitive.ready)) return;
+      if (!pending || !pending.trails.every((trail) => trail.layers.every((layer) => layer.primitive.ready))) return;
       removeTrail(primaryLine.current);
       primaryLine.current = pending;
       pendingPrimaryLine.current = null;
-      showTrail(pending, viewMode.current === 'EARTH_OVERVIEW');
+      orderTrails(pending);
+      orderedSource = selectedSourceRef.current;
+      showTrails(pending, viewMode.current === 'EARTH_OVERVIEW');
     });
     updateTrajectory.current = (sceneMs: number) => {
       const product = comparisonRef.current;
@@ -338,27 +361,23 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
         removeTrail(primaryLine.current);
         pendingPrimaryLine.current = null;
         primaryLine.current = null;
-        if (oemLine.current) oemLine.current.show = false;
-        oemRenderedAt.current = null;
         return;
       }
       const generatedMs = Date.parse(product.generatedAt);
       if (primaryLine.current?.generatedMs !== generatedMs && pendingPrimaryLine.current?.generatedMs !== generatedMs) {
         removeTrail(pendingPrimaryLine.current);
-        const next = createPrimaryTrail(product, sceneMs);
-        for (const layer of next.layers) instance.scene.primitives.add(layer.primitive);
+        const next = createTrajectoryTrails(product);
+        for (const trail of next.trails) for (const layer of trail.layers) instance.scene.primitives.add(layer.primitive);
         pendingPrimaryLine.current = next;
       }
-      if (primaryLine.current) updateTrailFade(primaryLine.current, sceneMs);
-      if (pendingPrimaryLine.current) updateTrailFade(pendingPrimaryLine.current, sceneMs);
-      const oem = product.oem;
-      if (oemLine.current?.polyline && oemRenderedAt.current !== product.generatedAt) {
-        oemLine.current.polyline.positions = new ConstantProperty(oem.availability !== 'UNAVAILABLE'
-          ? oem.samples.map((point) => new Cartesian3(point.xMeters, point.yMeters, point.zMeters))
-          : []);
-        oemLine.current.show = viewMode.current === 'EARTH_OVERVIEW' && oem.availability !== 'UNAVAILABLE';
-        oemRenderedAt.current = product.generatedAt;
+      if (primaryLine.current) {
+        styleTrails(primaryLine.current, sceneMs);
+        if (orderedSource !== selectedSourceRef.current) {
+          orderTrails(primaryLine.current);
+          orderedSource = selectedSourceRef.current;
+        }
       }
+      if (pendingPrimaryLine.current) styleTrails(pendingPrimaryLine.current, sceneMs);
     };
 
     const selectModule = (selection: SemanticMapping | null): void => {
@@ -373,9 +392,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       viewMode.current = next;
       modeCallback.current(next);
       const presentation = inspectionPresentation(next);
-      if (primaryLine.current) showTrail(primaryLine.current, presentation.pathVisible);
-      if (oemLine.current) oemLine.current.show = presentation.pathVisible &&
-        comparisonRef.current?.oem.availability !== 'UNAVAILABLE';
+      if (primaryLine.current) showTrails(primaryLine.current, presentation.pathVisible);
     };
 
     let exitPresentation: { startMs: number; size: number } | null = null;
@@ -431,7 +448,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       const current = active.current!;
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
       if (sceneMs < current.orbital.startMs || sceneMs > current.orbital.endMs) return;
-      const position = modelPositionAt(current, instance.clock.currentTime, new Cartesian3());
+      const position = positionAt(instance.clock.currentTime, new Cartesian3());
       if (!position) return;
       // No camera route can start safely from inside the globe.
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
@@ -514,7 +531,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       const sceneTime = instance.clock.currentTime;
       const sceneMs = JulianDate.toDate(sceneTime).getTime();
       const valid = current && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
-      const position = valid ? modelPositionAt(current, sceneTime, new Cartesian3()) : undefined;
+      const position = valid ? positionAt(sceneTime, new Cartesian3()) : undefined;
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       const hit = instance.scene.pick(event.position);
       if (diagnostics) console.info('[graphics] pick', JSON.stringify({
@@ -572,12 +589,23 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       Cartesian3.normalize(Cartesian3.cross(targetRight, approachDirection, approachUp), approachUp);
       instance.camera.setView({ destination, orientation: { direction: approachDirection, up: approachUp } });
     };
+    let lastDiagnosticSource: TrajectorySource | null = null;
     const tick = (): void => {
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
-      if (comparisonRef.current) updateTrajectory.current?.(sceneMs);
+      if (effectiveSource(selectedSourceRef.current, comparisonRef.current, sceneMs) !== selectedSourceRef.current) {
+        leaveInspection();
+        selectedSourceRef.current = 'PRIMARY_GP_TLE';
+        sourceUnavailableCallback.current('NASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE.');
+      }
+      updateTrajectory.current?.(sceneMs);
       const current = active.current;
       const valid = current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
-      const position = valid ? modelPositionAt(current, instance.clock.currentTime, scenePosition) : undefined;
+      const position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
+      if (diagnostics && position && selectedSourceRef.current !== lastDiagnosticSource) {
+        lastDiagnosticSource = selectedSourceRef.current;
+        console.info('[trajectory-source]', JSON.stringify({ source: lastDiagnosticSource, time: JulianDate.toIso8601(instance.clock.currentTime),
+          physicalPositionMeters: [position.x, position.y, position.z] }));
+      }
       if (!position) {
         leaveInspection();
         selectModule(null);
@@ -646,6 +674,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       representation.current = representationForState(valid && !!position, modelStatus.current);
       if (iss.current) {
         iss.current.show = valid && !!position;
+        if (position) markerPosition.setValue(position);
         const presentation = inspectionPresentation(viewMode.current);
         const shouldShowMarker = presentation.locatorVisible && markerVisible(representation.current);
         if (shouldShowMarker !== markerShown) {
@@ -663,6 +692,8 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
         if (model.current.show && model.current.ready && position) {
           // Center the asset's off-origin bounds on the sampled orbital point.
           // This is a display translation, not a change to orbital position or attitude.
+          // DISPLAY_ONLY_EARTH_VIEW_OFFSET = 0: browser review found no lift necessary.
+          // Model visibility is sufficient without a silhouette; Inspection stays naturally lit.
           const frame = Transforms.eastNorthUpToFixedFrame(position);
           if (!displayCenteringOffset) {
             model.current.modelMatrix = frame;
@@ -679,6 +710,10 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       if (second !== lastReportedSecond.current) {
         lastReportedSecond.current = second;
         timeCallback.current(sceneMs);
+        const geo = position && Ellipsoid.WGS84.cartesianToCartographic(position);
+        positionCallback.current(geo ? { source: selectedSourceRef.current, timeMs: sceneMs,
+          latitudeDegrees: CesiumMath.toDegrees(geo.latitude), longitudeDegrees: CesiumMath.toDegrees(geo.longitude),
+          altitudeMeters: geo.height } : null);
       }
     };
     instance.clock.onTick.addEventListener(tick);
@@ -695,8 +730,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
       removeTrail(primaryLine.current);
       pendingPrimaryLine.current = null;
       primaryLine.current = null;
-      oemLine.current = null;
-      oemRenderedAt.current = null;
+      oemPosition.current = null;
       updateTrajectory.current = null;
       enterInspection.current = null;
       exitInspection.current = null;
@@ -713,10 +747,7 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
     const instance = viewer.current;
     // Construct off scene and adopt one coherent source snapshot in one turn.
     const visualWindow = createVisualWindow(window);
-    const start = JulianDate.fromIso8601(window.response.windowStart);
-    const end = JulianDate.fromIso8601(window.response.windowEnd);
-    iss.current.position = visualWindow.position;
-    iss.current.availability = new TimeIntervalCollection([new TimeInterval({ start, stop: end })]);
+
     active.current = visualWindow;
 
     const estimatedNow = JulianDate.addSeconds(
@@ -739,8 +770,14 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
 
   useEffect(() => {
     comparisonRef.current = comparison;
+    oemPosition.current = comparison && comparison.oem.samples.length >= 2 ? oemPositionProperty(comparison) : null;
     if (viewer.current) updateTrajectory.current?.(JulianDate.toDate(viewer.current.clock.currentTime).getTime());
   }, [comparison]);
+
+  useEffect(() => {
+    // Emit new physical coordinates on the next frame after an immediate source change.
+    lastReportedSecond.current = null;
+  }, [selectedSource]);
 
   useEffect(() => {
     if (inspectionRequest > 0) enterInspection.current?.();
@@ -750,5 +787,5 @@ export const EarthView = memo(function EarthView({ window, comparison, inspectio
     if (overviewRequest > 0) exitInspection.current?.();
   }, [overviewRequest]);
 
-  return <div className="earth-view" ref={container} aria-label="Interactive 3D Earth and computed ISS trajectory" />;
+  return <div className="earth-view" ref={container} aria-label="Interactive 3D Earth and selected ISS trajectory" />;
 });

@@ -1,0 +1,32 @@
+[
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":17.8,\"canvas\":[2560,1440]}",
+    "timestamp": "2026-09-30T14:58:37.598Z",
+    "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":20.1,\"canvas\":[2560,1440]}",
+    "timestamp": "2026-09-30T14:58:42.620Z",
+    "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":17.6,\"canvas\":[2560,1440]}",
+    "timestamp": "2026-09-30T14:58:47.720Z",
+    "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":19.1,\"canvas\":[2560,1440]}",
+    "timestamp": "2026-09-30T14:58:52.736Z",
+    "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"fps\":19.6,\"canvas\":[2560,1440]}",
+    "timestamp": "2026-09-30T14:58:57.737Z",
+    "url": "http://127.0.0.1:5174/src/cesium/EarthView.tsx"
+  }
+]

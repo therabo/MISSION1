@@ -58,7 +58,8 @@ public final class OrbitalSampleWindowService {
         return new Window(now, elements, evaluation, bounds, states);
     }
 
-    /** 181 actual TLE propagations over one TLE mean-motion revolution, centered on now. */
+    /** 181 actual TLE propagations from now through one mean-motion revolution.
+     * The extra 15% beyond the visible 85% horizon supports ordinary scene-clock advance. */
     public FullOrbit generateFullOrbit() {
         Instant now = clock.instant();
         OrbitalElementSet elements = repository.latestUsable(now)
@@ -69,7 +70,7 @@ public final class OrbitalSampleWindowService {
                     org.mission1.orbital.domain.OrbitalQualityReason.INVALID_ORBITAL_ELEMENTS);
         }
         List<Instant> times = new ArrayList<>(181);
-        for (int index = -90; index <= 90; index++) {
+        for (int index = 0; index <= 180; index++) {
             times.add(now.plusNanos(Math.round(index * period / 180.0 * 1_000_000_000.0)));
         }
         final List<OrbitalState> states;
@@ -80,7 +81,7 @@ public final class OrbitalSampleWindowService {
         }
         var sourceHealth = health.snapshot(repository.lastSuccessfulRetrieval(
                 CelesTrakRefreshService.PROVIDER, CelesTrakRefreshService.ISS_CATALOG_NUMBER).orElse(null));
-        OrbitalEvaluation evaluation = evaluator.assessComputed(elements, now, states.get(90), sourceHealth);
+        OrbitalEvaluation evaluation = evaluator.assessComputed(elements, now, states.getFirst(), sourceHealth);
         return new FullOrbit(now, elements, evaluation, period, states);
     }
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1321.7856087814885,601.0704513544052],\"fps\":23.1,\"canvas\":[2559,1439]}",
+    "timestamp": "2026-09-30T15:07:24.133Z",
+    "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1322.5435514100993,602.7503212891397],\"fps\":22,\"canvas\":[2559,1439]}",
+    "timestamp": "2026-09-30T15:07:29.168Z",
+    "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1323.2433357626744,604.3012918379834],\"fps\":17.2,\"canvas\":[2559,1439]}",
+    "timestamp": "2026-09-30T15:07:34.174Z",
+    "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1323.9674981690848,605.9588875427155],\"fps\":20.3,\"canvas\":[2559,1439]}",
+    "timestamp": "2026-09-30T15:07:39.198Z",
+    "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+  },
+  {
+    "level": "info",
+    "message": "[graphics] frames {\"mode\":\"EARTH_OVERVIEW\",\"modelScreen\":[1324.6470875482794,607.5422538973077],\"fps\":19.8,\"canvas\":[2559,1439]}",
+    "timestamp": "2026-09-30T15:07:44.213Z",
+    "url": "http://127.0.0.1:5173/src/cesium/EarthView.tsx?t=1790778142159"
+  }
+]

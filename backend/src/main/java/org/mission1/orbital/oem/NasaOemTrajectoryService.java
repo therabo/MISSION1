@@ -79,7 +79,8 @@ public final class NasaOemTrajectoryService {
             return new Result("UNAVAILABLE", "OEM_WINDOW_NOT_COVERED", sourceOf(cached), List.of());
         }
         if (lastFetchFailed) return new Result("DEGRADED", "SOURCE_FETCH_FAILED_USING_STORED_FILE", sourceOf(cached), samples);
-        if (samples.size() < orbit.samples().size()) return new Result("DEGRADED", "OEM_WINDOW_PARTIAL", sourceOf(cached), samples);
+        if (!samples.getFirst().time().equals(orbit.generatedAt()) ||
+                !samples.getLast().time().equals(orbit.samples().getLast().propagationTime())) return new Result("DEGRADED", "OEM_WINDOW_PARTIAL", sourceOf(cached), samples);
         return new Result("AVAILABLE", "NONE", sourceOf(cached), samples);
     }
 
@@ -92,10 +93,19 @@ public final class NasaOemTrajectoryService {
     private List<Sample> sample(NasaOemDocument document, FullOrbit orbit) {
         var vectors = document.vectors();
         var output = new ArrayList<Sample>();
+        Instant start = orbit.generatedAt().isAfter(vectors.getFirst().epoch())
+                ? orbit.generatedAt() : vectors.getFirst().epoch();
+        Instant stop = orbit.samples().getLast().propagationTime().isBefore(vectors.getLast().epoch())
+                ? orbit.samples().getLast().propagationTime() : vectors.getLast().epoch();
+        if (!stop.isAfter(start)) return List.of();
+        long spanNanos = Duration.between(start, stop).toNanos();
+        int intervals = Math.min(180, Math.max(1,
+                (int) Math.ceil(spanNanos / (orbit.orbitalPeriodSeconds() / 180 * 1e9))));
         int before = 0;
-        for (var state : orbit.samples()) {
-            Instant time = state.propagationTime();
-            if (time.isBefore(vectors.getFirst().epoch()) || time.isAfter(vectors.getLast().epoch())) continue;
+        // Uniform within the real intersection, including its exact boundaries.
+        // A partial OEM is never extended to the primary endpoint.
+        for (int index = 0; index <= intervals; index++) {
+            Instant time = start.plusNanos(Math.round(index * (double) spanNanos / intervals));
             while (before + 1 < vectors.size() && vectors.get(before + 1).epoch().isBefore(time)) before++;
             if (before + 1 >= vectors.size()) break;
             var a = vectors.get(before);

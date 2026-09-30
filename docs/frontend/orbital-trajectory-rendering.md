@@ -1,4 +1,125 @@
-# Orbital trajectory presentation correction — 2026-09-30
+# Selectable forward ISS trajectories — 2026-09-30
+
+Current implementation is governed by [ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md). The previous centered/dashed correction is preserved as history below and in commit `054e825`; it does not describe the current renderer. RTN separation analytics have not been started.
+
+## Source and physical position policy
+
+The accessible two-button selector defaults to `PRIMARY_GP_TLE` for each page session. It changes the actual sampled target as well as the active trail. GP/TLE uses the mandatory short Orekit/ITRF animation buffer; NASA OEM uses bounded linear display interpolation between the comparison API's real OEM samples. Those samples come from the existing bounded cubic Hermite source-vector interpolation and epoch-specific EME2000→ITRF conversion. The selected physical position is shared by the GLB, temporary locator, approach target, moving local ENU Inspection pivot, and WGS84 readout. A switch selects the other property immediately; no blending between sources or spatial displacement is added.
+
+NASA OEM remains `SOURCE_PROVIDED_PREDICTED_EPHEMERIS`, explicitly labeled **NASA predicted ephemeris**. GP/TLE remains `COMPUTED_FROM_ORBITAL_ELEMENTS`. Neither is truth or live onboard telemetry. The active metadata shows the selected product's creation/element epoch, coverage where applicable, retrieval and hash. GP quality and CelesTrak acquisition remain independently visible. The real stored elements in this review remain honestly `STALE / ELEMENT_TOO_OLD`; source acquisition is `UNKNOWN` with refresh disabled for this local check.
+
+OEM selection requires non-UNAVAILABLE delivery, actual sample and source coverage of scene time, and comparison response age within the existing 300-second display policy. Covered DEGRADED predictions remain explicitly degraded. Invalid OEM disables its button; loss while selected exits Inspection and returns to GP/TLE with a visible status notice. No stale-position freeze or extrapolation occurs. A new normal poll may start up to 3 seconds ahead of the aligned scene clock: the prior valid, still-moving bounded product is retained until the new one covers scene time. True outages and coverage loss are accepted immediately. A browser check retained OEM Inspection across several real 120-second refreshes (14:28:43 through 14:36 UTC); the final approach handoff measured 0 m positional discontinuity and approximately 7.08×10⁻¹¹° direction / 1.27×10⁻¹¹° up discontinuity.
+
+## Forward geometry and fade
+
+The [real response capture](trajectory-selection-review/diagnostic-comparison.json) records the verified stored inputs. For its TLE mean motion 15.48685648 rev/day:
+
+| Quantity | Current value |
+| --- | --- |
+| Primary period, `86400 / meanMotion` | 5578.924303429717 s / 92.9820717 min |
+| Delivered primary grid | 181 points, 180 equal intervals, `generatedAt` through `generatedAt + T`, current index 0 |
+| Delivered OEM grid | Up to 181 uniform points over the real vector/request intersection, exact coverage boundaries; 181 in this real capture |
+| First visible time | `sceneTime + 40 s` |
+| Start-gap physical displacement in this capture | GP 294060.793 m; OEM 294056.054 m, from the same bounded display interpolation |
+| Nominal endpoint | `sceneTime + 0.85T` = +4742.08565791526 s / 79.034761 min |
+| Nonzero temporal span after the gap | 4702.08565791526 s / 78.368094 min = 84.2830159% of T |
+| Partial OEM endpoint | Earlier of nominal endpoint and actual final OEM sample |
+
+The temporal masks reject every time before the start gap and every time at/after the endpoint. For `u = (sampleTime − visibleStart) / (visibleEnd − visibleStart)`:
+
+```text
+alphaMultiplier = 1 − u²(3 − 2u),  0 ≤ u < 1
+alphaMultiplier = 0 outside that interval
+```
+
+The inverse smoothstep is monotonic, with zero slope at both ends and exactly zero endpoint opacity. There is no fade-in, periodic wrap, past/rear path, copied first point, endpoint bridge or loop. At response time 151 primary grid vertices lie strictly inside the nonzero interval; exact start/end clip boundaries are evaluated by the material along sampled segments. All 181 source points remain in the unclosed, temporally masked geometry. Sampling and positions remain unchanged by styling. Earth occultation remains physically credible.
+
+Each source has two coincident primitives with identical source XYZ, `ArcType.NONE`, non-pickable and unclosed. Both sources use the same public Fabric composition of `PolylineGlow` and temporal clipping/fade; no dashed material remains.
+
+| Layer | Width | Alpha scale | Glow power |
+| --- | ---: | ---: | ---: |
+| Halo | 20 px | 0.26 | 0.35 |
+| Body | 8 px | 1 | 0.22 |
+
+Active color is `#53d9cd`, maximum alpha 0.85; inactive is `#71939c`, maximum alpha 0.12. Selection swaps these colors/opacities and raises the selected halo/body after the inactive pair. Native Cesium depth and translucent rendering remain in use; ordering does not invent separation or disable globe depth. Real centerlines nearly overlap at this scale, so the inactive source can be mostly hidden under the active one. The pressed control and source text make selection explicit.
+
+Geometry rebuilds only when a new response arrives. All two/four replacement primitives prepare hidden and reveal together; the old ready group stays until then. Ticks change only temporal and color uniforms. Materials/primitives are cleaned up on replacement/unmount.
+
+## Model decision gate and Inspection
+
+Earth View `minimumPixelSize` is **96→92**, physical asset scale 1 and `maximumScale=20000` unchanged. The GLB is still explicitly NOT TO SCALE. Trials compared [20-second gap](trajectory-selection-review/gap-20-size-92.jpg), [30 seconds](trajectory-selection-review/gap-30-size-92.jpg), and [40 seconds](trajectory-selection-review/gap-40-size-92.jpg). Twenty seconds touched the enhanced model; thirty was marginal; forty provided a small clear gap.
+
+The smaller-only trial was sufficient. A [+5 km outward display lift](trajectory-selection-review/size-92-lift-5km.jpg) and [1 px white silhouette at alpha 0.30](trajectory-selection-review/size-92-lift-5km-outline.jpg) were evaluated and omitted. The latter capture differs in viewport/camera and is qualitative evidence, not a controlled pixel comparison. Final `DISPLAY_ONLY_EARTH_VIEW_OFFSET=0`; there is no silhouette or lift to remove in Inspection. Only existing off-origin asset-centering translation remains. Position, altitude, samples and camera pivot are physical and unmodified in every mode.
+
+Ready GLB alone is directly clickable; locator/label are temporary loading/error fallbacks at valid selected positions. Texture/feature readiness gates the initial hidden model reveal. PRIMARY and OEM both retain the moving approach, naturally lit close view, orbit/zoom controls and semantic module picking. Source controls lock during entry, Inspection and exit; Back to Earth preserves the source. Both trails hide outside Overview. The existing 78-pixel approach enhancement now grows from 92 to 170 and returns to 92.
+
+## Browser matrix
+
+Development and served production were checked using real stored inputs. Temporary localhost QA proxies changed only OEM availability or GLB delivery latency; they left real sampled coordinates unchanged and are not production integration code. Their missing HMR WebSocket forwarding is a proxy limitation. Normal development/production reported no application/WebGL errors. Screenshots represent observed camera/time compositions, not exhaustive GPU guarantees.
+
+| Required case | Development | Served production |
+| --- | --- | --- |
+| Default PRIMARY, switch OEM, back PRIMARY, repeated switches | Pass | Pass |
+| Selected source changes physical model position and lineage | Pass; source diagnostics and regression test | Pass; readout/selection and visible model |
+| OEM unavailable / disabled, GP preserved | [Pass](trajectory-selection-review/development-oem-unavailable.jpg) | [Pass](trajectory-selection-review/production-oem-unavailable.jpg) |
+| Day Earth | [Pass](trajectory-selection-review/development-oem-day.jpg) | [Pass](trajectory-selection-review/production-oem-day.jpg) |
+| Night Earth | [Pass](trajectory-selection-review/development-night.jpg) | [Pass](trajectory-selection-review/production-night.jpg) |
+| Terminator | [Pass](trajectory-selection-review/development-terminator.jpg) | [Pass](trajectory-selection-review/production-terminator.jpg) |
+| Global rotation / native globe occultation | Pass | Pass |
+| Medium zoom | [Pass](trajectory-selection-review/development-medium.jpg) | [Pass](trajectory-selection-review/production-medium.jpg) |
+| Forward start gap, future-only, 85% nominal, endpoint fade | Pass; sample/mask tests and rotation | Pass; continuous fade, no closure |
+| Smaller model, improved separation, no silhouette | Pass; decision trials above | Pass |
+| Direct ready model click | Pass; solar-array surface | Pass; solar-array surface |
+| PRIMARY Inspection | [Pass](trajectory-selection-review/development-primary-inspection.jpg) | [Pass](trajectory-selection-review/production-primary-inspection.jpg) |
+| OEM Inspection | [Pass](trajectory-selection-review/development-oem-inspection.jpg) | [Pass](trajectory-selection-review/production-oem-inspection.jpg) |
+| Back to Earth / source retained / controls unlock | Pass | Pass |
+| Delayed GLB locator → ready model only | [Pass, 30-second delay](trajectory-selection-review/development-loading-fallback.jpg) | [Pass, 30-second delay](trajectory-selection-review/production-loading-fallback.jpg) |
+| OEM stays selected through ordinary polling in Inspection | [Pass](trajectory-selection-review/development-oem-inspection-refresh.jpg) | Pass; retained through multiple polls |
+| Active OEM loss while inspecting | Unit source/coverage/expiry tests | [Pass: explicit GP fallback](trajectory-selection-review/production-oem-loss-fallback.jpg) |
+| Semantic module click | [Columbus panel](trajectory-selection-review/development-module-picking.jpg) | Existing routing and ready model picking retained |
+| Narrow responsive controls / Inspection | Same responsive implementation | [Overview](trajectory-selection-review/production-mobile.jpg), [Inspection](trajectory-selection-review/production-mobile-inspection.jpg); no horizontal overflow |
+
+Responsive QA requested 390×844; the native browser backing scale resulted in a 354-CSS-pixel viewport. [DOM measurements](trajectory-selection-review/mobile-layout.json) show the selector and Back action inside the viewport and Inspection status separated vertically from the selector. Visual lint found no clipped controls or panel overlap. The installed frontend skill's shared lint scripts were unavailable, so screenshot inspection and read-only DOM layout measurements provided the equivalent local check.
+
+## Eight final visual answers
+
+1. **Ahead of model:** yes, the 40-second real temporal gap visibly separates the start from the enhanced model in the reviewed global and medium views.
+2. **No rear path:** yes, temporal clipping removes all past and near-current samples.
+3. **Dissolves before closure:** yes, inverse smoothstep reaches zero at 85% of the mean-motion period; no bridge or closure is drawn.
+4. **Active selection obvious without dashes:** yes, bright cyan active trail plus pressed source control/label; both source trails are continuous.
+5. **Model uses actual selected position:** yes, source switching selects the corresponding bounded position property shared with readout and camera; no cross-source blend or offset. At Earth scale the small physical difference is often subpixel, so the property/diagnostic check supplements the visual observation.
+6. **Slightly smaller and separated from Earth:** yes in reviewed views, 92 pixels improves the footprint and the real orbital altitude supplies separation. No visibility guarantee is made for every occulted viewing angle.
+7. **Silhouette necessary:** no; smaller-only was sufficient, so final silhouette is omitted.
+8. **Natural Inspection for both:** yes; same moving selected ENU pivot, zero positional handoff, source preserved on Back and no oversized trails.
+
+## Performance and gates
+
+The [raw performance record](trajectory-selection-review/performance.json) compares clean archive `054e825` (frontend and backend on temporary ports) against the final implementation sequentially. Both use real stored TLE/OEM inputs, one active Earth View, 1280×720 CSS viewport / DPR 2 / 2560×1440 drawing buffer, 4× MSAA, FXAA off, HDR off and the same initial camera convention. Adjacent current-epoch five-second windows reduce the cache/time-of-day confound; they do not freeze physical time.
+
+| Five steady windows | Min FPS | Median FPS | Max FPS |
+| --- | ---: | ---: | ---: |
+| Archived previous renderer | 17.6 | 19.1 | 20.1 |
+| Final PRIMARY | 17.6 | 19.1 | 19.4 |
+
+Median difference **0.0 FPS**. The historical accepted multi-view reference was approximately 17.5 FPS at the same drawing-buffer size. An earlier single-view baseline median 21.1 versus a later final 19.1 prompted this adjacent rerun; both raw observations are retained rather than attributing the earlier difference to code. No material regression was detected in the adjacent comparison. Scene epoch/imagery/cache differ, and GPU memory is not instrumented.
+
+Four small halo/body primitives replace the previous two plus one dashed entity: one additional primitive. Source changes reuse geometry and change four materials plus the sampled target; ticks update uniforms, while geometry only rebuilds on a response. A separate equal-native-viewport comparison (2327×1309 CSS / 2559×1439 drawing buffer, five windows each) measured PRIMARY median **20.2 FPS** and OEM **20.3 FPS**. No measurable source-selection penalty was observed. This native viewport is not directly comparable to the archived-vs-final table above; a discarded 1238×1590 OEM observation is explicitly excluded in the raw record.
+
+Frontend **60 tests / 13 files**, typecheck and production build passed on Node 24. Backend **82 tests**, zero failures/errors/skips, `mvn test` and `mvn verify` passed. `git diff --check` passed. The existing Cesium bundle-size warning remains. Regression tests cover source selection/pivot/locks, invalid or expired OEM, no extrapolation, normal refresh clock seam, source labels, exact forward period/grid, real partial coverage boundaries, future clipping/gap/fade and identical reusable trail geometry. The `.tsx` test inclusion now also runs the pre-existing module panel suite.
+
+The source contract changes are documented in [API specification](../api/orbital-comparison.md); canonical `/state` and short `/samples` semantics are unchanged. No source adapter, propagation physics, persisted orbit product, RTN metric or analytics API was added.
+
+## Authoritative verification
+
+- [NASA ISS ephemeris publication](https://www.nasa.gov/general/spaceflight-nasa-gov-has-been-retired/) identifies predicted state vectors; current XML was rechecked for EME2000, UTC, km and km/s before relying on the existing adapter.
+- [Cesium public Material](https://cesium.com/learn/cesiumjs/ref-doc/Material.html) / Fabric and pinned 1.145 PolylineGeometry were checked for the temporal material and normalized uniform sample-index coordinates.
+- [Cesium public Model](https://cesium.com/learn/cesiumjs/ref-doc/Model.html) documents silhouette size in pixels and color; the final renderer does not enable it.
+
+---
+
+## Historical correction before source selection
+
+### Orbital trajectory presentation correction — earlier 2026-09-30 milestone
 
 Scope: endpoint and overlap diagnosis, primary trail/OEM differentiation, ready ISS locator removal. Backend propagation, source selection, interpolation, API windows, attitude and physics are unchanged. The full RTN analytics milestone is deferred.
 

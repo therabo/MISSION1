@@ -87,7 +87,7 @@ dl { margin: 8px 0 0; }
 .scene-legend small { color: #a6c7ce; font-size: 10px; padding-left: 28px; }
 .legend-rule { display: inline-block; width: 20px; height: 3px; flex: none; }
 .legend-rule.primary { background: linear-gradient(90deg, rgba(83,217,205,.15), #53d9cd); box-shadow: 0 0 5px rgba(83,217,205,.3); }
-.legend-rule.oem { background: repeating-linear-gradient(90deg, #ff984f 0 4px, transparent 4px 10px); }
+
 .is-inspecting .status-panel { width: 278px; max-height: min(310px, calc(100vh - 155px)); bottom: auto; padding: 16px; background: rgba(8, 23, 36, .83); }
 .is-inspecting .status-panel .panel-head h1 { font-size: 20px; }
 .is-inspecting .status-panel .time-card { margin-top: 12px; }
@@ -118,4 +118,22 @@ dl { margin: 8px 0 0; }
   .is-inspecting .module-panel { top: 60px; bottom: auto; }
   .inspection-hint { top: 101px; bottom: auto; max-width: calc(100vw - 18px); white-space: normal; }
   .earth-view .cesium-widget-credits { bottom: 5px; right: 9px; }
+}
+
+.trajectory-selector { min-width: 300px; max-width: min(390px, calc(100vw - 18px)); gap: 8px; }
+.trajectory-selector small { padding-left: 0; line-height: 1.4; }
+.source-options { display: flex; gap: 6px; }
+.source-options button { display: flex; align-items: center; gap: 7px; min-height: 38px; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: #102531; color: #bfd0d5; padding: 8px 10px; font: inherit; font-size: 11px; cursor: pointer; }
+.source-options button i { width: 7px; height: 7px; border: 1px solid currentColor; border-radius: 50%; flex: none; }
+.source-options button[aria-pressed="true"] { border-color: var(--accent); color: #d8fffb; background: #16414a; }
+.source-options button[aria-pressed="true"] i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px #53d9cd55; }
+.source-options button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.source-options button:disabled { cursor: not-allowed; opacity: .6; }
+.source-options button[aria-pressed="true"]:disabled { opacity: 1; }
+.source-notice { margin: 0; color: var(--warning); font-size: 11px; line-height: 1.4; }
+@media (max-width:720px) {
+  .trajectory-selector { min-width: 0; }
+  .source-options button { min-height: 38px; }
+  .is-inspecting .trajectory-selector { top:auto; bottom:31px; right:9px; width: min(300px, calc(100vw - 18px)); }
+  .is-inspecting .status-panel { bottom:165px; }
 }

@@ -70,20 +70,18 @@ export function parseComparison(payload: unknown): ComparisonResponse {
   const primary = object(root.primary);
   if (primary.classification !== 'COMPUTED_FROM_ORBITAL_ELEMENTS' ||
       primary.frame !== 'ITRF_2020_IERS_2010' || primary.positionUnit !== 'm' ||
-      primary.currentSampleIndex !== 90 || typeof primary.orbitalPeriodSeconds !== 'number' ||
+      primary.currentSampleIndex !== 0 || typeof primary.orbitalPeriodSeconds !== 'number' ||
       primary.orbitalPeriodSeconds < 5_000 || primary.orbitalPeriodSeconds > 7_000) {
     throw new Error('Unsupported primary comparison product');
   }
   const primarySamples = samples(primary.samples, 181);
-  if (primarySamples.length !== 181 || instant(primarySamples[90].time) !== generated ||
-      Math.abs((instant(primarySamples[180].time) - instant(primarySamples[0].time)) / 1000 - primary.orbitalPeriodSeconds) > 1 ||
-      Math.abs((generated - instant(primarySamples[0].time)) / 1000 - primary.orbitalPeriodSeconds / 2) > 1 ||
-      Math.abs((instant(primarySamples[180].time) - generated) / 1000 - primary.orbitalPeriodSeconds / 2) > 1) {
-    throw new Error('Incomplete full-orbit trajectory');
+  if (primarySamples.length !== 181 || instant(primarySamples[0].time) !== generated ||
+      Math.abs((instant(primarySamples[180].time) - generated) / 1000 - primary.orbitalPeriodSeconds) > 0.002) {
+    throw new Error('Incomplete forward-orbit trajectory');
   }
   if (primarySamples.some((sample, index) => Math.abs(instant(sample.time) -
-      (generated + (index - 90) * (primary.orbitalPeriodSeconds as number) / 180 * 1000)) > 2)) {
-    throw new Error('Irregular full-orbit sampling');
+      (generated + index * (primary.orbitalPeriodSeconds as number) / 180 * 1000)) > 2)) {
+    throw new Error('Irregular forward-orbit sampling');
   }
   const source = object(primary.source);
   if (typeof source.elementSha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(source.elementSha256) ||
@@ -98,11 +96,22 @@ export function parseComparison(payload: unknown): ComparisonResponse {
   const oemSamples = samples(oem.samples, 181);
   if (oem.availability === 'UNAVAILABLE' && oemSamples.length !== 0) throw new Error('Unavailable OEM has samples');
   if (oem.availability !== 'UNAVAILABLE' && oemSamples.length < 2) throw new Error('Available OEM lacks samples');
-  const primaryTimes = new Set(primarySamples.map((sample) => sample.time));
-  if (oemSamples.some((sample) => !primaryTimes.has(sample.time))) throw new Error('OEM samples are not aligned');
+  if (oemSamples.length > 1) {
+    const first = instant(oemSamples[0].time);
+    const last = instant(oemSamples[oemSamples.length - 1].time);
+    if (first < generated || last > instant(primarySamples[180].time) ||
+        oemSamples.some((sample, index) => Math.abs(instant(sample.time) -
+          (first + index * (last - first) / (oemSamples.length - 1))) > 2)) {
+      throw new Error('Invalid OEM forward sampling');
+    }
+  }
   if (oem.source !== null) {
     const nasa = object(oem.source);
     for (const field of ['creationDate', 'startTime', 'stopTime', 'retrievedAt']) instant(nasa[field]);
+    if (instant(nasa.stopTime) <= instant(nasa.startTime) || oemSamples.some((sample) =>
+        instant(sample.time) < instant(nasa.startTime) || instant(sample.time) > instant(nasa.stopTime))) {
+      throw new Error('OEM samples outside source coverage');
+    }
     if (nasa.httpLastModified !== null) instant(nasa.httpLastModified);
     if (typeof nasa.sha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(nasa.sha256)) throw new Error('Invalid OEM lineage');
     if (nasa.sourceUrl !== 'https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml') throw new Error('Unexpected OEM source');

@@ -37,15 +37,16 @@ class NasaOemTrajectoryServiceTest {
         var service = new NasaOemTrajectoryService(repository, source, new NasaOemXmlParser(), data,
                 Clock.fixed(NOW, ZoneOffset.UTC));
         var result = service.comparison(orbit);
-        assertEquals("AVAILABLE", result.availability());
+        assertEquals("DEGRADED", result.availability());
+        assertEquals("OEM_WINDOW_PARTIAL", result.reason());
         assertEquals("EME2000", data.eme2000().getName());
         assertTrue(result.samples().size() > 100);
         assertTrue(result.samples().size() <= orbit.samples().size());
-        assertEquals(NOW, result.samples().get(result.samples().size() / 2).time());
+        assertEquals(NOW, result.samples().getFirst().time());
         assertTrue(result.samples().stream().allMatch(s -> Math.sqrt(s.xMeters() * s.xMeters()
                 + s.yMeters() * s.yMeters() + s.zMeters() * s.zMeters()) > 6_000_000));
         assertEquals(orbit.evaluation().state().elementSha256(), orbit.elements().sha256());
-        assertEquals(NOW, orbit.samples().get(90).propagationTime());
+        assertEquals(NOW, orbit.samples().getFirst().propagationTime());
         verify(repository).store(any(), any(), eq(NOW), any());
     }
 
@@ -77,9 +78,11 @@ class NasaOemTrajectoryServiceTest {
         var second = service.comparison(orbit);
         assertEquals("DEGRADED", first.availability());
         assertEquals("SOURCE_FETCH_FAILED_USING_STORED_FILE", second.reason());
-        assertEquals(181, second.samples().size());
+        assertEquals(172, second.samples().size());
+        assertEquals(Instant.parse("2026-09-30T11:58:00Z"), second.samples().getLast().time());
+        assertTrue(second.samples().getLast().time().isBefore(orbit.samples().getLast().propagationTime()));
         assertEquals(oldReceipt, second.source().retrievedAt());
-        assertEquals("COMPUTED_FROM_ORBITAL_ELEMENTS", orbit.samples().get(90).classification().name());
+        assertEquals("COMPUTED_FROM_ORBITAL_ELEMENTS", orbit.samples().getFirst().classification().name());
         verify(source, times(1)).fetch(); // 15-minute retry backoff
     }
 

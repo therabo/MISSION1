@@ -1,6 +1,6 @@
 # ISS Inspection Mode
 
-Earth Overview and ISS Inspection share one Cesium Viewer, clock, ISS entity, preloaded model primitive and bounded backend-derived SampledPositionProperty in the fixed Earth frame. The scene shows computed GP/TLE propagation, not an onboard camera or live position measurement. The model is a historical NASA VTAD asset with display-only ENU orientation; spacecraft attitude remains unavailable.
+Earth Overview and ISS Inspection share one Cesium Viewer, clock, ISS entity, preloaded model primitive and bounded backend-derived SampledPositionProperty in the fixed Earth frame. One selected physical sampled position drives the scene and camera: default GP/TLE propagation or explicitly selected NASA OEM predicted ephemeris. Neither is onboard position telemetry. The model is a historical NASA VTAD asset with display-only ENU orientation; spacecraft attitude remains unavailable.
 
 ## Why the earlier approach failed
 
@@ -33,3 +33,11 @@ A desktop development run at a 1164 × 727 scene viewport went from 16,583 km th
 A temporary development-only rapid poll of the real backend swapped the active sampled window several times during a single approach, including responses generated at 17:51:03, 17:51:05 and 17:51:07 UTC on 2026-09-29. Measured camera range continued downward from 16,514 km to 403 m with the ISS at or close to screen center and no Earth occlusion. The refresh probe was removed after the test; the normal 120-second poll interval remains in source.
 
 A separate temporary scene-time probe selected a real sample near the end of the existing bounded window, placing the station on the sunlit side at the upper-right of the 1280 × 800 viewport. Range fell from 18,094 km through 7,594 km and 761 km to 423 m; the maximum range reversal across ten recorded samples was 0 m. Normalized screen error fell from 0.248 to 0.001 within about 0.8 seconds, then remained at center. Earth occlusion stayed false. The probe was removed; the production clock remains backend-aligned. Normal browser runs also covered the night side and the moving terminator.
+
+## Selectable trajectory source — 2026-09-30
+
+`selectedPositionAt` supplies the same physical point to the model, progressive approach, Earth-occlusion checks and moving ENU camera pivot. PRIMARY reads the original short computed buffer; NASA OEM reads its separately bounded predicted ITRF property. Selection is immediate and never blends the two products. The selector is enabled only in `EARTH_OVERVIEW`, locked in `ENTERING_INSPECTION`, `ISS_INSPECTION` and `EXITING_INSPECTION`. Back preserves a still-valid selected source and unlocks switching only after return completes.
+
+OEM source or sample coverage loss, response expiry or failed delivery exits Inspection and explicitly selects primary with a visible notice; there is no held last OEM point or extrapolation. Normal refreshed buffers slightly ahead of the scene clock retain their valid predecessor until the new buffer covers scene time, avoiding a false loss during Inspection. Primary buffer expiry remains the mandatory no-position gate.
+
+Overview minimum footprint is 92 pixels, rising smoothly to 170 during entry and returning to 92 over the existing 1.2-second exit. The model remains NOT TO SCALE. Browser trials did not justify a display lift or white silhouette; `DISPLAY_ONLY_EARTH_VIEW_OFFSET=0`, so the true selected position drives model and pivot throughout entry and close Inspection. Both forward trails hide in Inspection. Direct model entry, semantic picking and hidden-until-textures/features-ready lifecycle are retained. The [current browser record](orbital-trajectory-rendering.md) covers both sources and handoff observations.
