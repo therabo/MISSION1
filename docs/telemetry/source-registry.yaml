@@ -281,15 +281,15 @@ defaults:
     source_timestamp_semantics: state-vector EPOCH in UTC; file CREATION_DATE is separate
     reception_timestamp_semantics: MISSION1 fetch time, when integrated
     reference_frame: EME2000, Earth-centered (as current file metadata)
-    classification: PREDICTED_EPHEMERIS; source-provided, not live or measured
+    classification: SOURCE_PROVIDED_PREDICTED_EPHEMERIS; not live or measured
     source_quality_status: No per-state quality flag documented on NASA page
     update_behavior: 'NASA says approximately three publications per week; states nominally every 4 minutes, 2 seconds during reboosts.'
     verification_status: VERIFIED
     verification_date: 2026-09-28
     authoritative_evidence: [nasa_oem_page, nasa_oem_txt, nasa_oem_xml]
     limitations: 'Prediction accumulates error; bounded by OEM segment/usable times; stable current URL is overwritten.'
-    mvp_phase: MVP3
-    implementation_readiness: READY_FOR_PREDICTED_EPHEMERIS_PARSER; not MVP1 live telemetry
+    mvp_phase: MVP2_trajectory_comparison_implemented
+    implementation_readiness: IMPLEMENTED_AS_SECONDARY_COMPARISON; not live telemetry
     notes: Preserve file creation and fetch times; verify Orekit EME2000 mapping and interpolation before derived Earth coordinates.
 
 parameters:

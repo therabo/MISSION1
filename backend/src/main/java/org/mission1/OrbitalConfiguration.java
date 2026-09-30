@@ -15,6 +15,10 @@ import org.mission1.orbital.application.CelesTrakRefreshService;
 import org.mission1.orbital.application.CelesTrakSourceHealthTracker;
 import org.mission1.orbital.application.OrbitalSampleWindowService;
 import org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSource;
+import org.mission1.orbital.oem.NasaOemRepository;
+import org.mission1.orbital.oem.NasaOemTrajectoryService;
+import org.mission1.source.orbital.nasa.NasaOemSource;
+import org.mission1.source.orbital.nasa.NasaOemXmlParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +57,12 @@ class OrbitalConfiguration {
     }
     @Bean CelesTrakSourceHealthTracker celesTrakSourceHealthTracker() {
         return new CelesTrakSourceHealthTracker();
+    }
+    @Bean NasaOemXmlParser nasaOemXmlParser() { return new NasaOemXmlParser(); }
+    @Bean NasaOemSource nasaOemSource() { return new NasaOemSource(); }
+    @Bean NasaOemTrajectoryService nasaOemTrajectoryService(NasaOemRepository repository,
+            NasaOemSource source, NasaOemXmlParser parser, OrekitData data, Clock utcClock) {
+        return new NasaOemTrajectoryService(repository, source, parser, data, utcClock);
     }
     @Bean CelesTrakRefreshPolicy celesTrakRefreshPolicy(
             @Value("${mission1.orbital.celestrak.refresh.interval:PT2H10M}") Duration interval,

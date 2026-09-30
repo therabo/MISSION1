@@ -10,7 +10,7 @@
 | `futureSeconds` | 600 | Integer 30–1200, multiple of `stepSeconds` |
 | `stepSeconds` | 10 | Integer 5–30 |
 
-The inclusive sample count is `(pastSeconds + futureSeconds) / stepSeconds + 1` and must be at most **181**. The total window must be at most **1200 seconds**. Validation occurs before any database read. The inclusive time grid begins at `generatedAt − pastSeconds`, contains `generatedAt` exactly, and ends at `generatedAt + futureSeconds`. Defaults produce 73 samples. The 20-minute total and 181-sample caps protect CPU/payload size while retaining a short Earth View arc; they do not authorize a full-orbit ground track. The 5-second minimum is denser than the chosen 10-second default and gives headroom for a closer camera; 30 seconds is the coarsest supported step after the interpolation experiment.
+The inclusive sample count is `(pastSeconds + futureSeconds) / stepSeconds + 1` and must be at most **181**. The total window must be at most **1200 seconds**. Validation occurs before any database read. The inclusive time grid begins at `generatedAt − pastSeconds`, contains `generatedAt` exactly, and ends at `generatedAt + futureSeconds`. Defaults produce 73 samples. The 20-minute total and 181-sample caps protect CPU/payload size for ISS model motion and inspection; the separate [comparison endpoint](orbital-comparison.md) delivers a full revolution. The 5-second minimum is denser than the chosen 10-second default and gives headroom for a closer camera; 30 seconds is the coarsest supported step after the interpolation experiment.
 
 ## HTTP 200 response
 

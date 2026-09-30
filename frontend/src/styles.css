@@ -82,8 +82,12 @@ dl { margin: 8px 0 0; }
 .module-telemetry { padding: 9px 10px; border: 1px solid var(--border); border-radius: 7px; background: rgba(16, 44, 55, .72); color: #b8d0d3; font-size: 11px; }
 .module-telemetry strong { color: #eef6f6; font-weight: 650; }
 .module-scale { margin: 10px 0 0; color: #95b2b9; font-size: 10px; letter-spacing: .04em; }
-.scene-legend { position: absolute; right: 22px; bottom: 31px; z-index: 2; display: flex; align-items: center; gap: 9px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-soft); color: #d9edef; font-size: 10px; }
-.legend-rule { display: inline-block; width: 17px; height: 2px; margin-left: 10px; background: var(--accent); }
+.scene-legend { position: absolute; right: 22px; bottom: 31px; z-index: 2; display: grid; gap: 6px; padding: 11px 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-soft); color: #d9edef; font-size: 10px; }
+.scene-legend span { display: flex; align-items: center; gap: 8px; }
+.scene-legend small { color: #a6c7ce; font-size: 10px; padding-left: 28px; }
+.legend-rule { display: inline-block; width: 20px; height: 3px; flex: none; }
+.legend-rule.primary { background: linear-gradient(90deg, rgba(88,217,212,.15), #58d9d4); }
+.legend-rule.oem { background: repeating-linear-gradient(90deg, #ffc27d 0 4px, transparent 4px 7px); }
 .is-inspecting .status-panel { width: 278px; max-height: min(310px, calc(100vh - 155px)); bottom: auto; padding: 16px; background: rgba(8, 23, 36, .83); }
 .is-inspecting .status-panel .panel-head h1 { font-size: 20px; }
 .is-inspecting .status-panel .time-card { margin-top: 12px; }
@@ -103,7 +107,8 @@ dl { margin: 8px 0 0; }
   .panel-head h1 { font-size: 20px; }
   .time-card { margin-top: 13px; }
   .panel-section { margin-top: 15px; }
-  .scene-legend { display: none; }
+  .scene-legend { display: grid; top: 58px; right: 9px; bottom: auto; max-width: calc(100vw - 18px); padding: 7px 9px; gap: 4px; background: rgba(13, 35, 49, .76); font-size: 10px; }
+  .scene-legend small { font-size: 10px; }
   .module-panel { top: 58px; right: 9px; bottom: auto; width: min(275px, calc(100vw - 18px)); padding: 12px 13px; }
   .module-panel h2 { font-size: 20px; }
   .module-context { margin: 8px 0; }

@@ -16,6 +16,8 @@ import org.mission1.orbital.propagation.OrekitOrbitalPropagator;
 public final class OrbitalSampleWindowService {
     public record Window(Instant generatedAt, OrbitalElementSet elements, OrbitalEvaluation evaluation,
                          OrbitalSampleWindow bounds, List<OrbitalState> samples) { }
+    public record FullOrbit(Instant generatedAt, OrbitalElementSet elements, OrbitalEvaluation evaluation,
+                            double orbitalPeriodSeconds, List<OrbitalState> samples) { }
 
     private final OrbitalElementSetRepository repository;
     private final OrekitOrbitalPropagator propagator;
@@ -54,5 +56,31 @@ public final class OrbitalSampleWindowService {
         OrbitalState atGeneratedAt = states.get(bounds.pastSeconds() / bounds.stepSeconds());
         OrbitalEvaluation evaluation = evaluator.assessComputed(elements, now, atGeneratedAt, sourceHealth);
         return new Window(now, elements, evaluation, bounds, states);
+    }
+
+    /** 181 actual TLE propagations over one TLE mean-motion revolution, centered on now. */
+    public FullOrbit generateFullOrbit() {
+        Instant now = clock.instant();
+        OrbitalElementSet elements = repository.latestUsable(now)
+                .orElseThrow(NoCurrentOrbitalStateException::new).elements();
+        double period = propagator.orbitalPeriodSeconds(elements);
+        if (!Double.isFinite(period) || period < 5_000 || period > 7_000) {
+            throw new CurrentOrbitalStateCalculationException(
+                    org.mission1.orbital.domain.OrbitalQualityReason.INVALID_ORBITAL_ELEMENTS);
+        }
+        List<Instant> times = new ArrayList<>(181);
+        for (int index = -90; index <= 90; index++) {
+            times.add(now.plusNanos(Math.round(index * period / 180.0 * 1_000_000_000.0)));
+        }
+        final List<OrbitalState> states;
+        try {
+            states = propagator.propagateAll(elements, times);
+        } catch (OrbitalCalculationException failure) {
+            throw new CurrentOrbitalStateCalculationException(failure.reason());
+        }
+        var sourceHealth = health.snapshot(repository.lastSuccessfulRetrieval(
+                CelesTrakRefreshService.PROVIDER, CelesTrakRefreshService.ISS_CATALOG_NUMBER).orElse(null));
+        OrbitalEvaluation evaluation = evaluator.assessComputed(elements, now, states.get(90), sourceHealth);
+        return new FullOrbit(now, elements, evaluation, period, states);
     }
 }

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.mission1.orbital.application.OrbitalElementSetRepository;
 import org.mission1.orbital.application.OrbitalSampleWindow;
 import org.mission1.orbital.application.OrbitalSampleWindowService;
+import org.mission1.orbital.oem.NasaOemTrajectoryService;
 import org.mission1.orbital.domain.OrbitalElementSet;
 import org.mission1.orbital.propagation.TleElementParser;
 import org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSource;
@@ -63,11 +64,12 @@ class CurrentOrbitalStateApiTest {
     @Autowired OrbitalSampleWindowService windowService;
     @MockitoBean Clock clock;
     @MockitoBean CelesTrakOrbitalElementsSource source;
+    @MockitoBean NasaOemTrajectoryService nasaOem;
 
     @BeforeEach
     void emptyHistory() {
         jdbc.execute("TRUNCATE orbital_element_observations, orbital_element_sets RESTART IDENTITY CASCADE");
-        reset(clock, source);
+        reset(clock, source, nasaOem);
         when(clock.instant()).thenReturn(NOW);
     }
 
@@ -268,6 +270,23 @@ class CurrentOrbitalStateApiTest {
                 .andExpect(status().isServiceUnavailable())
                 .andExpect(jsonPath("$.type").value("urn:mission1:problem:no-orbital-elements"))
                 .andExpect(jsonPath("$.samples").doesNotExist());
+        verifyNoInteractions(source);
+    }
+
+    @Test
+    void comparisonEndpointSeparatesPrimaryAndUnavailableOem() throws Exception {
+        repository.storeIfNew(fixture(RETRIEVED));
+        when(nasaOem.comparison(any())).thenReturn(new NasaOemTrajectoryService.Result(
+                "UNAVAILABLE", "NO_VALID_OEM_FILE", null, java.util.List.of()));
+        mvc.perform(get("/api/iss/orbit/comparison"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.primary.classification").value("COMPUTED_FROM_ORBITAL_ELEMENTS"))
+                .andExpect(jsonPath("$.primary.samples.length()").value(181))
+                .andExpect(jsonPath("$.primary.currentSampleIndex").value(90))
+                .andExpect(jsonPath("$.primary.samples[90].time").value(NOW.toString()))
+                .andExpect(jsonPath("$.oem.classification").value("SOURCE_PROVIDED_PREDICTED_EPHEMERIS"))
+                .andExpect(jsonPath("$.oem.availability").value("UNAVAILABLE"))
+                .andExpect(jsonPath("$.oem.samples.length()").value(0));
         verifyNoInteractions(source);
     }
 

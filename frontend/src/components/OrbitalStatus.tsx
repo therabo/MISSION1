@@ -1,9 +1,11 @@
 import type { OrbitalDelivery, BufferStatus } from '../orbital/bufferState';
 import { ISS_MODEL } from '../cesium/modelPresentation';
 import type { ModelLoadStatus } from '../cesium/modelPresentation';
+import type { ComparisonDelivery } from '../api/useComparisonDelivery';
 
 interface OrbitalStatusProps {
   delivery: OrbitalDelivery;
+  comparison: ComparisonDelivery;
   buffer: BufferStatus;
   sceneTimeMs: number | null;
   sceneError: string | null;
@@ -33,7 +35,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -68,6 +70,18 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, model
       </dl>
     </section>
 
+    {!inspecting && <section className="panel-section">
+      <div className="section-title"><h2>Trajectory comparison</h2><span>TWO SOURCES</span></div>
+      <dl>
+        {line('ISS model', 'GP/TLE propagated')}
+        {line('Primary line', comparison.response ? 'FULL ORBIT · FADED' : 'WAITING')}
+        {line('NASA OEM', comparison.response?.oem.availability ?? (comparison.status === 'unavailable' ? 'UNAVAILABLE' : 'WAITING'),
+          `status-value ${comparison.response?.oem.availability === 'AVAILABLE' ? 'good' : 'warning'}`)}
+        {comparison.response?.oem.source && line('OEM created', utc(comparison.response.oem.source.creationDate))}
+      </dl>
+      <p className="section-note">OEM is a source-provided prediction for comparison. Neither line establishes actual ISS position.</p>
+    </section>}
+
     <section className="panel-section">
       <div className="section-title"><h2>Data state</h2><span>INDEPENDENT</span></div>
       <dl>
@@ -97,6 +111,6 @@ export function OrbitalStatus({ delivery, buffer, sceneTimeMs, sceneError, model
     </section>
 
     <p className="model-note">{ISS_MODEL.credit}. 3D model display: NOT TO SCALE, enlarged for map readability. Orbital position and altitude are unchanged. Display pose: local ENU only; it does not represent ISS attitude. <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA source</a>.</p>
-    <p className="provenance-note">Computed from CelesTrak orbital elements with Orekit. Past arc is reconstructed; future arc is GP/TLE propagation. Neither is onboard position telemetry. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble: Next Generation day tiles and historical Black Marble 2016 night tiles, with local imagery fallback. Night lights are not live city activity.</p>
+    <p className="provenance-note">The ISS model follows the CelesTrak GP/TLE state computed with Orekit. The full primary orbit is one computed revolution; its line fades with orbital distance from the ISS. The dashed NASA OEM line uses predicted source vectors with display interpolation. Neither product is onboard position telemetry or a ground truth claim. Orbital quality is assessed at the displayed snapshot time; GOOD is not an accuracy guarantee. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble: Next Generation day tiles and historical Black Marble 2016 night tiles, with local imagery fallback. Night lights are not live city activity.</p>
   </aside>;
 }

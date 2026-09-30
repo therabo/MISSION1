@@ -15,7 +15,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mission1.orbital.application.OrbitalElementSetRepository;
 import org.mission1.orbital.domain.OrbitalElementSet;
+import org.mission1.orbital.oem.NasaOemRepository;
 import org.mission1.orbital.propagation.TleElementParser;
+import org.mission1.source.orbital.nasa.NasaOemXmlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -48,22 +50,43 @@ class JdbcOrbitalElementSetRepositoryTest {
 
     @Autowired OrbitalElementSetRepository repository;
     @Autowired TleElementParser parser;
+    @Autowired NasaOemRepository oemRepository;
+    @Autowired NasaOemXmlParser oemParser;
     @Autowired JdbcTemplate jdbc;
 
     @BeforeEach
     void emptyHistory() {
-        jdbc.execute("TRUNCATE orbital_element_observations, orbital_element_sets RESTART IDENTITY CASCADE");
+        jdbc.execute("TRUNCATE orbital_element_observations, orbital_element_sets, nasa_oem_ephemerides RESTART IDENTITY CASCADE");
     }
 
     @Test
     void flywayMigratesAnEmptyPostgresDatabase() {
-        assertEquals(1, jdbc.queryForObject(
+        assertEquals(2, jdbc.queryForObject(
                 "SELECT count(*) FROM flyway_schema_history WHERE success = true", Integer.class));
         assertNotNull(jdbc.queryForObject("SELECT count(*) FROM orbital_element_sets", Integer.class));
         assertNotNull(jdbc.queryForObject("SELECT count(*) FROM orbital_element_observations", Integer.class));
+        assertNotNull(jdbc.queryForObject("SELECT count(*) FROM nasa_oem_ephemerides", Integer.class));
         assertTrue(repository.recent(10).isEmpty());
         assertTrue(repository.latestUsable(RETRIEVED).isEmpty());
         assertTrue(repository.lastSuccessfulRetrieval("CELESTRAK_GP", 25544).isEmpty());
+    }
+
+    @Test
+    void storesNasaOemSourceBytesAndSeparateRetrievalAndCreationTimes() throws IOException {
+        byte[] xml;
+        try (var input = getClass().getResourceAsStream("/nasa-oem-2026-09-30-excerpt.xml")) {
+            assertNotNull(input);
+            xml = input.readAllBytes();
+        }
+        var document = oemParser.parse(xml);
+        Instant retrieved = Instant.parse("2026-09-30T10:30:00Z");
+        Instant modified = Instant.parse("2026-09-28T17:27:12Z");
+        oemRepository.store(document, xml, retrieved, modified);
+        var stored = oemRepository.latest().orElseThrow();
+        assertArrayEquals(xml, stored.xml());
+        assertEquals(retrieved, stored.retrievedAt());
+        assertEquals(modified, stored.httpLastModified());
+        assertNotEquals(document.creationDate(), stored.retrievedAt());
     }
 
     @Test

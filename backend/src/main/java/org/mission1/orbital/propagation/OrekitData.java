@@ -17,6 +17,7 @@ public final class OrekitData {
     private final LazyLoadedDataContext context;
     private final UTCScale utc;
     private final Frame teme;
+    private final Frame eme2000;
     private final Frame earthFixed;
     private final EOPHistory eop;
 
@@ -36,6 +37,7 @@ public final class OrekitData {
                 throw new IllegalStateException("Bundled Earth orientation data is empty");
             }
             teme = context.getFrames().getTEME();
+            eme2000 = context.getFrames().getEME2000();
             earthFixed = context.getFrames().getITRF(ITRFVersion.ITRF_2020, CONVENTIONS, false);
         } catch (RuntimeException failure) {
             throw new IllegalStateException("Required bundled Orekit UTC/EOP data unavailable", failure);
@@ -45,6 +47,7 @@ public final class OrekitData {
     public UTCScale utc() { return utc; }
     public TimeScales timeScales() { return context.getTimeScales(); }
     public Frame teme() { return teme; }
+    public Frame eme2000() { return eme2000; }
     public Frame earthFixed() { return earthFixed; }
 
     public void requireEopCoverage(AbsoluteDate date) {

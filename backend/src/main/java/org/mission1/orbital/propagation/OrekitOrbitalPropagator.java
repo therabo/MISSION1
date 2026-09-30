@@ -40,6 +40,11 @@ public final class OrekitOrbitalPropagator {
         return propagateAll(elements, List.of(propagationTime)).getFirst();
     }
 
+    /** Period from the selected TLE mean motion, used only to size a visual revolution. */
+    public double orbitalPeriodSeconds(OrbitalElementSet elements) {
+        return 2 * Math.PI / parser.parseTle(elements.line1(), elements.line2()).getMeanMotion();
+    }
+
     /** One validated TLE and one request-local propagator for a coherent sample window. */
     public List<OrbitalState> propagateAll(OrbitalElementSet elements, List<Instant> times) {
         Objects.requireNonNull(elements);
