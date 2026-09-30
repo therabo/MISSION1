@@ -41,12 +41,13 @@ import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
 import skyboxManifest from './skyboxManifest.json';
-import { createTrajectoryTrails, orderTrails, showTrails, updateTrail } from './trajectoryRendering';
+import { adaptTrailClearance, createTrajectoryTrails, orderTrails, showTrails, updateClearanceMask, updateTrail } from './trajectoryRendering';
 import type { TrajectoryTrails } from './trajectoryRendering';
 import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
 import type { SampledPositionProperty } from 'cesium';
-import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, displayLiftForMode, modelDisplayPosition } from './earthViewPresentation';
+import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, displayLiftForMode, modelDisplayPosition, silhouetteForMode } from './earthViewPresentation';
+import { desiredGapCssPixels, projectedModelFootprint, TRAIL_CLEARANCE } from './trajectoryClearance';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
@@ -341,6 +342,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current);
     };
     let orderedSource: TrajectorySource | null = null;
+    let lastClearanceUpdate = -Infinity;
+    let clearanceSource: TrajectorySource | null = null;
+    let clearanceGeneration: number | null = null;
     const removeReadyListener = instance.scene.preRender.addEventListener(() => {
       const pending = pendingPrimaryLine.current;
       if (!pending || !pending.trails.every((trail) => trail.layers.every((layer) => layer.primitive.ready))) return;
@@ -366,6 +370,28 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         const next = createTrajectoryTrails(product);
         for (const trail of next.trails) for (const layer of trail.layers) instance.scene.primitives.add(layer.primitive);
         pendingPrimaryLine.current = next;
+      }
+      // A lightweight projected mask follows every frame so halo fragments stay
+      // clear during camera movement. Search the bounded source paths at 10 Hz.
+      const wall = performance.now();
+      if (viewMode.current === 'EARTH_OVERVIEW' && model.current?.ready) {
+        const hull = projectedModelFootprint(instance.scene, model.current);
+        const physical = positionAt(instance.clock.currentTime, new Cartesian3());
+        const displayed = physical && modelDisplayPosition(physical, displayLiftMeters, new Cartesian3());
+        const gap = displayed ? desiredGapCssPixels(Cartesian3.distance(instance.camera.positionWC, displayed)) : TRAIL_CLEARANCE.maximumCssPixels;
+        const searchDue = wall - lastClearanceUpdate >= TRAIL_CLEARANCE.updateIntervalMs ||
+          clearanceSource !== selectedSourceRef.current || clearanceGeneration !== generatedMs;
+        for (const group of [primaryLine.current, pendingPrimaryLine.current]) {
+          if (group) for (const trail of group.trails) {
+            if (searchDue) adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize);
+            else updateClearanceMask(trail, instance.scene, hull, gap, model.current.silhouetteSize);
+          }
+        }
+        if (searchDue) {
+          lastClearanceUpdate = wall;
+          clearanceSource = selectedSourceRef.current;
+          clearanceGeneration = generatedMs;
+        }
       }
       if (primaryLine.current) {
         styleTrails(primaryLine.current, sceneMs);
@@ -393,7 +419,8 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     };
 
     let displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS;
-    let exitPresentation: { startMs: number; size: number; liftMeters: number } | null = null;
+    let silhouetteVisibility = 1;
+    let exitPresentation: { startMs: number; size: number; liftMeters: number; silhouetteVisibility: number } | null = null;
 
     const leaveInspection = (): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
@@ -401,7 +428,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       displayEntryStart.current = null;
       instance.camera.cancelFlight();
       exitPresentation = { startMs: performance.now(), size: model.current?.minimumPixelSize ?? ISS_MODEL.displayMinimumPixelSize,
-        liftMeters: displayLiftMeters };
+        liftMeters: displayLiftMeters, silhouetteVisibility };
       selectModule(null);
       instance.trackedEntity = undefined;
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
@@ -484,6 +511,8 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       scale: ISS_MODEL.physicalScale,
       minimumPixelSize: ISS_MODEL.displayMinimumPixelSize,
       maximumScale: ISS_MODEL.displayMaximumScale,
+      silhouetteColor: Color.WHITE.withAlpha(OVERVIEW_SILHOUETTE.alpha),
+      silhouetteSize: OVERVIEW_SILHOUETTE.sizePixels,
       enablePick: true,
       featureIdLabel: ISS_MODEL.semanticFeatureSet,
       id: ISS_MODEL.id,
@@ -599,7 +628,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         selectedSourceRef.current = 'PRIMARY_GP_TLE';
         sourceUnavailableCallback.current('NASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE.');
       }
-      updateTrajectory.current?.(sceneMs);
       const current = active.current;
       const valid = current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
       const position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
@@ -678,6 +706,11 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         displayEntryStart.current ? JulianDate.secondsDifference(instance.clock.currentTime, displayEntryStart.current) / APPROACH_DURATION_SECONDS : null,
         exitPresentation ? { startLift: exitPresentation.liftMeters,
           progress: (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000) } : null);
+      const silhouette = silhouetteForMode(viewMode.current,
+        displayEntryStart.current ? JulianDate.secondsDifference(instance.clock.currentTime, displayEntryStart.current) / APPROACH_DURATION_SECONDS : null,
+        exitPresentation ? { startVisibility: exitPresentation.silhouetteVisibility,
+          progress: (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000) } : null);
+      silhouetteVisibility = silhouette.visibility;
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       if (selectedModule.current && !modulePickingAvailable(modelStatus.current, distance)) selectModule(null);
       representation.current = representationForState(valid && !!position, modelStatus.current);
@@ -697,6 +730,8 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         }
       }
       if (model.current) {
+        model.current.silhouetteSize = silhouette.sizePixels;
+        model.current.silhouetteColor.alpha = silhouette.alpha;
         model.current.show = modelVisible(representation.current) && !!position;
         if (model.current.show && model.current.ready && position) {
           // Center the asset's off-origin bounds on the separate model display point.
@@ -714,6 +749,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           model.current.modelMatrix = Matrix4.multiplyByTranslation(frame, displayCenteringOffset, new Matrix4());
         }
       }
+      updateTrajectory.current?.(sceneMs);
       const second = Math.floor(sceneMs / 1000);
       if (second !== lastReportedSecond.current) {
         lastReportedSecond.current = second;

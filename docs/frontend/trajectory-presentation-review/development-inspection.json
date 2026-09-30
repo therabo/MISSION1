@@ -1,0 +1,229 @@
+{
+  "results": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "ISS_INSPECTION",
+      "lift": 0,
+      "silhouette": [
+        0,
+        0
+      ],
+      "minimumPixelSize": 158,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 0,
+      "handoffs": [
+        {
+          "positionMeters": 0,
+          "directionDegrees": 2.985164289104102e-11,
+          "upDegrees": 6.99419522695203e-12
+        }
+      ],
+      "returned": {
+        "source": "PRIMARY_GP_TLE",
+        "mode": "EARTH_OVERVIEW",
+        "lift": 75000,
+        "silhouette": [
+          0.5,
+          0.12
+        ],
+        "minimumPixelSize": 80,
+        "sameModel": true,
+        "show": true,
+        "primitiveCount": 6,
+        "pivotErrorMeters": 6804211.719749663,
+        "handoffs": [
+          {
+            "positionMeters": 0,
+            "directionDegrees": 2.985164289104102e-11,
+            "upDegrees": 6.99419522695203e-12
+          }
+        ],
+        "frameSummary": {
+          "count": 105,
+          "sameModelAll": true,
+          "visibleAll": true,
+          "minimumLift": 0,
+          "maximumLift": 75000
+        }
+      },
+      "frameSummary": {
+        "count": 67,
+        "sameModelAll": true,
+        "visibleAll": true,
+        "minimumLift": 0,
+        "maximumLift": 75000
+      }
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "ISS_INSPECTION",
+      "lift": 0,
+      "silhouette": [
+        0,
+        0
+      ],
+      "minimumPixelSize": 158,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 0,
+      "handoffs": [
+        {
+          "positionMeters": 0,
+          "directionDegrees": 1.9383546859989834e-11,
+          "upDegrees": 1.2321093325312152e-11
+        }
+      ],
+      "returned": {
+        "source": "NASA_OEM",
+        "mode": "EARTH_OVERVIEW",
+        "lift": 75000,
+        "silhouette": [
+          0.5,
+          0.12
+        ],
+        "minimumPixelSize": 80,
+        "sameModel": true,
+        "show": true,
+        "primitiveCount": 6,
+        "pivotErrorMeters": 6803354.038527669,
+        "handoffs": [
+          {
+            "positionMeters": 0,
+            "directionDegrees": 1.9383546859989834e-11,
+            "upDegrees": 1.2321093325312152e-11
+          }
+        ],
+        "frameSummary": {
+          "count": 113,
+          "sameModelAll": true,
+          "visibleAll": true,
+          "minimumLift": 0,
+          "maximumLift": 75000
+        }
+      },
+      "frameSummary": {
+        "count": 63,
+        "sameModelAll": true,
+        "visibleAll": true,
+        "minimumLift": 0,
+        "maximumLift": 75000
+      }
+    }
+  ],
+  "partialBefore": {
+    "source": "NASA_OEM",
+    "mode": "ENTERING_INSPECTION",
+    "lift": 55973.27512997627,
+    "silhouette": [
+      0.3731551675331751,
+      0.08955724020796203
+    ],
+    "minimumPixelSize": 82.86692684596089,
+    "sameModel": true,
+    "show": true,
+    "primitiveCount": 6,
+    "pivotErrorMeters": 6803387.971000096,
+    "handoffs": [
+      {
+        "positionMeters": 0,
+        "directionDegrees": 1.9383546859989834e-11,
+        "upDegrees": 1.2321093325312152e-11
+      }
+    ]
+  },
+  "partialAfter": {
+    "source": "NASA_OEM",
+    "mode": "EXITING_INSPECTION",
+    "lift": 11640.124403707747,
+    "silhouette": [
+      0.07760082935805165,
+      0.018624199045932398
+    ],
+    "minimumPixelSize": 96.02273712659965,
+    "sameModel": true,
+    "show": true,
+    "primitiveCount": 6,
+    "pivotErrorMeters": 6803441.535339524,
+    "handoffs": [
+      {
+        "positionMeters": 0,
+        "directionDegrees": 1.9383546859989834e-11,
+        "upDegrees": 1.2321093325312152e-11
+      },
+      {
+        "positionMeters": 0,
+        "directionDegrees": 0,
+        "upDegrees": 0
+      }
+    ]
+  },
+  "pick": {
+    "x": 644.6568421637774,
+    "y": 312.8506547679652
+  },
+  "partialHandoffs": [
+    {
+      "before": {
+        "wall": 14237.40000000596,
+        "mode": "ISS_INSPECTION",
+        "lift": 0,
+        "size": 0,
+        "alpha": 0
+      },
+      "after": {
+        "wall": 14324.80000000447,
+        "lift": 3.741349910922022,
+        "size": 2.5969328703703702e-05,
+        "alpha": 6.232638888888888e-06
+      }
+    },
+    {
+      "before": {
+        "wall": 25019.40000000596,
+        "mode": "ISS_INSPECTION",
+        "lift": 0,
+        "size": 0,
+        "alpha": 0
+      },
+      "after": {
+        "wall": 25108.10000000149,
+        "lift": 2.2514868020277365,
+        "size": 1.5809421862932154e-05,
+        "alpha": 3.794261247103717e-06
+      }
+    },
+    {
+      "before": {
+        "wall": 28937.40000000596,
+        "mode": "ENTERING_INSPECTION",
+        "lift": 1954.300495974673,
+        "size": 0.013028669973164486,
+        "alpha": 0.0031268807935594767
+      },
+      "after": {
+        "wall": 29176.40000000596,
+        "lift": 1962.8248720398399,
+        "size": 0.013085499146932267,
+        "alpha": 0.003140519795263744
+      }
+    },
+    {
+      "before": {
+        "wall": 32287.5,
+        "mode": "ENTERING_INSPECTION",
+        "lift": 15317.126543339175,
+        "size": 0.1021141769555945,
+        "alpha": 0.024507402469342677
+      },
+      "after": {
+        "wall": 32490.30000000447,
+        "lift": 15317.727610112002,
+        "size": 0.10211818406741335,
+        "alpha": 0.024508364176179204
+      }
+    }
+  ]
+}

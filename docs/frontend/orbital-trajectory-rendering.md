@@ -1,8 +1,43 @@
-# Selectable forward ISS trajectories — verified fix, 2026-09-30
+# Adaptive forward ISS trajectory presentation — 2026-09-30
 
-The current renderer follows [ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md) and its dated presentation correction. The user rejected the first `8146055` result; this milestone reproduces and fixes its visual deficiencies in development and served production. The full [verification record](trajectory-fix-review/README.md) contains context, runtime identity, numerical source positions, controlled trials, browser matrix, Inspection discontinuities, tests and performance. Earlier centered/dashed rendering below and initial selection evidence in `trajectory-selection-review/` remain historical, not the current decision.
+[ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md) retains selectable real products and its physical/display boundary. The [current verification record](trajectory-presentation-review/README.md) replaces the fixed 75-second start and disabled silhouette of `389736f`. Historical measurements below remain dated evidence.
 
-## Verified current behavior
+## Current rendering
+
+Each own bounded `SampledPositionProperty` supplies the start of its real source path. A sub-sample temporal search resolves the earliest future projected centerline exit from a conservative displayed-model hull, to 1 ms, at at most 10 Hz. The source window is never extrapolated. Only temporal/material uniforms change; original `ArcType.NONE` source vertices, layer widths and coverage remain intact. Geometry is replaced only for a new response, as a complete ready group.
+
+Camera range is Euclidean distance to the selected physical point plus its 75 km WGS84-normal display lift. It is not distance to Earth center. The smooth target is:
+
+```text
+p = clamp(log(max(range, 2,000,000) / 2,000,000) / log(17,000,000 / 2,000,000), 0, 1)
+desiredGapCSS = 0.75 + (4 − 0.75) × p²(3 − 2p)
+```
+
+The model hull projects the pinned GLB's eight conservative bounds corners with its off-origin model matrix and current public minimumPixelSize/maximumScale policy. The public `Model.boundingSphere` alone excludes minimum-pixel display enlargement. `Camera.getPixelSize` and `SceneTransforms.worldToWindowCoordinates` supply the projection without private renderer fields.
+
+The existing public Fabric/PolylineGlow composition now multiplies alpha by a short start smoothstep and applies a matching width mask using `st.t`. The ramp spans **1–4 projected CSS pixels**, converted to seconds with the own-source local projected rate (about 8.44 / 1.91 / 0.193 s in the canonical far / medium / close views). Alpha and width start at zero; no hard flat cut, separate start dot or displaced cap is introduced. The original inverse-smoothstep endpoint fade and **0.85 primary-period** horizon persist.
+
+A public Fabric submaterial evaluates every halo/body fragment against the hull plus silhouette. CSS conversion uses drawing-buffer dimensions and canvas CSS dimensions, independently of DPR. Fragments inside the envelope are transparent; the margin softens across 0.75 CSS pixel. This protects the complete **20/8 px** envelope instead of assuming a centerline clearance implies a visible clearance. The inexpensive mask follows every frame, including camera movement; source searches remain throttled. Failed projection or insufficient source coverage hides the affected trail instead of extrapolating. Native Earth depth remains.
+
+Both builds measured **6 > 4.5 > 3 > 0 CSS px**, at 17,000 / 6,000 / 1,500 km range, for both selections. The target is a lower bound relative to a conservative envelope; actual visible margins include taper, glow, silhouette and anti-aliasing. The [raw times, distances and pixel method](trajectory-presentation-review/README.md) explain the difference. These views establish the requested zoom behavior; extreme oblique or occulted poses can have larger physical separations and are not a universal pixel-order guarantee.
+
+## Station and physical values
+
+Overview keeps `minimumPixelSize=80`, physical scale 1, maximumScale 20000 and **75 km model-only WGS84-normal lift**. Public `Model.silhouetteColor` is white / alpha **0.12**, `silhouetteSize` **0.5**. The 12 restrained trials selected the smallest pair. It remains in ready Overview, fades smoothly to zero with the lift by the first 1.75 seconds of entry, remains zero in Inspection and restores over 1.2 seconds from the captured current values. The NASA textures/PBR, ready-model picking and loading/failure locator persist.
+
+Selected physical position, altitude, backend velocity, scene/source UTC, propagation, travel time and all trajectory vertices remain independent of lift. The separate display-output helper rejects aliasing the canonical input. Browser lift on/off observations at fixed UTC confirm a 75,000 m model translation, unchanged physical values and an identical trajectory-vertex hash for both GP/TLE and OEM. Inspection pivot error and camera-position handoff discontinuity are 0 m in both builds/sources. No velocity is derived from displayed positions. API samples remain physical.
+
+The selected colors remain PRIMARY cyan `#53d9cd`, OEM amber `#edb86a`, inactive `#71939c`; alpha 0.85/0.08, halo multiplier 0.26 and glow 0.35/0.22. Inactive halo/body precedes active halo/body. GP stays `COMPUTED_FROM_ORBITAL_ELEMENTS`; OEM stays `SOURCE_PROVIDED_PREDICTED_EPHEMERIS`. No new source, measurement, accuracy claim, backend behavior, RTN analytics or Replay is added.
+
+The [full review](trajectory-presentation-review/README.md) contains runtime identity, source-lineage observations, trials, browser regressions, tests and comparable performance. Public references: [Model](https://cesium.com/learn/cesiumjs/ref-doc/Model.html), [Material](https://cesium.com/learn/cesiumjs/ref-doc/Material.html), [Camera.getPixelSize](https://cesium.com/learn/cesiumjs/ref-doc/Camera.html#getPixelSize) and [SceneTransforms](https://cesium.com/learn/cesiumjs/ref-doc/SceneTransforms.html), checked with pinned 1.145 implementation.
+
+---
+
+# Prior selectable trajectory correction — 2026-09-30
+
+The renderer at commit `389736f` followed [ADR-0006](../adr/0006-selectable-forward-trajectory-visualization.md) and its dated presentation correction. The user rejected the first `8146055` result; this milestone reproduces and fixes its visual deficiencies in development and served production. The full [verification record](trajectory-fix-review/README.md) contains context, runtime identity, numerical source positions, controlled trials, browser matrix, Inspection discontinuities, tests and performance. Earlier centered/dashed rendering below and initial selection evidence in `trajectory-selection-review/` remain historical, not the current decision.
+
+## Prior verified behavior
 
 | Reported issue | Finding and correction |
 | --- | --- |

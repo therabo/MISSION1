@@ -7,9 +7,27 @@ beforeAll(() => { for (const name of ['HTMLCanvasElement', 'HTMLImageElement', '
 afterAll(() => vi.unstubAllGlobals());
 
 describe('future only continuous trajectories', () => {
+  it('softens the start with a deterministic Fabric smoothstep ramp, without a cap marker', () => {
+    const group = createTrajectoryTrails(parseComparison(fixture(true)));
+    for (const trail of group.trails) {
+      trail.gapSeconds = 20; trail.rampSeconds = 4;
+      updateTrail(trail, group.generatedMs, trail.source);
+      const material = trail.layers[1].material;
+      expect(material.uniforms.startRamp).toBeCloseTo(4 / 5580);
+      expect(material.shaderSource).toContain('smoothstep');
+      expect(material.shaderSource).toContain('abs(materialInput.st.t');
+      expect(material.materials.clearanceMask.shaderSource).toContain('gl_FragCoord');
+      expect(material.materials.clearanceMask.uniforms.footprintCount).toBe(0);
+      expect(forwardOpacity(20_000, 20_000, 100_000, 4000)).toBe(0);
+      expect(forwardOpacity(20_001, 20_000, 100_000, 4000)).toBeLessThan(0.000001);
+      expect(forwardOpacity(22_000, 20_000, 100_000, 4000)).toBeCloseTo(0.5, 2);
+      expect(trail.layers).toHaveLength(2);
+      for (const layer of trail.layers) { layer.primitive.destroy(); layer.material.destroy(); }
+    }
+  });
   it('has a bounded genuine future gap, common 85% horizon and no rendered past or closure', () => {
     const now = Date.parse(fixture(true).generatedAt);
-    const bounds = forwardBounds(now, 5580, now + 5580_000);
+    const bounds = forwardBounds(now, 5580, now + 5580_000, 75);
     expect(bounds.startMs).toBeGreaterThan(now);
     expect((bounds.startMs-now)/1000).toBe(75);
     expect((bounds.endMs-now)/5580_000).toBeCloseTo(0.85);
@@ -24,7 +42,7 @@ describe('future only continuous trajectories', () => {
   it('ends and dissolves at real partial OEM coverage without invented remaining samples', () => {
     const now = Date.parse(fixture(true).generatedAt);
     const stop = now+900_000;
-    const bounds = forwardBounds(now,5580,stop);
+    const bounds = forwardBounds(now,5580,stop, 75);
     expect(bounds.endMs).toBe(stop);
     expect(forwardOpacity(stop,bounds.startMs,bounds.endMs)).toBe(0);
   });
@@ -35,6 +53,7 @@ describe('future only continuous trajectories', () => {
     expect(group.trails).toHaveLength(2);
     const now=Date.parse(response.generatedAt);
     for (const trail of group.trails) {
+      trail.gapSeconds = 75; trail.rampSeconds = 12;
       const samples=trail.source==='NASA_OEM'?response.oem.samples:response.primary.samples;
       expect(trail.positions.map((p)=>p.x)).toEqual(samples.map((p)=>p.xMeters));
       expect(trail.positions).toHaveLength(181);
@@ -54,11 +73,13 @@ describe('future only continuous trajectories', () => {
   });
   it('changes both retained appearance materials and collection order for each selected source', () => {
     const group = createTrajectoryTrails(parseComparison(fixture(true)));
+    for (const trail of group.trails) { trail.gapSeconds = 75; trail.rampSeconds = 12; }
     const collection = new PrimitiveCollection({ destroyPrimitives: false });
     for (const trail of group.trails) for (const layer of trail.layers) collection.add(layer.primitive);
     const retained = group.trails.flatMap((trail) => trail.layers.map((layer) => layer.primitive));
     for (const selected of ['PRIMARY_GP_TLE', 'NASA_OEM', 'PRIMARY_GP_TLE'] as const) {
       for (const trail of group.trails) {
+        trail.gapSeconds = 75; trail.rampSeconds = 12;
         updateTrail(trail, group.generatedMs, selected);
         for (const [i, layer] of trail.layers.entries()) {
           const uniforms = layer.primitive.appearance!.material!.uniforms;
@@ -79,13 +100,14 @@ describe('future only continuous trajectories', () => {
     collection.destroy();
     for (const trail of group.trails) for (const layer of trail.layers) { layer.primitive.destroy(); layer.material.destroy(); }
   });
-  it('clips each source by its own real temporal grid and coverage', () => {
+  it('clips each source by its own temporal grid and coverage', () => {
     const response = parseComparison(fixture(true));
     response.oem.samples = response.oem.samples.slice(2, 90);
     const group = createTrajectoryTrails(response);
     const sceneMs = group.generatedMs + 120_000;
     for (const selected of ['PRIMARY_GP_TLE', 'NASA_OEM'] as const) {
       for (const trail of group.trails) {
+        trail.gapSeconds = 75; trail.rampSeconds = 12;
         updateTrail(trail, sceneMs, selected);
         const uniforms = trail.layers[1].material.uniforms;
         const span = trail.endMs - trail.startMs;

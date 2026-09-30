@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Cartesian3, Ellipsoid } from 'cesium';
 import { ISS_MODEL } from './modelPresentation';
-import { displayLiftForMode, DISPLAY_LIFT_REMOVAL_FRACTION, EARTH_OVERVIEW_DISPLAY_LIFT_METERS, enteringDisplayLift, modelDisplayPosition, returningDisplayLift } from './earthViewPresentation';
+import { displayLiftForMode, DISPLAY_LIFT_REMOVAL_FRACTION, EARTH_OVERVIEW_DISPLAY_LIFT_METERS, enteringDisplayLift, modelDisplayPosition, returningDisplayLift, silhouetteForMode, OVERVIEW_SILHOUETTE } from './earthViewPresentation';
 
 describe('physical and display Earth View positions', () => {
   it('shrinks only the Overview minimum footprint, preserving asset scale and scale limit', () => {
@@ -23,6 +23,12 @@ describe('physical and display Earth View positions', () => {
       expect(modelDisplayPosition(physical, 0, new Cartesian3())).toEqual(physical);
     }
   });
+  it('rejects an aliased display output before it can mutate canonical physics', () => {
+    const physical = Cartesian3.fromDegrees(12, 42, 420000);
+    const before = Cartesian3.clone(physical);
+    expect(() => modelDisplayPosition(physical, 75000, physical)).toThrow('canonical physical position');
+    expect(physical).toEqual(before);
+  });
   it('has zero lift in Inspection and smoothly removes Overview lift before close approach', () => {
     expect(displayLiftForMode('EARTH_OVERVIEW', null, null)).toBe(75000);
     expect(displayLiftForMode('ISS_INSPECTION', 0, {startLift:75000, progress:0})).toBe(0);
@@ -41,5 +47,18 @@ describe('physical and display Earth View positions', () => {
       expect(displayLiftForMode('EXITING_INSPECTION', null, {startLift,progress:1})).toBe(75000);
       expect(returningDisplayLift(startLift, 0.5)).toBeCloseTo((startLift + 75000) / 2);
     }
+  });
+  it('keeps the thin white perimeter in Overview and removes it smoothly for Inspection', () => {
+    const overview = silhouetteForMode('EARTH_OVERVIEW', null, null);
+    expect(overview.sizePixels).toBe(OVERVIEW_SILHOUETTE.sizePixels);
+    expect(overview.alpha).toBe(OVERVIEW_SILHOUETTE.alpha);
+    expect(overview.sizePixels).toBeGreaterThan(0);
+    expect(silhouetteForMode('ISS_INSPECTION', null, null)).toEqual({ sizePixels: 0, alpha: 0, visibility: 0 });
+    const entering = Array.from({ length: 101 }, (_, i) => silhouetteForMode('ENTERING_INSPECTION', i / 100, null).visibility);
+    expect(entering[0]).toBe(1); expect(entering[35]).toBe(0);
+    expect(entering.every((v, i) => i === 0 || v <= entering[i - 1])).toBe(true);
+    const interrupted = silhouetteForMode('ENTERING_INSPECTION', 0.1, null).visibility;
+    expect(silhouetteForMode('EXITING_INSPECTION', null, { startVisibility: interrupted, progress: 0 }).visibility).toBe(interrupted);
+    expect(silhouetteForMode('EXITING_INSPECTION', null, { startVisibility: interrupted, progress: 1 }).visibility).toBe(1);
   });
 });

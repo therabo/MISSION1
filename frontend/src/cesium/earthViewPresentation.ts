@@ -8,6 +8,19 @@ import type { ViewMode } from './inspectionMode';
  */
 export const EARTH_OVERVIEW_DISPLAY_LIFT_METERS = 75_000;
 export const DISPLAY_LIFT_REMOVAL_FRACTION = 0.35;
+export const OVERVIEW_SILHOUETTE = { sizePixels: 0.5, alpha: 0.12 } as const;
+
+/** Same early smooth removal as the model-only lift; never changes PBR materials. */
+export function silhouetteForMode(mode: ViewMode, entryProgress: number | null,
+  returning: { startVisibility: number; progress: number } | null): { sizePixels: number; alpha: number; visibility: number } {
+  let visibility = 0;
+  if (mode === 'EARTH_OVERVIEW') visibility = 1;
+  else if (mode === 'ENTERING_INSPECTION' && entryProgress !== null) visibility = 1 - smoothstep(entryProgress / DISPLAY_LIFT_REMOVAL_FRACTION);
+  else if (mode === 'EXITING_INSPECTION' && returning) visibility = returning.startVisibility +
+    (1 - returning.startVisibility) * smoothstep(returning.progress);
+  return { sizePixels: OVERVIEW_SILHOUETTE.sizePixels * visibility,
+    alpha: OVERVIEW_SILHOUETTE.alpha * visibility, visibility };
+}
 
 export function enteringDisplayLift(progress: number): number {
   // Remove before the camera reaches close range, with zero endpoint derivatives.
@@ -28,6 +41,7 @@ export function displayLiftForMode(mode: ViewMode, entryProgress: number | null,
 
 /** Preserve the selected physical point; only the model receives this display point. */
 export function modelDisplayPosition(physicalPosition: Cartesian3, liftMeters: number, result: Cartesian3): Cartesian3 {
+  if (result === physicalPosition) throw new Error('Display output must not alias the canonical physical position');
   if (liftMeters === 0) return Cartesian3.clone(physicalPosition, result);
   Ellipsoid.WGS84.geodeticSurfaceNormal(physicalPosition, result);
   Cartesian3.multiplyByScalar(result, liftMeters, result);

@@ -1,0 +1,227 @@
+{
+  "cases": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804254.209491722,
+      "handoffs": []
+    },
+    {
+      "source": "NASA_OEM",
+      "mode": "EARTH_OVERVIEW",
+      "lift": 75000,
+      "silhouette": [
+        0.5,
+        0.12
+      ],
+      "minimumPixelSize": 80,
+      "sameModel": true,
+      "show": true,
+      "primitiveCount": 6,
+      "pivotErrorMeters": 6804204.268950007,
+      "handoffs": []
+    }
+  ],
+  "refresh": {
+    "source": "NASA_OEM",
+    "mode": "EARTH_OVERVIEW",
+    "lift": 75000,
+    "silhouette": [
+      0.5,
+      0.12
+    ],
+    "minimumPixelSize": 80,
+    "sameModel": true,
+    "show": true,
+    "primitiveCount": 6,
+    "pivotErrorMeters": 6792402.416057647,
+    "handoffs": []
+  },
+  "unavailable": {
+    "source": "PRIMARY_GP_TLE",
+    "mode": "EARTH_OVERVIEW",
+    "lift": 75000,
+    "silhouette": [
+      0.5,
+      0.12
+    ],
+    "minimumPixelSize": 80,
+    "sameModel": true,
+    "show": true,
+    "primitiveCount": 6,
+    "pivotErrorMeters": 6792567.194479858,
+    "handoffs": [
+      {
+        "positionMeters": 0,
+        "directionDegrees": 3.7253443383848534e-11,
+        "upDegrees": 2.907763041407889e-11
+      }
+    ],
+    "notice": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME \u00b7 UTC\n2026-09-30 16:17:32 UTC\nBackend-aligned clock \u00b7 1\u00d7\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 16:17:32 UTC\n\nLatitude\n46.670\u00b0 N\nLongitude\n7.628\u00b0 E\nAltitude\n425.7 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD \u00b7 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY \u00b7 5.4 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP \u00b7 USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.7 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Display pose: local ENU only; it does not represent ISS attitude. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable \u00b7 NO VALID SOURCE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+  },
+  "marker": [
+    {
+      "show": true,
+      "point": false
+    }
+  ]
+}
