@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.util.stream.IntStream;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -59,5 +60,47 @@ class OrbitalSampleWindowServiceTest {
                 () -> new OrbitalSampleWindow(300, 900, 5));
         assertThrows(InvalidOrbitalSampleRequestException.class,
                 () -> new OrbitalSampleWindow(300, 1200, 30));
+    }
+
+    @Test void fullOrbitSamplesOneCenteredMeanMotionRevolutionWithoutClosingTheFixedFramePath() throws IOException {
+        var repository = mock(OrbitalElementSetRepository.class);
+        var data = new OrekitData();
+        var parser = new TleElementParser(data);
+        OrbitalElementSet elements;
+        try (var input = getClass().getResourceAsStream("/iss-2026-09-28.tle")) {
+            assertNotNull(input);
+            String[] lines = new String(input.readAllBytes(), StandardCharsets.US_ASCII).lines().toArray(String[]::new);
+            elements = parser.parse(lines[1], lines[2], NOW.minusSeconds(60), "CELESTRAK_GP",
+                    "USSF_GP_VIA_CELESTRAK",
+                    URI.create("https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE"));
+        }
+        when(repository.latestUsable(NOW)).thenReturn(Optional.of(new OrbitalElementSetRepository.Stored(1, elements)));
+        when(repository.lastSuccessfulRetrieval("CELESTRAK_GP", 25544)).thenReturn(Optional.of(elements.retrievedAt()));
+        var propagator = new OrekitOrbitalPropagator(data, parser);
+        var service = new OrbitalSampleWindowService(repository, propagator,
+                new OrbitalQualityEvaluator(propagator, OrbitalFreshnessPolicy.standardGpCurrent()),
+                new CelesTrakSourceHealthTracker(), Clock.fixed(NOW, ZoneOffset.UTC));
+
+        var orbit = service.generateFullOrbit();
+        assertEquals(NOW, orbit.generatedAt());
+        assertEquals(181, orbit.samples().size());
+        assertEquals(86_400.0 / 15.48675883, orbit.orbitalPeriodSeconds(), 0.001);
+        assertEquals(NOW, orbit.samples().get(90).propagationTime());
+        assertTrue(IntStream.range(0, 181).allMatch(index -> orbit.samples().get(index).propagationTime()
+                .equals(NOW.plusNanos(Math.round((index - 90) * orbit.orbitalPeriodSeconds() / 180.0 * 1_000_000_000.0)))));
+        assertTrue(IntStream.range(1, 181).allMatch(index -> orbit.samples().get(index).propagationTime()
+                .isAfter(orbit.samples().get(index - 1).propagationTime())));
+        assertTrue(orbit.samples().stream().allMatch(state -> elements.sha256().equals(state.elementSha256())));
+
+        var first = orbit.samples().getFirst();
+        var last = orbit.samples().getLast();
+        double temeDistance = distance(first.teme().positionMeters(), last.teme().positionMeters());
+        double fixedDistance = distance(first.earthFixed().positionMeters(), last.earthFixed().positionMeters());
+        assertTrue(temeDistance < fixedDistance / 10, "inertial phase residual is much smaller than Earth-fixed non-closure");
+        assertTrue(fixedDistance > 1_000_000, "Earth rotates during the real temporal revolution");
+    }
+
+    private static double distance(org.mission1.orbital.domain.Vector3 a, org.mission1.orbital.domain.Vector3 b) {
+        return Math.hypot(Math.hypot(a.x() - b.x(), a.y() - b.y()), a.z() - b.z());
     }
 }

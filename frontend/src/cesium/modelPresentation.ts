@@ -1,7 +1,7 @@
 import rawManifest from './issModelManifest.json';
 
 export type ModelLoadStatus = 'loading' | 'ready' | 'failed';
-export type Representation = 'none' | 'marker' | 'model' | 'model-with-label';
+export type Representation = 'none' | 'marker' | 'model';
 export type MappingStatus = 'VERIFIED' | 'PARTIALLY_VERIFIED' | 'UNMAPPED';
 export type ConfigurationStatus = 'CURRENT_CONFIRMED' | 'REMOVED_FROM_CURRENT_STATION' | 'CURRENT_STATUS_UNVERIFIED';
 
@@ -121,22 +121,21 @@ export function modelLoadTransition(current: ModelLoadStatus, event: 'loaded' | 
   return event === 'failed' ? 'failed' : 'ready';
 }
 
-/** The model stays visible when loaded; a far label and point keep it easy to find and click. */
-export function representationForDistance(validBuffer: boolean, load: ModelLoadStatus, distanceMeters: number | null, previous: Representation): Representation {
+/** A ready model is the only station representation, at every valid range. */
+export function representationForState(validBuffer: boolean, load: ModelLoadStatus): Representation {
   if (!validBuffer) return 'none';
-  if (load !== 'ready' || distanceMeters === null || !Number.isFinite(distanceMeters)) return 'marker';
-  if (previous === 'model-with-label' && distanceMeters > 1_500_000) return 'model-with-label';
-  return distanceMeters >= 2_000_000 ? 'model-with-label' : 'model';
+  if (load !== 'ready') return 'marker';
+  return 'model';
 }
 
 export function modelVisible(representation: Representation): boolean {
-  return representation === 'model' || representation === 'model-with-label';
+  return representation === 'model';
 }
 
 export function markerVisible(representation: Representation): boolean {
-  return representation === 'marker' || representation === 'model-with-label';
+  return representation === 'marker';
 }
 
 export function labelVisible(representation: Representation): boolean {
-  return representation === 'marker' || representation === 'model-with-label';
+  return representation === 'marker';
 }

@@ -76,8 +76,14 @@ export function parseComparison(payload: unknown): ComparisonResponse {
   }
   const primarySamples = samples(primary.samples, 181);
   if (primarySamples.length !== 181 || instant(primarySamples[90].time) !== generated ||
-      Math.abs((instant(primarySamples[180].time) - instant(primarySamples[0].time)) / 1000 - primary.orbitalPeriodSeconds) > 1) {
+      Math.abs((instant(primarySamples[180].time) - instant(primarySamples[0].time)) / 1000 - primary.orbitalPeriodSeconds) > 1 ||
+      Math.abs((generated - instant(primarySamples[0].time)) / 1000 - primary.orbitalPeriodSeconds / 2) > 1 ||
+      Math.abs((instant(primarySamples[180].time) - generated) / 1000 - primary.orbitalPeriodSeconds / 2) > 1) {
     throw new Error('Incomplete full-orbit trajectory');
+  }
+  if (primarySamples.some((sample, index) => Math.abs(instant(sample.time) -
+      (generated + (index - 90) * (primary.orbitalPeriodSeconds as number) / 180 * 1000)) > 2)) {
+    throw new Error('Irregular full-orbit sampling');
   }
   const source = object(primary.source);
   if (typeof source.elementSha256 !== 'string' || !/^[a-f0-9]{64}$/i.test(source.elementSha256) ||

@@ -5,7 +5,7 @@ import { Cartesian3, JulianDate } from 'cesium';
 import { orbitalPayload } from '../test/orbitalFixture';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { createVisualWindow, modelPositionAt } from './visualWindow';
-import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForDistance, resolveVerifiedModulePick, semanticMapping } from './modelPresentation';
+import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForState, resolveVerifiedModulePick, semanticMapping } from './modelPresentation';
 
 const glb = readFileSync(new URL('../../public/models/iss-vtad-source-png.glb', import.meta.url));
 const inventory = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-model-inventory.json', import.meta.url), 'utf8')) as {
@@ -166,27 +166,21 @@ describe('model presentation', () => {
     expect(modulePickingAvailable('failed', 600)).toBe(false);
   });
   it('keeps the marker during loading and on failure', () => {
-    expect(representationForDistance(true, 'loading', 1_000, 'marker')).toBe('marker');
+    expect(representationForState(true, 'loading')).toBe('marker');
     expect(modelLoadTransition('loading', 'failed')).toBe('failed');
-    expect(representationForDistance(true, 'failed', 1_000, 'model')).toBe('marker');
+    expect(representationForState(true, 'failed')).toBe('marker');
     expect(modelLoadTransition('failed', 'loaded')).toBe('failed');
   });
 
-  it('shows the detailed model at all valid ranges, labels it at far range, and hides on expiry', () => {
+  it('shows only the detailed model at all ready ranges and hides it on expiry', () => {
     expect(modelLoadTransition('loading', 'loaded')).toBe('ready');
-    expect(representationForDistance(true, 'ready', 600, 'marker')).toBe('model');
-    expect(representationForDistance(true, 'ready', 500_000, 'marker')).toBe('model');
-    expect(representationForDistance(true, 'ready', 3_000_000, 'model')).toBe('model-with-label');
-    expect(representationForDistance(true, 'ready', 1_700_000, 'model-with-label')).toBe('model-with-label');
-    expect(representationForDistance(true, 'ready', 1_400_000, 'model-with-label')).toBe('model');
-    expect(modelVisible('model-with-label')).toBe(true);
-    expect(markerVisible('model-with-label')).toBe(true);
-    expect(labelVisible('model-with-label')).toBe(true);
+    expect(representationForState(true, 'ready')).toBe('model');
+    expect(modelVisible('model')).toBe(true);
     expect(markerVisible('model')).toBe(false);
     expect(labelVisible('model')).toBe(false);
     expect(modelVisible('marker')).toBe(false);
     expect(labelVisible('marker')).toBe(true);
-    expect(representationForDistance(false, 'ready', 1_000, 'model')).toBe('none');
+    expect(representationForState(false, 'ready')).toBe('none');
   });
 
   it('uses one sampled property for entity and detailed model through TLE replacement', () => {

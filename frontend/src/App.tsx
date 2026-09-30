@@ -43,9 +43,10 @@ export default function App() {
     {selectedModule && <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} />}
     {inspecting && <div className="inspection-hint"><strong>{approaching ? 'Approaching moving ISS target' : 'Drag to orbit the ISS · Scroll to zoom'}</strong><span>Model not to scale · Attitude unavailable</span></div>}
     {!inspecting && <div className="scene-legend" aria-label="Trajectory legend">
-      <span><i className="legend-rule primary" /> GP/TLE propagated · faded</span>
+      <span><i className="legend-rule primary" /> GP/TLE propagated · soft trail</span>
       <span><i className="legend-rule oem" /> NASA OEM predicted · {oemLegend}</span>
       <small>ISS model follows GP/TLE</small>
+      <small>Temporal orbit · Earth rotates between endpoints</small>
     </div>}
   </main>;
 }

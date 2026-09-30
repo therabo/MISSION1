@@ -9,7 +9,7 @@
   "runtimeSha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f",
   "physicalScale": 1,
   "displayScaleMode": "DISPLAY_ENHANCED_SCALE",
-  "displayMinimumPixelSize": 72,
+  "displayMinimumPixelSize": 96,
   "displayMaximumScale": 20000,
   "assetAlignment": "IDENTITY",
   "displayOrientation": "DISPLAY_ONLY_LOCAL_ENU",

@@ -14,7 +14,7 @@ Retain `GET /api/iss/orbit/samples` for the model, marker and inspection camera.
 
 The OEM fetch is on demand, no more than once every two hours after success; a failed attempt backs off for 15 minutes. A stored file can support a comparison within its vector span during an outage, marked `DEGRADED`. Without a usable file or covered window, the OEM product is `UNAVAILABLE` while the primary product remains. These intervals are MISSION1 request policies, not NASA publication guarantees.
 
-Cesium renders the primary full revolution as one per-vertex colored polyline with opacity based on orbital phase distance from current scene time. It renders NASA OEM as a uniform dashed line. Both comparison lines are hidden in close inspection; the short computed buffer continues to drive the single ISS model in all modes.
+Cesium renders the primary full revolution as two coincident soft-glow polyline layers with smooth symmetric opacity based on orbital phase distance from current scene time. The temporal ITRF endpoints remain distinct; no closure is invented. Public Fabric composes built-in Glow/Fade materials, updating only phase uniforms between responses. It renders NASA OEM as a uniform dashed line with no artificial spatial offset. The [rendering refinement record](../frontend/orbital-trajectory-rendering.md) documents the diagnosis and material choice. Both comparison lines are hidden in close inspection; the short computed buffer continues to drive the single ISS model in all modes.
 
 ## Alternatives considered
 

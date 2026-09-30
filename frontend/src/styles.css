@@ -86,8 +86,8 @@ dl { margin: 8px 0 0; }
 .scene-legend span { display: flex; align-items: center; gap: 8px; }
 .scene-legend small { color: #a6c7ce; font-size: 10px; padding-left: 28px; }
 .legend-rule { display: inline-block; width: 20px; height: 3px; flex: none; }
-.legend-rule.primary { background: linear-gradient(90deg, rgba(88,217,212,.15), #58d9d4); }
-.legend-rule.oem { background: repeating-linear-gradient(90deg, #ffc27d 0 4px, transparent 4px 7px); }
+.legend-rule.primary { background: linear-gradient(90deg, rgba(83,217,205,.15), #53d9cd); box-shadow: 0 0 5px rgba(83,217,205,.3); }
+.legend-rule.oem { background: repeating-linear-gradient(90deg, #ff984f 0 4px, transparent 4px 10px); }
 .is-inspecting .status-panel { width: 278px; max-height: min(310px, calc(100vh - 155px)); bottom: auto; padding: 16px; background: rgba(8, 23, 36, .83); }
 .is-inspecting .status-panel .panel-head h1 { font-size: 20px; }
 .is-inspecting .status-panel .time-card { margin-top: 12px; }
