@@ -1,0 +1,12 @@
+[
+  {
+    "enabled": true,
+    "resets": 24,
+    "environmentEpsilon": 1000
+  },
+  {
+    "enabled": false,
+    "resets": 0,
+    "environmentEpsilon": 1000
+  }
+]

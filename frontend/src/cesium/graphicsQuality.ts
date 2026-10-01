@@ -2,6 +2,10 @@
 export const GRAPHICS_QUALITY = {
   useBrowserRecommendedResolution: false,
   msaaSamples: 4,
+  inspectionFxaa: true,
+  groundFogMaximumHeightMeters: 100_000,
+  modelEnvironmentPositionEpsilon: Number.POSITIVE_INFINITY,
+  modelEnvironmentTimeEpsilon: Number.POSITIVE_INFINITY,
   lowDprResolutionScale: 1.25,
   dprThreshold: 1.5,
   sunGlowFactor: 0.6,

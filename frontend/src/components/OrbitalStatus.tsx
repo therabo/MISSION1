@@ -49,6 +49,8 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
   const bufferText = buffer === 'active' ? 'ACTIVE' : buffer === 'expired' ? 'EXPIRED' : 'WAITING';
 
   return <aside className="status-panel" aria-label="ISS orbital status">
+    <details className="orbital-details" open={!inspecting}>
+    <summary>ISS orbital details</summary>
     <div className="panel-head">
       <span className="eyebrow">ORBITAL STATE / ISS</span>
       <h1>{approaching ? 'Approaching ISS' : inspecting ? 'ISS Inspection' : 'Earth View'}</h1>
@@ -127,5 +129,6 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
 
     <p className="model-note">{ISS_MODEL.credit}. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA source</a>.</p>
     <p className="provenance-note">The selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: <a href="https://nasa-gibs.github.io/gibs-api-docs/access-basics/">NASA GIBS</a> Blue Marble day imagery and historical Black Marble 2016 night lights.</p>
+    </details>
   </aside>;
 }

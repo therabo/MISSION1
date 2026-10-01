@@ -1,0 +1,101 @@
+{
+  "rows": [
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": true,
+      "frames": 28,
+      "p50": 121.59999999403954,
+      "p95": 150.40000000596046,
+      "worst": 161.70000000298023
+    },
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": false,
+      "frames": 32,
+      "p50": 106.6000000089407,
+      "p95": 134.1000000089407,
+      "worst": 161.19999998807907
+    },
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": false,
+      "frames": 33,
+      "p50": 103.5,
+      "p95": 130.30000001192093,
+      "worst": 161.59999999403954
+    },
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": true,
+      "frames": 24,
+      "p50": 140,
+      "p95": 191.5,
+      "worst": 201.5
+    },
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": true,
+      "frames": 33,
+      "p50": 104.69999998807907,
+      "p95": 121.30000001192093,
+      "worst": 127
+    },
+    {
+      "mode": "EARTH_OVERVIEW",
+      "enabled": false,
+      "frames": 33,
+      "p50": 105.29999999701977,
+      "p95": 121.8999999910593,
+      "worst": 126.79999999701977
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": true,
+      "frames": 35,
+      "p50": 99.5,
+      "p95": 117.20000000298023,
+      "worst": 119.80000001192093
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": false,
+      "frames": 35,
+      "p50": 98.59999999403954,
+      "p95": 121.29999999701977,
+      "worst": 135.09999999403954
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": false,
+      "frames": 44,
+      "p50": 77.90000000596046,
+      "p95": 98.79999999701977,
+      "worst": 121.8999999910593
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": true,
+      "frames": 32,
+      "p50": 105,
+      "p95": 135,
+      "worst": 156.29999999701977
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": true,
+      "frames": 37,
+      "p50": 94.70000000298023,
+      "p95": 118.1000000089407,
+      "worst": 124.5
+    },
+    {
+      "mode": "ISS_INSPECTION",
+      "enabled": false,
+      "frames": 39,
+      "p50": 88.59999999403954,
+      "p95": 113.1000000089407,
+      "worst": 114.90000000596046
+    }
+  ],
+  "errors": []
+}

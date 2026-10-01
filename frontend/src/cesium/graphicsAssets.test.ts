@@ -37,9 +37,12 @@ describe('tiled NASA Earth imagery', () => {
 });
 
 describe('desktop renderer policy and local star asset', () => {
-  it('uses native device pixels and MSAA without stacking FXAA on supported hardware', () => {
+  it('retains native texture resolution and stable model lighting with complementary AA', () => {
     expect(GRAPHICS_QUALITY.useBrowserRecommendedResolution).toBe(false);
     expect(GRAPHICS_QUALITY.msaaSamples).toBe(4);
+    expect(GRAPHICS_QUALITY.inspectionFxaa).toBe(true);
+    expect(GRAPHICS_QUALITY.modelEnvironmentPositionEpsilon).toBe(Infinity);
+    expect(GRAPHICS_QUALITY.modelEnvironmentTimeEpsilon).toBe(Infinity);
     expect(resolutionScaleForDpr(1)).toBe(1.25);
     expect(resolutionScaleForDpr(2)).toBe(1);
     expect(resolutionScaleForDpr(Number.NaN)).toBe(1);

@@ -27,7 +27,7 @@ describe('trajectory visual orientation and moving rear camera', () => {
       if (previous) expect(Cartesian3.dot(previous, up)).toBeGreaterThan(0.99);
       previous = up;
       const camera = Matrix4.multiplyByPoint(matrix, rearInspectionOffset(1280 / 720, new Cartesian3()), new Cartesian3());
-      expect(Cartesian3.angleBetween(Cartesian3.subtract(position, camera, new Cartesian3()), velocity)).toBeLessThan(1e-10);
+      expect(Cartesian3.angleBetween(Cartesian3.subtract(position, camera, new Cartesian3()), velocity) * 180 / Math.PI).toBeCloseTo(42.5, 7);
     }
     expect(v.getValue(JulianDate.addSeconds(JulianDate.fromIso8601(samples[0].time), -1, new JulianDate()))).toBeUndefined();
   });
@@ -43,7 +43,10 @@ describe('trajectory visual orientation and moving rear camera', () => {
   });
   it('reduces canonical distance by at least 65% and adapts narrow framing', () => {
     const offset = rearInspectionOffset(1280 / 720, new Cartesian3());
-    expect(offset).toEqual(new Cartesian3(-119, 0, 0));
+    expect(Cartesian3.magnitude(offset)).toBeCloseTo(90);
+    expect(offset.x).toBeCloseTo(-90 * Math.cos(42.5 * Math.PI / 180));
+    expect(offset.y).toBe(0);
+    expect(offset.z).toBeCloseTo(90 * Math.sin(42.5 * Math.PI / 180));
     expect(Cartesian3.magnitude(offset)).toBeLessThanOrEqual(340 * 0.35 + 1e-8);
     expect(Cartesian3.magnitude(rearInspectionOffset(390 / 844, new Cartesian3()))).toBeGreaterThan(119);
   });

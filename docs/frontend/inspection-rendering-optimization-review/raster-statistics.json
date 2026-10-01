@@ -1,0 +1,274 @@
+{
+  "occupancy": {
+    "95": {
+      "nativePixelBox": [
+        344,
+        412,
+        2211,
+        1054
+      ],
+      "cssWidth": 933.5,
+      "cssHeight": 321.0,
+      "widthFraction": 0.729296875,
+      "heightFraction": 0.44583333333333336,
+      "silhouettePixelAreaFraction": 0.08400472005208333,
+      "differenceThresholdRgb": 5
+    },
+    "90": {
+      "nativePixelBox": [
+        266,
+        385,
+        2289,
+        1078
+      ],
+      "cssWidth": 1011.5,
+      "cssHeight": 346.5,
+      "widthFraction": 0.790234375,
+      "heightFraction": 0.48125,
+      "silhouettePixelAreaFraction": 0.09569498697916666,
+      "differenceThresholdRgb": 5
+    },
+    "85": {
+      "nativePixelBox": [
+        172,
+        355,
+        2381,
+        1104
+      ],
+      "cssWidth": 1104.5,
+      "cssHeight": 374.5,
+      "widthFraction": 0.862890625,
+      "heightFraction": 0.5201388888888889,
+      "silhouettePixelAreaFraction": 0.1100927734375,
+      "differenceThresholdRgb": 5
+    }
+  },
+  "static": {
+    "0-PRIMARY_GP_TLE": {
+      "meanAbsoluteDelta": 0.0,
+      "maximumDelta": 0,
+      "changedChannels": 0
+    },
+    "0-NASA_OEM": {
+      "meanAbsoluteDelta": 0.0,
+      "maximumDelta": 0,
+      "changedChannels": 0
+    },
+    "1-PRIMARY_GP_TLE": {
+      "meanAbsoluteDelta": 2.622251157407407e-06,
+      "maximumDelta": 7,
+      "changedChannels": 20
+    },
+    "1-NASA_OEM": {
+      "meanAbsoluteDelta": 2.3509837962962965e-06,
+      "maximumDelta": 3,
+      "changedChannels": 18
+    }
+  },
+  "outlineMotion": {
+    "0-PRIMARY_GP_TLE-on": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.4862773117945532,
+        "p95Delta": 2.0,
+        "p99Delta": 12.0,
+        "over40": 760,
+        "maximumMeanFrameDelta": 0.5312830071450761
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.8744,
+        "p95Delta": 5.0,
+        "p99Delta": 17.0,
+        "over40": 740,
+        "maximumMeanFrameDelta": 1.1080987654320988
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1084730434782608,
+        "p95Delta": 5.0,
+        "p99Delta": 27.0,
+        "over40": 2648,
+        "maximumMeanFrameDelta": 1.1523826086956521
+      }
+    },
+    "0-PRIMARY_GP_TLE-off": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.3723529046287667,
+        "p95Delta": 1.0,
+        "p99Delta": 8.0,
+        "over40": 183,
+        "maximumMeanFrameDelta": 0.40252562907735323
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.6852905349794238,
+        "p95Delta": 3.0,
+        "p99Delta": 14.0,
+        "over40": 64,
+        "maximumMeanFrameDelta": 0.7766296296296297
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1241669565217391,
+        "p95Delta": 5.0,
+        "p99Delta": 27.0,
+        "over40": 3340,
+        "maximumMeanFrameDelta": 1.1669101449275363
+      }
+    },
+    "0-NASA_OEM-on": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.4932567049808429,
+        "p95Delta": 2.0,
+        "p99Delta": 12.0,
+        "over40": 766,
+        "maximumMeanFrameDelta": 0.545914880397639
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.8736798353909465,
+        "p95Delta": 5.0,
+        "p99Delta": 17.0,
+        "over40": 722,
+        "maximumMeanFrameDelta": 1.099320987654321
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.10912077294686,
+        "p95Delta": 5.0,
+        "p99Delta": 27.0,
+        "over40": 2649,
+        "maximumMeanFrameDelta": 1.1522550724637681
+      }
+    },
+    "0-NASA_OEM-off": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.41211204307756033,
+        "p95Delta": 2.0,
+        "p99Delta": 8.0,
+        "over40": 182,
+        "maximumMeanFrameDelta": 0.9874246660453557
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.7143720164609053,
+        "p95Delta": 3.0,
+        "p99Delta": 14.0,
+        "over40": 64,
+        "maximumMeanFrameDelta": 1.0895802469135802
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1468761352657004,
+        "p95Delta": 5.0,
+        "p99Delta": 27.0,
+        "over40": 3322,
+        "maximumMeanFrameDelta": 1.4456347826086957
+      }
+    },
+    "1-PRIMARY_GP_TLE-on": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.5005863104483794,
+        "p95Delta": 2.0,
+        "p99Delta": 11.0,
+        "over40": 711,
+        "maximumMeanFrameDelta": 0.5532028580304442
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.908316049382716,
+        "p95Delta": 5.0,
+        "p99Delta": 17.0,
+        "over40": 701,
+        "maximumMeanFrameDelta": 1.1616172839506174
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1636228019323671,
+        "p95Delta": 4.0,
+        "p99Delta": 26.0,
+        "over40": 2063,
+        "maximumMeanFrameDelta": 1.2171710144927537
+      }
+    },
+    "1-PRIMARY_GP_TLE-off": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.4019838459148804,
+        "p95Delta": 1.0,
+        "p99Delta": 8.0,
+        "over40": 84,
+        "maximumMeanFrameDelta": 0.4544610127368748
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.7417423868312757,
+        "p95Delta": 4.0,
+        "p99Delta": 13.0,
+        "over40": 55,
+        "maximumMeanFrameDelta": 0.802358024691358
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1805487922705313,
+        "p95Delta": 5.0,
+        "p99Delta": 24.0,
+        "over40": 2044,
+        "maximumMeanFrameDelta": 1.224544927536232
+      }
+    },
+    "1-NASA_OEM-on": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.4848006627316972,
+        "p95Delta": 2.0,
+        "p99Delta": 11.0,
+        "over40": 703,
+        "maximumMeanFrameDelta": 0.536036036036036
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.9076362139917695,
+        "p95Delta": 5.0,
+        "p99Delta": 17.0,
+        "over40": 685,
+        "maximumMeanFrameDelta": 1.147679012345679
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1422655072463768,
+        "p95Delta": 4.0,
+        "p99Delta": 26.0,
+        "over40": 2064,
+        "maximumMeanFrameDelta": 1.1983072463768116
+      }
+    },
+    "1-NASA_OEM-off": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.5664931138034587,
+        "p95Delta": 3.0,
+        "p99Delta": 10.0,
+        "over40": 297,
+        "maximumMeanFrameDelta": 2.9313637775706742
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.8204493827160494,
+        "p95Delta": 4.0,
+        "p99Delta": 14.0,
+        "over40": 62,
+        "maximumMeanFrameDelta": 1.918679012345679
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.2852459903381643,
+        "p95Delta": 5.0,
+        "p99Delta": 25.0,
+        "over40": 2435,
+        "maximumMeanFrameDelta": 2.930017391304348
+      }
+    }
+  },
+  "rois": {
+    "central_modules": [
+      1110,
+      620,
+      1400,
+      990
+    ],
+    "starboard_truss": [
+      1530,
+      605,
+      1800,
+      705
+    ],
+    "solar_array": [
+      1830,
+      430,
+      2080,
+      545
+    ]
+  }
+}

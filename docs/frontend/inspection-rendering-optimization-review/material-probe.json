@@ -1,0 +1,107 @@
+{
+  "cases": [
+    {
+      "variant": "original",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": false,
+      "customShader": false,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "variant": "flat-normal",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": false,
+      "customShader": true,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "variant": "rough",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": false,
+      "customShader": true,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "variant": "specular-aa",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": false,
+      "customShader": true,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "variant": "fxaa",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": true,
+      "customShader": false,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    },
+    {
+      "variant": "final",
+      "source": "PRIMARY_GP_TLE",
+      "utc": "2026-09-30T15:45:59.975908000000345Z",
+      "environmentPosition": [
+        -2874672.7332487665,
+        -6152031.347166145,
+        -1101540.1227108566
+      ],
+      "stageEnabled": true,
+      "customShader": true,
+      "msaa": 4,
+      "canvas": [
+        2560,
+        1440
+      ]
+    }
+  ],
+  "errors": []
+}

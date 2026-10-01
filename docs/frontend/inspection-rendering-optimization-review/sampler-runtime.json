@@ -1,0 +1,290 @@
+{
+  "sourceCandidates": [
+    {
+      "id": 50,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 51,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 52,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 53,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 54,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 55,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 56,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 57,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 58,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 59,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 512,
+      "height": 512,
+      "internalFormat": 32856
+    },
+    {
+      "id": 60,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 61,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 62,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 63,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 512,
+      "height": 512,
+      "internalFormat": 32856
+    },
+    {
+      "id": 64,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 65,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 512,
+      "height": 512,
+      "internalFormat": 32856
+    },
+    {
+      "id": 66,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    },
+    {
+      "id": 67,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 512,
+      "height": 512,
+      "internalFormat": 32856
+    },
+    {
+      "id": 68,
+      "parameters": {
+        "10240": 9729,
+        "10241": 9987,
+        "10242": 10497,
+        "10243": 10497,
+        "34046": 1
+      },
+      "mips": true,
+      "width": 1024,
+      "height": 1024,
+      "internalFormat": 32856
+    }
+  ],
+  "maximumAnisotropy": 16,
+  "maximumMsaa": 4,
+  "resolution": [
+    2560,
+    1440
+  ],
+  "nativeFxaa": false,
+  "retainedFxaaEnabled": true,
+  "requestedFxaa": false,
+  "stageInventory": [
+    {
+      "name": "mission1_inspection_antialiasing",
+      "enabled": true,
+      "ready": true,
+      "hasUniformBypass": true
+    }
+  ],
+  "msaa": 4,
+  "logarithmicDepthBuffer": true,
+  "errors": []
+}

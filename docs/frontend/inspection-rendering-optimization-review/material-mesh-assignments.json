@@ -1,0 +1,368 @@
+[
+  {
+    "materialIndex": 4,
+    "name": "shiny_panel",
+    "roughnessFactor": 0.1599999964237213,
+    "textures": {
+      "baseColor": {
+        "textureIndex": 3,
+        "imageName": "ISS_02.jpg",
+        "mimeType": "image/png"
+      }
+    },
+    "uses": [
+      {
+        "nodeIndex": 2,
+        "nodeName": "panel_01_p.001",
+        "meshIndex": 2,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 3,
+        "nodeName": "panel_01_s.001",
+        "meshIndex": 3,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 4,
+        "nodeName": "panel_02_p.001",
+        "meshIndex": 4,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 5,
+        "nodeName": "panel_02_s.001",
+        "meshIndex": 5,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 6,
+        "nodeName": "panel_03_p.001",
+        "meshIndex": 6,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 7,
+        "nodeName": "panel_03_s.001",
+        "meshIndex": 7,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 8,
+        "nodeName": "panel_04_p.001",
+        "meshIndex": 8,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 9,
+        "nodeName": "panel_04_s.001",
+        "meshIndex": 9,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 10,
+        "nodeName": "panel_05_p",
+        "meshIndex": 10,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 11,
+        "nodeName": "panel_05_s",
+        "meshIndex": 11,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 12,
+        "nodeName": "panel_06_p",
+        "meshIndex": 12,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 13,
+        "nodeName": "panel_06_s",
+        "meshIndex": 13,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 14,
+        "nodeName": "panel_07_p",
+        "meshIndex": 14,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 15,
+        "nodeName": "panel_07_s",
+        "meshIndex": 15,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 16,
+        "nodeName": "panel_08_p",
+        "meshIndex": 16,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 17,
+        "nodeName": "panel_08_s",
+        "meshIndex": 17,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 18,
+        "nodeName": "panel_09_p",
+        "meshIndex": 18,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 19,
+        "nodeName": "panel_09_s",
+        "meshIndex": 19,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 54,
+        "nodeName": "23 S4 Truss_01",
+        "meshIndex": 54,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 55,
+        "nodeName": "23 S4 Truss_02",
+        "meshIndex": 55,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 56,
+        "nodeName": "32 S6 Truss_01",
+        "meshIndex": 56,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 57,
+        "nodeName": "32 S6 Truss_02",
+        "meshIndex": 57,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 69,
+        "nodeName": "08 P6 Truss_01",
+        "meshIndex": 69,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 70,
+        "nodeName": "08 P6 Truss_02",
+        "meshIndex": 70,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 72,
+        "nodeName": "20 P4 Truss_01",
+        "meshIndex": 72,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 73,
+        "nodeName": "20 P4 Truss_02",
+        "meshIndex": 73,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 114,
+        "nodeName": "panel_01_p",
+        "meshIndex": 113,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 116,
+        "nodeName": "panel_03_p",
+        "meshIndex": 115,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 119,
+        "nodeName": "panel_02_p",
+        "meshIndex": 118,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 121,
+        "nodeName": "panel_04_p",
+        "meshIndex": 120,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 122,
+        "nodeName": "panel_01_s",
+        "meshIndex": 121,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 124,
+        "nodeName": "panel_03_s",
+        "meshIndex": 123,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 127,
+        "nodeName": "panel_04_s",
+        "meshIndex": 126,
+        "primitiveIndex": 0
+      },
+      {
+        "nodeIndex": 128,
+        "nodeName": "panel_02_s",
+        "meshIndex": 127,
+        "primitiveIndex": 0
+      }
+    ]
+  },
+  {
+    "materialIndex": 10,
+    "name": "ISS_01_shiny_n",
+    "roughnessFactor": 0.44999998807907104,
+    "textures": {
+      "baseColor": {
+        "textureIndex": 2,
+        "imageName": "ISS_01.jpg",
+        "mimeType": "image/png"
+      },
+      "normal": {
+        "textureIndex": 8,
+        "imageName": "ISS_01_n.jpg",
+        "mimeType": "image/png"
+      }
+    },
+    "uses": [
+      {
+        "nodeIndex": 26,
+        "nodeName": "06 Z1 Truss",
+        "meshIndex": 26,
+        "primitiveIndex": 2
+      },
+      {
+        "nodeIndex": 61,
+        "nodeName": "25 (ESP) External Stowage Platform 3",
+        "meshIndex": 61,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 84,
+        "nodeName": "27 Columbus Space Laboratory",
+        "meshIndex": 84,
+        "primitiveIndex": 3
+      },
+      {
+        "nodeIndex": 95,
+        "nodeName": "26 Harmony Node 2",
+        "meshIndex": 95,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 97,
+        "nodeName": "09 Destiny Space Laboratory",
+        "meshIndex": 97,
+        "primitiveIndex": 4
+      },
+      {
+        "nodeIndex": 98,
+        "nodeName": "18 ESP External Stowage Platform 2",
+        "meshIndex": 98,
+        "primitiveIndex": 2
+      },
+      {
+        "nodeIndex": 99,
+        "nodeName": "12 Quest Airlock",
+        "meshIndex": 99,
+        "primitiveIndex": 5
+      },
+      {
+        "nodeIndex": 110,
+        "nodeName": "37 Tranquility Node 3",
+        "meshIndex": 110,
+        "primitiveIndex": 1
+      },
+      {
+        "nodeIndex": 111,
+        "nodeName": "40 Leonardo_Raffaello Perm Multi-Purpose Logistics Module (PMM)",
+        "meshIndex": 111,
+        "primitiveIndex": 2
+      },
+      {
+        "nodeIndex": 112,
+        "nodeName": "02 Unity Node 1",
+        "meshIndex": 112,
+        "primitiveIndex": 2
+      }
+    ]
+  },
+  {
+    "materialIndex": 12,
+    "name": "foil_silver",
+    "roughnessFactor": 0.30000001192092896,
+    "textures": {
+      "normal": {
+        "textureIndex": 9,
+        "imageName": "foil_n.jpg",
+        "mimeType": "image/png"
+      }
+    },
+    "uses": [
+      {
+        "nodeIndex": 26,
+        "nodeName": "06 Z1 Truss",
+        "meshIndex": 26,
+        "primitiveIndex": 4
+      },
+      {
+        "nodeIndex": 83,
+        "nodeName": "45 RapidScat",
+        "meshIndex": 83,
+        "primitiveIndex": 3
+      }
+    ]
+  },
+  {
+    "materialIndex": 18,
+    "name": "ISS_03_shiny_n",
+    "roughnessFactor": 0.44999998807907104,
+    "textures": {
+      "baseColor": {
+        "textureIndex": 0,
+        "imageName": "ISS_03.jpg",
+        "mimeType": "image/png"
+      },
+      "normal": {
+        "textureIndex": 14,
+        "imageName": "ISS_03_n.jpg",
+        "mimeType": "image/png"
+      }
+    },
+    "uses": [
+      {
+        "nodeIndex": 85,
+        "nodeName": "28 Kibo Space Laboratory (PSM) Pressurized Stowage Module",
+        "meshIndex": 85,
+        "primitiveIndex": 2
+      },
+      {
+        "nodeIndex": 94,
+        "nodeName": "30 Kibo Space Laboratory (PSM) Pressurized Module",
+        "meshIndex": 94,
+        "primitiveIndex": 4
+      },
+      {
+        "nodeIndex": 97,
+        "nodeName": "09 Destiny Space Laboratory",
+        "meshIndex": 97,
+        "primitiveIndex": 5
+      },
+      {
+        "nodeIndex": 99,
+        "nodeName": "12 Quest Airlock",
+        "meshIndex": 99,
+        "primitiveIndex": 4
+      }
+    ]
+  }
+]

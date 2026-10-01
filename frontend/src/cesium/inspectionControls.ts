@@ -1,15 +1,17 @@
 import { Cartesian3, type ScreenSpaceCameraController } from 'cesium';
 import type { ViewMode } from './inspectionMode';
 
-export const INSPECTION_RANGE_METERS = 119;
+export const INSPECTION_RANGE_METERS = 90;
+export const INSPECTION_ELEVATION_DEGREES = 42.5;
 export const MAX_INSPECTION_RANGE_METERS = 2000;
 const keys = ['enableInputs', 'enableZoom', 'enableTranslate', 'enableLook', 'enableTilt', 'zoomFactor',
   'minimumZoomDistance', 'maximumZoomDistance', 'inertiaZoom', 'inertiaSpin', 'inertiaTranslate'] as const;
 
 /** Native Cesium orbit with reversible settings; dedicated pivot zoom avoids globe-rate semantics. */
 export function inspectionControlProfile(controller: ScreenSpaceCameraController): (mode: ViewMode) => void {
-  const saved = Object.fromEntries(keys.map(key => [key, controller[key]]));
+  let saved = Object.fromEntries(keys.map(key => [key, controller[key]]));
   return mode => {
+    if (mode === 'ENTERING_INSPECTION') saved = Object.fromEntries(keys.map(key => [key, controller[key]]));
     Object.assign(controller, saved);
     if (mode === 'ENTERING_INSPECTION' || mode === 'EXITING_INSPECTION') controller.enableInputs = false;
     if (mode === 'ISS_INSPECTION') Object.assign(controller, {
@@ -44,7 +46,9 @@ export function clampInspectionOffset(offset: Cartesian3): Cartesian3 {
   return Cartesian3.multiplyByScalar(offset, Math.max(minimum, Math.min(MAX_INSPECTION_RANGE_METERS, range)) / range, offset);
 }
 
-/** Rear view; widen only for narrow aspect ratios, preserving canonical 119m. */
+/** Elevated rear view; 90m is slant range. Narrow viewports widen without changing elevation. */
 export function rearInspectionOffset(aspect: number, result: Cartesian3): Cartesian3 {
-  return Cartesian3.fromElements(-INSPECTION_RANGE_METERS * Math.max(1, 1.2 / aspect), 0, 0, result);
+  const range = INSPECTION_RANGE_METERS * Math.max(1, 1.2 / aspect);
+  const elevation = INSPECTION_ELEVATION_DEGREES * Math.PI / 180;
+  return Cartesian3.fromElements(-range * Math.cos(elevation), 0, range * Math.sin(elevation), result);
 }

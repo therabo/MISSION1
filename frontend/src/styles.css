@@ -88,6 +88,10 @@ dl { margin: 8px 0 0; }
 .legend-rule { display: inline-block; width: 20px; height: 3px; flex: none; }
 .legend-rule.primary { background: linear-gradient(90deg, rgba(83,217,205,.15), #53d9cd); box-shadow: 0 0 5px rgba(83,217,205,.3); }
 
+.orbital-details > summary { display: none; }
+.is-inspecting .orbital-details > summary { display: list-item; cursor: pointer; color: #cde9ec; font-size: 12px; font-weight: 650; }
+.orbital-details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.is-inspecting .orbital-details[open] > summary { margin-bottom: 16px; }
 .is-inspecting .status-panel { width: 278px; max-height: min(310px, calc(100vh - 155px)); bottom: auto; padding: 16px; background: rgba(8, 23, 36, .83); }
 .is-inspecting .status-panel .panel-head h1 { font-size: 20px; }
 .is-inspecting .status-panel .time-card { margin-top: 12px; }

@@ -1,5 +1,11 @@
 # MISSION1 Earth View
 
+## Current Inspection rendering — 2026-10-01
+
+Canonical desktop Inspection is 90 m behind/above the physical selected-source pivot at 42.5° elevation, zero lateral offset and 100° FOV. Entry and exit share a retained 5-second quintic camera pipeline, with one Earth-clear arc for occulted approaches and velocity-preserving partial Back. Lift and silhouette remain presentation only. Back restores the captured world pose, frustum and controller profile; narrow viewports adapt range. Orbital details collapse during Inspection to expose the full station and remain accessible.
+
+The unchanged NASA PNG model uses generated trilinear mipmaps. A stable captured ambient environment avoids shader regeneration on each kilometre of orbital/display motion; direct Sun and Earth lighting still follow UTC. Bounded specular antialiasing and MSAA 4 + retained FXAA (bypassed in Overview) address measured highlight and thin-edge shimmer at native device resolution. Ground fog is confined below 100 km (with compensated ground density), avoiding the model shader rebuild at Cesium's default 800 km ceiling. Close-view atmospheric shaders warm during model loading. A retained native-resolution FXAA stage uses a uniform bypass in Overview, so changing modes does not destroy/reallocate its GPU resources. No geometry, asset swap, orbital contract or source semantics changed. [Framing, diagnosis, raw performance and remaining limits](../docs/frontend/inspection-rendering-optimization-review/README.md). Earlier dated camera figures below are historical.
+
 The Earth View is a React 19 / TypeScript 7 / Vite 8 / CesiumJS 1.145 client. It consumes the [bounded orbital samples contract](../docs/api/orbital-samples.md) for the ISS model and the separate [trajectory comparison contract](../docs/api/orbital-comparison.md) for the two globe lines. It does not fetch orbital elements or propagate an orbit in the browser. The [NASA ISS model record](../docs/frontend/iss-model.md) documents the selected asset, provenance, scale, configuration limits, validation and reproducible optimization.
 
 ## Local run

@@ -15,6 +15,7 @@ import {
   JulianDate,
   LabelStyle,
   Matrix4,
+  Quaternion,
   Model,
   ModelFeature,
   NearFarScalar,
@@ -35,18 +36,23 @@ import { ISS_MODEL, labelVisible, markerVisible, modelLoadTransition, modelVisib
 import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPresentation';
 import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
-import { approachMinimumPixelSize, canInspect, earthOccludes, exitMinimumPixelSize, INITIAL_VIEW_MODE, inspectionPresentation, interpolateUnitDirection, movingApproachOffset, movingApproachPathClear, nextViewMode, pickAction, radialAcquisitionPosition, rebaseApproachStartTime, smoothstep } from './inspectionMode';
+import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
+import { InspectionTransition, interruptionTangent, poseQuaternion } from './inspectionTransition';
+import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
 import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
+import { createIssMaterialShader } from './issMaterialQuality';
+import { warmInspectionRendering } from './inspectionRenderingWarmup';
+import { inspectionAntialiasing } from './inspectionAntialiasing';
 import skyboxManifest from './skyboxManifest.json';
 import { adaptTrailClearance, createTrajectoryTrails, orderTrails, showTrails, updateClearanceMask, updateTrail } from './trajectoryRendering';
 import type { TrajectoryTrails } from './trajectoryRendering';
 import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
 import type { SampledPositionProperty } from 'cesium';
-import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, displayLiftForMode, modelDisplayPosition, silhouetteForMode } from './earthViewPresentation';
+import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, applyModelSilhouette, displayLiftForMode, modelDisplayPosition, silhouetteForMode } from './earthViewPresentation';
 import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
@@ -69,9 +75,8 @@ interface EarthViewProps {
 }
 
 export const APPROACH_DURATION_SECONDS = 5;
-const ACQUISITION_DURATION_SECONDS = 2.4;
-const EXIT_DURATION_SECONDS = 1.2;
-interface CameraSnapshot { position: Cartesian3; direction: Cartesian3; up: Cartesian3; fov: number }
+export const EXIT_DURATION_SECONDS = 5;
+interface CameraSnapshot extends CameraPose { near: number; far: number }
 
 export const EarthView = memo(function EarthView({ window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
@@ -99,11 +104,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
   const representation = useRef<Representation>('none');
   const viewMode = useRef<ViewMode>(INITIAL_VIEW_MODE);
   const cameraSnapshot = useRef<CameraSnapshot | null>(null);
-  const entry = useRef<
-    { stage: 'acquire'; startTime: JulianDate; startPosition: Cartesian3; startDirection: Cartesian3; startUp: Cartesian3 } |
-    { stage: 'moving'; startTime: JulianDate; startOffset: Cartesian3; endOffset: Cartesian3;
-      startDirection: Cartesian3; startUp: Cartesian3 } | null>(null);
-  const displayEntryStart = useRef<JulianDate | null>(null);
+  const entry = useRef<InspectionTransition | null>(null);
   const enterInspection = useRef<(() => void) | null>(null);
   const exitInspection = useRef<(() => void) | null>(null);
   const initializedClock = useRef(false);
@@ -160,7 +161,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       return velocity && visualFrame.update(position, velocity, result);
     };
     instance.resolutionScale = resolutionScaleForDpr(globalThis.window.devicePixelRatio);
-    instance.scene.postProcessStages.fxaa.enabled = !instance.scene.msaaSupported;
+    const nativeFxaa = instance.scene.postProcessStages.fxaa;
+    const inspectionAa = instance.scene.postProcessStages.add(inspectionAntialiasing(nativeFxaa, () => !instance.scene.msaaSupported ||
+      (GRAPHICS_QUALITY.inspectionFxaa && (modelStatus.current === 'loading' || viewMode.current !== 'EARTH_OVERVIEW'))));
+    nativeFxaa.enabled = false;
+    // Confine ground fog below orbital viewpoints. Crossing Cesium's default
+    // 800km ceiling otherwise rebuilds every model shader during entry/exit.
+    // Preserve the ground-view density curve above the engine's height clamp.
+    const fog = instance.scene.fog;
+    fog.heightScalar *= (fog.maxHeight / GRAPHICS_QUALITY.groundFogMaximumHeightMeters) ** fog.heightFalloff;
+    fog.maxHeight = GRAPHICS_QUALITY.groundFogMaximumHeightMeters;
     instance.scene.highDynamicRange = GRAPHICS_QUALITY.highDynamicRange && instance.scene.highDynamicRangeSupported;
     instance.scene.sunBloom = GRAPHICS_QUALITY.sunBloom;
     const diagnostics = import.meta.env.DEV && new URLSearchParams(globalThis.location.search).has('graphicsDiagnostics');
@@ -178,7 +188,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const aim = Cartesian3.normalize(Cartesian3.subtract(target, camera.positionWC, new Cartesian3()), new Cartesian3());
       const pixel = SceneTransforms.worldToWindowCoordinates(instance.scene, target, new Cartesian2());
       console.info('[approach]', JSON.stringify({
-        phase: entry.current?.stage,
+        phase: entry.current?.kind,
         time: JulianDate.toIso8601(time),
         distance: Math.round(Cartesian3.distance(camera.positionWC, target)),
         angularErrorDeg: +(Math.acos(Math.max(-1, Math.min(1, Cartesian3.dot(camera.directionWC, aim)))) * 180 / Math.PI).toFixed(2),
@@ -209,7 +219,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       resolutionScale: instance.resolutionScale,
       msaaSupported: instance.scene.msaaSupported,
       msaaSamples: instance.scene.msaaSamples,
-      fxaa: instance.scene.postProcessStages.fxaa.enabled,
+      nativeFxaa: nativeFxaa.enabled,
+      inspectionFxaaConfigured: GRAPHICS_QUALITY.inspectionFxaa,
+      retainedAntialiasing: inspectionAa.enabled,
       maximumCubeMapSize: instance.scene.maximumCubeMapSize,
       hdrSupported: instance.scene.highDynamicRangeSupported,
       hdr: instance.scene.highDynamicRange,
@@ -434,84 +446,67 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
 
     let displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS;
     let silhouetteVisibility = 1;
-    let exitPresentation: { startMs: number; size: number; liftMeters: number; silhouetteVisibility: number; fov: number } | null = null;
+    let exitPresentation: { startLift: number; startVisibility: number; liftRate: number; visibilityRate: number; progress: number } | null = null;
+    const silhouetteOutput = { sizePixels: 0, alpha: 0, visibility: 0 };
+    const previousPosition = new Cartesian3();
+    const previousFrame = new Matrix4();
+    const lastFrame = new Matrix4();
+    let frameElapsed = 0.016;
+    const previousQuaternion = new Quaternion();
+    const currentQuaternion = new Quaternion();
+    const cameraVelocity = new Cartesian3();
+    const frameVelocity = new Cartesian3();
+    const priorMovingStart = new Cartesian3();
+    let previousWall = 0, previousFov = 0, previousLift = displayLiftMeters, previousVisibility = silhouetteVisibility;
+    let liftRate = 0, visibilityRate = 0, fovRate = 0;
+    const quaternionRate = new Quaternion(0, 0, 0, 0);
+    const capturePose = (): CameraPose => ({ position: Cartesian3.clone(instance.camera.positionWC),
+      direction: Cartesian3.clone(instance.camera.directionWC), up: Cartesian3.clone(instance.camera.upWC),
+      fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 });
+    const cameraView = { destination: new Cartesian3(), orientation: { direction: new Cartesian3(), up: new Cartesian3() } };
 
     const leaveInspection = (): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
-      entry.current = null;
-      displayEntryStart.current = null;
+      const saved = cameraSnapshot.current;
+      if (!saved) return;
+      const pose = capturePose();
+      const wasEntering = viewMode.current === 'ENTERING_INSPECTION';
       instance.camera.cancelFlight();
-      exitPresentation = { startMs: performance.now(), size: model.current?.minimumPixelSize ?? ISS_MODEL.displayMinimumPixelSize,
-        liftMeters: displayLiftMeters, silhouetteVisibility, fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 };
+      const flight = new InspectionTransition('exit', pose, trackingFrame, saved.position, saved.fov,
+        EXIT_DURATION_SECONDS, performance.now(), saved);
+      if (previousWall && positionAt(instance.clock.currentTime, scenePosition)) {
+        Matrix4.multiplyByPoint(previousFrame, flight.startOffset, priorMovingStart);
+        Matrix4.multiplyByPoint(trackingFrame, flight.startOffset, frameVelocity);
+        Cartesian3.subtract(frameVelocity, priorMovingStart, frameVelocity);
+        Cartesian3.divideByScalar(frameVelocity, Math.max(0.001, frameElapsed), frameVelocity);
+        if (wasEntering) Cartesian3.subtract(cameraVelocity, frameVelocity, flight.velocityCorrection);
+        Quaternion.clone(quaternionRate, flight.orientationTangent);
+        flight.fovTangent = fovRate;
+      }
+      entry.current = flight;
+      exitPresentation = { startLift: displayLiftMeters, startVisibility: silhouetteVisibility, liftRate, visibilityRate, progress: 0 };
       selectModule(null);
       instance.trackedEntity = undefined;
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
       setMode('EXIT');
-      const saved = cameraSnapshot.current;
-      const destination = saved?.position ?? Cartesian3.fromDegrees(20, 12, 22_000_000);
-      instance.camera.flyTo({
-        destination,
-        orientation: saved ? { direction: saved.direction, up: saved.up } : undefined,
-        duration: EXIT_DURATION_SECONDS,
-        complete: () => {
-          if (destroyed) return;
-          if (model.current) model.current.minimumPixelSize = ISS_MODEL.displayMinimumPixelSize;
-          if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = cameraSnapshot.current?.fov ?? Math.PI / 3;
-          exitPresentation = null;
-          setMode('EXIT_COMPLETE');
-        },
-        cancel: () => {
-          if (destroyed) return;
-          if (model.current) model.current.minimumPixelSize = ISS_MODEL.displayMinimumPixelSize;
-          if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = cameraSnapshot.current?.fov ?? Math.PI / 3;
-          exitPresentation = null;
-          setMode('EXIT_COMPLETE');
-        },
-      });
     };
     exitInspection.current = leaveInspection;
 
-    const movingEntryAt = (position: Cartesian3) => {
-      const frame = frameAt(position, trackingFrame)!;
-      const inverse = Matrix4.inverseTransformation(frame, new Matrix4());
-      return {
-        stage: 'moving' as const,
-        startTime: JulianDate.clone(instance.clock.currentTime),
-        startOffset: Matrix4.multiplyByPoint(inverse, instance.camera.positionWC, new Cartesian3()),
-        endOffset: rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3()),
-        startDirection: Cartesian3.clone(instance.camera.directionWC),
-        startUp: Cartesian3.clone(instance.camera.upWC),
-      };
-    };
-
     const startInspection = (): void => {
-      if (viewMode.current !== 'EARTH_OVERVIEW' || !iss.current ||
-          !canInspect(modelStatus.current, !!active.current)) return;
+      if (viewMode.current !== 'EARTH_OVERVIEW' || !iss.current || !canInspect(modelStatus.current, !!active.current)) return;
       const current = active.current!;
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
       if (sceneMs < current.orbital.startMs || sceneMs > current.orbital.endMs) return;
       const position = positionAt(instance.clock.currentTime, new Cartesian3());
       if (!position || !frameAt(position, trackingFrame)) return;
-      // No camera route can start safely from inside the globe.
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
-      cameraSnapshot.current = {
-        position: Cartesian3.clone(instance.camera.positionWC),
-        direction: Cartesian3.clone(instance.camera.directionWC),
-        up: Cartesian3.clone(instance.camera.upWC),
-        fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3,
-      };
+      const pose = capturePose();
+      cameraSnapshot.current = { ...pose, near: instance.camera.frustum.near, far: instance.camera.frustum.far };
       instance.camera.cancelFlight();
-      const moving = movingEntryAt(position);
-      displayEntryStart.current = JulianDate.clone(instance.clock.currentTime);
-      entry.current = earthOccludes(instance.camera.positionWC, position) ||
-        !movingApproachPathClear(position, moving.startOffset, moving.endOffset, trackingFrame)
-        ? {
-          stage: 'acquire', startTime: JulianDate.clone(instance.clock.currentTime),
-          startPosition: Cartesian3.clone(instance.camera.positionWC),
-          startDirection: Cartesian3.clone(instance.camera.directionWC),
-          startUp: Cartesian3.clone(instance.camera.upWC),
-        }
-        : moving;
+      entry.current = new InspectionTransition('entry', pose, trackingFrame,
+        rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3()),
+        CesiumMath.toRadians(100), APPROACH_DURATION_SECONDS, performance.now());
+      exitPresentation = null;
       setMode('ENTER');
     };
     enterInspection.current = startInspection;
@@ -519,6 +514,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     // A primitive exposes load and runtime errors. It reads the same sampled
     // property assigned to the ISS entity; no second orbit is constructed.
     const loadStarted = performance.now();
+    const materialShader = createIssMaterialShader();
+    let cancelGraphicsWarmup: (() => void) | null = null;
+    let environmentInitialized = false;
     void Model.fromGltfAsync({
       url: `${ISS_MODEL.uri}?v=${ISS_MODEL.runtimeSha256.slice(0, 12)}`,
       show: false,
@@ -528,11 +526,13 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       silhouetteColor: Color.WHITE.withAlpha(OVERVIEW_SILHOUETTE.alpha),
       silhouetteSize: OVERVIEW_SILHOUETTE.sizePixels,
       enablePick: true,
+      backFaceCulling: false,
       featureIdLabel: ISS_MODEL.semanticFeatureSet,
       id: ISS_MODEL.id,
       credit: ISS_MODEL.credit,
       showCreditsOnScreen: true,
       incrementallyLoadTextures: false,
+      customShader: materialShader,
     }).then((loaded) => {
       if (destroyed) {
         loaded.destroy();
@@ -553,13 +553,26 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           modelCallback.current(modelStatus.current);
           return;
         }
-        modelStatus.current = modelLoadTransition(modelStatus.current, 'loaded');
-        if (modelStatus.current === 'ready') {
-          const loadMs = performance.now() - loadStarted;
-          modelCallback.current('ready', loadMs);
-          if (diagnostics) console.info('[graphics] ISS textures and features ready', Math.round(loadMs), 'ms');
-        }
+        cancelGraphicsWarmup = warmInspectionRendering(instance, () => {
+          cancelGraphicsWarmup = null;
+          if (destroyed || modelStatus.current === 'failed') return;
+          modelStatus.current = modelLoadTransition(modelStatus.current, 'loaded');
+          if (modelStatus.current === 'ready') {
+            const loadMs = performance.now() - loadStarted;
+            modelCallback.current('ready', loadMs);
+            if (diagnostics) console.info('[graphics] ISS textures, features and rendering ready', Math.round(loadMs), 'ms');
+          }
+        });
       });
+      // Generate ambient reflections once; Sun lighting still follows scene UTC.
+      // Camera lift and orbital translation must not invalidate the environment every kilometre.
+      const initialPosition = positionAt(instance.clock.currentTime, new Cartesian3());
+      if (initialPosition) {
+        loaded.environmentMapManager.position = modelDisplayPosition(initialPosition, displayLiftMeters, new Cartesian3());
+        environmentInitialized = true;
+      }
+      loaded.environmentMapManager.maximumPositionEpsilon = GRAPHICS_QUALITY.modelEnvironmentPositionEpsilon;
+      loaded.environmentMapManager.maximumSecondsDifference = GRAPHICS_QUALITY.modelEnvironmentTimeEpsilon;
       instance.scene.primitives.add(loaded);
       model.current = loaded;
     }).catch(() => {
@@ -620,37 +633,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (viewMode.current === 'ISS_INSPECTION') zoomToRange(inspectionPinchRange(Cartesian3.magnitude(instance.camera.position),
         pinch.distance.startPosition.y, pinch.distance.endPosition.y));
     }, ScreenSpaceEventType.PINCH_MOVE);
-    const approachWorldPosition = new Cartesian3();
-    const approachDirection = new Cartesian3();
-    const approachUp = new Cartesian3();
-    const targetDirection = new Cartesian3();
-    const targetUp = new Cartesian3();
-    const targetRight = new Cartesian3();
-    const frameUp = new Cartesian3();
-    const setCameraTowardTarget = (destination: Cartesian3, target: Cartesian3, frame: Matrix4,
-      startDirection: Cartesian3, startUp: Cartesian3, aim: number): void => {
-      Cartesian3.normalize(Cartesian3.subtract(target, destination, targetDirection), targetDirection);
-      Matrix4.multiplyByPointAsVector(frame, Cartesian3.UNIT_Z, frameUp);
-      Cartesian3.cross(targetDirection, frameUp, targetRight);
-      if (Cartesian3.magnitudeSquared(targetRight) < 1e-12) {
-        Matrix4.multiplyByPointAsVector(frame, Cartesian3.UNIT_Y, frameUp);
-        Cartesian3.cross(targetDirection, frameUp, targetRight);
-      }
-      Cartesian3.normalize(targetRight, targetRight);
-      Cartesian3.normalize(Cartesian3.cross(targetRight, targetDirection, targetUp), targetUp);
-      interpolateUnitDirection(startDirection, targetDirection, aim, approachDirection);
-      interpolateUnitDirection(startUp, targetUp, aim, approachUp);
-      Cartesian3.cross(approachDirection, approachUp, targetRight);
-      if (Cartesian3.magnitudeSquared(targetRight) < 1e-12) {
-        Cartesian3.cross(approachDirection, frameUp, targetRight);
-        if (Cartesian3.magnitudeSquared(targetRight) < 1e-12) {
-          Cartesian3.cross(approachDirection, Cartesian3.mostOrthogonalAxis(approachDirection, frameUp), targetRight);
-        }
-      }
-      Cartesian3.normalize(targetRight, targetRight);
-      Cartesian3.normalize(Cartesian3.cross(targetRight, approachDirection, approachUp), approachUp);
-      instance.camera.setView({ destination, orientation: { direction: approachDirection, up: approachUp } });
-    };
     let lastDiagnosticSource: TrajectorySource | null = null;
     const tick = (): void => {
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
@@ -679,71 +661,42 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         clampInspectionOffset(cameraOffset);
         instance.camera.lookAtTransform(frame, cameraOffset);
       }
-      if (position && entry.current?.stage === 'acquire' && viewMode.current === 'ENTERING_INSPECTION') {
-        const flight = entry.current;
-        const progress = Math.max(0, Math.min(1, JulianDate.secondsDifference(instance.clock.currentTime, flight.startTime) / ACQUISITION_DURATION_SECONDS));
-        const frame = trackingFrame;
-        radialAcquisitionPosition(flight.startPosition, position, progress, approachWorldPosition);
-        setCameraTowardTarget(approachWorldPosition, position, frame, flight.startDirection, flight.startUp, smoothstep(progress));
-        if (progress === 1) entry.current = movingEntryAt(position);
-      }
-      if (position && entry.current?.stage === 'moving' && viewMode.current === 'ENTERING_INSPECTION') {
-        const flight = entry.current;
-        const progress = Math.max(0, Math.min(1, JulianDate.secondsDifference(instance.clock.currentTime, flight.startTime) / APPROACH_DURATION_SECONDS));
-        const frame = trackingFrame;
-        if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov =
-          (cameraSnapshot.current?.fov ?? Math.PI / 3) * (1 - smoothstep(progress)) + CesiumMath.toRadians(85) * smoothstep(progress);
-        movingApproachOffset(flight.startOffset, flight.endOffset, progress, cameraOffset);
-        Matrix4.multiplyByPoint(frame, cameraOffset, approachWorldPosition);
-        // The target can move after entry preflight; never apply an unsafe pose.
-        if ((Ellipsoid.WGS84.cartesianToCartographic(approachWorldPosition)?.height ?? -1) < 1_000 ||
-            earthOccludes(approachWorldPosition, position)) {
-          entry.current = {
-            stage: 'acquire', startTime: JulianDate.clone(instance.clock.currentTime),
-            startPosition: Cartesian3.clone(instance.camera.positionWC),
-            startDirection: Cartesian3.clone(instance.camera.directionWC),
-            startUp: Cartesian3.clone(instance.camera.upWC),
-          };
-        } else {
-          // Keep the first frame's world pose, then acquire the moving target early.
-          const aim = smoothstep(Math.min(1, progress / 0.18));
-          setCameraTowardTarget(approachWorldPosition, position, frame, flight.startDirection, flight.startUp, aim);
-          if (model.current) model.current.minimumPixelSize = approachMinimumPixelSize(ISS_MODEL.displayMinimumPixelSize, progress);
-          if (progress === 1) {
-            const beforePosition = Cartesian3.clone(instance.camera.positionWC);
-            const beforeDirection = Cartesian3.clone(instance.camera.directionWC);
-            const beforeUp = Cartesian3.clone(instance.camera.upWC);
-            instance.camera.lookAtTransform(frame, flight.endOffset);
-            if (approachDiagnostics) console.info('[approach-handoff]', JSON.stringify({
-              positionMeters: Cartesian3.distance(beforePosition, instance.camera.positionWC),
-              directionDegrees: CesiumMath.toDegrees(Cartesian3.angleBetween(beforeDirection, instance.camera.directionWC)),
-              upDegrees: CesiumMath.toDegrees(Cartesian3.angleBetween(beforeUp, instance.camera.upWC)),
-            }));
-            entry.current = null;
-            displayEntryStart.current = null;
+      const flight = entry.current;
+      const progress = flight ? Math.max(0, Math.min(1, (performance.now() - flight.startMs) / (flight.duration * 1000))) : null;
+      if (flight && progress !== null) {
+        const pose = flight.evaluate(trackingFrame, progress);
+        Cartesian3.clone(pose.position, cameraView.destination);
+        Cartesian3.clone(pose.direction, cameraView.orientation.direction);
+        Cartesian3.clone(pose.up, cameraView.orientation.up);
+        instance.camera.setView(cameraView);
+        if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = pose.fov;
+        if (progress === 1) {
+          if (flight.kind === 'entry' && position) {
+            instance.camera.lookAtTransform(trackingFrame, flight.endOffset);
             setMode('ENTRY_COMPLETE');
+          } else {
+            const saved = cameraSnapshot.current;
+            if (saved) { instance.camera.frustum.near = saved.near; instance.camera.frustum.far = saved.far; }
+            setMode('EXIT_COMPLETE');
           }
+          entry.current = null;
+          exitPresentation = null;
         }
       }
-      if (exitPresentation && instance.camera.frustum instanceof PerspectiveFrustum) {
-        const p = smoothstep((performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000));
-        instance.camera.frustum.fov = exitPresentation.fov * (1 - p) + (cameraSnapshot.current?.fov ?? Math.PI / 3) * p;
-      }
-      if (exitPresentation && model.current) {
-        model.current.minimumPixelSize = exitMinimumPixelSize(ISS_MODEL.displayMinimumPixelSize,
-          exitPresentation.size, (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000));
-      }
-      // Camera targets, marker and readout always use the physical selected point.
-      // The model alone loses its Overview lift smoothly during early entry.
-      displayLiftMeters = displayLiftForMode(viewMode.current,
-        displayEntryStart.current ? JulianDate.secondsDifference(instance.clock.currentTime, displayEntryStart.current) / APPROACH_DURATION_SECONDS : null,
-        exitPresentation ? { startLift: exitPresentation.liftMeters,
-          progress: (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000) } : null);
-      const silhouette = silhouetteForMode(viewMode.current,
-        displayEntryStart.current ? JulianDate.secondsDifference(instance.clock.currentTime, displayEntryStart.current) / APPROACH_DURATION_SECONDS : null,
-        exitPresentation ? { startVisibility: exitPresentation.silhouetteVisibility,
-          progress: (performance.now() - exitPresentation.startMs) / (EXIT_DURATION_SECONDS * 1000) } : null);
+      // One monotonic normalized camera parameter also drives presentation.
+      if (exitPresentation) exitPresentation.progress = progress ?? 1;
+      displayLiftMeters = displayLiftForMode(viewMode.current, flight?.kind === 'entry' ? progress : null,
+        exitPresentation);
+      const silhouette = silhouetteForMode(viewMode.current, flight?.kind === 'entry' ? progress : null,
+        exitPresentation, silhouetteOutput);
       silhouetteVisibility = silhouette.visibility;
+      if (exitPresentation && progress !== null) {
+        const tangent = EXIT_DURATION_SECONDS * interruptionTangent(progress);
+        displayLiftMeters = Math.max(0, Math.min(EARTH_OVERVIEW_DISPLAY_LIFT_METERS, displayLiftMeters + exitPresentation.liftRate * tangent));
+        silhouetteVisibility = Math.max(0, Math.min(1, silhouetteVisibility + exitPresentation.visibilityRate * tangent));
+        silhouette.sizePixels = OVERVIEW_SILHOUETTE.sizePixels * silhouetteVisibility;
+        silhouette.alpha = OVERVIEW_SILHOUETTE.alpha * silhouetteVisibility;
+      }
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       if (selectedModule.current && !modulePickingAvailable(modelStatus.current, distance)) selectModule(null);
       representation.current = representationForState(valid && !!position, modelStatus.current);
@@ -763,10 +716,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         }
       }
       if (model.current) {
-        model.current.silhouetteSize = silhouette.sizePixels;
-        model.current.silhouetteColor.alpha = silhouette.alpha;
+        applyModelSilhouette(model.current, silhouette);
         model.current.show = modelVisible(representation.current) && !!position;
-        if (model.current.show && model.current.ready && position) {
+        if (model.current.ready && position) {
           // Center the asset's off-origin bounds on the separate model display point.
           // This is a display translation, not a change to orbital position or attitude.
           // The physical selected position remains untouched. Inspection has zero lift.
@@ -779,8 +731,37 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
               Matrix4.multiplyByPoint(centeringInverse, model.current.boundingSphere.center, new Cartesian3()), new Cartesian3());
           }
           model.current.modelMatrix = Matrix4.multiplyByTranslation(frame, displayCenteringOffset, renderedModelMatrix);
+          // Public getter updates bounds before Cesium evaluates environment position.
+          const bounds = model.current.boundingSphere;
+          if (!environmentInitialized) {
+            const manager = model.current.environmentMapManager;
+            manager.maximumPositionEpsilon = 0;
+            manager.position = bounds.center;
+            manager.maximumPositionEpsilon = GRAPHICS_QUALITY.modelEnvironmentPositionEpsilon;
+            environmentInitialized = true;
+          }
         }
       }
+      // Retain tangents for partial Back, without frame allocations.
+      const wall = performance.now(), elapsed = (wall - previousWall) / 1000;
+      poseQuaternion(instance.camera.directionWC, instance.camera.upWC, currentQuaternion);
+      if (previousWall && elapsed > 0) {
+        Cartesian3.divideByScalar(Cartesian3.subtract(instance.camera.positionWC, previousPosition, cameraVelocity), elapsed, cameraVelocity);
+        if (Quaternion.dot(currentQuaternion, previousQuaternion) < 0) Quaternion.negate(currentQuaternion, currentQuaternion);
+        Quaternion.multiplyByScalar(Quaternion.subtract(currentQuaternion, previousQuaternion, quaternionRate), 1 / elapsed, quaternionRate);
+        const fov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
+        fovRate = (fov - previousFov) / elapsed;
+        liftRate = (displayLiftMeters - previousLift) / elapsed;
+        visibilityRate = (silhouetteVisibility - previousVisibility) / elapsed;
+      }
+      Cartesian3.clone(instance.camera.positionWC, previousPosition);
+      Matrix4.clone(lastFrame, previousFrame);
+      Matrix4.clone(trackingFrame, lastFrame);
+      frameElapsed = elapsed;
+      Quaternion.clone(currentQuaternion, previousQuaternion);
+      previousWall = wall;
+      previousFov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
+      previousLift = displayLiftMeters; previousVisibility = silhouetteVisibility;
       updateTrajectory.current?.(sceneMs);
       const second = Math.floor(sceneMs / 1000);
       if (second !== lastReportedSecond.current) {
@@ -795,12 +776,14 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     instance.clock.onTick.addEventListener(tick);
     return () => {
       destroyed = true;
+      cancelGraphicsWarmup?.();
       removeDiagnostics?.();
       removeApproachDiagnostics?.();
       removeReadyListener();
       instance.clock.onTick.removeEventListener(tick);
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;
+      materialShader.destroy();
       active.current = null;
       removeTrail(pendingPrimaryLine.current);
       removeTrail(primaryLine.current);
@@ -812,7 +795,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       enterInspection.current = null;
       exitInspection.current = null;
       entry.current = null;
-      displayEntryStart.current = null;
       selectedModule.current = null;
       iss.current = null;
       viewer.current = null;
@@ -833,8 +815,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     if (!initializedClock.current || Math.abs(JulianDate.secondsDifference(estimatedNow, instance.clock.currentTime)) > 3) {
       // A refreshed backend window may realign scene time. Preserve the elapsed
       // camera animation while both camera and model use the new scene instant.
-      if (entry.current) rebaseApproachStartTime(entry.current.startTime, instance.clock.currentTime, estimatedNow);
-      if (displayEntryStart.current) rebaseApproachStartTime(displayEntryStart.current, instance.clock.currentTime, estimatedNow);
       instance.clock.currentTime = estimatedNow;
       initializedClock.current = true;
     }

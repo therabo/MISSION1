@@ -1,0 +1,164 @@
+{
+  "angleStepDegrees": 0.015,
+  "fixedUtc": "2026-09-30T15:45:59.975908Z",
+  "rois": {
+    "central_modules": [
+      1110,
+      620,
+      1400,
+      990
+    ],
+    "starboard_truss": [
+      1530,
+      605,
+      1800,
+      705
+    ],
+    "solar_array": [
+      1830,
+      430,
+      2080,
+      545
+    ]
+  },
+  "results": {
+    "original": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.3161323392357875,
+        "p95Delta": 1.0,
+        "p99Delta": 7.0,
+        "over40": 759,
+        "maximumMeanFrameDelta": 0.3446753650201926
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.5942641975308642,
+        "p95Delta": 1.0,
+        "p99Delta": 17.0,
+        "over40": 406,
+        "maximumMeanFrameDelta": 0.6704444444444444
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.164208695652174,
+        "p95Delta": 2.0,
+        "p99Delta": 39.0,
+        "over40": 11165,
+        "maximumMeanFrameDelta": 1.2591652173913044
+      }
+    },
+    "flat-normal": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.31015594905250077,
+        "p95Delta": 1.0,
+        "p99Delta": 7.0,
+        "over40": 411,
+        "maximumMeanFrameDelta": 0.33984777881329603
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.5942641975308642,
+        "p95Delta": 1.0,
+        "p99Delta": 17.0,
+        "over40": 406,
+        "maximumMeanFrameDelta": 0.6704444444444444
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.164208695652174,
+        "p95Delta": 2.0,
+        "p99Delta": 39.0,
+        "over40": 11165,
+        "maximumMeanFrameDelta": 1.2591652173913044
+      }
+    },
+    "rough": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.30653412032722377,
+        "p95Delta": 1.0,
+        "p99Delta": 7.0,
+        "over40": 687,
+        "maximumMeanFrameDelta": 0.36282075178626905
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.5838518518518518,
+        "p95Delta": 1.0,
+        "p99Delta": 16.0,
+        "over40": 1437,
+        "maximumMeanFrameDelta": 0.666
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.292040193236715,
+        "p95Delta": 1.0,
+        "p99Delta": 43.0,
+        "over40": 14771,
+        "maximumMeanFrameDelta": 1.3919536231884058
+      }
+    },
+    "specular-aa": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.3090961996479238,
+        "p95Delta": 1.0,
+        "p99Delta": 7.0,
+        "over40": 471,
+        "maximumMeanFrameDelta": 0.3373438956197577
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.5838263374485597,
+        "p95Delta": 1.0,
+        "p99Delta": 17.0,
+        "over40": 516,
+        "maximumMeanFrameDelta": 0.6558765432098765
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1801800966183575,
+        "p95Delta": 2.0,
+        "p99Delta": 40.0,
+        "over40": 11669,
+        "maximumMeanFrameDelta": 1.2758376811594203
+      }
+    },
+    "fxaa": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.3800434917676297,
+        "p95Delta": 1.0,
+        "p99Delta": 9.0,
+        "over40": 349,
+        "maximumMeanFrameDelta": 0.4149767008387698
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.6926650205761317,
+        "p95Delta": 3.0,
+        "p99Delta": 14.0,
+        "over40": 61,
+        "maximumMeanFrameDelta": 0.8011358024691358
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.0979779710144928,
+        "p95Delta": 4.0,
+        "p99Delta": 26.0,
+        "over40": 3398,
+        "maximumMeanFrameDelta": 1.1391420289855072
+      }
+    },
+    "final": {
+      "central_modules": {
+        "meanAdjacentRgbDelta": 0.3732074143108626,
+        "p95Delta": 1.0,
+        "p99Delta": 8.0,
+        "over40": 193,
+        "maximumMeanFrameDelta": 0.40457284871077975
+      },
+      "starboard_truss": {
+        "meanAdjacentRgbDelta": 0.682277366255144,
+        "p95Delta": 3.0,
+        "p99Delta": 14.0,
+        "over40": 69,
+        "maximumMeanFrameDelta": 0.7758148148148148
+      },
+      "solar_array": {
+        "meanAdjacentRgbDelta": 1.1210805797101449,
+        "p95Delta": 5.0,
+        "p99Delta": 27.0,
+        "over40": 3415,
+        "maximumMeanFrameDelta": 1.1672579710144928
+      }
+    }
+  }
+}

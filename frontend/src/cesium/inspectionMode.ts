@@ -32,12 +32,21 @@ export function interpolateUnitDirection(start: Cartesian3, end: Cartesian3, pro
   const a = Cartesian3.magnitude(start);
   const b = Cartesian3.magnitude(end);
   const dot = Math.max(-1, Math.min(1, Cartesian3.dot(start, end) / (a * b)));
+  if (p === 0) return Cartesian3.normalize(start, result);
+  if (p === 1) return Cartesian3.normalize(end, result);
   if (dot < -0.9995) {
-    Cartesian3.mostOrthogonalAxis(start, directionOrthogonal);
-    Cartesian3.normalize(Cartesian3.cross(start, directionOrthogonal, directionOrthogonal), directionOrthogonal);
-    result.x = start.x / a * Math.cos(Math.PI * p) + directionOrthogonal.x * Math.sin(Math.PI * p);
-    result.y = start.y / a * Math.cos(Math.PI * p) + directionOrthogonal.y * Math.sin(Math.PI * p);
-    result.z = start.z / a * Math.cos(Math.PI * p) + directionOrthogonal.z * Math.sin(Math.PI * p);
+    directionOrthogonal.x = end.x / b - start.x / a * dot;
+    directionOrthogonal.y = end.y / b - start.y / a * dot;
+    directionOrthogonal.z = end.z / b - start.z / a * dot;
+    if (Cartesian3.magnitudeSquared(directionOrthogonal) < 1e-16) {
+      Cartesian3.mostOrthogonalAxis(start, directionOrthogonal);
+      Cartesian3.cross(start, directionOrthogonal, directionOrthogonal);
+    }
+    Cartesian3.normalize(directionOrthogonal, directionOrthogonal);
+    const angle = Math.acos(dot);
+    result.x = start.x / a * Math.cos(angle * p) + directionOrthogonal.x * Math.sin(angle * p);
+    result.y = start.y / a * Math.cos(angle * p) + directionOrthogonal.y * Math.sin(angle * p);
+    result.z = start.z / a * Math.cos(angle * p) + directionOrthogonal.z * Math.sin(angle * p);
   } else if (dot > 0.9995) {
     result.x = start.x / a * (1 - p) + end.x / b * p;
     result.y = start.y / a * (1 - p) + end.y / b * p;

@@ -1,0 +1,673 @@
+{
+  "asset": "frontend/public/models/iss-vtad-source-png.glb",
+  "sha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f",
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "images": [
+    {
+      "image": 0,
+      "name": "ISS_03.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "349bf71d93bba9477c6e9aa9974c1bbc4f7d5cd254c4ee68b0a7d2ea6aa90178",
+      "uses": [
+        {
+          "material": 0,
+          "name": "ISS_03_dull",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 18,
+          "name": "ISS_03_shiny_n",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 1,
+      "name": "ISS_AO_06.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "c657f7b9f7230844fa4114e35729d62fc5a8a525c2fb9bf1f2d62d7a3901a741",
+      "uses": [
+        {
+          "material": 1,
+          "name": "ISS_AO_06",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 2,
+      "name": "ISS_01.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "a98aa7666a402871dcb740d1e534b7ad07a16da79536cfbfdd8ceae979f0ba2d",
+      "uses": [
+        {
+          "material": 2,
+          "name": "ISS_01_dull",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 10,
+          "name": "ISS_01_shiny_n",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 11,
+          "name": "ISS_01_dark *",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 3,
+      "name": "ISS_02.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "3a17ff2fcabbab8f3637626d92e29def6146ddc4539dc99d15ba706e16acd8d7",
+      "uses": [
+        {
+          "material": 3,
+          "name": "ISS_02_dull",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 4,
+          "name": "shiny_panel",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 15,
+          "name": "ISS_02_dark *",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 4,
+      "name": "ISS_AO_02.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "afa9fac345b6398c8fb94a7e9307256b8a1b676986e1709a3cfca3ad78d96053",
+      "uses": [
+        {
+          "material": 6,
+          "name": "ISS_AO_02",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 5,
+      "name": "ISS_AO_04.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "d314f3505f7e255ffb57f8751a574979a3c439f2d433c32f01bd09d3f5705f8d",
+      "uses": [
+        {
+          "material": 7,
+          "name": "ISS_AO_04",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 6,
+      "name": "ISS_AO_01.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "401134fd5b24055f679f96dccf76fd4e2ed6b55472a82cef38ee878923f6cfc3",
+      "uses": [
+        {
+          "material": 8,
+          "name": "ISS_AO_01",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 7,
+      "name": "ISS_AO_03.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "7061110835955d3e6663750c9f796a546d236ed557c820b1f27024c5d3a68960",
+      "uses": [
+        {
+          "material": 9,
+          "name": "ISS_AO_03",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 8,
+      "name": "ISS_01_n.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "a830ad9e168a005c71365fe3c906031df85069ff4ce13a4d2b5cf7097a5dcb3d",
+      "uses": [
+        {
+          "material": 10,
+          "name": "ISS_01_shiny_n",
+          "role": "normalTexture"
+        }
+      ]
+    },
+    {
+      "image": 9,
+      "name": "foil_n.jpg",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "ad69bc4f84d43e87f87ccbed30ad53bb8bece7ce41fc9a758655685b64464074",
+      "uses": [
+        {
+          "material": 12,
+          "name": "foil_silver",
+          "role": "normalTexture"
+        }
+      ]
+    },
+    {
+      "image": 10,
+      "name": "ISS_AO_05.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "918a78fa7b7a7ebf6c97a6468935368d41ff800206dbe16b6de3bdd4f1f37010",
+      "uses": [
+        {
+          "material": 13,
+          "name": "ISS_AO_05",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 11,
+      "name": "ISS_04.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "9b672527c11f015e0b2758c3c914e80808319d94dd0a6a27a59152afd9ffef57",
+      "uses": [
+        {
+          "material": 14,
+          "name": "ISS_04_dull",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 12,
+      "name": "ISS_AO_07.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "1b83703764d644622014a9e8f90b127d7e3dff9bf2fa369d6b1773a022e0f5ca",
+      "uses": [
+        {
+          "material": 16,
+          "name": "ISS_AO_07",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 13,
+      "name": "ISS_AO_08.jpg",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "b7fa9346030d4b1aeaedcad3e8d9e6a441030ad88a924410d84591e35e5e3b06",
+      "uses": [
+        {
+          "material": 17,
+          "name": "ISS_AO_08",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 14,
+      "name": "ISS_03_n.jpg",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "3a4fabd2c0b2bfffff505175a0f5b678628562b6e1f60ffe6932e72c3ed47348",
+      "uses": [
+        {
+          "material": 18,
+          "name": "ISS_03_shiny_n",
+          "role": "normalTexture"
+        }
+      ]
+    },
+    {
+      "image": 15,
+      "name": "foil_n.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "d5fa103d61e50cdb817522dcbb93ee7709f3d916a7fb9738506bf9040c731375",
+      "uses": [
+        {
+          "material": 19,
+          "name": "white",
+          "role": "normalTexture"
+        }
+      ]
+    },
+    {
+      "image": 16,
+      "name": "ISS_03.png.002",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "3b1f8754e0dc962ba3644acc4f15d6a7b831bdc91960addabe71de009522eb3f",
+      "uses": [
+        {
+          "material": 21,
+          "name": "ISS_03_dull.001",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 17,
+      "name": "ecostress.jpg",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "dbb8b676019b5c82a3657f1c37ff060f42f5254001edcc51d9e8938bd952f3d7",
+      "uses": [
+        {
+          "material": 22,
+          "name": "ecostress",
+          "role": "baseColorTexture"
+        },
+        {
+          "material": 26,
+          "name": "ecostress metal",
+          "role": "baseColorTexture"
+        }
+      ]
+    },
+    {
+      "image": 18,
+      "name": "ISS_03.jpg.001",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "format": "PNG",
+      "sha256": "65e64b008b4502113963bbd2a450fc266f26dd8509f80cf78c28f54b56aa895d",
+      "uses": [
+        {
+          "material": 25,
+          "name": "ISS_03_dull.002",
+          "role": "baseColorTexture"
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "ISS_03_dull",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.75,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 0
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_06",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "name": "ISS_01_dull",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0.25,
+        "baseColorTexture": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "name": "ISS_02_dull",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.6000000238418579,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 3
+        }
+      }
+    },
+    {
+      "name": "shiny_panel",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.1599999964237213,
+        "metallicFactor": 0.25,
+        "baseColorTexture": {
+          "index": 3
+        }
+      }
+    },
+    {
+      "name": "olive *",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.2395523190498352,
+          0.2265775203704834,
+          0.16225877404212952,
+          1
+        ],
+        "roughnessFactor": 0.30000001192092896
+      }
+    },
+    {
+      "name": "ISS_AO_02",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "baseColorTexture": {
+          "index": 4
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_04",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 5
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_01",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 6
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_03",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 7
+        }
+      }
+    },
+    {
+      "name": "ISS_01_shiny_n",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 2
+        }
+      },
+      "normalTexture": {
+        "index": 8,
+        "scale": 0.3499999940395355
+      }
+    },
+    {
+      "name": "ISS_01_dark *",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "name": "foil_silver",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.30000001192092896
+      },
+      "normalTexture": {
+        "index": 9,
+        "scale": 2
+      }
+    },
+    {
+      "name": "ISS_AO_05",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 10
+        }
+      }
+    },
+    {
+      "name": "ISS_04_dull",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 11
+        }
+      }
+    },
+    {
+      "name": "ISS_02_dark *",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 3
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_07",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 12
+        }
+      }
+    },
+    {
+      "name": "ISS_AO_08",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 13
+        }
+      }
+    },
+    {
+      "name": "ISS_03_shiny_n",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.44999998807907104,
+        "metallicFactor": 0.5,
+        "baseColorTexture": {
+          "index": 0
+        }
+      },
+      "normalTexture": {
+        "index": 14,
+        "scale": 0.3499999940395355
+      }
+    },
+    {
+      "name": "white",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.49693313241004944,
+          0.4969329833984375,
+          0.4969330132007599,
+          1
+        ],
+        "roughnessFactor": 0.8500000238418579,
+        "metallicFactor": 0
+      },
+      "normalTexture": {
+        "index": 15
+      }
+    },
+    {
+      "name": "base_metal",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.3185468018054962,
+          0.31425797939300537,
+          0.25295013189315796,
+          1
+        ]
+      }
+    },
+    {
+      "name": "ISS_03_dull.001",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.6732679605484009,
+        "baseColorTexture": {
+          "index": 16
+        }
+      }
+    },
+    {
+      "name": "ecostress",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.75,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 17
+        }
+      }
+    },
+    {
+      "name": "plastic black",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.026453394442796707,
+          0.026453394442796707,
+          0.026453394442796707,
+          1
+        ],
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0
+      }
+    },
+    {
+      "name": "ecostressWhite",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.5,
+        "metallicFactor": 0
+      }
+    },
+    {
+      "name": "ISS_03_dull.002",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.75,
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 18
+        }
+      }
+    },
+    {
+      "name": "ecostress metal",
+      "pbrMetallicRoughness": {
+        "roughnessFactor": 0.75,
+        "metallicFactor": 0.6000000238418579,
+        "baseColorTexture": {
+          "index": 17
+        }
+      }
+    }
+  ]
+}

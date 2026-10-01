@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01",
+  "parentCommit": "4d3902989e64f0372eacea15f4efeca795f05a0e",
+  "frontend": {
+    "tests": 90,
+    "files": 18,
+    "failures": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "servedBundle": "index-DZwbwwrV.js",
+    "servedBundleSha256": "886b84c6336daa5ae4ce538d07b5d50b4f8f38f241d60d68e50b6304b3c03e41"
+  },
+  "backend": {
+    "mvnTest": {
+      "tests": 82,
+      "failures": 0,
+      "errors": 0,
+      "status": "BUILD SUCCESS"
+    },
+    "mvnVerify": {
+      "tests": 82,
+      "failures": 0,
+      "errors": 0,
+      "status": "BUILD SUCCESS"
+    }
+  },
+  "browser": {
+    "developmentFull": "PASS",
+    "productionFull": "PASS",
+    "developmentExtra": "PASS",
+    "productionExtra": "PASS",
+    "actualBackendDevelopment": "PASS",
+    "actualBackendProduction": "PASS",
+    "forcedImageryFallbackDevelopment": "PASS",
+    "forcedImageryFallbackProduction": "PASS",
+    "diagnosticHookAbsent": true
+  },
+  "assetSha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f"
+}
