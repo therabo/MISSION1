@@ -100,6 +100,26 @@ describe('future only continuous trajectories', () => {
     collection.destroy();
     for (const trail of group.trails) for (const layer of trail.layers) { layer.primitive.destroy(); layer.material.destroy(); }
   });
+  it('composes one reveal with both sources and halo/body without rebuilding or overriding temporal alpha', () => {
+    const group = createTrajectoryTrails(parseComparison(fixture(true)));
+    for (const trail of group.trails) { trail.gapSeconds = 75; trail.rampSeconds = 12; }
+    const retained = group.trails.flatMap(t => t.layers.map(l => l.primitive));
+    for (const selected of ['PRIMARY_GP_TLE', 'NASA_OEM'] as const) for (const reveal of [0, 0.1, 0.5, 0.9, 1]) {
+      for (const trail of group.trails) {
+        updateTrail(trail, group.generatedMs, selected, reveal);
+        for (const [index, layer] of trail.layers.entries()) {
+          expect(layer.material.uniforms.maximumAlpha).toBe((trail.source === selected ? 0.85 : 0.08) * FORWARD_TRAIL.layers[index].alphaScale * reveal);
+          expect(layer.material.uniforms.forwardStart).toBeCloseTo(75 / 5580);
+          expect(layer.material.uniforms.startRamp).toBeCloseTo(12 / 5580);
+        }
+      }
+      expect(group.trails.flatMap(t => t.layers.map(l => l.primitive))).toEqual(retained);
+    }
+    group.trails[0].gapSeconds = null;
+    updateTrail(group.trails[0], group.generatedMs, 'PRIMARY_GP_TLE', 1);
+    expect(group.trails[0].layers.every(l => l.material.uniforms.maximumAlpha === 0)).toBe(true);
+    for (const trail of group.trails) for (const layer of trail.layers) { layer.primitive.destroy(); layer.material.destroy(); }
+  });
   it('clips each source by its own temporal grid and coverage', () => {
     const response = parseComparison(fixture(true));
     response.oem.samples = response.oem.samples.slice(2, 90);

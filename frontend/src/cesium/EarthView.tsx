@@ -60,6 +60,7 @@ import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
 import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, projectedModelFootprint, TRAIL_CLEARANCE } from './trajectoryClearance';
+import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
 interface EarthViewProps {
   window: OrbitalWindow | null;
@@ -364,9 +365,11 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         layer.material.destroy();
       }
     };
+    let trajectoryTransitionVisibility = 1;
+    let trajectoryOverviewRange: number = TRAJECTORY_VISIBILITY.visibleRangeMeters;
     const styleTrails = (group: TrajectoryTrails, sceneMs: number): void => {
       // Native globe depth remains; no world-space offsets or depth overrides.
-      for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current);
+      for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current, trajectoryTransitionVisibility);
     };
     let orderedSource: TrajectorySource | null = null;
     let lastClearanceUpdate = -Infinity;
@@ -380,7 +383,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       pendingPrimaryLine.current = null;
       orderTrails(pending, selectedSourceRef.current, instance.scene.primitives);
       orderedSource = selectedSourceRef.current;
-      showTrails(pending, viewMode.current === 'EARTH_OVERVIEW');
+      showTrails(pending, trajectoryTransitionVisibility > 0);
     });
     updateTrajectory.current = (sceneMs: number) => {
       const product = comparisonRef.current;
@@ -401,11 +404,11 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       // A lightweight projected mask follows every frame so halo fragments stay
       // clear during camera movement. Search the bounded source paths at 10 Hz.
       const wall = performance.now();
-      if (viewMode.current === 'EARTH_OVERVIEW' && model.current?.ready) {
+      const displayedRange = model.current?.ready ? Cartesian3.distance(instance.camera.positionWC, model.current.boundingSphere.center) : NaN;
+      trajectoryTransitionVisibility = trajectoryVisibilityForView(viewMode.current, displayedRange, trajectoryOverviewRange);
+      if (trajectoryTransitionVisibility > 0 && model.current?.ready) {
         const hull = projectedModelFootprint(instance.scene, model.current);
-        const physical = positionAt(instance.clock.currentTime, new Cartesian3());
-        const displayed = physical && modelDisplayPosition(physical, displayLiftMeters, new Cartesian3());
-        const gap = displayed ? desiredGapCssPixels(Cartesian3.distance(instance.camera.positionWC, displayed)) : TRAIL_CLEARANCE.maximumCssPixels;
+        const gap = desiredGapCssPixels(displayedRange);
         const searchDue = wall - lastClearanceUpdate >= TRAIL_CLEARANCE.updateIntervalMs ||
           clearanceSource !== selectedSourceRef.current || clearanceGeneration !== generatedMs;
         for (const group of [primaryLine.current, pendingPrimaryLine.current]) {
@@ -422,6 +425,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       }
       if (primaryLine.current) {
         styleTrails(primaryLine.current, sceneMs);
+        showTrails(primaryLine.current, trajectoryTransitionVisibility > 0);
         if (orderedSource !== selectedSourceRef.current) {
           orderTrails(primaryLine.current, selectedSourceRef.current, instance.scene.primitives);
           orderedSource = selectedSourceRef.current;
@@ -442,8 +446,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       viewMode.current = next;
       applyControls(next);
       modeCallback.current(next);
-      const presentation = inspectionPresentation(next);
-      if (primaryLine.current) showTrails(primaryLine.current, presentation.pathVisible);
     };
 
     let sourceRetarget: DisplayRetarget | null = null;
@@ -523,6 +525,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       Cartesian3.clone(Cartesian3.ZERO, sourceDisplayOffset);
       Matrix4.clone(trackingFrame, cameraTrackingFrame);
       const pose = capturePose();
+      trajectoryOverviewRange = Cartesian3.distance(instance.camera.positionWC, model.current!.boundingSphere.center);
       cameraSnapshot.current = { ...pose, near: instance.camera.frustum.near, far: instance.camera.frustum.far,
         transform: Matrix4.clone(instance.camera.transform) };
       instance.camera.cancelFlight();

@@ -1,0 +1,209 @@
+{
+  "baseline": "c3d24aed576b368bb2343abcb65d9067f5eaa7f2",
+  "phase0CleanAndSynchronized": true,
+  "frontend": {
+    "tests": 138,
+    "files": 25,
+    "typecheck": true,
+    "productionBuild": true,
+    "existingCesiumChunkWarning": true
+  },
+  "backend": {
+    "tests": 82,
+    "mvnTest": true,
+    "mvnVerify": true,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "unchanged": true
+  },
+  "browser": {
+    "poseExits": 28,
+    "stepsPerExit": 101,
+    "sourceProducts": [
+      "PRIMARY_GP_TLE",
+      "NASA_OEM"
+    ],
+    "viewports": [
+      [
+        1280,
+        720
+      ],
+      [
+        900,
+        700
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "partialBackCheckpoints": [
+      0.1,
+      0.2,
+      0.35,
+      0.5,
+      0.65,
+      0.8,
+      0.95
+    ],
+    "partialBackCases": 28,
+    "maximumOpacityJump": 0,
+    "fullCameraRestorePositionErrorMeters": 0,
+    "semanticModulePicksPerSourcePerBuild": 14,
+    "outageStages": [
+      "entry",
+      "stable Inspection",
+      "exit"
+    ],
+    "glbDelayGate": true,
+    "nativeNavigationAndRefresh": true,
+    "visualLintCases": 12,
+    "visualLintBlockers": 0,
+    "visualLintAcceptedExistingWarnings": [
+      "9/10px metadata",
+      "native Cesium credit image uses title but no alt"
+    ],
+    "cleanLiveBackendBothBuildsBothSources": true,
+    "nativeInAppProductionGpEntryReturn": true,
+    "productionBundleVerified": {
+      "port": 4175,
+      "asset": "/assets/index-DSI7xZqv.js",
+      "sha256": "3f05df83062930167be9662701dfe510eb7fec220a3907a303aedaa5af3cbde3",
+      "bytes": 4472369,
+      "servedEqualsBuilt": true,
+      "qaGlobalAbsent": true
+    }
+  },
+  "finalJobs": [
+    {
+      "name": "production poses",
+      "returncode": 0,
+      "seconds": 74.7860460281372
+    },
+    {
+      "name": "development narrow",
+      "returncode": 0,
+      "seconds": 20.77596378326416
+    },
+    {
+      "name": "development mobile",
+      "returncode": 0,
+      "seconds": 13.074628829956055
+    },
+    {
+      "name": "production narrow",
+      "returncode": 0,
+      "seconds": 15.198208093643188
+    },
+    {
+      "name": "production mobile",
+      "returncode": 0,
+      "seconds": 10.28026008605957
+    },
+    {
+      "name": "baseline-dev-PRIMARY_GP_TLE",
+      "returncode": 0,
+      "seconds": 38.53185820579529
+    },
+    {
+      "name": "baseline-dev-NASA_OEM",
+      "returncode": 0,
+      "seconds": 41.60179090499878
+    },
+    {
+      "name": "baseline-prod-PRIMARY_GP_TLE",
+      "returncode": 0,
+      "seconds": 39.90885400772095
+    },
+    {
+      "name": "baseline-prod-NASA_OEM",
+      "returncode": 0,
+      "seconds": 39.14727807044983
+    },
+    {
+      "name": "candidate-dev-PRIMARY_GP_TLE",
+      "returncode": 0,
+      "seconds": 40.47327494621277
+    },
+    {
+      "name": "candidate-dev-NASA_OEM",
+      "returncode": 0,
+      "seconds": 38.92292308807373
+    },
+    {
+      "name": "candidate-prod-PRIMARY_GP_TLE",
+      "returncode": 0,
+      "seconds": 37.772154092788696
+    },
+    {
+      "name": "candidate-prod-NASA_OEM",
+      "returncode": 0,
+      "seconds": 38.50554800033569
+    },
+    {
+      "name": "development reversals",
+      "returncode": 0,
+      "seconds": 129.71993398666382
+    },
+    {
+      "name": "development current regressions",
+      "returncode": 0,
+      "seconds": 125.4932210445404
+    },
+    {
+      "name": "production reversals",
+      "returncode": 0,
+      "seconds": 124.50233602523804
+    },
+    {
+      "name": "production current regressions",
+      "returncode": 0,
+      "seconds": 106.01101088523865
+    },
+    {
+      "name": "baseline production samples",
+      "returncode": 0,
+      "seconds": 15.250696897506714
+    },
+    {
+      "name": "development visual lint",
+      "returncode": 0,
+      "seconds": 41.856730937957764
+    },
+    {
+      "name": "production visual lint",
+      "returncode": 0,
+      "seconds": 41.61329412460327
+    },
+    {
+      "name": "clean live smoke",
+      "returncode": 0,
+      "seconds": 64.83088803291321
+    }
+  ],
+  "initialObserverFailure": {
+    "script": "docs/frontend/camera-transition-perfecting-review/scripts/browser-regressions.cjs",
+    "reason": "Obsolete Camera.setView observer after accepted public-basis camera application",
+    "replacement": "docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/browser-regressions.cjs",
+    "applicationChangesForObserver": false
+  },
+  "externalContextOutsideGit": true,
+  "cameraMilestoneFrozen": true,
+  "nextMilestoneStarted": false,
+  "gitDiffCheck": true,
+  "runtimeCleanup": {
+    "stoppedOnlyDisposableArchiveServers": [
+      5186,
+      4186,
+      5187,
+      4187
+    ],
+    "preserved": [
+      5175,
+      4175,
+      8080,
+      5432
+    ]
+  }
+}

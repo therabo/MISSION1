@@ -1,5 +1,9 @@
 # Adaptive forward ISS trajectory presentation — 2026-09-30
 
+## Trajectory visibility during Inspection transitions — 2026-10-02
+
+The accepted `c3d24ae` camera/focus/path/clock/readiness remains frozen. A single retained `trajectoryTransitionVisibility` multiplies existing selected/inactive halo/body alpha in both directions: stable Inspection is zero; close departure stays hidden; Earth Overview is one. During entry/exit, C2 smootherstep over log camera-to-displayed-ISS range reveals between **100 km and 10,000 km**. The far edge is capped at the captured actual Overview range; the hidden edge is `min(100 km, farEdge/2)` for nearer starts. It does not use a timeline threshold or immediately show/hide at a mode assignment. Both products share the policy. Existing clearance/mask updates run only while opacity is nonzero, retaining their geometry, source-specific search and 10 Hz bound. No camera tuning, source contract, shader/asset/texture/quality change or new infrastructure. [Measured windows, frame samples, browser/regression and performance evidence](trajectory-transition-visibility-review/README.md). Earlier dated visibility descriptions are historical.
+
 ## Explicit camera focus refinement — 2026-10-01
 
 The [focus review](camera-transition-perfecting-review/focus-optimization/README.md) supersedes the earlier dated five-second residual-aim transitions below. The accepted hybrid metric and cubic/Earth-clear path remain; entry/return now own an explicit positive focus path and use current captured poses, bounded durations (canonical 6/5 s), public world camera basis and model/sky readiness gates. Physical trajectory vertices, current source frame, 75 km display-only lift, adaptive gap and rendering quality are unchanged.

@@ -171,7 +171,7 @@ const activeColors = {
 };
 const inactiveColor = Color.fromCssColorString(FORWARD_TRAIL.inactiveColor);
 
-export function updateTrail(trail: ForwardTrail, sceneMs: number, active: TrajectorySource): void {
+export function updateTrail(trail: ForwardTrail, sceneMs: number, active: TrajectorySource, transitionVisibility = 1): void {
   const { startMs, endMs } = forwardBounds(sceneMs, trail.periodSeconds, trail.endMs, trail.gapSeconds ?? 0);
   const span = trail.endMs - trail.startMs;
   const selected = trail.source === active;
@@ -181,7 +181,7 @@ export function updateTrail(trail: ForwardTrail, sceneMs: number, active: Trajec
     layer.material.uniforms.startRamp = Math.max(1e-6, trail.rampSeconds * 1000 / span);
     layer.material.uniforms.trailColor = selected ? activeColors[trail.source] : inactiveColor;
     layer.material.uniforms.maximumAlpha = trail.gapSeconds === null || startMs >= endMs ? 0 :
-      (selected ? FORWARD_TRAIL.activeAlpha : FORWARD_TRAIL.inactiveAlpha) * FORWARD_TRAIL.layers[index].alphaScale;
+      (selected ? FORWARD_TRAIL.activeAlpha : FORWARD_TRAIL.inactiveAlpha) * FORWARD_TRAIL.layers[index].alphaScale * transitionVisibility;
   }
 }
 
