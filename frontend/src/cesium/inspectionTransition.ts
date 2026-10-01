@@ -23,6 +23,16 @@ function rangePhase(range: number, low: number, high: number): number {
   return smootherstep(Math.log(Math.max(range, low) / low) / Math.max(1e-9, Math.log(high / low)));
 }
 
+/** Bounded presentation duration from the captured Earth range and angular change.
+ * Canonical Earth framing keeps 6s entry / 5s return; rounding is only at capture. */
+export function transitionDuration(kind: 'entry' | 'exit', earth: CameraPose, station: Cartesian3,
+  angularChange: number): number {
+  const range = Math.max(90, Cartesian3.distance(earth.position, station));
+  const seconds = (kind === 'entry' ? 6 : 5) + 0.35 * Math.log(range / 16_573_499) +
+    0.4 * Math.max(0, angularChange - Math.PI / 2);
+  return Math.round(Math.max(kind === 'entry' ? 4 : 3.5, Math.min(7.5, seconds)) * 10) / 10;
+}
+
 /** Retained camera pose pipeline. All coordinates are presentation; frame is physical selected-source F/L/U. */
 export class InspectionTransition {
   readonly pose: CameraPose = { position: new Cartesian3(), direction: new Cartesian3(), up: new Cartesian3(), fov: 0 };
@@ -52,6 +62,9 @@ export class InspectionTransition {
   private readonly initialFrame = new Matrix4();
   private readonly arcEndCorrection = new Cartesian3();
   private readonly arcStartCorrection = new Cartesian3();
+  private focusDistanceTangent = 0;
+  get focusPoint(): Cartesian3 { return this.composition.focusPoint; }
+  get focusBlend(): number { return this.composition.focusBlend; }
   private readonly composition: TransitionComposition;
   private readonly target = new Cartesian3();
   private readonly inverse = new Matrix4();
@@ -64,7 +77,7 @@ export class InspectionTransition {
 
   constructor(readonly kind: 'entry' | 'exit', start: CameraPose, frame: Matrix4,
     endpoint: Cartesian3, readonly endFov: number, readonly duration: number,
-    public startMs: number, readonly overview: CameraPose | null = null, initialTarget?: Cartesian3) {
+    public startMs: number, readonly overview: CameraPose | null = null, initialTarget?: Cartesian3, initialFocus?: Cartesian3) {
     this.start = { position: Cartesian3.clone(start.position), direction: Cartesian3.clone(start.direction),
       up: Cartesian3.clone(start.up), fov: start.fov };
     Matrix4.inverseTransformation(frame, this.inverse);
@@ -135,7 +148,7 @@ export class InspectionTransition {
     this.pathLength = this.path.length;
     if (initialTarget) Cartesian3.clone(initialTarget, this.target);
     else Matrix4.getTranslation(frame, this.target);
-    this.composition = new TransitionComposition(this.start, this.target, overview);
+    this.composition = new TransitionComposition(this.start, this.target, overview, frame, this.endOffset, initialFocus);
     Matrix4.getTranslation(frame, this.endpoint);
     Ellipsoid.WGS84.geodeticSurfaceNormal(this.endpoint, this.displayNormal);
     Matrix4.multiplyByPointAsVector(this.inverse, this.displayNormal, this.displayNormal);
@@ -241,7 +254,8 @@ export class InspectionTransition {
    * at a small future UTC so frame motion is subtracted, including OEM fallback. */
   retainIncomingDerivative(frame: Matrix4, futureFrame: Matrix4, probeSeconds: number,
     velocity: Cartesian3, quaternionRate: Quaternion, fovRate: number, displayedTarget: Cartesian3,
-    incomingOrientation?: Quaternion): void {
+    incomingOrientation?: Quaternion, incomingFocusVelocity?: Cartesian3): void {
+    const initialFocusDistance = Cartesian3.distance(this.start.position, this.focusPoint);
     const initialQuaternion = poseQuaternion(this.start.direction, this.start.up, this.tangentOrientation);
     const futureTarget = Matrix4.multiplyByPoint(Matrix4.inverseTransformation(frame, new Matrix4()), displayedTarget, new Cartesian3());
     Matrix4.multiplyByPoint(futureFrame, futureTarget, futureTarget);
@@ -258,6 +272,11 @@ export class InspectionTransition {
     const rateSign = incomingOrientation && Quaternion.dot(initialQuaternion, incomingOrientation) < 0 ? -1 : 1;
     Quaternion.multiplyByScalar(quaternionRate, rateSign, nextQuaternion);
     Quaternion.subtract(nextQuaternion, this.orientationTangent, this.orientationTangent);
+    if (incomingFocusVelocity) {
+      Cartesian3.subtract(incomingFocusVelocity, velocity, this.correction);
+      const incomingDistanceRate = Cartesian3.dot(this.correction, this.start.direction);
+      this.focusDistanceTangent = incomingDistanceRate - (this.composition.focusDistance - initialFocusDistance) / probeSeconds;
+    }
     this.fovTangent = fovRate - (this.pose.fov - this.start.fov) / probeSeconds;
     const speed = Cartesian3.magnitude(this.velocityCorrection);
     // The tangent polynomial's maximum displacement is below 0.2*v*h.
@@ -273,7 +292,7 @@ export class InspectionTransition {
     if (p === 1 && this.kind === 'exit') Cartesian3.clone(this.overview!.position, this.pose.position);
     if (displayedTarget) Cartesian3.clone(displayedTarget, this.target);
     else Matrix4.getTranslation(frame, this.target);
-    this.composition.evaluate(this.pose, this.target, frame, smootherstep(p));
+    this.composition.evaluate(this.pose, this.target, frame, this.perceptualProgress);
     this.pose.fov = this.fovAtRange(Cartesian3.magnitude(this.offset));
     // C1 retargeting: preserve the incoming derivative, then settle it over a
     // range-bounded interval. A short forward excursion replaces an instant flip.
@@ -295,6 +314,7 @@ export class InspectionTransition {
     }
     if (p === 0) this.pose.fov = this.start.fov;
     if (p === 1) this.pose.fov = this.endFov;
+    this.composition.updateFocus(this.pose, this.focusDistanceTangent * tangent);
     return this.pose;
   }
 }

@@ -1,0 +1,90 @@
+{
+  "method": "Raw traces and large arbitrary/probe JSON: lossless gzip level9, mtime0; verified exact decompression before removing redundant raw copy.",
+  "files": [
+    {
+      "path": "trial-dev-gp-trace.json.gz",
+      "rawBytes": 1859573,
+      "bytes": 301820
+    },
+    {
+      "path": "final-prod-oem-trace.json.gz",
+      "rawBytes": 2636553,
+      "bytes": 388973
+    },
+    {
+      "path": "baseline-dev-oem-trace.json.gz",
+      "rawBytes": 2558693,
+      "bytes": 394447
+    },
+    {
+      "path": "baseline-prod-gp-trace.json.gz",
+      "rawBytes": 2504996,
+      "bytes": 386475
+    },
+    {
+      "path": "baseline-dev-gp-trace.json.gz",
+      "rawBytes": 2537989,
+      "bytes": 393240
+    },
+    {
+      "path": "final-dev-oem-trace.json.gz",
+      "rawBytes": 2660046,
+      "bytes": 393615
+    },
+    {
+      "path": "final-production-ten-cycles-trace.json.gz",
+      "rawBytes": 25497141,
+      "bytes": 3747826
+    },
+    {
+      "path": "final-dev-gp-trace.json.gz",
+      "rawBytes": 2680857,
+      "bytes": 395087
+    },
+    {
+      "path": "final-development-ten-cycles-trace.json.gz",
+      "rawBytes": 25692349,
+      "bytes": 3773946
+    },
+    {
+      "path": "final-prod-gp-trace.json.gz",
+      "rawBytes": 2648118,
+      "bytes": 391827
+    },
+    {
+      "path": "baseline-prod-oem-trace.json.gz",
+      "rawBytes": 2522462,
+      "bytes": 390981
+    },
+    {
+      "path": "probe-dense-arbitrary.json.gz",
+      "rawBytes": 1715491,
+      "bytes": 276018
+    },
+    {
+      "path": "after-sky-warm-arbitrary.json.gz",
+      "rawBytes": 1685265,
+      "bytes": 273270
+    },
+    {
+      "path": "trial-development-arbitrary.json.gz",
+      "rawBytes": 3362581,
+      "bytes": 552527
+    },
+    {
+      "path": "final-development-arbitrary.json.gz",
+      "rawBytes": 3397318,
+      "bytes": 542123
+    },
+    {
+      "path": "final-production-arbitrary.json.gz",
+      "rawBytes": 3395999,
+      "bytes": 542157
+    },
+    {
+      "path": "baseline-development-arbitrary.json.gz",
+      "rawBytes": 3017269,
+      "bytes": 561140
+    }
+  ]
+}

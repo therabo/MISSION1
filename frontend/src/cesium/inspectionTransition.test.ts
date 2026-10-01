@@ -116,7 +116,7 @@ describe('coordinated physical-pivot camera transitions', () => {
       }
     }
   });
-  it('aims at the displayed station during lifted exit, detecting the old physical-target defect', () => {
+  it('uses the displayed station distance during the explicit Earth-focus transfer', () => {
     const entry = new InspectionTransition('entry', start, frame, end, 1.7, 6, 0);
     const exit = new InspectionTransition('exit', entry.evaluate(frame, 1), frame, start.position, start.fov, 5, 0, start, position);
     let distinguishable = false;
@@ -125,7 +125,11 @@ describe('coordinated physical-pivot camera transitions', () => {
       const pose = exit.evaluate(frame, p, display);
       const toDisplay = Cartesian3.subtract(display, pose.position, new Cartesian3());
       const toPhysical = Cartesian3.subtract(position, pose.position, new Cartesian3());
-      expect(Cartesian3.angleBetween(pose.direction, toDisplay)).toBeLessThan(1e-6);
+      const displayedDirection = Cartesian3.clone(pose.direction);
+      const displayedFocus = Cartesian3.clone(exit.focusPoint);
+      exit.evaluate(frame, p, position);
+      expect(Cartesian3.distance(exit.focusPoint, displayedFocus)).toBeGreaterThan(1);
+      expect(Cartesian3.angleBetween(displayedDirection, toDisplay)).toBeLessThan(start.fov / 4 + 1e-6);
       if (Cartesian3.angleBetween(toDisplay, toPhysical) > 0.001) distinguishable = true;
     }
     expect(distinguishable).toBe(true);

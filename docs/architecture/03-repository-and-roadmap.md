@@ -1,5 +1,9 @@
 # Repository structure and incremental roadmap
 
+## Explicit camera focus refinement — 2026-10-01
+
+Earth↔ISS now uses an explicit positive focal ray independently of the retained cubic/hybrid position path. It captures the actual Earth composition and actual orbited/zoomed Inspection pose, blends a quaternion rail with smooth angular containment around the displayed station, and retains focal as well as pose derivatives on partial Back. There is no target threshold switch or final recenter. The canonical 90m /42.5° /100° and 6/5s remain; captured range/angle gives bounded durations for other starts. The same selected-source physical frame, lift/silhouette/FOV, native resolution and NASA PNG/PBR asset remain. Automatic motion copies the public world camera basis, avoiding Cesium’s nadir heading/roll conversion. Graphics readiness requires the retained Moon/Sun startup draws and eight model/globe preparation renders; temporary celestial views cannot count toward model readiness. Optional imagery failure retains the existing local fallback. [Focus definition, gates, arbitrary geometry, profiles and evidence](../frontend/camera-transition-perfecting-review/focus-optimization/README.md). The earlier dated records below preserve preceding behavior; the focal model above supersedes their residual-aim composition.
+
 This is the implementation order for the revised [Architecture Baseline V1](02-architecture-baseline-v1.md) and [ADR-0004](../adr/0004-local-gp-propagation-for-current-orbit.md). The repository contains a working standard-GP adapter, deterministic Orekit orbital core, quality policy, PostgreSQL element history, current-state read API and controlled refresh in `backend/`, plus a Cesium Earth View in `frontend/`. The [ISS-E SupGP source-selection gate](../telemetry/iss-supgp-source-selection.md) retains standard GP as `PRIMARY` and defers SupGP pending exact segment semantics.
 
 ## Current documentation

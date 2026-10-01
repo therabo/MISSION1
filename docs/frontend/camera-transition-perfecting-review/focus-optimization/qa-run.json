@@ -1,0 +1,188 @@
+{
+  "started": "2026-10-01T19:11:32.785Z",
+  "jobs": [
+    {
+      "name": "final-dev-gp",
+      "file": "trace-focus.cjs",
+      "args": [
+        "5184",
+        "final-dev-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "code": 0,
+      "seconds": 35.348
+    },
+    {
+      "name": "final-dev-oem",
+      "file": "trace-focus.cjs",
+      "args": [
+        "5184",
+        "final-dev-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "code": 0,
+      "seconds": 34.263
+    },
+    {
+      "name": "final-prod-gp",
+      "file": "trace-focus.cjs",
+      "args": [
+        "4184",
+        "final-prod-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "code": 0,
+      "seconds": 33.581
+    },
+    {
+      "name": "final-prod-oem",
+      "file": "trace-focus.cjs",
+      "args": [
+        "4184",
+        "final-prod-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "code": 0,
+      "seconds": 33.415
+    },
+    {
+      "name": "development-arbitrary",
+      "file": "arbitrary-focus.cjs",
+      "args": [
+        "5184",
+        "final-development"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 242.108
+    },
+    {
+      "name": "production-arbitrary",
+      "file": "arbitrary-focus.cjs",
+      "args": [
+        "4184",
+        "final-production"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 241.42
+    },
+    {
+      "name": "development-ten-cycles",
+      "file": "trace-focus.cjs",
+      "args": [
+        "5184",
+        "final-development-ten-cycles"
+      ],
+      "extra": {
+        "MISSION1_QA_TEN_CYCLES": "1",
+        "MISSION1_QA_GL_TIMINGS": "1"
+      },
+      "code": 0,
+      "seconds": 322.454
+    },
+    {
+      "name": "development-reversals",
+      "file": "focus-reversals.cjs",
+      "args": [
+        "5184",
+        "development"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 121.192
+    },
+    {
+      "name": "development-regressions",
+      "file": "browser-regressions.cjs",
+      "args": [
+        "5184",
+        "development"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 85.547
+    },
+    {
+      "name": "development-visual-matrix",
+      "file": "browser-matrix.cjs",
+      "args": [
+        "5184",
+        "development"
+      ],
+      "extra": {
+        "MISSION1_FOCUS_ALREADY_CYCLED": "1",
+        "MISSION1_FOCUS_ALREADY_REVERSED": "1"
+      },
+      "code": 0,
+      "seconds": 117.303
+    },
+    {
+      "name": "production-ten-cycles",
+      "file": "trace-focus.cjs",
+      "args": [
+        "4184",
+        "final-production-ten-cycles"
+      ],
+      "extra": {
+        "MISSION1_QA_TEN_CYCLES": "1",
+        "MISSION1_QA_GL_TIMINGS": "1"
+      },
+      "code": 0,
+      "seconds": 321.007
+    },
+    {
+      "name": "production-reversals",
+      "file": "focus-reversals.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 119.761
+    },
+    {
+      "name": "production-regressions",
+      "file": "browser-regressions.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {},
+      "code": 0,
+      "seconds": 83.176
+    },
+    {
+      "name": "production-visual-matrix",
+      "file": "browser-matrix.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {
+        "MISSION1_FOCUS_ALREADY_CYCLED": "1",
+        "MISSION1_FOCUS_ALREADY_REVERSED": "1"
+      },
+      "code": 0,
+      "seconds": 114.781
+    }
+  ],
+  "finished": "2026-10-01T19:43:18.157Z"
+}

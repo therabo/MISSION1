@@ -1,0 +1,156 @@
+{
+  "builds": {
+    "development": {
+      "arbitraryEarthPosesPerSource": 6,
+      "arbitraryInspectionPosesPerSource": 5,
+      "numericalClearanceSamplesPerPath": 2001,
+      "renderedPoseSamplesPerPath": 101,
+      "minimumHeightMeters": 426506.82724035624,
+      "maximumRestorePositionMeters": 0.0,
+      "partialBackPerSource": 7,
+      "semanticPicksPerSource": 14,
+      "lightingEpochsPerSource": 3,
+      "realTimeCyclesPerSource": 10,
+      "acceleratedGeometryCyclesPerSource": 10,
+      "heapBefore": {
+        "usedSize": 131963992,
+        "totalSize": 140312576,
+        "embedderHeapUsedSize": 1770120,
+        "backingStorageSize": 79117148
+      },
+      "heapAfter": {
+        "usedSize": 102132980,
+        "totalSize": 106496000,
+        "embedderHeapUsedSize": 1647376,
+        "backingStorageSize": 79028654
+      },
+      "retainedTransitions": 0,
+      "unexpectedErrors": 0,
+      "resourceIdentitiesPreserved": true
+    },
+    "production": {
+      "arbitraryEarthPosesPerSource": 6,
+      "arbitraryInspectionPosesPerSource": 5,
+      "numericalClearanceSamplesPerPath": 2001,
+      "renderedPoseSamplesPerPath": 101,
+      "minimumHeightMeters": 426506.82724035624,
+      "maximumRestorePositionMeters": 0.0,
+      "partialBackPerSource": 7,
+      "semanticPicksPerSource": 14,
+      "lightingEpochsPerSource": 3,
+      "realTimeCyclesPerSource": 10,
+      "acceleratedGeometryCyclesPerSource": 10,
+      "heapBefore": {
+        "usedSize": 96558284,
+        "totalSize": 105906176,
+        "embedderHeapUsedSize": 1227496,
+        "backingStorageSize": 38938940
+      },
+      "heapAfter": {
+        "usedSize": 67328520,
+        "totalSize": 70254592,
+        "embedderHeapUsedSize": 1489216,
+        "backingStorageSize": 38744764
+      },
+      "retainedTransitions": 0,
+      "unexpectedErrors": 0,
+      "resourceIdentitiesPreserved": true
+    }
+  },
+  "checkpoints": [
+    {
+      "fraction": 0.1,
+      "cases": 4,
+      "maxFocusErrorMeters": 4.16500117164066e-09,
+      "maxFocusVelocityRelativeError": 1.1881157313656768e-05,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 4.6373867953825256e-08
+    },
+    {
+      "fraction": 0.2,
+      "cases": 4,
+      "maxFocusErrorMeters": 2.2812650937430355e-09,
+      "maxFocusVelocityRelativeError": 4.5914431810079295e-06,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 4.647260148074213e-08
+    },
+    {
+      "fraction": 0.35,
+      "cases": 4,
+      "maxFocusErrorMeters": 1.1641532182693481e-10,
+      "maxFocusVelocityRelativeError": 1.839039054863426e-06,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 1.9449187913383395e-08
+    },
+    {
+      "fraction": 0.5,
+      "cases": 4,
+      "maxFocusErrorMeters": 2.3283064365386963e-10,
+      "maxFocusVelocityRelativeError": 2.665791107776175e-08,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 3.400887830015842e-11
+    },
+    {
+      "fraction": 0.65,
+      "cases": 4,
+      "maxFocusErrorMeters": 1.1641532182693481e-10,
+      "maxFocusVelocityRelativeError": 4.083683550163106e-08,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 5.014150070140143e-11
+    },
+    {
+      "fraction": 0.8,
+      "cases": 4,
+      "maxFocusErrorMeters": 1.1641532182693481e-10,
+      "maxFocusVelocityRelativeError": 3.393907838021032e-08,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 6.630918581373417e-11
+    },
+    {
+      "fraction": 0.95,
+      "cases": 4,
+      "maxFocusErrorMeters": 2.3283064365386963e-10,
+      "maxFocusVelocityRelativeError": 2.6420231615209518e-08,
+      "maxPositionErrorMeters": 0,
+      "maxAngularVelocityErrorRadiansPerSecond": 7.390982464431062e-11
+    }
+  ],
+  "frameAudit": {
+    "final-dev-gp": {
+      "frames": 590,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.411918125107908e-12,
+      "maximumMappingMs": 0.20000000298023224
+    },
+    "final-dev-oem": {
+      "frames": 586,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.101785282083604e-12,
+      "maximumMappingMs": 0.20000000298023224
+    },
+    "final-development-ten-cycles": {
+      "frames": 5730,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.436696567735773e-12,
+      "maximumMappingMs": 0.20000000298023224
+    },
+    "final-prod-gp": {
+      "frames": 584,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.300941230667849e-12,
+      "maximumMappingMs": 0.20000000298023224
+    },
+    "final-prod-oem": {
+      "frames": 584,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.038578296997992e-12,
+      "maximumMappingMs": 0.20000000298023224
+    },
+    "final-production-ten-cycles": {
+      "frames": 5688,
+      "offscreen": 0,
+      "maximumRayErrorRadians": 5.505551841543221e-12,
+      "maximumMappingMs": 0.20000000298023224
+    }
+  }
+}

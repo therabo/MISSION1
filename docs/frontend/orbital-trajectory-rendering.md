@@ -1,5 +1,10 @@
 # Adaptive forward ISS trajectory presentation — 2026-09-30
 
+## Explicit camera focus refinement — 2026-10-01
+
+The [focus review](camera-transition-perfecting-review/focus-optimization/README.md) supersedes the earlier dated five-second residual-aim transitions below. The accepted hybrid metric and cubic/Earth-clear path remain; entry/return now own an explicit positive focus path and use current captured poses, bounded durations (canonical 6/5 s), public world camera basis and model/sky readiness gates. Physical trajectory vertices, current source frame, 75 km display-only lift, adaptive gap and rendering quality are unchanged.
+
+
 ## Elevated Inspection and rendering stability — 2026-10-01
 
 The current canonical desktop camera uses a **90 m slant range**, **42.5° rear elevation**, zero lateral offset and **100° FOV**. Its trajectory-frame offset is calculated as `(-90 cos(42.5°), 0, 90 sin(42.5°))`, approximately **(−66.354960, 0, 60.803119) m**. Scale remains 1 and Overview minimumPixelSize remains 80. Narrow aspect ratios widen the range by `max(1, 1.2/aspect)` while retaining elevation. Inspection orbital details start collapsed and remain keyboard-accessible, keeping the left solar array visible.

@@ -1,0 +1,403 @@
+{
+  "started": "2026-10-01T19:50:46.071Z",
+  "jobs": [
+    {
+      "name": "baseline-dev-gp",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "5183",
+        "baseline-dev-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.805
+    },
+    {
+      "name": "baseline-dev-oem",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "5183",
+        "baseline-dev-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.535
+    },
+    {
+      "name": "final-dev-gp",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "5184",
+        "final-dev-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.741
+    },
+    {
+      "name": "final-dev-oem",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "5184",
+        "final-dev-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.433
+    },
+    {
+      "name": "startup-race-development",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/startup-race.cjs",
+      "args": [
+        "5184",
+        "development"
+      ],
+      "extra": {},
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 19.063
+    },
+    {
+      "name": "final-prod-gp",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "4184",
+        "final-prod-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 33.694
+    },
+    {
+      "name": "final-prod-oem",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "4184",
+        "final-prod-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 33.593
+    },
+    {
+      "name": "startup-race-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/startup-race.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {},
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 18.503
+    },
+    {
+      "name": "raster-baseline",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/perceptual-snapshots.cjs",
+      "args": [
+        "4183",
+        "baseline"
+      ],
+      "extra": {
+        "MISSION1_EVIDENCE_DIR": "/tmp/mission1-focus/raster-baseline",
+        "MISSION1_QA_WIDTH": "1280",
+        "MISSION1_QA_HEIGHT": "720"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 57.822
+    },
+    {
+      "name": "measure-baseline",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/measure-perceptual-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-baseline",
+        "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization",
+        "baseline"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 15.122
+    },
+    {
+      "name": "discard-raw-baseline",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/discard-raw-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-baseline"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 0.036
+    },
+    {
+      "name": "raster-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/perceptual-snapshots.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {
+        "MISSION1_EVIDENCE_DIR": "/tmp/mission1-focus/raster-production",
+        "MISSION1_QA_WIDTH": "1280",
+        "MISSION1_QA_HEIGHT": "720"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 56.133
+    },
+    {
+      "name": "measure-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/measure-perceptual-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-production",
+        "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization",
+        "production"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 14.98
+    },
+    {
+      "name": "discard-raw-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/discard-raw-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-production"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 0.051
+    },
+    {
+      "name": "raster-narrow",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/perceptual-snapshots.cjs",
+      "args": [
+        "4184",
+        "narrow"
+      ],
+      "extra": {
+        "MISSION1_EVIDENCE_DIR": "/tmp/mission1-focus/raster-narrow",
+        "MISSION1_QA_WIDTH": "900",
+        "MISSION1_QA_HEIGHT": "700"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 43.642
+    },
+    {
+      "name": "measure-narrow",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/measure-perceptual-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-narrow",
+        "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization",
+        "narrow"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 10.229
+    },
+    {
+      "name": "discard-raw-narrow",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/discard-raw-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-narrow"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 0.043
+    },
+    {
+      "name": "raster-mobile",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/perceptual-snapshots.cjs",
+      "args": [
+        "4184",
+        "mobile"
+      ],
+      "extra": {
+        "MISSION1_EVIDENCE_DIR": "/tmp/mission1-focus/raster-mobile",
+        "MISSION1_QA_WIDTH": "390",
+        "MISSION1_QA_HEIGHT": "844"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 26.821
+    },
+    {
+      "name": "measure-mobile",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/measure-perceptual-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-mobile",
+        "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization",
+        "mobile"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 5.301
+    },
+    {
+      "name": "discard-raw-mobile",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/discard-raw-snapshots.py",
+      "args": [
+        "/tmp/mission1-focus/raster-mobile"
+      ],
+      "extra": {},
+      "command": "/tmp/mission1-camera-plot/bin/python",
+      "code": 0,
+      "seconds": 0.033
+    },
+    {
+      "name": "resources-development",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/arbitrary-focus.cjs",
+      "args": [
+        "5184",
+        "development-resources"
+      ],
+      "extra": {
+        "MISSION1_QA_RESOURCE_ONLY": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 27.608
+    },
+    {
+      "name": "resources-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/arbitrary-focus.cjs",
+      "args": [
+        "4184",
+        "production-resources"
+      ],
+      "extra": {
+        "MISSION1_QA_RESOURCE_ONLY": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 26.346
+    },
+    {
+      "name": "lint-development",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/visual-lint.cjs",
+      "args": [
+        "5184",
+        "development"
+      ],
+      "extra": {},
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 38.416,
+      "attempts": [
+        {
+          "code": 1,
+          "seconds": 37.554
+        }
+      ]
+    },
+    {
+      "name": "lint-production",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/visual-lint.cjs",
+      "args": [
+        "4184",
+        "production"
+      ],
+      "extra": {},
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 37.011
+    },
+    {
+      "name": "clean-live-smoke",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/clean-live-smoke.cjs",
+      "args": [],
+      "extra": {
+        "MISSION1_EVIDENCE_DIR": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 54.897
+    },
+    {
+      "name": "baseline-dev-gp-cpu",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "5183",
+        "baseline-dev-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.936
+    },
+    {
+      "name": "baseline-prod-gp-cpu",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "4183",
+        "baseline-prod-gp"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "PRIMARY_GP_TLE",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.268
+    },
+    {
+      "name": "baseline-prod-oem-cpu",
+      "file": "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/trace-focus.cjs",
+      "args": [
+        "4183",
+        "baseline-prod-oem"
+      ],
+      "extra": {
+        "MISSION1_QA_SOURCE": "NASA_OEM",
+        "MISSION1_QA_GL_TIMINGS": "1",
+        "MISSION1_QA_CPU_PROFILE": "1"
+      },
+      "command": "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "code": 0,
+      "seconds": 34.045
+    }
+  ],
+  "finished": "2026-10-01T20:06:21.259Z"
+}

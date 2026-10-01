@@ -37,7 +37,8 @@ import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPr
 import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
 import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
-import { InspectionTransition, poseQuaternion, initialTangent } from './inspectionTransition';
+import { InspectionTransition, poseQuaternion, initialTangent, transitionDuration } from './inspectionTransition';
+import { warmSkyRendering } from './skyRenderingWarmup';
 import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
@@ -461,6 +462,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     const previousQuaternion = new Quaternion();
     const currentQuaternion = new Quaternion();
     const cameraVelocity = new Cartesian3();
+    const focusPoint = new Cartesian3();
+    const previousFocus = new Cartesian3();
+    const focusVelocity = new Cartesian3();
+    const focusDirectionRate = new Cartesian3();
+    const angularVelocity = new Cartesian3();
+    const angularRateQuaternion = new Quaternion();
     const quaternionRate = new Quaternion(0, 0, 0, 0);
     let fovRate = 0, previousFov = 0;
     let previousWall = 0, previousLift = displayLiftMeters, previousVisibility = silhouetteVisibility;
@@ -468,7 +475,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     const capturePose = (): CameraPose => ({ position: Cartesian3.clone(instance.camera.positionWC),
       direction: Cartesian3.clone(instance.camera.directionWC), up: Cartesian3.clone(instance.camera.upWC),
       fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 });
-    const cameraView = { destination: new Cartesian3(), orientation: { direction: new Cartesian3(), up: new Cartesian3() } };
 
     const leaveInspection = (retarget = false): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || (viewMode.current === 'EXITING_INSPECTION' && !retarget)) return;
@@ -476,9 +482,11 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (!saved) return;
       const pose = capturePose();
       instance.camera.cancelFlight();
+      const displayedTarget = displayedPosition(scenePosition, displayLiftMeters, new Cartesian3());
+      const initialFocus = Cartesian3.clone(entry.current?.focusPoint ?? displayedTarget);
+      const duration = transitionDuration('exit', saved, scenePosition, Cartesian3.angleBetween(pose.direction, saved.direction));
       const flight = new InspectionTransition('exit', pose, cameraTrackingFrame, saved.position, saved.fov,
-        EXIT_DURATION_SECONDS, performance.now(), saved,
-        displayedPosition(scenePosition, displayLiftMeters, new Cartesian3()));
+        duration, performance.now(), saved, displayedTarget, initialFocus);
       if (previousWall) {
         const futureTime = JulianDate.addSeconds(instance.clock.currentTime, 0.001, new JulianDate());
         const futurePosition = positionAt(futureTime, new Cartesian3());
@@ -491,7 +499,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         }
         if (hasFutureFrame)
           flight.retainIncomingDerivative(cameraTrackingFrame, futureFrame, 0.001, cameraVelocity, quaternionRate, fovRate,
-            displayedPosition(scenePosition, displayLiftMeters, new Cartesian3()), previousQuaternion);
+            displayedPosition(scenePosition, displayLiftMeters, new Cartesian3()), previousQuaternion, focusVelocity);
       }
       flight.startMs = performance.now();
       entry.current = flight;
@@ -519,9 +527,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         transform: Matrix4.clone(instance.camera.transform) };
       instance.camera.cancelFlight();
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
+      const endpoint = rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3());
+      const endpointDirection = Cartesian3.negate(Matrix4.multiplyByPointAsVector(trackingFrame, endpoint, new Cartesian3()), new Cartesian3());
+      const duration = transitionDuration('entry', pose, position, Cartesian3.angleBetween(pose.direction, endpointDirection));
       entry.current = new InspectionTransition('entry', pose, trackingFrame,
-        rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3()),
-        CesiumMath.toRadians(100), APPROACH_DURATION_SECONDS, performance.now(), null,
+        endpoint,
+        CesiumMath.toRadians(100), duration, performance.now(), null,
         modelDisplayPosition(position, displayLiftMeters, new Cartesian3()));
       entry.current.startMs = performance.now();
       exitPresentation = null;
@@ -535,6 +546,28 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     const materialShader = createIssMaterialShader();
     let cancelGraphicsWarmup: (() => void) | null = null;
     let environmentInitialized = false;
+    let modelGraphicsWarming = false;
+    let modelGraphicsReady = false, skyGraphicsReady = false;
+    const finishGraphicsReadiness = (): void => {
+      if (destroyed || modelStatus.current === 'failed' || !modelGraphicsReady || !skyGraphicsReady) return;
+      modelGraphicsWarming = false;
+      modelStatus.current = modelLoadTransition(modelStatus.current, 'loaded');
+      if (modelStatus.current === 'ready') {
+        const loadMs = performance.now() - loadStarted;
+        modelCallback.current('ready', loadMs);
+        if (diagnostics) console.info('[graphics] ISS textures, features and rendering ready', Math.round(loadMs), 'ms');
+      }
+    };
+    const cancelSkyWarmup = warmSkyRendering(instance, () => {
+      skyGraphicsReady = true;
+      finishGraphicsReadiness();
+    }, () => {
+      modelGraphicsWarming = false;
+      cancelGraphicsWarmup?.();
+      cancelGraphicsWarmup = null;
+      modelStatus.current = modelLoadTransition(modelStatus.current, 'failed');
+      modelCallback.current(modelStatus.current);
+    });
     void Model.fromGltfAsync({
       url: `${ISS_MODEL.uri}?v=${ISS_MODEL.runtimeSha256.slice(0, 12)}`,
       show: false,
@@ -557,6 +590,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         return;
       }
       loaded.errorEvent.addEventListener(() => {
+        modelGraphicsWarming = false;
+        cancelGraphicsWarmup?.();
+        cancelGraphicsWarmup = null;
         modelStatus.current = modelLoadTransition(modelStatus.current, 'failed');
         loaded.show = false;
         selectModule(null);
@@ -571,16 +607,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           modelCallback.current(modelStatus.current);
           return;
         }
+        modelGraphicsWarming = true;
         cancelGraphicsWarmup = warmInspectionRendering(instance, () => {
           cancelGraphicsWarmup = null;
-          if (destroyed || modelStatus.current === 'failed') return;
-          modelStatus.current = modelLoadTransition(modelStatus.current, 'loaded');
-          if (modelStatus.current === 'ready') {
-            const loadMs = performance.now() - loadStarted;
-            modelCallback.current('ready', loadMs);
-            if (diagnostics) console.info('[graphics] ISS textures, features and rendering ready', Math.round(loadMs), 'ms');
-          }
-        });
+          modelGraphicsReady = true;
+          finishGraphicsReadiness();
+        }, () => skyGraphicsReady);
       });
       // Generate ambient reflections once; Sun lighting still follows scene UTC.
       // Camera lift and orbital translation must not invalidate the environment every kilometre.
@@ -717,10 +749,13 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (flight && progress !== null) {
         const displayedTarget = displayedPosition(scenePosition, displayLiftMeters, displayPosition);
         const pose = flight.evaluate(cameraTrackingFrame, progress, displayedTarget);
-        Cartesian3.clone(pose.position, cameraView.destination);
-        Cartesian3.clone(pose.direction, cameraView.orientation.direction);
-        Cartesian3.clone(pose.up, cameraView.orientation.up);
-        instance.camera.setView(cameraView);
+        // Automatic flights use the identity transform. Copy the public world
+        // basis directly: setView's ENU/HPR conversion collapses heading/roll
+        // near nadir and would bend the computed focal ray.
+        Cartesian3.clone(pose.position, instance.camera.position);
+        Cartesian3.clone(pose.direction, instance.camera.direction);
+        Cartesian3.clone(pose.up, instance.camera.up);
+        Cartesian3.normalize(Cartesian3.cross(pose.direction, pose.up, instance.camera.right), instance.camera.right);
         if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = pose.fov;
         if (progress === 1) {
           if (flight.kind === 'entry' && position) {
@@ -758,7 +793,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       }
       if (model.current) {
         applyModelSilhouette(model.current, silhouette);
-        model.current.show = modelVisible(representation.current) && !!position;
+        model.current.show = (modelVisible(representation.current) || modelGraphicsWarming) && !!position;
         if (model.current.ready && position) {
           // Center the asset's off-origin bounds on the separate model display point.
           // This is a display translation, not a change to orbital position or attitude.
@@ -787,14 +822,37 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const wall = performance.now(), elapsed = (wall - previousWall) / 1000;
       poseQuaternion(instance.camera.directionWC, instance.camera.upWC, currentQuaternion);
       const fov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
+      if (entry.current) Cartesian3.clone(entry.current.focusPoint, focusPoint);
+      else if (viewMode.current === 'ISS_INSPECTION') displayedPosition(scenePosition, displayLiftMeters, focusPoint);
+      else {
+        Cartesian3.multiplyByScalar(instance.camera.directionWC,
+          Math.max(1, -Cartesian3.dot(instance.camera.positionWC, instance.camera.directionWC)), focusPoint);
+        Cartesian3.add(instance.camera.positionWC, focusPoint, focusPoint);
+      }
       if (previousWall && elapsed > 0) {
         Cartesian3.divideByScalar(Cartesian3.subtract(instance.camera.positionWC, previousPosition, cameraVelocity), elapsed, cameraVelocity);
         if (Quaternion.dot(currentQuaternion, previousQuaternion) < 0) Quaternion.negate(currentQuaternion, currentQuaternion);
         Quaternion.multiplyByScalar(Quaternion.subtract(currentQuaternion, previousQuaternion, quaternionRate), 1 / elapsed, quaternionRate);
+        // Retain one coherent derivative of focus = camera + radius*direction.
+        // Independent finite chords of that product disagree on curved motion;
+        // use the same measured pose rate that Back preserves, plus radius rate.
+        const focusDistance = Cartesian3.distance(focusPoint, instance.camera.positionWC);
+        const radiusRate = (focusDistance - Cartesian3.distance(previousFocus, previousPosition)) / elapsed;
+        Quaternion.conjugate(currentQuaternion, angularRateQuaternion);
+        Quaternion.multiply(quaternionRate, angularRateQuaternion, angularRateQuaternion);
+        angularVelocity.x = 2 * angularRateQuaternion.x;
+        angularVelocity.y = 2 * angularRateQuaternion.y;
+        angularVelocity.z = 2 * angularRateQuaternion.z;
+        Cartesian3.cross(angularVelocity, instance.camera.directionWC, focusDirectionRate);
+        Cartesian3.multiplyByScalar(focusDirectionRate, focusDistance, focusVelocity);
+        Cartesian3.multiplyByScalar(instance.camera.directionWC, radiusRate, focusDirectionRate);
+        Cartesian3.add(focusVelocity, focusDirectionRate, focusVelocity);
+        Cartesian3.add(focusVelocity, cameraVelocity, focusVelocity);
         fovRate = (fov - previousFov) / elapsed;
         liftRate = (displayLiftMeters - previousLift) / elapsed;
         visibilityRate = (silhouetteVisibility - previousVisibility) / elapsed;
       }
+      Cartesian3.clone(focusPoint, previousFocus);
       Cartesian3.clone(instance.camera.positionWC, previousPosition);
       Quaternion.clone(currentQuaternion, previousQuaternion);
       previousFov = fov;
@@ -814,6 +872,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     instance.clock.onTick.addEventListener(tick);
     return () => {
       destroyed = true;
+      cancelSkyWarmup();
       cancelGraphicsWarmup?.();
       removeDiagnostics?.();
       removeApproachDiagnostics?.();

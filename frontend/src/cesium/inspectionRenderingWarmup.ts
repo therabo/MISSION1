@@ -4,7 +4,7 @@ import { Cartesian3, type ImageryLayer, type Viewer } from 'cesium';
  * loading model. Camera, textures and final lighting settings are unchanged.
  * Only public properties are used; cleanup restores them if loading is cancelled.
  */
-export function warmInspectionRendering(viewer: Viewer, ready: () => void): () => void {
+export function warmInspectionRendering(viewer: Viewer, ready: () => void, sceneReady: () => boolean = () => true): () => void {
   const scene = viewer.scene, globe = scene.globe;
   const fadeOut = globe.nightFadeOutDistance, fadeIn = globe.nightFadeInDistance;
   const radius = Cartesian3.magnitude(viewer.camera.positionWC);
@@ -36,8 +36,17 @@ export function warmInspectionRendering(viewer: Viewer, ready: () => void): () =
     globe.nightFadeInDistance = fadeIn;
   };
   const remove = scene.postRender.addEventListener(() => {
+    // Temporary celestial preparation renders must not count as normal model
+    // readiness frames if a cached GLB becomes ready during that idle task.
+    if (!sceneReady()) return;
     if (++frames === 2) restoreImagery();
-    if (frames < 4) return;
+    if (frames === 4) {
+      // Normal globe state plus the now texture/feature-ready visible model.
+      // Four additional renders submit PBR/silhouette/FXAA/environment work
+      // before the control can launch its first transition.
+      restore();
+    }
+    if (frames < 8) return;
     finished = true;
     remove();
     restore();

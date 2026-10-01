@@ -19,6 +19,17 @@ function fixture() {
 }
 
 describe('inspection rendering warmup lifecycle', () => {
+  it('excludes temporary sky draws from the normal scene readiness gate', () => {
+    const f=fixture(), ready=vi.fn(); let sceneReady=false;
+    warmInspectionRendering(f.viewer,ready,()=>sceneReady);
+    for (let i=0; i<10; i++) f.postRender.raiseEvent();
+    expect(ready).not.toHaveBeenCalled(); expect(f.first.alpha).toBe(0);
+    sceneReady=true;
+    for (let i=0; i<7; i++) f.postRender.raiseEvent();
+    expect(ready).not.toHaveBeenCalled();
+    f.postRender.raiseEvent(); expect(ready).toHaveBeenCalledOnce();
+    expect(f.first.alpha).toBe(0.7);
+  });
   it('prepares both variants and restores the original scene before enabling Inspection', () => {
     const f = fixture(), ready = vi.fn();
     warmInspectionRendering(f.viewer, ready);
@@ -30,13 +41,17 @@ describe('inspection rendering warmup lifecycle', () => {
     expect(f.first.alpha).toBe(0.7); expect(added.alpha).toBe(0.4);
     expect(f.hidden.alpha).toBe(0); expect(ready).not.toHaveBeenCalled();
     f.postRender.raiseEvent(); f.postRender.raiseEvent();
+    expect(ready).not.toHaveBeenCalled();
+    for (let i = 0; i < 3; i++) f.postRender.raiseEvent();
+    expect(ready).not.toHaveBeenCalled();
+    f.postRender.raiseEvent();
     expect(ready).toHaveBeenCalledOnce();
     expect(f.globe).toEqual({ nightFadeOutDistance: 10, nightFadeInDistance: 20 });
     expect(f.first.show).toBe(true); expect(f.first.imageryProvider).toBe(f.provider);
     expect(f.postRender.numberOfListeners).toBe(0); expect(f.layerAdded.numberOfListeners).toBe(0);
   });
 
-  it.each([0, 2])('restores startup state when cancelled after %i frames', (frames) => {
+  it.each([0, 2, 4, 6])('restores startup state when cancelled after %i frames', (frames) => {
     const f = fixture(), ready = vi.fn();
     const cancel = warmInspectionRendering(f.viewer, ready);
     for (let i = 0; i < frames; i++) f.postRender.raiseEvent();
