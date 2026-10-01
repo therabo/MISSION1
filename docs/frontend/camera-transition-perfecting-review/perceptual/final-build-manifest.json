@@ -1,0 +1,24 @@
+{
+  "baseCommit": "538bb0642205be7f326aa3ae08ec2dc46134a212",
+  "node": "24.21.0",
+  "sourceSha256": {
+    "frontend/src/App.tsx": "d2db973dc361babde1f7fb1b599614e6ba16cdf13eda7d5f78d50f18089e7336",
+    "frontend/src/cesium/EarthView.tsx": "425752d3a945edcd7f1f965205b41052577423183d161d3029356f10d1b125d2",
+    "frontend/src/cesium/arcLengthPath.test.ts": "0a5cdabc914189289146ce67f283a1fc954cdd83d4cb1cca3192f58b229695e6",
+    "frontend/src/cesium/arcLengthPath.ts": "56aeb9e12195b5b168db2ce7216a0bebd8f4fee39e2c15ca688b4b9c4655bd5e",
+    "frontend/src/cesium/cameraPose.ts": "cc16dc875e29bc9b90d98a920ff7385b59676b4903f6753294a6355956b57a60",
+    "frontend/src/cesium/displayRetarget.test.ts": "b62a6fbe3b57b7714403f96b6c9b9544c1fdeda02ccbb85a0f83f61916301f30",
+    "frontend/src/cesium/displayRetarget.ts": "379e990c18cd4393bc6e77d4f29f4b064a1cc5e7a760691d1337e1f4ee40795c",
+    "frontend/src/cesium/inspectionRenderingWarmup.test.ts": "0380cbb8f2abe412bf2be1d177022d3d512e8c849c0731125f858b84abcb9f50",
+    "frontend/src/cesium/inspectionRenderingWarmup.ts": "25336e376509edca049e855bf834aad6021fb66ea211a724e856268a7c86c333",
+    "frontend/src/cesium/inspectionTransition.test.ts": "041681d74a7152048110b15eb610609b27fda355b4867c6bf376b974dbc8fc56",
+    "frontend/src/cesium/inspectionTransition.ts": "2734697384856a12a8021cb1b1cd12ab93b6a52db64d6cc9db5191d050308687",
+    "frontend/src/cesium/perceptualPath.test.ts": "1b574bd61f833c7812772dec2fc248b0b4f3e2bf9877fcfc7f2e1859579f000c",
+    "frontend/src/cesium/perceptualPath.ts": "fbed3d950740f99b0005961cbf5e6f5bb6d377875b6304104fc29e33ab2ea44d",
+    "frontend/src/cesium/transitionComposition.ts": "b83cde73280fae97f485fd8e479be7549a7320b52e6b67a7bef90a0c63546518",
+    "frontend/src/components/OrbitalStatus.tsx": "f0d99748b8e182f41f8131c824e020fb1d1c1ffe94a4b3fa4a723acc6e8bd178"
+  },
+  "cleanProductionJs": {
+    "frontend/dist/assets/index-Bq9NmUP3.js": "1a18b0374b908f2c6ec84a06f30427822d2ff82e78e8ca8bc114b3a1441aa1af"
+  }
+}

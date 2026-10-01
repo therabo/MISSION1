@@ -33,24 +33,26 @@ export default function App() {
 
   const inspecting = viewMode === 'ENTERING_INSPECTION' || viewMode === 'ISS_INSPECTION';
   const approaching = viewMode === 'ENTERING_INSPECTION';
+  const returning = viewMode === 'EXITING_INSPECTION';
+  const stationFocused = inspecting || returning;
   const oemReason = oemUnavailableReason(comparison.response, sceneTimeMs);
   const chooseSource = (next: TrajectorySource) => {
     setSelectedSource((current) => requestedSource(current, next, viewMode, comparison.response, sceneTimeMs));
     setSourceNotice(null);
   };
 
-  return <main className={`app-shell ${inspecting ? 'is-inspecting' : ''}`}>
+  return <main className={`app-shell ${stationFocused ? 'is-inspecting' : ''}`}>
     <EarthView window={delivery.window} comparison={comparison.response} selectedSource={selectedSource} onSourceUnavailable={onSourceUnavailable} onPosition={setPosition} inspectionRequest={inspectionRequest} overviewRequest={overviewRequest} onSceneTime={onSceneTime} onSceneError={onSceneError} onModelStatus={onModelStatus} onModuleSelection={onModuleSelection} onViewModeChange={setViewMode} />
-    <div className="top-brand" aria-hidden="true"><span className="brand-mark">M<span>1</span></span><span>MISSION1 <em>/ {approaching ? 'APPROACHING ISS' : inspecting ? 'ISS INSPECTION' : 'EARTH VIEW'}</em></span></div>
+    <div className="top-brand" aria-hidden="true"><span className="brand-mark">M<span>1</span></span><span>MISSION1 <em>/ {approaching ? 'APPROACHING ISS' : returning ? 'RETURNING TO EARTH' : inspecting ? 'ISS INSPECTION' : 'EARTH VIEW'}</em></span></div>
     <div className="top-actions">
       <span className="scene-chip"><span className={`dot ${buffer === 'active' ? 'is-on' : ''}`} />{buffer === 'active' ? 'ORBITAL BUFFER ACTIVE' : buffer === 'expired' ? 'BUFFER EXPIRED' : 'AWAITING DATA'}</span>
-      {inspecting
+      {returning ? <button type="button" disabled>Returning to Earth View</button> : inspecting
         ? <button type="button" className="back-button" onClick={() => setOverviewRequest((value) => value + 1)}>Back to Earth View</button>
         : <button type="button" onClick={() => setInspectionRequest((value) => value + 1)} disabled={viewMode !== 'EARTH_OVERVIEW' || !delivery.window || buffer !== 'active' || modelState.status !== 'ready'}>Inspect ISS</button>}
     </div>
-    <OrbitalStatus delivery={delivery} comparison={comparison} buffer={buffer} sceneTimeMs={sceneTimeMs} sceneError={sceneError} modelState={modelState} inspecting={inspecting} approaching={approaching} selectedSource={selectedSource} position={position} />
+    <OrbitalStatus delivery={delivery} comparison={comparison} buffer={buffer} sceneTimeMs={sceneTimeMs} sceneError={sceneError} modelState={modelState} inspecting={stationFocused} approaching={approaching} returning={returning} selectedSource={selectedSource} position={position} />
     {selectedModule && <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} />}
-    {inspecting && <div className="inspection-hint"><strong>{approaching ? 'Approaching moving ISS target' : 'Drag to orbit the ISS · Scroll to zoom'}</strong><span>Model not to scale · Attitude unavailable</span></div>}
+    {stationFocused && <div className="inspection-hint"><strong>{approaching ? 'Approaching moving ISS target' : returning ? 'Returning to Earth View' : 'Drag to orbit the ISS · Scroll to zoom'}</strong><span>Model not to scale · Attitude unavailable</span></div>}
     <TrajectorySelector selectedSource={selectedSource} viewMode={viewMode} oemReason={oemReason} sourceNotice={sourceNotice} onSelect={chooseSource} />
   </main>;
 }

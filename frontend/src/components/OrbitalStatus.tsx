@@ -14,6 +14,7 @@ interface OrbitalStatusProps {
   modelState: { status: ModelLoadStatus; loadMs: number | null };
   inspecting: boolean;
   approaching: boolean;
+  returning: boolean;
   selectedSource: TrajectorySource;
   position: PositionSnapshot | null;
 }
@@ -39,7 +40,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, selectedSource, position }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, returning, selectedSource, position }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -53,7 +54,7 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
     <summary>ISS orbital details</summary>
     <div className="panel-head">
       <span className="eyebrow">ORBITAL STATE / ISS</span>
-      <h1>{approaching ? 'Approaching ISS' : inspecting ? 'ISS Inspection' : 'Earth View'}</h1>
+      <h1>{approaching ? 'Approaching ISS' : returning ? 'Returning to Earth View' : inspecting ? 'ISS Inspection' : 'Earth View'}</h1>
       <p>{SOURCE_LABELS[selectedSource]}</p>
     </div>
 

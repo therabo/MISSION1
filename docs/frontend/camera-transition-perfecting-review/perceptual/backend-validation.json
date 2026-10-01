@@ -1,0 +1,11 @@
+{
+  "java": "21",
+  "mavenTest": "exit 0",
+  "mavenVerify": "exit 0",
+  "surefire": {
+    "tests": 82,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

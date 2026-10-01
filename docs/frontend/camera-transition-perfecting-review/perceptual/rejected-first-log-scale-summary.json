@@ -1,0 +1,22 @@
+[
+  {
+    "source": "PRIMARY_GP_TLE",
+    "kind": "entry",
+    "maxDirectionDegreesPerSecond": 154.0271892694773
+  },
+  {
+    "source": "PRIMARY_GP_TLE",
+    "kind": "exit",
+    "maxDirectionDegreesPerSecond": 956.6984110403143
+  },
+  {
+    "source": "NASA_OEM",
+    "kind": "entry",
+    "maxDirectionDegreesPerSecond": 154.19286518599813
+  },
+  {
+    "source": "NASA_OEM",
+    "kind": "exit",
+    "maxDirectionDegreesPerSecond": 1066.9403113526405
+  }
+]

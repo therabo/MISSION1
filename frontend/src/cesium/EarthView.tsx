@@ -37,7 +37,7 @@ import type { ModelLoadStatus, Representation, SemanticMapping } from './modelPr
 import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
 import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
-import { InspectionTransition, interruptionTangent, poseQuaternion } from './inspectionTransition';
+import { InspectionTransition, poseQuaternion, initialTangent } from './inspectionTransition';
 import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
@@ -52,7 +52,8 @@ import type { TrajectoryTrails } from './trajectoryRendering';
 import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
 import type { SampledPositionProperty } from 'cesium';
-import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, applyModelSilhouette, displayLiftForMode, modelDisplayPosition, silhouetteForMode } from './earthViewPresentation';
+import { EARTH_OVERVIEW_DISPLAY_LIFT_METERS, OVERVIEW_SILHOUETTE, applyModelSilhouette, displayLiftForMode, modelDisplayPosition } from './earthViewPresentation';
+import { DisplayRetarget } from './displayRetarget';
 import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
@@ -74,9 +75,9 @@ interface EarthViewProps {
   onViewModeChange: (mode: ViewMode) => void;
 }
 
-export const APPROACH_DURATION_SECONDS = 5;
+export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
-interface CameraSnapshot extends CameraPose { near: number; far: number }
+interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
 export const EarthView = memo(function EarthView({ window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
@@ -444,45 +445,55 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       if (primaryLine.current) showTrails(primaryLine.current, presentation.pathVisible);
     };
 
+    let sourceRetarget: DisplayRetarget | null = null;
+    const sourceDisplayOffset = new Cartesian3();
+    const cameraTrackingFrame = new Matrix4();
+    const cameraAnchor = new Cartesian3();
+    const displayedPosition = (physical: Cartesian3, lift: number, result: Cartesian3): Cartesian3 => {
+      modelDisplayPosition(physical, lift, result);
+      return Cartesian3.add(result, sourceDisplayOffset, result);
+    };
     let displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS;
     let silhouetteVisibility = 1;
     let exitPresentation: { startLift: number; startVisibility: number; liftRate: number; visibilityRate: number; progress: number } | null = null;
     const silhouetteOutput = { sizePixels: 0, alpha: 0, visibility: 0 };
     const previousPosition = new Cartesian3();
-    const previousFrame = new Matrix4();
-    const lastFrame = new Matrix4();
-    let frameElapsed = 0.016;
     const previousQuaternion = new Quaternion();
     const currentQuaternion = new Quaternion();
     const cameraVelocity = new Cartesian3();
-    const frameVelocity = new Cartesian3();
-    const priorMovingStart = new Cartesian3();
-    let previousWall = 0, previousFov = 0, previousLift = displayLiftMeters, previousVisibility = silhouetteVisibility;
-    let liftRate = 0, visibilityRate = 0, fovRate = 0;
     const quaternionRate = new Quaternion(0, 0, 0, 0);
+    let fovRate = 0, previousFov = 0;
+    let previousWall = 0, previousLift = displayLiftMeters, previousVisibility = silhouetteVisibility;
+    let liftRate = 0, visibilityRate = 0;
     const capturePose = (): CameraPose => ({ position: Cartesian3.clone(instance.camera.positionWC),
       direction: Cartesian3.clone(instance.camera.directionWC), up: Cartesian3.clone(instance.camera.upWC),
       fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 });
     const cameraView = { destination: new Cartesian3(), orientation: { direction: new Cartesian3(), up: new Cartesian3() } };
 
-    const leaveInspection = (): void => {
-      if (viewMode.current === 'EARTH_OVERVIEW' || viewMode.current === 'EXITING_INSPECTION') return;
+    const leaveInspection = (retarget = false): void => {
+      if (viewMode.current === 'EARTH_OVERVIEW' || (viewMode.current === 'EXITING_INSPECTION' && !retarget)) return;
       const saved = cameraSnapshot.current;
       if (!saved) return;
       const pose = capturePose();
-      const wasEntering = viewMode.current === 'ENTERING_INSPECTION';
       instance.camera.cancelFlight();
-      const flight = new InspectionTransition('exit', pose, trackingFrame, saved.position, saved.fov,
-        EXIT_DURATION_SECONDS, performance.now(), saved);
-      if (previousWall && positionAt(instance.clock.currentTime, scenePosition)) {
-        Matrix4.multiplyByPoint(previousFrame, flight.startOffset, priorMovingStart);
-        Matrix4.multiplyByPoint(trackingFrame, flight.startOffset, frameVelocity);
-        Cartesian3.subtract(frameVelocity, priorMovingStart, frameVelocity);
-        Cartesian3.divideByScalar(frameVelocity, Math.max(0.001, frameElapsed), frameVelocity);
-        if (wasEntering) Cartesian3.subtract(cameraVelocity, frameVelocity, flight.velocityCorrection);
-        Quaternion.clone(quaternionRate, flight.orientationTangent);
-        flight.fovTangent = fovRate;
+      const flight = new InspectionTransition('exit', pose, cameraTrackingFrame, saved.position, saved.fov,
+        EXIT_DURATION_SECONDS, performance.now(), saved,
+        displayedPosition(scenePosition, displayLiftMeters, new Cartesian3()));
+      if (previousWall) {
+        const futureTime = JulianDate.addSeconds(instance.clock.currentTime, 0.001, new JulianDate());
+        const futurePosition = positionAt(futureTime, new Cartesian3());
+        const futureVelocity = velocityAt(futureTime, new Cartesian3());
+        const futureFrame = new Matrix4();
+        const hasFutureFrame = futurePosition && futureVelocity && new TrajectoryVisualFrame().update(futurePosition, futureVelocity, futureFrame);
+        if (sourceRetarget && futurePosition && hasFutureFrame) {
+          sourceRetarget.evaluate(performance.now() + 1, cameraAnchor);
+          Matrix4.setTranslation(futureFrame, Cartesian3.add(futurePosition, cameraAnchor, cameraAnchor), futureFrame);
+        }
+        if (hasFutureFrame)
+          flight.retainIncomingDerivative(cameraTrackingFrame, futureFrame, 0.001, cameraVelocity, quaternionRate, fovRate,
+            displayedPosition(scenePosition, displayLiftMeters, new Cartesian3()), previousQuaternion);
       }
+      flight.startMs = performance.now();
       entry.current = flight;
       exitPresentation = { startLift: displayLiftMeters, startVisibility: silhouetteVisibility, liftRate, visibilityRate, progress: 0 };
       selectModule(null);
@@ -500,12 +511,19 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const position = positionAt(instance.clock.currentTime, new Cartesian3());
       if (!position || !frameAt(position, trackingFrame)) return;
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
+      sourceRetarget = null;
+      Cartesian3.clone(Cartesian3.ZERO, sourceDisplayOffset);
+      Matrix4.clone(trackingFrame, cameraTrackingFrame);
       const pose = capturePose();
-      cameraSnapshot.current = { ...pose, near: instance.camera.frustum.near, far: instance.camera.frustum.far };
+      cameraSnapshot.current = { ...pose, near: instance.camera.frustum.near, far: instance.camera.frustum.far,
+        transform: Matrix4.clone(instance.camera.transform) };
       instance.camera.cancelFlight();
+      instance.camera.lookAtTransform(Matrix4.IDENTITY);
       entry.current = new InspectionTransition('entry', pose, trackingFrame,
         rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3()),
-        CesiumMath.toRadians(100), APPROACH_DURATION_SECONDS, performance.now());
+        CesiumMath.toRadians(100), APPROACH_DURATION_SECONDS, performance.now(), null,
+        modelDisplayPosition(position, displayLiftMeters, new Cartesian3()));
+      entry.current.startMs = performance.now();
       exitPresentation = null;
       setMode('ENTER');
     };
@@ -636,8 +654,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     let lastDiagnosticSource: TrajectorySource | null = null;
     const tick = (): void => {
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
+      let sourceChanged = false;
       if (effectiveSource(selectedSourceRef.current, comparisonRef.current, sceneMs) !== selectedSourceRef.current) {
-        leaveInspection();
+        sourceChanged = true;
         selectedSourceRef.current = 'PRIMARY_GP_TLE';
         sourceUnavailableCallback.current('NASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE.');
       }
@@ -645,6 +664,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const valid = current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
       let position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
       if (position && !frameAt(position, trackingFrame)) position = undefined;
+      if (sourceChanged && position && model.current?.ready && viewMode.current !== 'EARTH_OVERVIEW') {
+        const selectedDisplay = modelDisplayPosition(position, displayLiftMeters, new Cartesian3());
+        sourceRetarget = new DisplayRetarget(model.current.boundingSphere.center, selectedDisplay, performance.now());
+      }
+      if (sourceRetarget && performance.now() - sourceRetarget.startMs >= sourceRetarget.durationSeconds * 1000) sourceRetarget = null;
+      if (sourceRetarget) sourceRetarget.evaluate(performance.now(), sourceDisplayOffset);
+      else Cartesian3.clone(Cartesian3.ZERO, sourceDisplayOffset);
+      Matrix4.clone(trackingFrame, cameraTrackingFrame);
+      Matrix4.setTranslation(cameraTrackingFrame, Cartesian3.add(scenePosition, sourceDisplayOffset, cameraAnchor), cameraTrackingFrame);
+      if (sourceChanged) leaveInspection(true);
       if (diagnostics && position && selectedSourceRef.current !== lastDiagnosticSource) {
         lastDiagnosticSource = selectedSourceRef.current;
         console.info('[trajectory-source]', JSON.stringify({ source: lastDiagnosticSource, time: JulianDate.toIso8601(instance.clock.currentTime),
@@ -663,8 +692,31 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       }
       const flight = entry.current;
       const progress = flight ? Math.max(0, Math.min(1, (performance.now() - flight.startMs) / (flight.duration * 1000))) : null;
+      // Lens, lift and outline are functions of the same perceptual path.
+      const presentation = flight && progress !== null ? flight.presentationAt(progress) : null;
+      if (exitPresentation) exitPresentation.progress = presentation ?? 1;
+      if (flight?.kind === 'entry' && presentation !== null) {
+        displayLiftMeters = EARTH_OVERVIEW_DISPLAY_LIFT_METERS * presentation;
+        silhouetteVisibility = presentation;
+      } else if (exitPresentation) {
+        displayLiftMeters = exitPresentation.startLift + (EARTH_OVERVIEW_DISPLAY_LIFT_METERS - exitPresentation.startLift) * (presentation ?? 1);
+        silhouetteVisibility = exitPresentation.startVisibility + (1 - exitPresentation.startVisibility) * (presentation ?? 1);
+      } else {
+        displayLiftMeters = displayLiftForMode(viewMode.current, null, null);
+        silhouetteVisibility = viewMode.current === 'EARTH_OVERVIEW' ? 1 : 0;
+      }
+      if (exitPresentation && progress !== null && flight) {
+        const tangent = flight.tangentDuration * initialTangent(progress * flight.duration / Math.max(1e-9, flight.tangentDuration));
+        displayLiftMeters = Math.max(0, Math.min(EARTH_OVERVIEW_DISPLAY_LIFT_METERS, displayLiftMeters + exitPresentation.liftRate * tangent));
+        silhouetteVisibility = Math.max(0, Math.min(1, silhouetteVisibility + exitPresentation.visibilityRate * tangent));
+      }
+      const silhouette = silhouetteOutput;
+      silhouette.visibility = silhouetteVisibility;
+      silhouette.sizePixels = OVERVIEW_SILHOUETTE.sizePixels * silhouetteVisibility;
+      silhouette.alpha = OVERVIEW_SILHOUETTE.alpha * silhouetteVisibility;
       if (flight && progress !== null) {
-        const pose = flight.evaluate(trackingFrame, progress);
+        const displayedTarget = displayedPosition(scenePosition, displayLiftMeters, displayPosition);
+        const pose = flight.evaluate(cameraTrackingFrame, progress, displayedTarget);
         Cartesian3.clone(pose.position, cameraView.destination);
         Cartesian3.clone(pose.direction, cameraView.orientation.direction);
         Cartesian3.clone(pose.up, cameraView.orientation.up);
@@ -676,26 +728,15 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
             setMode('ENTRY_COMPLETE');
           } else {
             const saved = cameraSnapshot.current;
-            if (saved) { instance.camera.frustum.near = saved.near; instance.camera.frustum.far = saved.far; }
+            if (saved) {
+              instance.camera.frustum.near = saved.near; instance.camera.frustum.far = saved.far;
+              instance.camera.lookAtTransform(saved.transform);
+            }
             setMode('EXIT_COMPLETE');
           }
           entry.current = null;
           exitPresentation = null;
         }
-      }
-      // One monotonic normalized camera parameter also drives presentation.
-      if (exitPresentation) exitPresentation.progress = progress ?? 1;
-      displayLiftMeters = displayLiftForMode(viewMode.current, flight?.kind === 'entry' ? progress : null,
-        exitPresentation);
-      const silhouette = silhouetteForMode(viewMode.current, flight?.kind === 'entry' ? progress : null,
-        exitPresentation, silhouetteOutput);
-      silhouetteVisibility = silhouette.visibility;
-      if (exitPresentation && progress !== null) {
-        const tangent = EXIT_DURATION_SECONDS * interruptionTangent(progress);
-        displayLiftMeters = Math.max(0, Math.min(EARTH_OVERVIEW_DISPLAY_LIFT_METERS, displayLiftMeters + exitPresentation.liftRate * tangent));
-        silhouetteVisibility = Math.max(0, Math.min(1, silhouetteVisibility + exitPresentation.visibilityRate * tangent));
-        silhouette.sizePixels = OVERVIEW_SILHOUETTE.sizePixels * silhouetteVisibility;
-        silhouette.alpha = OVERVIEW_SILHOUETTE.alpha * silhouetteVisibility;
       }
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       if (selectedModule.current && !modulePickingAvailable(modelStatus.current, distance)) selectModule(null);
@@ -723,7 +764,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           // This is a display translation, not a change to orbital position or attitude.
           // The physical selected position remains untouched. Inspection has zero lift.
           const frame = Matrix4.clone(trackingFrame, modelDisplayFrame);
-          Matrix4.setTranslation(frame, modelDisplayPosition(position, displayLiftMeters, displayPosition), frame);
+          Matrix4.setTranslation(frame, displayedPosition(position, displayLiftMeters, displayPosition), frame);
           if (!displayCenteringOffset) {
             model.current.modelMatrix = frame;
             Matrix4.inverseTransformation(frame, centeringInverse);
@@ -742,25 +783,22 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
           }
         }
       }
-      // Retain tangents for partial Back, without frame allocations.
+      // Retain actual camera/presentation derivatives for C1 Back, without frame allocations.
       const wall = performance.now(), elapsed = (wall - previousWall) / 1000;
       poseQuaternion(instance.camera.directionWC, instance.camera.upWC, currentQuaternion);
+      const fov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
       if (previousWall && elapsed > 0) {
         Cartesian3.divideByScalar(Cartesian3.subtract(instance.camera.positionWC, previousPosition, cameraVelocity), elapsed, cameraVelocity);
         if (Quaternion.dot(currentQuaternion, previousQuaternion) < 0) Quaternion.negate(currentQuaternion, currentQuaternion);
         Quaternion.multiplyByScalar(Quaternion.subtract(currentQuaternion, previousQuaternion, quaternionRate), 1 / elapsed, quaternionRate);
-        const fov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
         fovRate = (fov - previousFov) / elapsed;
         liftRate = (displayLiftMeters - previousLift) / elapsed;
         visibilityRate = (silhouetteVisibility - previousVisibility) / elapsed;
       }
       Cartesian3.clone(instance.camera.positionWC, previousPosition);
-      Matrix4.clone(lastFrame, previousFrame);
-      Matrix4.clone(trackingFrame, lastFrame);
-      frameElapsed = elapsed;
       Quaternion.clone(currentQuaternion, previousQuaternion);
+      previousFov = fov;
       previousWall = wall;
-      previousFov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
       previousLift = displayLiftMeters; previousVisibility = silhouetteVisibility;
       updateTrajectory.current?.(sceneMs);
       const second = Math.floor(sceneMs / 1000);

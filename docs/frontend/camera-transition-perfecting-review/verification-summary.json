@@ -1,0 +1,122 @@
+{
+  "development": {
+    "cycles": {
+      "PRIMARY_GP_TLE": {
+        "cycles": 10,
+        "positionMeters": 0,
+        "directionDegrees": 0.0,
+        "upDegrees": 0.0,
+        "fovRadians": 0.0
+      },
+      "NASA_OEM": {
+        "cycles": 10,
+        "positionMeters": 0,
+        "directionDegrees": 0.0,
+        "upDegrees": 8.013266132661394e-16,
+        "fovRadians": 0.0
+      }
+    },
+    "partialCount": 14,
+    "partialMaxPositionMeters": 0,
+    "epochs": 6,
+    "pageErrors": [],
+    "unexpectedConsoleErrors": [],
+    "picks": [
+      14,
+      14
+    ],
+    "transitionOutages": [
+      {
+        "stage": "entry",
+        "source": "PRIMARY_GP_TLE",
+        "retargetError": {
+          "position": 0,
+          "direction": 0,
+          "up": 0,
+          "fov": 0
+        },
+        "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME \u00b7 UTC\n2026-09-30 15:46:01 UTC\nBackend-aligned clock \u00b7 1\u00d7\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:46:01 UTC\n\nLatitude\n7.716\u00b0 S\nLongitude\n113.916\u00b0 W\nAltitude\n426.4 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD \u00b7 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY \u00b7 1.5 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP \u00b7 USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable \u00b7 QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+      },
+      {
+        "stage": "exit",
+        "source": "PRIMARY_GP_TLE",
+        "retargetError": {
+          "position": 0,
+          "direction": 0,
+          "up": 0,
+          "fov": 0
+        },
+        "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME \u00b7 UTC\n2026-09-30 15:46:01 UTC\nBackend-aligned clock \u00b7 1\u00d7\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:46:01 UTC\n\nLatitude\n7.724\u00b0 S\nLongitude\n113.921\u00b0 W\nAltitude\n426.4 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD \u00b7 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY \u00b7 1.3 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP \u00b7 USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable \u00b7 QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+      }
+    ],
+    "loading": {
+      "ready": false,
+      "inspectDisabled": true,
+      "locator": true
+    },
+    "overflows": [
+      false,
+      false
+    ]
+  },
+  "production": {
+    "cycles": {
+      "PRIMARY_GP_TLE": {
+        "cycles": 10,
+        "positionMeters": 0,
+        "directionDegrees": 0.0,
+        "upDegrees": 0.0,
+        "fovRadians": 0.0
+      },
+      "NASA_OEM": {
+        "cycles": 10,
+        "positionMeters": 0,
+        "directionDegrees": 0.0,
+        "upDegrees": 0.0,
+        "fovRadians": 0.0
+      }
+    },
+    "partialCount": 14,
+    "partialMaxPositionMeters": 0,
+    "epochs": 6,
+    "pageErrors": [],
+    "unexpectedConsoleErrors": [],
+    "picks": [
+      14,
+      14
+    ],
+    "transitionOutages": [
+      {
+        "stage": "entry",
+        "source": "PRIMARY_GP_TLE",
+        "retargetError": {
+          "position": 0,
+          "direction": 0,
+          "up": 0,
+          "fov": 0
+        },
+        "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME \u00b7 UTC\n2026-09-30 15:46:01 UTC\nBackend-aligned clock \u00b7 1\u00d7\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:46:01 UTC\n\nLatitude\n7.722\u00b0 S\nLongitude\n113.920\u00b0 W\nAltitude\n426.4 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD \u00b7 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY \u00b7 1.4 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP \u00b7 USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable \u00b7 QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+      },
+      {
+        "stage": "exit",
+        "source": "PRIMARY_GP_TLE",
+        "retargetError": {
+          "position": 0,
+          "direction": 0,
+          "up": 0,
+          "fov": 0
+        },
+        "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME \u00b7 UTC\n2026-09-30 15:46:01 UTC\nBackend-aligned clock \u00b7 1\u00d7\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:46:01 UTC\n\nLatitude\n7.724\u00b0 S\nLongitude\n113.921\u00b0 W\nAltitude\n426.4 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD \u00b7 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY \u00b7 1.3 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP \u00b7 USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable \u00b7 QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+      }
+    ],
+    "loading": {
+      "ready": false,
+      "inspectDisabled": true,
+      "locator": true
+    },
+    "overflows": [
+      false,
+      false
+    ]
+  }
+}

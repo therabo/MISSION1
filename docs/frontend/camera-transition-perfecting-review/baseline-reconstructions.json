@@ -1,0 +1,99 @@
+[
+  {
+    "file": "baseline-PRIMARY_GP_TLE-exit-reconstruction-6.jpg",
+    "frameIndex": 6,
+    "progress": 0.03878000000119209,
+    "utc": "2026-09-30T15:46:05.40930800002024625Z",
+    "displayScreen": [
+      640.1589303884944,
+      99.93267431509469
+    ]
+  },
+  {
+    "file": "baseline-PRIMARY_GP_TLE-exit-reconstruction-7.jpg",
+    "frameIndex": 7,
+    "progress": 0.04924000000059604,
+    "utc": "2026-09-30T15:46:05.4614080000137619Z",
+    "displayScreen": [
+      640.761087368333,
+      -578.6193961355575
+    ]
+  },
+  {
+    "file": "baseline-PRIMARY_GP_TLE-exit-reconstruction-8.jpg",
+    "frameIndex": 8,
+    "progress": 0.0583,
+    "utc": "2026-09-30T15:46:05.5068080000201007Z",
+    "displayScreen": null
+  },
+  {
+    "file": "baseline-PRIMARY_GP_TLE-exit-reconstruction-76.jpg",
+    "frameIndex": 76,
+    "progress": 0.5227199999988079,
+    "utc": "2026-09-30T15:46:07.828908000015872Z",
+    "displayScreen": [
+      837.4862521354455,
+      -44.87592190205419
+    ]
+  },
+  {
+    "file": "baseline-PRIMARY_GP_TLE-exit-reconstruction-77.jpg",
+    "frameIndex": 77,
+    "progress": 0.529259999999404,
+    "utc": "2026-09-30T15:46:07.8616080000192596Z",
+    "displayScreen": [
+      802.5876790796242,
+      62.423937315914486
+    ]
+  },
+  {
+    "file": "baseline-NASA_OEM-exit-reconstruction-6.jpg",
+    "frameIndex": 6,
+    "progress": 0.037839999997615816,
+    "utc": "2026-09-30T15:46:05.4068079999924521Z",
+    "displayScreen": [
+      640.140403131149,
+      125.16310887593454
+    ]
+  },
+  {
+    "file": "baseline-NASA_OEM-exit-reconstruction-7.jpg",
+    "frameIndex": 7,
+    "progress": 0.04745999999940395,
+    "utc": "2026-09-30T15:46:05.45490799998697184Z",
+    "displayScreen": [
+      640.5597749619129,
+      -366.19213616708566
+    ]
+  },
+  {
+    "file": "baseline-NASA_OEM-exit-reconstruction-8.jpg",
+    "frameIndex": 8,
+    "progress": 0.055719999998807904,
+    "utc": "2026-09-30T15:46:05.49630799999249575Z",
+    "displayScreen": [
+      644.1865408658387,
+      -3896.855460265514
+    ]
+  },
+  {
+    "file": "baseline-NASA_OEM-exit-reconstruction-76.jpg",
+    "frameIndex": 76,
+    "progress": 0.5247199999988079,
+    "utc": "2026-09-30T15:46:07.8412079999961861Z",
+    "displayScreen": [
+      825.3661720068621,
+      -7.350728126248669
+    ]
+  },
+  {
+    "file": "baseline-NASA_OEM-exit-reconstruction-77.jpg",
+    "frameIndex": 77,
+    "progress": 0.5312199999988079,
+    "utc": "2026-09-30T15:46:07.8738079999893671Z",
+    "displayScreen": [
+      794.6397506720066,
+      86.68745408460131
+    ]
+  }
+]

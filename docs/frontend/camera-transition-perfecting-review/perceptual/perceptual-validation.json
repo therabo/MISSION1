@@ -1,0 +1,303 @@
+{
+  "builds": {
+    "development": {
+      "epochs": 6,
+      "partialBack": 14,
+      "cyclesPerSource": 10,
+      "semanticPicksPerSource": 14,
+      "maxPositionRestoreMeters": 0,
+      "maxDirectionRestoreRadians": 5.203442137279819e-13,
+      "maxUpRestoreRadians": 5.205382102736494e-13,
+      "maxFovRestoreRadians": 0,
+      "maxTransformRestoreError": 0,
+      "controllerRestores": true,
+      "nearFarRestores": true,
+      "outages": [
+        {
+          "stage": "entry",
+          "frames": 62,
+          "offscreen": 0,
+          "retargetErrors": {
+            "position": 0,
+            "direction": 0,
+            "up": 0,
+            "fov": 0
+          }
+        },
+        {
+          "stage": "exit",
+          "frames": 71,
+          "offscreen": 0,
+          "retargetErrors": {
+            "position": 0,
+            "direction": 0,
+            "up": 0,
+            "fov": 0
+          }
+        }
+      ],
+      "maxHandoffPositionMeters": 0,
+      "maxHandoffDirectionDegrees": 2.3879573491083595e-10,
+      "maxHandoffUpDegrees": 2.3311752038035396e-10,
+      "responsive": [
+        {
+          "viewport": {
+            "width": 900,
+            "height": 700
+          },
+          "overflow": false,
+          "range": 89.99999999988513,
+          "rearAngle": 42.5
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "overflow": false,
+          "range": 233.72307692108623,
+          "rearAngle": 42.49999999974356
+        }
+      ],
+      "pageErrors": 0,
+      "unexpectedConsoleErrors": 0
+    },
+    "production": {
+      "epochs": 6,
+      "partialBack": 14,
+      "cyclesPerSource": 10,
+      "semanticPicksPerSource": 14,
+      "maxPositionRestoreMeters": 0,
+      "maxDirectionRestoreRadians": 1.7472002409806097e-13,
+      "maxUpRestoreRadians": 1.746466209513897e-13,
+      "maxFovRestoreRadians": 0,
+      "maxTransformRestoreError": 0,
+      "controllerRestores": true,
+      "nearFarRestores": true,
+      "outages": [
+        {
+          "stage": "entry",
+          "frames": 63,
+          "offscreen": 0,
+          "retargetErrors": {
+            "position": 0,
+            "direction": 0,
+            "up": 0,
+            "fov": 0
+          }
+        },
+        {
+          "stage": "exit",
+          "frames": 67,
+          "offscreen": 0,
+          "retargetErrors": {
+            "position": 0,
+            "direction": 0,
+            "up": 0,
+            "fov": 0
+          }
+        }
+      ],
+      "maxHandoffPositionMeters": 0,
+      "maxHandoffDirectionDegrees": 2.8677185396077327e-10,
+      "maxHandoffUpDegrees": 2.848008707942783e-10,
+      "responsive": [
+        {
+          "viewport": {
+            "width": 900,
+            "height": 700
+          },
+          "overflow": false,
+          "range": 89.99999999998596,
+          "rearAngle": 42.50000000000001
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "overflow": false,
+          "range": 233.7230769230164,
+          "rearAngle": 42.50000000000001
+        }
+      ],
+      "pageErrors": 0,
+      "unexpectedConsoleErrors": 0
+    }
+  },
+  "checkpoints": [
+    {
+      "fraction": 0.1,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 7.933316530404038e-06,
+      "maxVelocityMagnitudePercent": 2.855751052643902e-05,
+      "maxQuaternionRateError": 0.00591451957466561,
+      "maxAngularVelocityErrorRadiansPerSecond": 6.576359767621679e-08,
+      "maxFovRateError": 1.5581437390332908e-09,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.2,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 7.141969576822017e-06,
+      "maxVelocityMagnitudePercent": 3.3481341470205905e-05,
+      "maxQuaternionRateError": 0.00717736775003076,
+      "maxAngularVelocityErrorRadiansPerSecond": 4.6588743811554346e-08,
+      "maxFovRateError": 8.737202711328607e-09,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.35,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 1.993992975535539e-06,
+      "maxVelocityMagnitudePercent": 1.2021443068109048e-05,
+      "maxQuaternionRateError": 0.000329168981911869,
+      "maxAngularVelocityErrorRadiansPerSecond": 2.3101266858108622e-07,
+      "maxFovRateError": 1.733668303360858e-08,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.5,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 3.2915997166654128e-06,
+      "maxVelocityMagnitudePercent": 3.2566087559562765e-06,
+      "maxQuaternionRateError": 0.00045096589633290243,
+      "maxAngularVelocityErrorRadiansPerSecond": 3.9793190863783773e-07,
+      "maxFovRateError": 0,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.65,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 1.5312773291482082e-06,
+      "maxVelocityMagnitudePercent": 7.68484080134588e-07,
+      "maxQuaternionRateError": 0.0004813983919969275,
+      "maxAngularVelocityErrorRadiansPerSecond": 4.953967387540204e-07,
+      "maxFovRateError": 0,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.8,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 2.216432431589533e-06,
+      "maxVelocityMagnitudePercent": 1.3793745068671268e-06,
+      "maxQuaternionRateError": 0.00021070942728872917,
+      "maxAngularVelocityErrorRadiansPerSecond": 6.656773416265067e-07,
+      "maxFovRateError": 0,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    },
+    {
+      "fraction": 0.95,
+      "cases": 4,
+      "maxVelocityAngleDegrees": 1.5197527691130077e-06,
+      "maxVelocityMagnitudePercent": 1.5809147235531137e-06,
+      "maxQuaternionRateError": 2.8867363987833555e-06,
+      "maxAngularVelocityErrorRadiansPerSecond": 1.8377198854707007e-06,
+      "maxFovRateError": 0,
+      "maxPositionError": 0,
+      "maxDirectionError": 0,
+      "maxUpError": 0,
+      "maxFovError": 0
+    }
+  ],
+  "frontend": {
+    "tests": 112,
+    "files": 22,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "node": "24.21.0"
+  },
+  "backend": {
+    "tests": 82,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "mavenTest": "passed",
+    "mavenVerify": "passed",
+    "java": "21"
+  },
+  "frameAudit": {
+    "perceptual-warmed": {
+      "frames": 564,
+      "offscreen": 0,
+      "maximumCentralCvPercent": 0.9626587219852946,
+      "maximumLocalMetricMedianRatio": 1.0087706917246568
+    },
+    "perceptual-development-warmed": {
+      "frames": 570,
+      "offscreen": 0,
+      "maximumCentralCvPercent": 0.992763681801531,
+      "maximumLocalMetricMedianRatio": 1.0067049895354843
+    },
+    "perceptual-narrow-warmed": {
+      "frames": 780,
+      "offscreen": 0,
+      "maximumCentralCvPercent": 0.947714356550723,
+      "maximumLocalMetricMedianRatio": 1.0088449008276181
+    },
+    "perceptual-mobile-warmed": {
+      "frames": 1293,
+      "offscreen": 0,
+      "maximumCentralCvPercent": 0.9383111317955762,
+      "maximumLocalMetricMedianRatio": 1.0176472082644445
+    }
+  },
+  "scaleGate": "final 5% contains less than 6% of actual raster-height change in all audited viewports",
+  "warmup": "diagnostic GL calls above 10ms occurred only during startup",
+  "cleanLiveSmoke": [
+    {
+      "port": 5175,
+      "noQa": true,
+      "sources": [
+        {
+          "source": "MISSION1 GP/TLE",
+          "available": true,
+          "entry": true,
+          "return": true
+        },
+        {
+          "source": "NASA OEM",
+          "available": true,
+          "entry": true,
+          "return": true
+        }
+      ]
+    },
+    {
+      "port": 4175,
+      "noQa": true,
+      "sources": [
+        {
+          "source": "MISSION1 GP/TLE",
+          "available": true,
+          "entry": true,
+          "return": true
+        },
+        {
+          "source": "NASA OEM",
+          "available": true,
+          "entry": true,
+          "return": true
+        }
+      ]
+    }
+  ]
+}

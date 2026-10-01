@@ -1,0 +1,24 @@
+const fs=require('fs'),path=require('path');
+const evidence=process.env.MISSION1_EVIDENCE_DIR||path.resolve(__dirname,'..');
+fs.mkdirSync(evidence,{recursive:true});
+const {chromium}=require(process.env.MISSION1_PLAYWRIGHT_MODULE||'playwright');
+(async()=>{const b=await chromium.launch({headless:true,args:['--use-angle=metal']});try{
+ const p=await b.newPage({viewport:{width:1280,height:720},deviceScaleFactor:2}),errors=[];
+ p.on('pageerror',e=>errors.push(String(e)));
+ await p.route('https://gibs.earthdata.nasa.gov/**',r=>r.abort('failed'));
+ await p.goto('http://127.0.0.1:'+(process.env.MISSION1_CLEAN_PREVIEW_PORT||4175));
+ await p.getByRole('button',{name:'Inspect ISS',exact:true}).waitFor({state:'visible'});
+ await p.waitForFunction(()=>Array.from(document.querySelectorAll('button')).some(b=>b.textContent==='Inspect ISS'&&!b.disabled),null,{timeout:60000});
+ const hasQA=await p.evaluate(()=>typeof globalThis.__qa!=='undefined');
+ await p.getByRole('button',{name:'Inspect ISS',exact:true}).click();
+ await p.waitForFunction(()=>document.body.innerText.includes('Drag to orbit the ISS'),null,{timeout:20000});
+ await p.waitForTimeout(6000);
+ await p.screenshot({path:evidence+'/clean-production-live-inspection.jpg',type:'jpeg',quality:82});
+ await p.getByRole('button',{name:'Back to Earth View',exact:true}).click();
+ await p.waitForTimeout(6000);
+ const overview=await p.getByRole('button',{name:'Inspect ISS',exact:true}).isEnabled();
+ const report={api:'real running Java 21 backend on 8080, no orbital fixture interception',productionPort:+(process.env.MISSION1_CLEAN_PREVIEW_PORT||4175),hasQA,overview,errors,text:await p.locator('body').innerText()};
+ fs.writeFileSync(evidence+'/clean-production-live-smoke.json',JSON.stringify(report,null,2));
+ if(hasQA||!overview||errors.length)throw Error(JSON.stringify(report));
+ console.log({hasQA,overview,errors});
+}finally{await b.close();}})().catch(e=>{console.error(e);process.exitCode=1;});
