@@ -1,0 +1,641 @@
+{
+  "method": "Serial matched builds; 120 warm-up + 400 measured frames per source/path; 4 paths, 1600 measured/build. Nearest-rank p95. Final candidate includes finite-projection first-exit refinement. GPU timer available but GPU queries not collected.",
+  "reports": [
+    {
+      "label": "baseline-dev",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 0.18824999982491136,
+        "median": 0.09999999403953552,
+        "p95": 0.9000000059604645,
+        "worst": 1.4000000059604645,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 41.59185463659148,
+        "median": 35.0,
+        "p95": 50.10000000000582,
+        "worst": 83.29999999999927,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.23275000013411046,
+            "median": 0.09999999403953552,
+            "p95": 1.0999999940395355,
+            "worst": 1.4000000059604645,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 38.38621553884712,
+            "median": 33.399999999999636,
+            "p95": 50,
+            "worst": 67.10000000000036,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.14649999931454658,
+            "median": 0.09999999403953552,
+            "p95": 0.30000001192092896,
+            "worst": 0.5999999940395355,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.98546365914786,
+            "median": 50,
+            "p95": 50.900000000001455,
+            "worst": 83.29999999999927,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.21900000050663948,
+            "median": 0.09999999403953552,
+            "p95": 1,
+            "worst": 1.4000000059604645,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 38.51127819548872,
+            "median": 33.400000000001455,
+            "p95": 50.099999999998545,
+            "worst": 66.69999999999709,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.1547499993443489,
+            "median": 0.10000002384185791,
+            "p95": 0.30000001192092896,
+            "worst": 0.4000000059604645,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.48446115288221,
+            "median": 50,
+            "p95": 50.10000000000582,
+            "worst": 82.59999999999127,
+            "samples": 399
+          }
+        }
+      ]
+    },
+    {
+      "label": "baseline-prod",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 0.16781250009313226,
+        "median": 0.09999999403953552,
+        "p95": 0.699999988079071,
+        "worst": 1.2999999821186066,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 41.68652882205514,
+        "median": 35.299999999991996,
+        "p95": 50.10000000000582,
+        "worst": 83.29999999998836,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.20400000043213368,
+            "median": 0.09999999403953552,
+            "p95": 0.9000000059604645,
+            "worst": 1.2999999821186066,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.92681704260652,
+            "median": 33.399999999999636,
+            "p95": 50.099999999998545,
+            "worst": 66.80000000000018,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.14825000047683715,
+            "median": 0.10000002384185791,
+            "p95": 0.30000001192092896,
+            "worst": 0.4000000059604645,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 45.11328320802005,
+            "median": 50,
+            "p95": 50.10000000000582,
+            "worst": 83.20000000000073,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.1819999998807907,
+            "median": 0.09999999403953552,
+            "p95": 0.800000011920929,
+            "worst": 1.199999988079071,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 38.929072681704255,
+            "median": 33.400000000001455,
+            "p95": 50.099999999998545,
+            "worst": 68.19999999999709,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.13699999958276748,
+            "median": 0.09999999403953552,
+            "p95": 0.30000001192092896,
+            "worst": 0.7999999821186066,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.77694235588972,
+            "median": 50,
+            "p95": 50.5,
+            "worst": 83.29999999998836,
+            "samples": 399
+          }
+        }
+      ]
+    },
+    {
+      "label": "experiment-dev",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 1.4968125003017485,
+        "median": 1.5,
+        "p95": 2.399999976158142,
+        "worst": 4.800000011920929,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 40.882832080200494,
+        "median": 33.75,
+        "p95": 50.10000000000582,
+        "worst": 83.39999999999418,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 1.103500000461936,
+            "median": 1.0,
+            "p95": 1.9000000059604645,
+            "worst": 2.800000011920929,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.4671679197995,
+            "median": 33.399999999999636,
+            "p95": 50,
+            "worst": 67.29999999999927,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 1.8042500008642675,
+            "median": 1.7999999821186066,
+            "p95": 2.5,
+            "worst": 4.800000011920929,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 43.94511278195488,
+            "median": 49.900000000001455,
+            "p95": 50.10000000000582,
+            "worst": 81.79999999999927,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 1.1972499997913837,
+            "median": 1.100000023841858,
+            "p95": 2,
+            "worst": 2.699999988079071,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.592731829573914,
+            "median": 33.400000000001455,
+            "p95": 50.099999999998545,
+            "worst": 83.39999999999418,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 1.882250000089407,
+            "median": 1.9000000059604645,
+            "p95": 2.4000000059604645,
+            "worst": 3.100000023841858,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.526315789473685,
+            "median": 49.90000000000873,
+            "p95": 50.59999999999127,
+            "worst": 83.39999999999418,
+            "samples": 399
+          }
+        }
+      ]
+    },
+    {
+      "label": "experiment-prod",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 1.4776250000856817,
+        "median": 1.5,
+        "p95": 2.2999999821186066,
+        "worst": 4.799999982118607,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 41.17293233082706,
+        "median": 34.299999999995634,
+        "p95": 50.10000000000582,
+        "worst": 83.19999999999982,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 1.1565000005066395,
+            "median": 1.0,
+            "p95": 2,
+            "worst": 2.9000000059604645,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.67167919799499,
+            "median": 33.399999999999636,
+            "p95": 50.100000000000364,
+            "worst": 83.19999999999982,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 1.815749999061227,
+            "median": 1.899999976158142,
+            "p95": 2.4000000059604645,
+            "worst": 3.300000011920929,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.4844611528822,
+            "median": 50,
+            "p95": 50.799999999995634,
+            "worst": 67.89999999999782,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 1.1440000005811453,
+            "median": 1.0499999970197678,
+            "p95": 2,
+            "worst": 2.600000023841858,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 38.009022556390974,
+            "median": 33.400000000001455,
+            "p95": 50.099999999998545,
+            "worst": 66.69999999999709,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 1.7942500001937152,
+            "median": 1.800000011920929,
+            "p95": 2.5,
+            "worst": 4.799999982118607,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.526566416040076,
+            "median": 50,
+            "p95": 50.59999999999127,
+            "worst": 83.19999999999709,
+            "samples": 399
+          }
+        }
+      ]
+    },
+    {
+      "label": "accepted-dev",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 0.2813124996609986,
+        "median": 0.29999998211860657,
+        "p95": 0.4000000059604645,
+        "worst": 0.5999999940395355,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 41.04937343358396,
+        "median": 33.40000000000873,
+        "p95": 50.10000000000582,
+        "worst": 83.30000000000018,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.29350000008940696,
+            "median": 0.30000001192092896,
+            "p95": 0.4000000059604645,
+            "worst": 0.5999999940395355,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 38.17694235588973,
+            "median": 33.39999999999782,
+            "p95": 50.100000000000364,
+            "worst": 83.30000000000018,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.27099999994039536,
+            "median": 0.29999998211860657,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.27443609022557,
+            "median": 49.900000000001455,
+            "p95": 50.599999999998545,
+            "worst": 66.70000000000073,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.24324999898672103,
+            "median": 0.20000001788139343,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.425563909774446,
+            "median": 33.39999999999418,
+            "p95": 50,
+            "worst": 66.69999999999709,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.317499999627471,
+            "median": 0.30000001192092896,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.3205513784461,
+            "median": 50,
+            "p95": 50.5,
+            "worst": 82.30000000000291,
+            "samples": 399
+          }
+        }
+      ]
+    },
+    {
+      "label": "accepted-prod",
+      "metadata": {
+        "viewport": [
+          1280,
+          720
+        ],
+        "dpr": 2,
+        "canvas": [
+          2560,
+          1440
+        ],
+        "utc": "2026-09-30T15:45:59.975908000000345Z",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "gpuTimerAvailable": true
+      },
+      "errors": [],
+      "trajectoryCpuMs": {
+        "mean": 0.27868750048801305,
+        "median": 0.29999998211860657,
+        "p95": 0.4000000059604645,
+        "worst": 0.5,
+        "samples": 1600
+      },
+      "frameMs": {
+        "mean": 41.14285714285714,
+        "median": 33.5,
+        "p95": 50.10000000000582,
+        "worst": 83.30000000000291,
+        "samples": 1596
+      },
+      "poses": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.28150000035762784,
+            "median": 0.29999998211860657,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.80125313283208,
+            "median": 33.399999999999636,
+            "p95": 50.099999999998545,
+            "worst": 67,
+            "samples": 399
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.3055000001937151,
+            "median": 0.30000001192092896,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.401002506265655,
+            "median": 50,
+            "p95": 50.5,
+            "worst": 66.60000000000218,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "axis-cross",
+          "trajectoryCpuMs": {
+            "mean": 0.22899999976158142,
+            "median": 0.20000001788139343,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 37.88471177944862,
+            "median": 33.400000000001455,
+            "p95": 50,
+            "worst": 66.70000000000437,
+            "samples": 399
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "name": "oblique",
+          "trajectoryCpuMs": {
+            "mean": 0.29875000163912774,
+            "median": 0.30000001192092896,
+            "p95": 0.4000000059604645,
+            "worst": 0.5,
+            "samples": 400
+          },
+          "frameMs": {
+            "mean": 44.48446115288221,
+            "median": 50,
+            "p95": 50.10000000000582,
+            "worst": 83.30000000000291,
+            "samples": 399
+          }
+        }
+      ]
+    }
+  ]
+}

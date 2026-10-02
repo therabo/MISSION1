@@ -1,11 +1,12 @@
 import {
   ArcType, Cartesian2, Cartesian3, Color, GeometryInstance, Material,
-  PolylineGeometry, PolylineMaterialAppearance, Primitive, type PrimitiveCollection, type SampledPositionProperty, type Scene,
+  JulianDate, PolylineGeometry, PolylineMaterialAppearance, Primitive, type PrimitiveCollection, type SampledPositionProperty, type Scene,
 } from 'cesium';
 import type { ComparisonResponse, TrajectorySample } from '../orbital/comparison';
 import type { TrajectorySource } from './trajectorySelection';
 import { makeSampledPosition } from './sampleProperty';
-import { earliestClearTime, projectedSourceEvaluator, startRampCssPixels, type Pixel } from './trajectoryClearance';
+import { earliestClearTime, initialRegion, projectedSourceEvaluator, protectedCircle, startRampCssPixels, type InitialRegion, type Pixel } from './trajectoryClearance';
+import { trajectoryAppearance } from './trajectoryAppearance';
 
 // Distinct selected accents make a switch visible even for subpixel-coincident paths.
 export const TRAJECTORY_ACCENTS = { PRIMARY_GP_TLE: '#53d9cd', NASA_OEM: '#edb86a' } as const;
@@ -37,16 +38,19 @@ export function forwardOpacity(sampleMs: number, startMs: number, endMs: number,
  * Temporal, projection and selection uniforms change per tick; geometry is exact.
  */
 export function trailMaterial(alphaScale: number, glowPower: number): Material {
-  const start = 'smoothstep(forwardStart, forwardStart + startRamp, materialInput.st.s)';
+  // Temporal clipping belongs only to the physical future window. First-exit
+  // branches may merge at a tangent; they must never clip a safe body fragment.
+  const start = 'smoothstep(futureStart, futureStart + startRamp, materialInput.st.s)';
+  const width = `(${start} * clearanceMask.alpha)`;
   return new Material({ strict: true, translucent: true, fabric: {
     type: 'Mission1ForwardTrail',
     uniforms: { trailColor: Color.fromCssColorString(TRAJECTORY_ACCENTS.PRIMARY_GP_TLE),
-      maximumAlpha: FORWARD_TRAIL.activeAlpha * alphaScale, forwardStart: 0, forwardEnd: 0.85, startRamp: 0.001 },
+      maximumAlpha: FORWARD_TRAIL.activeAlpha * alphaScale, futureStart: 0, forwardStart: 0, forwardEnd: 0.85, startRamp: 0.001 },
     materials: { edgeGlow: { type: 'PolylineGlow', uniforms: { color: Color.WHITE, glowPower, taperPower: 1 } },
       clearanceMask: clearanceMaterial() },
     components: {
       emission: 'trailColor.rgb',
-      alpha: `clearanceMask.alpha * edgeGlow.alpha * maximumAlpha * ${start} * (1.0 - smoothstep(0.5 * ${start}, 0.5 * ${start} + 0.025, abs(materialInput.st.t - 0.5))) * (1.0 - smoothstep(forwardStart, forwardEnd, materialInput.st.s))`,
+      alpha: `clearanceMask.alpha * edgeGlow.alpha * maximumAlpha * ${start} * (1.0 - smoothstep(0.5 * ${width}, 0.5 * ${width} + 0.025, abs(materialInput.st.t - 0.5))) * (1.0 - smoothstep(forwardStart, forwardEnd, materialInput.st.s))`,
     },
   } });
 }
@@ -60,82 +64,110 @@ export interface ForwardTrail {
   readonly periodSeconds: number;
   readonly position: SampledPositionProperty;
   readonly sampleTimes: number[];
+  /** First exit if found within the model/halo-derived local search. */
+  firstExitMs: number | null;
+  /** Initial protection end; includes bounded fallback, never a body cutoff. */
   gapSeconds: number | null;
-  rampSeconds: number;
 }
 export interface TrajectoryTrails { generatedMs: number; trails: ForwardTrail[] }
 
+const maskCircle = { x: 0, y: 0, radius: 0 };
+const maskRegion: InitialRegion = { x: 0, y: 0, radius: 0, ax: 0, ay: 0, tx: 0, ty: 0, ux: 0, uy: 0, external: false };
+const localDate = new Date();
+const localTime = new JulianDate();
+const localPosition = new Cartesian3();
+const nextPosition = new Cartesian3();
+
 export function adaptTrailClearance(trail: ForwardTrail, sceneMs: number, scene: Scene,
   hull: Pixel[] | null, desiredGap: number, silhouetteSize: number): void {
-  trail.gapSeconds = null;
-  if (!hull) return;
+  const begin = Math.max(sceneMs + 1, trail.startMs);
   const endMs = Math.min(sceneMs + FORWARD_TRAIL.horizonRevolutions * trail.periodSeconds * 1000, trail.endMs);
-  const pixelAt = projectedSourceEvaluator(scene, (time, result) => trail.position.getValue(time, result));
-  const rampPixels = startRampCssPixels(desiredGap);
-  const startMs = earliestClearTime(Math.max(sceneMs + 1, trail.startMs), endMs, trail.sampleTimes,
-    pixelAt, hull, desiredGap + silhouetteSize);
-  if (startMs === null) return;
-  trail.gapSeconds = (startMs - sceneMs) / 1000;
-  const first = pixelAt(startMs), firstX = first?.x, firstY = first?.y;
-  const next = pixelAt(Math.min(startMs + 1000, endMs));
-  const pixelsPerSecond = firstX !== undefined && firstY !== undefined && next
-    ? Math.hypot(next.x - firstX, next.y - firstY) : 0;
-  trail.rampSeconds = Math.min((endMs - startMs) / 1000,
-    rampPixels / Math.max(0.01, pixelsPerSecond));
+  // A local projection failure must not blank the safe far trail. Protection
+  // remains in the current-frame fragment mask, with no source extrapolation.
+  trail.gapSeconds = Math.max(0.001, (begin - sceneMs) / 1000);
+  trail.firstExitMs = null;
   updateClearanceMask(trail, scene, hull, desiredGap, silhouetteSize);
-}
-
-/** Follow camera/model motion every frame; the more expensive source search is
- * throttled separately. Reuse public uniform objects, with no primitive churn.
- */
-export function updateClearanceMask(trail: ForwardTrail, scene: Scene, hull: Pixel[] | null,
-  desiredGap: number, silhouetteSize: number): void {
+  if (!hull || endMs <= begin) return;
+  const circle = protectedCircle(hull, maskCircle);
+  localDate.setTime(begin); JulianDate.fromDate(localDate, localTime);
+  const physical = trail.position.getValue(localTime, localPosition);
+  localDate.setTime(Math.min(begin + 1000, endMs)); JulianDate.fromDate(localDate, localTime);
+  const future = trail.position.getValue(localTime, nextPosition);
+  if (!physical || !future) return;
+  const speed = Cartesian3.distance(physical, future) / Math.max(0.001, (Math.min(begin + 1000, endMs) - begin) / 1000);
+  // Orbital sagitta s²/(2r) bounds the local search in tangent views, using
+  // actual display/halo size and current lens rather than an arbitrary horizon.
+  const range = Cartesian3.distance(scene.camera.positionWC, physical);
+  const metresPerCssPixel = 2 * range / Math.max(1, scene.canvas.clientHeight * scene.camera.frustum.projectionMatrix[5]);
+  const protectedMetres = (circle.radius + desiredGap + silhouetteSize + FORWARD_TRAIL.layers[0].width / 2) * metresPerCssPixel;
+  const localSeconds = (protectedMetres + Math.sqrt(2 * Cartesian3.magnitude(physical) * protectedMetres)) / Math.max(1, speed);
+  const pixelAt = projectedSourceEvaluator(scene, (time, result) => trail.position.getValue(time, result));
+  const origin = pixelAt(begin);
+  if (!origin) return;
+  const region = initialRegion(hull, origin, desiredGap + silhouetteSize, maskRegion);
+  const requiredMs = earliestClearTime(begin, Math.min(endMs, begin + localSeconds * 1000), trail.sampleTimes,
+    pixelAt, hull, desiredGap + silhouetteSize);
+  const startMs = requiredMs ?? Math.min(endMs, begin + localSeconds * 1000);
+  trail.firstExitMs = requiredMs;
+  trail.gapSeconds = (startMs - sceneMs) / 1000;
+  // The bounded convex source-to-station region masks local fragments at any
+  // epoch. Its coverage must not switch when first-exit branches merge. Origin
+  // selection and later reentry masking are independent; safe fragments outside
+  // this current-camera region remain available for the entire future window.
   for (const layer of trail.layers) {
-    const mask = layer.material.materials.clearanceMask;
-    mask.uniforms.footprintCount = hull?.length ?? 0;
-    mask.uniforms.clearance = desiredGap + silhouetteSize;
-    mask.uniforms.cssHeight = scene.canvas.clientHeight;
-    Cartesian2.fromElements(scene.canvas.clientWidth / scene.drawingBufferWidth,
-      scene.canvas.clientHeight / scene.drawingBufferHeight, mask.uniforms.bufferToCss);
-    if (hull) for (let i = 0; i < 8; i++) {
-      const p = hull[i % hull.length];
-      Cartesian2.fromElements(p.x, p.y, mask.uniforms[`footprint${i}`]);
-    }
+    const u = layer.material.materials.clearanceMask.uniforms;
+    u.initialExternal = region.external;
+    Cartesian2.fromElements(region.ax, region.ay, u.origin);
+    Cartesian2.fromElements(region.tx, region.ty, u.tangentA);
+    Cartesian2.fromElements(region.ux, region.uy, u.tangentB);
   }
 }
 
-/** Public Fabric submaterial clips every halo/body fragment in CSS space. */
+/** Current-frame circular SDF protects both layers without a rectangular cut. */
+export function updateClearanceMask(trail: ForwardTrail, scene: Scene, hull: Pixel[] | null,
+  desiredGap: number, silhouetteSize: number): void {
+  const circle = hull ? protectedCircle(hull, maskCircle) : null;
+  for (const layer of trail.layers) {
+    const u = layer.material.materials.clearanceMask.uniforms;
+    u.radius = circle ? circle.radius + desiredGap + silhouetteSize : 0;
+    u.initialExternal = false;
+    u.softness = startRampCssPixels(desiredGap);
+    u.cssHeight = scene.canvas.clientHeight;
+    if (circle) Cartesian2.fromElements(circle.x, circle.y, u.center);
+    Cartesian2.fromElements(scene.canvas.clientWidth / scene.drawingBufferWidth,
+      scene.canvas.clientHeight / scene.drawingBufferHeight, u.bufferToCss);
+  }
+}
 function clearanceMaterial() {
-  const uniforms: Record<string, number | Cartesian2> = {
-    footprintCount: 0, clearance: 0, cssHeight: 1, bufferToCss: new Cartesian2(1, 1),
-  };
-  for (let i = 0; i < 8; i++) uniforms[`footprint${i}`] = new Cartesian2();
-  return { type: 'Mission1ScreenClearance', uniforms, source: `
-    uniform float footprintCount;
-    uniform float clearance;
+  return { type: 'Mission1ScreenClearance', uniforms: {
+    center: new Cartesian2(), radius: 0, softness: 1, cssHeight: 1, bufferToCss: new Cartesian2(1, 1),
+    origin: new Cartesian2(), tangentA: new Cartesian2(), tangentB: new Cartesian2(), initialExternal: false,
+  }, source: `
+    uniform vec2 center;
+    uniform float radius;
+    uniform float softness;
     uniform float cssHeight;
     uniform vec2 bufferToCss;
-    ${Array.from({ length: 8 }, (_, i) => `uniform vec2 footprint${i};`).join('\n')}
+    uniform vec2 origin;
+    uniform vec2 tangentA;
+    uniform vec2 tangentB;
+    uniform bool initialExternal;
+    float segmentDistance(vec2 p, vec2 a, vec2 b) {
+      vec2 edge = b - a;
+      return length(p - mix(a, b, clamp(dot(p - a, edge) / max(dot(edge, edge), 0.000001), 0.0, 1.0)));
+    }
+    float side(vec2 a, vec2 b, vec2 p) { vec2 edge = b - a, offset = p - a; return edge.x * offset.y - edge.y * offset.x; }
     czm_material czm_getMaterial(czm_materialInput materialInput) {
       czm_material material = czm_getDefaultMaterial(materialInput);
-      vec2 points[8];
-      ${Array.from({ length: 8 }, (_, i) => `points[${i}] = footprint${i};`).join('\n')}
       vec2 pixel = vec2(gl_FragCoord.x * bufferToCss.x, cssHeight - gl_FragCoord.y * bufferToCss.y);
-      float distanceToModel = 1.0e10;
-      bool inside = true;
-      for (int i = 0; i < 8; i++) {
-        if (float(i) >= footprintCount) break;
-        int next = i + 1;
-        if (float(next) >= footprintCount) next = 0;
-        vec2 a = points[i];
-        vec2 edge = points[next] - a;
-        vec2 relative = pixel - a;
-        if (edge.x * relative.y - edge.y * relative.x < 0.0) inside = false;
-        float phase = clamp(dot(relative, edge) / max(dot(edge, edge), 0.000001), 0.0, 1.0);
-        distanceToModel = min(distanceToModel, length(relative - phase * edge));
+      float distance = length(pixel - center) - radius;
+      if (initialExternal) {
+        float a = side(origin, tangentA, pixel), b = side(tangentA, tangentB, pixel), c = side(tangentB, origin, pixel);
+        bool inside = (a >= 0.0 && b >= 0.0 && c >= 0.0) || (a <= 0.0 && b <= 0.0 && c <= 0.0);
+        float triangle = min(segmentDistance(pixel, origin, tangentA), min(segmentDistance(pixel, tangentA, tangentB), segmentDistance(pixel, tangentB, origin)));
+        distance = min(distance, inside ? -triangle : triangle);
       }
-      if (inside) distanceToModel = 0.0;
-      material.alpha = footprintCount < 3.0 ? 0.0 : smoothstep(clearance, clearance + 0.75, distanceToModel);
+      material.alpha = radius <= 0.0 ? 1.0 : smoothstep(0.0, softness, distance);
       return material;
     }` };
 }
@@ -148,7 +180,7 @@ function createTrail(source: TrajectorySource, samples: TrajectorySample[], peri
       geometryInstances: new GeometryInstance({ geometry: new PolylineGeometry({
         positions, width: layer.width, arcType: ArcType.NONE, vertexFormat: PolylineMaterialAppearance.VERTEX_FORMAT,
       }) }),
-      appearance: new PolylineMaterialAppearance({ material, translucent: true }),
+      appearance: trajectoryAppearance(material, samples.length),
       show: false, asynchronous: true, allowPicking: false,
     });
     return { primitive, material };
@@ -156,7 +188,7 @@ function createTrail(source: TrajectorySource, samples: TrajectorySample[], peri
   return { source, positions, layers, startMs: Date.parse(samples[0].time),
     endMs: Date.parse(samples[samples.length - 1].time), periodSeconds,
     position: makeSampledPosition(samples), sampleTimes: samples.map((sample) => Date.parse(sample.time)),
-    gapSeconds: null, rampSeconds: 0 };
+    firstExitMs: null, gapSeconds: null };
 }
 
 export function createTrajectoryTrails(response: ComparisonResponse): TrajectoryTrails {
@@ -176,13 +208,16 @@ const inactiveColor = Color.fromCssColorString(FORWARD_TRAIL.inactiveColor);
 export function updateTrail(trail: ForwardTrail, sceneMs: number, active: TrajectorySource, transitionVisibility = 1): void {
   const { startMs, endMs } = forwardBounds(sceneMs, trail.periodSeconds, trail.endMs, trail.gapSeconds ?? 0);
   const span = trail.endMs - trail.startMs;
+  const physicalStartMs = Math.max(sceneMs + 1, trail.startMs);
   const selected = trail.source === active;
-  for (const [index, layer] of trail.layers.entries()) {
-    layer.material.uniforms.forwardStart = (startMs - trail.startMs) / span;
-    layer.material.uniforms.forwardEnd = Math.max(layer.material.uniforms.forwardStart + 1e-6, (endMs - trail.startMs) / span);
-    layer.material.uniforms.startRamp = Math.max(1e-6, trail.rampSeconds * 1000 / span);
+  for (let index = 0; index < trail.layers.length; index++) {
+    const layer = trail.layers[index];
+    layer.material.uniforms.forwardStart = (Math.min(startMs, endMs - Math.max(1, span * 1e-6)) - trail.startMs) / span;
+    layer.material.uniforms.futureStart = (physicalStartMs - trail.startMs) / span;
+    layer.material.uniforms.forwardEnd = (endMs - trail.startMs) / span;
+    layer.material.uniforms.startRamp = Math.max(1e-6, 1 / span);
     layer.material.uniforms.trailColor = selected ? activeColors[trail.source] : inactiveColor;
-    layer.material.uniforms.maximumAlpha = trail.gapSeconds === null || startMs >= endMs ? 0 :
+    layer.material.uniforms.maximumAlpha = physicalStartMs >= endMs ? 0 :
       (selected ? FORWARD_TRAIL.activeAlpha : FORWARD_TRAIL.inactiveAlpha) * FORWARD_TRAIL.layers[index].alphaScale * transitionVisibility;
   }
 }

@@ -1,0 +1,366 @@
+{
+  "label": "production-lint",
+  "errors": [],
+  "cases": [
+    {
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "earth",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Inspect ISS",
+          "size": "10px"
+        },
+        {
+          "text": "ORBITAL STATE / ISS",
+          "size": "10px"
+        },
+        {
+          "text": "SCENE TIME · UTC",
+          "size": "10px"
+        },
+        {
+          "text": "Backend-aligned clock · 1×",
+          "size": "10px"
+        },
+        {
+          "text": "WGS84",
+          "size": "9px"
+        },
+        {
+          "text": "TWO SOURCES",
+          "size": "9px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    },
+    {
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "mode": "inspection",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Back to Earth View",
+          "size": "10px"
+        },
+        {
+          "text": "ORBITAL STATE / ISS",
+          "size": "10px"
+        },
+        {
+          "text": "SCENE TIME · UTC",
+          "size": "10px"
+        },
+        {
+          "text": "Backend-aligned clock · 1×",
+          "size": "10px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "Model not to scale · Attitude unavailable",
+          "size": "10px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    },
+    {
+      "size": {
+        "width": 900,
+        "height": 700
+      },
+      "mode": "earth",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Inspect ISS",
+          "size": "10px"
+        },
+        {
+          "text": "ORBITAL STATE / ISS",
+          "size": "10px"
+        },
+        {
+          "text": "SCENE TIME · UTC",
+          "size": "10px"
+        },
+        {
+          "text": "Backend-aligned clock · 1×",
+          "size": "10px"
+        },
+        {
+          "text": "WGS84",
+          "size": "9px"
+        },
+        {
+          "text": "TWO SOURCES",
+          "size": "9px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    },
+    {
+      "size": {
+        "width": 900,
+        "height": 700
+      },
+      "mode": "inspection",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Back to Earth View",
+          "size": "10px"
+        },
+        {
+          "text": "ORBITAL STATE / ISS",
+          "size": "10px"
+        },
+        {
+          "text": "SCENE TIME · UTC",
+          "size": "10px"
+        },
+        {
+          "text": "Backend-aligned clock · 1×",
+          "size": "10px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "Model not to scale · Attitude unavailable",
+          "size": "10px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "earth",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Inspect ISS",
+          "size": "10px"
+        },
+        {
+          "text": "ORBITAL STATE / ISS",
+          "size": "10px"
+        },
+        {
+          "text": "SCENE TIME · UTC",
+          "size": "10px"
+        },
+        {
+          "text": "Backend-aligned clock · 1×",
+          "size": "10px"
+        },
+        {
+          "text": "WGS84",
+          "size": "9px"
+        },
+        {
+          "text": "TWO SOURCES",
+          "size": "9px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "inspection",
+      "overflow": false,
+      "unnamedControls": [],
+      "imagesWithoutAlt": [
+        {
+          "src": "http://127.0.0.1:4190/cesiumStatic/Assets/Images/ion-credit.png",
+          "title": "Cesium ion"
+        }
+      ],
+      "imagesWithoutName": [],
+      "tinyText": [
+        {
+          "text": "Data attribution",
+          "size": "10px"
+        },
+        {
+          "text": "1",
+          "size": "9px"
+        },
+        {
+          "text": "Back to Earth View",
+          "size": "10px"
+        },
+        {
+          "text": "INDEPENDENT",
+          "size": "9px"
+        },
+        {
+          "text": "GP / TLE",
+          "size": "9px"
+        },
+        {
+          "text": "Model not to scale · Attitude unavailable",
+          "size": "10px"
+        },
+        {
+          "text": "POSITION / TRAJECTORY SOURCE",
+          "size": "10px"
+        }
+      ],
+      "clippedControls": [],
+      "contrast": []
+    }
+  ]
+}

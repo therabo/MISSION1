@@ -1,0 +1,812 @@
+[
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 2120,
+    "pixelsOutsideCoverage": 109,
+    "maxDistanceCssPixels": 16.437440329113826
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 5220,
+    "pixelsOutsideCoverage": 654,
+    "maxDistanceCssPixels": 38.437410400554946
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 5275,
+    "pixelsOutsideCoverage": 654,
+    "maxDistanceCssPixels": 38.437410400554946
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 1977,
+    "pixelsOutsideCoverage": 35,
+    "maxDistanceCssPixels": 9.652234225754086
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 4733,
+    "pixelsOutsideCoverage": 261,
+    "maxDistanceCssPixels": 24.425494299621946
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 4765,
+    "pixelsOutsideCoverage": 261,
+    "maxDistanceCssPixels": 24.425494299621946
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 1947,
+    "pixelsOutsideCoverage": 109,
+    "maxDistanceCssPixels": 16.2412554047308
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 4979,
+    "pixelsOutsideCoverage": 652,
+    "maxDistanceCssPixels": 38.24104973768036
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 5024,
+    "pixelsOutsideCoverage": 652,
+    "maxDistanceCssPixels": 38.24104973768036
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 3676,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.093450057216581
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 5683,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901559054
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 6667,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901559054
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 0,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": null
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 2271,
+    "pixelsOutsideCoverage": 110,
+    "maxDistanceCssPixels": 16.446068342540936
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 5557,
+    "pixelsOutsideCoverage": 665,
+    "maxDistanceCssPixels": 38.446042959033655
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 5617,
+    "pixelsOutsideCoverage": 665,
+    "maxDistanceCssPixels": 38.446042959033655
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 2135,
+    "pixelsOutsideCoverage": 46,
+    "maxDistanceCssPixels": 10.578508776655582
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 5097,
+    "pixelsOutsideCoverage": 321,
+    "maxDistanceCssPixels": 25.80768017762597
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 5159,
+    "pixelsOutsideCoverage": 321,
+    "maxDistanceCssPixels": 25.80768017762597
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 2098,
+    "pixelsOutsideCoverage": 110,
+    "maxDistanceCssPixels": 16.743786705837366
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 5258,
+    "pixelsOutsideCoverage": 668,
+    "maxDistanceCssPixels": 38.248232167438395
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 5323,
+    "pixelsOutsideCoverage": 668,
+    "maxDistanceCssPixels": 38.248232167438395
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 4480,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.122836216628903
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 8360,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580748
+  },
+  {
+    "build": "baseline-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 8423,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580748
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 1506,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.00868291944524
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 3097,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.337746693892013
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 3149,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.337746693892013
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 1085,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 3.672537218458043
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 2230,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.638473310813518
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 2286,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.638473310813518
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 884,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.420029713153217
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 2080,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.734444284083885
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 2114,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.734444284083885
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 790,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.440397256085965
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 2008,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.854522607034664
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 2059,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.854522607034664
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 3388,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.093450057216467
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 5685,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901558827
+  },
+  {
+    "build": "dev-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 6255,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901558827
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 1668,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.0931079608426355
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 3421,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.529773613216623
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 3495,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.529773613216623
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 1228,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 3.8101967842713225
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 2545,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.858912890005344
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 2605,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.858912890005344
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 1025,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.4244494499479785
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 2361,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.818768214855533
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 2424,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.818768214855533
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 922,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.444636441434396
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 2234,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.859087053593273
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 2304,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.859087053593273
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 4079,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.122836216629244
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 7632,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580782
+  },
+  {
+    "build": "dev-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 7689,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580782
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 1506,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.008682919445583
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 3097,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.337746693892239
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 3149,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.337746693892239
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 1085,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 3.6725372184586145
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 2230,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.638473310813007
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 2286,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.638473310813007
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 884,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.42002971315305
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 2080,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.734444284083725
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 2114,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.734444284083725
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 790,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.440397256086198
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 2008,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.854522607034223
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 2059,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.854522607034223
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 3388,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.093450057216808
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 5685,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901559282
+  },
+  {
+    "build": "prod-boundary",
+    "source": "PRIMARY_GP_TLE",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 6255,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.925752901559282
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "body",
+    "foregroundPixels": 1668,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.093107960841953
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "halo",
+    "foregroundPixels": 3421,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.529773613216056
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-0",
+    "layer": "both",
+    "foregroundPixels": 3495,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.529773613216056
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "body",
+    "foregroundPixels": 1228,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 3.8101967842712066
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "halo",
+    "foregroundPixels": 2545,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.85891289000541
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-1",
+    "layer": "both",
+    "foregroundPixels": 2605,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.85891289000541
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "body",
+    "foregroundPixels": 1025,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.42444944994787
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "halo",
+    "foregroundPixels": 2361,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.81876821485538
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-2",
+    "layer": "both",
+    "foregroundPixels": 2424,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.81876821485538
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "body",
+    "foregroundPixels": 922,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.444636441434321
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "halo",
+    "foregroundPixels": 2234,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.859087053593045
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-3",
+    "layer": "both",
+    "foregroundPixels": 2304,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 9.859087053593045
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "body",
+    "foregroundPixels": 4079,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 4.122836216629471
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "halo",
+    "foregroundPixels": 7632,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580805
+  },
+  {
+    "build": "prod-boundary",
+    "source": "NASA_OEM",
+    "pose": "rectangle-boundary-4",
+    "layer": "both",
+    "foregroundPixels": 7689,
+    "pixelsOutsideCoverage": 0,
+    "maxDistanceCssPixels": 8.94799672580805
+  }
+]

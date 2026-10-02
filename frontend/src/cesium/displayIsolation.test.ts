@@ -40,7 +40,7 @@ describe('display lift isolation through selected source and renderer', () => {
         if (i === 0) matrices.push(Transforms.eastNorthUpToFixedFrame(displayed));
       }
       expect(JulianDate.secondsDifference(times[1], times[0])).toBe(dt);
-      for (const t of group.trails) { t.gapSeconds = lift === 0 ? 10 : 30; t.rampSeconds = 3; updateTrail(t, JulianDate.toDate(times[0]).getTime(), source); }
+      for (const t of group.trails) { t.gapSeconds = lift === 0 ? 10 : 30; updateTrail(t, JulianDate.toDate(times[0]).getTime(), source); }
       expect(group.trails.map(t => t.positions)).toEqual(vertices);
       expect(payload).toEqual(original); // Epochs, lineage and all API physical values remain intact.
     }

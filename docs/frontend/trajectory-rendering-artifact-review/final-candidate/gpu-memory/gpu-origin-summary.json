@@ -1,0 +1,41 @@
+{
+  "method": "250 consecutive native frames/path/source/build; current, previous endpoint-fade boundary, and off-before/off-after at identical CURRENT camera; compact spatial protection is held at the current pose and has no temporal handoff. Width/style/geometry unchanged. Absolute color difference exceeds measured background noise +8/255; model circle excluded. Expected centerline alpha>=0.10 checked within 6 CSS px neighborhood. Root timestamps remain analytical and are not aliased to GPU pixel epochs.",
+  "runs": [
+    {
+      "file": "memory-gpu-dev-NASA_OEM-memory.json.gz",
+      "frames": 250,
+      "unexpectedGpuHiddenFrames": 0,
+      "missingExpectedPoints": 0,
+      "gapInducedCompleteHideFrames": 0,
+      "maxGapInducedChangedPixels": 0,
+      "maxGapInducedChannelDelta": 24
+    },
+    {
+      "file": "memory-gpu-dev-PRIMARY_GP_TLE-memory.json.gz",
+      "frames": 250,
+      "unexpectedGpuHiddenFrames": 0,
+      "missingExpectedPoints": 0,
+      "gapInducedCompleteHideFrames": 0,
+      "maxGapInducedChangedPixels": 0,
+      "maxGapInducedChannelDelta": 125
+    },
+    {
+      "file": "memory-gpu-prod-NASA_OEM-memory.json.gz",
+      "frames": 250,
+      "unexpectedGpuHiddenFrames": 0,
+      "missingExpectedPoints": 0,
+      "gapInducedCompleteHideFrames": 0,
+      "maxGapInducedChangedPixels": 0,
+      "maxGapInducedChannelDelta": 24
+    },
+    {
+      "file": "memory-gpu-prod-PRIMARY_GP_TLE-memory.json.gz",
+      "frames": 250,
+      "unexpectedGpuHiddenFrames": 0,
+      "missingExpectedPoints": 0,
+      "gapInducedCompleteHideFrames": 0,
+      "maxGapInducedChangedPixels": 0,
+      "maxGapInducedChannelDelta": 125
+    }
+  ]
+}

@@ -1,0 +1,1456 @@
+{
+  "archive": "/Users/daniel/Desktop/mission1-trajectory-before-fragment-time-fix.zip",
+  "archiveSha256": "b28717a00b54b5f5bab27b73ae7bfa4cec6ade6f008f567c1400fed2571b0dea",
+  "originals": [
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/compact-native-captures.json",
+      "sha256": "2d03b1265f652abc223b3bc14d64886f3ce29399d6fcae8c90c2b1ba5e4b6cf2",
+      "bytes": 362241
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/full-graphics-source-freeze.json",
+      "sha256": "593030874c1e72863fe02ddf9f5821b2bd2a4b3a9218faf11061100b01527e0e",
+      "bytes": 31677
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/before-near-plane-source-preservation.json",
+      "sha256": "da2760ee07a436f3b3ec045c6f8a5f117630e6042a42833b1c36541819a220cd",
+      "bytes": 515
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/intermediate-trial-preservation.json",
+      "sha256": "b8db0fe8e11f3a22c8f4abab5aa36d3fbd85ad86d38c11dcbb3a5c751476e155",
+      "bytes": 357344
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/raster-summary.json",
+      "sha256": "83e8cb7e4404a7c54da8007a6a3290839bc372793b292caadf01547387268079",
+      "bytes": 1546
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/runtime-source-hashes.json",
+      "sha256": "061a0f0a92703bb6a9a63fc95eaba067638785a46fa6afbf42677ba6a9fd5c90",
+      "bytes": 378
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/final-memory-native-preservation.json",
+      "sha256": "32f03cd614eb13ce344f40167d7bc439813457ca69b4b84e8fee3ea3e0039483",
+      "bytes": 1241945
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regression-run.json",
+      "sha256": "f409ef2c197a8b9987c860bfab3390efb866028e87c2d4c452d528d575751cec",
+      "bytes": 8720
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/graphics-freeze.json",
+      "sha256": "1d2587e4d08484070427824e722ff06e1a51f159ce065bd77512ff72a97e8242",
+      "bytes": 2366
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/final-native-capture-preservation.json",
+      "sha256": "8e6554885f94d636b4ea48ea8c647cc18a7873bd53e784833e1f6bc94ec6e7be",
+      "bytes": 4361971
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial-image-preservation.json",
+      "sha256": "5386986529d90c37b8d80ef1b07f5f7dc92daf550d9382e848db372bc90ede30",
+      "bytes": 33057
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/experiment-classification.md",
+      "sha256": "a6379e41ea61210252235df1cee447dcaa8c0b28154f39898b603b167391b47e",
+      "bytes": 3512
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/before-near-plane-guard-preservation.json",
+      "sha256": "4326fc8efccb00b946dafbdb907946f4564b69c009164f80a5902bbdf463d311",
+      "bytes": 625399
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/physical-invariance.json",
+      "sha256": "06c645f31c0cc11682d7f47ce10ecae9991a1da742c4766873c1a6a3b0855717",
+      "bytes": 24578
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/development-partial-audit.json",
+      "sha256": "b81e9a78f94759f22193c80659c927deb130ae6b4f59227ecec00957a2c346d6",
+      "bytes": 5524671
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/development-clearance-desktop-audit.json",
+      "sha256": "674228e80699ede853e6c59a3d7a4aa9de29b336a06d8b9f44ab904dea31bd65",
+      "bytes": 3696324
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/production-partial-audit.json",
+      "sha256": "1a056d48e20fb11af6d18fbee03abcf873e2f64803bb24f059a72cc6911c0a56",
+      "bytes": 5526138
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/production-clearance-desktop-audit.json",
+      "sha256": "0122211f4adb7c2dd3e997a2946bff526161ddd5de2cd8d7d6991c118c745707",
+      "bytes": 3696320
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/production-clearance-mobile-audit.json",
+      "sha256": "9de999ebff7d52d60038af5304bf161987cbee965c5e2516a2319b734cde7ae6",
+      "bytes": 743790
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/development-clearance-mobile-audit.json",
+      "sha256": "e8026d9e4695b5eb08fc0437386e538f4d1ec9e06a7f0ff4788b30edf13ea4aa",
+      "bytes": 743758
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/development-clearance-narrow-audit.json",
+      "sha256": "a367e66172d8fd32b9b9397a1d6c656168d9a641dc1818bf4b009fa4374f3d85",
+      "bytes": 722473
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/clearance/production-clearance-narrow-audit.json",
+      "sha256": "6d590476f596e32292d60345d2719788d2ae3c52545dabb8e742c0d8fa0c770e",
+      "bytes": 722616
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-1.json.gz",
+      "sha256": "1a957e25ccc51681b923917182df2c651d6afc1303dd73085b3bd990857a5604",
+      "bytes": 208769
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-0.json.gz",
+      "sha256": "5fcfced89e63b92307429eecb948652a4fa6c0e4436ff1ce7e23f9c12b60f4dc",
+      "bytes": 208812
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-4.json.gz",
+      "sha256": "079c87c52a5c75402d9f498c1730454fa9dfebb80c1f58f3204abb6c32814b30",
+      "bytes": 207745
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-2.json.gz",
+      "sha256": "391f8f456b31eb27e2670d871d4e308c72ab3096a186e57c3249325358a4fa9a",
+      "bytes": 208752
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-3.json.gz",
+      "sha256": "ca8558dfcbb140a9ad53bc1fb4885554f72aa10e01654e00cc089ab7b97d1a1c",
+      "bytes": 208872
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-5.json.gz",
+      "sha256": "fa1303bbdff8a54d26023ab612b32e86ecc8634bcc8f4bbe08a5f18b85fe6285",
+      "bytes": 207747
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-0.json.gz",
+      "sha256": "78b9ff49de5bf7140ccdc07c23baed34f740071bfc42a59662e221a17e62dbab",
+      "bytes": 207835
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-1.json.gz",
+      "sha256": "5344290d37d6fd0aa9c6210be85a49e85dcfe3c60a0bd84e2600c8566f3e6d59",
+      "bytes": 207863
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-5.json.gz",
+      "sha256": "cc1e14f3355507e945346e01dcba0696bf3967fd1c3cf5bbdf74fed7b40aafd2",
+      "bytes": 208680
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-3.json.gz",
+      "sha256": "fe6665d56008f6fbe30dca346a28beec1ab5f8049d0765d6f7dbec658a395194",
+      "bytes": 207749
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-NASA_OEM-memory-2.json.gz",
+      "sha256": "229649c843964f4f3e7d0e2df3a5598a7819b38bbc4100cf931f0e52e7ecc59a",
+      "bytes": 207752
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-summary.json",
+      "sha256": "e49631583c001e1183d490c4e978eaf9f483997d9f27602aa0c9a92ec1036343",
+      "bytes": 17158
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/memory/accepted-memory-PRIMARY_GP_TLE-memory-4.json.gz",
+      "sha256": "9b93c0a04e1a80e628ad58eb96c4583a0011837b96916e2eb8de3ce78762008e",
+      "bytes": 208803
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/native/clean-live-smoke.json",
+      "sha256": "f94e03371dd3163b159a83ddc654702cf5774ec58cb8920a36d4e8ec1081caaf",
+      "bytes": 6760
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/rectangle-boundaries/dev-boundary-sweep.json",
+      "sha256": "bd4758e59256da9b1c4fc27007bf7ec378ca8ba419e4d89bc96758813d7971f1",
+      "bytes": 134122
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/rectangle-boundaries/raster-analysis.json",
+      "sha256": "797fa6b5d88d65c122b4ab26b22a54f2cda39667649f871ec9fb94afffde1bca",
+      "bytes": 20994
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/rectangle-boundaries/baseline-boundary-sweep.json",
+      "sha256": "46bfdfb29362d23f65bf62362d37bc84ae5591530ae3bc1d0b5315d6dd08361b",
+      "bytes": 135524
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/rectangle-boundaries/prod-boundary-sweep.json",
+      "sha256": "0cc2f711c9762f3ed808ab3c4736c92977a887d4692281e3a1246ec801630552",
+      "bytes": 134100
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-pitch.json.gz",
+      "sha256": "6bca4d9a5fa614b82b947b9ab506abebf692ffa80847c778c83f466f9fe88b6a",
+      "bytes": 367587
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-rotate-zoom.json.gz",
+      "sha256": "6197f13a61f662faac3d44ca71e0a834f6ce7f4d8332faffafee54050c6dcce3",
+      "bytes": 411090
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-against.json.gz",
+      "sha256": "8123844d58bcca43a24ea9b3e363dc54dbd3aeaf6ba11059ecc539b4221a6db2",
+      "bytes": 266062
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-rotation.json.gz",
+      "sha256": "cf4ab1c05e2b32da5466d720ec0050b6a8dab94c30d3661f390af1ec7a43f65f",
+      "bytes": 1012063
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-crossing.json.gz",
+      "sha256": "9757ab9eb6234351942a0360e96bbdb4c36de470a623c2b90e799854f3623fdf",
+      "bytes": 301103
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-heading.json.gz",
+      "sha256": "fef5f968053ebd77496c6f6f1267be7fbad8d53573639f4b78baa187697bb247",
+      "bytes": 413426
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-against.json.gz",
+      "sha256": "ea15976c840a3cad6c83fb03683891b9aab8cefdbe9254e2356bbb6a2d47f107",
+      "bytes": 266634
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "sha256": "dbf49c90f1592d38caa82dff04a24a8da912f4d4e53a5fc024662bd1cfa3e390",
+      "bytes": 1012648
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-summary.json",
+      "sha256": "032ec8bf16493b673393e25e42c392fc3a114003dfa424a99910d2a4d0515860",
+      "bytes": 28283
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-against.json.gz",
+      "sha256": "0ba4b497da4347ac52eb805f614a19ba086457b6a226dd55c27946f636dbc4db",
+      "bytes": 266417
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "sha256": "f3b1315b33faa12a810d30156b5ef52ee4219c9d44b0bd2d992edfc5e5ac2e74",
+      "bytes": 411404
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "sha256": "26165d648bc051fd76960a4d265e2a03565a8b499238ceee58e6c52bd7990771",
+      "bytes": 410722
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-pitch.json.gz",
+      "sha256": "106fdc9b55d8008b8d405b8ef86ff88ef8e3db17dd4959d376146fb067a0c069",
+      "bytes": 368539
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-oscillation.json.gz",
+      "sha256": "e0fbefeaaec899a1737396c65d04a963d6ba07c890b6d05836039f8f235f0e9f",
+      "bytes": 352621
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-following.json.gz",
+      "sha256": "80eef5820b1d910d3066f8ed5df012341de114ee604d3a3ff96ed041371e7ab2",
+      "bytes": 313844
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-following.json.gz",
+      "sha256": "01f4b8cc1368f00fb8d2b0154e4d2b747a090881cdafaeab7f6c27237c04ffb6",
+      "bytes": 314097
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-rotation.json.gz",
+      "sha256": "a2b086b5e6403b1f986a881d723caab20b31b0a52ba34c718ab16b19cb8b2b9a",
+      "bytes": 1012019
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-reverse-rotation.json.gz",
+      "sha256": "a7148be6a88303d8bdaf671dc58f0d30a37d07c1b3df2c6acd8a4097b6747af1",
+      "bytes": 1012161
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "6edf40030e3edf220f43df52070c326603f46260b36b4494938a6001072c1a6e",
+      "bytes": 302595
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-zoom.json.gz",
+      "sha256": "1cf04a907b992740f812343b563cf0ff55ac82d0bb50eb33c7f867d369918c5e",
+      "bytes": 523419
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-rotate-zoom.json.gz",
+      "sha256": "ce40b3d8e1bef7eba75e28f47b4dce60c0108f8ee10db89af083f3f7c50e831a",
+      "bytes": 410644
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-pitch.json.gz",
+      "sha256": "6d3e93b745b4b69af9f17fc6a2a337ff8bbcfe44318dcfae383fc9b0ede962e3",
+      "bytes": 367507
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/aggregate.json",
+      "sha256": "2683bf22e26b6ca45297f0d8bf035be4c6ebbff49d4f0e1ed04d14cb78cf2b10",
+      "bytes": 48659
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-zoom.json.gz",
+      "sha256": "11375d2a9c84383dbba07a394cacd35877d3d483230b59600aae4f512bc319c8",
+      "bytes": 523433
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-oscillation.json.gz",
+      "sha256": "d888e8eb8f00aa1da55c72294bb853fe0c07221228c63bacef443f8bdf0094d2",
+      "bytes": 353836
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-zoom.json.gz",
+      "sha256": "d5bccddb18884e5283c341ab16668ae9adac9cdbbee5d682c894ee50ef2aac4b",
+      "bytes": 522710
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-following.json.gz",
+      "sha256": "f20779f7e20f80161149cf67bb6b1aadb8b99c481b25303d1257525cc98b6da4",
+      "bytes": 314116
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-summary.json",
+      "sha256": "e1d6011d862ffc07a1322b1fb9e4713d3e346c59969de89864271ca03141171f",
+      "bytes": 28255
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-zoom.json.gz",
+      "sha256": "58628b0f6096d034ca0a8556a325a4c6407a2851a05cb5d908e1b640ab5bec00",
+      "bytes": 522674
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-reverse-rotation.json.gz",
+      "sha256": "0b7326a92ce16bf064130da178fc333796fc0212b0922061f9dc8e2b057973d5",
+      "bytes": 1012080
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-heading.json.gz",
+      "sha256": "54d91b601556662498c2a4bd768375a2c25b5926283cf26c2192c8f9e4bc96f2",
+      "bytes": 413068
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-pitch.json.gz",
+      "sha256": "64f73ad0d5051e923c3b08dd0e33fa971fb559062e7b2d98772215c9f016d45c",
+      "bytes": 368603
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-oscillation.json.gz",
+      "sha256": "881cdfa28542c461a3ea487f2593cd13c569791692157c5ec13bd77cc93828f9",
+      "bytes": 353026
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-crossing.json.gz",
+      "sha256": "0da8561187eae55e815587183ef8c384d67466895e5c3fb5889bc0b65f87c33a",
+      "bytes": 301295
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-oscillation.json.gz",
+      "sha256": "314950c3537c88570f5b0c878561b88f23a485494faf9411eb18d80af556d85c",
+      "bytes": 353884
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-heading.json.gz",
+      "sha256": "c891eaa97783073ba7521d80d9c59ff4e93f4a6872c1526dee9b304a715f51d4",
+      "bytes": 412965
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-PRIMARY_GP_TLE-heading.json.gz",
+      "sha256": "9ebf1fc6e3b3dd4448d19b695572568bff590ffaead66de22f9cfbeb98a5dd2c",
+      "bytes": 413271
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-against.json.gz",
+      "sha256": "74fcdf2e619f722f6a998eaf70e0197bd4b46039dcec0d2887a50a73e0910837",
+      "bytes": 266161
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-dev-NASA_OEM-rotation.json.gz",
+      "sha256": "52a365565a8fbe8e5fe89c8b0bbc2657288c4cb747100b7a77e9ccd40ff7e0dd",
+      "bytes": 1012241
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-NASA_OEM-following.json.gz",
+      "sha256": "682730c391695b82212822d3b392a0d4409927417357473b2794caa1cf98f8de",
+      "bytes": 313775
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "sha256": "40425213bbb9defb4425ca253bde33aff73761f07b2d4dc741545a101751bfed",
+      "bytes": 1012159
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "2cc77b183c3e103950a5c5e4b2f5543bf2ef6c50519a99fa13b16b5d7fa20be7",
+      "bytes": 302673
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-stress/validated-prod-PRIMARY_GP_TLE-rotation.json.gz",
+      "sha256": "ae33310571def079fcc57818ebd1de3396f60f4769d614ed875a83ed1e8c95a2",
+      "bytes": 1012134
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/memory-gpu-prod-NASA_OEM-memory.json.gz",
+      "sha256": "04c449e11d3d7d58e734bb6562e7bea8d03de8ba6a64593304bfad59d028a3ae",
+      "bytes": 193808
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/gpu-origin-summary.json",
+      "sha256": "23985f76c6920271bad340339ee6b5ba54e4d884e3a40953e95c372c7ab870a2",
+      "bytes": 1614
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/memory-gpu-prod-PRIMARY_GP_TLE-memory.json.gz",
+      "sha256": "8a5983568fce3c485dca19e077b93b7ba2b052e07c33ab1834231587f532daed",
+      "bytes": 194421
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/gpu-origin-metrics.json.gz",
+      "sha256": "ae7c1f1ffb15627d3a9688364d4a315bf764e829a2aa0cd2a800659d950954ff",
+      "bytes": 11298
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/memory-gpu-dev-NASA_OEM-memory.json.gz",
+      "sha256": "cda6b69db4a3e7ccb8b744487cfd274f5c863ac5ec49aee8991b3a5d56e67a61",
+      "bytes": 193816
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-memory/memory-gpu-dev-PRIMARY_GP_TLE-memory.json.gz",
+      "sha256": "e8d72595fdfca5d4ab01c564a18546cb8866323ff21ae73527ba8c5e2d40bb92",
+      "bytes": 194459
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "edd175958a4bab6f4fc4a945b7b2ffd2502d03e99e1803103dfcb383a9dc2753",
+      "bytes": 137027
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "63ff8596abdf9beb9bb9044a11ece6f1628f3c7674d6a46c392a094b470e4357",
+      "bytes": 134003
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "46f25ae82f9c96dd05080637609971af9e2de32fba5796c64edcd976154bc90b",
+      "bytes": 137557
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-summary.json",
+      "sha256": "5fd2f83fdc1438ef43b333e7fdd2fb4e06420f4f998f1096098b62113d9c383e",
+      "bytes": 11279
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "ef0613aa78a96f9b112fb40cd0250eb866036a2dd77dc63f18fe5ca6df334ba7",
+      "bytes": 134153
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-summary.json",
+      "sha256": "24fc593b6262d2062294a2db981ccd62d0b912d7de2af16d00086d0b2b2aee4c",
+      "bytes": 11208
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "53469730bfd1df3f00283a14e09298c58d5e5ffd66d4db70a2b38a448b772371",
+      "bytes": 134556
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "adeec6c87db27ae51d88e6357ef79bb74a60ddddb03894e127708df7aa72f1d5",
+      "bytes": 101040
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/baseline-dev-axis-trace.json",
+      "sha256": "93abd165f62040b82dda26cd28619170a3f4aeae11845701c7cd246c919b0c9a",
+      "bytes": 1274774
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "7d551208950916bc65fb013a9e525be36c08ca1a0225efb54dfb07752708fe65",
+      "bytes": 134667
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "1ecbf200124d95123eab7d82a7a9f73ba13f19caf1150787781bebb26c99a6b2",
+      "bytes": 136819
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-NASA_OEM-along.json.gz",
+      "sha256": "0bd9639bd995e61b999cdd36aec1052cc9e4258856df55b282dfdefa025727a4",
+      "bytes": 134597
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "6bee4a3abbcc3ead11a7842e0f5a07d8d812ee2b87175015e8b214653e46d3a4",
+      "bytes": 137631
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "0daf115e06dcede7b03ff60a49c29ad9d69d3475d25e6b8bc927cc9e8c03c371",
+      "bytes": 134209
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-NASA_OEM-along.json.gz",
+      "sha256": "4f04624e3e377c47e7e3350244c8e19ef9d323e6cf37942fb17a86360d6586fe",
+      "bytes": 134868
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "38cfc9b42fc779c6882465e69cc0d86da1082fee4959f073ae02df0c1b129745",
+      "bytes": 133868
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "a212f6cbb8a54f506694161721a30795418b1fe2821537a72422c41b55679754",
+      "bytes": 100621
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-prod-origin-NASA_OEM-axis.json.gz",
+      "sha256": "cc7429edc415ad4b0ae31d17f6d75f9a3cb4624d37c5e2c10f65f27350177f93",
+      "bytes": 100852
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/baseline/accepted-baseline-dev-origin-NASA_OEM-axis.json.gz",
+      "sha256": "01727ec3c9689e8d9934d238a75de7c6cccc3b3017c989df10c9abd13cab56f0",
+      "bytes": 101342
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "fd96e44a8886f0c809492bf94c6454ffe0a8bf6a462a8d4596488ce412b350d5",
+      "bytes": 153807
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-summary.json",
+      "sha256": "cd7d1318b6dfb6117c11f5f40553d4b7c9a9d2f0170f1a0a5a6e38a30dbbea90",
+      "bytes": 11312
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-NASA_OEM-axis.json.gz",
+      "sha256": "3ad6ce8d71b40cda43a9bd87bf28be15c5a2bfcdf4b50f15b2b778aab6652355",
+      "bytes": 151762
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "9ddb9d8eca82ff91c5225462312351bd4aa303cf235557704599b1e4f6383a1a",
+      "bytes": 141778
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "6bc8478412166138c851baeb95e16c9af45f944179d616f483ca3f8402ab19c4",
+      "bytes": 141798
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-NASA_OEM-along.json.gz",
+      "sha256": "3aa7897118c718fd8d6a385fe77c37545e4dbfd23074d86559450b376b017b4c",
+      "bytes": 141367
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "946ce28effc39a456172aa01351c57d90e206a35b5c467c28d95eb07ead98002",
+      "bytes": 140909
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-summary.json",
+      "sha256": "db930551afdc9da7dfb114d230d91a912e202fdefa49459b93a7a5da610d5ed1",
+      "bytes": 11301
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-NASA_OEM-axis.json.gz",
+      "sha256": "1d55525a300d693ea7d3a62a923f66c26fc115882bc99f672d1afc01e6bb665f",
+      "bytes": 151760
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-NASA_OEM-along.json.gz",
+      "sha256": "ac7333e0f4ecc68b5216925ea9fdb5be9e0e904fc2cd488c2fe691d1d82375eb",
+      "bytes": 141349
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "cbfd585e95151d26127d1612de745bddbce486a7c185323f5d108fa6c859b26e",
+      "bytes": 141644
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "dea197f31ac8d1abf6dcd6d59797986c088535694dbb3efe723bd83ba7868ab3",
+      "bytes": 152094
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "06a4f5c9b822c382f4af0ebb706e490455a1e18df92a01a679db753311b2086c",
+      "bytes": 141746
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-prod-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "4cf855b905b4a6930fbed30a34ad4eb778de80886090c3138870270b2f9499f7",
+      "bytes": 154324
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "20b57a4c91d32a14c4e0a3990ee1bc1ba54f8237e4b5d5aa040733d60e4342e6",
+      "bytes": 153900
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "b03a902ca242b29c520a503d8f23ed6e9937fd00d12e65a1e8bd85906acd580a",
+      "bytes": 141091
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "1df83b73e10e1bd351c9611b3b058ba76c7bc2209410b02840405f1e7b6caa97",
+      "bytes": 154413
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-origin/validated-dev-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "ff18f51b3c74d45813b06f80deea5e497705e340835b2f357af0b9fb404474a2",
+      "bytes": 152189
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial3/trial3-origin-summary.json",
+      "sha256": "efe30fa3c34f5587bfee0e79de47e2137e9554b42c5dc80ae40bbdd52c24b912",
+      "bytes": 5120
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/inactive-raster/inactive-dev-sweep.json",
+      "sha256": "99c5493fe86f004c920615c4445dd73d145699fc6617eec85518aa2cdcc6ba93",
+      "bytes": 90978
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/inactive-raster/raster-analysis.json",
+      "sha256": "eaa3c8cb289253477519118def89aaadf33b4ac4c82e83959a0eaafd4098c99d",
+      "bytes": 8070
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/inactive-raster/inactive-prod-sweep.json",
+      "sha256": "66a2eba3fa1828a91d2f329cfc2b44f5b5b385b621c4afe77d7e614186ec7064",
+      "bytes": 90958
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-2.json.gz",
+      "sha256": "5a18e55141d812b99d9978105f2310bdab01092526fed67d99bb6de772e61cc0",
+      "bytes": 375715
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-3.json.gz",
+      "sha256": "8e57eec54630d773cfb2d9b50fa5ec4f1fa8a51a08965802b5178f33bf46b758",
+      "bytes": 376457
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-2.json.gz",
+      "sha256": "f3a7d9b8e0e2279c2bcf9d308a0fa52dcd1348b586c10e79632a559ad6c2a1bd",
+      "bytes": 376457
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-3.json.gz",
+      "sha256": "fe7383ff58ed1bd16d01cbb50a15df9b45c4efac15aa67a93bd08b6d7f449486",
+      "bytes": 375725
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-0.json.gz",
+      "sha256": "4ec97808df2da992e9087ab19aafd8b34abd7633b829b511700f798a7b99482d",
+      "bytes": 376983
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-1.json.gz",
+      "sha256": "2b269217c373a5aac9d413cec811b7765bf935771ecb14fa67f4820dcb0f6926",
+      "bytes": 375416
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-0.json.gz",
+      "sha256": "f695698b91e71f163928f291a9f7fc11371ca7618142849d5143d748be4dcf14",
+      "bytes": 375416
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-1.json.gz",
+      "sha256": "b9a0a8b96a6b2c8c1c7fc2919831deb33415d7802ce2e0ff0681e68939a8db16",
+      "bytes": 376815
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-4.json.gz",
+      "sha256": "13ad0e4a0cb58131ec6554edbb1caafaef030db28e155698c4475c9dff24946d",
+      "bytes": 376462
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-5.json.gz",
+      "sha256": "29bcff4ce3817765450136407d701ae8358bbcc8c929dfe3f73bcad6f7397e56",
+      "bytes": 375697
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-NASA_OEM-memory-4.json.gz",
+      "sha256": "8ee955e2075edea96096b1b673dfad77c5c9c4d133e8f8f5d8a18db2769f0154",
+      "bytes": 375606
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-summary.json",
+      "sha256": "60ed8e71a526e48a60e0373da85d12ec68d8c4249ed831a6f7f6400d6a565a15",
+      "bytes": 17117
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validated-memory/validated-memory-PRIMARY_GP_TLE-memory-5.json.gz",
+      "sha256": "85e1026d6a9a5d5ec71a72ce88df42321c15ed8fe2de4aa8d58a2006e0f0639c",
+      "bytes": 376491
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial2/trial2-origin-summary.json",
+      "sha256": "06b7e93ed7f904b78583add18b643d196ba624f723917ff455a2b5a2a04227b5",
+      "bytes": 5104
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial5/gpu-origin-critical-summary.json",
+      "sha256": "2d67d01ab3dcc6de76da2859307526d2a2aff07e7e494d427da7012bb1ace613",
+      "bytes": 6692
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/candidate-dev/candidate-dev-origin-summary.json",
+      "sha256": "d08868890bad63857b51f5f26f6301eee236b836d27f6390f90e91ac4471a996",
+      "bytes": 5121
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/raster-inactive.cjs",
+      "sha256": "82b0ab98509db18508211800177e67f0ff897ce324197e2be4cc08c8b57ab725",
+      "bytes": 8127
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/raster-rectangle-boundaries.cjs",
+      "sha256": "bf15551fb8b5d104b4d176424e71732ae1417cba73af255095b79a15865847e8",
+      "bytes": 7924
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/raster-final.cjs",
+      "sha256": "5b7298e20363b384983327fc15d964cf06be2bbfd43299b63a884d2f54306b41",
+      "bytes": 8429
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/analyze-raster.py",
+      "sha256": "174dd60c6017367bb43e895f932bc38df2dc6a88446dadd31203e5bc8654db50",
+      "bytes": 3243
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/compact-trial-images.py",
+      "sha256": "88d72fde8b8635ffaed596ce91abd0e4cc3d42cd783ad91befc9f621b106d328",
+      "bytes": 1306
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/browser-stress.cjs",
+      "sha256": "2b568c1f82c2395ab1c8109992a8ea5c552ae50cbc095fa204b6bec226b9b5e0",
+      "bytes": 18908
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/run-regressions.py",
+      "sha256": "46b011f4ace3ce642993703358872822ff08e010c12f4b74093b86ffb78f677e",
+      "bytes": 3214
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/run-validation-followup.py",
+      "sha256": "43d5a6e5a92e98abc75a3145868680561363448853d60d0c03a273c2c8e761ff",
+      "bytes": 4664
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/analyze-gpu-origin.py",
+      "sha256": "50128526754304c745ce609508ffaa918fcbe57f0e32cb728ce6b1f6bf34eb43",
+      "bytes": 3814
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/raster-extra.cjs",
+      "sha256": "0f3796ce9d601193a1280a7b3bbb9f11d7843bdb6bd24188298b2cce95d7d66e",
+      "bytes": 8236
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/gpu-origin.cjs",
+      "sha256": "7c120261847209a42b5347aaf58ff656f8557cd952652c7c19b2996201dd0f59",
+      "bytes": 15723
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/refresh-raster-clips.cjs",
+      "sha256": "3969bf1a2ac561a004c7b54060e5a59cb2f67506c4ea254ee708b0cd4dc736b1",
+      "bytes": 7305
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "sha256": "0852db5a2ea23d9d3942e837afb54978d76fcf187a96472aa64ec05b08735539",
+      "bytes": 17053
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/sync-qa.py",
+      "sha256": "3f0b26c30e82c20a3643dbb7d547b84e8917cc796cf5b53c2c8fb7d0d22cc2a2",
+      "bytes": 1512
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/selected-native-frames.json",
+      "sha256": "124c333186fa4e45f25752a4cb860224265eba268405479268f8e435473418a9",
+      "bytes": 2024
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-dev-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "ecc0a802ffd7cddd19d85bdb6ccb92636f5c647db5ff5415c6af31404decc649",
+      "bytes": 158193
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-prod-NASA_OEM-axis.json.gz",
+      "sha256": "fc8b1ac22339a8fdf0078090a4bf2e1537f9de0f903319309fb70d61488d75a7",
+      "bytes": 155365
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-prod-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "ce4a8876d664186e1af1b6e96066c52785a787784e2ced03057f45f80526f79a",
+      "bytes": 158173
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-dev-NASA_OEM-crossing.json.gz",
+      "sha256": "862c7f746060bd988cdecf4a4209723aa0e2ed0cb6eff00d114071a79523501e",
+      "bytes": 157607
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-prod-NASA_OEM-crossing.json.gz",
+      "sha256": "bc90f6190ec4c28b9e9a9efd8f34ab6a89eee22dc28babc0f14888623dfb1891",
+      "bytes": 157662
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-summary.json",
+      "sha256": "bdea93a11e2e51585701b9742a70bb05dec76fec6060e8ef422342f7d60022b7",
+      "bytes": 2726
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-prod-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "bb3369b9c5b6ab6a0d0fbbf4edcc06b556bb31bbf2413a92c0bc0d40d65452f2",
+      "bytes": 155989
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-metrics.json.gz",
+      "sha256": "4660c6521aaea95065539cb14e8edc7a44ca084701365543123bc94b4295105e",
+      "bytes": 19605
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-dev-NASA_OEM-axis.json.gz",
+      "sha256": "6f57bbaf28211811e45985a6980626e777f31769617a23edf92b773f75664516",
+      "bytes": 155450
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/gpu-origin/gpu-origin-dev-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "34ce4093819aaf0860d1d18ce62ec628251211471d4af5c873c4e80cbfc1242d",
+      "bytes": 156130
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/production-narrow-extra.json",
+      "sha256": "c1cbf687ad3b7d607820711c2c66a8cc5531136ef1d14bad03ef9145acc18304",
+      "bytes": 40456
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/production-lint-visual-lint.json",
+      "sha256": "9207872f2d24b098885a846f79d0c8385a100cdde6a354c6db0022655a62845d",
+      "bytes": 7749
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/production-matrix-full.json",
+      "sha256": "e36d56e56a356e5f596874ab8812415426ecfedd68c09d331f104a0d089048ca",
+      "bytes": 281483
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/development-lint-visual-lint.json",
+      "sha256": "1da388b06c0e52f53625ae117af27c461abf995316687b34f3d25832dbb29c78",
+      "bytes": 7750
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/production-mobile-extra.json",
+      "sha256": "9e2ee2b401b97b5849dfe0ac2e0a6b3fc804829b941471e28e127686fcf5f851",
+      "bytes": 60249
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/development-matrix-full.json",
+      "sha256": "4ffb13b4aae4014ebd93ee2d6101e011f3efd72637fbe7ef8ce98200101f607d",
+      "bytes": 280376
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/production-desktop-extra.json",
+      "sha256": "70ffe883159c0434fa4e405e03ad92411b99270a8fb3f69b7cf462ad3d848737",
+      "bytes": 32444
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/development-narrow-extra.json",
+      "sha256": "a16d1e86ce6bd07cf1dcbe6ee5bded9a20576242dd913a2aa67f84426163574e",
+      "bytes": 23157
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/development-mobile-extra.json",
+      "sha256": "a78eb39aa09f9c26d462157898faeb18ab0c4e5258d45740c9d9845f4f65904a",
+      "bytes": 29782
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/regressions/development-desktop-extra.json",
+      "sha256": "7fcb02337fe5b09be92e1aceea250e9f070a5ad2f1aa23f2888dbe9353fcebd2",
+      "bytes": 21127
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "2ef5aac17b0bde805b0a0c7e8b17f65f122632765803d9898be1e3af086c200e",
+      "bytes": 84645
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-summary.json",
+      "sha256": "5a582fc7220eea54c9fc09ec79756f91d6a03c34368de78637029b258b45afd7",
+      "bytes": 11251
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "bc25143bb9e3e10a6d004c858af0cdac0333d67b470a956a3680ffca1aa9a236",
+      "bytes": 100980
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "e6f66fef003df27798a899ff7800312342f98946b14f76ce0597d56789d617f3",
+      "bytes": 84150
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "bd12c8f6a07a1815e36926d726f7bfe75778ec86bb37a2ad5dca85d482610af8",
+      "bytes": 101472
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-NASA_OEM-reverse.json.gz",
+      "sha256": "b0488baf06ef34b32c4e0b3e5cc341f38c1ba7d38326d0c319710164c833612c",
+      "bytes": 84148
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-NASA_OEM-axis.json.gz",
+      "sha256": "3bbb70d852fe5805bfd85a312fec305127436cb4fcaf2a65bfe376909b0c4f19",
+      "bytes": 96727
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "88c503d55d600646145b43b0eec0f99001790a3bb656c9c2529d08426c26d635",
+      "bytes": 84791
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-NASA_OEM-along.json.gz",
+      "sha256": "2a1de1add2d177c33642fe89acd09dcf1a2b1089fe1bbfabcacd4422e32fb511",
+      "bytes": 84329
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-summary.json",
+      "sha256": "cf7735714f630a75dbdcf69acd5635ac29fd59620f996c1374e9984e40d4fff1",
+      "bytes": 11266
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "45ea7ac3252b3f290e24169878872832da7148024b1d19285cbe305fae42e538",
+      "bytes": 97378
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-NASA_OEM-axis.json.gz",
+      "sha256": "bb0c4336d36008a4dd0713186a5044a8330e2d39478c390989d2cfc088e3bee4",
+      "bytes": 96895
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-PRIMARY_GP_TLE-axis.json.gz",
+      "sha256": "e239d4bc7a26fc02b5a99c013a21d8c8f054cbbe4711609a4a7ee8ce758cf4fa",
+      "bytes": 97309
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-PRIMARY_GP_TLE-reverse.json.gz",
+      "sha256": "867f61847cd639f2ba75307d5777623956844497048c2ff4a6bba91ec8ff7ac3",
+      "bytes": 84726
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-PRIMARY_GP_TLE-along.json.gz",
+      "sha256": "9a530481761a36402b26ee61f5f032c78794e2fcc6a6a2a879244ac33851077a",
+      "bytes": 84840
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-NASA_OEM-crossing.json.gz",
+      "sha256": "551510c6295d3fc7170bd6c28dcb86482cdb676b5028b9971d3fbcd738d72256",
+      "bytes": 101106
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-prod-origin-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "047d5d4295ae1ec0fd49f980b1b9910da4d4fb5243b0d570ab5245f2a7150f21",
+      "bytes": 101473
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/origin/accepted-dev-origin-NASA_OEM-along.json.gz",
+      "sha256": "52a938780f76f19b475fde570dea9a4e61c1ebdbbe95f3d418752544bbe9bfb2",
+      "bytes": 84252
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/raster/accepted-prod-raster-sweep.json",
+      "sha256": "c2a169ef343ed32bb66806fedb84dea42408521e730606b3eef59f6f8bd8d5e6",
+      "bytes": 876811
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/raster/raster-analysis.json",
+      "sha256": "48d3e794beda1c3a4b7ffdcfeb7fab27f1fb405934e7d0cd8d4355bad7cef96b",
+      "bytes": 128543
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/raster/accepted-dev-raster-sweep.json",
+      "sha256": "32244cd478daae5557713f3030675e072514d383fc8face83c4b474330d4bbb2",
+      "bytes": 876888
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/raster/accepted-baseline-raster-sweep.json",
+      "sha256": "26dca57a78023252f363e7aaf62761451e72be2cf32616d4d67009744a634ac2",
+      "bytes": 885602
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/extra-raster/raster-analysis.json",
+      "sha256": "4b5642c9c97dbbab581c2a9c01d5743f5728e46765df8f27b7c3130d4ca0231e",
+      "bytes": 57540
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/extra-raster/extra-prod-sweep.json",
+      "sha256": "df013215a3fb526bf9c93aec2832889dcd504b911ae24939bdc45f7c785e576f",
+      "bytes": 1049051
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/extra-raster/extra-dev-sweep.json",
+      "sha256": "b8050949bc6c5cdc131f1e412af4031e0b0c53bdb08a0b9176dd7a493b0a1aad",
+      "bytes": 1048772
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/accepted-dev-sweep.json",
+      "sha256": "2c690a599a12f6b4ae64b63cc2560f6cd3140d2d97a8c3f154a4eeff721db2b3",
+      "bytes": 125761
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/experiment-dev-sweep.json",
+      "sha256": "3def76fc4fedb796bc8b0c7d7198ad8bd7714052df7e982a157ec9058e368c1a",
+      "bytes": 119895
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/experiment-prod-sweep.json",
+      "sha256": "187fff8ee1a82bc5d075e33cff068e3794e5daee04a8c2d3fbe4841e17c58a89",
+      "bytes": 118874
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/baseline-dev-sweep.json",
+      "sha256": "aec415adfe2c3b27113ee3a2e42c4fc6066e380a5a7da5509eeed7f215fafcb5",
+      "bytes": 120479
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/comparison.json",
+      "sha256": "55e8c2f87dd191d2e989889c218873e8e36b2c5efe8deb6fb0ee4b1e8a11b228",
+      "bytes": 15763
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/candidate-prod-sweep.json",
+      "sha256": "63b9db035bc715b9877cd20514c08ad74db51000d4cbc2acfa8d7601e6dc10c2",
+      "bytes": 125768
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/final-comparison.json",
+      "sha256": "e7f076721919dec9fb4ffe9f0fa40d3e144c71ffbc51f8f2fa72e1a932e8b72b",
+      "bytes": 17822
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/candidate-dev-sweep.json",
+      "sha256": "2690e23dab9319f5edf599ea38f5cb4e520e42ad00a46af4f4c6d6296a555a5b",
+      "bytes": 126160
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/baseline-prod-sweep.json",
+      "sha256": "1eeee4bcff2cfe202ca2b5b5ce1dc8c0f136a246874a91c57dbcb1e3fe7b6d41",
+      "bytes": 119517
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/performance/accepted-prod-sweep.json",
+      "sha256": "4a7d85e2ee1a483542b8fb57d41bf8dbf5c391cfa680686033fcb58e56e9b86e",
+      "bytes": 125842
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/native-service-unavailable.log.gz",
+      "sha256": "615831b25886d4dc2a051d6c5e5ccf66aab9967ecbe3deb7e2d106dd12c56998",
+      "bytes": 264
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/backend-verify.log.gz",
+      "sha256": "12ab058c308bc1bf1b2684c2490abf4512aa454ce535c167c6776cbb381ab0c0",
+      "bytes": 4932
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/frontend-build.log.gz",
+      "sha256": "8213097efcb3109920cd07cef25160b0bd8c873cf6ef9accbf49cfe86746416c",
+      "bytes": 512
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/extra-unclipped-oracle-analysis.json.gz",
+      "sha256": "d08498a659fb33e257376fb7d46c3c32548e8811550038585cc8596a0a6ed781",
+      "bytes": 2773
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/frontend-test.log.gz",
+      "sha256": "68517609dd80158d8da3dab471f8669e0c904bd8a81e1c85953cfde227a1b1f4",
+      "bytes": 328
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/frontend-typecheck.log.gz",
+      "sha256": "dd0b5cb5608a16a9fbbaf95746d5bf8a8a8f24f9f0e1b5e1849269cabcc348cf",
+      "bytes": 75
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/validation/backend-test.log.gz",
+      "sha256": "58e731e8fc8920f7ffd2e747873229ee3e3b9d4539978309759dd967c7bda2b2",
+      "bytes": 4794
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-summary.json",
+      "sha256": "3d1a4284a21e366a26c373bf2c22b468e6fc8af649c383534260c327473f9cc9",
+      "bytes": 28199
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-against.json.gz",
+      "sha256": "ba6f6c1d9d9709309379ceab3261c4effea3399b52c63b735d0b55d6059de8c6",
+      "bytes": 207078
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-crossing.json.gz",
+      "sha256": "392078779a50b0878e958361e9df0100949694c562b3041e0d45b87ad946a103",
+      "bytes": 197329
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-zoom.json.gz",
+      "sha256": "1366bbfb5233553ce11a62316bfd268ee69cbf2bb2477b68ed8a17d999e6845d",
+      "bytes": 180677
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-oscillation.json.gz",
+      "sha256": "b72009fa895d88a703b4368c2886ca7a5f31930bb91771714bd650a4061b3e5a",
+      "bytes": 207060
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-pitch.json.gz",
+      "sha256": "5d7675240dbe83b3a9a27c2c67934b9183b4d34bd9cca5e551e9e238ec8b518f",
+      "bytes": 207232
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-rotation.json.gz",
+      "sha256": "0757949d9f60e0da6421d941e12e7302598f72c24d38d44a90df5933c81f17cf",
+      "bytes": 204335
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-rotate-zoom.json.gz",
+      "sha256": "1db5db2bf491bbd20f40a3da97f16cecd27a6ff388047caa53683e3464b7912c",
+      "bytes": 203121
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-pitch.json.gz",
+      "sha256": "468d58aabf0e463e8dce076b3958514fc8d3671975ca781e0e7dcb5a450c9b80",
+      "bytes": 205970
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-heading.json.gz",
+      "sha256": "49ee261640cbd687d9de6bc573aac4634df0f02d52624d93ab96cb817cd84967",
+      "bytes": 202692
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-reverse-rotation.json.gz",
+      "sha256": "c96fed231437fe92f4d91d7f02d64732bb19a5cee7955345ae1f9a3eddf5f6c4",
+      "bytes": 204406
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "sha256": "0d4a4cb197a89c4257e55060a26af0f8ecb8c8fea79ac5b6706af4c53f71ba77",
+      "bytes": 203349
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-following.json.gz",
+      "sha256": "0bad322fd98cf8261e674dba5c8ccd69e5cc9b490650230187e6222cf36b8d38",
+      "bytes": 197787
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "sha256": "e9009e9fb6958ffad248b650edbf0ad9edcf47d56cffa0fd7b5aa23551f5d91e",
+      "bytes": 204443
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-heading.json.gz",
+      "sha256": "a16360fdbc63afcebe6734ca1f966b5b87a84e25bf8c08988ee5987456de4006",
+      "bytes": 202434
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-against.json.gz",
+      "sha256": "8b2ad5b4c53132828f0b47270237d154625bfe96fe74ab77f0071a8477f2efbe",
+      "bytes": 206679
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-following.json.gz",
+      "sha256": "3ec4e08f9450784834752e8a86dae595601f23f34c6c96f8a57601f489ebc5e9",
+      "bytes": 197761
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "sha256": "b7263653840f4a5b83916e19dd2bcb392b1fb53779782e2bc7c27ed6993ab0f1",
+      "bytes": 203268
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-zoom.json.gz",
+      "sha256": "e4e0cc896d98f5b6758c7c2b90a6620cda50804c568b4f38172d60e06a14cc71",
+      "bytes": 181649
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-zoom.json.gz",
+      "sha256": "cb85ac6290f6485e673d270067ff165b4b1494536c68e90ba1daf17e0da8bbd2",
+      "bytes": 181864
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-crossing.json.gz",
+      "sha256": "2975d2db90ca146c18a80f1d38544888f1a8911f7f14f4dd9852482c9e802973",
+      "bytes": 197099
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-against.json.gz",
+      "sha256": "26ee153aaaf4bf30587827f6354afc21227595e800395babfc1a28f96b964cf6",
+      "bytes": 207021
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-heading.json.gz",
+      "sha256": "317a88f58f5042f8776a5889686c893d2ec46b6e0d3f1c4e63f2863aef913eb1",
+      "bytes": 202714
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "sha256": "ccf5adcbc08bfb46dac058ee6e4d7541ff6aec44debc4aa014fbaa0ba52c5a1d",
+      "bytes": 204512
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-rotation.json.gz",
+      "sha256": "c51a74628aa5ce5d3af709ae5f66c7dd09b9bcf6253817b3dd8a49a24f82c435",
+      "bytes": 204462
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-oscillation.json.gz",
+      "sha256": "8c1b4d8e65b0550d8db40105deb06d71b730e68571ac72d8fd9fcb0cdadcab02",
+      "bytes": 208219
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-following.json.gz",
+      "sha256": "dc11b0724401a23919f8a94d056435d8cd0efa853af178f7323349e006bdbaf0",
+      "bytes": 197420
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-pitch.json.gz",
+      "sha256": "c744c38451c3c6c73769924697f81c6ea0604c4364a5166c91b229acf409a0ef",
+      "bytes": 206195
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-oscillation.json.gz",
+      "sha256": "e34fc25b19d15e6e974e50862cfd75d2bbece0ab8946874b23aa5f792c12db39",
+      "bytes": 208029
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-against.json.gz",
+      "sha256": "3fcea300b081d395dde35fd82151ec25c54d9f5a84d10beac792936fa401690a",
+      "bytes": 206737
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-summary.json",
+      "sha256": "c874b86ae4a73b142c2af001dfa122f3e875f061277ba0e1a6c2abc31af1d8d1",
+      "bytes": 28166
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-rotation.json.gz",
+      "sha256": "d092986632f3547e6999b36b58a2621f537c809201d77fe201bd2a3569f1b0e8",
+      "bytes": 204529
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-reverse-rotation.json.gz",
+      "sha256": "c3a7d47539e3c639f4e46695e291ae79c705df0e51c1af9fdf31521d8eb917aa",
+      "bytes": 204440
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "f2ab1e6599312e0a40e676d0f673d06c2fbb059b6fbed6ef33e4f358d87776b9",
+      "bytes": 198412
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-rotation.json.gz",
+      "sha256": "b28a624aacf50bf47ad0fb2b92ea9181c409ea6d63dc00abfe8ebfa21159c707",
+      "bytes": 204529
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-pitch.json.gz",
+      "sha256": "55cc5b1529b89db36a11a4a1a1410f7d6c631e3634705cff4a854b72cf3e6f77",
+      "bytes": 207432
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-following.json.gz",
+      "sha256": "3d5b45d126c2f81541acc560379e369b4427f3ba836076e11d914fe9cf25a53a",
+      "bytes": 197757
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-NASA_OEM-oscillation.json.gz",
+      "sha256": "922a9857326cb4f64be9adb41e9bfb96a5e751eaf162d5f723c5a6be8a7f0596",
+      "bytes": 207122
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-prod-PRIMARY_GP_TLE-crossing.json.gz",
+      "sha256": "6c48dbc91cdff5f0eb1077dd113d27bd886cc4f6abf8a935ba1b586276ccb1d4",
+      "bytes": 198430
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-zoom.json.gz",
+      "sha256": "bf79db25cc0da34332cc16aff8f04b60f61b9cd58c0eaa1ce68b3f9dc2e448fc",
+      "bytes": 180687
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-PRIMARY_GP_TLE-heading.json.gz",
+      "sha256": "c37bac397254dead1cc5d35e179f3e1e3d71decf943fed50ffcc7b040ee02947",
+      "bytes": 202665
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/stress/accepted-dev-NASA_OEM-rotate-zoom.json.gz",
+      "sha256": "f26f22eba7ecc127bb88db1c3bfb6351e76ef34bab1f8e27449bfb6fdd659f27",
+      "bytes": 203103
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial5/stress-before-horizon-guard/final-prod-summary.json",
+      "sha256": "b2c495ce034890b09566f9e44173979495a45ccab193f088b7ca7d1787d89b3c",
+      "bytes": 17834
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial5/stress-before-horizon-guard/final-dev-summary.json",
+      "sha256": "1630fe2688a142a3bc99e5be462a3c8530f6499ef59bcc2b28e7fab01c20c418",
+      "bytes": 23749
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/scripts/raster-final.cjs",
+      "sha256": "e520c9e0253ccd2610770ff18c181529fc2b9190d73930d06b797dbd7b555e0e",
+      "bytes": 7636
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/scripts/analyze-raster.py",
+      "sha256": "6001de576df9d2876e96a17b9be97967ba8d31abb50ea6dfba8865440e2f4f5d",
+      "bytes": 2769
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/scripts/browser-stress.cjs",
+      "sha256": "497fc4bc0d593f7d29b3a5e04bbce31f6c2176a042c58a53c68b711bbaa24fdd",
+      "bytes": 15203
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/origin/candidate-prod-origin-summary.json",
+      "sha256": "abbf277c195c6cc5490b3aca0bac2810a905d575d7e90b3b99cbfe03fa78ae21",
+      "bytes": 8181
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/origin/candidate-dev-origin-summary.json",
+      "sha256": "6801e076a94a56ef51dde2c32920137f70f2c782ad3e4bb35abea6e27c812a53",
+      "bytes": 8193
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/origin/baseline-dev-origin-summary.json",
+      "sha256": "4ce1414ab72cd59bc240c592e610b03b6ed722b57057cef3538e8d9ab8bf8ab5",
+      "bytes": 8359
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/origin/baseline-prod-origin-summary.json",
+      "sha256": "f9fcb3f6e4dcd74eb8e46c128fe4cfba0212e24bb920b93c9dea4f50754baa49",
+      "bytes": 8690
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/raster/candidate-prod-raster-sweep.json",
+      "sha256": "bdfdb9455d536ee1eaa5c19e2b34abc596bd86b41bbe2edf88c5672353906157",
+      "bytes": 518379
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/raster/raster-analysis.json",
+      "sha256": "c4db006ad51005dcb398d3ee615579cba39c42f723c57aefaf0d3fe7d9863191",
+      "bytes": 52262
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/raster/baseline-prod-raster-sweep.json",
+      "sha256": "b90faedfcee3ebbf057177f7c33674a6485333c6f1545b786f180244a545e174",
+      "bytes": 533809
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/stress/candidate-dev-stress-summary.json",
+      "sha256": "2f9d0a594ab5f647df6677c7cf4c7e8ce776c746dc3f09239cd938ce5fad88f9",
+      "bytes": 22005
+    },
+    {
+      "path": "docs/frontend/trajectory-rendering-artifact-review/final-candidate/trial4/stress/candidate-prod-stress-summary.json",
+      "sha256": "1526ae80e960ef0fb23e1c4b0ae01ba8a20761c25c1f70176b570b3783d6b192",
+      "bytes": 15446
+    },
+    {
+      "path": "frontend/src/cesium/EarthView.tsx",
+      "sha256": "c9283b1d2b63f0924cdb246164122cc03c5fc4a2ba5935d6d002847fd57a21f4",
+      "bytes": 51619
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryClearance.ts",
+      "sha256": "5660b2bf9c11b53f3cc6006190a43f9363ed3cb777b96728c94982e17fa32dec",
+      "bytes": 11382
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryRendering.ts",
+      "sha256": "a8e4be5431fe92611c1172564b7ad36f71b9afca37a67d171eb6cc9ae72cbc8a",
+      "bytes": 13839
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryAppearance.ts",
+      "sha256": "3c01c6a55679e776b28e7cae8c79d3d2e958061c695b5afc046eaeb0fbc7b2bf",
+      "bytes": 3115
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryRendering.test.ts",
+      "sha256": "9c25924e650174b76be54163980e6ee7ff65319659d4b800f2e0edc3e34361ee",
+      "bytes": 18252
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryClearance.test.ts",
+      "sha256": "6f411dce350981dd4f812aafa70024ec3357fccb5558e99ac23ad47060cc09e9",
+      "bytes": 10682
+    },
+    {
+      "path": "frontend/src/cesium/displayIsolation.test.ts",
+      "sha256": "3186f91348621966c422e32d6f2d6b2a4a0c2dbe309fe1b3a13ddf3bb616d112",
+      "bytes": 4504
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "ce98dbfd5abacbfae33886df2562e3b76166540c0480cf78131a6a3d7b4a2a1d",
+      "bytes": 20331
+    },
+    {
+      "path": "docs/frontend/orbital-trajectory-rendering.md",
+      "sha256": "34a163c09236f405837eb050b42598eebfc9469b5d1403069fdbb16924be4001",
+      "bytes": 37007
+    },
+    {
+      "path": "docs/frontend/rendering-quality.md",
+      "sha256": "7457252a9e34ee73bc6308752b1164694294219c128a554b26057aea81311553",
+      "bytes": 27691
+    },
+    {
+      "path": "docs/architecture/04-earth-view-orbital-delivery.md",
+      "sha256": "6cf6177b20827c47ea9843877fff4fe260738c9d0a96a4720d3ad8e8486242cb",
+      "bytes": 19980
+    }
+  ]
+}

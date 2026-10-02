@@ -1,12 +1,11 @@
 import { BoundingSphere, Cartesian2, Cartesian3, JulianDate, Matrix4, SceneTransforms,
   type Model, type Scene } from 'cesium';
 import { smoothstep } from './inspectionMode';
-import type { ViewMode } from './inspectionMode';
 
 export const TRAIL_CLEARANCE = {
   minimumCssPixels: 0.75, maximumCssPixels: 4,
   closeRangeMeters: 2_000_000, farRangeMeters: 17_000_000,
-  minimumRampCssPixels: 1, maximumRampCssPixels: 4, updateIntervalMs: 100,
+  minimumRampCssPixels: 1, maximumRampCssPixels: 4,
 } as const;
 
 /** Range to the selected displayed ISS, not to Earth's center. */
@@ -26,12 +25,45 @@ export function startRampCssPixels(desiredGap: number): number {
 
 export interface Pixel { x: number; y: number }
 
-/** Automatic camera/lift motion cannot reuse a start found in a previous pose.
- * Overview retains its accepted 10 Hz search; fragment masks still follow ticks.
- */
-export function clearanceSearchDue(mode: ViewMode, elapsedMs: number, sourceOrProductChanged: boolean): boolean {
-  return mode === 'ENTERING_INSPECTION' || mode === 'EXITING_INSPECTION' ||
-    sourceOrProductChanged || elapsedMs >= TRAIL_CLEARANCE.updateIntervalMs;
+/** No tiny-tangent normalization: future ordering is temporal. */
+export function segmentDistance(p: Pixel, ax: number, ay: number, bx: number, by: number): number {
+  const dx = bx - ax, dy = by - ay;
+  const u = Math.max(0, Math.min(1, ((p.x - ax) * dx + (p.y - ay) * dy) / (dx * dx + dy * dy || 1)));
+  return Math.hypot(p.x - ax - u * dx, p.y - ay - u * dy);
+}
+export interface ProtectedCircle { x: number; y: number; radius: number }
+/** Curved compact envelope enclosing the displayed bounds. Caller reuses output. */
+export function protectedCircle(hull: readonly Pixel[], out: ProtectedCircle): ProtectedCircle {
+  let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
+  for (const p of hull) { left = Math.min(left, p.x); right = Math.max(right, p.x); top = Math.min(top, p.y); bottom = Math.max(bottom, p.y); }
+  out.x = hull.length ? (left + right) / 2 : 0; out.y = hull.length ? (top + bottom) / 2 : 0; out.radius = 0;
+  for (const p of hull) out.radius = Math.max(out.radius, Math.hypot(p.x - out.x, p.y - out.y));
+  return out;
+}
+export interface InitialRegion extends ProtectedCircle {
+  ax: number; ay: number; tx: number; ty: number; ux: number; uy: number; external: boolean;
+}
+export function initialRegion(hull: readonly Pixel[], origin: Pixel, clearance: number, out: InitialRegion): InitialRegion {
+  protectedCircle(hull, out); out.radius += clearance;
+  out.ax = origin.x; out.ay = origin.y;
+  const dx = out.ax - out.x, dy = out.ay - out.y, squared = dx * dx + dy * dy;
+  out.external = squared > out.radius * out.radius;
+  const base = out.external ? out.radius * out.radius / squared : 0;
+  const tangent = out.external ? out.radius * Math.sqrt(squared - out.radius * out.radius) / squared : 0;
+  out.tx = out.x + base * dx - tangent * dy; out.ty = out.y + base * dy + tangent * dx;
+  out.ux = out.x + base * dx + tangent * dy; out.uy = out.y + base * dy - tangent * dx;
+  return out;
+}
+/** Signed distance to circle union tangent triangle; no projected direction. */
+export function initialRegionDistance(p: Pixel, r: InitialRegion): number {
+  const circle = Math.hypot(p.x - r.x, p.y - r.y) - r.radius;
+  if (!r.external) return circle;
+  const side = (ax: number, ay: number, bx: number, by: number) => (bx - ax) * (p.y - ay) - (by - ay) * (p.x - ax);
+  const a = side(r.ax, r.ay, r.tx, r.ty), b = side(r.tx, r.ty, r.ux, r.uy), c = side(r.ux, r.uy, r.ax, r.ay);
+  const inside = (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
+  const distance = Math.min(segmentDistance(p, r.ax, r.ay, r.tx, r.ty),
+    segmentDistance(p, r.tx, r.ty, r.ux, r.uy), segmentDistance(p, r.ux, r.uy, r.ax, r.ay));
+  return Math.min(circle, inside ? -distance : distance);
 }
 
 function cross(a: Pixel, b: Pixel, c: Pixel): number {
@@ -77,76 +109,95 @@ export const MODEL_DISPLAY_BOUNDS = {
  * size policy using Camera.getPixelSize, including maximumScale and off-origin
  * asset translation; never read private Model or renderer fields.
  */
+const footprintOrigin = new Cartesian3();
+const footprintSphere = new BoundingSphere();
+const footprintLocal = new Cartesian3();
+const footprintWorld = new Cartesian3();
+const footprintPoints = Array.from({ length: 8 }, () => new Cartesian2());
+const footprintHull: Pixel[] = [];
+
 export function projectedModelFootprint(scene: Scene, model: Model): Pixel[] | null {
   if (!model.ready) return null;
   const radius = model.boundingSphere.radius;
-  const origin = Matrix4.getTranslation(model.modelMatrix, new Cartesian3());
-  const metersPerPixel = scene.camera.getPixelSize(new BoundingSphere(origin, radius),
-    scene.drawingBufferWidth, scene.drawingBufferHeight);
+  Matrix4.getTranslation(model.modelMatrix, footprintOrigin);
+  Cartesian3.clone(footprintOrigin, footprintSphere.center); footprintSphere.radius = radius;
+  const metersPerPixel = scene.camera.getPixelSize(footprintSphere, scene.drawingBufferWidth, scene.drawingBufferHeight);
   const scale = Math.min(model.maximumScale ?? Infinity,
     Math.max(model.scale, model.minimumPixelSize * metersPerPixel / (2 * radius / model.scale)));
-  const corners: Pixel[] = [];
-  const world = new Cartesian3();
   for (let i = 0; i < 8; i++) {
-    const local = new Cartesian3(...MODEL_DISPLAY_BOUNDS.minimum.map((v, axis) =>
-      (i & (1 << axis) ? MODEL_DISPLAY_BOUNDS.maximum[axis] : v) * scale));
-    Matrix4.multiplyByPoint(model.modelMatrix, local, world);
-    const pixel = SceneTransforms.worldToWindowCoordinates(scene, world, new Cartesian2());
-    if (!pixel || !Number.isFinite(pixel.x) || !Number.isFinite(pixel.y)) return null;
-    corners.push({ x: pixel.x, y: pixel.y });
+    footprintLocal.x = (i & 1 ? MODEL_DISPLAY_BOUNDS.maximum[0] : MODEL_DISPLAY_BOUNDS.minimum[0]) * scale;
+    footprintLocal.y = (i & 2 ? MODEL_DISPLAY_BOUNDS.maximum[1] : MODEL_DISPLAY_BOUNDS.minimum[1]) * scale;
+    footprintLocal.z = (i & 4 ? MODEL_DISPLAY_BOUNDS.maximum[2] : MODEL_DISPLAY_BOUNDS.minimum[2]) * scale;
+    Matrix4.multiplyByPoint(model.modelMatrix, footprintLocal, footprintWorld);
+    const p = SceneTransforms.worldToWindowCoordinates(scene, footprintWorld, footprintPoints[i]);
+    if (!p || !Number.isFinite(p.x) || !Number.isFinite(p.y)) return null;
   }
-  return convexFootprint(corners);
+  footprintPoints.sort((a, b) => a.x - b.x || a.y - b.y);
+  footprintHull.length = 0;
+  for (const p of footprintPoints) {
+    while (footprintHull.length >= 2 && cross(footprintHull.at(-2)!, footprintHull.at(-1)!, p) <= 0) footprintHull.pop();
+    footprintHull.push(p);
+  }
+  const lowerLength = footprintHull.length;
+  for (let i = footprintPoints.length - 2; i >= 0; i--) {
+    const p = footprintPoints[i];
+    while (footprintHull.length > lowerLength && cross(footprintHull.at(-2)!, footprintHull.at(-1)!, p) <= 0) footprintHull.pop();
+    footprintHull.push(p);
+  }
+  footprintHull.pop();
+  return footprintHull.length >= 3 ? footprintHull : null;
 }
 
-/** Earliest downstream exit on a bounded source's own sampled path.
- * A lifted model can leave the current physical point outside its hull on the
- * upstream side. Distance alone would reveal that fragment before the station.
- * Require passage beyond the hull's support along the projected future tangent.
- * Search real sample intervals, then bisect to <=1ms. Nothing changes vertices.
- * Null means no valid visible start, not permission to extrapolate.
+const originRegion: InitialRegion = { x: 0, y: 0, radius: 0, ax: 0, ay: 0, tx: 0, ty: 0, ux: 0, uy: 0, external: false };
+/** First temporal exit from the INITIAL convex region joining the real source origin
+ * to the displayed station envelope. This protection region draws no connector
+ * and moves no vertex. Later reentries do not affect origin. Caller bounds time.
  */
 export function earliestClearTime(startMs: number, endMs: number, sampleTimes: readonly number[],
-  pixelAt: (timeMs: number) => Pixel | null, hull: Pixel[], clearance: number): number | null {
+  pixelAt: (ms: number) => Pixel | null, hull: Pixel[], clearance: number): number | null {
   if (endMs <= startMs || hull.length < 3) return null;
   const origin = pixelAt(startMs);
-  if (!origin) return null;
-  // Evaluators may reuse a scratch Pixel; retain coordinates, not its reference.
-  const x = origin.x, y = origin.y;
-  let dx = 0, dy = 0;
-  for (let i = 0; i <= sampleTimes.length; i++) {
-    const ms = i < sampleTimes.length ? sampleTimes[i] : endMs;
-    if (ms <= startMs || (i < sampleTimes.length && ms >= endMs)) continue;
-    const future = pixelAt(ms);
-    if (!future) continue;
-    dx = future.x - x; dy = future.y - y;
-    const length = Math.hypot(dx, dy);
-    if (length > 1e-6) { dx /= length; dy /= length; break; }
-    dx = 0; dy = 0;
-  }
-  if (dx === 0 && dy === 0) return null;
-  let downstreamEdge = -Infinity;
-  for (const p of hull) downstreamEdge = Math.max(downstreamEdge, (p.x - x) * dx + (p.y - y) * dy);
-  return firstPassingTime(startMs, endMs, sampleTimes, (ms) => {
+  if (!origin || !Number.isFinite(origin.x) || !Number.isFinite(origin.y)) return null;
+  const region = initialRegion(hull, origin, clearance, originRegion);
+  // Convex hull of the source origin POINT and the displayed protected circle.
+  // Inflating the source endpoint into another full circle would create a moving
+  // extra gap far away from the model, especially with the accepted display lift.
+  const distanceAt = (ms: number): number | null => {
     const p = pixelAt(ms);
-    return p !== null && (p.x - x) * dx + (p.y - y) * dy >= downstreamEdge + clearance;
-  });
-}
-
-function firstPassingTime(startMs: number, endMs: number, sampleTimes: readonly number[], clear: (ms: number) => boolean): number | null {
-  if (clear(startMs)) return startMs;
+    return p && Number.isFinite(p.x) && Number.isFinite(p.y) ? initialRegionDistance(p, region) : null;
+  };
   let previous = startMs;
+  let previousDistance: number | null = initialRegionDistance(origin, region);
   for (let i = 0; i <= sampleTimes.length; i++) {
-    const next = i < sampleTimes.length ? sampleTimes[i] : endMs;
-    if (next <= startMs || (i < sampleTimes.length && next >= endMs)) continue;
-    if (clear(next)) {
-      let low = previous, high = next;
-      for (let i = 0; i < 20 && high - low > 1; i++) {
+    const next = i < sampleTimes.length ? Math.min(sampleTimes[i], endMs) : endMs;
+    if (next <= previous) continue;
+    let high = next;
+    const nextDistance = distanceAt(next);
+    let highDistance = nextDistance;
+    // A segment may exit protection before crossing the camera plane. Its next
+    // delivered projection is then invalid. Search only this temporal interval
+    // for the last finite projection, rather than missing the genuine first exit.
+    if (highDistance === null && previousDistance !== null) {
+      let valid = previous, invalid = next;
+      for (let j = 0; j < 20 && invalid - valid > 1; j++) {
+        const middle = (valid + invalid) / 2;
+        const d = distanceAt(middle);
+        if (d === null) invalid = middle;
+        else { valid = middle; highDistance = d; }
+      }
+      high = valid;
+    }
+    if (highDistance !== null && highDistance > 0) {
+      let low = previous;
+      for (let j = 0; j < 20 && high - low > 1; j++) {
         const middle = (low + high) / 2;
-        if (clear(middle)) high = middle; else low = middle;
+        const d = distanceAt(middle);
+        if (d !== null && d > 0) high = middle; else low = middle;
       }
       return high;
     }
-    previous = next;
+    previous = next; previousDistance = nextDistance;
+    if (next === endMs) break;
   }
   return null;
 }
@@ -165,6 +216,6 @@ export function projectedSourceEvaluator(scene: Scene,
     const physical = positionAt(sampleTime, samplePosition);
     if (!physical) return null;
     const p = SceneTransforms.worldToWindowCoordinates(scene, physical, samplePixel);
-    return p ?? null;
+    return p && Number.isFinite(p.x) && Number.isFinite(p.y) ? p : null;
   };
 }

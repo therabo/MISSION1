@@ -1,5 +1,9 @@
 # Earth View orbital delivery decision and validation
 
+## Trajectory physical/presentation boundary — 2026-10-02
+
+The existing physical/presentation boundary now explicitly separates retained source geometry, bounded first temporal exit, local curved re-entry masking and GPU capsule cross-section. Camera-only updates mutate current-frame uniforms; source/UTC/window continue to determine physical samples and the endpoint. A missing local projection cannot globally blank the body. Source adapters, persistence, APIs, orbital computation and camera implementation remain byte-identical to the accepted baseline. [Physical camera-independence, fast-motion and regression evidence](../frontend/trajectory-rendering-artifact-review/final-candidate/README.md). ADR-0006 is unchanged; no new ADR or infrastructure was introduced. Earlier dated 10 Hz/support-direction notes describe the previous baseline.
+
 ## Downstream reveal clearance — 2026-10-02
 
 The physical/display boundary remains: each real bounded path supplies a temporal presentation start beyond the displayed model's downstream hull edge. Visible camera transitions refresh the start each frame before applying reveal; stable Overview retains its 10 Hz cadence. Runtime confirms the physical desktop Inspection pivot already gives 90 m / 42.5° / 100°, so camera behavior is unchanged. [Narrow correction and regression evidence](../frontend/final-graphics-regression-fixes/README.md). No new architecture decision or infrastructure is introduced.

@@ -48,7 +48,7 @@ import { createIssMaterialShader } from './issMaterialQuality';
 import { warmInspectionRendering } from './inspectionRenderingWarmup';
 import { inspectionAntialiasing } from './inspectionAntialiasing';
 import skyboxManifest from './skyboxManifest.json';
-import { adaptTrailClearance, createTrajectoryTrails, orderTrails, showTrails, updateClearanceMask, updateTrail } from './trajectoryRendering';
+import { adaptTrailClearance, createTrajectoryTrails, orderTrails, showTrails, updateTrail } from './trajectoryRendering';
 import type { TrajectoryTrails } from './trajectoryRendering';
 import { effectiveSource, oemPositionProperty, selectedPositionAt } from './trajectorySelection';
 import type { PositionSnapshot, TrajectorySource } from './trajectorySelection';
@@ -59,7 +59,7 @@ import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
 import type { SampledProperty } from 'cesium';
-import { clearanceSearchDue, desiredGapCssPixels, projectedModelFootprint } from './trajectoryClearance';
+import { desiredGapCssPixels, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
 interface EarthViewProps {
@@ -372,9 +372,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       for (const trail of group.trails) updateTrail(trail, sceneMs, selectedSourceRef.current, trajectoryTransitionVisibility);
     };
     let orderedSource: TrajectorySource | null = null;
-    let lastClearanceUpdate = -Infinity;
-    let clearanceSource: TrajectorySource | null = null;
-    let clearanceGeneration: number | null = null;
     const removeReadyListener = instance.scene.preRender.addEventListener(() => {
       const pending = pendingPrimaryLine.current;
       if (!pending || !pending.trails.every((trail) => trail.layers.every((layer) => layer.primitive.ready))) return;
@@ -384,6 +381,9 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       orderTrails(pending, selectedSourceRef.current, instance.scene.primitives);
       orderedSource = selectedSourceRef.current;
       showTrails(pending, trajectoryTransitionVisibility > 0);
+    });
+    const removeTrajectoryRender = instance.scene.preRender.addEventListener(() => {
+      updateTrajectory.current?.(JulianDate.toDate(instance.clock.currentTime).getTime());
     });
     updateTrajectory.current = (sceneMs: number) => {
       const product = comparisonRef.current;
@@ -401,27 +401,17 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         for (const trail of next.trails) for (const layer of trail.layers) instance.scene.primitives.add(layer.primitive);
         pendingPrimaryLine.current = next;
       }
-      // A lightweight projected mask follows every frame so halo fragments stay
-      // clear during camera movement. Automatic flights also need a current-pose
-      // temporal start before applying reveal; Overview keeps its 10 Hz search.
-      const wall = performance.now();
+      // Render preparation runs after native camera controls. One snapshot supplies
+      // origin, mask and reveal; physical response geometry remains retained.
       const displayedRange = model.current?.ready ? Cartesian3.distance(instance.camera.positionWC, model.current.boundingSphere.center) : NaN;
       trajectoryTransitionVisibility = trajectoryVisibilityForView(viewMode.current, displayedRange, trajectoryOverviewRange);
       if (trajectoryTransitionVisibility > 0 && model.current?.ready) {
         const hull = projectedModelFootprint(instance.scene, model.current);
         const gap = desiredGapCssPixels(displayedRange);
-        const searchDue = clearanceSearchDue(viewMode.current, wall - lastClearanceUpdate,
-          clearanceSource !== selectedSourceRef.current || clearanceGeneration !== generatedMs);
-        for (const group of [primaryLine.current, pendingPrimaryLine.current]) {
-          if (group) for (const trail of group.trails) {
-            if (searchDue) adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize);
-            else updateClearanceMask(trail, instance.scene, hull, gap, model.current.silhouetteSize);
-          }
-        }
-        if (searchDue) {
-          lastClearanceUpdate = wall;
-          clearanceSource = selectedSourceRef.current;
-          clearanceGeneration = generatedMs;
+        for (let i = 0; i < 2; i++) {
+          const group = i === 0 ? primaryLine.current : pendingPrimaryLine.current;
+          if (group) for (const trail of group.trails)
+            adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize);
         }
       }
       if (primaryLine.current) {
@@ -862,7 +852,6 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       previousFov = fov;
       previousWall = wall;
       previousLift = displayLiftMeters; previousVisibility = silhouetteVisibility;
-      updateTrajectory.current?.(sceneMs);
       const second = Math.floor(sceneMs / 1000);
       if (second !== lastReportedSecond.current) {
         lastReportedSecond.current = second;
@@ -881,6 +870,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       removeDiagnostics?.();
       removeApproachDiagnostics?.();
       removeReadyListener();
+      removeTrajectoryRender();
       instance.clock.onTick.removeEventListener(tick);
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;

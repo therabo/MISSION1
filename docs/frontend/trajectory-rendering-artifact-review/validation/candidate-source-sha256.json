@@ -1,0 +1,35 @@
+[
+  {
+    "path": "frontend/src/cesium/EarthView.tsx",
+    "candidateSha256": "64e87ccab0f9e1b377c458077f7f53103b1ebbc5393e04f50fbf014c494be74e",
+    "baselineSha256": "b0016c4606e8cbfe0c9d85ca22ce926836eb5e0e58c824ca6a95691173348a69"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryClearance.ts",
+    "candidateSha256": "68dad8529dc045a7b74cb4322e3bd21d1315027e78966256b23778cd42eb17cd",
+    "baselineSha256": "aef598c26e50d2a08b391014cc8bdf3001b5db325edfa066902e907e10eaf118"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryClearance.test.ts",
+    "candidateSha256": "ca5ba746c1a6374e912ea8bdc88c3243352a40c0a6eb32b8f53d07d0d421188d",
+    "baselineSha256": "2bdd2a14f83db6a9313dac4f8119ffbee4896dd55a96582b374386d79fa986b2"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryRendering.ts",
+    "candidateSha256": "2974880237d70464ef81fea7fbe5eb95696646e8eec9d69407f9b395a64e0a7a",
+    "baselineSha256": "1975b910a063f885abf02176a3c6df70952196fc9bcbb97ea4faeb9599c90738"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryRendering.test.ts",
+    "candidateSha256": "69ac1feddeb58f64590228d9d99b9c595d7d59041cd57ab6c418100583059d5b",
+    "baselineSha256": "235f087314d120dc5fbda93e2416d590656dc1174fe8e70d2120f3134e504c9c"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryAppearance.ts",
+    "candidateSha256": "3c01c6a55679e776b28e7cae8c79d3d2e958061c695b5afc046eaeb0fbc7b2bf"
+  },
+  {
+    "path": "frontend/src/cesium/trajectoryProjectedPath.ts",
+    "candidateSha256": "6525cdac010322d637a5f6b53f30feb9423a39dab5285d052ed094aa9c1760f6"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "method": "Lossless gzip roundtrip and SHA-256 checked before removing only this task\u2019s generated duplicate plain JSON. Original failed evidence untouched.",
+  "files": [
+    {
+      "originalPath": "clearance/development-clearance-desktop-audit.json",
+      "retainedPath": "clearance/development-clearance-desktop-audit.json.gz",
+      "bytes": 3698200,
+      "sha256": "176f9d91d2334ad7de7ad7ef3599779663b136cd227b63c92bf55b15390faf2e",
+      "compressedBytes": 893221,
+      "compressedSha256": "bc9425828f8fbecdb76f49af2a2f1ccff8497d39af21760febc3c9638788558e"
+    },
+    {
+      "originalPath": "clearance/development-partial-audit.json",
+      "retainedPath": "clearance/development-partial-audit.json.gz",
+      "bytes": 5526061,
+      "sha256": "7d9288532b9f9f458a8246ff9cd75fb6d9e94f727797aaf1886d0c9e76c7ea43",
+      "compressedBytes": 1352219,
+      "compressedSha256": "e16f0536de47976fe165ae8d90f4d6a00f8f5d3fd1c7c5cdb428d8bc66c90cfd"
+    },
+    {
+      "originalPath": "clearance/production-clearance-desktop-audit.json",
+      "retainedPath": "clearance/production-clearance-desktop-audit.json.gz",
+      "bytes": 3697582,
+      "sha256": "3c3e100781a3d673240dcab50bf4c8d6503da4a6ee4889e310c1e6f6f19ce5b5",
+      "compressedBytes": 893072,
+      "compressedSha256": "35161747fff8ec4f266afcc168f24442cf297458a4cef88133bace8bd6f44421"
+    },
+    {
+      "originalPath": "clearance/production-partial-audit.json",
+      "retainedPath": "clearance/production-partial-audit.json.gz",
+      "bytes": 5525253,
+      "sha256": "f2ff39198ed9df3bb657372970c87c4cae5bbb5f1a793ea375e0522d3b862822",
+      "compressedBytes": 1352082,
+      "compressedSha256": "d6e5901980e166dbca75b0f3517daf28b137b0686d667ff18d79e50e19184400"
+    }
+  ]
+}

@@ -1,0 +1,856 @@
+{
+  "archive": "/Users/daniel/Desktop/mission1-trajectory-trial-native-images.zip",
+  "count": 170,
+  "originals": [
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-45.png",
+      "sha256": "ad6771d61519824ef158685db72abef57a08bb1bc26d3a93182c233af47d7b1a",
+      "bytes": 1980580
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "81c9ec9b6a1ca1f59fdbf7252cfda0edef9f61ba009cf05934079dac9d75b418",
+      "bytes": 1627567
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "9160a378ec698d095e65e238fb34a7042c01464a45642404613a6d2c95be411e",
+      "bytes": 1874195
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "70b5bed8ab28c5e2c391199dc30de0aec992cadc6010f5bd018cf4a9040e2bab",
+      "bytes": 2020765
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-30.png",
+      "sha256": "d598b974336369a342b965d1bf23081b6c64475e1ed701246f64d725eeda506b",
+      "bytes": 1914748
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "0c75835e65729fe2ddd0418b540ac683574bd43031aeabe3f7b7cc4731769715",
+      "bytes": 1914978
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "8bd9e410c331f3fb8c3f56fb91cb4ecaca09ea74681191b9e941b2db14087506",
+      "bytes": 1915015
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "19163641f5ea6add65655ef4be63c9bd9880b08f0d4596a576f59c46b8418339",
+      "bytes": 1782627
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "3fadc1c0c20b6bf3b21873db92d5c23a49f5b87073f5f8da763280b94ee841f8",
+      "bytes": 1792631
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-oblique.png",
+      "sha256": "4499dddfc4c538688f51b7303e0cbe8a8b2d9fb205de1ea458f3a8f9387059f8",
+      "bytes": 1914941
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-rectangle.png",
+      "sha256": "14cdea6443fee2fa971436e42b3ae007f16989f1b9e911bd460727ec9b18707b",
+      "bytes": 1624383
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-15.png",
+      "sha256": "090d43cecc61f3e8c39e8006a379ffc5f0da469c1188b32e2a57afa2f74fc48f",
+      "bytes": 1790911
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-axis.png",
+      "sha256": "8ca9e2682cee271da1fb46b910425d11ba21a6691e8ec66f885b50103f89e90d",
+      "bytes": 1784005
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "2c4dd281b207af25bfa0f4f49a781cd6a5b8a321b74ed2f79014c01e3cbe6f5a",
+      "bytes": 1874839
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "4c56946e999cf939b5c8a17906eab22f8ce7d15d380f75401fa197d011e5f2ba",
+      "bytes": 1819453
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "c28c3d3e2a5125ff820b514cee594c655daeb4e63d0be349d411f9d8f2f2def4",
+      "bytes": 1942391
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "7371e8405e10a0bf77fe4b5f0bfae3d56fc924ea09b676dd2e91109f5ca678ce",
+      "bytes": 1625437
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-0.png",
+      "sha256": "12397109e735c2d8d2a1fa23fd91ed94a05eb3c924c028a187a0b05593c9403f",
+      "bytes": 1627154
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-75.png",
+      "sha256": "48076e09bd5c0330050325fe9ac471af79165f067ed2d7a10859348db76d7120",
+      "bytes": 1825047
+    },
+    {
+      "path": "candidate-dev/candidate-dev-origin-NASA_OEM-angle-60.png",
+      "sha256": "8c8fcb2ab4e9f6bfd563d372eefdb1e529e4f6be1f5c56265474e39aedcb97aa",
+      "bytes": 1948422
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "23a9e3414fb1ff8a95d221e64ad52bc38d9b16ea07537fc8f1a49c93b7c834de",
+      "bytes": 1942361
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-15.png",
+      "sha256": "1d0aec26b315b408d2efc0b969d0a3d45b01c203cb27786b96f3e4e767e42cfb",
+      "bytes": 1790767
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "4ac2884e235e708c05321344e941b5c1dd0c7f316016efdc915a23193b8114ba",
+      "bytes": 1819516
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "c1f0d904c0c3107d450b7c2123f99e8ba502fcbe7ba70a919d083ff9883ddb7f",
+      "bytes": 1915224
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-0.png",
+      "sha256": "21d790bc23a697b194ce49afc8c14421d3f917a5a76157dcff5cf72152dcccb6",
+      "bytes": 1626491
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "3157f5bcf15c2c9b98fe41ae4bcb9708f4e285839780d7af159622613d4c0042",
+      "bytes": 1781195
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-75.png",
+      "sha256": "2b6a73e06e9370308634573340d04cee86b41b448d0f2ad3417190dcf7542753",
+      "bytes": 1825154
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-60.png",
+      "sha256": "7a3a2f749cd01d05a3bd0bf1b122a5d33cf6cb65ef3ff2b315853787f7f98b71",
+      "bytes": 1948439
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "c23cd6310d679827be8ccb04f988050c439d215e38d499ab8f78da1a426413e6",
+      "bytes": 1792438
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-rectangle.png",
+      "sha256": "7ab266ae0ab7dc0d4719ce5b76e97dd23779c12bda36d9cd8b43fc5ce68d139f",
+      "bytes": 1624817
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-oblique.png",
+      "sha256": "ccefa0b2e454bfd2dcc05a98f4b219250fef7e0ebf7c531a099be85fc8d090cd",
+      "bytes": 1915073
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "12173da3a7e89676ce566ae606d424e24fa5be1188bf1bede24aac6cc45e80b5",
+      "bytes": 1626734
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "405c66e164bad5aa99a116a669061d44442e50a845ee3e71a7f73f55c8500bf6",
+      "bytes": 1873889
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "06be32584d4cc19b1bc1faae690a753d5e8759c99c0aafafefbf2d3d76e3cc34",
+      "bytes": 1873197
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-axis.png",
+      "sha256": "c44b26d6725ff705106eebfa09c3d48a5ed2e8ee6f1f3f90d3f616564f191e9b",
+      "bytes": 1782123
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "f626809f807c921fb6ed997440b16dc88a80f26bbabc894539ab67aadc185d28",
+      "bytes": 1915294
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-45.png",
+      "sha256": "16481e466d3c0b7ddefdd01d03df11d1242a5cbb54f35166b0482c402e9ba15a",
+      "bytes": 2020892
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "1368edcb011941f878e99ee135de9565d26c5f31a4e3d0a36c2711ad3d6c9aa9",
+      "bytes": 1625972
+    },
+    {
+      "path": "trial2/trial2-origin-NASA_OEM-angle-30.png",
+      "sha256": "7c02685e759d1c28c49318265b6c02a3472d31fb279a5a4df13deb3b12f22be3",
+      "bytes": 1914930
+    },
+    {
+      "path": "trial2/trial2-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "8fb949d6f908a4793b68e9c4f034785c57fbdc32a80f821061553a8e43068d36",
+      "bytes": 2020801
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-rectangle.png",
+      "sha256": "a7258b4a29b1eeb925875c71c0e8d97918d9a07f6e6455b50cc1efa559709646",
+      "bytes": 1624748
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-30.png",
+      "sha256": "7874fd09a70b7ebbd564636cf23505359f626589abb9ddd918921c6c195e4125",
+      "bytes": 1914919
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "edbaefb299c8b9af9358617450f23d25bc32ff7b0abb738a37b6ecff8df61ecf",
+      "bytes": 1792349
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "7589cf8f507dfb17f4be2bacd91062fdd2d6db2e6ec76adb1863bfaa7f5ebb7a",
+      "bytes": 1627532
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-oblique.png",
+      "sha256": "1aec7928aa44c1769d530acc2fcfc0df6d0f7281ca618f56d1ccd3db801e3c25",
+      "bytes": 1915061
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "056c683f495c6a7dd43eebe621a4716cb98ec43365a9daddf4502680daaf8681",
+      "bytes": 1942338
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-0.png",
+      "sha256": "409bda78d103271bf070935f8f05b3eea811c927d3545fe1176e8c7cadddfd42",
+      "bytes": 1627145
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-45.png",
+      "sha256": "9b892098a765b48b7e3eaf2a406281a3fa04a5c15941253324c685f2c67b4cf3",
+      "bytes": 2020862
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "5359d4cb7033a5228d8ec00a89db923c679f5dd807d46f7c290b6bcd7fb63a3e",
+      "bytes": 1819520
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "13e5a3f99f0f7db1eb7b0be8668bd833590fb54978b84813c6a6b714e2005e2f",
+      "bytes": 1915206
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "edfb4bb092416b9e916132864228511c2ba1c55fb39249f1dd645f1717f26912",
+      "bytes": 1625975
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "4e08fcecac22bf4ce8ed5bb95cea5c76501d7334ed28b189270db12976d13338",
+      "bytes": 1782620
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "0247cc2bd6d5812340c2ccc798bc86d34157e8c4c0e46ebf4bf6627ba0eb539d",
+      "bytes": 1874202
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "4a61021ef3353a8c61ab73752201978fe919fdf2d2682723115e5678c4a94ef3",
+      "bytes": 1874752
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-60.png",
+      "sha256": "c5902ef81c4cf233f12339cb2c28525cb3f404cb9207ea189ca790b378a776f2",
+      "bytes": 1948516
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-75.png",
+      "sha256": "cd97fd34d0dc47ea9e8ad3132e71a7e684da7c4648ba6e13d723504c16f4044a",
+      "bytes": 1825146
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "ddf4f9c87a736b41b06a0ff482c3d79cd4f6ca605f318326f4798a77459b3826",
+      "bytes": 2020805
+    },
+    {
+      "path": "trial3/trial3-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "bf475be1a5cb2cd9bf4b3f54003c671efb59932ea470b7427513988ba52efe50",
+      "bytes": 1915263
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-axis.png",
+      "sha256": "e250be977e18b0781ebd02d47ffb08742c84c3fbbc728a44f8c16dcd889717d4",
+      "bytes": 1783921
+    },
+    {
+      "path": "trial3/trial3-origin-NASA_OEM-angle-15.png",
+      "sha256": "b4ccef7398f0f948b58add1db83a04f1b770707f5d08eadef426bc1384a053f3",
+      "bytes": 1790672
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-45.png",
+      "sha256": "9b892098a765b48b7e3eaf2a406281a3fa04a5c15941253324c685f2c67b4cf3",
+      "bytes": 2020862
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "4b9532bb51985b0db7ddd3b94b4d7b3d9d8bf578405e0003625f5dea27cea114",
+      "bytes": 1792287
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "5ca49ced88a88c78a1c23953ddfaee4c6a57bcdc7654fa35119c5997af8d09c6",
+      "bytes": 1627533
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "87aa856cdebe3e18027a9609381f6ce3bb272ef3fe56375644f1ca2d82951cd6",
+      "bytes": 2021177
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "5359d4cb7033a5228d8ec00a89db923c679f5dd807d46f7c290b6bcd7fb63a3e",
+      "bytes": 1819520
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "0247cc2bd6d5812340c2ccc798bc86d34157e8c4c0e46ebf4bf6627ba0eb539d",
+      "bytes": 1874202
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "ddf4f9c87a736b41b06a0ff482c3d79cd4f6ca605f318326f4798a77459b3826",
+      "bytes": 2020805
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-15.png",
+      "sha256": "f35711a92cdeb948b7890dcd280e3c5634cc20d63168f5844b0bdc72e5125806",
+      "bytes": 1790592
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "056c683f495c6a7dd43eebe621a4716cb98ec43365a9daddf4502680daaf8681",
+      "bytes": 1942338
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-75.png",
+      "sha256": "cd97fd34d0dc47ea9e8ad3132e71a7e684da7c4648ba6e13d723504c16f4044a",
+      "bytes": 1825146
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "683f8ec8079e805b78064af3b40d7e19c2f800ca74bacea23df8e3c8b5d6ca64",
+      "bytes": 1630236
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-30.png",
+      "sha256": "5e54375c2fa9a520688423ee5b83bee790ef36bde41e7daaf03efd1f1d6f4fac",
+      "bytes": 1916302
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-60.png",
+      "sha256": "2e967ad64ec48b9bca43d2e6ad0c833be2f35d780de94210a04bb338297dccc1",
+      "bytes": 1948516
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-axis.png",
+      "sha256": "7c2095f821eb736d6db31456b5128c4ae0994d5a8609c96193ff6c10ef7f784c",
+      "bytes": 1774113
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "af488f6d6abe3b4ab42970563eaffca0f7eba78f10a87c28cf1cf83e271f1633",
+      "bytes": 1819631
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "fe52af064ada68a441511a4445d3ae3e36daf7061d0010f4191cb8164231f9b2",
+      "bytes": 1942783
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-30.png",
+      "sha256": "7874fd09a70b7ebbd564636cf23505359f626589abb9ddd918921c6c195e4125",
+      "bytes": 1914919
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-15.png",
+      "sha256": "4913e026cf1c5cfa4523268bbd23f9d3f843cf4106cc6224cb9dd816503544c4",
+      "bytes": 1790670
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "c3145560d9ed6882a9e2df3553588387f7ce208ac9cb5b043d81be99a5d3ea63",
+      "bytes": 1874205
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "13e5a3f99f0f7db1eb7b0be8668bd833590fb54978b84813c6a6b714e2005e2f",
+      "bytes": 1915206
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-45.png",
+      "sha256": "fc2da62079f07510970575762680f69011f42cbcf5a47c90b364c3e385633a32",
+      "bytes": 2021868
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "d91c2e697805c56b41a6f6874d2a5cdd3c6b137c46f09df3fc2f2216e2536234",
+      "bytes": 1792348
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-75.png",
+      "sha256": "2b4393ce26cf7b281808ff042c89da76ffbd7a1dcd531756541c7791b4cda899",
+      "bytes": 1825100
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-60.png",
+      "sha256": "0ca88ca3e807917072f22d1b92524e21292b0d872b0adb1a3434fcdc1a4946b2",
+      "bytes": 1948884
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "bf475be1a5cb2cd9bf4b3f54003c671efb59932ea470b7427513988ba52efe50",
+      "bytes": 1915263
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "eeb3289df5d19f0c6e6f3643d08dc7efbf5c0a47a4dcd4be256504ffceae02cb",
+      "bytes": 1916236
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "8361cb82baf3218e5e7bac25737083f344421a178ad46b8bf145f7b6ec254fae",
+      "bytes": 1792287
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "4e08fcecac22bf4ce8ed5bb95cea5c76501d7334ed28b189270db12976d13338",
+      "bytes": 1782620
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-rectangle.png",
+      "sha256": "ac9a64b41d58e51185da1d82365c95c21cfe6bfa5b77b91d8f8b61d89d849325",
+      "bytes": 1629801
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "bb37790e0b11dc671d89b3f34761f74cf695e1733d2aa89dd6696f94dcfd0994",
+      "bytes": 1792349
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-45.png",
+      "sha256": "47bf70b3d5411f1b76e9f1cd563b52cdddfa2b4fa37152159a769d72612d21d2",
+      "bytes": 2021869
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-oblique.png",
+      "sha256": "14b2bb503f961f14c8274dffb4cd4ec063ee02df9b094020dc4265d6733c6bf9",
+      "bytes": 1916498
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "bf475be1a5cb2cd9bf4b3f54003c671efb59932ea470b7427513988ba52efe50",
+      "bytes": 1915263
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "724de6e3a3be2fcaf7ec795e51882ca0c421d18d54c73836c1a71cc37262cae7",
+      "bytes": 1876471
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "4e08fcecac22bf4ce8ed5bb95cea5c76501d7334ed28b189270db12976d13338",
+      "bytes": 1782620
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-60.png",
+      "sha256": "0ca88ca3e807917072f22d1b92524e21292b0d872b0adb1a3434fcdc1a4946b2",
+      "bytes": 1948884
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "06263fb05063bd640693f5b3ced6733ff6ddbbde0d1854df2fc7a8475176fe98",
+      "bytes": 1916223
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-75.png",
+      "sha256": "2b4393ce26cf7b281808ff042c89da76ffbd7a1dcd531756541c7791b4cda899",
+      "bytes": 1825100
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-30.png",
+      "sha256": "7874fd09a70b7ebbd564636cf23505359f626589abb9ddd918921c6c195e4125",
+      "bytes": 1914919
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-oblique.png",
+      "sha256": "1aec7928aa44c1769d530acc2fcfc0df6d0f7281ca618f56d1ccd3db801e3c25",
+      "bytes": 1915061
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-rectangle.png",
+      "sha256": "a7258b4a29b1eeb925875c71c0e8d97918d9a07f6e6455b50cc1efa559709646",
+      "bytes": 1624748
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-15.png",
+      "sha256": "7540b021c79d5eb61b0671b501144abac6abb9a77e334e06d18ecbdaabe1fd3a",
+      "bytes": 1790670
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "b706b3dcc42fdfdfc13569984414dd4a51fb0cd680dfbf4a354c226df0c893e4",
+      "bytes": 1773986
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-axis.png",
+      "sha256": "e250be977e18b0781ebd02d47ffb08742c84c3fbbc728a44f8c16dcd889717d4",
+      "bytes": 1783921
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-oblique.png",
+      "sha256": "1aec7928aa44c1769d530acc2fcfc0df6d0f7281ca618f56d1ccd3db801e3c25",
+      "bytes": 1915061
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "470833d874b6c8d36a914855f394bbee52579b95d3ac3be983d7ee123823b3d6",
+      "bytes": 1874753
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "46e4a30d643d57d3ddd8bc348711d5a869b4ce2330a2224e327d7fabfa3a12b5",
+      "bytes": 2021177
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-0.png",
+      "sha256": "52e2e4990f5145cc775252191ca658f2d04058278ce15d0e072337f170c5cc95",
+      "bytes": 1623809
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "06263fb05063bd640693f5b3ced6733ff6ddbbde0d1854df2fc7a8475176fe98",
+      "bytes": 1916223
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "13e5a3f99f0f7db1eb7b0be8668bd833590fb54978b84813c6a6b714e2005e2f",
+      "bytes": 1915206
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "0ec61e0b8a47e0e3c32777b0ffe85578471acb400b34cfb0c9eb7dc68e0e4df3",
+      "bytes": 1630237
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "724de6e3a3be2fcaf7ec795e51882ca0c421d18d54c73836c1a71cc37262cae7",
+      "bytes": 1876471
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "0f6be4a1af0c2570d34cbf1429c4225c5a905002508cdda8b82b55116b6f74dd",
+      "bytes": 1625973
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "061aea291c8892de6b2acdd5746aab281a45ab4fbab194677aef89c225ae3928",
+      "bytes": 1624102
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-45.png",
+      "sha256": "9c2c783d235ad8767dce5e32aa3814787300d9252c9c30c5f2b4d165b39b4731",
+      "bytes": 2020863
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-oblique.png",
+      "sha256": "14b2bb503f961f14c8274dffb4cd4ec063ee02df9b094020dc4265d6733c6bf9",
+      "bytes": 1916498
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "4a61021ef3353a8c61ab73752201978fe919fdf2d2682723115e5678c4a94ef3",
+      "bytes": 1874752
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "365b6a98d27e009f085e3f9fc63683d3dc58c37fdcbb5e8ae11326e1c3a349c5",
+      "bytes": 1627533
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-15.png",
+      "sha256": "a6aa11d53a7bca7c8623d501cfd6e06c412020fe9a610b101c7bfc706b3e979d",
+      "bytes": 1790592
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-axis.png",
+      "sha256": "891ed94d9ff9a9fa6d57ecd57449f1e8930bc74edc803cee646bfb3576b90d10",
+      "bytes": 1783921
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-axis.png",
+      "sha256": "7c2095f821eb736d6db31456b5128c4ae0994d5a8609c96193ff6c10ef7f784c",
+      "bytes": 1774113
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "af488f6d6abe3b4ab42970563eaffca0f7eba78f10a87c28cf1cf83e271f1633",
+      "bytes": 1819631
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-angle-0.png",
+      "sha256": "ed664014822970a32bd6939b54dd867ef3ee22fcadf966fc2ddf21cd7f22899f",
+      "bytes": 1627145
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "069e8ac74890b39cd87ce5dfacb93782f561c7425273bea7d2491db7856b19b6",
+      "bytes": 2020807
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "5359d4cb7033a5228d8ec00a89db923c679f5dd807d46f7c290b6bcd7fb63a3e",
+      "bytes": 1819520
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-30.png",
+      "sha256": "5e54375c2fa9a520688423ee5b83bee790ef36bde41e7daaf03efd1f1d6f4fac",
+      "bytes": 1916302
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-rectangle.png",
+      "sha256": "59a251035d76f16a3604ae00d1b60689b3bedd865bcdbb26a756c7838b340771",
+      "bytes": 1629801
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "056c683f495c6a7dd43eebe621a4716cb98ec43365a9daddf4502680daaf8681",
+      "bytes": 1942338
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "edfb4bb092416b9e916132864228511c2ba1c55fb39249f1dd645f1717f26912",
+      "bytes": 1625975
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "fe52af064ada68a441511a4445d3ae3e36daf7061d0010f4191cb8164231f9b2",
+      "bytes": 1942783
+    },
+    {
+      "path": "trial4/origin/candidate-prod-origin-NASA_OEM-rectangle.png",
+      "sha256": "d4b13112b7e06062f5f025ddf581f756fc42264335d785a2f3bd30af062a5816",
+      "bytes": 1624748
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-axis.png",
+      "sha256": "b706b3dcc42fdfdfc13569984414dd4a51fb0cd680dfbf4a354c226df0c893e4",
+      "bytes": 1773986
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "d0749468f5eceefbbb41271a3709aad77e838f7887f18e985236f314e77e446f",
+      "bytes": 1624102
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-0.png",
+      "sha256": "409bda78d103271bf070935f8f05b3eea811c927d3545fe1176e8c7cadddfd42",
+      "bytes": 1627145
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "e00137b769ed9e962ec953734772468a492695da4e8e52dbf47f97fc39fab8f6",
+      "bytes": 1877289
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "eeb3289df5d19f0c6e6f3643d08dc7efbf5c0a47a4dcd4be256504ffceae02cb",
+      "bytes": 1916236
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-75.png",
+      "sha256": "cd97fd34d0dc47ea9e8ad3132e71a7e684da7c4648ba6e13d723504c16f4044a",
+      "bytes": 1825146
+    },
+    {
+      "path": "trial4/origin/baseline-dev-origin-NASA_OEM-angle-0.png",
+      "sha256": "fb2fa9d0549a86bd48a5740906b93782b31fa409c63ea07f731d35b19b918ee3",
+      "bytes": 1623809
+    },
+    {
+      "path": "trial4/origin/baseline-prod-origin-NASA_OEM-angle-179.9.png",
+      "sha256": "e00137b769ed9e962ec953734772468a492695da4e8e52dbf47f97fc39fab8f6",
+      "bytes": 1877289
+    },
+    {
+      "path": "trial4/origin/candidate-dev-origin-NASA_OEM-angle-60.png",
+      "sha256": "2e967ad64ec48b9bca43d2e6ad0c833be2f35d780de94210a04bb338297dccc1",
+      "bytes": 1948516
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "639fa6591c9586436524aeb2c62f3daf62b6495e3e4f4de179ee2b506c5cb891",
+      "bytes": 1804318
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "848d52641550ad274764fe9f2ba81868fdd51aeb045f5858052a2a90ee8d2e27",
+      "bytes": 1866493
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "008fa52ff20da6c723f3850c374379fbd479a8f7e40699169ef3e041ddd99b93",
+      "bytes": 1924472
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "7a5c0a7476165619a9eac88a71e9f71565791fd873e45c32ec381162067801a9",
+      "bytes": 1924487
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-30.png",
+      "sha256": "7c600ba129065f6aa80e2c52e021d7766c2a28e254913828d4815ca9598e90fc",
+      "bytes": 1922137
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-179.9.png",
+      "sha256": "1619823939f6d1da1a8f73ed88a2723a94b7cd42a3ae1d0f74c310ed37392248",
+      "bytes": 1866555
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-179.9.png",
+      "sha256": "b4001f4a19d220defc3fb54050698aa72c7e48b6e07331e95fcdaf96a54af0b4",
+      "bytes": 1866309
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "93e9d9364fca7505379a07a49a3a1975ed0d03c82cb6bfcf02784753fe0936b0",
+      "bytes": 1606750
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "5c4738eedb2b1e6e71a03115b1489dc8dd0ff597aa948575e539dcab6c40746c",
+      "bytes": 1782232
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-rectangle.png",
+      "sha256": "a1a3caade1c600cae6158da3b91c947784308fbe8a7f553272e18c1281573c15",
+      "bytes": 1606747
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "475d25f7945339fc10c64266d4ab69bc3fcf931dd1eda8332cf6885495ff4d1f",
+      "bytes": 2010768
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "ceca64bdaf69c5d66678c4829f967514e7fd02a4535cdf3fc7684e8a88fa8734",
+      "bytes": 1936465
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-axis.png",
+      "sha256": "c2b88e440044caf9fbe9c6fa6bc2f37a46b5d9fc491acbcee1323d1332085a4c",
+      "bytes": 1834561
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "78213b0061b23ace8d777a5f0faea50f66a218a41db86d042848d94497c42ca3",
+      "bytes": 1637610
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-45.png",
+      "sha256": "04e66a93dfa66817843340cdabd4a5cda733d0ce192e081c9e753aa8b52a8e0c",
+      "bytes": 2011379
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-60.png",
+      "sha256": "a412d427ba550b59b17f7cfd989b7d5093216a66494f23200ead563d73650e54",
+      "bytes": 1944241
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-75.png",
+      "sha256": "e38637c398881aac3c836a97fc94af7208f0739fde8404f66c0e4fbc3fd7e605",
+      "bytes": 1794626
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-45.png",
+      "sha256": "2e27c994eeca7cda595f6e67543c84c6003039d0c39a08113983a159c92af9bf",
+      "bytes": 2011033
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-75.png",
+      "sha256": "f6f7b696be103f9dcaf1f2f34a6b73b899f1187391edd8f4f761ea9d03f56053",
+      "bytes": 1781935
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-60.png",
+      "sha256": "7cef82fbfc69767429ee845b116140aef2266c822b861ef4b0efaf3be9ef0a85",
+      "bytes": 1936666
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-0.png",
+      "sha256": "0b7f00e3754c985381332cbe87f02da6b8f3436424efc90b0f575c0c389a375b",
+      "bytes": 1637957
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-axis.png",
+      "sha256": "1a7b6ed20a3314b1ad73e078aaa4f97134f7663e870811d020afb8f1e48d0c72",
+      "bytes": 1834372
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-axis.png",
+      "sha256": "2f29cc7c5f86f9333c743acd7465ba995230678b3b431fc931ad83ecb0ebd42c",
+      "bytes": 1834258
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-0.png",
+      "sha256": "2ebda8d30bd1dcecceb7c003418d146a7443bbaf8ad7acc112f93deb989c6f54",
+      "bytes": 1636099
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-oblique.png",
+      "sha256": "67898d313fa0b634fde87f6ed65320715d84957b72ba120a7d638703240e239c",
+      "bytes": 1922177
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-rectangle.png",
+      "sha256": "6d63ef68b9cab17799f55d684c103265c22603092bf60d1765abff5efd5e4379",
+      "bytes": 1605544
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-oblique.png",
+      "sha256": "6e45c6b2e297ffe9dd45784a361b71e153f424f47c595e9bc7ffaef5dfef847a",
+      "bytes": 1924759
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-NASA_OEM-angle-15.png",
+      "sha256": "af5b8a47588ea0181cd8453c182efed3f079734e2336153bb200528cdd5a1ff0",
+      "bytes": 1801661
+    },
+    {
+      "path": "trial4/stress/candidate-prod-stress-PRIMARY_GP_TLE-angle-15.png",
+      "sha256": "e8fdcfe2b71b9dfaf68c054776575e78e415d5fd72adb1d5e21be01423bfef1b",
+      "bytes": 1803828
+    },
+    {
+      "path": "trial4/stress/candidate-dev-stress-PRIMARY_GP_TLE-angle-30.png",
+      "sha256": "f84a1f061d47490c95b93b0a3f929acfa3817526a364bbb27e228a5c0485f663",
+      "bytes": 1924788
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+{
+  "encoding": "Native Float64Array xyz positions / source sample-millisecond epochs, SHA-256.",
+  "runtimeSourceHashes": {
+    "EarthView.tsx": "c9283b1d2b63f0924cdb246164122cc03c5fc4a2ba5935d6d002847fd57a21f4",
+    "trajectoryClearance.ts": "5660b2bf9c11b53f3cc6006190a43f9363ed3cb777b96728c94982e17fa32dec",
+    "trajectoryRendering.ts": "03af349ac5ae496d65ac4fd8c2ed2682156ee2cc1cbae8f1619c9c418076e76e",
+    "trajectoryAppearance.ts": "3c01c6a55679e776b28e7cae8c79d3d2e958061c695b5afc046eaeb0fbc7b2bf"
+  },
+  "runs": [
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-against.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-crossing.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-following.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-heading.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-oscillation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-pitch.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-reverse-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-rotate-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-NASA_OEM-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-against.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-crossing.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-following.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-heading.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-oscillation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-pitch.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-dev-PRIMARY_GP_TLE-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-against.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-crossing.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-following.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-heading.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-oscillation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-pitch.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-reverse-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-rotate-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-NASA_OEM-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-against.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-crossing.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-following.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-heading.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-oscillation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-pitch.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-reverse-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-rotate-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-rotation.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-stress/validated-prod-PRIMARY_GP_TLE-zoom.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-0.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-1.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-2.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-3.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-4.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-NASA_OEM-memory-5.json.gz",
+      "frames": 500,
+      "sampleHash": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4844602.445716714,
+        -66061.97921391678,
+        -4775628.183000185
+      ],
+      "physicalPathLength": 34879731.894290455,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-0.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-1.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-2.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-3.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-4.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    },
+    {
+      "run": "validated-memory/validated-memory-PRIMARY_GP_TLE-memory-5.json.gz",
+      "frames": 500,
+      "sampleHash": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochHash": "6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311",
+      "physicalEndpoint": [
+        -4843372.346983002,
+        -63331.408432016375,
+        -4776776.0757929785
+      ],
+      "physicalPathLength": 34879973.54123991,
+      "sampleCount": 181,
+      "firstPhysicalEpoch": 1790783159975,
+      "lastPhysicalEpoch": 1790787902060.658,
+      "physicalStateChanges": 0,
+      "builderChanges": 0
+    }
+  ]
+}

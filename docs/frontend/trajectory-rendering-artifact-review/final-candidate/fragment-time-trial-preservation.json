@@ -1,0 +1,503 @@
+{
+  "archive": "/Users/daniel/Desktop/mission1-trajectory-fragment-time-trial.zip",
+  "archiveSha256": "0b66ff0f148c6fe76eb84a10852a93b69699b35e73a11efeabd7fab7e47ba38f",
+  "files": [
+    {
+      "path": "trajectoryAppearance.ts",
+      "sha256": "4a52133ac0751182eefce17462ff839a7b884baf3d2c66f4cedfd2ba5242d49e"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-012-current.png",
+      "sha256": "04203619b2ec994717e11ca2f0b21e45be59586c8b300d98cbcf8d46ea623896"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-002-previous-gap.png",
+      "sha256": "94e4483540253eb199e87b1d67e260726adb1b41b88af34f07422bf8bfd08477"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-008-off-before.png",
+      "sha256": "05285ea27c5216ebfec7edd47fed25849432edc6fd617fa5c36ebe560832c6d8"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-002-off.png",
+      "sha256": "b396766d8904da76b6179174807deb8621abbe1d3bb7d162d0700879ebc65ea7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-012-off.png",
+      "sha256": "089f9b42cc732ebbcb0609c02337afc6e162c66d2939be4fa1c082fcbf8834c4"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-009-previous-gap.png",
+      "sha256": "5084912be75cf97986d36962e49c05703e86d72011c9f75386b1842a1c0b24bb"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-004-current.png",
+      "sha256": "88537abc93d84f30f2e1d4172bc4d229b38eb8ec28f03d99e9940967c099ec10"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-000-off-before.png",
+      "sha256": "601a1c2152dfac25c37e191900955971ee4dc31563a93f3252740a3b75369ad6"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-011-off-before.png",
+      "sha256": "bb767bbb7828f8326ec769b903307e977f9e5e3dd078c4d4cd413cd257a3ccdd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-004-off-before.png",
+      "sha256": "7411f8b72799312e4695d2a600c77f02835bef401b5991ba01fe0e306b43620d"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-009-previous-gap.png",
+      "sha256": "0e7290093e005a62ac481cada72e7ea99906e025c321485c28c22f687d2c22a0"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-011-current.png",
+      "sha256": "57c265a0fe3fb6233bb0d40a409f2a969fc8636f942fd16045551e790dc27c8f"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-007-off-before.png",
+      "sha256": "74fd9eaa0c9c18c3dec3eef2eefd4f4037d695398e15f3f5bb496211e45c5c80"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-012-off-before.png",
+      "sha256": "089f9b42cc732ebbcb0609c02337afc6e162c66d2939be4fa1c082fcbf8834c4"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-007-current.png",
+      "sha256": "f0421c85819f91e9cccdb1f8e3e3352b7e789efa43afe535596923892249c128"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-003-off-before.png",
+      "sha256": "a72dc2a9e319f824352e0aa980e663a186610cde3138aa8203a03a343b328650"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-007-off.png",
+      "sha256": "427d0b2258d676942998cab7d17f391ff300be5f439c2efd39b589cf099dc20b"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-002-previous-gap.png",
+      "sha256": "d69807960d3d57725c7d745380dcb8a8f9f3c34c20ff59a69dab0e591a08906e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-014-current.png",
+      "sha256": "91000d49e50a10f578694519ec7201f9560524137a6452ee77aab4b578dd5cf9"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-012-previous-gap.png",
+      "sha256": "04203619b2ec994717e11ca2f0b21e45be59586c8b300d98cbcf8d46ea623896"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-013-off-before.png",
+      "sha256": "cae77d3df7698b2a25972614d85e0091e46b9e4d1ae5fde33cd73d9dde6ca631"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-006-off-before.png",
+      "sha256": "c9eab9ec605b590f19cea1f872d3e1e2658a7104ff19c30d97648a03f4e94d77"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-006-previous-gap.png",
+      "sha256": "7c443888f9c62f44de1676c987cb9f0f073159e33d093e99e941c3ecf379f59f"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-002-off-before.png",
+      "sha256": "52dc7549b4613144f4361822d7d5ef6aed97e0396b0719b7ec4090a512240d0d"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-002-current.png",
+      "sha256": "f7e1efcd1658e1a994cbc998d79ea14cb2238e7fe41a6670083167f257d2a3ff"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-006-off.png",
+      "sha256": "b4a86d3872f7d9e1fb3029a033664ba25b968672f0619223130136a95c55e736"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-008-current.png",
+      "sha256": "21cec724912805706be475d941990fef3dbb2522a71c186231063be0248c4cc8"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-001-off-before.png",
+      "sha256": "94268c5fb14e4ebbff2185e74b34452511a7f74205ae270f4b07fcfe0082522c"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-014-off-before.png",
+      "sha256": "c075e4d3c55bf88e84219f18c93bcbbf7a2642e310fcb625a47e1434fdaf8dcd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-005-off-before.png",
+      "sha256": "06c7429f739f34bdba9b73a4affb07e20708f1c4c8e3eb8ff03bf0b5fa9503fd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-010-off-before.png",
+      "sha256": "c9fedcab4436d55df5757b7fd388b0435fa23b030251592519020cb3121a3578"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-006-previous-gap.png",
+      "sha256": "4bc3de5e6f21cf3ab4370ac0d7e9e94b25b2bb40693d0dac91be260643a0b846"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-013-off.png",
+      "sha256": "cae77d3df7698b2a25972614d85e0091e46b9e4d1ae5fde33cd73d9dde6ca631"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-003-off.png",
+      "sha256": "038d12514862fbaab161c39d820ef9280ebce0b4175b8b892978007dc2af33c4"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-001-current.png",
+      "sha256": "ff2c290cddc9af7e04b440837ed5440b45dbdf86b8e163c27f7160dd821bd2b8"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-012-previous-gap.png",
+      "sha256": "d192d9979341d84efdc78dd90c1726af9b2714b0ff18cc3e4ceeceacfbd902a0"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-009-off-before.png",
+      "sha256": "7c01e495f750af96644ca60407acb5ab1599225623a5747413618b3f377c003e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-002-current.png",
+      "sha256": "81728e34da4369de2b5a397cea8447c1644abe8b72ba689ea454545c17ff4e6a"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-007-off-before.png",
+      "sha256": "427d0b2258d676942998cab7d17f391ff300be5f439c2efd39b589cf099dc20b"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-012-off-before.png",
+      "sha256": "363e5fec0de8208385a925932e1d1dbc6e06fe870aba8057be55d91f1ad9a3ef"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-008-previous-gap.png",
+      "sha256": "5f65abfad9a6da3a9ff2e4cec2aaac5bb5d3e31093d4457747083c9201c4f6ec"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-008-current.png",
+      "sha256": "9e455c65a5cbdaaf93fd59e51f9f051c34038478a780e62067d31e67758b14ba"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-003-off-before.png",
+      "sha256": "038d12514862fbaab161c39d820ef9280ebce0b4175b8b892978007dc2af33c4"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-014-off.png",
+      "sha256": "d9af15cdaae812b1bf0f4f83f95a034d1c6e35c1a7e51376e88c34fbb67fe28e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-004-off.png",
+      "sha256": "7411f8b72799312e4695d2a600c77f02835bef401b5991ba01fe0e306b43620d"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-014-current.png",
+      "sha256": "466db8e6975076bef916a6424b931568db0bc9ea9d2f3e292fff3845a1e457e7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-008-off.png",
+      "sha256": "05285ea27c5216ebfec7edd47fed25849432edc6fd617fa5c36ebe560832c6d8"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory.json.gz",
+      "sha256": "23101ed501ddc6d0534f026ed6fb781b96f06b37f04c1cd4627dc1e03b2d333d"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-003-previous-gap.png",
+      "sha256": "a3bab2caeb220f20b4fba6731b53ff37d783c2751cdb493aaa7f58ff60520bdd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-003-previous-gap.png",
+      "sha256": "077defd7038d8c957eaf946950166fdea7b441d9c9cf6bd730836d5dceff1a3e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-000-off-before.png",
+      "sha256": "436f7f36b3c76bae95070ba221a66c563d071d52504d1b9bf55fb0309b9239d0"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-011-off-before.png",
+      "sha256": "0515802b88d9b7aba983d6b64cdc2200b813652e4d616c8060fb494c6fcc7d54"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-004-off-before.png",
+      "sha256": "e5f4170984277443c0ca743670b4e03f7ae34009695661688baf46ac68ddbff5"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-001-current.png",
+      "sha256": "205662b1e16f3744bd7c81b639fdb6e5bac9fb6f072d85a1d24df1ae55eb5726"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-008-previous-gap.png",
+      "sha256": "6f6a390e2ae2db0c71cdc99aaa72173ce7553196dce1a1de2c82c97d32ca4025"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-008-off-before.png",
+      "sha256": "2319470438c4e2174a054cb0a7cdcc9168c0c234dbcc0ebde0efa4c98bd8d0a7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-001-off.png",
+      "sha256": "94268c5fb14e4ebbff2185e74b34452511a7f74205ae270f4b07fcfe0082522c"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-011-off.png",
+      "sha256": "0515802b88d9b7aba983d6b64cdc2200b813652e4d616c8060fb494c6fcc7d54"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-004-current.png",
+      "sha256": "04a37623487f274811c1621598e50d134cf33b8483445bd90b577de65c57fc0e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-009-off-before.png",
+      "sha256": "ff3edcb379e9cbd60577f667fb9ead2476426610e212be82740bd01240864b81"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-007-previous-gap.png",
+      "sha256": "a38d89adc5a7f3158b220b1076615c5946a453d8e5884507f8c916271db0964c"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-012-current.png",
+      "sha256": "d192d9979341d84efdc78dd90c1726af9b2714b0ff18cc3e4ceeceacfbd902a0"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-001-off-before.png",
+      "sha256": "e009cee37bbf0491d0b044637cd9f71374098aa5a51d695d8224d44b9129f8d4"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-014-off-before.png",
+      "sha256": "d9af15cdaae812b1bf0f4f83f95a034d1c6e35c1a7e51376e88c34fbb67fe28e"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-013-previous-gap.png",
+      "sha256": "f0fb59340ad867d75bda9c2aea8aa3da8e77524deb4e27167f2fd39754c6d412"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-010-off.png",
+      "sha256": "cec4562de7bedcf25997a84f3eecd7bc90815463bc55f1370f1d86a8e41a02b1"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-000-off.png",
+      "sha256": "601a1c2152dfac25c37e191900955971ee4dc31563a93f3252740a3b75369ad6"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory.json.gz",
+      "sha256": "8c21e6815765330c3b185aaf40e511cb04a137b36d969fa7e61a5ec81f928a34"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-005-off-before.png",
+      "sha256": "2d1c883dcf5db5718af38a25bfd31fcd33e260808518612261895a707f683cb7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-010-off-before.png",
+      "sha256": "cec4562de7bedcf25997a84f3eecd7bc90815463bc55f1370f1d86a8e41a02b1"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-013-previous-gap.png",
+      "sha256": "a8097b93c7ba490533311f4ded260cb93e8a1b088844adf6405e7872d35268a9"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-007-current.png",
+      "sha256": "e3119dc71580d67d882cdd4faebb5d88f986127b8f99f18b25fe2ce5285527e2"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-007-previous-gap.png",
+      "sha256": "3d8293d3198aadb1b2e0eddec154c7ca476c82ee4840b45592e1d52124359397"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-009-off.png",
+      "sha256": "7c01e495f750af96644ca60407acb5ab1599225623a5747413618b3f377c003e"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-013-off-before.png",
+      "sha256": "765adba6841cd5889548a689ac7ab5936cc5d9089c235ba21ec6499bafb59fc1"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-006-off-before.png",
+      "sha256": "b4a86d3872f7d9e1fb3029a033664ba25b968672f0619223130136a95c55e736"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-005-off.png",
+      "sha256": "06c7429f739f34bdba9b73a4affb07e20708f1c4c8e3eb8ff03bf0b5fa9503fd"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-002-off-before.png",
+      "sha256": "b396766d8904da76b6179174807deb8621abbe1d3bb7d162d0700879ebc65ea7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-011-current.png",
+      "sha256": "c586e4ba42bd111e3958a275a3d63e68767ff6d25aa8ba426265e2cfcf0da871"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-000-previous-gap.png",
+      "sha256": "95c29b258b24ee8e93633da5b1bf7424d144ca7c615a5aad9e66a7c5841a65ea"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-010-off.png",
+      "sha256": "c9fedcab4436d55df5757b7fd388b0435fa23b030251592519020cb3121a3578"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-000-off.png",
+      "sha256": "436f7f36b3c76bae95070ba221a66c563d071d52504d1b9bf55fb0309b9239d0"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-014-previous-gap.png",
+      "sha256": "466db8e6975076bef916a6424b931568db0bc9ea9d2f3e292fff3845a1e457e7"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-000-current.png",
+      "sha256": "95c29b258b24ee8e93633da5b1bf7424d144ca7c615a5aad9e66a7c5841a65ea"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-003-current.png",
+      "sha256": "4d02d92ceba7b90fd768b894a1a80ac2353b98a59935cb233bc14befb558eb5e"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-005-off.png",
+      "sha256": "2d1c883dcf5db5718af38a25bfd31fcd33e260808518612261895a707f683cb7"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-009-current.png",
+      "sha256": "90de2decbd4b07520706e0ba54685fc8a18340a121cb389fe28aa5c771d4aa14"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-009-off.png",
+      "sha256": "ff3edcb379e9cbd60577f667fb9ead2476426610e212be82740bd01240864b81"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-014-previous-gap.png",
+      "sha256": "91000d49e50a10f578694519ec7201f9560524137a6452ee77aab4b578dd5cf9"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-000-previous-gap.png",
+      "sha256": "7d964acfcecd20262de82ebf2248d3a9410950fa7bacdb22124e72e5088e5035"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-010-previous-gap.png",
+      "sha256": "8299be6daf22f30248a22731623714fb39cf427007768fb0b9733fbed1109887"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-004-previous-gap.png",
+      "sha256": "a243dfb83482fdff010d79dd645cb18be6e59da29bee240bb55fb5c849123603"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-008-off.png",
+      "sha256": "2319470438c4e2174a054cb0a7cdcc9168c0c234dbcc0ebde0efa4c98bd8d0a7"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-014-off.png",
+      "sha256": "ddd5b01126c8dfd16d5c769bd879ce34c21608ed9e3814dc84a9adb7b94ca94c"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-004-off.png",
+      "sha256": "e5f4170984277443c0ca743670b4e03f7ae34009695661688baf46ac68ddbff5"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-006-current.png",
+      "sha256": "30fa10a3d939138ebf8b93fc0100c7ac1133b33b7fd2be5b1ce56221cfa23d49"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-010-current.png",
+      "sha256": "75f8e5b83de740ad26f599d7eb132e6921d92dbdd6ea989bb753a10b020f96c6"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-001-off.png",
+      "sha256": "e009cee37bbf0491d0b044637cd9f71374098aa5a51d695d8224d44b9129f8d4"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-011-off.png",
+      "sha256": "bb767bbb7828f8326ec769b903307e977f9e5e3dd078c4d4cd413cd257a3ccdd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-005-current.png",
+      "sha256": "6f9903ca0f06670684423179e5905e46bd4b11c951d17fca35c9290bd84d2eda"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-004-previous-gap.png",
+      "sha256": "f2ecad2a90e47cea97899f51afb34d322c3156dd0a81ad316cb85b42942c121b"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-013-current.png",
+      "sha256": "f0fb59340ad867d75bda9c2aea8aa3da8e77524deb4e27167f2fd39754c6d412"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-010-previous-gap.png",
+      "sha256": "d16cd2ccede5d03a03de5b96e09ceb4afe7495c3b3dbe37a68b69693e1608cd2"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-006-off.png",
+      "sha256": "c9eab9ec605b590f19cea1f872d3e1e2658a7104ff19c30d97648a03f4e94d77"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-010-current.png",
+      "sha256": "0cfe416594e6a41d848afb1b05d9d880914aeb44297a5a005df6b8317e107c8d"
+    },
+    {
+      "path": "fragment-time-trial-summary.json",
+      "sha256": "2cd3d796e39726bb4ea680e95753e46246d0d00d03d0fae833f0df7bdb6918ae"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-001-previous-gap.png",
+      "sha256": "238247eab9fc3cec0404fc727c1dee363b59eb21b9d17e3963f14912225b1dac"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-006-current.png",
+      "sha256": "83a41ffad4938217ffb2ac02e6cd8bfb3663a332fa76cd0c392cf530aae95a5a"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-013-current.png",
+      "sha256": "a8097b93c7ba490533311f4ded260cb93e8a1b088844adf6405e7872d35268a9"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-001-previous-gap.png",
+      "sha256": "891d353e82520182a40481b29fe53266b2772a24bd9c0c58f6f8e08744ff1cfb"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-013-off.png",
+      "sha256": "765adba6841cd5889548a689ac7ab5936cc5d9089c235ba21ec6499bafb59fc1"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-003-off.png",
+      "sha256": "a72dc2a9e319f824352e0aa980e663a186610cde3138aa8203a03a343b328650"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-005-current.png",
+      "sha256": "a4a813307d915ff0cf274a96eb067f0c60840537cbb37cba911ec92444a6bb99"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-002-off.png",
+      "sha256": "52dc7549b4613144f4361822d7d5ef6aed97e0396b0719b7ec4090a512240d0d"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-012-off.png",
+      "sha256": "363e5fec0de8208385a925932e1d1dbc6e06fe870aba8057be55d91f1ad9a3ef"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-005-previous-gap.png",
+      "sha256": "79fd37a9dcb4b61774d67b72f2eae24c24eed1312d964052b6f4de3427e49765"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-011-previous-gap.png",
+      "sha256": "57c265a0fe3fb6233bb0d40a409f2a969fc8636f942fd16045551e790dc27c8f"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-000-current.png",
+      "sha256": "7d964acfcecd20262de82ebf2248d3a9410950fa7bacdb22124e72e5088e5035"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-007-off.png",
+      "sha256": "74fd9eaa0c9c18c3dec3eef2eefd4f4037d695398e15f3f5bb496211e45c5c80"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-011-previous-gap.png",
+      "sha256": "c586e4ba42bd111e3958a275a3d63e68767ff6d25aa8ba426265e2cfcf0da871"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-005-previous-gap.png",
+      "sha256": "876e9dd5b34f6db1e8f5e54620f4c533326d749c80500d9bb3c617e59176d6bd"
+    },
+    {
+      "path": "fragment-time-trial-NASA_OEM-memory-003-current.png",
+      "sha256": "e4c6f5043b0ae2517bcd846015408ecaf6030fe242659ecb1c34eec19296775c"
+    },
+    {
+      "path": "fragment-time-trial-PRIMARY_GP_TLE-memory-009-current.png",
+      "sha256": "da21ac48bf19ed08712f5e5d61ade5c9a1049421f6d8fb59b459d4cca21d282f"
+    }
+  ],
+  "disposition": "Rejected: centerline time reconstruction did not remove the reproduced initial-mask handoff jump."
+}

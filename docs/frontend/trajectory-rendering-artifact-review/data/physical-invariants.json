@@ -1,0 +1,43 @@
+{
+  "baseline": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "positionCount": 181,
+      "positionsSha256": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochsSha256": "c126b76b249dfc58f050bdab32ae53e33ad8c8be814029b97f21f2ff69a9efdb",
+      "startMs": 1790783129875,
+      "endMs": 1790788708800,
+      "periodSeconds": 5578.924303429717
+    },
+    {
+      "source": "NASA_OEM",
+      "positionCount": 181,
+      "positionsSha256": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochsSha256": "c126b76b249dfc58f050bdab32ae53e33ad8c8be814029b97f21f2ff69a9efdb",
+      "startMs": 1790783129875,
+      "endMs": 1790788708800,
+      "periodSeconds": 5578.924303429717
+    }
+  ],
+  "candidate": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "positionCount": 181,
+      "positionsSha256": "1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3",
+      "epochsSha256": "c126b76b249dfc58f050bdab32ae53e33ad8c8be814029b97f21f2ff69a9efdb",
+      "startMs": 1790783129875,
+      "endMs": 1790788708800,
+      "periodSeconds": 5578.924303429717
+    },
+    {
+      "source": "NASA_OEM",
+      "positionCount": 181,
+      "positionsSha256": "c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985",
+      "epochsSha256": "c126b76b249dfc58f050bdab32ae53e33ad8c8be814029b97f21f2ff69a9efdb",
+      "startMs": 1790783129875,
+      "endMs": 1790788708800,
+      "periodSeconds": 5578.924303429717
+    }
+  ],
+  "identical": true
+}

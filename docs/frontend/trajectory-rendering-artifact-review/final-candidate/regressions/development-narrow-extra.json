@@ -1,0 +1,863 @@
+{
+  "sources": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "picks": [
+        {
+          "name": "Columbus",
+          "x": 468.1269501641021,
+          "y": 363.43038059811005,
+          "featureId": 1,
+          "moduleCode": 2
+        },
+        {
+          "name": "Pirs",
+          "x": 451.35301446884125,
+          "y": 378.14209481120463,
+          "featureId": 3,
+          "moduleCode": 4
+        },
+        {
+          "name": "Poisk",
+          "x": 448.64700391720663,
+          "y": 355.9540844804989,
+          "featureId": 4,
+          "moduleCode": 5
+        },
+        {
+          "name": "Zvezda",
+          "x": 450.53820808788777,
+          "y": 363.2796501245516,
+          "featureId": 5,
+          "moduleCode": 6
+        },
+        {
+          "name": "Kibo Exposed Facility",
+          "x": 403.58313192410384,
+          "y": 370.7656048735119,
+          "featureId": 8,
+          "moduleCode": 9
+        },
+        {
+          "name": "Quest",
+          "x": 468.60404958571513,
+          "y": 367.1082036459733,
+          "featureId": 10,
+          "moduleCode": 11
+        },
+        {
+          "name": "Cupola",
+          "x": 428.09135986227534,
+          "y": 375.7191604264057,
+          "featureId": 11,
+          "moduleCode": 12
+        },
+        {
+          "name": "Tranquility",
+          "x": 431.95608546019145,
+          "y": 366.5297390104859,
+          "featureId": 12,
+          "moduleCode": 13
+        },
+        {
+          "name": "Kibo Pressurized Module",
+          "x": 479.86238997642823,
+          "y": 370.38547027460277,
+          "featureId": 9,
+          "moduleCode": 10
+        },
+        {
+          "name": "Harmony",
+          "x": 494.37268438217467,
+          "y": 360.5313532660675,
+          "featureId": 2,
+          "moduleCode": 3
+        },
+        {
+          "name": "Rassvet",
+          "x": 441.9685537002185,
+          "y": 369.049450076848,
+          "featureId": 6,
+          "moduleCode": 7
+        },
+        {
+          "name": "Destiny",
+          "x": 485.63933575409095,
+          "y": 348.5547459089,
+          "featureId": 0,
+          "moduleCode": 1
+        },
+        {
+          "name": "Zarya",
+          "x": 421.82566178703524,
+          "y": 349.9999897654457,
+          "featureId": 7,
+          "moduleCode": 8
+        },
+        {
+          "name": "Unity",
+          "x": 455.23258501646615,
+          "y": 358.8940084886934,
+          "featureId": 13,
+          "moduleCode": 14
+        }
+      ],
+      "pinch": {
+        "before": 89.99999999623896,
+        "spread": 49.999999993325375,
+        "returned": 89.9999999882325
+      },
+      "refresh": {
+        "mode": "ISS_INSPECTION",
+        "source": "PRIMARY_GP_TLE",
+        "ready": true
+      }
+    },
+    {
+      "source": "NASA_OEM",
+      "picks": [
+        {
+          "name": "Columbus",
+          "x": 468.1269501641612,
+          "y": 363.43038059037536,
+          "featureId": 1,
+          "moduleCode": 2
+        },
+        {
+          "name": "Pirs",
+          "x": 451.3530144703225,
+          "y": 378.1420948277461,
+          "featureId": 3,
+          "moduleCode": 4
+        },
+        {
+          "name": "Poisk",
+          "x": 448.6470039170914,
+          "y": 355.9540845009566,
+          "featureId": 4,
+          "moduleCode": 5
+        },
+        {
+          "name": "Zvezda",
+          "x": 450.5382080867576,
+          "y": 363.2796501674927,
+          "featureId": 5,
+          "moduleCode": 6
+        },
+        {
+          "name": "Kibo Exposed Facility",
+          "x": 403.58313193036525,
+          "y": 370.7656048368512,
+          "featureId": 8,
+          "moduleCode": 9
+        },
+        {
+          "name": "Quest",
+          "x": 468.6040495849197,
+          "y": 367.1082036331381,
+          "featureId": 10,
+          "moduleCode": 11
+        },
+        {
+          "name": "Cupola",
+          "x": 428.0913598663948,
+          "y": 375.7191604115842,
+          "featureId": 11,
+          "moduleCode": 12
+        },
+        {
+          "name": "Tranquility",
+          "x": 431.9560854654568,
+          "y": 366.52973899382505,
+          "featureId": 12,
+          "moduleCode": 13
+        },
+        {
+          "name": "Kibo Pressurized Module",
+          "x": 479.86238997625594,
+          "y": 370.38547027112196,
+          "featureId": 9,
+          "moduleCode": 10
+        },
+        {
+          "name": "Harmony",
+          "x": 494.37268438104564,
+          "y": 360.5313532659772,
+          "featureId": 2,
+          "moduleCode": 3
+        },
+        {
+          "name": "Rassvet",
+          "x": 441.9685537001358,
+          "y": 369.0494500741061,
+          "featureId": 6,
+          "moduleCode": 7
+        },
+        {
+          "name": "Destiny",
+          "x": 485.63933576212634,
+          "y": 348.55474590795995,
+          "featureId": 0,
+          "moduleCode": 1
+        },
+        {
+          "name": "Zarya",
+          "x": 421.8256617968806,
+          "y": 349.99998976402077,
+          "featureId": 7,
+          "moduleCode": 8
+        },
+        {
+          "name": "Unity",
+          "x": 455.2325850170867,
+          "y": 358.89400848655083,
+          "featureId": 13,
+          "moduleCode": 14
+        }
+      ],
+      "pinch": {
+        "before": 90.00000000338918,
+        "spread": 50.00000000273488,
+        "returned": 90.00000000770908
+      },
+      "refresh": {
+        "mode": "ISS_INSPECTION",
+        "source": "NASA_OEM",
+        "ready": true
+      }
+    }
+  ],
+  "loading": {
+    "ready": false,
+    "inspectDisabled": true,
+    "locator": false
+  },
+  "outage": {
+    "mode": "EARTH_OVERVIEW",
+    "source": "PRIMARY_GP_TLE",
+    "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME · UTC\n2026-09-30 15:45:59 UTC\nBackend-aligned clock · 1×\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:45:59 UTC\n\nLatitude\n7.802° S\nLongitude\n113.978° W\nAltitude\n426.5 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD · 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY · 5.5 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP · USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable · QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+  },
+  "errors": [],
+  "transitionOutages": [
+    {
+      "stage": "entry",
+      "source": "PRIMARY_GP_TLE",
+      "retargetError": {
+        "position": 0,
+        "direction": 0,
+        "up": 0,
+        "fov": 0,
+        "focus": 9.878167619740788e-10
+      },
+      "screens": [
+        [
+          518.6203863228606,
+          207.1173137214351
+        ],
+        [
+          518.6108291060685,
+          207.04599812432195
+        ],
+        [
+          518.6301285676733,
+          207.24272987264055
+        ],
+        [
+          518.6147393426778,
+          207.31349745410148
+        ],
+        [
+          518.5792929379085,
+          207.45407725499882
+        ],
+        [
+          518.4479279633506,
+          207.85975300286327
+        ],
+        [
+          518.0386685321179,
+          208.91701186232683
+        ],
+        [
+          517.1290845485696,
+          211.1074326724613
+        ],
+        [
+          516.3033545381394,
+          213.11042499696373
+        ],
+        [
+          515.8223058290421,
+          214.45686129064632
+        ],
+        [
+          515.723056987574,
+          215.0625280851474
+        ],
+        [
+          515.6513380771999,
+          215.5755742230067
+        ],
+        [
+          515.5614608405156,
+          216.20878034942905
+        ],
+        [
+          515.4685268849335,
+          216.85308295871477
+        ],
+        [
+          515.3505562649207,
+          217.65704302090836
+        ],
+        [
+          515.2259094980368,
+          218.4910906063102
+        ],
+        [
+          515.1101423166664,
+          219.25278590492394
+        ],
+        [
+          514.9755142779109,
+          220.124341077037
+        ],
+        [
+          514.8437423332409,
+          220.96390704667937
+        ],
+        [
+          514.7145069227541,
+          221.77548418213604
+        ],
+        [
+          514.5299194495844,
+          222.91625281707599
+        ],
+        [
+          514.3516609465522,
+          223.99936313884064
+        ],
+        [
+          514.1440968592581,
+          225.240032269692
+        ],
+        [
+          513.9684716603655,
+          226.27429026337853
+        ],
+        [
+          513.7624852449377,
+          227.47104623586324
+        ],
+        [
+          513.5478661796642,
+          228.70104010783496
+        ],
+        [
+          513.2867403766351,
+          230.17671405703533
+        ],
+        [
+          513.0443178945717,
+          231.52834898686592
+        ],
+        [
+          512.7304648878287,
+          233.25497818879774
+        ],
+        [
+          512.4181306847199,
+          234.95016504736873
+        ],
+        [
+          512.0385996085209,
+          236.98295535089937
+        ],
+        [
+          511.7514426234863,
+          238.50354971491345
+        ],
+        [
+          511.3225500895673,
+          240.7502255842437
+        ],
+        [
+          510.84610966829325,
+          243.21610136815582
+        ],
+        [
+          510.19966234174046,
+          246.51965758849536
+        ],
+        [
+          509.5856561296854,
+          249.62016431015047
+        ],
+        [
+          508.9517224015946,
+          252.79011437453516
+        ],
+        [
+          508.0667255383538,
+          257.17287499215934
+        ],
+        [
+          507.14193680038704,
+          261.7111647216412
+        ],
+        [
+          506.28604702410007,
+          265.88238773385655
+        ],
+        [
+          505.24895453585367,
+          270.90857898399133
+        ],
+        [
+          504.0552395501189,
+          276.66587309323137
+        ],
+        [
+          502.7379167682734,
+          282.9952737946711
+        ],
+        [
+          501.13430238565866,
+          290.6783292857621
+        ],
+        [
+          499.1934821706447,
+          299.9583878791905
+        ],
+        [
+          497.6613159611709,
+          307.2767882283992
+        ],
+        [
+          495.9307650602481,
+          315.53875238316516
+        ],
+        [
+          494.09406144778484,
+          324.3052971273794
+        ],
+        [
+          491.95470995474375,
+          334.5152344809432
+        ],
+        [
+          489.53721722893096,
+          346.05213258555887
+        ],
+        [
+          487.312827713673,
+          356.667408058087
+        ],
+        [
+          485.29310511672094,
+          366.3059599256089
+        ],
+        [
+          483.131671718895,
+          376.6207351420744
+        ],
+        [
+          480.495035527403,
+          389.2035009792673
+        ],
+        [
+          478.88374374181774,
+          396.9013658784117
+        ],
+        [
+          476.1088165680861,
+          410.207437071793
+        ],
+        [
+          474.4858986021262,
+          419.1160419771013
+        ],
+        [
+          475.8755995832081,
+          416.1242605232095
+        ],
+        [
+          477.3008215691425,
+          411.9271118546313
+        ],
+        [
+          478.3985426612089,
+          408.3413031897153
+        ],
+        [
+          479.28193545303395,
+          404.7750664174272
+        ],
+        [
+          479.74683674747695,
+          401.4880702848708
+        ],
+        [
+          479.69087179617117,
+          399.0188013956735
+        ],
+        [
+          479.16318109249306,
+          396.863353290256
+        ],
+        [
+          478.17132631790435,
+          394.9675185383642
+        ],
+        [
+          476.480134206572,
+          392.9226882485443
+        ],
+        [
+          474.3671689545482,
+          390.9206868027435
+        ],
+        [
+          471.8433682728499,
+          388.6772279679139
+        ],
+        [
+          469.1063073239388,
+          386.1016869739192
+        ],
+        [
+          465.9260808854959,
+          382.64919518924324
+        ],
+        [
+          462.7761734306041,
+          378.43472813089124
+        ],
+        [
+          460.13310479190045,
+          373.91777041466867
+        ],
+        [
+          457.2932031380685,
+          367.1861775406119
+        ],
+        [
+          455.0699966950344,
+          357.9522175895002
+        ],
+        [
+          453.6813135539294,
+          349.11435691205986
+        ],
+        [
+          451.8887311746133,
+          348.42497083774396
+        ],
+        [
+          450.8154037621657,
+          349.4128706702085
+        ],
+        [
+          450.5550241172434,
+          349.74366862070576
+        ]
+      ],
+      "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME · UTC\n2026-09-30 15:46:02 UTC\nBackend-aligned clock · 1×\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:46:02 UTC\n\nLatitude\n7.666° S\nLongitude\n113.880° W\nAltitude\n426.4 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD · 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY · 5.8 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP · USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable · QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+    },
+    {
+      "stage": "exit",
+      "source": "PRIMARY_GP_TLE",
+      "retargetError": {
+        "position": 0,
+        "direction": 0,
+        "up": 0,
+        "fov": 0,
+        "focus": 1.1641532182693481e-10
+      },
+      "screens": [
+        [
+          450.000000107312,
+          350.00129619415964
+        ],
+        [
+          450.00000005095154,
+          350.0013015497435
+        ],
+        [
+          449.99999937376015,
+          350.00136745119926
+        ],
+        [
+          449.9999945081762,
+          350.0018414404588
+        ],
+        [
+          449.9999816862594,
+          350.0030902089754
+        ],
+        [
+          449.9999493902314,
+          350.00623652419836
+        ],
+        [
+          449.99989936705197,
+          350.0111111630204
+        ],
+        [
+          449.99979837625307,
+          350.0209556386974
+        ],
+        [
+          449.9997023642872,
+          350.03031840339946
+        ],
+        [
+          449.99959100466526,
+          350.04118297359406
+        ],
+        [
+          449.9994752956401,
+          350.0524796752245
+        ],
+        [
+          449.99936954952045,
+          350.062814642974
+        ],
+        [
+          449.99928115926093,
+          350.0714645611489
+        ],
+        [
+          449.99920404537966,
+          350.0790186934039
+        ],
+        [
+          449.9991072750355,
+          350.0885080697091
+        ],
+        [
+          449.99900429557147,
+          350.09861914465023
+        ],
+        [
+          449.99892417848065,
+          350.10649526597655
+        ],
+        [
+          449.99883814972304,
+          350.11496314471276
+        ],
+        [
+          449.99873840946657,
+          350.12479529608976
+        ],
+        [
+          449.9986348194206,
+          350.1350253213152
+        ],
+        [
+          449.99852572682636,
+          350.1458213955695
+        ],
+        [
+          449.9984358964535,
+          350.1547304136508
+        ],
+        [
+          449.99835229565934,
+          350.1630388183901
+        ],
+        [
+          449.9982602941913,
+          350.1722033609796
+        ],
+        [
+          449.9981719448045,
+          350.1810271335854
+        ],
+        [
+          449.9980631336431,
+          350.1919295282855
+        ],
+        [
+          449.9979550351816,
+          350.202803623895
+        ],
+        [
+          449.9978583799373,
+          350.21256842295963
+        ],
+        [
+          449.9977619704982,
+          350.22235331800414
+        ],
+        [
+          449.9976703298466,
+          350.2317018400183
+        ],
+        [
+          449.9975572742156,
+          350.2433090128726
+        ],
+        [
+          449.99743232150524,
+          350.2562507632151
+        ],
+        [
+          449.9973019360009,
+          350.2699105445359
+        ],
+        [
+          449.99715385114575,
+          350.2856698724683
+        ],
+        [
+          449.9970086118561,
+          350.30146031076373
+        ],
+        [
+          449.99687721366996,
+          350.31613210635015
+        ],
+        [
+          449.99676051588034,
+          350.3295820428122
+        ],
+        [
+          449.996660415578,
+          350.3415453703093
+        ],
+        [
+          449.99655990193685,
+          350.35409755277885
+        ],
+        [
+          449.9964530326614,
+          350.36827296137506
+        ],
+        [
+          449.9963771004728,
+          350.37907677674457
+        ],
+        [
+          449.99629061971143,
+          350.3924514835731
+        ],
+        [
+          449.99619882242183,
+          350.4085140588324
+        ],
+        [
+          449.99611778123693,
+          350.42525583136313
+        ],
+        [
+          449.9960205888355,
+          350.4510942844495
+        ],
+        [
+          449.9959613656058,
+          350.47242614542847
+        ],
+        [
+          449.9958764216861,
+          350.51643008552946
+        ],
+        [
+          449.99580772041014,
+          350.5690362511743
+        ],
+        [
+          450.0253988222388,
+          350.5827235246444
+        ],
+        [
+          453.9532356580306,
+          339.2535780487144
+        ],
+        [
+          460.42990477166995,
+          322.07947028022255
+        ],
+        [
+          472.1347075152738,
+          294.61527861687335
+        ],
+        [
+          487.81289089529696,
+          232.40158978025204
+        ],
+        [
+          504.9627683203278,
+          206.52033712064838
+        ],
+        [
+          514.4661498543139,
+          209.81926319780882
+        ],
+        [
+          522.5975821995969,
+          215.48640689251891
+        ],
+        [
+          529.6444444709308,
+          222.51776194102428
+        ],
+        [
+          534.3881923026411,
+          230.2112516922641
+        ],
+        [
+          537.481530549639,
+          239.7463105389844
+        ],
+        [
+          538.2693813204748,
+          252.8115434293182
+        ],
+        [
+          536.2269741131387,
+          264.6403266222011
+        ],
+        [
+          532.6047445868745,
+          274.57147513835906
+        ],
+        [
+          526.6913944667804,
+          285.1301465196088
+        ],
+        [
+          520.6092824208579,
+          293.04335588290127
+        ],
+        [
+          508.4235443914922,
+          304.444111409336
+        ],
+        [
+          479.7020411477754,
+          319.18195681219703
+        ],
+        [
+          467.38055021267786,
+          328.75642152109157
+        ],
+        [
+          453.29227949971363,
+          345.99090728741874
+        ],
+        [
+          450.24608432447855,
+          350.1727151368289
+        ],
+        [
+          450.00547054615026,
+          350.50631578415005
+        ]
+      ],
+      "text": "ISS 3D model: NASA VTADData attribution\nM\n1\nMISSION1 / EARTH VIEW\nORBITAL BUFFER ACTIVE\nInspect ISS\nORBITAL STATE / ISS\nEarth View\n\nMISSION1 GP/TLE propagated state\n\nSCENE TIME · UTC\n2026-09-30 15:45:59 UTC\nBackend-aligned clock · 1×\nPosition\nWGS84\n\nPhysical sampled position at 2026-09-30 15:45:59 UTC\n\nLatitude\n7.801° S\nLongitude\n113.977° W\nAltitude\n426.5 km\nTrajectory comparison\nTWO SOURCES\nISS model\nGP/TLE propagated\nPrimary line\nFORWARD · 85%\nNASA OEM\nUNAVAILABLE\nOEM created\n2026-09-28 17:13:16 UTC\n\nThe selected source drives the model and Inspection. OEM remains a source-provided prediction.\n\nData state\nINDEPENDENT\nGP orbital quality\nSTALE\nGP quality reason\nELEMENT TOO OLD\nCelesTrak acquisition\nUNKNOWN\nAPI delivery\nREADY\nSample buffer\nACTIVE\n3D model\nREADY · 6.0 s\nAttitude\nUNAVAILABLE\nActive position lineage\nGP / TLE\nElements\nCELESTRAK_GP · USSF_GP_VIA_CELESTRAK\nElement epoch\n2026-09-29 02:38:28 UTC\nElement age\n37.1 h\nRetrieved\n2026-09-29 18:50:20 UTC\nLast successful fetch\n2026-09-29 18:50:20 UTC\nElement hash\nc1278ac312d7\n\nISS 3D model: NASA VTAD. 3D model display: NOT TO SCALE, enlarged and visually lifted in Earth View for readability. Position and altitude readouts remain physical. Visual orientation: trajectory-aligned; verified ISS attitude unavailable. NASA source.\n\nThe selected position source drives the model and Inspection camera. GP/TLE is computed with Orekit; NASA OEM is predicted ephemeris with bounded display interpolation. Both continuous trails start ahead of scene time and fade to zero over 85% of the primary mean-motion revolution, shortened honestly by OEM coverage. Neither product is onboard position telemetry or a ground truth claim. GP quality and CelesTrak acquisition remain independent of OEM availability. Earth imagery: NASA GIBS Blue Marble day imagery and historical Black Marble 2016 night lights.\n\nPOSITION / TRAJECTORY SOURCE\nMISSION1 GP/TLE\nNASA OEM\nMISSION1 GP/TLE propagated state\nOEM unavailable · QA OUTAGE\n\nNASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE."
+    }
+  ]
+}

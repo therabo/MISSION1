@@ -1,0 +1,353 @@
+{
+  "label": "accepted-baseline-prod-origin",
+  "browser": "151.0.7922.34",
+  "errors": [],
+  "runs": [
+    {
+      "source": "PRIMARY_GP_TLE",
+      "name": "axis",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 2,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9917208110779313,
+      "minPhysicalShaderFraction": 0.9917981529365995,
+      "minLocalProtectionFraction": 0.9917981529365995,
+      "maxLocalProtectionSeconds": 38.893861328125,
+      "maxLocalProtectionPathMetres": 286100.81690603046,
+      "maxGapSeconds": 39.260623046875,
+      "maxGapPathMetres": 288800.5886811755,
+      "maxGapScreenCssPixels": 389.57619733799186,
+      "maxOriginMotionCssPx": 287.00043961002456,
+      "maxEpochJumpSeconds": 39.2447978515625,
+      "minProjectedIntervalCssPx": 0.00014539127030402418,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": null,
+      "epochInversionCount": 1
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "name": "along",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9769525678994511,
+      "minPhysicalShaderFraction": 0.9772103225597202,
+      "minLocalProtectionFraction": 0.9772103225597202,
+      "maxLocalProtectionSeconds": 108.0706025390625,
+      "maxLocalProtectionPathMetres": 795003.1404394024,
+      "maxGapSeconds": 109.29289721679687,
+      "maxGapPathMetres": 803993.118059798,
+      "maxGapScreenCssPixels": 10.171078148408952,
+      "maxOriginMotionCssPx": 0.21528676686242088,
+      "maxEpochJumpSeconds": 3.578379150390625,
+      "minProjectedIntervalCssPx": 0.005338794258146982,
+      "correctionGapJumpSeconds": 0.882194580078125,
+      "correctionOriginJumpCssPx": 0.14886229376133192,
+      "epochInversionCount": 0
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "name": "reverse",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9767665327571718,
+      "minPhysicalShaderFraction": 0.9769707697421615,
+      "minLocalProtectionFraction": 0.9769707697421615,
+      "maxLocalProtectionSeconds": 109.20658251953125,
+      "maxLocalProtectionPathMetres": 803360.4355104134,
+      "maxGapSeconds": 110.175091796875,
+      "maxGapPathMetres": 810489.149351786,
+      "maxGapScreenCssPixels": 10.490104238457823,
+      "maxOriginMotionCssPx": 0.5705570224967319,
+      "maxEpochJumpSeconds": 4.482256103515625,
+      "minProjectedIntervalCssPx": 0.005338794258146982,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": 0,
+      "epochInversionCount": 2
+    },
+    {
+      "source": "PRIMARY_GP_TLE",
+      "name": "crossing",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9677775768419117,
+      "minPhysicalShaderFraction": 0.973094641400545,
+      "minLocalProtectionFraction": 0.973094641400545,
+      "maxLocalProtectionSeconds": 127.58751513671875,
+      "maxLocalProtectionPathMetres": 938585.7822297144,
+      "maxGapSeconds": 152.80149072265624,
+      "maxGapPathMetres": 1124083.9992714315,
+      "maxGapScreenCssPixels": 162.80869160997207,
+      "maxOriginMotionCssPx": 0.27766875134268554,
+      "maxEpochJumpSeconds": 13.482892578125,
+      "minProjectedIntervalCssPx": 0.0028629041984174074,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": 0,
+      "epochInversionCount": 0
+    },
+    {
+      "source": "NASA_OEM",
+      "name": "axis",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9921864809838143,
+      "minPhysicalShaderFraction": 0.9923362701355748,
+      "minLocalProtectionFraction": 0.9923362701355748,
+      "maxLocalProtectionSeconds": 36.3420634765625,
+      "maxLocalProtectionPathMetres": 267328.99153629923,
+      "maxGapSeconds": 37.05237646484375,
+      "maxGapPathMetres": 272551.85751886363,
+      "maxGapScreenCssPixels": 2.6566496005094433,
+      "maxOriginMotionCssPx": 1.2177643280993804,
+      "maxEpochJumpSeconds": 14.22864453125,
+      "minProjectedIntervalCssPx": 0.0001942877160047045,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": null,
+      "epochInversionCount": 0
+    },
+    {
+      "source": "NASA_OEM",
+      "name": "along",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9767695708166505,
+      "minPhysicalShaderFraction": 0.9769733627756083,
+      "minLocalProtectionFraction": 0.9769733627756083,
+      "maxLocalProtectionSeconds": 109.1942861328125,
+      "maxLocalProtectionPathMetres": 803255.4722479758,
+      "maxGapSeconds": 110.16068505859376,
+      "maxGapPathMetres": 810362.0053778931,
+      "maxGapScreenCssPixels": 10.286821542698714,
+      "maxOriginMotionCssPx": 0.2237946846746472,
+      "maxEpochJumpSeconds": 3.56316455078125,
+      "minProjectedIntervalCssPx": 0.005310969830061097,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": 0,
+      "epochInversionCount": 2
+    },
+    {
+      "source": "NASA_OEM",
+      "name": "reverse",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9767695708166505,
+      "minPhysicalShaderFraction": 0.9769733627756083,
+      "minLocalProtectionFraction": 0.9769733627756083,
+      "maxLocalProtectionSeconds": 109.1942861328125,
+      "maxLocalProtectionPathMetres": 803255.4722479758,
+      "maxGapSeconds": 110.16068505859376,
+      "maxGapPathMetres": 810362.0053778931,
+      "maxGapScreenCssPixels": 10.507703643937182,
+      "maxOriginMotionCssPx": 0.5710877850047569,
+      "maxEpochJumpSeconds": 4.470994873046875,
+      "minProjectedIntervalCssPx": 0.005310969830061097,
+      "correctionGapJumpSeconds": 0.0026162109375,
+      "correctionOriginJumpCssPx": 0.00476275703501245,
+      "epochInversionCount": 2
+    },
+    {
+      "source": "NASA_OEM",
+      "name": "crossing",
+      "frames": 250,
+      "utcChanges": 0,
+      "firstPhysicalEpochChanges": 0,
+      "lastPhysicalEpochChanges": 0,
+      "hashChanges": 0,
+      "epochHashChanges": 0,
+      "endpointChanges": 0,
+      "pathLengthChanges": 0,
+      "primitiveChanges": 0,
+      "geometryChanges": 0,
+      "geometryBuildCountChanges": 0,
+      "unexpectedHiddenFrames": 0,
+      "lostFarSafeSamples": 0,
+      "minVisibleFraction": 0.9091872918004962,
+      "minPhysicalShaderFraction": 0.9706374795907858,
+      "minLocalProtectionFraction": 0.9706374795907858,
+      "maxLocalProtectionSeconds": 139.2395869140625,
+      "maxLocalProtectionPathMetres": 1024288.7721671485,
+      "maxGapSeconds": 430.64164111328125,
+      "maxGapPathMetres": 3168175.18259544,
+      "maxGapScreenCssPixels": 162.63952046325153,
+      "maxOriginMotionCssPx": 0.34043184548054733,
+      "maxEpochJumpSeconds": 277.7132834472656,
+      "minProjectedIntervalCssPx": 0.0028527582248002625,
+      "correctionGapJumpSeconds": 0,
+      "correctionOriginJumpCssPx": 0,
+      "epochInversionCount": 0
+    }
+  ],
+  "memory": [
+    {
+      "stage": "PRIMARY_GP_TLE-axis",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 272,
+        "JSHeapUsedSize": 63814692,
+        "JSHeapTotalSize": 67633152
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "PRIMARY_GP_TLE-along",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 272,
+        "JSHeapUsedSize": 64761504,
+        "JSHeapTotalSize": 68157440
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "PRIMARY_GP_TLE-reverse",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 272,
+        "JSHeapUsedSize": 64818260,
+        "JSHeapTotalSize": 67895296
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "PRIMARY_GP_TLE-crossing",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 272,
+        "JSHeapUsedSize": 65194788,
+        "JSHeapTotalSize": 68419584
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "NASA_OEM-axis",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 280,
+        "JSHeapUsedSize": 65370712,
+        "JSHeapTotalSize": 68681728
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "NASA_OEM-along",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 280,
+        "JSHeapUsedSize": 65452592,
+        "JSHeapTotalSize": 68681728
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "NASA_OEM-reverse",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 280,
+        "JSHeapUsedSize": 65442220,
+        "JSHeapTotalSize": 68681728
+      },
+      "retained": {
+        "primitives": 6
+      }
+    },
+    {
+      "stage": "NASA_OEM-crossing",
+      "metrics": {
+        "Documents": 2,
+        "Nodes": 280,
+        "JSHeapUsedSize": 65549728,
+        "JSHeapTotalSize": 68681728
+      },
+      "retained": {
+        "primitives": 6
+      }
+    }
+  ]
+}

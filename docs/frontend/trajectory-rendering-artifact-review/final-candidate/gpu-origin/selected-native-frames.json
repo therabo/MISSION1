@@ -1,0 +1,66 @@
+[
+  {
+    "run": "gpu-origin-dev-NASA_OEM-axis",
+    "frame": 142,
+    "source": "NASA_OEM",
+    "firstProjectedIntervalCssPx": 0.00019428771575093987,
+    "firstVisibleEpochJumpSeconds": 1.43703466796875,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-dev-NASA_OEM-crossing",
+    "frame": 61,
+    "source": "NASA_OEM",
+    "firstProjectedIntervalCssPx": 0.9152500984510101,
+    "firstVisibleEpochJumpSeconds": 360.1040908203125,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-dev-PRIMARY_GP_TLE-axis",
+    "frame": 142,
+    "source": "PRIMARY_GP_TLE",
+    "firstProjectedIntervalCssPx": 0.0001453912703558024,
+    "firstVisibleEpochJumpSeconds": 1.437980712890625,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-dev-PRIMARY_GP_TLE-crossing",
+    "frame": 61,
+    "source": "PRIMARY_GP_TLE",
+    "firstProjectedIntervalCssPx": 0.915329526577179,
+    "firstVisibleEpochJumpSeconds": 360.31992724609376,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-prod-NASA_OEM-axis",
+    "frame": 142,
+    "source": "NASA_OEM",
+    "firstProjectedIntervalCssPx": 0.00019428771594792496,
+    "firstVisibleEpochJumpSeconds": 1.43703466796875,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-prod-NASA_OEM-crossing",
+    "frame": 61,
+    "source": "NASA_OEM",
+    "firstProjectedIntervalCssPx": 0.9152500984509533,
+    "firstVisibleEpochJumpSeconds": 360.1040908203125,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-prod-PRIMARY_GP_TLE-axis",
+    "frame": 142,
+    "source": "PRIMARY_GP_TLE",
+    "firstProjectedIntervalCssPx": 0.00014539127022843124,
+    "firstVisibleEpochJumpSeconds": 1.437980712890625,
+    "gapInducedOriginMotionCssPx": 0
+  },
+  {
+    "run": "gpu-origin-prod-PRIMARY_GP_TLE-crossing",
+    "frame": 61,
+    "source": "PRIMARY_GP_TLE",
+    "firstProjectedIntervalCssPx": 0.9153295265776338,
+    "firstVisibleEpochJumpSeconds": 360.31992724609376,
+    "gapInducedOriginMotionCssPx": 0
+  }
+]

@@ -1,5 +1,9 @@
 # Desktop rendering quality and asset reproducibility
 
+## Trajectory raster correction — 2026-10-02
+
+A curved fragment-distance mask replaces the projected-envelope rectangular cut. Projected genuine-segment capsule coverage bounds both halo/body without changing physical vertices, widths, colors, depth testing, MSAA, FXAA, model/texture/PBR or device resolution. Physical body clipping is independent of local origin selection, and mask/reveal preparation uses the current render camera. [Native layer-isolation and continuity evidence, baseline/experiment/final profiling and frozen graphics audit](trajectory-rendering-artifact-review/final-candidate/README.md). The original failed experiment and earlier dated start/mask descriptions remain historical evidence.
+
 ## Final clearance correction — 2026-10-02
 
 The measured desktop Inspection range remains 90 m. A presentation-only downstream temporal start and same-frame transition search remove the brief upstream reveal fragment. Existing hull/halo masking, ramp, reveal window and all rendering settings remain. Projection search reuses Date/pixel scratch storage; no primitive or source geometry changes. [Range, frame, graphics and performance evidence](final-graphics-regression-fixes/README.md).

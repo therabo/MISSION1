@@ -1,0 +1,14 @@
+{
+  "status": "NOT_ACCEPTED",
+  "failures": [
+    "final-dev/PRIMARY_GP_TLE/crossing: 51.124 CSS px gap-induced jump",
+    "final-dev/PRIMARY_GP_TLE/crossing: gap/epoch reversal",
+    "final-dev/NASA_OEM/crossing: 51.127 CSS px gap-induced jump",
+    "final-dev/NASA_OEM/crossing: gap/epoch reversal",
+    "final-prod/PRIMARY_GP_TLE/crossing: 51.124 CSS px gap-induced jump",
+    "final-prod/PRIMARY_GP_TLE/crossing: gap/epoch reversal",
+    "final-prod/NASA_OEM/crossing: 51.127 CSS px gap-induced jump",
+    "final-prod/NASA_OEM/crossing: gap/epoch reversal"
+  ],
+  "note": "All other visual, performance and regression gates still require review."
+}

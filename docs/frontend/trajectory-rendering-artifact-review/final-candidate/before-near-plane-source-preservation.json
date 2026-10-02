@@ -1,0 +1,17 @@
+{
+  "archive": "/Users/daniel/Desktop/mission1-trajectory-before-near-plane-source.zip",
+  "files": [
+    {
+      "path": "trajectoryClearance.ts",
+      "sha256": "e059825effafc4954bcc734aa99afd13701b949a958694fb0ce0a7a9a9e554cf"
+    },
+    {
+      "path": "trajectoryRendering.ts",
+      "sha256": "a8e4be5431fe92611c1172564b7ad36f71b9afca37a67d171eb6cc9ae72cbc8a"
+    },
+    {
+      "path": "trajectoryAppearance.ts",
+      "sha256": "3c01c6a55679e776b28e7cae8c79d3d2e958061c695b5afc046eaeb0fbc7b2bf"
+    }
+  ]
+}

@@ -1,0 +1,636 @@
+{
+  "checked": 105,
+  "allUnchanged": true,
+  "files": [
+    {
+      "path": "backend/README.md",
+      "baselineSha256": "12faf69f630a1d0d9f0cd2cdc4d182fea0c927de34438647ef6e74803b1a5d8b",
+      "currentSha256": "12faf69f630a1d0d9f0cd2cdc4d182fea0c927de34438647ef6e74803b1a5d8b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/pom.xml",
+      "baselineSha256": "a0e7776cb164834c21155c328d5d58a08f10cc8d433b0c7f95e8753b69ef2de5",
+      "currentSha256": "a0e7776cb164834c21155c328d5d58a08f10cc8d433b0c7f95e8753b69ef2de5",
+      "unchanged": true
+    },
+    {
+      "path": "backend/reference/generate_reference.py",
+      "baselineSha256": "814270b259b8e2efe4a5f2ba4210baa9bf70b240adc017c6e664088aae626113",
+      "currentSha256": "814270b259b8e2efe4a5f2ba4210baa9bf70b240adc017c6e664088aae626113",
+      "unchanged": true
+    },
+    {
+      "path": "backend/reference/requirements.txt",
+      "baselineSha256": "0ee63a4b19f1fc2dba4469ad6a09e8dacfc9fe4bbe8e1be295de5309f18684ce",
+      "currentSha256": "0ee63a4b19f1fc2dba4469ad6a09e8dacfc9fe4bbe8e1be295de5309f18684ce",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/CelesTrakRefreshScheduler.java",
+      "baselineSha256": "3853d51d5ed3dbe34c6e042663d5994d3783425a667c76cafeeaa148c4d18ea8",
+      "currentSha256": "3853d51d5ed3dbe34c6e042663d5994d3783425a667c76cafeeaa148c4d18ea8",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/Mission1Application.java",
+      "baselineSha256": "53ee1e3277ce16a0f1d2d3f59d4b7abfa6bac9d392962b532010e12b25b747e5",
+      "currentSha256": "53ee1e3277ce16a0f1d2d3f59d4b7abfa6bac9d392962b532010e12b25b747e5",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/OrbitalConfiguration.java",
+      "baselineSha256": "13912970aff3e585702b0fba674fa5d9f64cc15adf909a2932043dd927fc13fb",
+      "currentSha256": "13912970aff3e585702b0fba674fa5d9f64cc15adf909a2932043dd927fc13fb",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateController.java",
+      "baselineSha256": "268abfe5f67a956defa40cb2cf493a1a8030ee831f5f0e809c38538f1296882f",
+      "currentSha256": "268abfe5f67a956defa40cb2cf493a1a8030ee831f5f0e809c38538f1296882f",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateErrors.java",
+      "baselineSha256": "5c804ad1a261cd14287c10a6afd88f0c6de958560490229287a422e8e2358e5e",
+      "currentSha256": "5c804ad1a261cd14287c10a6afd88f0c6de958560490229287a422e8e2358e5e",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateResponse.java",
+      "baselineSha256": "2200d91a677bc2d06d1e2007d58806d053c253c560ddae78fcf5341ae804f409",
+      "currentSha256": "2200d91a677bc2d06d1e2007d58806d053c253c560ddae78fcf5341ae804f409",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalComparisonResponse.java",
+      "baselineSha256": "762e247eee02e97c1d47c41fcd462e84b6141473827f9408b9adc7c05f8546ef",
+      "currentSha256": "762e247eee02e97c1d47c41fcd462e84b6141473827f9408b9adc7c05f8546ef",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalSamplesController.java",
+      "baselineSha256": "7d0a1b66d9563d02b4115fd0cbf411f8cd7587ba304f7ab99042ace93f50adb6",
+      "currentSha256": "7d0a1b66d9563d02b4115fd0cbf411f8cd7587ba304f7ab99042ace93f50adb6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalSamplesResponse.java",
+      "baselineSha256": "386fe7ac0f69094358bfa3cb0cc6bc582c731bb7c268d2773690e22dcddd9bac",
+      "currentSha256": "386fe7ac0f69094358bfa3cb0cc6bc582c731bb7c268d2773690e22dcddd9bac",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshPolicy.java",
+      "baselineSha256": "ab0bb3a69b1378853a29df91187a96a6f2f554fec79baa0baf7ef0a347d9e59e",
+      "currentSha256": "ab0bb3a69b1378853a29df91187a96a6f2f554fec79baa0baf7ef0a347d9e59e",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshResult.java",
+      "baselineSha256": "1f362e073ee01b8438fa737b8dc16e9ae11daa44cee0a3fda60989e7de7ba83f",
+      "currentSha256": "1f362e073ee01b8438fa737b8dc16e9ae11daa44cee0a3fda60989e7de7ba83f",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshService.java",
+      "baselineSha256": "ca768308e83dc2d7d9c37949a3f96282976cd51c09a03325fddb8dcbe4832068",
+      "currentSha256": "ca768308e83dc2d7d9c37949a3f96282976cd51c09a03325fddb8dcbe4832068",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakSourceHealthTracker.java",
+      "baselineSha256": "93c40bfd63c53561680a298c514cc077037bf8bba4223aee60047865ce30fd2a",
+      "currentSha256": "93c40bfd63c53561680a298c514cc077037bf8bba4223aee60047865ce30fd2a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CurrentOrbitalStateCalculationException.java",
+      "baselineSha256": "1f8763c1795ed5ce8f683e5fab88c8c2b269b446244d68c2e39e95a4cde0b275",
+      "currentSha256": "1f8763c1795ed5ce8f683e5fab88c8c2b269b446244d68c2e39e95a4cde0b275",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CurrentOrbitalStateService.java",
+      "baselineSha256": "b0ac83d557efadf753ae9de4781572b9394e1624e84a0af1b1685f37400f2850",
+      "currentSha256": "b0ac83d557efadf753ae9de4781572b9394e1624e84a0af1b1685f37400f2850",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/InvalidOrbitalSampleRequestException.java",
+      "baselineSha256": "d3553a25ff7c0f0271b3239dff8007ded7b8b96dd33d27cd4c83c482e826b436",
+      "currentSha256": "d3553a25ff7c0f0271b3239dff8007ded7b8b96dd33d27cd4c83c482e826b436",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/NoCurrentOrbitalStateException.java",
+      "baselineSha256": "d55eac3cb556aab5f1b27222888933ff52a0d4c568f9140d111ee2c759c2e716",
+      "currentSha256": "d55eac3cb556aab5f1b27222888933ff52a0d4c568f9140d111ee2c759c2e716",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalElementSetRepository.java",
+      "baselineSha256": "c4896e0e89b3d7520c94671655b18b3ab8c75042cd73ecb6c70e38ff3164d21a",
+      "currentSha256": "c4896e0e89b3d7520c94671655b18b3ab8c75042cd73ecb6c70e38ff3164d21a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalElementsSource.java",
+      "baselineSha256": "93770ee56dd08d21705d5eb7c4c56ee761cf5a17650d32e3667cec38d09b8fa2",
+      "currentSha256": "93770ee56dd08d21705d5eb7c4c56ee761cf5a17650d32e3667cec38d09b8fa2",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalFreshnessPolicy.java",
+      "baselineSha256": "fdd572fe986263c8fdb084ca9bc15c8a9d549538e3ce6434203d9059966b1f65",
+      "currentSha256": "fdd572fe986263c8fdb084ca9bc15c8a9d549538e3ce6434203d9059966b1f65",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalQualityEvaluator.java",
+      "baselineSha256": "49f1d801982952658747a9f5a496ab05d7be643e78aa75b871cc73ae7204c4cc",
+      "currentSha256": "49f1d801982952658747a9f5a496ab05d7be643e78aa75b871cc73ae7204c4cc",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalSampleWindow.java",
+      "baselineSha256": "0245c8665bef5064fd989f573e202252ada99bad81dcae38220f35fc6af44e00",
+      "currentSha256": "0245c8665bef5064fd989f573e202252ada99bad81dcae38220f35fc6af44e00",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalSampleWindowService.java",
+      "baselineSha256": "6abacc335fff7c6256cb8a25f2cce5ad38b9d0f7348a5632e6080e6dcd88bc99",
+      "currentSha256": "6abacc335fff7c6256cb8a25f2cce5ad38b9d0f7348a5632e6080e6dcd88bc99",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/CartesianState.java",
+      "baselineSha256": "76d0c87146c92c90f9926605fb0319737da4d95889098af36d6b181b4ae946a7",
+      "currentSha256": "76d0c87146c92c90f9926605fb0319737da4d95889098af36d6b181b4ae946a7",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/DataClassification.java",
+      "baselineSha256": "7e6e6a00d284e133a62094684e159c43b8135b5596d63ba9fc79655021d41613",
+      "currentSha256": "7e6e6a00d284e133a62094684e159c43b8135b5596d63ba9fc79655021d41613",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/GeodeticPoint.java",
+      "baselineSha256": "4e17b215b2f06c112eb2d3121cbbfbc4b91eb6a85c2940b8f67182f670965bd6",
+      "currentSha256": "4e17b215b2f06c112eb2d3121cbbfbc4b91eb6a85c2940b8f67182f670965bd6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalElementSet.java",
+      "baselineSha256": "f137eaf01d35a1b73162949f500c426739995a0313d00c841cb0cd1b01d3972d",
+      "currentSha256": "f137eaf01d35a1b73162949f500c426739995a0313d00c841cb0cd1b01d3972d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalEvaluation.java",
+      "baselineSha256": "5736289727c0f05dc93822d5ab85363b1027adfdf968c5df17142156bebaea23",
+      "currentSha256": "5736289727c0f05dc93822d5ab85363b1027adfdf968c5df17142156bebaea23",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalQualityReason.java",
+      "baselineSha256": "da1d908cf70b90d19377c30920425359563025fadc93811140dd7c7eccd40c84",
+      "currentSha256": "da1d908cf70b90d19377c30920425359563025fadc93811140dd7c7eccd40c84",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalState.java",
+      "baselineSha256": "d83b2e5f4b687592e1877959b5f0a16e2f8c5d4c216a9c0daaefc4f3e4e472d8",
+      "currentSha256": "d83b2e5f4b687592e1877959b5f0a16e2f8c5d4c216a9c0daaefc4f3e4e472d8",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/Quality.java",
+      "baselineSha256": "f7db1d7e8d0fafed3e879312b68e3049cb17f0ad52650646b94b8d0f5f9e9049",
+      "currentSha256": "f7db1d7e8d0fafed3e879312b68e3049cb17f0ad52650646b94b8d0f5f9e9049",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/SourceAcquisitionHealth.java",
+      "baselineSha256": "85f3881269fece5e8e1357659c86c4edec8707ec1d1c1cff1c6a0e2b1a8e9a65",
+      "currentSha256": "85f3881269fece5e8e1357659c86c4edec8707ec1d1c1cff1c6a0e2b1a8e9a65",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/SourceFailureCategory.java",
+      "baselineSha256": "6d0759ebb6ffce8248ba6aaae27b5f6f033fcc77b3d844e4f33433ad21b3c06c",
+      "currentSha256": "6d0759ebb6ffce8248ba6aaae27b5f6f033fcc77b3d844e4f33433ad21b3c06c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/Vector3.java",
+      "baselineSha256": "02732031ee77315fe259562c4cff1eb02f0284dca9c909be795bea4e754317c0",
+      "currentSha256": "02732031ee77315fe259562c4cff1eb02f0284dca9c909be795bea4e754317c0",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemDocument.java",
+      "baselineSha256": "94608e43fa83fd8ec6ff2fe562ba608bafe61fd8cd74a21ce7f8d2e76c6e7276",
+      "currentSha256": "94608e43fa83fd8ec6ff2fe562ba608bafe61fd8cd74a21ce7f8d2e76c6e7276",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemRepository.java",
+      "baselineSha256": "8c67bccbe053152d588dc1bd805130ac86b1ac770e0aca83262f0e8f96054440",
+      "currentSha256": "8c67bccbe053152d588dc1bd805130ac86b1ac770e0aca83262f0e8f96054440",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemTrajectoryService.java",
+      "baselineSha256": "10942dff89ed9f5be75c0bce1a8fcc5644c45534d94e10a46c7b0c09aec62222",
+      "currentSha256": "10942dff89ed9f5be75c0bce1a8fcc5644c45534d94e10a46c7b0c09aec62222",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/persistence/JdbcNasaOemRepository.java",
+      "baselineSha256": "0a54cfcee243a6feccb578867ed81279092767c673afea2bbc769bfcc550f8da",
+      "currentSha256": "0a54cfcee243a6feccb578867ed81279092767c673afea2bbc769bfcc550f8da",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/persistence/JdbcOrbitalElementSetRepository.java",
+      "baselineSha256": "2d1d7e04a9227c9c1819aa6ce0e0245efad973d684e2b4572877620fd91d7f19",
+      "currentSha256": "2d1d7e04a9227c9c1819aa6ce0e0245efad973d684e2b4572877620fd91d7f19",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrbitalCalculationException.java",
+      "baselineSha256": "3accf590515095459c040b6480e30436b578a0fc05574774cc3f968a9a75855b",
+      "currentSha256": "3accf590515095459c040b6480e30436b578a0fc05574774cc3f968a9a75855b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrekitData.java",
+      "baselineSha256": "dc3ddae4aeb7f1c8918073c88fbcfb18ffd631cea5d91d2061e466b84c336657",
+      "currentSha256": "dc3ddae4aeb7f1c8918073c88fbcfb18ffd631cea5d91d2061e466b84c336657",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrekitOrbitalPropagator.java",
+      "baselineSha256": "b8e051a6804391347ee2e73f633939a77cdc670cc6977d69dce2ace0ddc916b2",
+      "currentSha256": "b8e051a6804391347ee2e73f633939a77cdc670cc6977d69dce2ace0ddc916b2",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/TleElementParser.java",
+      "baselineSha256": "35f71653f9f259cfe951be9f34e3d2adfd28432c6544077274863997def37295",
+      "currentSha256": "35f71653f9f259cfe951be9f34e3d2adfd28432c6544077274863997def37295",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/celestrak/CelesTrakOrbitalElementsSource.java",
+      "baselineSha256": "6ca677622672b96650d691e89174acf027214487a23e15e6ea4450280095191c",
+      "currentSha256": "6ca677622672b96650d691e89174acf027214487a23e15e6ea4450280095191c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/celestrak/SourceFetchException.java",
+      "baselineSha256": "70889ada4e9acfd70c7ce46056afd2bb754ebfcd20137c85e8aa8116978af089",
+      "currentSha256": "70889ada4e9acfd70c7ce46056afd2bb754ebfcd20137c85e8aa8116978af089",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/nasa/NasaOemSource.java",
+      "baselineSha256": "e1d4f369f3b273232af7866020c69d0d40d5d368aa7db2c23c17035199f9ce9c",
+      "currentSha256": "e1d4f369f3b273232af7866020c69d0d40d5d368aa7db2c23c17035199f9ce9c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/nasa/NasaOemXmlParser.java",
+      "baselineSha256": "72b3ab8d5a57e505cfd0116ed51a41ebe223218a22a6dda57ab099af796d7426",
+      "currentSha256": "72b3ab8d5a57e505cfd0116ed51a41ebe223218a22a6dda57ab099af796d7426",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/application.properties",
+      "baselineSha256": "8ffaa121890225b4af33ed9d5ca813c1353c500c9360411d4fbcf4075a929ad8",
+      "currentSha256": "8ffaa121890225b4af33ed9d5ca813c1353c500c9360411d4fbcf4075a929ad8",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V1__orbital_element_history.sql",
+      "baselineSha256": "49ff759c3933f49643be3e1736a47fbbfce69a6a2ea93da407290991964056f7",
+      "currentSha256": "49ff759c3933f49643be3e1736a47fbbfce69a6a2ea93da407290991964056f7",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V2__nasa_oem_ephemeris.sql",
+      "baselineSha256": "d56dbcde49b5d360b1f19ce4529f2507f8422d99321c4d0ac35ac813aae1c9b9",
+      "currentSha256": "d56dbcde49b5d360b1f19ce4529f2507f8422d99321c4d0ac35ac813aae1c9b9",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/orekit-data/finals2000A.all",
+      "baselineSha256": "e3905ff7a74b791744704aa3e900a2161e96db97a30095d8fc442b04e4cfe058",
+      "currentSha256": "e3905ff7a74b791744704aa3e900a2161e96db97a30095d8fc442b04e4cfe058",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/orekit-data/tai-utc.dat",
+      "baselineSha256": "3524e1ae34d67e858873a89e59983bbc5bd100221da898e796c1b36036a310c3",
+      "currentSha256": "3524e1ae34d67e858873a89e59983bbc5bd100221da898e796c1b36036a310c3",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/api/CurrentOrbitalStateApiTest.java",
+      "baselineSha256": "110dd094361f8a25cd9f05651763b205d6cb378569ff21f9c95032d1b7ce2156",
+      "currentSha256": "110dd094361f8a25cd9f05651763b205d6cb378569ff21f9c95032d1b7ce2156",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/application/CelesTrakRefreshServiceTest.java",
+      "baselineSha256": "ab608cff0b1c25c80cee25d51ffb3ac05ff618da7c2deabcd19197284c284091",
+      "currentSha256": "ab608cff0b1c25c80cee25d51ffb3ac05ff618da7c2deabcd19197284c284091",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/application/CurrentOrbitalStateServiceTest.java",
+      "baselineSha256": "b415be980610427f3ffa4b6a58713a23fda14a184c8d2c1147909f186ffde394",
+      "currentSha256": "b415be980610427f3ffa4b6a58713a23fda14a184c8d2c1147909f186ffde394",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/application/OrbitalQualityEvaluatorTest.java",
+      "baselineSha256": "a2c13910c365ece90fdc7859adc61d11a334a50c6ccc29da580a88abca2a165a",
+      "currentSha256": "a2c13910c365ece90fdc7859adc61d11a334a50c6ccc29da580a88abca2a165a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/application/OrbitalSampleWindowServiceTest.java",
+      "baselineSha256": "7ee9a06603804d5abcd9a9f9ba1ec3ce7a1d9c3cd4c759e38191a8a8f176591d",
+      "currentSha256": "7ee9a06603804d5abcd9a9f9ba1ec3ce7a1d9c3cd4c759e38191a8a8f176591d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/oem/NasaOemTrajectoryServiceTest.java",
+      "baselineSha256": "910287d63a0a82f066d8dc1d99d8a369d3fd48bb606e8258024f7a5d8dde99a2",
+      "currentSha256": "910287d63a0a82f066d8dc1d99d8a369d3fd48bb606e8258024f7a5d8dde99a2",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/persistence/JdbcOrbitalElementSetRepositoryTest.java",
+      "baselineSha256": "36b4c8d1b8b760fc0955af7686599e08fe0a9d91f72fabe0019ef3805e398281",
+      "currentSha256": "36b4c8d1b8b760fc0955af7686599e08fe0a9d91f72fabe0019ef3805e398281",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/propagation/OrbitalCoreTest.java",
+      "baselineSha256": "5362ea37f1b6f4c8a4559105747c6e6cc7401cf4b69a186772ddaf37e6020cc4",
+      "currentSha256": "5362ea37f1b6f4c8a4559105747c6e6cc7401cf4b69a186772ddaf37e6020cc4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/orbital/propagation/OrbitalInterpolationExperimentTest.java",
+      "baselineSha256": "ac63b4ff302ac86bdbe8e15c898b4aa914d51f74d17b31a5965dea37d0996299",
+      "currentSha256": "ac63b4ff302ac86bdbe8e15c898b4aa914d51f74d17b31a5965dea37d0996299",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/source/orbital/celestrak/CelesTrakOrbitalElementsSourceTest.java",
+      "baselineSha256": "3e7df2a01a41fb6c5ffe05a8ec7c0471ca72e4e82c7408fb43f9a708f9c4dc7a",
+      "currentSha256": "3e7df2a01a41fb6c5ffe05a8ec7c0471ca72e4e82c7408fb43f9a708f9c4dc7a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/source/orbital/celestrak/CelesTrakRefreshIntegrationTest.java",
+      "baselineSha256": "22260aca155519ad4c86c9987347043a96ab9046f84894e23b9ec1310b1518ae",
+      "currentSha256": "22260aca155519ad4c86c9987347043a96ab9046f84894e23b9ec1310b1518ae",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/java/org/mission1/source/orbital/nasa/NasaOemXmlParserTest.java",
+      "baselineSha256": "c382342096f2bc386926c236ab0838949a1ae79817b1e60104f1eccef4561863",
+      "currentSha256": "c382342096f2bc386926c236ab0838949a1ae79817b1e60104f1eccef4561863",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/resources/application.properties",
+      "baselineSha256": "196fbe9fdecee638ee893238522c100d3dcd4eb29f07567949109cf58da0b4ac",
+      "currentSha256": "196fbe9fdecee638ee893238522c100d3dcd4eb29f07567949109cf58da0b4ac",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/resources/iss-2026-09-28.tle",
+      "baselineSha256": "b432c6f8feb2d024c2611a037662613af96d646518a3b52bbb109fcb7c7b33c6",
+      "currentSha256": "b432c6f8feb2d024c2611a037662613af96d646518a3b52bbb109fcb7c7b33c6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/test/resources/nasa-oem-2026-09-30-excerpt.xml",
+      "baselineSha256": "1247bc932a378a87afd23889c8e7c1109b12fd9d5de7d13ef122fbfb64b66a06",
+      "currentSha256": "1247bc932a378a87afd23889c8e7c1109b12fd9d5de7d13ef122fbfb64b66a06",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/imagery/black-marble-2016-color.jpg",
+      "baselineSha256": "d87de751a264e4f8ff69c68de5dab9606daee87a6f15ae743c93200743bd7ec1",
+      "currentSha256": "d87de751a264e4f8ff69c68de5dab9606daee87a6f15ae743c93200743bd7ec1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/models/iss-vtad-source-png.glb",
+      "baselineSha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f",
+      "currentSha256": "ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeX.png",
+      "baselineSha256": "bd5f71111eccab2f0eb0fd30bb71162414f83798bfe6983b3ae9d33133f23df5",
+      "currentSha256": "bd5f71111eccab2f0eb0fd30bb71162414f83798bfe6983b3ae9d33133f23df5",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeY.png",
+      "baselineSha256": "b23b672e3dc32a901b0b17024e974ab195feff3028c868de695a982e9ecced33",
+      "currentSha256": "b23b672e3dc32a901b0b17024e974ab195feff3028c868de695a982e9ecced33",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeZ.png",
+      "baselineSha256": "3bff8fc4b4ce9bec5287a9a47aee73fb2c7d7b7a9384844e654616fe5f0b395e",
+      "currentSha256": "3bff8fc4b4ce9bec5287a9a47aee73fb2c7d7b7a9384844e654616fe5f0b395e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveX.png",
+      "baselineSha256": "1944fb5a164a3a16342ccb0b88f9bd3477b4b646d442a714cbcbec9ecb9fc8b5",
+      "currentSha256": "1944fb5a164a3a16342ccb0b88f9bd3477b4b646d442a714cbcbec9ecb9fc8b5",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveY.png",
+      "baselineSha256": "28f5fd817b31f2e55732bf0ea320146b16277a77fae10196c5fb2ba2bde28685",
+      "currentSha256": "28f5fd817b31f2e55732bf0ea320146b16277a77fae10196c5fb2ba2bde28685",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveZ.png",
+      "baselineSha256": "8c3f1cef8816280f05b6154e47594ffc2cedb1d033960261ec17a3a6900ff992",
+      "currentSha256": "8c3f1cef8816280f05b6154e47594ffc2cedb1d033960261ec17a3a6900ff992",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/cameraPose.ts",
+      "baselineSha256": "cc16dc875e29bc9b90d98a920ff7385b59676b4903f6753294a6355956b57a60",
+      "currentSha256": "cc16dc875e29bc9b90d98a920ff7385b59676b4903f6753294a6355956b57a60",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionAntialiasing.ts",
+      "baselineSha256": "63ebc88c13647a2406c31f0d92d43a5f7a047c25c88af9436981d9ea60e380dc",
+      "currentSha256": "63ebc88c13647a2406c31f0d92d43a5f7a047c25c88af9436981d9ea60e380dc",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionControls.ts",
+      "baselineSha256": "2f7d3838d7fef86862593c670297a1848091709eb715a20361f58a33fe7f6f79",
+      "currentSha256": "2f7d3838d7fef86862593c670297a1848091709eb715a20361f58a33fe7f6f79",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionMode.test.ts",
+      "baselineSha256": "db386b2dc11d36f4f3b4f8b0ca4c45aebe39b41bee0ef5e85db1d9a31489a634",
+      "currentSha256": "db386b2dc11d36f4f3b4f8b0ca4c45aebe39b41bee0ef5e85db1d9a31489a634",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionMode.ts",
+      "baselineSha256": "3cdcc6e1c5a086d1e61197bcab69a98e23388510626cd6d260859355fcefaaf4",
+      "currentSha256": "3cdcc6e1c5a086d1e61197bcab69a98e23388510626cd6d260859355fcefaaf4",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionRenderingWarmup.test.ts",
+      "baselineSha256": "66badd65de9adf002f7dd93ccbdab6c2e15c2df61099cf66816b62b3f2f942e6",
+      "currentSha256": "66badd65de9adf002f7dd93ccbdab6c2e15c2df61099cf66816b62b3f2f942e6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionRenderingWarmup.ts",
+      "baselineSha256": "f3de7a3ce7a25091787b05b63b8f4cfd918229f6fc24b61fdba65d30a31d111c",
+      "currentSha256": "f3de7a3ce7a25091787b05b63b8f4cfd918229f6fc24b61fdba65d30a31d111c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionTransition.test.ts",
+      "baselineSha256": "8eefd6e66b9622b3294109470fe7d0dda957e21d331621e682d91c7d7ee8c057",
+      "currentSha256": "8eefd6e66b9622b3294109470fe7d0dda957e21d331621e682d91c7d7ee8c057",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionTransition.ts",
+      "baselineSha256": "5ada8f83e0db806a52b59c8b3706366a37d6a705580ac9f5bc7c4fa748582655",
+      "currentSha256": "5ada8f83e0db806a52b59c8b3706366a37d6a705580ac9f5bc7c4fa748582655",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/issMaterialQuality.ts",
+      "baselineSha256": "fdd556de471ff583d3ee9aa30a21b25551f80db5da507e6b9d1d9ea57eaf2ecd",
+      "currentSha256": "fdd556de471ff583d3ee9aa30a21b25551f80db5da507e6b9d1d9ea57eaf2ecd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/issModelManifest.json",
+      "baselineSha256": "c9cebfc67e884133dae92e60d8a688b3996f6824b2963560280071c47a30df0d",
+      "currentSha256": "c9cebfc67e884133dae92e60d8a688b3996f6824b2963560280071c47a30df0d",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/sampleProperty.test.ts",
+      "baselineSha256": "b5757232c95ddc0f2843c3e9b667df06b239e2e2a923397ac3da027fd7519d8e",
+      "currentSha256": "b5757232c95ddc0f2843c3e9b667df06b239e2e2a923397ac3da027fd7519d8e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/sampleProperty.ts",
+      "baselineSha256": "6c643ab28f32fc02f40884759758eedad6be379111240ec43b4c3a45aa470805",
+      "currentSha256": "6c643ab28f32fc02f40884759758eedad6be379111240ec43b4c3a45aa470805",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryOrientation.test.ts",
+      "baselineSha256": "b96cea6d47c80ae6c3c1eac56976b0b726ae8b976ea11ff224c5892813f29278",
+      "currentSha256": "b96cea6d47c80ae6c3c1eac56976b0b726ae8b976ea11ff224c5892813f29278",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryOrientation.ts",
+      "baselineSha256": "b8305f6b671c28794362fbc04d295eb4f01345211d76a2ffbe364892b3d9dfaa",
+      "currentSha256": "b8305f6b671c28794362fbc04d295eb4f01345211d76a2ffbe364892b3d9dfaa",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectorySelection.test.ts",
+      "baselineSha256": "38212b8be367bd5e1b98cd3b37deb04d46ec8b29cd3636c90326847c2569c5cd",
+      "currentSha256": "38212b8be367bd5e1b98cd3b37deb04d46ec8b29cd3636c90326847c2569c5cd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectorySelection.ts",
+      "baselineSha256": "dfd37b964d549b798a963def1ee942a743c16ec3391a458b2b90787089cf22c9",
+      "currentSha256": "dfd37b964d549b798a963def1ee942a743c16ec3391a458b2b90787089cf22c9",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryVisibility.test.ts",
+      "baselineSha256": "91dd63f33acc422e9fd28dae94872cda80a939f595cc0834e7049467f1bd49a1",
+      "currentSha256": "91dd63f33acc422e9fd28dae94872cda80a939f595cc0834e7049467f1bd49a1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryVisibility.ts",
+      "baselineSha256": "6e9c4b6c32fab4768d25f8ad68d2942af33c920c0e3d312705c2f53451c091cd",
+      "currentSha256": "6e9c4b6c32fab4768d25f8ad68d2942af33c920c0e3d312705c2f53451c091cd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/bufferState.test.ts",
+      "baselineSha256": "abed7d56460f550e411271498024fc65eafd3bea46453a6058440d0504b41d1b",
+      "currentSha256": "abed7d56460f550e411271498024fc65eafd3bea46453a6058440d0504b41d1b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/bufferState.ts",
+      "baselineSha256": "36a2aa4bf105cf416d353037aad55f236387dc7e48e7d6db3e3aff0d442a05c0",
+      "currentSha256": "36a2aa4bf105cf416d353037aad55f236387dc7e48e7d6db3e3aff0d442a05c0",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/comparison.test.ts",
+      "baselineSha256": "a25153fabd5345986b473aeb42d86abb8b95d4418021f60e7f795eed144b4363",
+      "currentSha256": "a25153fabd5345986b473aeb42d86abb8b95d4418021f60e7f795eed144b4363",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/comparison.ts",
+      "baselineSha256": "b01089d434743a7f7e9fd80c15545d3564a31222ca3644e266c01894a867e25e",
+      "currentSha256": "b01089d434743a7f7e9fd80c15545d3564a31222ca3644e266c01894a867e25e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/sampleMapping.test.ts",
+      "baselineSha256": "b81cee7a1300f12282fcc29a30c3ee9a38ba560f50ddbb952dcd1e08f7fff0a3",
+      "currentSha256": "b81cee7a1300f12282fcc29a30c3ee9a38ba560f50ddbb952dcd1e08f7fff0a3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/sampleMapping.ts",
+      "baselineSha256": "3f6adabaa2fe74d4e1d775897a08fdbcba179ac1e060405a56b5f14f20f9ea1d",
+      "currentSha256": "3f6adabaa2fe74d4e1d775897a08fdbcba179ac1e060405a56b5f14f20f9ea1d",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/types.ts",
+      "baselineSha256": "c1d5257a9fdf8732e519b89b13a72155cb336f5369512e0b68cbc433c61dcc41",
+      "currentSha256": "c1d5257a9fdf8732e519b89b13a72155cb336f5369512e0b68cbc433c61dcc41",
+      "unchanged": true
+    }
+  ]
+}

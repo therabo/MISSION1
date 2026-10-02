@@ -1,0 +1,546 @@
+[
+  {
+    "trace": "baseline-axis",
+    "source": "PRIMARY_GP_TLE",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 108,
+    "minProjectedFirstIntervalCssPx": 0.00014539127018597418,
+    "worstGapInducedMotionCssPx": 0.999462377952687,
+    "worstGapInducedMotionFrame": 140,
+    "worstTotalScreenMotionCssPx": 9.12878218386166,
+    "gapReversals": 0,
+    "minScreenClearance": 2.5141640513252965,
+    "gapRangeSeconds": [
+      0.001,
+      35.9088583984375
+    ]
+  },
+  {
+    "trace": "baseline-axis",
+    "source": "NASA_OEM",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 108,
+    "minProjectedFirstIntervalCssPx": 0.00019428771575093987,
+    "worstGapInducedMotionCssPx": 1.764472490995656,
+    "worstGapInducedMotionFrame": 141,
+    "worstTotalScreenMotionCssPx": 9.116362102086015,
+    "gapReversals": 0,
+    "minScreenClearance": 2.5707729177715777,
+    "gapRangeSeconds": [
+      0.001,
+      49.81870263671875
+    ]
+  },
+  {
+    "trace": "baseline-prod-axis",
+    "source": "PRIMARY_GP_TLE",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 107,
+    "minProjectedFirstIntervalCssPx": 0.00014539127043139535,
+    "worstGapInducedMotionCssPx": 2.2517744007375335,
+    "worstGapInducedMotionFrame": 141,
+    "worstTotalScreenMotionCssPx": 9.128782183865411,
+    "gapReversals": 0,
+    "minScreenClearance": 2.5399190003668632,
+    "gapRangeSeconds": [
+      0.001,
+      48.46517431640625
+    ]
+  },
+  {
+    "trace": "baseline-prod-axis",
+    "source": "NASA_OEM",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 107,
+    "minProjectedFirstIntervalCssPx": 0.0001942877160047045,
+    "worstGapInducedMotionCssPx": 1.2701227488266496,
+    "worstGapInducedMotionFrame": 140,
+    "worstTotalScreenMotionCssPx": 9.116362102083855,
+    "gapReversals": 0,
+    "minScreenClearance": 2.477266234400534,
+    "gapRangeSeconds": [
+      0.001,
+      36.3420634765625
+    ]
+  },
+  {
+    "trace": "final-dev-axis",
+    "source": "PRIMARY_GP_TLE",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00014539127043139535,
+    "worstGapInducedMotionCssPx": 0.29481814698273534,
+    "worstGapInducedMotionFrame": 249,
+    "worstTotalScreenMotionCssPx": 9.124500825931714,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7815651929456173,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      200.1443427734375
+    ]
+  },
+  {
+    "trace": "final-dev-axis",
+    "source": "NASA_OEM",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0001942877160047045,
+    "worstGapInducedMotionCssPx": 0.2946302688228285,
+    "worstGapInducedMotionFrame": 249,
+    "worstTotalScreenMotionCssPx": 9.112079044672864,
+    "gapReversals": 0,
+    "minScreenClearance": 2.774190276552258,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      200.1152109375
+    ]
+  },
+  {
+    "trace": "final-prod-axis",
+    "source": "PRIMARY_GP_TLE",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0001453912703558024,
+    "worstGapInducedMotionCssPx": 0.2948181469827909,
+    "worstGapInducedMotionFrame": 249,
+    "worstTotalScreenMotionCssPx": 9.124500825931714,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7815651929459015,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      200.1443427734375
+    ]
+  },
+  {
+    "trace": "final-prod-axis",
+    "source": "NASA_OEM",
+    "path": "axis-cross",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0001942877160047045,
+    "worstGapInducedMotionCssPx": 0.2946302688227148,
+    "worstGapInducedMotionFrame": 249,
+    "worstTotalScreenMotionCssPx": 9.112079044670931,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7741902765523716,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      200.1152109375
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "PRIMARY_GP_TLE",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.29816111994248773,
+    "worstGapInducedMotionFrame": 138,
+    "worstTotalScreenMotionCssPx": 9.4339365540289,
+    "gapReversals": 0,
+    "minScreenClearance": 2.4944102374290176,
+    "gapRangeSeconds": [
+      0.001,
+      109.20658251953125
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "PRIMARY_GP_TLE",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.08456469587694126,
+    "worstGapInducedMotionCssPx": 0.5616938954113334,
+    "worstGapInducedMotionFrame": 115,
+    "worstTotalScreenMotionCssPx": 9.155494540659408,
+    "gapReversals": 0,
+    "minScreenClearance": 4.035255677007437,
+    "gapRangeSeconds": [
+      0.001,
+      79.81347265625
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "PRIMARY_GP_TLE",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.3925556934302285,
+    "worstGapInducedMotionFrame": 118,
+    "worstTotalScreenMotionCssPx": 9.42334090131128,
+    "gapReversals": 0,
+    "minScreenClearance": 2.569658634317343,
+    "gapRangeSeconds": [
+      0.001,
+      109.20658251953125
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "PRIMARY_GP_TLE",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 63,
+    "minProjectedFirstIntervalCssPx": 0.0028629041986403926,
+    "worstGapInducedMotionCssPx": 2.2850183010384697,
+    "worstGapInducedMotionFrame": 2,
+    "worstTotalScreenMotionCssPx": 0.15701728489605896,
+    "gapReversals": 0,
+    "minScreenClearance": 1.2837495328389938,
+    "gapRangeSeconds": [
+      6.597546875,
+      152.579076171875
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "NASA_OEM",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.28228861830868823,
+    "worstGapInducedMotionFrame": 175,
+    "worstTotalScreenMotionCssPx": 9.420814903850278,
+    "gapReversals": 0,
+    "minScreenClearance": 2.5109204534257628,
+    "gapRangeSeconds": [
+      0.001,
+      108.62676904296875
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "NASA_OEM",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0845354306869553,
+    "worstGapInducedMotionCssPx": 0.5048239929687719,
+    "worstGapInducedMotionFrame": 136,
+    "worstTotalScreenMotionCssPx": 9.143024249638865,
+    "gapReversals": 0,
+    "minScreenClearance": 4.1368877314409405,
+    "gapRangeSeconds": [
+      0.001,
+      80.28831079101562
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "NASA_OEM",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.38274663374195556,
+    "worstGapInducedMotionFrame": 109,
+    "worstTotalScreenMotionCssPx": 9.42134624883439,
+    "gapReversals": 0,
+    "minScreenClearance": 2.57039222629559,
+    "gapRangeSeconds": [
+      0.001,
+      109.1942861328125
+    ]
+  },
+  {
+    "trace": "baseline-dev-accepted",
+    "source": "NASA_OEM",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 60,
+    "minProjectedFirstIntervalCssPx": 0.09893404674051001,
+    "worstGapInducedMotionCssPx": 2.3289119352698435,
+    "worstGapInducedMotionFrame": 3,
+    "worstTotalScreenMotionCssPx": 0.1573062324779859,
+    "gapReversals": 0,
+    "minScreenClearance": 1.2837482301903234,
+    "gapRangeSeconds": [
+      0.001,
+      139.2395869140625
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "PRIMARY_GP_TLE",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.16326128104843543,
+    "worstGapInducedMotionFrame": 149,
+    "worstTotalScreenMotionCssPx": 9.430091988637228,
+    "gapReversals": 0,
+    "minScreenClearance": 2.741777834478687,
+    "gapRangeSeconds": [
+      0.2111689453125,
+      109.318119140625
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "PRIMARY_GP_TLE",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.08456469587695051,
+    "worstGapInducedMotionCssPx": 0.1747560085146192,
+    "worstGapInducedMotionFrame": 124,
+    "worstTotalScreenMotionCssPx": 9.1497784079991,
+    "gapReversals": 0,
+    "minScreenClearance": 4.087791382953536,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      75.4852763671875
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "PRIMARY_GP_TLE",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.2648416236276364,
+    "worstGapInducedMotionFrame": 235,
+    "worstTotalScreenMotionCssPx": 9.493315517009519,
+    "gapReversals": 0,
+    "minScreenClearance": 2.797550982275066,
+    "gapRangeSeconds": [
+      0.24015087890625,
+      109.318119140625
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "PRIMARY_GP_TLE",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0028629041984174074,
+    "worstGapInducedMotionCssPx": 51.124354615443316,
+    "worstGapInducedMotionFrame": 24,
+    "worstTotalScreenMotionCssPx": 52.54587629606045,
+    "gapReversals": 1,
+    "minScreenClearance": 1.411040237436063,
+    "gapRangeSeconds": [
+      23.641179443359373,
+      785.9234189453125
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "NASA_OEM",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.16302164315288703,
+    "worstGapInducedMotionFrame": 149,
+    "worstTotalScreenMotionCssPx": 9.416980652070205,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7397800890468353,
+    "gapRangeSeconds": [
+      0.2111689453125,
+      109.281408203125
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "NASA_OEM",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0845354306869553,
+    "worstGapInducedMotionCssPx": 0.17443330791097877,
+    "worstGapInducedMotionFrame": 124,
+    "worstTotalScreenMotionCssPx": 9.137306208682954,
+    "gapReversals": 0,
+    "minScreenClearance": 4.083608359016356,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      75.48213916015625
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "NASA_OEM",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.26533889319085335,
+    "worstGapInducedMotionFrame": 235,
+    "worstTotalScreenMotionCssPx": 9.263044345987346,
+    "gapReversals": 0,
+    "minScreenClearance": 2.794735445665558,
+    "gapRangeSeconds": [
+      0.24946923828125,
+      109.281408203125
+    ]
+  },
+  {
+    "trace": "final-dev",
+    "source": "NASA_OEM",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.09695900764287844,
+    "worstGapInducedMotionCssPx": 51.12654471742148,
+    "worstGapInducedMotionFrame": 24,
+    "worstTotalScreenMotionCssPx": 52.5476341643477,
+    "gapReversals": 1,
+    "minScreenClearance": 1.4130982458640482,
+    "gapRangeSeconds": [
+      23.6223759765625,
+      785.8297788085938
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "PRIMARY_GP_TLE",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.16326128104843543,
+    "worstGapInducedMotionFrame": 149,
+    "worstTotalScreenMotionCssPx": 9.430091988637228,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7417778344784596,
+    "gapRangeSeconds": [
+      0.2111689453125,
+      109.318119140625
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "PRIMARY_GP_TLE",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.08456469587694126,
+    "worstGapInducedMotionCssPx": 0.1747560085146192,
+    "worstGapInducedMotionFrame": 124,
+    "worstTotalScreenMotionCssPx": 9.149778408000806,
+    "gapReversals": 0,
+    "minScreenClearance": 4.087791382953024,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      75.4852763671875
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "PRIMARY_GP_TLE",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.00533879425831627,
+    "worstGapInducedMotionCssPx": 0.26484162362871755,
+    "worstGapInducedMotionFrame": 235,
+    "worstTotalScreenMotionCssPx": 9.493315517011451,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7975509822749522,
+    "gapRangeSeconds": [
+      0.24015087890625,
+      109.318119140625
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "PRIMARY_GP_TLE",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0028629041986403926,
+    "worstGapInducedMotionCssPx": 51.124354615443714,
+    "worstGapInducedMotionFrame": 24,
+    "worstTotalScreenMotionCssPx": 52.545876296060186,
+    "gapReversals": 1,
+    "minScreenClearance": 1.4110402374360345,
+    "gapRangeSeconds": [
+      23.641179443359373,
+      785.9234189453125
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "NASA_OEM",
+    "path": "along",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.16302164315334175,
+    "worstGapInducedMotionFrame": 149,
+    "worstTotalScreenMotionCssPx": 9.416980652069864,
+    "gapReversals": 0,
+    "minScreenClearance": 2.7397800890463238,
+    "gapRangeSeconds": [
+      0.2111689453125,
+      109.281408203125
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "NASA_OEM",
+    "path": "off-axis",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.08453543068696458,
+    "worstGapInducedMotionCssPx": 0.1744333079109719,
+    "worstGapInducedMotionFrame": 124,
+    "worstTotalScreenMotionCssPx": 9.137306208684773,
+    "gapReversals": 0,
+    "minScreenClearance": 4.083608359016099,
+    "gapRangeSeconds": [
+      0.1361708984375,
+      75.48213916015625
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "NASA_OEM",
+    "path": "reverse",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.005310969830062336,
+    "worstGapInducedMotionCssPx": 0.26533889319198944,
+    "worstGapInducedMotionFrame": 235,
+    "worstTotalScreenMotionCssPx": 9.2630443459853,
+    "gapReversals": 0,
+    "minScreenClearance": 2.79473544566516,
+    "gapRangeSeconds": [
+      0.24946923828125,
+      109.281408203125
+    ]
+  },
+  {
+    "trace": "final-prod",
+    "source": "NASA_OEM",
+    "path": "crossing",
+    "frames": 250,
+    "hiddenFrames": 0,
+    "minProjectedFirstIntervalCssPx": 0.0028527582248044645,
+    "worstGapInducedMotionCssPx": 51.1265447174216,
+    "worstGapInducedMotionFrame": 24,
+    "worstTotalScreenMotionCssPx": 52.547634164347926,
+    "gapReversals": 1,
+    "minScreenClearance": 1.4130982458665164,
+    "gapRangeSeconds": [
+      23.6223759765625,
+      785.8297788085938
+    ]
+  }
+]

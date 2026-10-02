@@ -1,5 +1,9 @@
 # MISSION1 Earth View
 
+## Trajectory rendering correction — 2026-10-02
+
+The renderer retains camera-independent physical paths and the exact future horizon. Each `preRender` uses the current camera/source/UTC/model snapshot for a bounded first temporal exit, curved local re-entry mask and capsule coverage of both layers. An ambiguous start never hides the safe far body. The local search also handles an exit before the next projection crosses the camera plane. Camera, assets, quality, source interpolation and provenance remain frozen. [Classification, physical invariants, native raster traces, independent fast-motion tests, performance and regressions](../docs/frontend/trajectory-rendering-artifact-review/final-candidate/README.md). Earlier dated trajectory start/mask descriptions are historical; the original failed investigation remains preserved.
+
 ## Inspection range and trajectory clearance audit — 2026-10-02
 
 Runtime measurement confirms the accepted desktop endpoint was already **90 m / 42.5° / 100°**, about the selected physical Inspection pivot; camera code stays unchanged. The temporal trail start now clears the downstream edge of the displayed-model hull along its own projected future direction. Visible automatic transitions refresh that start every frame; Overview retains the 10 Hz search. Physical vertices and reveal policy stay unchanged. [Diagnosis and regression evidence](../docs/frontend/final-graphics-regression-fixes/README.md).
