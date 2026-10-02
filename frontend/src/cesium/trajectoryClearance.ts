@@ -1,6 +1,7 @@
 import { BoundingSphere, Cartesian2, Cartesian3, JulianDate, Matrix4, SceneTransforms,
   type Model, type Scene } from 'cesium';
 import { smoothstep } from './inspectionMode';
+import type { ViewMode } from './inspectionMode';
 
 export const TRAIL_CLEARANCE = {
   minimumCssPixels: 0.75, maximumCssPixels: 4,
@@ -24,6 +25,14 @@ export function startRampCssPixels(desiredGap: number): number {
 }
 
 export interface Pixel { x: number; y: number }
+
+/** Automatic camera/lift motion cannot reuse a start found in a previous pose.
+ * Overview retains its accepted 10 Hz search; fragment masks still follow ticks.
+ */
+export function clearanceSearchDue(mode: ViewMode, elapsedMs: number, sourceOrProductChanged: boolean): boolean {
+  return mode === 'ENTERING_INSPECTION' || mode === 'EXITING_INSPECTION' ||
+    sourceOrProductChanged || elapsedMs >= TRAIL_CLEARANCE.updateIntervalMs;
+}
 
 function cross(a: Pixel, b: Pixel, c: Pixel): number {
   return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
@@ -89,23 +98,46 @@ export function projectedModelFootprint(scene: Scene, model: Model): Pixel[] | n
   return convexFootprint(corners);
 }
 
-/** Earliest exit on a bounded source's own piecewise-linear sampled path.
+/** Earliest downstream exit on a bounded source's own sampled path.
+ * A lifted model can leave the current physical point outside its hull on the
+ * upstream side. Distance alone would reveal that fragment before the station.
+ * Require passage beyond the hull's support along the projected future tangent.
  * Search real sample intervals, then bisect to <=1ms. Nothing changes vertices.
  * Null means no valid visible start, not permission to extrapolate.
  */
 export function earliestClearTime(startMs: number, endMs: number, sampleTimes: readonly number[],
   pixelAt: (timeMs: number) => Pixel | null, hull: Pixel[], clearance: number): number | null {
-  if (endMs <= startMs) return null;
+  if (endMs <= startMs || hull.length < 3) return null;
+  const origin = pixelAt(startMs);
+  if (!origin) return null;
+  // Evaluators may reuse a scratch Pixel; retain coordinates, not its reference.
+  const x = origin.x, y = origin.y;
+  let dx = 0, dy = 0;
+  for (let i = 0; i <= sampleTimes.length; i++) {
+    const ms = i < sampleTimes.length ? sampleTimes[i] : endMs;
+    if (ms <= startMs || (i < sampleTimes.length && ms >= endMs)) continue;
+    const future = pixelAt(ms);
+    if (!future) continue;
+    dx = future.x - x; dy = future.y - y;
+    const length = Math.hypot(dx, dy);
+    if (length > 1e-6) { dx /= length; dy /= length; break; }
+    dx = 0; dy = 0;
+  }
+  if (dx === 0 && dy === 0) return null;
+  let downstreamEdge = -Infinity;
+  for (const p of hull) downstreamEdge = Math.max(downstreamEdge, (p.x - x) * dx + (p.y - y) * dy);
   return firstPassingTime(startMs, endMs, sampleTimes, (ms) => {
     const p = pixelAt(ms);
-    return p !== null && footprintDistance(p, hull) >= clearance;
+    return p !== null && (p.x - x) * dx + (p.y - y) * dy >= downstreamEdge + clearance;
   });
 }
 
 function firstPassingTime(startMs: number, endMs: number, sampleTimes: readonly number[], clear: (ms: number) => boolean): number | null {
   if (clear(startMs)) return startMs;
   let previous = startMs;
-  for (const next of [...sampleTimes.filter((ms) => ms > startMs && ms < endMs), endMs]) {
+  for (let i = 0; i <= sampleTimes.length; i++) {
+    const next = i < sampleTimes.length ? sampleTimes[i] : endMs;
+    if (next <= startMs || (i < sampleTimes.length && next >= endMs)) continue;
     if (clear(next)) {
       let low = previous, high = next;
       for (let i = 0; i < 20 && high - low > 1; i++) {
@@ -120,16 +152,19 @@ function firstPassingTime(startMs: number, endMs: number, sampleTimes: readonly 
 }
 
 const sampleTime = new JulianDate();
+const sampleDate = new Date();
 const samplePosition = new Cartesian3();
 const samplePixel = new Cartesian2();
 
+/** Returned coordinates reuse scratch storage until the next evaluation. */
 export function projectedSourceEvaluator(scene: Scene,
   positionAt: (time: JulianDate, result: Cartesian3) => Cartesian3 | undefined): (ms: number) => Pixel | null {
   return (ms) => {
-    JulianDate.fromDate(new Date(ms), sampleTime);
+    sampleDate.setTime(ms);
+    JulianDate.fromDate(sampleDate, sampleTime);
     const physical = positionAt(sampleTime, samplePosition);
     if (!physical) return null;
     const p = SceneTransforms.worldToWindowCoordinates(scene, physical, samplePixel);
-    return p ? { x: p.x, y: p.y } : null;
+    return p ?? null;
   };
 }

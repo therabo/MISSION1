@@ -1,0 +1,1175 @@
+{
+  "units": "milliseconds",
+  "runs": [
+    {
+      "label": "baseline-development-NASA_OEM",
+      "cases": [
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 133,
+            "mean": 0.0616541349125984,
+            "median": 0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 133,
+            "mean": 0.050375939535915404,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 132,
+            "mean": 45.399242424265005,
+            "median": 43.29999999701977,
+            "p95": 59.29999999701977
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 98,
+            "mean": 0.08673469402960368,
+            "median": 0.0,
+            "p95": 0.5
+          },
+          "cameraCpu": {
+            "n": 98,
+            "mean": 0.07244898013922633,
+            "median": 0.09999999403953552,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 97,
+            "mean": 51.07113402052639,
+            "median": 50.1000000089407,
+            "p95": 71.69999998807907
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 107,
+            "mean": 0.13925233622577704,
+            "median": 0,
+            "p95": 0.699999988079071
+          },
+          "cameraCpu": {
+            "n": 107,
+            "mean": 0.08785046692763533,
+            "median": 0.09999999403953552,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 106,
+            "mean": 56.21603773590529,
+            "median": 55.5,
+            "p95": 75.59999999403954
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 106,
+            "mean": 0.06792452833000219,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 106,
+            "mean": 0.05094339586091491,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 105,
+            "mean": 47.28952380958057,
+            "median": 45.20000000298023,
+            "p95": 63.900000005960464
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 444,
+        "mean": 0.08738738724643046,
+        "median": 0.0,
+        "p95": 0.4000000059604645
+      },
+      "cameraCpu": {
+        "n": 444,
+        "mean": 0.06441441426674525,
+        "median": 0.09999999403953552,
+        "p95": 0.20000000298023224
+      },
+      "frameInterval": {
+        "n": 440,
+        "mean": 49.706590909104456,
+        "median": 49.150000005960464,
+        "p95": 67.09999999403954,
+        "worst": 99.29999999701977
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 3806.5,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4657,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 23,
+      "heapBefore": {
+        "usedSize": 132071736,
+        "totalSize": 139788288,
+        "embedderHeapUsedSize": 1700112,
+        "backingStorageSize": 79111641
+      },
+      "heapAfter": {
+        "usedSize": 101338188,
+        "totalSize": 104136704,
+        "embedderHeapUsedSize": 1623792,
+        "backingStorageSize": 79016007
+      }
+    },
+    {
+      "label": "baseline-development-PRIMARY_GP_TLE",
+      "cases": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 142,
+            "mean": 0.04929577475282508,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 142,
+            "mean": 0.03943662009608578,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 141,
+            "mean": 42.37234042553192,
+            "median": 40.900000005960464,
+            "p95": 59.70000000298023
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 120,
+            "mean": 0.04833333343267441,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 120,
+            "mean": 0.03833333378036817,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 119,
+            "mean": 41.721848739420665,
+            "median": 40.3999999910593,
+            "p95": 55.099999994039536
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 134,
+            "mean": 0.05074626830086779,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 134,
+            "mean": 0.05000000002224054,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 133,
+            "mean": 45.016541353293825,
+            "median": 43.0,
+            "p95": 62.5
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 118,
+            "mean": 0.04830508439217584,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 118,
+            "mean": 0.05000000017679344,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 117,
+            "mean": 42.33504273494085,
+            "median": 41.099999994039536,
+            "p95": 53.5
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 514,
+        "mean": 0.04922178976150802,
+        "median": 0.0,
+        "p95": 0.20000000298023224
+      },
+      "cameraCpu": {
+        "n": 514,
+        "mean": 0.04435797690881366,
+        "median": 0.0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 510,
+        "mean": 42.9015686273867,
+        "median": 41.19999999552965,
+        "p95": 56.599999994039536,
+        "worst": 81.70000000298023
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 3543.7999999970198,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4187.9000000059605,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 21,
+      "heapBefore": {
+        "usedSize": 132190384,
+        "totalSize": 139526144,
+        "embedderHeapUsedSize": 1692192,
+        "backingStorageSize": 79111781
+      },
+      "heapAfter": {
+        "usedSize": 100648512,
+        "totalSize": 105447424,
+        "embedderHeapUsedSize": 1667456,
+        "backingStorageSize": 79032590
+      }
+    },
+    {
+      "label": "baseline-production-NASA_OEM",
+      "cases": [
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 138,
+            "mean": 0.05579710136289182,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 138,
+            "mean": 0.0376811596578446,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 137,
+            "mean": 43.53795620440132,
+            "median": 41.80000001192093,
+            "p95": 56.30000001192093
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 103,
+            "mean": 0.06504854429694056,
+            "median": 0,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 103,
+            "mean": 0.04563106668805613,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 102,
+            "mean": 48.722549019637064,
+            "median": 43.1000000089407,
+            "p95": 74.69999998807907
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 131,
+            "mean": 0.06030534367069943,
+            "median": 0,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 131,
+            "mean": 0.05038167957131189,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 130,
+            "mean": 46.05461538456954,
+            "median": 43.900000005960464,
+            "p95": 66.90000000596046
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 114,
+            "mean": 0.05350877213896366,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 114,
+            "mean": 0.040350876356426035,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 113,
+            "mean": 43.82654867261912,
+            "median": 41.29999999701977,
+            "p95": 64.5
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 486,
+        "mean": 0.05843621418799883,
+        "median": 0.0,
+        "p95": 0.29999999701976776
+      },
+      "cameraCpu": {
+        "n": 486,
+        "mean": 0.043415637510548895,
+        "median": 0.0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 482,
+        "mean": 45.38153526972191,
+        "median": 42.5,
+        "p95": 65.1000000089407,
+        "worst": 99.1000000089407
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 2879.9000000059605,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4289.70000000298,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 24,
+      "heapBefore": {
+        "usedSize": 94939896,
+        "totalSize": 103284736,
+        "embedderHeapUsedSize": 1211928,
+        "backingStorageSize": 39426717
+      },
+      "heapAfter": {
+        "usedSize": 63806052,
+        "totalSize": 66846720,
+        "embedderHeapUsedSize": 1453336,
+        "backingStorageSize": 39241577
+      }
+    },
+    {
+      "label": "baseline-production-PRIMARY_GP_TLE",
+      "cases": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 125,
+            "mean": 0.08399999976158141,
+            "median": 0,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 125,
+            "mean": 0.0552000013589859,
+            "median": 0.09999999403953552,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 124,
+            "mean": 48.14838709682226,
+            "median": 47.349999994039536,
+            "p95": 62.599999994039536
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 93,
+            "mean": 0.05913978462578148,
+            "median": 0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 93,
+            "mean": 0.04731182866199042,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 92,
+            "mean": 53.57173913037,
+            "median": 49.099999994039536,
+            "p95": 80.40000000596046
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 127,
+            "mean": 0.06220472445638161,
+            "median": 0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 127,
+            "mean": 0.04330708708350114,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 126,
+            "mean": 47.404761904761905,
+            "median": 45.20000000298023,
+            "p95": 66.80000001192093
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 93,
+            "mean": 0.05483870929287326,
+            "median": 0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 93,
+            "mean": 0.05268817146619161,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 92,
+            "mean": 54.1554347825763,
+            "median": 50.649999998509884,
+            "p95": 87.79999999701977
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 438,
+        "mean": 0.06621004545797496,
+        "median": 0.0,
+        "p95": 0.29999999701976776
+      },
+      "cameraCpu": {
+        "n": 438,
+        "mean": 0.049543379546572626,
+        "median": 0.0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 434,
+        "mean": 50.355529953910185,
+        "median": 48.05000000447035,
+        "p95": 72.3999999910593,
+        "worst": 105.70000000298023
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 4369.70000000298,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 5554.4000000059605,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 24,
+      "heapBefore": {
+        "usedSize": 94890284,
+        "totalSize": 101711872,
+        "embedderHeapUsedSize": 1200784,
+        "backingStorageSize": 39491986
+      },
+      "heapAfter": {
+        "usedSize": 63575312,
+        "totalSize": 65798144,
+        "embedderHeapUsedSize": 1438520,
+        "backingStorageSize": 39284049
+      }
+    },
+    {
+      "label": "final-development-NASA_OEM",
+      "cases": [
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 127,
+            "mean": 0.0905511816890221,
+            "median": 0.09999999403953552,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 127,
+            "mean": 0.05748031481983155,
+            "median": 0,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 126,
+            "mean": 47.492063492063494,
+            "median": 45.899999998509884,
+            "p95": 61.70000000298023
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 107,
+            "mean": 0.1205607475799935,
+            "median": 0,
+            "p95": 0.4000000059604645
+          },
+          "cameraCpu": {
+            "n": 107,
+            "mean": 0.06074766355140187,
+            "median": 0.09999999403953552,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 106,
+            "mean": 46.65377358487755,
+            "median": 45.25000000745058,
+            "p95": 67.09999999403954
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 138,
+            "mean": 0.11159420326568079,
+            "median": 0.0,
+            "p95": 0.5
+          },
+          "cameraCpu": {
+            "n": 138,
+            "mean": 0.04710144927536232,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 137,
+            "mean": 43.51167883218205,
+            "median": 41.3999999910593,
+            "p95": 60.3999999910593
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 102,
+            "mean": 0.1362745098623575,
+            "median": 0.0,
+            "p95": 0.5
+          },
+          "cameraCpu": {
+            "n": 102,
+            "mean": 0.07058823503115598,
+            "median": 0.09999999403953552,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 101,
+            "mean": 49.37524752481149,
+            "median": 46.8999999910593,
+            "p95": 75.8999999910593
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 474,
+        "mean": 0.11329113949829013,
+        "median": 0.0,
+        "p95": 0.4000000059604645
+      },
+      "cameraCpu": {
+        "n": 474,
+        "mean": 0.05801687754281965,
+        "median": 0.0,
+        "p95": 0.20000000298023224
+      },
+      "frameInterval": {
+        "n": 470,
+        "mean": 46.547446808536,
+        "median": 44.20000000298023,
+        "p95": 65.90000000596046,
+        "worst": 95.29999999701977
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 3736.7999999970198,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4618.29999999702,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 22,
+      "heapBefore": {
+        "usedSize": 131994568,
+        "totalSize": 139788288,
+        "embedderHeapUsedSize": 1602800,
+        "backingStorageSize": 79119615
+      },
+      "heapAfter": {
+        "usedSize": 101509244,
+        "totalSize": 106496000,
+        "embedderHeapUsedSize": 1754096,
+        "backingStorageSize": 79028697
+      }
+    },
+    {
+      "label": "final-development-PRIMARY_GP_TLE",
+      "cases": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 134,
+            "mean": 0.0850746272437608,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 134,
+            "mean": 0.04626865673865845,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 133,
+            "mean": 44.95263157896978,
+            "median": 43.80000001192093,
+            "p95": 55.599999994039536
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 122,
+            "mean": 0.0778688524590164,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 122,
+            "mean": 0.0434426234149542,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 121,
+            "mean": 41.17685950405834,
+            "median": 39.79999999701977,
+            "p95": 53.29999999701977
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 137,
+            "mean": 0.060583941366550695,
+            "median": 0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 137,
+            "mean": 0.042335766184068944,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 136,
+            "mean": 44.086764705970005,
+            "median": 42.45000000298023,
+            "p95": 56.19999998807907
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 108,
+            "mean": 0.08425925961799091,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 108,
+            "mean": 0.043518518960034405,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 107,
+            "mean": 46.49906542047719,
+            "median": 44.79999999701977,
+            "p95": 64.90000000596046
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 501,
+        "mean": 0.07644710590144593,
+        "median": 0,
+        "p95": 0.29999999701976776
+      },
+      "cameraCpu": {
+        "n": 501,
+        "mean": 0.043912175797416776,
+        "median": 0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 497,
+        "mean": 44.12937625753928,
+        "median": 42.29999999701977,
+        "p95": 57.0,
+        "worst": 85.6000000089407
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 3987.0999999940395,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4631.79999999702,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 21,
+      "heapBefore": {
+        "usedSize": 131954836,
+        "totalSize": 139001856,
+        "embedderHeapUsedSize": 1624864,
+        "backingStorageSize": 79117394
+      },
+      "heapAfter": {
+        "usedSize": 101497416,
+        "totalSize": 105709568,
+        "embedderHeapUsedSize": 1716008,
+        "backingStorageSize": 79031895
+      }
+    },
+    {
+      "label": "final-production-NASA_OEM",
+      "cases": [
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 147,
+            "mean": 0.08435374163851446,
+            "median": 0,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 147,
+            "mean": 0.044217687480303705,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 146,
+            "mean": 41.074657534287404,
+            "median": 40.099999994039536,
+            "p95": 53.20000000298023
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 94,
+            "mean": 0.0829787236895967,
+            "median": 0.0,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 94,
+            "mean": 0.040425532200235,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 93,
+            "mean": 53.73440860211849,
+            "median": 50.6000000089407,
+            "p95": 76.79999999701977
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 125,
+            "mean": 0.0952000002861023,
+            "median": 0,
+            "p95": 0.4000000059604645
+          },
+          "cameraCpu": {
+            "n": 125,
+            "mean": 0.04479999995231628,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 124,
+            "mean": 48.17258064520936,
+            "median": 44.75,
+            "p95": 77.29999999701977
+          }
+        },
+        {
+          "source": "NASA_OEM",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 114,
+            "mean": 0.07894736829034069,
+            "median": 0.0,
+            "p95": 0.3999999910593033
+          },
+          "cameraCpu": {
+            "n": 114,
+            "mean": 0.04035087766354544,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 113,
+            "mean": 44.02743362826584,
+            "median": 42.79999999701977,
+            "p95": 62.6000000089407
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 480,
+        "mean": 0.08562500014280279,
+        "median": 0.0,
+        "p95": 0.4000000059604645
+      },
+      "cameraCpu": {
+        "n": 480,
+        "mean": 0.042708333612730104,
+        "median": 0.0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 476,
+        "mean": 46.09810924370374,
+        "median": 43.3999999910593,
+        "p95": 64.6000000089407,
+        "worst": 108.79999999701977
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 2224.0999999940395,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 2900.5999999940395,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 16,
+      "heapBefore": {
+        "usedSize": 94511644,
+        "totalSize": 104071168,
+        "embedderHeapUsedSize": 1319440,
+        "backingStorageSize": 39426954
+      },
+      "heapAfter": {
+        "usedSize": 63829844,
+        "totalSize": 66584576,
+        "embedderHeapUsedSize": 1465528,
+        "backingStorageSize": 39240478
+      }
+    },
+    {
+      "label": "final-production-PRIMARY_GP_TLE",
+      "cases": [
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 117,
+            "mean": 0.10598290616121048,
+            "median": 0.09999999403953552,
+            "p95": 0.30000001192092896
+          },
+          "cameraCpu": {
+            "n": 117,
+            "mean": 0.05811965809418605,
+            "median": 0.09999999403953552,
+            "p95": 0.20000000298023224
+          },
+          "frameInterval": {
+            "n": 116,
+            "mean": 51.581896551724135,
+            "median": 52.70000000298023,
+            "p95": 63.80000001192093
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 0,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 111,
+            "mean": 0.058558558692803256,
+            "median": 0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 111,
+            "mean": 0.04144144152198826,
+            "median": 0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 110,
+            "mean": 45.119090909172186,
+            "median": 42.900000005960464,
+            "p95": 62.79999999701977
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "entry",
+          "trajectoryCpu": {
+            "n": 120,
+            "mean": 0.057500000173846884,
+            "median": 0.0,
+            "p95": 0.20000000298023224
+          },
+          "cameraCpu": {
+            "n": 120,
+            "mean": 0.04416666713853677,
+            "median": 0.0,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 119,
+            "mean": 49.954621848814625,
+            "median": 47.5,
+            "p95": 75.29999999701977
+          }
+        },
+        {
+          "source": "PRIMARY_GP_TLE",
+          "cycle": 1,
+          "direction": "exit",
+          "trajectoryCpu": {
+            "n": 108,
+            "mean": 0.07129629632389103,
+            "median": 0.0,
+            "p95": 0.29999999701976776
+          },
+          "cameraCpu": {
+            "n": 108,
+            "mean": 0.0592592598663436,
+            "median": 0.09999999403953552,
+            "p95": 0.10000000894069672
+          },
+          "frameInterval": {
+            "n": 107,
+            "mean": 46.742990654205606,
+            "median": 43.19999998807907,
+            "p95": 69.90000000596046
+          }
+        }
+      ],
+      "trajectoryCpu": {
+        "n": 456,
+        "mean": 0.07346491241141369,
+        "median": 0.0,
+        "p95": 0.29999999701976776
+      },
+      "cameraCpu": {
+        "n": 456,
+        "mean": 0.050657895017872774,
+        "median": 0.0,
+        "p95": 0.10000000894069672
+      },
+      "frameInterval": {
+        "n": 452,
+        "mean": 48.435176991190005,
+        "median": 46.70000000298023,
+        "p95": 67.5,
+        "worst": 98.20000000298023
+      },
+      "errors": [],
+      "retainedTransitions": 0,
+      "metadata": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+        "canvas": [
+          2560,
+          1440
+        ],
+        "readiness": {
+          "modelReadyObservedAt": 3346.5,
+          "warmingWhenModelReady": true,
+          "inspectEnabledWhenModelReady": false,
+          "inspectEnabledAt": 4232.5999999940395,
+          "warmingWhenEnabled": false,
+          "skyReadyWhenEnabled": true
+        }
+      },
+      "startupLongTasks": 19,
+      "heapBefore": {
+        "usedSize": 97232436,
+        "totalSize": 104595456,
+        "embedderHeapUsedSize": 1433160,
+        "backingStorageSize": 38717440
+      },
+      "heapAfter": {
+        "usedSize": 65660236,
+        "totalSize": 68419584,
+        "embedderHeapUsedSize": 1441088,
+        "backingStorageSize": 38621493
+      }
+    }
+  ],
+  "baseline": "8af1496e44439f5761507bbcf8d927231b7e5a4b",
+  "method": "Apple M1, Chromium 1234/ANGLE Metal, viewport1280x720 DPR2, one browser at a time; identical real archived API products and local imagery fallback; clock1x; first + warm repeat per source/build, both directions; trajectory CPU includes existing mask/hull work; approximately0.1ms timer granularity"
+}

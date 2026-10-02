@@ -76,8 +76,10 @@ export function adaptTrailClearance(trail: ForwardTrail, sceneMs: number, scene:
     pixelAt, hull, desiredGap + silhouetteSize);
   if (startMs === null) return;
   trail.gapSeconds = (startMs - sceneMs) / 1000;
-  const first = pixelAt(startMs), next = pixelAt(Math.min(startMs + 1000, endMs));
-  const pixelsPerSecond = first && next ? Math.hypot(next.x - first.x, next.y - first.y) : 0;
+  const first = pixelAt(startMs), firstX = first?.x, firstY = first?.y;
+  const next = pixelAt(Math.min(startMs + 1000, endMs));
+  const pixelsPerSecond = firstX !== undefined && firstY !== undefined && next
+    ? Math.hypot(next.x - firstX, next.y - firstY) : 0;
   trail.rampSeconds = Math.min((endMs - startMs) / 1000,
     rampPixels / Math.max(0.01, pixelsPerSecond));
   updateClearanceMask(trail, scene, hull, desiredGap, silhouetteSize);

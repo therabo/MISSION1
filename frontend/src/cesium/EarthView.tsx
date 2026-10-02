@@ -59,7 +59,7 @@ import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
 import type { SampledProperty } from 'cesium';
-import { desiredGapCssPixels, projectedModelFootprint, TRAIL_CLEARANCE } from './trajectoryClearance';
+import { clearanceSearchDue, desiredGapCssPixels, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
 interface EarthViewProps {
@@ -402,15 +402,16 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
         pendingPrimaryLine.current = next;
       }
       // A lightweight projected mask follows every frame so halo fragments stay
-      // clear during camera movement. Search the bounded source paths at 10 Hz.
+      // clear during camera movement. Automatic flights also need a current-pose
+      // temporal start before applying reveal; Overview keeps its 10 Hz search.
       const wall = performance.now();
       const displayedRange = model.current?.ready ? Cartesian3.distance(instance.camera.positionWC, model.current.boundingSphere.center) : NaN;
       trajectoryTransitionVisibility = trajectoryVisibilityForView(viewMode.current, displayedRange, trajectoryOverviewRange);
       if (trajectoryTransitionVisibility > 0 && model.current?.ready) {
         const hull = projectedModelFootprint(instance.scene, model.current);
         const gap = desiredGapCssPixels(displayedRange);
-        const searchDue = wall - lastClearanceUpdate >= TRAIL_CLEARANCE.updateIntervalMs ||
-          clearanceSource !== selectedSourceRef.current || clearanceGeneration !== generatedMs;
+        const searchDue = clearanceSearchDue(viewMode.current, wall - lastClearanceUpdate,
+          clearanceSource !== selectedSourceRef.current || clearanceGeneration !== generatedMs);
         for (const group of [primaryLine.current, pendingPrimaryLine.current]) {
           if (group) for (const trail of group.trails) {
             if (searchDue) adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize);

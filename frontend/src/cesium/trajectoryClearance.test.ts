@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Cartesian3, JulianDate } from 'cesium';
 import { makeSampledPosition } from './sampleProperty';
-import { convexFootprint, desiredGapCssPixels, earliestClearTime, footprintDistance } from './trajectoryClearance';
+import { clearanceSearchDue, convexFootprint, desiredGapCssPixels, earliestClearTime, footprintDistance } from './trajectoryClearance';
 
 const hull = convexFootprint([{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }]);
 describe('screen-space source-specific trajectory clearance', () => {
@@ -48,5 +48,45 @@ describe('screen-space source-specific trajectory clearance', () => {
     expect(earliestClearTime(1, 5000, [0, 30_000], ms => ({ x: ms / 1000, y: 0 }), hull, 12)).toBeNull();
     expect(earliestClearTime(1, 5000, [], () => null, hull, 12)).toBeNull();
     expect(earliestClearTime(5000, 5000, [], () => ({ x: 100, y: 0 }), hull, 12)).toBeNull();
+  });
+  it('skips an upstream fragment already clear of the lifted displayed hull', () => {
+    // Synthetic TEST projection: displayed station at x=0, real source at x=-80.
+    // Old radial-distance search accepted t=1ms, revealing both sides of the ISS.
+    for (const rate of [1, 1.1]) {
+      const pixelAt = (ms: number) => ({ x: -80 + rate * ms / 1000, y: 0 });
+      const start = earliestClearTime(1, 120_000, [0, 30_000, 60_000, 90_000, 120_000], pixelAt, hull, 1.25)!;
+      expect(start).toBeGreaterThan(80_000 / rate);
+      expect(pixelAt(start).x).toBeGreaterThanOrEqual(11.25);
+      expect(footprintDistance(pixelAt(start), hull)).toBeGreaterThanOrEqual(1.25);
+      expect(start - 91_250 / rate).toBeLessThanOrEqual(1);
+    }
+  });
+  it('uses the actual projected future direction for rotated and lifted poses', () => {
+    for (const angle of [0, Math.PI / 2, Math.PI, -Math.PI / 3]) {
+      const dx = Math.cos(angle), dy = Math.sin(angle);
+      const support = Math.max(...hull.map(p => p.x * dx + p.y * dy));
+      const scratch = { x: 0, y: 0 };
+      const pixelAt = (ms: number) => { scratch.x = dx * (-80 + ms / 1000); scratch.y = dy * (-80 + ms / 1000); return scratch; };
+      const start = earliestClearTime(1, 120_000, [0, 30_000, 60_000, 90_000, 120_000], pixelAt, hull, 2)!;
+      const point = pixelAt(start);
+      expect(point.x * dx + point.y * dy).toBeGreaterThanOrEqual(support + 2 - 1e-9);
+      expect(footprintDistance(point, hull)).toBeGreaterThanOrEqual(2 - 1e-9);
+    }
+  });
+  it('does not render a stale start during reveal or partial Back at any checkpoint', () => {
+    for (const mode of ['ENTERING_INSPECTION', 'EXITING_INSPECTION'] as const)
+      for (const checkpoint of [0.1, 0.2, 0.35, 0.5, 0.65, 0.8, 0.95]) {
+        expect(clearanceSearchDue(mode, checkpoint, false)).toBe(true);
+        const shifted = hull.map(p => ({ x: p.x + checkpoint * 80, y: p.y }));
+        const start = earliestClearTime(1, 120_000, [0, 30_000, 60_000, 90_000, 120_000], ms => ({ x: ms / 1000, y: 0 }), shifted, 1)!;
+        expect(start / 1000).toBeGreaterThanOrEqual(checkpoint * 80 + 11);
+      }
+    expect(clearanceSearchDue('EARTH_OVERVIEW', 99, false)).toBe(false);
+    expect(clearanceSearchDue('EARTH_OVERVIEW', 100, false)).toBe(true);
+    expect(clearanceSearchDue('EARTH_OVERVIEW', 0, true)).toBe(true);
+  });
+  it('hides a downstream start without covered projected motion', () => {
+    expect(earliestClearTime(1, 60_000, [0, 30_000], () => ({ x: 50, y: 0 }), hull, 1)).toBeNull();
+    expect(earliestClearTime(1, 60_000, [0, 30_000], ms => ({ x: -80 + ms / 1000, y: 0 }), hull, 1)).toBeNull();
   });
 });

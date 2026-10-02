@@ -1,12 +1,36 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import { Color, GeometryInstance, PolylineGeometry, PrimitiveCollection } from 'cesium';
+import { Cartesian2, Color, GeometryInstance, PolylineGeometry, PrimitiveCollection, SceneTransforms, type Scene } from 'cesium';
 import { fixture } from '../test/comparisonFixture';
 import { parseComparison } from '../orbital/comparison';
-import { createTrajectoryTrails, FORWARD_TRAIL, forwardBounds, forwardOpacity, orderTrails, TRAJECTORY_ACCENTS, updateTrail } from './trajectoryRendering';
+import { adaptTrailClearance, createTrajectoryTrails, FORWARD_TRAIL, forwardBounds, forwardOpacity, orderTrails, TRAJECTORY_ACCENTS, updateTrail } from './trajectoryRendering';
 beforeAll(() => { for (const name of ['HTMLCanvasElement', 'HTMLImageElement', 'ImageBitmap', 'OffscreenCanvas']) vi.stubGlobal(name, class {}); });
 afterAll(() => vi.unstubAllGlobals());
 
 describe('future only continuous trajectories', () => {
+  it('retains the pixel start ramp when source projections reuse scratch output', () => {
+    // Synthetic TEST screen projection, one CSS pixel per second of source time.
+    const response = parseComparison(fixture(true));
+    for (const samples of [response.primary.samples, response.oem.samples])
+      for (const sample of samples) {
+        sample.xMeters = (Date.parse(sample.time) - Date.parse(response.generatedAt)) / 1000 - 80;
+        sample.yMeters = 0;
+      }
+    const group = createTrajectoryTrails(response);
+    const projection = vi.spyOn(SceneTransforms, 'worldToWindowCoordinates').mockImplementation((_scene, point, result) =>
+      Cartesian2.fromElements(point.x, point.y, result));
+    const scene = { canvas: { clientWidth: 1280, clientHeight: 720 }, drawingBufferWidth: 2560, drawingBufferHeight: 1440 } as Scene;
+    try {
+      for (const trail of group.trails) {
+        adaptTrailClearance(trail, group.generatedMs, scene,
+          [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }], .75, .5);
+        expect(trail.gapSeconds).toBeCloseTo(91.25, 2);
+        expect(trail.rampSeconds).toBeCloseTo(1, 8);
+      }
+    } finally {
+      projection.mockRestore();
+      for (const trail of group.trails) for (const layer of trail.layers) { layer.primitive.destroy(); layer.material.destroy(); }
+    }
+  });
   it('softens the start with a deterministic Fabric smoothstep ramp, without a cap marker', () => {
     const group = createTrajectoryTrails(parseComparison(fixture(true)));
     for (const trail of group.trails) {

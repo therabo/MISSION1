@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { Cartesian3, Ellipsoid, Matrix4, Quaternion } from 'cesium';
+import { Cartesian3, Ellipsoid, JulianDate, Matrix4, Quaternion } from 'cesium';
+import { readFileSync } from 'node:fs';
+import { parseComparison } from '../orbital/comparison';
+import { makeSampledPosition } from './sampleProperty';
+import { makeVelocityProperty } from './velocityProperty';
 import { InspectionTransition, poseQuaternion, smootherstep } from './inspectionTransition';
 import { rearInspectionOffset } from './inspectionControls';
 import { TrajectoryVisualFrame } from './trajectoryOrientation';
@@ -11,6 +15,39 @@ const start = { position: new Cartesian3(23_000_000, 0, 0), direction: new Carte
 const end = rearInspectionOffset(16 / 9, new Cartesian3());
 
 describe('coordinated physical-pivot camera transitions', () => {
+  for (const source of ['primary', 'oem'] as const) it(`${source}: preserves the canonical desktop endpoint from arbitrary Earth poses`, () => {
+    // Recorded real backend fixture, used only for deterministic TEST geometry.
+    const real = parseComparison(JSON.parse(readFileSync(new URL('../../../docs/frontend/inspection-orientation-review/real-comparison.json', import.meta.url), 'utf8')));
+    const time = JulianDate.fromIso8601('2026-09-30T15:45:59.975908Z');
+    const physical = makeSampledPosition(real[source].samples).getValue(time)!;
+    const velocity = makeVelocityProperty(real[source].samples).getValue(time)!;
+    const sourceFrame = new Matrix4();
+    new TrajectoryVisualFrame().update(physical, velocity, sourceFrame);
+    const geo = Ellipsoid.WGS84.cartesianToCartographic(physical)!;
+    const canonical = new Cartesian3(-9412786.358621413, -21163227.169227634, -3167995.3206285993);
+    const starts = [canonical, Cartesian3.multiplyByScalar(canonical, 3, new Cartesian3()),
+      Cartesian3.fromRadians(geo.longitude, geo.latitude, 2_000_000),
+      Cartesian3.fromRadians(geo.longitude + Math.PI / 2, 0, 17_000_000),
+      Cartesian3.fromRadians(geo.longitude + 70 * Math.PI / 180, geo.latitude, 17_000_000)];
+    for (const camera of starts) {
+      const direction = Cartesian3.normalize(Cartesian3.negate(camera, new Cartesian3()), new Cartesian3());
+      const right = Cartesian3.normalize(Cartesian3.cross(direction, Cartesian3.UNIT_Z, new Cartesian3()), new Cartesian3());
+      const up = Cartesian3.cross(right, direction, new Cartesian3());
+      const flight = new InspectionTransition('entry', { ...start, position: camera, direction, up },
+        sourceFrame, rearInspectionOffset(1280 / 720, new Cartesian3()), 100 * Math.PI / 180, 6, 0);
+      const pose = flight.evaluate(sourceFrame, 1);
+      const local = Matrix4.multiplyByPoint(Matrix4.inverseTransformation(sourceFrame, new Matrix4()), pose.position, new Cartesian3());
+      expect(Cartesian3.distance(pose.position, physical)).toBeCloseTo(90, 6);
+      expect(local.x).toBeCloseTo(-90 * Math.cos(42.5 * Math.PI / 180), 6);
+      expect(local.y).toBeCloseTo(0, 6);
+      expect(local.z).toBeCloseTo(90 * Math.sin(42.5 * Math.PI / 180), 6);
+      expect(Math.atan2(local.z, -local.x) * 180 / Math.PI).toBeCloseTo(42.5, 6);
+      expect(pose.fov * 180 / Math.PI).toBeCloseTo(100, 10);
+      // The native moving-pivot handoff adopts the same frame and offset.
+      const stable = Matrix4.multiplyByPoint(sourceFrame, flight.endOffset, new Cartesian3());
+      expect(Cartesian3.distance(stable, pose.position)).toBeLessThan(1e-7);
+    }
+  });
   it('arrives at a 90m, 42.5 degree rear view, centred on either selected-source frame', () => {
     for (const sourcePosition of [position, new Cartesian3(6_798_000, 2100, 50)]) {
       const sourceFrame = new Matrix4();
