@@ -563,4 +563,33 @@ class CrewReconciliationEngineTest {
         assertEquals(Presence.UNVERIFIED, presence(s, 1));
         assertEquals(ReconciliationStatus.VERIFICATION_UNAVAILABLE, s.status());
     }
+
+    CrewReconciliationSnapshot replay(List<CrewVerificationRepository.Evidence> evidence, Instant at) {
+        var resolution=new ArrayList<CrewIdentityResolution>();
+        for(var e:evidence) for(int n=0;n<e.value().people().size();n++) {
+            var id=e.value().people().get(n).mission1Id();
+            resolution.add(new CrewIdentityResolution(e.id()*100+n,e.id(),n,id,CrewIdentityResolution.Method.EXTERNAL_ID,List.of(id),"TEST","TEST-v1"));
+        }
+        return engine.evaluateEffectiveTime(new CrewReconciliationEngine.Inputs(null,false,new CrewVerificationRepository.Verification(1,1,NOW),true,evidence,resolution,at));
+    }
+    @Test void replayUsesLateEventAtEffectiveTimeAndDepartureInEventOrder() {
+        var arrival=event(101,Type.PERSON_ENTERED_STATION,NOW.minusSeconds(7200),1);
+        var departure=event(102,Type.PERSON_DEPARTED_STATION,NOW.minusSeconds(3600),1);
+        var afterArrival=replay(List.of(departure,arrival),NOW.minusSeconds(5400));
+        assertEquals(Presence.CONFIRMED_ABOARD,afterArrival.people().getFirst().presence());
+        assertTrue(replay(List.of(arrival,departure),NOW.minusSeconds(8000)).people().isEmpty());
+        assertEquals(Presence.CONFIRMED_NOT_ABOARD,replay(List.of(arrival,departure),NOW).people().getFirst().presence());
+        assertEquals(afterArrival,replay(List.of(arrival,departure),NOW.minusSeconds(5400)));
+    }
+    @Test void replayPlannedTransitionAndPartialOmissionRemainInert() {
+        var arrival=event(101,Type.PERSON_ENTERED_STATION,NOW.minusSeconds(7200),1);
+        var planned=assertion(102,Type.PERSON_DEPARTED_STATION,Completeness.PARTIAL,Assertion.PLANNED,NOW.minusSeconds(3600),null,null,person(1));
+        var partial=assertion(103,Type.PERSON_CURRENTLY_ABOARD,Completeness.PARTIAL,Assertion.OBSERVED,NOW.minusSeconds(100),null,null,person(2));
+        var state=replay(List.of(arrival,planned,partial),NOW);
+        assertEquals(Presence.CONFIRMED_ABOARD,state.people().getFirst().presence());
+    }
+    @Test void replayRetainsStaleLastKnownWithoutClaimingCurrentPresenceAfterApplicabilityWindow() {
+        var arrival=event(101,Type.PERSON_ENTERED_STATION,NOW.minusSeconds(15*86400),1);
+        assertEquals(Presence.STALE,replay(List.of(arrival),NOW).people().getFirst().presence());
+    }
 }

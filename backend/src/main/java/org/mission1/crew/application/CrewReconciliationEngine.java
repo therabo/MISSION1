@@ -28,7 +28,12 @@ public final class CrewReconciliationEngine {
         this.policy = policy;
     }
 
-    public CrewReconciliationSnapshot evaluate(Inputs in) {
+    public CrewReconciliationSnapshot evaluate(Inputs in) { return evaluate(in, false); }
+
+    /** Best current reconstruction at effective time, independent of when evidence was acquired. */
+    public CrewReconciliationSnapshot evaluateEffectiveTime(Inputs in) { return evaluate(in, true); }
+
+    private CrewReconciliationSnapshot evaluate(Inputs in, boolean effectiveReplay) {
         var assigned = new TreeSet<UUID>();
         if (in.primary() != null)
             in.primary()
@@ -54,7 +59,7 @@ public final class CrewReconciliationEngine {
             if (e.assertion() == Assertion.PLANNED
                     || at == null
                     || at.isAfter(in.asOf())
-                    || e.observation().retrievedAt().isAfter(in.asOf())) continue;
+                    || (!effectiveReplay && e.observation().retrievedAt().isAfter(in.asOf()))) continue;
             boolean personClaim =
                     e.type() == Type.PERSON_CURRENTLY_ABOARD
                             || e.type() == Type.PERSON_ENTERED_STATION
@@ -99,7 +104,7 @@ public final class CrewReconciliationEngine {
                                         state,
                                         item.id(),
                                         in.verificationAvailable()
-                                                && policy.applicable(e, verifiedAt, in.asOf()),
+                                                && applicable(e, verifiedAt, in.asOf(), effectiveReplay),
                                         e.type()));
             }
         }
@@ -129,8 +134,8 @@ public final class CrewReconciliationEngine {
                                             Presence.CONFIRMED_NOT_ABOARD,
                                             roster.id(),
                                             in.verificationAvailable()
-                                                    && policy.applicable(
-                                                            roster.value(), verifiedAt, in.asOf()),
+                                                    && applicable(
+                                                            roster.value(), verifiedAt, in.asOf(), effectiveReplay),
                                             Type.PERSON_CURRENTLY_ABOARD));
         }
         var ids = new TreeSet<>(assigned);
@@ -190,7 +195,7 @@ public final class CrewReconciliationEngine {
             if (transitions.stream().anyMatch(t -> t.isAfter(newest))) count = null;
             if (count != null
                     && latest.stream()
-                            .noneMatch(e -> policy.applicable(e.value(), verifiedAt, in.asOf())))
+                            .noneMatch(e -> applicable(e.value(), verifiedAt, in.asOf(), effectiveReplay)))
                 stale = true;
         }
         var both = intersection(assigned, aboard);
@@ -204,7 +209,7 @@ public final class CrewReconciliationEngine {
                                 in.asOf());
         boolean comparable =
                 exhaustive.stream()
-                        .anyMatch(e -> policy.applicable(e.value(), verifiedAt, in.asOf()));
+                        .anyMatch(e -> applicable(e.value(), verifiedAt, in.asOf(), effectiveReplay));
         boolean countMismatch = count != null && count != aboard.size();
         ReconciliationStatus status;
         if (ambiguousIdentity
@@ -214,7 +219,7 @@ public final class CrewReconciliationEngine {
             status = ReconciliationStatus.AMBIGUOUS;
         else if (in.verification() == null || !in.verificationAvailable() || usedEvidence.isEmpty())
             status = ReconciliationStatus.VERIFICATION_UNAVAILABLE;
-        else if (stale || !policy.fresh(verifiedAt, policy.verificationMaxAge(), in.asOf()))
+        else if (stale || (!effectiveReplay && !policy.fresh(verifiedAt, policy.verificationMaxAge(), in.asOf())))
             status = ReconciliationStatus.STALE;
         else if (in.primary() == null || !in.primaryAvailable())
             status = ReconciliationStatus.PRIMARY_UNAVAILABLE;
@@ -266,7 +271,7 @@ public final class CrewReconciliationEngine {
                 Comparator.comparingLong(UnresolvedSubject::evidenceId)
                         .thenComparingInt(UnresolvedSubject::subjectIndex));
         return new CrewReconciliationSnapshot(
-                VERSION + "/" + policy.key(),
+                VERSION + (effectiveReplay ? "/effective-time-v1/" : "/") + policy.key(),
                 in.asOf(),
                 in.primary() == null ? null : in.primary().snapshot().id(),
                 in.primary() == null ? null : in.primary().successfulRun().id(),
@@ -284,6 +289,10 @@ public final class CrewReconciliationEngine {
                 List.copyOf(usedEvidence),
                 List.copyOf(usedResolution),
                 List.copyOf(usedDocuments));
+    }
+
+    private boolean applicable(CrewVerificationEvidence e, Instant verifiedAt, Instant at, boolean replay) {
+        return replay ? policy.applicableEffectiveTime(e, at) : policy.applicable(e, verifiedAt, at);
     }
 
     public static Instant effectiveTime(CrewVerificationEvidence e) {

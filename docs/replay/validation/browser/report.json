@@ -1,0 +1,1314 @@
+[
+  {
+    "port": 5175,
+    "width": 1280,
+    "errors": [],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/samples",
+        "time": 1791064715017
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/comparison",
+        "time": 1791064715017
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/crew",
+        "time": 1791064717426
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay/coverage",
+        "time": 1791064717951
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A57%3A37.911Z",
+        "time": 1791064718187
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064718495
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064719699
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A57%3A38.000Z",
+        "time": 1791064721027
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064722379
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064723466
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/crew",
+        "time": 1791064723852
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/samples",
+        "time": 1791064723852
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/comparison",
+        "time": 1791064723852
+      }
+    ],
+    "cases": [
+      {
+        "label": "earliest",
+        "at": "2026-10-02T02:01:55Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T02:01:55.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\nCrew aboard: unavailable\n\n8 confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16118552.263870806,
+            -16677256.63640002,
+            2929670.4132419
+          ],
+          "direction": [
+            -0.6894078999795136,
+            0.7133042897959907,
+            -0.12614966351312426
+          ],
+          "up": [
+            -0.08766894242045445,
+            0.09070774023948157,
+            0.9920112209020249
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T02:01:55Z",
+          "modelShown": true,
+          "modelPosition": [
+            -2445440.017698276,
+            5619733.310426583,
+            3115227.2012325716
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "middle",
+        "at": "2026-10-02T23:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T23:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16118552.263870806,
+            -16677256.63640002,
+            2929670.4132419
+          ],
+          "direction": [
+            -0.6894078999795136,
+            0.7133042897959907,
+            -0.12614966351312426
+          ],
+          "up": [
+            -0.08766894242045445,
+            0.09070774023948157,
+            0.9920112209020249
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T23:00:00Z",
+          "modelShown": true,
+          "modelPosition": [
+            5351740.286283375,
+            -1303131.8448696781,
+            -4110985.7450144454
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "latest",
+        "at": "2026-10-03T21:57:38Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-03T21:57:38.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16118552.263870806,
+            -16677256.63640002,
+            2929670.4132419
+          ],
+          "direction": [
+            -0.6894078999795136,
+            0.7133042897959907,
+            -0.12614966351312426
+          ],
+          "up": [
+            -0.08766894242045445,
+            0.09070774023948157,
+            0.9920112209020249
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-03T21:57:38Z",
+          "modelShown": true,
+          "modelPosition": [
+            4519658.740151986,
+            -5033495.0080267945,
+            1197623.3072622248
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "unsupported",
+        "at": "2026-01-01T00:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-01-01T00:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nOrbit history unavailable at this instant.\n\nCrew history unavailable at this instant. No current roster is substituted.",
+        "orbit": "UNAVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16118552.263870806,
+            -16677256.63640002,
+            2929670.4132419
+          ],
+          "direction": [
+            -0.6894078999795136,
+            0.7133042897959907,
+            -0.12614966351312426
+          ],
+          "up": [
+            -0.08766894242045445,
+            0.09070774023948157,
+            0.9920112209020249
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-01-01T00:00:00Z",
+          "modelShown": false,
+          "modelPosition": [
+            4519658.740151986,
+            -5033495.0080267945,
+            1197623.3072622248
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    ],
+    "sourceInspection": [
+      {
+        "source": "MISSION1 GP/TLE",
+        "inspection": true,
+        "return": true
+      },
+      {
+        "source": "NASA OEM",
+        "inspection": true,
+        "return": true
+      }
+    ],
+    "liveCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "before": {
+      "sameViewer": true,
+      "position": [
+        16118552.263870806,
+        -16677256.63640002,
+        2929670.4132419
+      ],
+      "direction": [
+        -0.6894078999795136,
+        0.7133042897959907,
+        -0.12614966351312426
+      ],
+      "up": [
+        -0.08766894242045445,
+        0.09070774023948157,
+        0.9920112209020249
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:58:37.72934500006522285Z",
+      "modelShown": true,
+      "modelPosition": [
+        4746869.357855962,
+        -4894768.677957879,
+        841277.8481343205
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "replayStart": 1791064717841,
+    "futureRejected": true,
+    "rapidFinalEpoch": "2026-10-03T11:00:00Z",
+    "profile": "Assignment and presence are effective at 2026-10-03T11:00:00.000Z. Profile details use the latest retained metadata and may be newer.\n\nAgency\nNational Aeronautics and Space Administration\nNationality\nUnited States of America\nAssignment at replay time\nCommander\nAssignment validity\nUnavailable → Unavailable\nPresence as of\n2026-10-02 02:01:55 UTC\n\nSources partially reconciled · evaluated 2026-10-03 11:00:00 UTC\n\nBiography\nRead biography\nLatest retained career totals\nTime in space\n436 d 6 h 28 min 11 s\nEVA time\n1 d 18 h 29 min\nFlights\nUnavailable\nSpacewalks\nUnavailable\nFirst flight\n2019-09-25 13:57:42 UTC\nLast flight\n2026-02-13 10:15:56 UTC\n\nLatest retained profile metadata; career totals are not reconstructed at replay time.\n\nOfficial profile ↗\n\nPortrait credit & rights\nProfile source & presence evidence",
+    "replayEnd": 1791064723814,
+    "replayRequests": [
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay/coverage",
+        "time": 1791064717951
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A57%3A37.911Z",
+        "time": 1791064718187
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064718495
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064719699
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A57%3A38.000Z",
+        "time": 1791064721027
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064722379
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064723466
+      }
+    ],
+    "restoredCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "after": {
+      "sameViewer": true,
+      "position": [
+        16118552.263870806,
+        -16677256.63640002,
+        2929670.4132419
+      ],
+      "direction": [
+        -0.6894078999795136,
+        0.7133042897959907,
+        -0.12614966351312426
+      ],
+      "up": [
+        -0.08766894242045445,
+        0.09070774023948157,
+        0.9920112209020249
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:58:44.1181000000142376Z",
+      "modelShown": true,
+      "modelPosition": [
+        4770046.755175284,
+        -4878777.692837809,
+        802917.2114382902
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  {
+    "port": 5175,
+    "width": 390,
+    "errors": [],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/samples",
+        "time": 1791064749573
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/comparison",
+        "time": 1791064749573
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/crew",
+        "time": 1791064751355
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay/coverage",
+        "time": 1791064751574
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064751903
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064752769
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A58%3A11.000Z",
+        "time": 1791064753646
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064754520
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064755359
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/crew",
+        "time": 1791064755512
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/samples",
+        "time": 1791064755512
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/comparison",
+        "time": 1791064755512
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/samples",
+        "time": 1791064762851
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/orbit/comparison",
+        "time": 1791064762851
+      }
+    ],
+    "cases": [
+      {
+        "label": "earliest",
+        "at": "2026-10-02T02:01:55Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T02:01:55.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\nCrew aboard: unavailable\n\n8 confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16536425.705858855,
+            -16375185.172387503,
+            2219956.6710574375
+          ],
+          "direction": [
+            -0.7073084511112296,
+            0.7004117496102786,
+            -0.09559359808324816
+          ],
+          "up": [
+            -0.06792522705221349,
+            0.0672629134397757,
+            0.9954204458446182
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T02:01:55Z",
+          "modelShown": true,
+          "modelPosition": [
+            -2445440.017698276,
+            5619733.3104265835,
+            3115227.2012325716
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "middle",
+        "at": "2026-10-02T23:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T23:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16536425.705858855,
+            -16375185.172387503,
+            2219956.6710574375
+          ],
+          "direction": [
+            -0.7073084511112296,
+            0.7004117496102786,
+            -0.09559359808324816
+          ],
+          "up": [
+            -0.06792522705221349,
+            0.0672629134397757,
+            0.9954204458446182
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T23:00:00Z",
+          "modelShown": true,
+          "modelPosition": [
+            5351740.286283376,
+            -1303131.8448696786,
+            -4110985.745014446
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "latest",
+        "at": "2026-10-03T21:58:11Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-03T21:58:11.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16536425.705858855,
+            -16375185.172387503,
+            2219956.6710574375
+          ],
+          "direction": [
+            -0.7073084511112296,
+            0.7004117496102786,
+            -0.09559359808324816
+          ],
+          "up": [
+            -0.06792522705221349,
+            0.0672629134397757,
+            0.9954204458446182
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-03T21:58:11Z",
+          "modelShown": true,
+          "modelPosition": [
+            4647663.243773796,
+            -4959408.97586999,
+            1001321.3008501683
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "unsupported",
+        "at": "2026-01-01T00:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-01-01T00:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nOrbit history unavailable at this instant.\n\nCrew history unavailable at this instant. No current roster is substituted.",
+        "orbit": "UNAVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16536425.705858855,
+            -16375185.172387503,
+            2219956.6710574375
+          ],
+          "direction": [
+            -0.7073084511112296,
+            0.7004117496102786,
+            -0.09559359808324816
+          ],
+          "up": [
+            -0.06792522705221349,
+            0.0672629134397757,
+            0.9954204458446182
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-01-01T00:00:00Z",
+          "modelShown": false,
+          "modelPosition": [
+            4647663.243773796,
+            -4959408.97586999,
+            1001321.3008501683
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    ],
+    "sourceInspection": [
+      {
+        "source": "MISSION1 GP/TLE",
+        "inspection": true,
+        "return": true
+      },
+      {
+        "source": "NASA OEM",
+        "inspection": true,
+        "return": true
+      }
+    ],
+    "liveCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "before": {
+      "sameViewer": true,
+      "position": [
+        16536425.705858855,
+        -16375185.172387503,
+        2219956.6710574375
+      ],
+      "direction": [
+        -0.7073084511112296,
+        0.7004117496102786,
+        -0.09559359808324816
+      ],
+      "up": [
+        -0.06792522705221349,
+        0.0672629134397757,
+        0.9954204458446182
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:59:11.4249529999724473Z",
+      "modelShown": true,
+      "modelPosition": [
+        4866251.171743363,
+        -4807597.473548608,
+        638466.2044178693
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "replayStart": 1791064751514,
+    "futureRejected": true,
+    "rapidFinalEpoch": "2026-10-03T11:00:00Z",
+    "profile": "Assignment and presence are effective at 2026-10-03T11:00:00.000Z. Profile details use the latest retained metadata and may be newer.\n\nAgency\nNational Aeronautics and Space Administration\nNationality\nUnited States of America\nAssignment at replay time\nCommander\nAssignment validity\nUnavailable → Unavailable\nPresence as of\n2026-10-02 02:01:55 UTC\n\nSources partially reconciled · evaluated 2026-10-03 11:00:00 UTC\n\nBiography\nRead biography\nLatest retained career totals\nTime in space\n436 d 6 h 28 min 11 s\nEVA time\n1 d 18 h 29 min\nFlights\nUnavailable\nSpacewalks\nUnavailable\nFirst flight\n2019-09-25 13:57:42 UTC\nLast flight\n2026-02-13 10:15:56 UTC\n\nLatest retained profile metadata; career totals are not reconstructed at replay time.\n\nOfficial profile ↗\n\nPortrait credit & rights\nProfile source & presence evidence",
+    "replayEnd": 1791064755479,
+    "replayRequests": [
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay/coverage",
+        "time": 1791064751574
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064751903
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064752769
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T21%3A58%3A11.000Z",
+        "time": 1791064753646
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064754520
+      },
+      {
+        "url": "http://127.0.0.1:5175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064755359
+      }
+    ],
+    "restoredCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "after": {
+      "sameViewer": true,
+      "position": [
+        16536425.705858855,
+        -16375185.172387503,
+        2219956.6710574375
+      ],
+      "direction": [
+        -0.7073084511112296,
+        0.7004117496102786,
+        -0.09559359808324816
+      ],
+      "up": [
+        -0.06792522705221349,
+        0.0672629134397757,
+        0.9954204458446182
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:59:15.6235000000015134Z",
+      "modelShown": true,
+      "modelPosition": [
+        4880708.295788889,
+        -4796326.069384243,
+        613129.5923465881
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  {
+    "port": 4175,
+    "width": 1280,
+    "errors": [],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/samples",
+        "time": 1791064780044
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/comparison",
+        "time": 1791064780044
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/crew",
+        "time": 1791064782238
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay/coverage",
+        "time": 1791064782575
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064782965
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064784323
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T21%3A58%3A42.000Z",
+        "time": 1791064785941
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064787097
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064788191
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/crew",
+        "time": 1791064788655
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/samples",
+        "time": 1791064788655
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/comparison",
+        "time": 1791064788655
+      }
+    ],
+    "cases": [
+      {
+        "label": "earliest",
+        "at": "2026-10-02T02:01:55Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T02:01:55.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\nCrew aboard: unavailable\n\n8 confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16885865.052070193,
+            -16089462.96737529,
+            1590410.1010272019
+          ],
+          "direction": [
+            -0.7222734689691972,
+            0.6882082851818634,
+            -0.06848643829431549
+          ],
+          "up": [
+            -0.04958235437986492,
+            0.047243860599982465,
+            0.9976520474442776
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T02:01:55Z",
+          "modelShown": true,
+          "modelPosition": [
+            -2445440.0176982763,
+            5619733.310426583,
+            3115227.2012325716
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "middle",
+        "at": "2026-10-02T23:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T23:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16885865.052070193,
+            -16089462.96737529,
+            1590410.1010272019
+          ],
+          "direction": [
+            -0.7222734689691972,
+            0.6882082851818634,
+            -0.06848643829431549
+          ],
+          "up": [
+            -0.04958235437986492,
+            0.047243860599982465,
+            0.9976520474442776
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T23:00:00Z",
+          "modelShown": true,
+          "modelPosition": [
+            5351740.286283375,
+            -1303131.8448696784,
+            -4110985.745014446
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "latest",
+        "at": "2026-10-03T21:58:42Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-03T21:58:42.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16885865.052070193,
+            -16089462.96737529,
+            1590410.1010272019
+          ],
+          "direction": [
+            -0.7222734689691972,
+            0.6882082851818634,
+            -0.06848643829431549
+          ],
+          "up": [
+            -0.04958235437986492,
+            0.047243860599982465,
+            0.9976520474442776
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-03T21:58:42Z",
+          "modelShown": true,
+          "modelPosition": [
+            4762411.148172516,
+            -4884127.78885286,
+            815644.1066949257
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "unsupported",
+        "at": "2026-01-01T00:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-01-01T00:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nOrbit history unavailable at this instant.\n\nCrew history unavailable at this instant. No current roster is substituted.",
+        "orbit": "UNAVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            16885865.052070193,
+            -16089462.96737529,
+            1590410.1010272019
+          ],
+          "direction": [
+            -0.7222734689691972,
+            0.6882082851818634,
+            -0.06848643829431549
+          ],
+          "up": [
+            -0.04958235437986492,
+            0.047243860599982465,
+            0.9976520474442776
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-01-01T00:00:00Z",
+          "modelShown": false,
+          "modelPosition": [
+            4762411.148172516,
+            -4884127.78885286,
+            815644.1066949257
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    ],
+    "sourceInspection": [
+      {
+        "source": "MISSION1 GP/TLE",
+        "inspection": true,
+        "return": true
+      },
+      {
+        "source": "NASA OEM",
+        "inspection": true,
+        "return": true
+      }
+    ],
+    "liveCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "before": {
+      "sameViewer": true,
+      "position": [
+        16885865.052070193,
+        -16089462.96737529,
+        1590410.1010272019
+      ],
+      "direction": [
+        -0.7222734689691972,
+        0.6882082851818634,
+        -0.06848643829431549
+      ],
+      "up": [
+        -0.04958235437986492,
+        0.047243860599982465,
+        0.9976520474442776
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:59:42.4245650000302703Z",
+      "modelShown": true,
+      "modelPosition": [
+        4970275.216410202,
+        -4721776.011530246,
+        451054.80105506815
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "replayStart": 1791064782517,
+    "futureRejected": true,
+    "rapidFinalEpoch": "2026-10-03T11:00:00Z",
+    "profile": "Assignment and presence are effective at 2026-10-03T11:00:00.000Z. Profile details use the latest retained metadata and may be newer.\n\nAgency\nNational Aeronautics and Space Administration\nNationality\nUnited States of America\nAssignment at replay time\nCommander\nAssignment validity\nUnavailable → Unavailable\nPresence as of\n2026-10-02 02:01:55 UTC\n\nSources partially reconciled · evaluated 2026-10-03 11:00:00 UTC\n\nBiography\nRead biography\nLatest retained career totals\nTime in space\n436 d 6 h 28 min 11 s\nEVA time\n1 d 18 h 29 min\nFlights\nUnavailable\nSpacewalks\nUnavailable\nFirst flight\n2019-09-25 13:57:42 UTC\nLast flight\n2026-02-13 10:15:56 UTC\n\nLatest retained profile metadata; career totals are not reconstructed at replay time.\n\nOfficial profile ↗\n\nPortrait credit & rights\nProfile source & presence evidence",
+    "replayEnd": 1791064788596,
+    "replayRequests": [
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay/coverage",
+        "time": 1791064782575
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064782965
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064784323
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T21%3A58%3A42.000Z",
+        "time": 1791064785941
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064787097
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064788191
+      }
+    ],
+    "restoredCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "after": {
+      "sameViewer": true,
+      "position": [
+        16885865.052070193,
+        -16089462.96737529,
+        1590410.1010272019
+      ],
+      "direction": [
+        -0.7222734689691972,
+        0.6882082851818634,
+        -0.06848643829431549
+      ],
+      "up": [
+        -0.04958235437986492,
+        0.047243860599982465,
+        0.9976520474442776
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T21:59:48.8478000000031898Z",
+      "modelShown": true,
+      "modelPosition": [
+        4991175.0769567145,
+        -4703374.758781289,
+        412150.0591641941
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  {
+    "port": 4175,
+    "width": 390,
+    "errors": [],
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/samples",
+        "time": 1791064813715
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/comparison",
+        "time": 1791064813715
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/crew",
+        "time": 1791064815841
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay/coverage",
+        "time": 1791064816127
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064816501
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064817468
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T21%3A59%3A16.000Z",
+        "time": 1791064818464
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064819528
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064820411
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/crew",
+        "time": 1791064820643
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/samples",
+        "time": 1791064820643
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/orbit/comparison",
+        "time": 1791064820643
+      }
+    ],
+    "cases": [
+      {
+        "label": "earliest",
+        "at": "2026-10-02T02:01:55Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T02:01:55.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\nCrew aboard: unavailable\n\n8 confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            17250599.133588545,
+            -15753005.746750861,
+            891893.2432449302
+          ],
+          "direction": [
+            -0.7378882381078146,
+            0.673829214009114,
+            -0.03840753064185157
+          ],
+          "up": [
+            -0.028361391324351237,
+            0.025899225705641894,
+            0.9992621585900245
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T02:01:55Z",
+          "modelShown": true,
+          "modelPosition": [
+            -2445440.0176982754,
+            5619733.310426583,
+            3115227.201232572
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "middle",
+        "at": "2026-10-02T23:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-02T23:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition unavailable\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nStructured roster unavailable\nOther confirmed crew\nAK\nAnna Kikina\nNo structured assignment · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nNo structured assignment · ESA\nConfirmed aboard\n›\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nAnil Menon\nNo structured assignment · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nNo structured assignment · NASA\nConfirmed aboard\n›\nJM\nJessica Meir\nNo structured assignment · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nNo structured assignment · RFSA\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            17250599.133588545,
+            -15753005.746750861,
+            891893.2432449302
+          ],
+          "direction": [
+            -0.7378882381078146,
+            0.673829214009114,
+            -0.03840753064185157
+          ],
+          "up": [
+            -0.028361391324351237,
+            0.025899225705641894,
+            0.9992621585900245
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-02T23:00:00Z",
+          "modelShown": true,
+          "modelPosition": [
+            5351740.286283376,
+            -1303131.8448696777,
+            -4110985.7450144454
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "latest",
+        "at": "2026-10-03T21:59:16Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-10-03T21:59:16.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+        "orbit": "AVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            17250599.133588545,
+            -15753005.746750861,
+            891893.2432449302
+          ],
+          "direction": [
+            -0.7378882381078146,
+            0.673829214009114,
+            -0.03840753064185157
+          ],
+          "up": [
+            -0.028361391324351237,
+            0.025899225705641894,
+            0.9992621585900245
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-10-03T21:59:16Z",
+          "modelShown": true,
+          "modelPosition": [
+            4881999.2690740395,
+            -4795310.038677551,
+            610856.7870856363
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      {
+        "label": "unsupported",
+        "at": "2026-01-01T00:00:00Z",
+        "crew": "REPLAY / EFFECTIVE TIME\nISS Crew history\n×\n\nEffective at 2026-01-01T00:00:00.000Z. Best reconstruction from evidence stored today. Coverage and roster may be partial.\n\nOrbit history unavailable at this instant.\n\nCrew history unavailable at this instant. No current roster is substituted.",
+        "orbit": "UNAVAILABLE",
+        "pose": {
+          "sameViewer": true,
+          "position": [
+            17250599.133588545,
+            -15753005.746750861,
+            891893.2432449302
+          ],
+          "direction": [
+            -0.7378882381078146,
+            0.673829214009114,
+            -0.03840753064185157
+          ],
+          "up": [
+            -0.028361391324351237,
+            0.025899225705641894,
+            0.9992621585900245
+          ],
+          "fov": 1.0471975511965976,
+          "animate": false,
+          "epoch": "2026-01-01T00:00:00Z",
+          "modelShown": false,
+          "modelPosition": [
+            4881999.2690740395,
+            -4795310.038677551,
+            610856.7870856363
+          ],
+          "trails": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    ],
+    "sourceInspection": [
+      {
+        "source": "MISSION1 GP/TLE",
+        "inspection": true,
+        "return": true
+      },
+      {
+        "source": "NASA OEM",
+        "inspection": true,
+        "return": true
+      }
+    ],
+    "liveCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "before": {
+      "sameViewer": true,
+      "position": [
+        17250599.133588545,
+        -15753005.746750861,
+        891893.2432449302
+      ],
+      "direction": [
+        -0.7378882381078146,
+        0.673829214009114,
+        -0.03840753064185157
+      ],
+      "up": [
+        -0.028361391324351237,
+        0.025899225705641894,
+        0.9992621585900245
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T22:00:16.029016999986197334Z",
+      "modelShown": true,
+      "modelPosition": [
+        5076666.020296865,
+        -4622780.965093804,
+        247279.66141432777
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "replayStart": 1791064816064,
+    "futureRejected": true,
+    "rapidFinalEpoch": "2026-10-03T11:00:00Z",
+    "profile": "Assignment and presence are effective at 2026-10-03T11:00:00.000Z. Profile details use the latest retained metadata and may be newer.\n\nAgency\nNational Aeronautics and Space Administration\nNationality\nUnited States of America\nAssignment at replay time\nCommander\nAssignment validity\nUnavailable → Unavailable\nPresence as of\n2026-10-02 02:01:55 UTC\n\nSources partially reconciled · evaluated 2026-10-03 11:00:00 UTC\n\nBiography\nRead biography\nLatest retained career totals\nTime in space\n436 d 6 h 28 min 11 s\nEVA time\n1 d 18 h 29 min\nFlights\nUnavailable\nSpacewalks\nUnavailable\nFirst flight\n2019-09-25 13:57:42 UTC\nLast flight\n2026-02-13 10:15:56 UTC\n\nLatest retained profile metadata; career totals are not reconstructed at replay time.\n\nOfficial profile ↗\n\nPortrait credit & rights\nProfile source & presence evidence",
+    "replayEnd": 1791064820595,
+    "replayRequests": [
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay/coverage",
+        "time": 1791064816127
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T02%3A01%3A55.000Z",
+        "time": 1791064816501
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-02T23%3A00%3A00.000Z",
+        "time": 1791064817468
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T21%3A59%3A16.000Z",
+        "time": 1791064818464
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-01-01T00%3A00%3A00.000Z",
+        "time": 1791064819528
+      },
+      {
+        "url": "http://127.0.0.1:4175/api/iss/replay?at=2026-10-03T11%3A00%3A00.000Z",
+        "time": 1791064820411
+      }
+    ],
+    "restoredCrew": "ISS / OPERATIONAL CONTEXT\nInternational Space Station\n×\nCrew\nRefresh\n\nExpedition 75\n\n11 aboard\n\n8 confirmed identities\n\n3 aboard without confirmed identities\n\nSources partially reconciled\nCommander\nJM\nJessica Meir\nCommander · NASA\nConfirmed aboard\n›\nFlight engineers\nAK\nAnna Kikina\nFlight Engineer · RFSA\nConfirmed aboard\n›\nSA\nSophie Adenot\nFlight Engineer · ESA\nConfirmed aboard\n›\nAF\nAndrei Fedyaev\nFlight Engineer · RFSA\nPresence unverified\n›\nAnil Menon\nFlight Engineer · NASA\nConfirmed aboard\nPhoto: NASA\n›\nJH\nJack Hathaway\nFlight Engineer · NASA\nConfirmed aboard\n›\nPD\nPyotr Dubrov\nFlight Engineer · RFSA\nConfirmed aboard\n›\nOther confirmed crew\nLD\nLuke Delaney\nNo structured assignment\nConfirmed aboard\n›\nJW\nJessica Watkins\nNo structured assignment\nConfirmed aboard\n›\nAdditional NASA-reported crew\n\n3 unresolved report entries. Identity reconciliation is pending; reports may repeat a name.\n\nJoshua Kutryk\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nSergey Teteryatnikov\nReported entry · completed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nAndrey Fedyaev\nReported aboard · observed · Identity unresolved\nApplicable source assertion · 2026-10-02 02:01:55 UTC\nData sources & freshness",
+    "after": {
+      "sameViewer": true,
+      "position": [
+        17250599.133588545,
+        -15753005.746750861,
+        891893.2432449302
+      ],
+      "direction": [
+        -0.7378882381078146,
+        0.673829214009114,
+        -0.03840753064185157
+      ],
+      "up": [
+        -0.028361391324351237,
+        0.025899225705641894,
+        0.9992621585900245
+      ],
+      "fov": 1.0471975511965976,
+      "animate": true,
+      "epoch": "2026-10-03T22:00:20.8850000000020373Z",
+      "modelShown": true,
+      "modelPosition": [
+        5091528.273762749,
+        -4608008.140131114,
+        217798.88200709634
+      ],
+      "trails": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  }
+]

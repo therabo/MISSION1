@@ -1,3 +1,4 @@
+import type { ReplayState } from '../replay/replayApi';
 import { memo, useEffect, useRef } from 'react';
 import {
   buildModuleUrl,
@@ -63,6 +64,7 @@ import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint }
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
 interface EarthViewProps {
+  replay?: { atMs: number; state: ReplayState | null } | null;
   window: OrbitalWindow | null;
   comparison: ComparisonResponse | null;
   selectedSource: TrajectorySource;
@@ -81,7 +83,7 @@ export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const viewer = useRef<Viewer | null>(null);
   const iss = useRef<Entity | null>(null);
@@ -97,10 +99,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
   selectedSourceRef.current = selectedSource;
   sourceUnavailableCallback.current = onSourceUnavailable;
   positionCallback.current = onPosition;
+  const replayRef = useRef(replay);
+  replayRef.current = replay;
   const positionAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
-    selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
+    replayRef.current ? (replayRef.current.state ? Cartesian3.fromElements(replayRef.current.state.position.x,replayRef.current.state.position.y,replayRef.current.state.position.z,result) : undefined) : selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
   const velocityAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
-    (selectedSourceRef.current === 'NASA_OEM' ? oemVelocity.current : active.current?.velocity)?.getValue(time, result);
+    replayRef.current ? (replayRef.current.state ? Cartesian3.fromElements(replayRef.current.state.velocity.x,replayRef.current.state.velocity.y,replayRef.current.state.velocity.z,result) : undefined) : (selectedSourceRef.current === 'NASA_OEM' ? oemVelocity.current : active.current?.velocity)?.getValue(time, result);
   const updateTrajectory = useRef<((sceneMs: number) => void) | null>(null);
   const model = useRef<Model | null>(null);
   const modelStatus = useRef<ModelLoadStatus>('loading');
@@ -386,6 +390,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       updateTrajectory.current?.(JulianDate.toDate(instance.clock.currentTime).getTime());
     });
     updateTrajectory.current = (sceneMs: number) => {
+      if(replayRef.current) { if(primaryLine.current)showTrails(primaryLine.current,false); if(pendingPrimaryLine.current)showTrails(pendingPrimaryLine.current,false); return; }
       const product = comparisonRef.current;
       if (!product || Math.abs(sceneMs - Date.parse(product.generatedAt)) > 300_000) {
         removeTrail(pendingPrimaryLine.current);
@@ -506,10 +511,10 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     exitInspection.current = leaveInspection;
 
     const startInspection = (): void => {
-      if (viewMode.current !== 'EARTH_OVERVIEW' || !iss.current || !canInspect(modelStatus.current, !!active.current)) return;
-      const current = active.current!;
+      if (viewMode.current !== 'EARTH_OVERVIEW' || !iss.current || !canInspect(modelStatus.current, replayRef.current ? !!replayRef.current.state : !!active.current)) return;
+      const current = active.current;
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
-      if (sceneMs < current.orbital.startMs || sceneMs > current.orbital.endMs) return;
+      if (!replayRef.current && (!current || sceneMs < current.orbital.startMs || sceneMs > current.orbital.endMs)) return;
       const position = positionAt(instance.clock.currentTime, new Cartesian3());
       if (!position || !frameAt(position, trackingFrame)) return;
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
@@ -632,7 +637,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       const current = active.current;
       const sceneTime = instance.clock.currentTime;
       const sceneMs = JulianDate.toDate(sceneTime).getTime();
-      const valid = current && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
+      const valid = replayRef.current ? !!replayRef.current.state : current && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
       const position = valid ? positionAt(sceneTime, new Cartesian3()) : undefined;
       const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
       const hit = instance.scene.pick(event.position);
@@ -682,13 +687,13 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     const tick = (): void => {
       const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
       let sourceChanged = false;
-      if (effectiveSource(selectedSourceRef.current, comparisonRef.current, sceneMs) !== selectedSourceRef.current) {
+      if (!replayRef.current && effectiveSource(selectedSourceRef.current, comparisonRef.current, sceneMs) !== selectedSourceRef.current) {
         sourceChanged = true;
         selectedSourceRef.current = 'PRIMARY_GP_TLE';
         sourceUnavailableCallback.current('NASA OEM became unavailable at scene time; returned to MISSION1 GP/TLE.');
       }
       const current = active.current;
-      const valid = current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
+      const valid = replayRef.current ? !!replayRef.current.state : current !== null && sceneMs >= current.orbital.startMs && sceneMs <= current.orbital.endMs;
       let position = valid ? positionAt(instance.clock.currentTime, scenePosition) : undefined;
       if (position && !frameAt(position, trackingFrame)) position = undefined;
       if (sourceChanged && position && model.current?.ready && viewMode.current !== 'EARTH_OVERVIEW') {
@@ -904,7 +909,7 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
 
     const estimatedNow = JulianDate.addSeconds(
       JulianDate.fromIso8601(window.response.generatedAt), window.requestDurationMs / 2000, new JulianDate());
-    if (!initializedClock.current || Math.abs(JulianDate.secondsDifference(estimatedNow, instance.clock.currentTime)) > 3) {
+    if (!replayRef.current && (!initializedClock.current || Math.abs(JulianDate.secondsDifference(estimatedNow, instance.clock.currentTime)) > 3)) {
       // A refreshed backend window may realign scene time. Preserve the elapsed
       // camera animation while both camera and model use the new scene instant.
       instance.clock.currentTime = estimatedNow;
@@ -912,12 +917,23 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
     }
     const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
     iss.current.show = sceneMs >= window.startMs && sceneMs <= window.endMs;
-    if (!initializedCamera.current) {
+    if (!replayRef.current && !initializedCamera.current) {
       initializedCamera.current = true;
       const geo = window.response.currentGeodetic;
       instance.camera.setView({ destination: Cartesian3.fromDegrees(geo.longitudeDegrees, geo.latitudeDegrees, 17_000_000) });
     }
   }, [window]);
+
+  const previousReplay = useRef(false);
+  useEffect(() => {
+    const instance=viewer.current;if(!instance)return;
+    if(!replay && !previousReplay.current)return;
+    previousReplay.current=!!replay;
+    if(replay) { instance.clock.currentTime=JulianDate.fromDate(new Date(replay.atMs));instance.clock.shouldAnimate=false; }
+    else { instance.clock.currentTime=JulianDate.fromDate(new Date());instance.clock.clockStep=ClockStep.SYSTEM_CLOCK_MULTIPLIER;instance.clock.multiplier=1;instance.clock.shouldAnimate=true; }
+    lastReportedSecond.current=null;
+    updateTrajectory.current?.(JulianDate.toDate(instance.clock.currentTime).getTime());
+  },[replay?.atMs,replay?.state,!!replay]);
 
   useEffect(() => {
     comparisonRef.current = comparison;

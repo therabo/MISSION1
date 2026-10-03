@@ -27,3 +27,8 @@ Event time takes precedence within person-presence scope when explicit; publicat
 ## Public exposure — 2026-10-03
 
 [REST](../api/crew-api.md) preserves this authority matrix: structured assignment/profile provenance, NASA assertion source/type/time/completeness, unchanged per-person and reconciliation enums, separate operational source health, current versus retained official count, and unresolved named assertions. No raw source body, database lineage ID, matching key or parser diagnostics are public. NASA-only presence never acquires a fabricated LL2 assignment. Existing source/authority rules are unchanged.
+
+
+## Replay integration — 2026-10-03
+
+Field authority and the assignment/presence distinction also apply at historical effective time. Replay uses the same pure reconciliation rules with explicit event-time applicability and latest canonical profile enrichment. [Crew Replay semantics](../replay/crew-replay.md) distinguish operational history from newer profile metadata and acquisition-time health.

@@ -89,3 +89,8 @@ A persistence failure preserves the actual parser/source state separately from t
 ## REST exposure — 2026-10-03
 
 The [implemented Crew API](../api/crew-api.md) adapts the existing canonical query; all source/parser/identity/algorithm/freshness semantics remain unchanged. Public fields include resolved presence/last-known/as-of/evidence, exact eight reconciliation statuses/algorithm/evaluation time, persisted computation and latest reconciliation-operation times, source-specific success/attempt/failure/rate-limit/freshness, separate official/count-gap/assignment quantities and unresolved source assertions. Count applicability only selects current versus retained API fields using the existing policy; no new domain interpretation is written. Internal evidence/document/resolution IDs, excerpts and candidates stay private. Public article/feed provenance preserves URL/hash/publication/event/original-retrieval context, while latest successful fetch is separate. GET has zero source calls and zero writes.
+
+
+## Replay integration — 2026-10-03
+
+The pure engine has an explicit effective-time mode for Replay. It orders explicit source event time before publication fallback and permits late acquisition. LIVE keeps accepted fetch freshness rules. [Detailed applicability](../replay/crew-replay.md).

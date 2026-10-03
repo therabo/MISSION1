@@ -50,6 +50,9 @@ public final class OrekitData {
     public Frame eme2000() { return eme2000; }
     public Frame earthFixed() { return earthFixed; }
 
+    public java.time.Instant coverageStart() { return eop.getStartDate().toInstant(timeScales()); }
+    public java.time.Instant coverageEnd() { return eop.getEndDate().toInstant(timeScales()); }
+
     public void requireEopCoverage(AbsoluteDate date) {
         if (date.compareTo(eop.getStartDate()) < 0 || date.compareTo(eop.getEndDate()) > 0) {
             throw new OrbitalCalculationException(OrbitalQualityReason.EOP_DATA_UNAVAILABLE,

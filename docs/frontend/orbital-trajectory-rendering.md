@@ -290,3 +290,8 @@ Median difference −0.3 FPS (about −1.7%): no material FPS regression was det
 - `/api/iss/orbit/comparison` and `/api/iss/orbit/samples` contracts are unchanged; API documentation therefore needs no semantic revision.
 
 Final served-production refresh observations retained `ACTIVE / READY / AVAILABLE` through response times **13:00:37 → 13:02:38 → 13:04:38 UTC** on 2026-09-30. Development retained the path through response times 12:47:27 through 12:53:27 UTC and refreshed during a later Inspection session without restarting its camera. The final representation policy depends only on buffer validity and model readiness; camera distance cannot re-enable a ready-model locator.
+
+
+## Replay integration — 2026-10-03
+
+Historical position/velocity uses the separate [Mission Replay contract](../api/replay-api.md) at the exact requested UTC epoch. Current delivery remains current; Replay hides current paths and pauses the scene. The accepted model, shader, visual-frame and camera/Inspection machinery is retained. [Validation](../replay/validation/README.md).

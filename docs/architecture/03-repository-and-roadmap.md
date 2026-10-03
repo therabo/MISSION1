@@ -93,7 +93,7 @@ The subsequent camera milestone inspected and retained the uncommitted cubic/dis
 This updates presentation within ADR-0006, with no new service, source contract, browser propagator, asset or rendering-quality policy. Earlier dated timing records remain historical. [Quantitative and browser evidence](../frontend/camera-transition-perfecting-review/perceptual/README.md). Next single milestone: **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**, not started.
 
 
-## Parallel Crew operational-context track — 2026-10-03
+## Historical Crew foundation roadmap — 2026-10-03 (superseded by accepted replay milestone below)
 
 The accepted orbital/graphics subsystem is frozen. [Crew Source Validation + Domain Contract](../crew/README.md) is the completed independent Crew foundation: verified LL2 2.3.0 structured observations, NASA official evidence categories, source-neutral records/ports, minimal read-only adapters and offline fixtures/tests. [ADR-0007](../adr/0007-independent-crew-observations-and-field-authority.md) separates assignment from physical presence and establishes field-aware authority. See [Crew architecture](05-crew-operational-context.md).
 
@@ -109,7 +109,7 @@ Crew track:
 
  Orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS** and the existing Replay plans remain pending, not abandoned. Earlier dated “next” notes above are historical orbital context.
 
-## Crew REST milestone — 2026-10-03
+## Historical Crew REST roadmap — 2026-10-03 (superseded by accepted replay milestone below)
 
 1. **Done:** source validation + domain contract.
 2. **Done:** ingestion + PostgreSQL persistence.
@@ -120,3 +120,20 @@ Crew track:
 7. **Future:** Replay integration.
 
 [Implemented contract](../api/crew-api.md) and [REST evidence](../crew/rest-api-validation/README.md). The independent GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS remains pending. Orbit/graphics and Crew source/reconciliation/schedulers are unchanged. Earth View Crew UI is implemented through the existing REST boundary; no events, history or Replay UI is added.
+
+
+## Accepted replay milestone — 2026-10-03
+
+Current Crew track:
+
+1. Source validation + domain contract — DONE.
+2. Ingestion + persistence — DONE.
+3. NASA verification + reconciliation — DONE.
+4. Crew REST API — DONE.
+5. Earth View Crew UI — DONE.
+6. Event-aware refresh — DONE.
+7. Crew Replay integration — DONE.
+
+ The orbital gate is FULL within the narrow retained Crew support interval; synchronized computed position/velocity replay is implemented with separate GP/OEM lineage. [Replay evidence](../replay/validation/README.md).
+
+Next single milestone: **ISS REPLAY EVENT TIMELINE**. Do not begin it in this milestone. RTN remains independently pending; historical trajectories and knowledge-time reconstruction are not implemented.

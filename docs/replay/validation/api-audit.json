@@ -1,0 +1,914 @@
+{
+  "capturedAt": "2026-10-03T22:03:54.946230Z",
+  "coverage": {
+    "semantics": "EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION",
+    "evaluatedAt": "2026-10-03T22:03:52.222934Z",
+    "crew": {
+      "status": "PARTIAL",
+      "start": "2026-10-02T02:01:55Z",
+      "end": "2026-10-03T22:03:52.222934Z",
+      "intervals": [
+        {
+          "start": "2026-10-02T02:01:55Z",
+          "end": "2026-10-03T22:03:52.222934Z"
+        }
+      ],
+      "limitations": [
+        "Partial assertions do not establish a complete roster",
+        "Structured state begins at capture; gaps preserve unknown assignments and expedition",
+        "Effective-time applicability is bounded; profiles use latest retained metadata"
+      ]
+    },
+    "orbit": {
+      "status": "AVAILABLE",
+      "start": "2026-09-27T03:24:39.835008Z",
+      "end": "2026-10-03T22:03:52.222934Z",
+      "intervals": [
+        {
+          "start": "2026-09-27T03:24:39.835008Z",
+          "end": "2026-10-03T22:03:52.222934Z"
+        }
+      ],
+      "limitations": [
+        "Finite retained source coverage; accuracy UNKNOWN",
+        "GP absolute epoch offset <= PT24H",
+        "OEM no extrapolation; adjacent vectors <= PT10M"
+      ]
+    },
+    "joint": {
+      "status": "PARTIAL",
+      "start": "2026-10-02T02:01:55Z",
+      "end": "2026-10-03T22:03:52.222934Z",
+      "intervals": [
+        {
+          "start": "2026-10-02T02:01:55Z",
+          "end": "2026-10-03T22:03:52.222934Z"
+        }
+      ],
+      "limitations": [
+        "Joint support does not imply complete Crew or measured position"
+      ]
+    },
+    "orbitGate": "FULL"
+  },
+  "examples": {
+    "earliest": {
+      "at": "2026-10-02T02:01:55Z",
+      "crewAvailability": "PARTIAL",
+      "counts": {
+        "officialAboard": null,
+        "lastKnownOfficialAboard": null,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 0,
+        "structuredAssignments": null
+      },
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-10-02T02:01:55Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -2418799.214344248,
+          "y": 5558511.522550173,
+          "z": 3081063.4735982795
+        },
+        "velocity": {
+          "x": -3486.07341378326,
+          "y": -4240.548203982098,
+          "z": 4896.3723107797905
+        },
+        "latitudeDegrees": 27.088362376868254,
+        "longitudeDegrees": 113.51637871062167,
+        "altitudeMeters": 426312.8307462195,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "0c85e10d2694c2964c1cb29a9266e92b8ec50aafe1c0152a6c81e9b664b44794",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-10-02T00:19:52.567968Z",
+          "creationAt": null,
+          "retrievedAt": "2026-10-02T19:55:24.125335Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-10-01T00:19:52.567968Z",
+          "coverageEnd": "2026-10-03T00:19:52.567968Z",
+          "signedPropagationOffsetSeconds": 6122.432032,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-10-02T02:01:55Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -2419422.9430560013,
+          "y": 5557820.694469337,
+          "z": 3081546.502170353
+        },
+        "velocity": {
+          "x": -3485.7290836906886,
+          "y": -4241.565451389682,
+          "z": 4895.729043302535
+        },
+        "latitudeDegrees": 27.093480114795184,
+        "longitudeDegrees": 113.52439019407963,
+        "altitudeMeters": 426190.4731467304,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "504c2969e91bfadef7ef2551dc4d1c2c626f74814484e678d45042077d6e7f6b",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-09-30T16:44:45.057Z",
+          "retrievedAt": "2026-10-02T16:03:40.970597Z",
+          "httpLastModified": "2026-09-30 22:38:07+02",
+          "coverageStart": "2026-09-30T12:00:00Z",
+          "coverageEnd": "2026-10-15T12:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 1048.6169675224533
+    },
+    "middle": {
+      "at": "2026-10-02T23:00:00Z",
+      "crewAvailability": "PARTIAL",
+      "counts": {
+        "officialAboard": 11,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 3,
+        "structuredAssignments": null
+      },
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-10-02T23:00:00Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5293480.738011847,
+          "y": -1288945.8289997657,
+          "z": -4065934.8627928635
+        },
+        "velocity": {
+          "x": -1502.618778125198,
+          "y": 6061.46256016145,
+          "z": -3883.335738290989
+        },
+        "latitudeDegrees": -36.90686638207978,
+        "longitudeDegrees": -13.685024645901002,
+        "altitudeMeters": 427634.1709279621,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-10-03T01:06:34.599456Z",
+          "creationAt": null,
+          "retrievedAt": "2026-10-03T15:28:18.954968Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-10-02T01:06:34.599456Z",
+          "coverageEnd": "2026-10-04T01:06:34.599456Z",
+          "signedPropagationOffsetSeconds": -7594.599456,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-10-02T23:00:00Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5293545.76689244,
+          "y": -1289187.9026519645,
+          "z": -4065865.7803905946
+        },
+        "velocity": {
+          "x": -1502.3044383159192,
+          "y": 6061.334119612912,
+          "z": -3883.580479145154
+        },
+        "latitudeDegrees": -36.90578924909032,
+        "longitudeDegrees": -13.687336309457788,
+        "altitudeMeters": 427689.0067912665,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-10-02T16:36:47.957Z",
+          "retrievedAt": "2026-10-03T21:50:39.678063Z",
+          "httpLastModified": "2026-10-02 18:17:53+02",
+          "coverageStart": "2026-10-02T14:00:00Z",
+          "coverageEnd": "2026-10-17T14:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 260.001512886363
+    },
+    "latest": {
+      "at": "2026-10-03T22:02:54.947695Z",
+      "crewAvailability": "PARTIAL",
+      "counts": {
+        "officialAboard": 11,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 3,
+        "structuredAssignments": 7
+      },
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-10-03T22:02:54.947695Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5426583.125105226,
+          "y": -4029525.3547951244,
+          "z": -708405.2517660529
+        },
+        "velocity": {
+          "x": 2057.614392978531,
+          "y": 3812.9381283757516,
+          "z": -5956.931902976312
+        },
+        "latitudeDegrees": -6.020777151373294,
+        "longitudeDegrees": -36.59584230986423,
+        "altitudeMeters": 418177.42179994297,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-10-03T01:06:34.599456Z",
+          "creationAt": null,
+          "retrievedAt": "2026-10-03T15:28:18.954968Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-10-02T01:06:34.599456Z",
+          "coverageEnd": "2026-10-04T01:06:34.599456Z",
+          "signedPropagationOffsetSeconds": 75380.348239,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-10-03T22:02:54.947695Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5425562.204034727,
+          "y": -4031308.1544302423,
+          "z": -705529.7440144401
+        },
+        "velocity": {
+          "x": 2061.6110619914466,
+          "y": 3809.834856428549,
+          "z": -5957.470865789419
+        },
+        "latitudeDegrees": -5.996302356933502,
+        "longitudeDegrees": -36.61313435768847,
+        "altitudeMeters": 418118.5814832489,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-10-02T16:36:47.957Z",
+          "retrievedAt": "2026-10-03T21:50:39.678063Z",
+          "httpLastModified": "2026-10-02 18:17:53+02",
+          "coverageStart": "2026-10-02T14:00:00Z",
+          "coverageEnd": "2026-10-17T14:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 3534.0061121553395
+    },
+    "unsupported": {
+      "at": "2026-01-01T00:00:00Z",
+      "crewAvailability": "UNAVAILABLE",
+      "counts": null,
+      "orbitAvailability": "UNAVAILABLE",
+      "primary": null,
+      "secondary": null,
+      "sourceSeparationMeters": null
+    },
+    "element_epoch": {
+      "at": "2026-10-03T01:06:34.599456Z",
+      "crewAvailability": "PARTIAL",
+      "counts": {
+        "officialAboard": 11,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 3,
+        "structuredAssignments": null
+      },
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-10-03T01:06:34.599456Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -935353.2552729943,
+          "y": 6738507.104210318,
+          "z": 11.595679986972202
+        },
+        "velocity": {
+          "x": -4212.897927828317,
+          "y": -588.2870440596535,
+          "z": 6003.885735482219
+        },
+        "latitudeDegrees": 9.827553002768424e-05,
+        "longitudeDegrees": 97.90257039989442,
+        "altitudeMeters": 424977.2652301546,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-10-03T01:06:34.599456Z",
+          "creationAt": null,
+          "retrievedAt": "2026-10-03T15:28:18.954968Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-10-02T01:06:34.599456Z",
+          "coverageEnd": "2026-10-04T01:06:34.599456Z",
+          "signedPropagationOffsetSeconds": 0.0,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-10-03T01:06:34.599456Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -935194.0821641041,
+          "y": 6738453.838747297,
+          "z": -346.4343490313113
+        },
+        "velocity": {
+          "x": -4212.958437008801,
+          "y": -587.1784378267274,
+          "z": 6003.8627052814845
+        },
+        "latitudeDegrees": -0.002936127522433304,
+        "longitudeDegrees": 97.90130423981587,
+        "altitudeMeters": 424902.63159246277,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-10-02T16:36:47.957Z",
+          "retrievedAt": "2026-10-03T21:50:39.678063Z",
+          "httpLastModified": "2026-10-02 18:17:53+02",
+          "coverageStart": "2026-10-02T14:00:00Z",
+          "coverageEnd": "2026-10-17T14:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 395.4222930278524
+    },
+    "between_epochs": {
+      "at": "2026-09-28T15:01:34.207968Z",
+      "crewAvailability": "UNAVAILABLE",
+      "counts": null,
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-09-28T15:01:34.207968Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -646207.2092598574,
+          "y": 6764079.503351124,
+          "z": -13098.294728535979
+        },
+        "velocity": {
+          "x": -4240.250569340604,
+          "y": -411.8515331806258,
+          "z": -6011.170317017316
+        },
+        "latitudeDegrees": -0.11114575089132966,
+        "longitudeDegrees": 95.45719737208468,
+        "altitudeMeters": 416752.8398117577,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "151bdb4cf2b7128ac815aa975736ffec0c28211751963e8be7263aad7b7abc71",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-09-28T03:24:39.835008Z",
+          "creationAt": null,
+          "retrievedAt": "2026-09-28T13:58:32Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-09-27T03:24:39.835008Z",
+          "coverageEnd": "2026-09-29T03:24:39.835008Z",
+          "signedPropagationOffsetSeconds": 41814.37296,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-09-28T15:01:34.207968Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": -646351.5412945971,
+          "y": 6764113.363085203,
+          "z": -13128.521420386798
+        },
+        "velocity": {
+          "x": -4240.153606093106,
+          "y": -412.73567260345885,
+          "z": -6010.900737471143
+        },
+        "latitudeDegrees": -0.11140145663559003,
+        "longitudeDegrees": 95.45838173174957,
+        "altitudeMeters": 416800.3324247624,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-09-28T17:13:16.701Z",
+          "retrievedAt": "2026-09-30T18:55:39.663659Z",
+          "httpLastModified": "2026-09-28 19:27:12+02",
+          "coverageStart": "2026-09-28T12:00:00Z",
+          "coverageEnd": "2026-10-13T12:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 151.30059730294587
+    },
+    "gp_lower_boundary": {
+      "at": "2026-09-27T03:24:39.835008Z",
+      "crewAvailability": "UNAVAILABLE",
+      "counts": null,
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-09-27T03:24:39.835008Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 1084491.1696333503,
+          "y": -6706779.93601021,
+          "z": -117454.95526986198
+        },
+        "velocity": {
+          "x": 4190.605381220495,
+          "y": 777.427196666969,
+          "z": -6009.819460918985
+        },
+        "latitudeDegrees": -0.9967102118078617,
+        "longitudeDegrees": -80.81473638270728,
+        "altitudeMeters": 416780.2997560111,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "151bdb4cf2b7128ac815aa975736ffec0c28211751963e8be7263aad7b7abc71",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-09-28T03:24:39.835008Z",
+          "creationAt": null,
+          "retrievedAt": "2026-09-28T13:58:32Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-09-27T03:24:39.835008Z",
+          "coverageEnd": "2026-09-29T03:24:39.835008Z",
+          "signedPropagationOffsetSeconds": -86400.0,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": null,
+      "sourceSeparationMeters": null
+    },
+    "outside_orbit": {
+      "at": "2026-09-27T03:24:38.835008Z",
+      "crewAvailability": "UNAVAILABLE",
+      "counts": null,
+      "orbitAvailability": "UNAVAILABLE",
+      "primary": null,
+      "secondary": null,
+      "sourceSeparationMeters": null
+    },
+    "gp_gap_oem_only": {
+      "at": "2026-09-30T10:00:00Z",
+      "crewAvailability": "UNAVAILABLE",
+      "counts": null,
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-09-30T10:00:00Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 1479166.0037783538,
+          "y": 3951004.6072796634,
+          "z": 5324760.022527973
+        },
+        "velocity": {
+          "x": -6905.26797395287,
+          "y": 2523.18029274882,
+          "z": 39.90452610027081
+        },
+        "latitudeDegrees": 51.78557851100037,
+        "longitudeDegrees": 69.47524610866823,
+        "altitudeMeters": 428509.0391375502,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-09-28T17:13:16.701Z",
+          "retrievedAt": "2026-09-30T18:55:39.663659Z",
+          "httpLastModified": "2026-09-28 19:27:12+02",
+          "coverageStart": "2026-09-28T12:00:00Z",
+          "coverageEnd": "2026-10-13T12:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "secondary": null,
+      "sourceSeparationMeters": null
+    },
+    "structured_first_capture": {
+      "at": "2026-10-03T10:30:18.796289Z",
+      "crewAvailability": "PARTIAL",
+      "counts": {
+        "officialAboard": 11,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 3,
+        "structuredAssignments": 7
+      },
+      "orbitAvailability": "AVAILABLE",
+      "primary": {
+        "effectiveAt": "2026-10-03T10:30:18.796289Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5589800.207862432,
+          "y": -3204454.13227842,
+          "z": 2177456.022238048
+        },
+        "velocity": {
+          "x": 648.3519988121028,
+          "y": 4867.606659644621,
+          "z": 5478.907344428029
+        },
+        "latitudeDegrees": 18.78227149798141,
+        "longitudeDegrees": -29.824271533130315,
+        "altitudeMeters": 425218.9361752554,
+        "source": {
+          "kind": "GP_TLE",
+          "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+          "contentHash": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+          "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+          "provider": "CELESTRAK_GP",
+          "epoch": "2026-10-03T01:06:34.599456Z",
+          "creationAt": null,
+          "retrievedAt": "2026-10-03T15:28:18.954968Z",
+          "httpLastModified": null,
+          "coverageStart": "2026-10-02T01:06:34.599456Z",
+          "coverageEnd": "2026-10-04T01:06:34.599456Z",
+          "signedPropagationOffsetSeconds": 33824.196833,
+          "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+        }
+      },
+      "secondary": {
+        "effectiveAt": "2026-10-03T10:30:18.796289Z",
+        "quality": "UNKNOWN",
+        "frame": "ITRF_2020_IERS_2010",
+        "positionUnit": "m",
+        "velocityUnit": "m/s",
+        "position": {
+          "x": 5589567.951129103,
+          "y": -3205214.2792063314,
+          "z": 2176294.2764401757
+        },
+        "velocity": {
+          "x": 649.9401666851566,
+          "y": 4866.514413467673,
+          "z": 5479.869124398928
+        },
+        "latitudeDegrees": 18.772477494107626,
+        "longitudeDegrees": -29.831162845228008,
+        "altitudeMeters": 425012.18396917713,
+        "source": {
+          "kind": "NASA_OEM",
+          "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+          "contentHash": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+          "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+          "provider": "NASA/JSC",
+          "epoch": null,
+          "creationAt": "2026-10-02T16:36:47.957Z",
+          "retrievedAt": "2026-10-03T21:50:39.678063Z",
+          "httpLastModified": "2026-10-02 18:17:53+02",
+          "coverageStart": "2026-10-02T14:00:00Z",
+          "coverageEnd": "2026-10-17T14:00:00Z",
+          "signedPropagationOffsetSeconds": null,
+          "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+        }
+      },
+      "sourceSeparationMeters": 1407.6291560859083
+    }
+  },
+  "databaseBefore": {
+    "crew_assignment_observation": {
+      "rows": 7,
+      "digest": "83760561059e4747cdc3697056c1c7e1"
+    },
+    "crew_document_body": {
+      "rows": 2,
+      "digest": "d8eb2354dec042b0576436a0e82d55cc"
+    },
+    "crew_document_evidence": {
+      "rows": 8,
+      "digest": "b71fdbcb8683471948652b7fc9dd3365"
+    },
+    "crew_event_catalog_observation": {
+      "rows": 3,
+      "digest": "4c4844108abfd80fdc45f9165bbab84e"
+    },
+    "crew_event_catalog_run": {
+      "rows": 1,
+      "digest": "7d139db1bc1793a12866f533dfde7526"
+    },
+    "crew_evidence_subject": {
+      "rows": 11,
+      "digest": "32f4437c6d30590c5b53aed6146f610f"
+    },
+    "crew_expedition": {
+      "rows": 1,
+      "digest": "3dfd8f19a88bd4b9fc2069869829074e"
+    },
+    "crew_expedition_external_id": {
+      "rows": 1,
+      "digest": "d394536d7891d8cdcca21c32ebc988b9"
+    },
+    "crew_expedition_observation": {
+      "rows": 1,
+      "digest": "0d3778fe4102572c1390eae274abf777"
+    },
+    "crew_identity_resolution": {
+      "rows": 11,
+      "digest": "8b57b51b3136bf4c7b0aca766018a8e2"
+    },
+    "crew_operational_event_observation": {
+      "rows": 3,
+      "digest": "909fe5dd8b7aa5ecae3c43e1ad74768f"
+    },
+    "crew_person": {
+      "rows": 9,
+      "digest": "5aaebd9f1e151fc052f87dec95c360b4"
+    },
+    "crew_person_external_id": {
+      "rows": 12,
+      "digest": "5438dca83d803c3dd45897d502c476dd"
+    },
+    "crew_person_observation": {
+      "rows": 7,
+      "digest": "f26a1271843b1d1db76d9e853b84e959"
+    },
+    "crew_reconciled_person": {
+      "rows": 9,
+      "digest": "b132a15d81181d8316636cd5388413e4"
+    },
+    "crew_reconciled_person_evidence": {
+      "rows": 8,
+      "digest": "79f083fc158cfdbc424e5f3856d740b0"
+    },
+    "crew_reconciliation_evidence": {
+      "rows": 3,
+      "digest": "859755d3801a1260733893a2e91d6a7f"
+    },
+    "crew_reconciliation_resolution": {
+      "rows": 11,
+      "digest": "051d4da8d0ebf307123f6a845962a0f9"
+    },
+    "crew_reconciliation_run": {
+      "rows": 7,
+      "digest": "6e1812c8e5dcffa3c720e7ef269e4fdc"
+    },
+    "crew_reconciliation_snapshot": {
+      "rows": 1,
+      "digest": "d6b578d2071893341ec5471bbbe4d218"
+    },
+    "crew_refresh_follow_up": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "crew_refresh_trigger": {
+      "rows": 5,
+      "digest": "432f95b8529ee8396360c9321c0d6c71"
+    },
+    "crew_source_document": {
+      "rows": 2,
+      "digest": "77c1eb198d02c77dc4140be6f1dd3647"
+    },
+    "crew_source_snapshot": {
+      "rows": 1,
+      "digest": "5c18b6fa3e23b5a8b14ea395c37c19a3"
+    },
+    "crew_source_sync_run": {
+      "rows": 15,
+      "digest": "e77f1ef01828bf37ae39303e3dc6b5b1"
+    },
+    "crew_verification_evidence": {
+      "rows": 4,
+      "digest": "1de550ae57ffaf50bb3fb79c328e947a"
+    },
+    "flyway_schema_history": {
+      "rows": 5,
+      "digest": "126d23b99242106142e51480f1673f2f"
+    },
+    "nasa_oem_ephemerides": {
+      "rows": 3,
+      "digest": "b0704c4e67b37018e2f40e2b97d119a3"
+    },
+    "orbital_element_observations": {
+      "rows": 8,
+      "digest": "390cba0b2a5a733b1fcd549e20964a04"
+    },
+    "orbital_element_sets": {
+      "rows": 6,
+      "digest": "ea64f86d0c5bb73ff71c70e3aed49a18"
+    }
+  },
+  "databaseAfter": {
+    "crew_assignment_observation": {
+      "rows": 7,
+      "digest": "83760561059e4747cdc3697056c1c7e1"
+    },
+    "crew_document_body": {
+      "rows": 2,
+      "digest": "d8eb2354dec042b0576436a0e82d55cc"
+    },
+    "crew_document_evidence": {
+      "rows": 8,
+      "digest": "b71fdbcb8683471948652b7fc9dd3365"
+    },
+    "crew_event_catalog_observation": {
+      "rows": 3,
+      "digest": "4c4844108abfd80fdc45f9165bbab84e"
+    },
+    "crew_event_catalog_run": {
+      "rows": 1,
+      "digest": "7d139db1bc1793a12866f533dfde7526"
+    },
+    "crew_evidence_subject": {
+      "rows": 11,
+      "digest": "32f4437c6d30590c5b53aed6146f610f"
+    },
+    "crew_expedition": {
+      "rows": 1,
+      "digest": "3dfd8f19a88bd4b9fc2069869829074e"
+    },
+    "crew_expedition_external_id": {
+      "rows": 1,
+      "digest": "d394536d7891d8cdcca21c32ebc988b9"
+    },
+    "crew_expedition_observation": {
+      "rows": 1,
+      "digest": "0d3778fe4102572c1390eae274abf777"
+    },
+    "crew_identity_resolution": {
+      "rows": 11,
+      "digest": "8b57b51b3136bf4c7b0aca766018a8e2"
+    },
+    "crew_operational_event_observation": {
+      "rows": 3,
+      "digest": "909fe5dd8b7aa5ecae3c43e1ad74768f"
+    },
+    "crew_person": {
+      "rows": 9,
+      "digest": "5aaebd9f1e151fc052f87dec95c360b4"
+    },
+    "crew_person_external_id": {
+      "rows": 12,
+      "digest": "5438dca83d803c3dd45897d502c476dd"
+    },
+    "crew_person_observation": {
+      "rows": 7,
+      "digest": "f26a1271843b1d1db76d9e853b84e959"
+    },
+    "crew_reconciled_person": {
+      "rows": 9,
+      "digest": "b132a15d81181d8316636cd5388413e4"
+    },
+    "crew_reconciled_person_evidence": {
+      "rows": 8,
+      "digest": "79f083fc158cfdbc424e5f3856d740b0"
+    },
+    "crew_reconciliation_evidence": {
+      "rows": 3,
+      "digest": "859755d3801a1260733893a2e91d6a7f"
+    },
+    "crew_reconciliation_resolution": {
+      "rows": 11,
+      "digest": "051d4da8d0ebf307123f6a845962a0f9"
+    },
+    "crew_reconciliation_run": {
+      "rows": 7,
+      "digest": "6e1812c8e5dcffa3c720e7ef269e4fdc"
+    },
+    "crew_reconciliation_snapshot": {
+      "rows": 1,
+      "digest": "d6b578d2071893341ec5471bbbe4d218"
+    },
+    "crew_refresh_follow_up": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "crew_refresh_trigger": {
+      "rows": 5,
+      "digest": "432f95b8529ee8396360c9321c0d6c71"
+    },
+    "crew_source_document": {
+      "rows": 2,
+      "digest": "77c1eb198d02c77dc4140be6f1dd3647"
+    },
+    "crew_source_snapshot": {
+      "rows": 1,
+      "digest": "5c18b6fa3e23b5a8b14ea395c37c19a3"
+    },
+    "crew_source_sync_run": {
+      "rows": 15,
+      "digest": "e77f1ef01828bf37ae39303e3dc6b5b1"
+    },
+    "crew_verification_evidence": {
+      "rows": 4,
+      "digest": "1de550ae57ffaf50bb3fb79c328e947a"
+    },
+    "flyway_schema_history": {
+      "rows": 5,
+      "digest": "126d23b99242106142e51480f1673f2f"
+    },
+    "nasa_oem_ephemerides": {
+      "rows": 3,
+      "digest": "b0704c4e67b37018e2f40e2b97d119a3"
+    },
+    "orbital_element_observations": {
+      "rows": 8,
+      "digest": "390cba0b2a5a733b1fcd549e20964a04"
+    },
+    "orbital_element_sets": {
+      "rows": 6,
+      "digest": "ea64f86d0c5bb73ff71c70e3aed49a18"
+    }
+  },
+  "zeroWrites": true,
+  "errors": {
+    "bad": 400,
+    "2027-01-01T00:00:00Z": 400
+  },
+  "repeatedOperationalFactsEqual": true,
+  "missionHttpPerformance": {
+    "n": 30,
+    "medianMs": 12.97606251318939,
+    "p95Ms": 16.39400003477931,
+    "worstMs": 16.9048749958165
+  },
+  "nativePinch": "UNVERIFIED"
+}

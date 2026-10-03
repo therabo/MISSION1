@@ -63,3 +63,8 @@ Current states are CONFIRMED_ABOARD, CONFIRMED_NOT_ABOARD, UNVERIFIED, UNKNOWN, 
 ## Public REST identity and representation — 2026-10-03
 
 [Implemented API](../api/crew-api.md) uses persisted MISSION1 person/expedition UUIDs; external LL2/NASA identifiers remain labeled mappings. Assignment and canonical presence are distinct objects. Collection members form the current reconciler's resolved union; NASA-only persons can have no assignment/profile. Unresolved assertion subjects have no fabricated ID or canonical presence: public source assertion/time/applicability and resolution state are exposed separately. Official current count, retained count, confirmed resolved count, unresolved assertion count and assignment count remain different quantities. No domain meaning or reconciler policy changed.
+
+
+## Replay integration — 2026-10-03
+
+Replay retains assignment/presence and planned/completed distinctions. Operational fields are evaluated at T; profile metadata may be newer and is labeled. Knowledge-time reconstruction is separate. [Crew Replay](../replay/crew-replay.md).

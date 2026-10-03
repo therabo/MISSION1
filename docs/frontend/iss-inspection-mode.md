@@ -88,3 +88,8 @@ Overview minimum footprint is **80 pixels**, rising smoothly to **158** during e
 A white 0.5-size / 0.12-alpha silhouette now remains in ready Overview. Both size and alpha follow the same early smoothstep removal as the 75 km model-only lift, reaching zero by 1.75 seconds of the existing five-second entry. Inspection retains the natural NASA PBR response. Back captures the current lift and silhouette visibility, then eases both to their Overview values over 1.2 seconds. Partial-entry Back has continuous starting values. Minimum footprint remains 80→158→80.
 
 The selected physical point always drives approach, Earth-occlusion checks and final moving ENU pivot. `modelDisplayPosition` accepts only a distinct output object and rejects aliasing the canonical physical input. Deterministic tests and browser lift-on/off observations cover both GP/TLE and OEM, including unchanged UTC, physical altitude and trajectory-vertex hash. Physical backend velocities are computed independently of the renderer. Adaptive trail searches and masks run only for Overview; no trajectories or silhouette remain in Inspection. [Current handoffs and browser evidence](trajectory-presentation-review/README.md).
+
+
+## Replay integration — 2026-10-03
+
+Historical position/velocity uses the separate [Mission Replay contract](../api/replay-api.md) at the exact requested UTC epoch. Current delivery remains current; Replay hides current paths and pauses the scene. The accepted model, shader, visual-frame and camera/Inspection machinery is retained. [Validation](../replay/validation/README.md).

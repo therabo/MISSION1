@@ -15,7 +15,11 @@ public interface OrbitalElementSetRepository {
 
     Optional<Stored> findById(long id);
 
+    /** All retained validated sets, without a current-time filter or arbitrary limit. */
+    List<Stored> history();
+
     /** Most recent element epoch observed by asOf; equal epochs use retrieval time, then hash. */
+
     Optional<Stored> latestUsable(Instant asOf);
 
     /** Latest durable provider observation, independent of element epoch or orbital quality. */

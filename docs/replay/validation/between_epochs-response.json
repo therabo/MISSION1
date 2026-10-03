@@ -1,0 +1,124 @@
+{
+  "semantics": "EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION",
+  "requestedAt": "2026-09-28T15:01:34.207968Z",
+  "reconstructedAt": "2026-10-03T22:03:55.101098Z",
+  "crew": {
+    "requestedAt": "2026-09-28T15:01:34.207968Z",
+    "effectiveAt": "2026-09-28T15:01:34.207968Z",
+    "availability": "UNAVAILABLE",
+    "quality": "NO_DATA",
+    "coverage": {
+      "status": "PARTIAL",
+      "start": "2026-10-02T02:01:55Z",
+      "end": "2026-10-03T22:03:55.101098Z",
+      "intervals": [
+        {
+          "start": "2026-10-02T02:01:55Z",
+          "end": "2026-10-03T22:03:55.101098Z"
+        }
+      ],
+      "limitations": [
+        "Partial assertions do not establish a complete roster",
+        "Structured state begins at capture; gaps preserve unknown assignments and expedition",
+        "Effective-time applicability is bounded; profiles use latest retained metadata"
+      ]
+    },
+    "profilePolicy": "LATEST_AVAILABLE_CANONICAL_METADATA",
+    "state": null,
+    "profiles": []
+  },
+  "orbit": {
+    "requestedAt": "2026-09-28T15:01:34.207968Z",
+    "effectiveAt": "2026-09-28T15:01:34.207968Z",
+    "availability": "AVAILABLE",
+    "reason": "NONE",
+    "coverage": {
+      "status": "AVAILABLE",
+      "start": "2026-09-27T03:24:39.835008Z",
+      "end": "2026-10-03T22:03:55.101098Z",
+      "intervals": [
+        {
+          "start": "2026-09-27T03:24:39.835008Z",
+          "end": "2026-10-03T22:03:55.101098Z"
+        }
+      ],
+      "limitations": [
+        "Finite retained source coverage; accuracy UNKNOWN",
+        "GP absolute epoch offset <= PT24H",
+        "OEM no extrapolation; adjacent vectors <= PT10M"
+      ]
+    },
+    "primary": {
+      "effectiveAt": "2026-09-28T15:01:34.207968Z",
+      "quality": "UNKNOWN",
+      "frame": "ITRF_2020_IERS_2010",
+      "positionUnit": "m",
+      "velocityUnit": "m/s",
+      "position": {
+        "x": -646207.2092598574,
+        "y": 6764079.503351124,
+        "z": -13098.294728535979
+      },
+      "velocity": {
+        "x": -4240.250569340604,
+        "y": -411.8515331806258,
+        "z": -6011.170317017316
+      },
+      "latitudeDegrees": -0.11114575089132966,
+      "longitudeDegrees": 95.45719737208468,
+      "altitudeMeters": 416752.8398117577,
+      "source": {
+        "kind": "GP_TLE",
+        "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+        "contentHash": "151bdb4cf2b7128ac815aa975736ffec0c28211751963e8be7263aad7b7abc71",
+        "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+        "provider": "CELESTRAK_GP",
+        "epoch": "2026-09-28T03:24:39.835008Z",
+        "creationAt": null,
+        "retrievedAt": "2026-09-28T13:58:32Z",
+        "httpLastModified": null,
+        "coverageStart": "2026-09-27T03:24:39.835008Z",
+        "coverageEnd": "2026-09-29T03:24:39.835008Z",
+        "signedPropagationOffsetSeconds": 41814.37296,
+        "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+      }
+    },
+    "secondary": {
+      "effectiveAt": "2026-09-28T15:01:34.207968Z",
+      "quality": "UNKNOWN",
+      "frame": "ITRF_2020_IERS_2010",
+      "positionUnit": "m",
+      "velocityUnit": "m/s",
+      "position": {
+        "x": -646351.5412945971,
+        "y": 6764113.363085203,
+        "z": -13128.521420386798
+      },
+      "velocity": {
+        "x": -4240.153606093106,
+        "y": -412.73567260345885,
+        "z": -6010.900737471143
+      },
+      "latitudeDegrees": -0.11140145663559003,
+      "longitudeDegrees": 95.45838173174957,
+      "altitudeMeters": 416800.3324247624,
+      "source": {
+        "kind": "NASA_OEM",
+        "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+        "contentHash": "14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433",
+        "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+        "provider": "NASA/JSC",
+        "epoch": null,
+        "creationAt": "2026-09-28T17:13:16.701Z",
+        "retrievedAt": "2026-09-30T18:55:39.663659Z",
+        "httpLastModified": "2026-09-28 19:27:12+02",
+        "coverageStart": "2026-09-28T12:00:00Z",
+        "coverageEnd": "2026-10-13T12:00:00Z",
+        "signedPropagationOffsetSeconds": null,
+        "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+      }
+    },
+    "sourceSeparationMeters": 151.30059730294587,
+    "policy": "orbit-replay-nearest-gp-bounded-oem-v1"
+  }
+}

@@ -21,3 +21,8 @@ CrewAssignment != StationPresence. LL2 in_space != currentlyAboardIss. Planned e
 The independent orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS** remains pending. Earth View now consumes the existing Crew REST boundary, without provider calls, source parsing or reconciliation. Refresh is manual/on panel open; event-aware refresh is not started. Live NASA coverage is partial; neither count equality nor source fetch success certifies a complete roster.
 
 [REST validation dossier](rest-api-validation/README.md) records JSON/error contracts, no-network/no-write evidence, PostgreSQL HTTP coverage, performance and frozen regressions.
+
+
+## Replay integration — 2026-10-03
+
+Crew Replay integration is complete. Effective-time reconstruction uses retained evidence, latest canonical profile metadata and bounded partial coverage. [Rules and limits](../replay/crew-replay.md); [validation](../replay/validation/README.md). Next: ISS REPLAY EVENT TIMELINE.

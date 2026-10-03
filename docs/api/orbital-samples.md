@@ -50,3 +50,8 @@ Each sample additionally includes `vxMetersPerSecond`, `vyMetersPerSecond`, `vzM
 GP forwards its existing Orekit Earth-fixed PV. NASA OEM differentiates the same bounded cubic Hermite source-position polynomial and transforms the full EME2000 PV at that epoch with Orekit (including the Earth-rotation contribution). This is computed processing of source-provided **predicted** ephemeris, never measured onboard motion or attitude. Browser position and velocity use separate bounded degree-one properties; position interpolation is deliberately unchanged. Visual alignment is along that evaluated velocity and does not assert exact source accuracy or equality with the derivative of the browser's piecewise-linear position path.
 
 Default short-response cost measured 18,534 bytes / 12.00 ms median; maximum 181-sample response 43,885 bytes / 19.92 ms warm generation in the local test. The payload guard grows from 35 KB to 50 KB for the maximum window to account for three velocity components. No request cadence or propagation operation is added. [Numerical and browser review](../frontend/inspection-orientation-review/README.md).
+
+
+## Replay integration — 2026-10-03
+
+Historical position/velocity uses the separate [Mission Replay contract](../api/replay-api.md) at the exact requested UTC epoch. Current delivery remains current; Replay hides current paths and pauses the scene. The accepted model, shader, visual-frame and camera/Inspection machinery is retained. [Validation](../replay/validation/README.md).

@@ -1,0 +1,1718 @@
+{
+  "semantics": "EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION",
+  "requestedAt": "2026-10-03T22:02:54.947695Z",
+  "reconstructedAt": "2026-10-03T22:03:55.030730Z",
+  "crew": {
+    "requestedAt": "2026-10-03T22:02:54.947695Z",
+    "effectiveAt": "2026-10-03T22:02:54.947695Z",
+    "availability": "PARTIAL",
+    "quality": "PARTIAL",
+    "coverage": {
+      "status": "PARTIAL",
+      "start": "2026-10-02T02:01:55Z",
+      "end": "2026-10-03T22:03:55.030730Z",
+      "intervals": [
+        {
+          "start": "2026-10-02T02:01:55Z",
+          "end": "2026-10-03T22:03:55.030730Z"
+        }
+      ],
+      "limitations": [
+        "Partial assertions do not establish a complete roster",
+        "Structured state begins at capture; gaps preserve unknown assignments and expedition",
+        "Effective-time applicability is bounded; profiles use latest retained metadata"
+      ]
+    },
+    "profilePolicy": "LATEST_AVAILABLE_CANONICAL_METADATA; OPERATIONAL_FIELDS_AT_REQUESTED_TIME",
+    "state": {
+      "station": {
+        "id": "ISS",
+        "name": "International Space Station"
+      },
+      "expedition": {
+        "id": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "name": "Expedition 75",
+        "start": "2026-07-26T07:02:00Z",
+        "end": null,
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "168"
+          }
+        ]
+      },
+      "counts": {
+        "officialAboard": 11,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 8,
+        "unresolvedSubjects": 3,
+        "unidentifiedAboard": 3,
+        "structuredAssignments": 7
+      },
+      "members": [
+        {
+          "id": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+          "name": "Anna Kikina",
+          "agency": {
+            "name": "Russian Federal Space Agency (ROSCOSMOS)",
+            "abbreviation": "RFSA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "63"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "RU",
+              "alpha3": "RUS",
+              "displayName": "Russia"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/anna_yuryevna_k_image_20200828144537.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185904.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "649"
+            }
+          ]
+        },
+        {
+          "id": "9735513f-4ad9-44ba-863d-4f05978fca61",
+          "name": "Sophie Adenot",
+          "agency": {
+            "name": "European Space Agency",
+            "abbreviation": "ESA",
+            "type": "Multinational",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "27"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "FR",
+              "alpha3": "FRA",
+              "displayName": "France"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/sophie_adenot_image_20221123150954.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185354.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "747"
+            }
+          ]
+        },
+        {
+          "id": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+          "name": "Andrei Fedyaev",
+          "agency": {
+            "name": "Russian Federal Space Agency (ROSCOSMOS)",
+            "abbreviation": "RFSA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "63"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "RU",
+              "alpha3": "RUS",
+              "displayName": "Russia"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/andrei_fedyaev_image_20230207203113.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190412.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "UNVERIFIED",
+            "lastKnownState": null,
+            "asOf": null,
+            "authority": null,
+            "evidence": []
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "732"
+            }
+          ]
+        },
+        {
+          "id": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+          "name": "Luke Delaney",
+          "agency": null,
+          "nationalities": [],
+          "image": null,
+          "assignment": null,
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_ENTERED_STATION",
+                "assertion": "COMPLETED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "NASA_OFFICIAL",
+              "value": "profile:nasa-astronaut-luke-delaney"
+            }
+          ]
+        },
+        {
+          "id": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+          "name": "Anil Menon",
+          "agency": {
+            "name": "National Aeronautics and Space Administration",
+            "abbreviation": "NASA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "44"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "US",
+              "alpha3": "USA",
+              "displayName": "United States of America"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/anil_menon_image_20211206185413.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190559.jpeg",
+            "credit": "NASA",
+            "licenseName": "NASA Image and Media Guidelines",
+            "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "singleUse": false
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "713"
+            },
+            {
+              "source": "NASA_OFFICIAL",
+              "value": "profile:nasa-astronaut-anil-menon"
+            }
+          ]
+        },
+        {
+          "id": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+          "name": "Jack Hathaway",
+          "agency": {
+            "name": "National Aeronautics and Space Administration",
+            "abbreviation": "NASA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "44"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "US",
+              "alpha3": "USA",
+              "displayName": "United States of America"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/jack_hathaway_image_20211206185407.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190331.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "712"
+            },
+            {
+              "source": "NASA_OFFICIAL",
+              "value": "profile:nasa-astronaut-jack-hathaway"
+            }
+          ]
+        },
+        {
+          "id": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+          "name": "Jessica Meir",
+          "agency": {
+            "name": "National Aeronautics and Space Administration",
+            "abbreviation": "NASA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "44"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "US",
+              "alpha3": "USA",
+              "displayName": "United States of America"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/jessica_meir_image_20200417064900.jpeg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190924.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Commander",
+            "roleCode": "COMMANDER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "573"
+            },
+            {
+              "source": "NASA_OFFICIAL",
+              "value": "profile:jessica-u-meir"
+            }
+          ]
+        },
+        {
+          "id": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+          "name": "Pyotr Dubrov",
+          "agency": {
+            "name": "Russian Federal Space Agency (ROSCOSMOS)",
+            "abbreviation": "RFSA",
+            "type": "Government",
+            "externalIds": [
+              {
+                "source": "LAUNCH_LIBRARY_2",
+                "value": "63"
+              }
+            ]
+          },
+          "nationalities": [
+            {
+              "alpha2": "RU",
+              "alpha3": "RUS",
+              "displayName": "Russia"
+            }
+          ],
+          "image": {
+            "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/pyotr_dubrov_image_20201120155626.jpg",
+            "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185922.jpeg",
+            "credit": null,
+            "licenseName": "Unknown",
+            "licenseUrl": null,
+            "singleUse": true
+          },
+          "assignment": {
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "role": "Flight Engineer",
+            "roleCode": "FLIGHT_ENGINEER",
+            "validFrom": null,
+            "validUntil": null
+          },
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_CURRENTLY_ABOARD",
+                "assertion": "OBSERVED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "650"
+            }
+          ]
+        },
+        {
+          "id": "6e700f29-14ab-415a-87e4-6567860c1796",
+          "name": "Jessica Watkins",
+          "agency": null,
+          "nationalities": [],
+          "image": null,
+          "assignment": null,
+          "presence": {
+            "state": "CONFIRMED_ABOARD",
+            "lastKnownState": "CONFIRMED_ABOARD",
+            "asOf": "2026-10-02T02:01:55Z",
+            "authority": "NASA_OFFICIAL",
+            "evidence": [
+              {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "type": "PERSON_ENTERED_STATION",
+                "assertion": "COMPLETED",
+                "completeness": "PARTIAL",
+                "asOf": "2026-10-02T02:01:55Z",
+                "provenance": {
+                  "source": "NASA_OFFICIAL",
+                  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                  "observedAt": "2026-10-03T11:45:46.137144Z",
+                  "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                  "sourceEventAt": null,
+                  "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                  "sourceVersion": "NASA_RSS",
+                  "methodVersion": "NasaOperationalFeedParser/1.0.0"
+                }
+              }
+            ]
+          },
+          "externalIds": [
+            {
+              "source": "NASA_OFFICIAL",
+              "value": "profile:jessica-watkins"
+            }
+          ]
+        }
+      ],
+      "unresolvedSubjects": [
+        {
+          "displayName": "Joshua Kutryk",
+          "resolution": "UNRESOLVED",
+          "evidence": {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "PERSON_ENTERED_STATION",
+            "assertion": "COMPLETED",
+            "completeness": "PARTIAL",
+            "asOf": "2026-10-02T02:01:55Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T02:01:55Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          },
+          "applicable": true
+        },
+        {
+          "displayName": "Sergey Teteryatnikov",
+          "resolution": "UNRESOLVED",
+          "evidence": {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "PERSON_ENTERED_STATION",
+            "assertion": "COMPLETED",
+            "completeness": "PARTIAL",
+            "asOf": "2026-10-02T02:01:55Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T02:01:55Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          },
+          "applicable": true
+        },
+        {
+          "displayName": "Andrey Fedyaev",
+          "resolution": "UNRESOLVED",
+          "evidence": {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "PERSON_CURRENTLY_ABOARD",
+            "assertion": "OBSERVED",
+            "completeness": "PARTIAL",
+            "asOf": "2026-10-02T02:01:55Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T02:01:55Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          },
+          "applicable": true
+        }
+      ],
+      "reconciliation": {
+        "status": "PARTIAL_MATCH",
+        "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+        "reconciledAt": null,
+        "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+        "lastAttemptAt": null,
+        "lastAttemptCompletedAt": null,
+        "lastAttemptResult": null
+      },
+      "freshness": {
+        "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+        "structuredSource": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceState": "AVAILABLE",
+          "lastAttemptAt": null,
+          "lastAttemptResult": null,
+          "lastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z",
+          "lastFailureAt": null,
+          "lastRefreshFailed": false,
+          "rateLimited": false,
+          "retryAfterAt": null,
+          "stale": false
+        },
+        "verification": {
+          "source": "NASA_OFFICIAL",
+          "sourceState": "AVAILABLE",
+          "lastAttemptAt": null,
+          "lastAttemptResult": null,
+          "lastSuccessfulFetchAt": "2026-10-03T21:11:08.172876Z",
+          "lastFailureAt": null,
+          "lastRefreshFailed": false,
+          "rateLimited": false,
+          "retryAfterAt": null,
+          "stale": false
+        },
+        "stale": false
+      },
+      "provenance": {
+        "structuredSource": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "verification": null,
+        "contributingAssertions": [
+          {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "CREW_COUNT_ABOARD",
+            "assertion": "OBSERVED",
+            "completeness": "COUNT_ONLY",
+            "asOf": "2026-10-02T18:14:13Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/02/station-crew-expands-as-nasas-spacex-crew-12-prepares-to-depart/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T18:14:13Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          },
+          {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "PERSON_ENTERED_STATION",
+            "assertion": "COMPLETED",
+            "completeness": "PARTIAL",
+            "asOf": "2026-10-02T02:01:55Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T02:01:55Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          },
+          {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "type": "PERSON_CURRENTLY_ABOARD",
+            "assertion": "OBSERVED",
+            "completeness": "PARTIAL",
+            "asOf": "2026-10-02T02:01:55Z",
+            "provenance": {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+              "observedAt": "2026-10-03T11:45:46.137144Z",
+              "sourcePublishedAt": "2026-10-02T02:01:55Z",
+              "sourceEventAt": null,
+              "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+              "sourceVersion": "NASA_RSS",
+              "methodVersion": "NasaOperationalFeedParser/1.0.0"
+            }
+          }
+        ]
+      }
+    },
+    "profiles": [
+      {
+        "id": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+        "name": "Anna Kikina",
+        "officialProfileUrl": null,
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "649"
+          }
+        ],
+        "agency": {
+          "name": "Russian Federal Space Agency (ROSCOSMOS)",
+          "abbreviation": "RFSA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "63"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "RU",
+            "alpha3": "RUS",
+            "displayName": "Russia"
+          }
+        ],
+        "biography": "Anna Yuryevna Kikina is a Russian engineer and test cosmonaut, selected in 2012. Kikina is assigned to Crew-5 mission which is to launch in 2022. The seat was arranged as a part of exchange agreement between Roscosmos and NASA, allowing Russian cosmonaut to fly on US vehicle while American astronaut gets a seat on Soyuz. Kikina will be the first Russian cosmonaut to fly on Crew Dragon.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/anna_yuryevna_k_image_20200828144537.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185904.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT5708H39M4S",
+          "evaTime": "PT0S",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2022-10-05T16:00:57Z",
+          "lastFlight": "2026-07-14T14:47:43Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "9735513f-4ad9-44ba-863d-4f05978fca61",
+        "name": "Sophie Adenot",
+        "officialProfileUrl": null,
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "747"
+          }
+        ],
+        "agency": {
+          "name": "European Space Agency",
+          "abbreviation": "ESA",
+          "type": "Multinational",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "27"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "FR",
+            "alpha3": "FRA",
+            "displayName": "France"
+          }
+        ],
+        "biography": "Between 2001 and 2003, Sophie\u00a0studied engineering and graduated from ISAE-SUPAERO in Toulouse, France, where she specialised in spacecraft and aircraft flight dynamics. She then completed a Master of Science in human factors engineering at MIT \u2013 Massachusetts Institute of Technology in Boston, USA, in 2004.\r\nIn 2005, Sophie\u00a0joined the French Air Force for her basic military training and initial flying training to become a helicopter pilot.\u00a0\u00a0\r\n\r\nIn 2018, she graduated with honours as a helicopter test pilot from the Empire Test Pilots\u2019 School in Boscombe Down, UK. She was awarded the Mac Kenna trophy and the Patuxtent Shield.\r\nBetween 2019 and 2022, Sophie\u00a0worked as a helicopter experimental test pilot in Cazaux Flight Test Center with DGA (Direction G\u00e9n\u00e9rale de l\u2019Armement \u2013 the French Defence Procurement Agency). She has logged 3000 hours and flew on 22 different helicopter types. She also holds a military parachute license, a light aircraft pilot license and a glider pilot license.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/sophie_adenot_image_20221123150954.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185354.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT5559H10M43S",
+          "evaTime": "PT19H42M",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2026-02-13T10:15:56Z",
+          "lastFlight": "2026-02-13T10:15:56Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+        "name": "Andrei Fedyaev",
+        "officialProfileUrl": null,
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "732"
+          }
+        ],
+        "agency": {
+          "name": "Russian Federal Space Agency (ROSCOSMOS)",
+          "abbreviation": "RFSA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "63"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "RU",
+            "alpha3": "RUS",
+            "displayName": "Russia"
+          }
+        ],
+        "biography": "Andrei Valerievich Fedyaev (\u0410\u043d\u0434\u0440\u0435\u0439 \u0412\u0430\u043b\u0435\u0440\u044c\u0435\u0432\u0438\u0447 \u0424\u0435\u0434\u044f\u0435\u0432) is a Russian cosmonaut. He was a military pilot prior to retiring from Air Force in 2013, and was selected as a cosmonaut in 2012. \r\n\r\nISS-69 expedition will be Fedyaev's first spaceflight.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/andrei_fedyaev_image_20230207203113.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190412.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT10021H53M44S",
+          "evaTime": "PT0S",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2023-03-02T05:34:14Z",
+          "lastFlight": "2026-02-13T10:15:56Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "UNVERIFIED",
+          "lastKnownState": null,
+          "asOf": null,
+          "authority": null,
+          "evidence": []
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+        "name": "Luke Delaney",
+        "officialProfileUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+        "externalIds": [
+          {
+            "source": "NASA_OFFICIAL",
+            "value": "profile:nasa-astronaut-luke-delaney"
+          }
+        ],
+        "agency": null,
+        "nationalities": [],
+        "biography": null,
+        "image": null,
+        "career": null,
+        "profileAvailability": "UNAVAILABLE",
+        "currentAssignment": null,
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_ENTERED_STATION",
+              "assertion": "COMPLETED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": null,
+        "profileLastSuccessfulFetchAt": null
+      },
+      {
+        "id": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+        "name": "Anil Menon",
+        "officialProfileUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "713"
+          },
+          {
+            "source": "NASA_OFFICIAL",
+            "value": "profile:nasa-astronaut-anil-menon"
+          }
+        ],
+        "agency": {
+          "name": "National Aeronautics and Space Administration",
+          "abbreviation": "NASA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "44"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "US",
+            "alpha3": "USA",
+            "displayName": "United States of America"
+          }
+        ],
+        "biography": "Anil Menon is a US Air Force lieutenant colonel from Minneapolis, Minnesota. He was SpaceX\u2019s first flight surgeon, helping to launch the company\u2019s first humans to space during NASA\u2019s SpaceX Demo-2 mission and building a medical organization to support the human system during future missions. Prior to that, he served NASA as the crew flight surgeon for various expeditions taking astronauts to the International Space Station. Menon is an actively practicing emergency medicine physician with fellowship training in wilderness and aerospace medicine. As a physician, he was a first responder during the 2010 earthquake in Haiti, 2015 earthquake in Nepal, and the 2011 Reno Air Show accident. In the Air Force, Menon supported the 45th Space Wing as a flight surgeon and the 173rd Fighter Wing, where he logged over 100 sorties in the F-15 fighter jet and transported over 100 patients as part of the critical care air transport team.\r\n\r\nExact date of birth unknown.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/anil_menon_image_20211206185413.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190559.jpeg",
+          "credit": "NASA",
+          "licenseName": "NASA Image and Media Guidelines",
+          "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "singleUse": false
+        },
+        "career": {
+          "timeInSpace": "PT1930H38M39S",
+          "evaTime": "PT19H29M",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2026-07-14T14:47:43Z",
+          "lastFlight": "2026-07-14T14:47:43Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+        "name": "Jack Hathaway",
+        "officialProfileUrl": "https://www.nasa.gov/people/nasa-astronaut-jack-hathaway/",
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "712"
+          },
+          {
+            "source": "NASA_OFFICIAL",
+            "value": "profile:nasa-astronaut-jack-hathaway"
+          }
+        ],
+        "agency": {
+          "name": "National Aeronautics and Space Administration",
+          "abbreviation": "NASA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "44"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "US",
+            "alpha3": "USA",
+            "displayName": "United States of America"
+          }
+        ],
+        "biography": "Jack Hathaway is a US Navy commander from Connecticut. He earned bachelors\u2019 degrees in physics and history from the U.S. Naval Academy and completed graduate studies at Cranfield University in England and the U.S. Naval War College. A distinguished naval aviator, Hathaway flew and deployed with Navy\u2019s Strike Fighter Squadron 14 aboard the USS Nimitz and Strike Fighter Squadron 136 aboard the USS Truman. He graduated from Empire Test Pilots\u2019 School, supported the Joint Chiefs of Staff at the Pentagon, and was most recently assigned as the prospective executive officer for Strike Fighter Squadron 81. He has more than 2,500 flight hours in 30 types of aircraft, more than 500 carrier arrested landings, and flew 39 combat missions.\r\n\r\nExact date of birth unknown.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/jack_hathaway_image_20211206185407.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190331.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT5559H10M26S",
+          "evaTime": "PT0S",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2026-02-13T10:15:56Z",
+          "lastFlight": "2026-02-13T10:15:56Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+        "name": "Jessica Meir",
+        "officialProfileUrl": "https://www.nasa.gov/people/jessica-u-meir/",
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "573"
+          },
+          {
+            "source": "NASA_OFFICIAL",
+            "value": "profile:jessica-u-meir"
+          }
+        ],
+        "agency": {
+          "name": "National Aeronautics and Space Administration",
+          "abbreviation": "NASA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "44"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "US",
+            "alpha3": "USA",
+            "displayName": "United States of America"
+          }
+        ],
+        "biography": "Jessica Ulrika Meir is Assistant Professor of Anesthesia at Harvard Medical School, Massachusetts General Hospital, Boston, following postdoctoral research in comparative physiology at the University of British Columbia. She has studied the diving physiology and behavior of emperor penguins in Antarctica, and the physiology of bar-headed geese, which are able to migrate over the Himalayas. In 2000, Meir graduated with a Master of Space Studies from the International Space University in Strasbourg, France. In September 2002, Meir served as an aquanaut on the NASA Extreme Environment Mission Operations 4 (NEEMO 4) crew. In June 2013 she was named an astronaut candidate by NASA, becoming one of the eight members of NASA Astronaut Group 21. She is from Caribou, Maine.",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/jessica_meir_image_20200417064900.jpeg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190924.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT10470H28M11S",
+          "evaTime": "PT42H29M",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2019-09-25T13:57:42Z",
+          "lastFlight": "2026-02-13T10:15:56Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Commander",
+          "roleCode": "COMMANDER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+        "name": "Pyotr Dubrov",
+        "officialProfileUrl": null,
+        "externalIds": [
+          {
+            "source": "LAUNCH_LIBRARY_2",
+            "value": "650"
+          }
+        ],
+        "agency": {
+          "name": "Russian Federal Space Agency (ROSCOSMOS)",
+          "abbreviation": "RFSA",
+          "type": "Government",
+          "externalIds": [
+            {
+              "source": "LAUNCH_LIBRARY_2",
+              "value": "63"
+            }
+          ]
+        },
+        "nationalities": [
+          {
+            "alpha2": "RU",
+            "alpha3": "RUS",
+            "displayName": "Russia"
+          }
+        ],
+        "biography": "Dubrov was selected by Roscosmos as a cosmonaut on 8 October 2012, as one of eight cosmonauts selected as part of Roscosmos's 2012 selection group.\r\nIn 2020 he was assigned to the backup crew of Soyuz MS-17, backing up Russian cosmonaut Sergey Kud-Sverchkov as Flight Engineer on ISS Expedition 63/64",
+        "image": {
+          "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/pyotr_dubrov_image_20201120155626.jpg",
+          "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185922.jpeg",
+          "credit": null,
+          "licenseName": "Unknown",
+          "licenseUrl": null,
+          "singleUse": true
+        },
+        "career": {
+          "timeInSpace": "PT10454H23M21S",
+          "evaTime": "PT29H49M",
+          "flightsCount": null,
+          "spacewalksCount": null,
+          "firstFlight": "2021-04-09T07:42:41Z",
+          "lastFlight": "2026-07-14T14:47:43Z"
+        },
+        "profileAvailability": "AVAILABLE",
+        "currentAssignment": {
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "role": "Flight Engineer",
+          "roleCode": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null
+        },
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_CURRENTLY_ABOARD",
+              "assertion": "OBSERVED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": {
+          "source": "LAUNCH_LIBRARY_2",
+          "sourceType": null,
+          "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "observedAt": "2026-10-03T10:30:18.796289Z",
+          "sourcePublishedAt": null,
+          "sourceEventAt": null,
+          "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+          "sourceVersion": "2.3.0",
+          "methodVersion": "ll2-crew-v1"
+        },
+        "profileLastSuccessfulFetchAt": "2026-10-03T21:12:09.957530Z"
+      },
+      {
+        "id": "6e700f29-14ab-415a-87e4-6567860c1796",
+        "name": "Jessica Watkins",
+        "officialProfileUrl": "https://www.nasa.gov/people/jessica-watkins/",
+        "externalIds": [
+          {
+            "source": "NASA_OFFICIAL",
+            "value": "profile:jessica-watkins"
+          }
+        ],
+        "agency": null,
+        "nationalities": [],
+        "biography": null,
+        "image": null,
+        "career": null,
+        "profileAvailability": "UNAVAILABLE",
+        "currentAssignment": null,
+        "currentPresence": {
+          "state": "CONFIRMED_ABOARD",
+          "lastKnownState": "CONFIRMED_ABOARD",
+          "asOf": "2026-10-02T02:01:55Z",
+          "authority": "NASA_OFFICIAL",
+          "evidence": [
+            {
+              "source": "NASA_OFFICIAL",
+              "sourceType": "NASA_ISS_OPERATIONAL_POST",
+              "type": "PERSON_ENTERED_STATION",
+              "assertion": "COMPLETED",
+              "completeness": "PARTIAL",
+              "asOf": "2026-10-02T02:01:55Z",
+              "provenance": {
+                "source": "NASA_OFFICIAL",
+                "sourceType": "NASA_ISS_OPERATIONAL_POST",
+                "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+                "observedAt": "2026-10-03T11:45:46.137144Z",
+                "sourcePublishedAt": "2026-10-02T02:01:55Z",
+                "sourceEventAt": null,
+                "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+                "sourceVersion": "NASA_RSS",
+                "methodVersion": "NasaOperationalFeedParser/1.0.0"
+              }
+            }
+          ]
+        },
+        "reconciliation": {
+          "status": "PARTIAL_MATCH",
+          "evaluatedAt": "2026-10-03T22:02:54.947695Z",
+          "reconciledAt": null,
+          "algorithmVersion": "crew-reconciliation-v1/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+          "lastAttemptAt": null,
+          "lastAttemptCompletedAt": null,
+          "lastAttemptResult": null
+        },
+        "profileProvenance": null,
+        "profileLastSuccessfulFetchAt": null
+      }
+    ]
+  },
+  "orbit": {
+    "requestedAt": "2026-10-03T22:02:54.947695Z",
+    "effectiveAt": "2026-10-03T22:02:54.947695Z",
+    "availability": "AVAILABLE",
+    "reason": "NONE",
+    "coverage": {
+      "status": "AVAILABLE",
+      "start": "2026-09-27T03:24:39.835008Z",
+      "end": "2026-10-03T22:03:55.030730Z",
+      "intervals": [
+        {
+          "start": "2026-09-27T03:24:39.835008Z",
+          "end": "2026-10-03T22:03:55.030730Z"
+        }
+      ],
+      "limitations": [
+        "Finite retained source coverage; accuracy UNKNOWN",
+        "GP absolute epoch offset <= PT24H",
+        "OEM no extrapolation; adjacent vectors <= PT10M"
+      ]
+    },
+    "primary": {
+      "effectiveAt": "2026-10-03T22:02:54.947695Z",
+      "quality": "UNKNOWN",
+      "frame": "ITRF_2020_IERS_2010",
+      "positionUnit": "m",
+      "velocityUnit": "m/s",
+      "position": {
+        "x": 5426583.125105226,
+        "y": -4029525.3547951244,
+        "z": -708405.2517660529
+      },
+      "velocity": {
+        "x": 2057.614392978531,
+        "y": 3812.9381283757516,
+        "z": -5956.931902976312
+      },
+      "latitudeDegrees": -6.020777151373294,
+      "longitudeDegrees": -36.59584230986423,
+      "altitudeMeters": 418177.42179994297,
+      "source": {
+        "kind": "GP_TLE",
+        "classification": "COMPUTED_FROM_ORBITAL_ELEMENTS",
+        "contentHash": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+        "sourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+        "provider": "CELESTRAK_GP",
+        "epoch": "2026-10-03T01:06:34.599456Z",
+        "creationAt": null,
+        "retrievedAt": "2026-10-03T15:28:18.954968Z",
+        "httpLastModified": null,
+        "coverageStart": "2026-10-02T01:06:34.599456Z",
+        "coverageEnd": "2026-10-04T01:06:34.599456Z",
+        "signedPropagationOffsetSeconds": 75380.348239,
+        "method": "Orekit TLEPropagator TEME to ITRF2020/IERS2010 to WGS84"
+      }
+    },
+    "secondary": {
+      "effectiveAt": "2026-10-03T22:02:54.947695Z",
+      "quality": "UNKNOWN",
+      "frame": "ITRF_2020_IERS_2010",
+      "positionUnit": "m",
+      "velocityUnit": "m/s",
+      "position": {
+        "x": 5425562.204034727,
+        "y": -4031308.1544302423,
+        "z": -705529.7440144401
+      },
+      "velocity": {
+        "x": 2061.6110619914466,
+        "y": 3809.834856428549,
+        "z": -5957.470865789419
+      },
+      "latitudeDegrees": -5.996302356933502,
+      "longitudeDegrees": -36.61313435768847,
+      "altitudeMeters": 418118.5814832489,
+      "source": {
+        "kind": "NASA_OEM",
+        "classification": "SOURCE_PROVIDED_PREDICTED_EPHEMERIS",
+        "contentHash": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+        "sourceUrl": "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml",
+        "provider": "NASA/JSC",
+        "epoch": null,
+        "creationAt": "2026-10-02T16:36:47.957Z",
+        "retrievedAt": "2026-10-03T21:50:39.678063Z",
+        "httpLastModified": "2026-10-02 18:17:53+02",
+        "coverageStart": "2026-10-02T14:00:00Z",
+        "coverageEnd": "2026-10-17T14:00:00Z",
+        "signedPropagationOffsetSeconds": null,
+        "method": "Bounded EME2000 cubic Hermite PV; Orekit ITRF2020/IERS2010; WGS84"
+      }
+    },
+    "sourceSeparationMeters": 3534.0061121553395,
+    "policy": "orbit-replay-nearest-gp-bounded-oem-v1"
+  }
+}

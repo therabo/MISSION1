@@ -114,3 +114,8 @@ The full JSON examples were read from the existing real PostgreSQL state at **20
 - MISSION1 person: [full response](../crew/rest-api-validation/person-response.json) — persisted UUID/profile, ISO durations, media rights, separate current assignment/presence and profile/reconciliation provenance.
 
 No-active representation has the same field groups with `expedition:null,assignmentCount:0,assignments:[],sourceState:"NO_ACTIVE_EXPEDITION"`; source health and available observation provenance still apply. NASA-only person has `profileAvailability:"UNAVAILABLE"`, nullable structured fields/provenance and a persisted public name/identity/current evidence when available.
+
+
+## Replay integration — 2026-10-03
+
+Current Crew endpoints remain current. Historical operational state is exposed through the independent [Mission Replay API](replay-api.md), with latest retained profile metadata clearly distinguished.

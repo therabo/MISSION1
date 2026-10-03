@@ -36,3 +36,8 @@ The 24-hour value lives in the immutable `OrbitalFreshnessPolicy` configuration,
 ## Operational limits and review trigger
 
 This threshold is deliberately broad enough to admit the few observed normal ISS GP ages and close enough to the Orekit-discussed epoch neighborhood to flag substantially older sets. It is **not** calibrated against independent ISS truth data. A maneuver can make a younger set poor, and a stale result can still look plausible. Future evaluation should gather a controlled, provider-respectful history of ISS element epochs and independent position references before tightening the policy or claiming accuracy. The approved short Earth View future arc is a labeled **visual GP/TLE extrapolation**, not an accuracy-certified forecast. Replay, full-orbit prediction, or conjunction analysis still needs its own validity decision. No consumer should render `STALE` as live or collapse provider health into state quality.
+
+
+## Replay integration — 2026-10-03
+
+Replay uses a separately reviewed absolute ±24-hour GP limit (configurable downwards), reports signed offsets and UNKNOWN accuracy, and rejects source/EOP gaps. Current orbital-current-v1 semantics remain unchanged. [Replay feasibility](../replay/orbit-historical-feasibility.md).

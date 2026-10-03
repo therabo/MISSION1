@@ -33,3 +33,8 @@ A process guard prevents tick overlap; a PostgreSQL advisory lock prevents dupli
 ## Validation contract
 
 Offline tests cover strict mapping, all event/time/classification branches, completed-evidence flow, event-specific settlement, rate limits, shared quota, startup and restart, deduplication, overlap, migration/rollback/history and fake-clock 24h HTTP request budgets. PostgreSQL 16.10 Testcontainers covers empty→V5 and V4→V5 with existing Crew/Orbit sentinels. Live checks are bounded and separated from default tests. Runtime validation covers PostgreSQL, packaged backend, all accepted Crew/Orbit routes and unchanged browser surfaces. Native touch remains unverified unless a genuine native-touch test is performed.
+
+
+## Replay integration — 2026-10-03
+
+Replay is a read-only consumer and never triggers event-aware discovery, refresh or reconciliation writes. Source scheduling and fact authority remain unchanged. [Replay](../replay/README.md).

@@ -7,7 +7,7 @@ export interface ComparisonDelivery {
   status: 'loading' | 'ready' | 'unavailable';
 }
 
-export function useComparisonDelivery(sceneTimeMs: number | null): ComparisonDelivery {
+export function useComparisonDelivery(sceneTimeMs: number | null, enabled = true): ComparisonDelivery {
   const [delivery, setDelivery] = useState<ComparisonDelivery>({ response: null, status: 'loading' });
   const scene = useRef(sceneTimeMs);
   const accepted = useRef<ComparisonResponse | null>(null);
@@ -22,6 +22,7 @@ export function useComparisonDelivery(sceneTimeMs: number | null): ComparisonDel
     }
   }, [sceneTimeMs]);
   useEffect(() => {
+    if (!enabled) return;
     let stopped = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
     let controller: AbortController | undefined;
@@ -55,6 +56,6 @@ export function useComparisonDelivery(sceneTimeMs: number | null): ComparisonDel
       if (timer) clearTimeout(timer);
       controller?.abort();
     };
-  }, []);
+  }, [enabled]);
   return delivery;
 }

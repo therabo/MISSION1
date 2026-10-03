@@ -1,0 +1,51 @@
+{
+  "semantics": "EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION",
+  "evaluatedAt": "2026-10-03T22:03:52.222934Z",
+  "crew": {
+    "status": "PARTIAL",
+    "start": "2026-10-02T02:01:55Z",
+    "end": "2026-10-03T22:03:52.222934Z",
+    "intervals": [
+      {
+        "start": "2026-10-02T02:01:55Z",
+        "end": "2026-10-03T22:03:52.222934Z"
+      }
+    ],
+    "limitations": [
+      "Partial assertions do not establish a complete roster",
+      "Structured state begins at capture; gaps preserve unknown assignments and expedition",
+      "Effective-time applicability is bounded; profiles use latest retained metadata"
+    ]
+  },
+  "orbit": {
+    "status": "AVAILABLE",
+    "start": "2026-09-27T03:24:39.835008Z",
+    "end": "2026-10-03T22:03:52.222934Z",
+    "intervals": [
+      {
+        "start": "2026-09-27T03:24:39.835008Z",
+        "end": "2026-10-03T22:03:52.222934Z"
+      }
+    ],
+    "limitations": [
+      "Finite retained source coverage; accuracy UNKNOWN",
+      "GP absolute epoch offset <= PT24H",
+      "OEM no extrapolation; adjacent vectors <= PT10M"
+    ]
+  },
+  "joint": {
+    "status": "PARTIAL",
+    "start": "2026-10-02T02:01:55Z",
+    "end": "2026-10-03T22:03:52.222934Z",
+    "intervals": [
+      {
+        "start": "2026-10-02T02:01:55Z",
+        "end": "2026-10-03T22:03:52.222934Z"
+      }
+    ],
+    "limitations": [
+      "Joint support does not imply complete Crew or measured position"
+    ]
+  },
+  "orbitGate": "FULL"
+}

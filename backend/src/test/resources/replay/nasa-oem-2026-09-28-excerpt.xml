@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ndm>
+    <oem id="CCSDS_OEM_VERS" version="2.0">
+        <header>
+            <CREATION_DATE>2026-271T17:13:16.701Z</CREATION_DATE>
+            <ORIGINATOR>JSC</ORIGINATOR>
+        </header>
+        <body>
+            <segment>
+                <metadata>
+                    <OBJECT_NAME>ISS</OBJECT_NAME>
+                    <OBJECT_ID>1998-067-A</OBJECT_ID>
+                    <CENTER_NAME>EARTH</CENTER_NAME>
+                    <REF_FRAME>EME2000</REF_FRAME>
+                    <TIME_SYSTEM>UTC</TIME_SYSTEM>
+                    <START_TIME>2026-271T12:00:00.000Z</START_TIME>
+                    <STOP_TIME>2026-286T12:00:00.000Z</STOP_TIME>
+                </metadata>
+                <data>
+                    <COMMENT>Units are in kg and m^2</COMMENT>
+                    <COMMENT>MASS=470007.90</COMMENT>
+                    <COMMENT>DRAG_AREA=1525.10</COMMENT>
+                    <COMMENT>DRAG_COEFF=1.60</COMMENT>
+                    <COMMENT>SOLAR_RAD_AREA=0.00</COMMENT>
+                    <COMMENT>SOLAR_RAD_COEFF=0.00</COMMENT>
+                    <COMMENT>Orbits start at the ascending node epoch </COMMENT>
+                    <COMMENT>ISS first asc. node: EPOCH = 2026-09-28T12:42:11.368 $ ORBIT = 2777 $ LAN(DEG) = -49.20773</COMMENT>
+                    <COMMENT>ISS last asc. node : EPOCH = 2026-10-13T11:58:27.360 $ ORBIT = 3009 $ LAN(DEG) = -127.07486</COMMENT>
+                    <COMMENT>Begin sequence of events</COMMENT>
+                    <COMMENT>TRAJECTORY EVENT SUMMARY:</COMMENT>
+                    <COMMENT></COMMENT>
+                    <COMMENT>|       EVENT        |       TIG        | ORB |   DV    |   HA    |   HP    |</COMMENT>
+                    <COMMENT>|                    |       GMT        |     |   M/S   |   KM    |   KM    |</COMMENT>
+                    <COMMENT>|                    |                  |     |  (F/S)  |  (NM)   |  (NM)   |</COMMENT>
+                    <COMMENT>=============================================================================</COMMENT>
+                    <COMMENT> Crew13_Launch         274:15:10:06.000             0.0     425.7     414.8</COMMENT>
+                    <COMMENT>                                                   (0.0)   (229.8)   (224.0)</COMMENT>
+                    <COMMENT></COMMENT>
+                    <COMMENT> Crew13_Docking        275:00:00:00.000             0.0     425.5     415.1</COMMENT>
+                    <COMMENT>                                                   (0.0)   (229.8)   (224.1)</COMMENT>
+                    <COMMENT></COMMENT>
+                    <COMMENT> NG24_Unberth_NET      282:16:45:00.000             0.0     422.8     417.0</COMMENT>
+                    <COMMENT>                                                   (0.0)   (228.3)   (225.1)</COMMENT>
+                    <COMMENT></COMMENT>
+                    <COMMENT>=============================================================================</COMMENT>
+                    <COMMENT>End sequence of events</COMMENT>
+                    <stateVector>
+                        <EPOCH>2026-271T12:00:00.000Z</EPOCH>
+                        <X units="km">6177.9840416767001</X>
+                        <Y units="km">-2372.0342593996202</Y>
+                        <Z units="km">-1547.65574212513</Z>
+                        <X_DOT units="km/s">0.49444631796681998</X_DOT>
+                        <Y_DOT units="km/s">5.0312953208994502</Y_DOT>
+                        <Z_DOT units="km/s">-5.7585589685044498</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:04:00.000Z</EPOCH>
+                        <X units="km">6070.5091595616796</X>
+                        <Y units="km">-1092.92159275978</Y>
+                        <Z units="km">-2856.4172839194498</Z>
+                        <X_DOT units="km/s">-1.38416073785806</X_DOT>
+                        <Y_DOT units="km/s">5.5627799487305198</Y_DOT>
+                        <Z_DOT units="km/s">-5.0811700397616102</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:08:00.000Z</EPOCH>
+                        <X units="km">5521.8822014897296</X>
+                        <Y units="km">265.64117510603501</Y>
+                        <Z units="km">-3957.0277687613302</Z>
+                        <X_DOT units="km/s">-3.1593718704381502</X_DOT>
+                        <Y_DOT units="km/s">5.6895318911919803</Y_DOT>
+                        <Z_DOT units="km/s">-4.0348051246445698</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:12:00.000Z</EPOCH>
+                        <X units="km">4572.6151167426897</X>
+                        <Y units="km">1604.9583713541999</Y>
+                        <Z units="km">-4769.7390767459001</Z>
+                        <X_DOT units="km/s">-4.7026302877360102</X_DOT>
+                        <Y_DOT units="km/s">5.4036008456936004</Y_DOT>
+                        <Z_DOT units="km/s">-2.6968178255513902</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:16:00.000Z</EPOCH>
+                        <X units="km">3292.0988985853</X>
+                        <Y units="km">2828.0353908033499</Y>
+                        <Z units="km">-5235.95709790214</Z>
+                        <X_DOT units="km/s">-5.9032489254072997</X_DOT>
+                        <Y_DOT units="km/s">4.7269142446841297</Y_DOT>
+                        <Z_DOT units="km/s">-1.1649750020187599</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:20:00.000Z</EPOCH>
+                        <X units="km">1773.3836892143299</X>
+                        <Y units="km">3846.5152142772399</Y>
+                        <Z units="km">-5322.2706881891099</Z>
+                        <X_DOT units="km/s">-6.6757955582380504</X_DOT>
+                        <Y_DOT units="km/s">3.7090054938798298</Y_DOT>
+                        <Z_DOT units="km/s">0.44989365170045997</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:24:00.000Z</EPOCH>
+                        <X units="km">126.441485058469</X>
+                        <Y units="km">4586.8822523242497</Y>
+                        <Z units="km">-5022.6683259892598</Z>
+                        <X_DOT units="km/s">-6.9654308552400499</X_DOT>
+                        <Y_DOT units="km/s">2.4232827995644901</Y_DOT>
+                        <Z_DOT units="km/s">2.0315894795789902</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:28:00.000Z</EPOCH>
+                        <X units="km">-1529.6364331097</X>
+                        <Y units="km">4995.61018225107</Y>
+                        <Z units="km">-4358.8890813785601</Z>
+                        <X_DOT units="km/s">-6.75142633992761</X_DOT>
+                        <Y_DOT units="km/s">0.9619755340735</Y_DOT>
+                        <Z_DOT units="km/s">3.4663585072824201</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:32:00.000Z</EPOCH>
+                        <X units="km">-3075.0496878950898</X>
+                        <Y units="km">5042.9606509736795</Y>
+                        <Z units="km">-3378.9050090492101</Z>
+                        <X_DOT units="km/s">-6.0486803115969403</X_DOT>
+                        <Y_DOT units="km/s">-0.57001732058846</Y_DOT>
+                        <Z_DOT units="km/s">4.6506039041997402</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:36:00.000Z</EPOCH>
+                        <X units="km">-4397.8087438120201</X>
+                        <Y units="km">4725.1915672243404</Y>
+                        <Z units="km">-2153.59748055922</Z>
+                        <X_DOT units="km/s">-4.9070835635301</X_DOT>
+                        <Y_DOT units="km/s">-2.06220151465708</Y_DOT>
+                        <Z_DOT units="km/s">5.4981664171708697</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:40:00.000Z</EPOCH>
+                        <X units="km">-5401.8315516439798</X>
+                        <Y units="km">4064.9869306919099</Y>
+                        <Z units="km">-771.78502607586199</Z>
+                        <X_DOT units="km/s">-3.40865185313422</X_DOT>
+                        <Y_DOT units="km/s">-3.4062006622758298</Y_DOT>
+                        <Z_DOT units="km/s">5.9467118800545</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:44:00.000Z</EPOCH>
+                        <X units="km">-6014.0506328726897</X>
+                        <Y units="km">3109.95961953491</Y>
+                        <Z units="km">666.15054818728197</Z>
+                        <X_DOT units="km/s">-1.66195797889032</X_DOT>
+                        <Y_DOT units="km/s">-4.5039900217271303</Y_DOT>
+                        <Z_DOT units="km/s">5.9628995674830501</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:48:00.000Z</EPOCH>
+                        <X units="km">-6189.85256523526</X>
+                        <Y units="km">1929.25401141669</Y>
+                        <Z units="km">2055.6042178903299</Z>
+                        <X_DOT units="km/s">0.20592052385184001</X_DOT>
+                        <Y_DOT units="km/s">-5.2753035178774601</Y_DOT>
+                        <Z_DOT units="km/s">5.5451296479642096</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:52:00.000Z</EPOCH>
+                        <X units="km">-5916.4035990379098</X>
+                        <Y units="km">608.51732152413604</Y>
+                        <Z units="km">3295.4460155653401</Z>
+                        <X_DOT units="km/s">2.0589057870569198</X_DOT>
+                        <Y_DOT units="km/s">-5.6637690746580001</Y_DOT>
+                        <Z_DOT units="km/s">4.72377302454061</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T12:56:00.000Z</EPOCH>
+                        <X units="km">-5213.5858247040196</X>
+                        <Y units="km">-756.38806793249501</Y>
+                        <Z units="km">4295.4592832057397</Z>
+                        <X_DOT units="km/s">3.7621725821836201</X_DOT>
+                        <Y_DOT units="km/s">-5.6411546357722901</Y_DOT>
+                        <Z_DOT units="km/s">3.5588002932084901</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T13:00:00.000Z</EPOCH>
+                        <X units="km">-4132.4754631080696</X>
+                        <Y units="km">-2066.4137350599699</Y>
+                        <Z units="km">4982.9190962265202</Z>
+                        <X_DOT units="km/s">5.1921834892414704</X_DOT>
+                        <Y_DOT units="km/s">-5.2092425780859699</Y_DOT>
+                        <Z_DOT units="km/s">2.1350607870244902</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T13:04:00.000Z</EPOCH>
+                        <X units="km">-2751.54614220949</X>
+                        <Y units="km">-3226.5121616435799</Y>
+                        <Z units="km">5307.8242086131504</Z>
+                        <X_DOT units="km/s">6.2454991327478604</X_DOT>
+                        <Y_DOT units="km/s">-4.3993347467098998</Y_DOT>
+                        <Z_DOT units="km/s">0.55588986140077001</Z_DOT>
+                    </stateVector>
+                    <stateVector>
+                        <EPOCH>2026-271T13:08:00.000Z</EPOCH>
+                        <X units="km">-1170.9592323915299</X>
+                        <Y units="km">-4152.4618238937201</Y>
+                        <Z units="km">5246.4541593230997</Z>
+                        <X_DOT units="km/s">6.84585818856341</X_DOT>
+                        <Y_DOT units="km/s">-3.2697891838267399</Y_DOT>
+                        <Z_DOT units="km/s">-1.0643308239094</Z_DOT>
+                    </stateVector>
+
+                </data>
+            </segment>
+        </body>
+    </oem>
+</ndm>

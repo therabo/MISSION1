@@ -115,8 +115,8 @@ public final class NasaOemTrajectoryService {
             double span = Duration.between(a.epoch(), b.epoch()).toNanos() / 1e9;
             if (span > 600) throw new IllegalArgumentException("Unexplained OEM source gap");
             double u = Duration.between(a.epoch(), time).toNanos() / 1e9 / span;
-            Vector3D position = hermite(a, b, span, u);
-            Vector3D velocity = hermiteVelocity(a, b, span, u);
+            Vector3D position = NasaOemInterpolation.hermite(a, b, span, u);
+            Vector3D velocity = NasaOemInterpolation.hermiteVelocity(a, b, span, u);
             AbsoluteDate date = new AbsoluteDate(time, data.utc());
             data.requireEopCoverage(date);
             // Transform the complete PV: velocity includes the rotating-frame term.
@@ -128,23 +128,4 @@ public final class NasaOemTrajectoryService {
         return List.copyOf(output);
     }
 
-    private static Vector3D hermite(NasaOemDocument.StateVector a, NasaOemDocument.StateVector b,
-                                    double span, double u) {
-        double u2 = u * u;
-        double u3 = u2 * u;
-        return a.positionMeters().scalarMultiply(2 * u3 - 3 * u2 + 1)
-                .add(a.velocityMetersPerSecond().scalarMultiply((u3 - 2 * u2 + u) * span))
-                .add(b.positionMeters().scalarMultiply(-2 * u3 + 3 * u2))
-                .add(b.velocityMetersPerSecond().scalarMultiply((u3 - u2) * span));
-    }
-
-    /** Analytic time derivative of the existing bounded source-position Hermite polynomial. */
-    private static Vector3D hermiteVelocity(NasaOemDocument.StateVector a, NasaOemDocument.StateVector b,
-                                           double span, double u) {
-        double u2 = u * u;
-        return a.positionMeters().scalarMultiply((6 * u2 - 6 * u) / span)
-                .add(a.velocityMetersPerSecond().scalarMultiply(3 * u2 - 4 * u + 1))
-                .add(b.positionMeters().scalarMultiply((-6 * u2 + 6 * u) / span))
-                .add(b.velocityMetersPerSecond().scalarMultiply(3 * u2 - 2 * u));
-    }
 }

@@ -6,13 +6,14 @@ import { PresenceLabel } from './CrewSummary';
 import { formatDuration, permittedPortrait, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewPerson } from './types';
 
-export function CrewProfile({ person }: { person: CrewPerson }) {
+export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt?: string }) {
   const nationality = person.nationalities
     .map((n) => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable')
     .join(', ');
   const profileUrl = safeHttps(person.officialProfileUrl);
   return (
     <div className="crew-profile">
+      {replayAt && <p className="crew-note">Assignment and presence are effective at {replayAt}. Profile details use the latest retained metadata and may be newer.</p>}
       <dl>
         <div>
           <dt>Agency</dt>
@@ -23,7 +24,7 @@ export function CrewProfile({ person }: { person: CrewPerson }) {
           <dd>{nationality || 'Unavailable'}</dd>
         </div>
         <div>
-          <dt>Current assignment</dt>
+          <dt>{replayAt ? "Assignment at replay time" : "Current assignment"}</dt>
           <dd>
             {person.currentAssignment
               ? (person.currentAssignment.role ?? 'Role unavailable')
@@ -67,7 +68,7 @@ export function CrewProfile({ person }: { person: CrewPerson }) {
         <p className="crew-note">Biography unavailable.</p>
       )}
       <section className="crew-career">
-        <h3>Career totals</h3>
+        <h3>{replayAt ? "Latest retained career totals" : "Career totals"}</h3>
         {person.career ? (
           <dl>
             <div>
@@ -98,7 +99,7 @@ export function CrewProfile({ person }: { person: CrewPerson }) {
         ) : (
           <p className="crew-note">Career statistics unavailable.</p>
         )}
-        <p className="crew-note">Cumulative source totals; not elapsed time on this expedition.</p>
+        <p className="crew-note">{replayAt ? "Latest retained profile metadata; career totals are not reconstructed at replay time." : "Cumulative source totals; not elapsed time on this expedition."}</p>
       </section>
       {profileUrl && (
         <p>

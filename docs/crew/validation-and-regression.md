@@ -72,3 +72,8 @@ Scope ends at internal canonical query. No Crew controller/frontend, universal N
 ## Crew REST acceptance — 2026-10-03
 
 The current milestone is ISS CREW REST API; older sections above remain historical. [REST validation](rest-api-validation/README.md) is the current gate. Controller JSON tests cover every existing status, the 11/8/3/7 partial-match class, LL2-only and NASA-only separation, missing/stale/degraded state, unknown/malformed UUID, historical/partial profiles, Unicode/text/durations/media rights and public provenance. PostgreSQL Testcontainers applies Flyway and proves actual persisted HTTP reads, no network/write side effects, read-only repeatable-read transactions and constant SQL count as the roster grows. Maven test/verify and retained frontend test/typecheck/build/API/browser gates must pass before commit/push. Orbit, source parsers, reconciliation and schedulers remain frozen. Next: ISS CREW EARTH VIEW PANEL.
+
+
+## Replay integration — 2026-10-03
+
+The replay milestone adds PostgreSQL temporal/zero-I/O tests, orbital boundaries and dev/production browser checks. Previous dossiers remain evidence for their dated baselines. [Current replay validation](../replay/validation/README.md).

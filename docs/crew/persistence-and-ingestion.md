@@ -102,3 +102,8 @@ NASA scheduling and canonical query semantics, including normal PT2H/PT10M delay
 ## REST read path — 2026-10-03
 
 PostgreSQL → CrewQueryService/CrewReconciliationQueryService and CrewReadQueryService → CrewRestQueryService → CrewController → public DTO JSON. CrewReadRepository/JdbcCrewReadRepository adds only set-based persisted identity/profile reads and a structured semantic-outcome lookup. Latest known profiles follow successful fetch runs, including snapshot reuse. No migration or writer was changed. REST composition runs in a read-only REPEATABLE_READ transaction, so one response sees coherent persisted inputs while ingestion can commit independently. Four person projection SQL reads are independent of roster size; there is no per-person source/SQL loop. GET never starts/completes an ingestion or reconciliation run, resolves identities, invokes a scheduler or makes provider requests. [HTTP/read evidence](rest-api-validation/README.md).
+
+
+## Replay integration — 2026-10-03
+
+Replay reads existing immutable snapshots, observations, evidence and identity resolutions without ingestion, identity writes, reconciliation persistence or trigger discovery. No schema/retention change. [Replay contract](../api/replay-api.md).

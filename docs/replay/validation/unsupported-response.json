@@ -1,0 +1,56 @@
+{
+  "semantics": "EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION",
+  "requestedAt": "2026-01-01T00:00:00Z",
+  "reconstructedAt": "2026-10-03T22:03:55.070491Z",
+  "crew": {
+    "requestedAt": "2026-01-01T00:00:00Z",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "availability": "UNAVAILABLE",
+    "quality": "NO_DATA",
+    "coverage": {
+      "status": "PARTIAL",
+      "start": "2026-10-02T02:01:55Z",
+      "end": "2026-10-03T22:03:55.070491Z",
+      "intervals": [
+        {
+          "start": "2026-10-02T02:01:55Z",
+          "end": "2026-10-03T22:03:55.070491Z"
+        }
+      ],
+      "limitations": [
+        "Partial assertions do not establish a complete roster",
+        "Structured state begins at capture; gaps preserve unknown assignments and expedition",
+        "Effective-time applicability is bounded; profiles use latest retained metadata"
+      ]
+    },
+    "profilePolicy": "LATEST_AVAILABLE_CANONICAL_METADATA",
+    "state": null,
+    "profiles": []
+  },
+  "orbit": {
+    "requestedAt": "2026-01-01T00:00:00Z",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "availability": "UNAVAILABLE",
+    "reason": "OUTSIDE_RETAINED_SOURCE_OR_EOP_COVERAGE",
+    "coverage": {
+      "status": "AVAILABLE",
+      "start": "2026-09-27T03:24:39.835008Z",
+      "end": "2026-10-03T22:03:55.070491Z",
+      "intervals": [
+        {
+          "start": "2026-09-27T03:24:39.835008Z",
+          "end": "2026-10-03T22:03:55.070491Z"
+        }
+      ],
+      "limitations": [
+        "Finite retained source coverage; accuracy UNKNOWN",
+        "GP absolute epoch offset <= PT24H",
+        "OEM no extrapolation; adjacent vectors <= PT10M"
+      ]
+    },
+    "primary": null,
+    "secondary": null,
+    "sourceSeparationMeters": null,
+    "policy": "orbit-replay-nearest-gp-bounded-oem-v1"
+  }
+}

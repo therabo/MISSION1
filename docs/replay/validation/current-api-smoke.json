@@ -1,0 +1,31 @@
+{
+  "/api/iss/crew": {
+    "status": 200,
+    "contentType": "application/json",
+    "cacheControl": "no-store"
+  },
+  "/api/iss/expedition/current": {
+    "status": 200,
+    "contentType": "application/json",
+    "cacheControl": "no-store"
+  },
+  "/api/iss/state": {
+    "status": 200,
+    "contentType": "application/json",
+    "cacheControl": null
+  },
+  "/api/iss/orbit/samples": {
+    "status": 200,
+    "contentType": "application/json",
+    "cacheControl": null
+  },
+  "/api/iss/orbit/comparison": {
+    "status": 200,
+    "contentType": "application/json",
+    "cacheControl": null
+  },
+  "/api/iss/crew/<uuid>": {
+    "status": 200,
+    "contentType": "application/json"
+  }
+}

@@ -54,3 +54,8 @@ Frontend → MISSION1 REST only. Source evidence/profiles/media references retai
 App owns panel visibility alongside existing ISS/module context. `CrewPanel` owns selected person; independent `useIssCrew`/`useCrewMember` hooks own abortable HTTP state. Explicit DTO decoding tolerates additive fields while rejecting unsupported required shapes. Memoized Crew UI depends on stable callbacks, not Cesium time/frames. The existing EarthView owns its persistent Viewer, clock, model, camera transitions and pick handler unchanged. Crew is a bounded DOM overlay, with internal scroll and responsive drawer/sheet; module selection prevents overlapping station detail panels. No route, modal backdrop, global state library, cache, polling timer or distributed infrastructure is introduced.
 
 This is implementation within the accepted REST/domain architecture, not a new durable structural choice. No ADR-0010 is needed. [UI evidence, lifecycle/performance and limits](../frontend/crew-earth-view-panel-review/README.md). Next single Crew milestone: **ISS CREW EVENT-AWARE REFRESH**.
+
+
+## Replay integration — 2026-10-03
+
+Crew milestone 7 (Replay integration) is DONE. Effective-time historical state remains independent of orbital availability and current acquisition health. [Cross-domain composition](06-mission-replay.md).

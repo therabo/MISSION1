@@ -5,10 +5,11 @@ import type { OrbitalDelivery } from '../orbital/bufferState';
 
 const REFRESH_MS = 120_000;
 
-export function useOrbitalDelivery(): OrbitalDelivery {
+export function useOrbitalDelivery(enabled = true): OrbitalDelivery {
   const [delivery, setDelivery] = useState<OrbitalDelivery>(initialDelivery);
 
   useEffect(() => {
+    if (!enabled) return;
     let stopped = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
     let inFlight: AbortController | undefined;
@@ -35,6 +36,6 @@ export function useOrbitalDelivery(): OrbitalDelivery {
       if (timer) clearTimeout(timer);
       inFlight?.abort();
     };
-  }, []);
+  }, [enabled]);
   return delivery;
 }

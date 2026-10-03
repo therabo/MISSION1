@@ -46,6 +46,16 @@ public record CrewReconciliationPolicy(
                 && fresh(e.observation().sourcePublishedAt(), max, asOf);
     }
 
+    public Duration effectiveMaxAge(CrewVerificationEvidence e) {
+        return e.type() == CrewVerificationEvidence.Type.PERSON_ENTERED_STATION
+                || e.type() == CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION
+                ? eventImplicationMaxAge : currentAssertionMaxAge;
+    }
+
+    public boolean applicableEffectiveTime(CrewVerificationEvidence e, Instant at) {
+        return fresh(CrewReconciliationEngine.effectiveTime(e), effectiveMaxAge(e), at);
+    }
+
     public String key() {
         return VERSION
                 + ":"

@@ -1,0 +1,3 @@
+# Recorded historical source excerpts
+
+Read from the existing MISSION1 PostgreSQL volume on 2026-10-03, without provider calls. TLE lines retain their verified source hash identities (September 28 and 29 GP epochs; third.tle is the retained October 1 epoch). OEM XML is a test-only excerpt containing the first 18 unchanged state vectors of retained NASA/JSC product 14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433. Its excerpt hash differs; full metadata coverage must not be interpreted as the shorter excerpt's vector coverage. See docs/replay/orbit-historical-feasibility.md. No synthetic runtime data is supplied.

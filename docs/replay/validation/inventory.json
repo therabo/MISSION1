@@ -1,0 +1,198 @@
+{
+  "capturedAt": "2026-10-03T21:16:36.899308+00:00",
+  "tle": [
+    {
+      "id": 1,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-09-28T03:24:39.835008+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "151bdb4cf2b7128ac815aa975736ffec0c28211751963e8be7263aad7b7abc71",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-09-28T13:58:32+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    },
+    {
+      "id": 2,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-09-29T02:38:28.580928+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "c1278ac312d701dc21def7fbdefa271c7629648e65365277c17962c2d09086ea",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-09-29T15:38:53.316849+00:00",
+        "2026-09-29T18:50:20.789922+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    },
+    {
+      "id": 4,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-10-01T19:41:07.10736+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "bd4da8f60b949eee5f0df49dc790e08bba76531e53f25628a299af8749507298",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-10-02T10:22:19.059677+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    },
+    {
+      "id": 5,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-10-02T00:19:52.567968+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "0c85e10d2694c2964c1cb29a9266e92b8ec50aafe1c0152a6c81e9b664b44794",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-10-02T15:57:58.810723+00:00",
+        "2026-10-02T19:55:24.125335+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    },
+    {
+      "id": 7,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-10-02T11:10:18.65568+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "d53fdf7f24add902cf3ea3277ea2d85299bfdac439f543d47394aaeb09f1da7c",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-10-03T00:15:25.200555+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    },
+    {
+      "id": 8,
+      "catalog_number": 25544,
+      "source_format": "TLE",
+      "element_epoch": "2026-10-03T01:06:34.599456+00:00",
+      "provider": "CELESTRAK_GP",
+      "upstream_origin": "USSF_GP_VIA_CELESTRAK",
+      "source_uri": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
+      "published_at": null,
+      "sha256": "b73ac503ffbf14529868ac104600148edb5702d4247eb4caa77dab756b4a6e0b",
+      "classification": "SOURCE_PROVIDED_ORBITAL_ELEMENTS",
+      "retrievals": [
+        "2026-10-03T15:28:18.954968+00:00"
+      ],
+      "rawLine1Length": 69,
+      "rawLine2Length": 69
+    }
+  ],
+  "oem": [
+    {
+      "sha256": "14f2dce1e0263fba4fee8e042a89173ec632768f8cd54190e7c0d99040ef2433",
+      "creation_date": "2026-09-28T17:13:16.701+00:00",
+      "start_time": "2026-09-28T12:00:00+00:00",
+      "stop_time": "2026-10-13T12:00:00+00:00",
+      "last_retrieved_at": "2026-09-30T18:55:39.663659+00:00",
+      "http_last_modified": "2026-09-28T17:27:12+00:00",
+      "frame": [
+        "EME2000"
+      ],
+      "timeSystem": [
+        "UTC"
+      ],
+      "object": [
+        "ISS"
+      ],
+      "sampleCount": 5404,
+      "firstVector": "2026-09-28T12:00:00+00:00",
+      "lastVector": "2026-10-13T12:00:00+00:00",
+      "cadenceSeconds": [
+        6.0,
+        60.0,
+        114.0,
+        120.0,
+        180.0,
+        240.0
+      ],
+      "maximumGapSeconds": 240.0
+    },
+    {
+      "sha256": "504c2969e91bfadef7ef2551dc4d1c2c626f74814484e678d45042077d6e7f6b",
+      "creation_date": "2026-09-30T16:44:45.057+00:00",
+      "start_time": "2026-09-30T12:00:00+00:00",
+      "stop_time": "2026-10-15T12:00:00+00:00",
+      "last_retrieved_at": "2026-10-02T16:03:40.970597+00:00",
+      "http_last_modified": "2026-09-30T20:38:07+00:00",
+      "frame": [
+        "EME2000"
+      ],
+      "timeSystem": [
+        "UTC"
+      ],
+      "object": [
+        "ISS"
+      ],
+      "sampleCount": 5403,
+      "firstVector": "2026-09-30T12:00:00+00:00",
+      "lastVector": "2026-10-15T12:00:00+00:00",
+      "cadenceSeconds": [
+        60.0,
+        114.0,
+        126.0,
+        180.0,
+        240.0
+      ],
+      "maximumGapSeconds": 240.0
+    },
+    {
+      "sha256": "78790d7a8c1b5ac9285b43cc889f8d3272385b2afda1289e95300049283acdad",
+      "creation_date": "2026-10-02T16:36:47.957+00:00",
+      "start_time": "2026-10-02T14:00:00+00:00",
+      "stop_time": "2026-10-17T14:00:00+00:00",
+      "last_retrieved_at": "2026-10-03T19:12:02.137891+00:00",
+      "http_last_modified": "2026-10-02T16:17:53+00:00",
+      "frame": [
+        "EME2000"
+      ],
+      "timeSystem": [
+        "UTC"
+      ],
+      "object": [
+        "ISS"
+      ],
+      "sampleCount": 5403,
+      "firstVector": "2026-10-02T14:00:00+00:00",
+      "lastVector": "2026-10-17T14:00:00+00:00",
+      "cadenceSeconds": [
+        44.0,
+        60.0,
+        136.0,
+        240.0
+      ],
+      "maximumGapSeconds": 240.0
+    }
+  ],
+  "crewEarliestEffectiveAt": "2026-10-02T02:01:55Z",
+  "crewStructuredFirstCapture": "2026-10-03T10:30:18.796289Z",
+  "gateRecordedBeforeImplementation": "FULL"
+}

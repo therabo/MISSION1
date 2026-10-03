@@ -262,7 +262,7 @@ public class CrewRestQueryService {
                 evidence);
     }
 
-    private static CrewResponses.Expedition expedition(CrewSourceSnapshot s) {
+    public static CrewResponses.Expedition expedition(CrewSourceSnapshot s) {
         if (s == null || s.expeditions().isEmpty()) return null;
         var e = s.expeditions().getFirst();
         return new CrewResponses.Expedition(
@@ -348,7 +348,7 @@ public class CrewRestQueryService {
                         .toList());
     }
 
-    private static Assertion assertion(CrewVerificationEvidence e) {
+    public static Assertion assertion(CrewVerificationEvidence e) {
         return new Assertion(
                 e.observation().source().name(),
                 e.sourceType().name(),
@@ -359,12 +359,12 @@ public class CrewRestQueryService {
                 observation(e.observation(), e.sourceType().name()));
     }
 
-    private static Observation observation(CrewSourceObservation o) {
+    public static Observation observation(CrewSourceObservation o) {
         return observation(
                 o, o.source() == CrewSource.NASA_OFFICIAL ? "NASA_ISS_OPERATIONAL_FEED" : null);
     }
 
-    private static Observation observation(CrewSourceObservation o, String sourceType) {
+    public static Observation observation(CrewSourceObservation o, String sourceType) {
         return new Observation(
                 o.source().name(),
                 sourceType,
@@ -377,27 +377,27 @@ public class CrewRestQueryService {
                 o.adapterVersion());
     }
 
-    private static List<CrewResponses.ExternalId> externalIds(
+    public static List<CrewResponses.ExternalId> externalIds(
             List<org.mission1.crew.domain.ExternalId> ids) {
         return ids.stream()
                 .map(x -> new CrewResponses.ExternalId(x.source().name(), x.value()))
                 .toList();
     }
 
-    private static CrewResponses.Agency agency(org.mission1.crew.domain.Agency a) {
+    public static CrewResponses.Agency agency(org.mission1.crew.domain.Agency a) {
         return a == null
                 ? null
                 : new CrewResponses.Agency(
                         a.name(), a.abbreviation(), a.type(), externalIds(a.externalIds()));
     }
 
-    private static List<CrewResponses.Nationality> nationalities(AstronautProfile p) {
+    public static List<CrewResponses.Nationality> nationalities(AstronautProfile p) {
         return p.nationalities().stream()
                 .map(n -> new CrewResponses.Nationality(n.alpha2(), n.alpha3(), n.displayName()))
                 .toList();
     }
 
-    private static Media media(CrewMediaAsset m) {
+    public static Media media(CrewMediaAsset m) {
         return m == null
                 ? null
                 : new Media(
@@ -409,7 +409,7 @@ public class CrewRestQueryService {
                         m.singleUse());
     }
 
-    private static Career career(CareerStatistics c) {
+    public static Career career(CareerStatistics c) {
         return c == null
                 ? null
                 : new Career(

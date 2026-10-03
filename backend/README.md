@@ -211,3 +211,8 @@ MISSION1_CREW_EVENT_LIVE_VALIDATION=1 java -cp "target/classes:target/test-class
 ```
 
 This probe disables all automatic source schedules, migrates the configured PostgreSQL database to V5, persists one calendar request and one roster request, then checks the accepted NASA conditional pipeline (one request, with a second only following 200). It has no retries or enrichment. The result report retains URI, timestamps, hash, candidate history and sync-run lineage. Use a disposable database for repeat experiments; do not run this as a default test or startup hook.
+
+
+## Replay integration — 2026-10-03
+
+Read-only Mission Replay endpoints are available at /api/iss/replay?at=<UTC instant> and /api/iss/replay/coverage. They use retained source/evidence only, with independent Crew/orbit availability. Configure mission1.replay.gp-max-offset (default PT24H, positive and at most PT24H). [Contract](../docs/api/replay-api.md).

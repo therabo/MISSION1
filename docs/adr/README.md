@@ -18,3 +18,5 @@ These decisions govern the V1 design baseline. Material changes get a new ADR; a
 ADR-0006 now records the 2026-09-30 visual-frame/rear-camera clarification and additive ITRF velocity delivery; source separation and unavailable onboard attitude remain. No new ADR or RTN implementation is introduced.
 
 Its 2026-10-01 perceptual pacing clarification rejects strict constant Cartesian speed, retains cubic/display-target geometry, and documents the camera metric and temporary presentation continuity on OEM loss. Source classifications and physical delivery remain unchanged.
+
+- [ADR-0011: Query-time effective-time Mission Replay](0011-effective-time-mission-replay.md) — Accepted.

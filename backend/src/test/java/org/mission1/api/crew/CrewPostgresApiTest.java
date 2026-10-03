@@ -444,7 +444,16 @@ class CrewPostgresApiTest {
                                                     isolation.add(
                                                             connection.getTransactionIsolation());
                                                 }
-                                                return invoke(m, connection, a);
+                                                Object called = invoke(m, connection, a);
+                                                if (called instanceof java.sql.Statement statement && m.getName().equals("createStatement"))
+                                                    return Proxy.newProxyInstance(java.sql.Statement.class.getClassLoader(), new Class<?>[]{java.sql.Statement.class},
+                                                            (sp, sm, sa) -> {
+                                                                if (enabled && sm.getName().startsWith("execute") && sa != null && sa.length > 0 && sa[0] instanceof String query) {
+                                                                    sql.add(query); readOnly.add(connection.isReadOnly()); isolation.add(connection.getTransactionIsolation());
+                                                                }
+                                                                return invoke(sm, statement, sa);
+                                                            });
+                                                return called;
                                             });
                                 return result;
                             });

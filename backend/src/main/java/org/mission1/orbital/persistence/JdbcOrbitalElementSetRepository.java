@@ -122,6 +122,12 @@ public class JdbcOrbitalElementSetRepository implements OrbitalElementSetReposit
                 this::mapStored, limit);
     }
 
+    @Override
+    public List<Stored> history() {
+        return jdbc.query(SELECT_WITH_LATEST_OBSERVATION + OBSERVATION_END
+                + "WHERE s.catalog_number = 25544 ORDER BY s.element_epoch, s.sha256", this::mapStored);
+    }
+
     private Optional<Stored> findByIdentity(String provider, int catalog, String hash) {
         return one(SELECT_WITH_LATEST_OBSERVATION + OBSERVATION_END
                 + "WHERE s.provider = ? AND s.catalog_number = ? AND s.sha256 = ?",
