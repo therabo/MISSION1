@@ -99,8 +99,8 @@ Crew track:
 
 1. **Done:** source validation + domain contract.
 2. **Done:** [ingestion + PostgreSQL persistence](../crew/persistence-and-ingestion.md), with sync runs, immutable observations and UUID anchors under ADR-0008.
-3. **Next:** NASA CREW VERIFICATION + RECONCILIATION.
-4. **Future:** REST API.
+3. **Done:** [NASA verification + reconciliation](../crew/nasa-verification-and-reconciliation.md), immutable evidence and temporal canonical queries under ADR-0009.
+4. **Next:** ISS CREW REST API.
 5. **Future:** Earth View Crew UI.
 6. **Future:** event-aware refresh.
 7. **Future:** Replay integration.

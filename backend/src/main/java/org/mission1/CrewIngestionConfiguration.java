@@ -26,7 +26,9 @@ class CrewIngestionConfiguration {
     }
     @Bean
     @ConditionalOnProperty(name = "mission1.crew.ingestion.enabled", havingValue = "true", matchIfMissing = true)
-    CrewIngestionScheduler crewIngestionScheduler(CrewIngestionService service) {
-        return new CrewIngestionScheduler(service);
+    CrewIngestionScheduler crewIngestionScheduler(CrewIngestionService service, org.springframework.beans.factory.ObjectProvider<CrewReconciliationService> reconciliation) {
+        return new CrewIngestionScheduler(service, () -> {
+            var next = reconciliation.getIfAvailable(); if (next != null) next.reconcile();
+        });
     }
 }

@@ -14,7 +14,7 @@ Foreign keys use default NO ACTION, with no destructive cascades. Database trigg
 
 The single-instance coordinator prevents concurrent network/persistence work. Scheduled policy is enabled by configuration, fixed delay PT2H and initial delay PT5M; tests disable it. Persisted attempt times protect restart loops, and persisted Retry-After suppresses all calls before eligibility. Skips are recorded separately from source outcomes and do not move the last actual fetch attempt. There are zero retries per run and one LL2 expedition request, with no automatic astronaut enrichment. Multi-node scheduler ownership is deferred until deployment requires it.
 
-Only AVAILABLE, complete, single-expedition observations are stored as graphs. NO_ACTIVE_EXPEDITION, AMBIGUOUS, malformed, HTTP/network failures and rate limits remain run history and preserve the last successful graph. Fresh retrieval means recently fetched LL2 observations, never authoritative physical presence. LL2 in_space is profile data only. No StationPresence table, canonical roster, NASA semantic parser/scheduler, reconciliation, Crew REST, frontend, events or Replay UI is introduced.
+Only AVAILABLE, complete, single-expedition observations are stored as graphs. NO_ACTIVE_EXPEDITION, AMBIGUOUS, malformed, HTTP/network failures and rate limits remain run history and preserve the last successful graph. Fresh retrieval means recently fetched LL2 observations, never authoritative physical presence. LL2 in_space is profile data only. The V3 milestone introduced no canonical presence. V4 now adds NASA verification and derived presence, as documented below; Crew REST/frontend remain future.
 
 Implementation is complete. See [acceptance evidence](ingestion-validation/README.md) for the dated offline, PostgreSQL and live gates.
 
@@ -66,8 +66,33 @@ The database transaction advisory lock `(73491,1)` serializes Crew identity allo
 
 A 429 persists HTTP status, raw Retry-After and parsed eligibility (delta seconds relative to receipt, or HTTP-date). Before eligibility, an invocation records SKIPPED_RATE_LIMIT without HTTP. Missing/malformed headers apply PT2H fallback backoff, explicitly local policy; expired headers do not impose a new delay. Scheduled timeout/5xx/network/malformed/no-active/ambiguity waits until normal eligibility. Skips are observable and do not postpone actual-attempt eligibility. There is no retry loop.
 
-A fresh snapshot remains an LL2 structured observation. Source publication/event times remain null unless actually supplied; no Crew TTL or canonical truth quality is fabricated. `in_space` exists only in the source profile observation. NASA contracts stay intact, with no NASA parser or scheduler, canonical StationPresence/current roster, REST/UI, docking/event trigger or Replay implementation.
+A fresh snapshot remains an LL2 structured observation. Source publication/event times remain null unless actually supplied; no Crew TTL or canonical truth quality is fabricated. `in_space` exists only in the source profile observation. NASA contracts stay intact and are now implemented by the independent V4 pipeline below. REST/UI, docking-triggered refresh and Replay remain future.
 
 ## Developer verification
 
 Use the existing `docker compose up -d --wait postgres`, Java 21 `mvn test` and `mvn verify` workflow. Testcontainers uses PostgreSQL 16.10, not H2. Default tests disable external scheduling and use recorded source fixtures, loopback HTTP or mocks. The opt-in `LiveCrewValidation ... --persist` command is documented in [backend README](../../backend/README.md#crew-ingestion-and-postgresql-history--2026-10-03). It boots non-web with both schedulers off, migrates, runs one ingestion, writes a report outside Git and stops. Do not repeat it as a polling loop. Provision a separate validation DB and set `MISSION1_DB_URL` when isolating live acceptance data.
+
+## NASA verification extension — Flyway V4, 2026-10-03
+
+The accepted V3 LL2 graph/repository/source and request budget are retained. V4 adds:
+
+| Table | Immutable history responsibility |
+| --- | --- |
+| crew_document_body | Exact raw feed bytes by SHA-256, 1–2 MiB accepted bound. |
+| crew_source_document | URL/hash/parser version, first retrieval/HTTP metadata and parsed eligibility. |
+| crew_verification_evidence | Typed semantic assertions, article publication/event times, excerpts and parser version. |
+| crew_evidence_subject | Original named subjects, external IDs and validated profile link. |
+| crew_document_evidence | Same semantic assertion in later feed captures. |
+| crew_identity_resolution | Audited subject→UUID or unresolved/ambiguous decision. |
+| crew_reconciliation_run | Operational derived attempt/completion/failure. |
+| crew_reconciliation_snapshot | Deduplicated immutable interpretation and algorithm/input context. |
+| crew_reconciliation_evidence | Exact assertion inputs. |
+| crew_reconciliation_resolution | Exact identity decision inputs. |
+| crew_reconciled_person | Derived presence/last-known/assignment/as-of state per UUID. |
+| crew_reconciled_person_evidence | Per-person supporting assertion lineage. |
+
+Existing crew_source_sync_run gains verification_document_id; LL2 success still requires its source snapshot and NASA success its parsed document. Source acquisition and resolution reuse existing person UUID/external-ID anchors; no LL2 field is mutated. Source documents/evidence/subjects/associations commit together; individual resolution audits and derived graph completion are separate transactions. Source failure keeps the prior successful capture. FK/unique/check constraints, indexes for URL/hash/version, time, subject resolution and successful reconciliation protect integrity. UPDATE/DELETE history triggers and restrictive FKs forbid accidental destructive edits. V1/V2/V3 files are byte-identical to the accepted baseline.
+
+Unchanged 200/304 produce new fetch runs but no new body/evidence graph. Changed content stores a new document, reusing unchanged semantic assertions with associations. Changed interpretation/policy version creates a new derived snapshot; identical interpretation reuses it while operational runs accumulate. Raw bytes remain in PostgreSQL TOAST for parser replay/audit; no source archive service, compression job or retention deletion is introduced.
+
+NASA scheduling and canonical query semantics, including normal PT2H/PT10M delays, startup isolation, durable rate limits, process-local overlap and the deferred stale-run ownership decision, are defined in [the authoritative NASA design](nasa-verification-and-reconciliation.md). The query is internal; no Crew API/UI exists. History reads use batch queries; current evaluation currently reads retained assertions and may require indexed projection/retention design if history becomes large. [Real PostgreSQL and live evidence](reconciliation-validation/README.md).

@@ -1,0 +1,1087 @@
+{
+  "baseline": "c2ada2b1ae76b3d49090ffb9b050ba679d0b2d44",
+  "filesChecked": 144,
+  "allUnchanged": true,
+  "frontendFiles": 92,
+  "backendFrozenFiles": 52,
+  "files": [
+    {
+      "path": "backend/src/main/java/org/mission1/CelesTrakRefreshScheduler.java",
+      "baselineBlob": "e558c8e50c94ad578e17f4a29a54f87b22cbb780",
+      "currentBlob": "e558c8e50c94ad578e17f4a29a54f87b22cbb780",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/Mission1Application.java",
+      "baselineBlob": "c904d519e0c8cba2e622737c6b383d5edf8abd9a",
+      "currentBlob": "c904d519e0c8cba2e622737c6b383d5edf8abd9a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/OrbitalConfiguration.java",
+      "baselineBlob": "f769a5e26ec49e2037113aaa53bac1260e9c718f",
+      "currentBlob": "f769a5e26ec49e2037113aaa53bac1260e9c718f",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateController.java",
+      "baselineBlob": "bf676a6d0db8019eda8c7e4d66c8969d5c660f2b",
+      "currentBlob": "bf676a6d0db8019eda8c7e4d66c8969d5c660f2b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateErrors.java",
+      "baselineBlob": "5ce8d10b0b98363a1e1c5e215f9ac72e0c592001",
+      "currentBlob": "5ce8d10b0b98363a1e1c5e215f9ac72e0c592001",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/CurrentOrbitalStateResponse.java",
+      "baselineBlob": "41d684868b08c49d2af8e51b53422c40b7f05b80",
+      "currentBlob": "41d684868b08c49d2af8e51b53422c40b7f05b80",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalComparisonResponse.java",
+      "baselineBlob": "dc1d1cf0961633e9f769b89cc6d4ea3d6b1bea25",
+      "currentBlob": "dc1d1cf0961633e9f769b89cc6d4ea3d6b1bea25",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalSamplesController.java",
+      "baselineBlob": "526c665cb3e6432b4b5a44a7bf887049080a96fd",
+      "currentBlob": "526c665cb3e6432b4b5a44a7bf887049080a96fd",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/api/OrbitalSamplesResponse.java",
+      "baselineBlob": "ab115fdda23c9c367821b9c9e46a850aca1c08c6",
+      "currentBlob": "ab115fdda23c9c367821b9c9e46a850aca1c08c6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshPolicy.java",
+      "baselineBlob": "97233cfa382a0ca077fd57f9a42c385a04a259c7",
+      "currentBlob": "97233cfa382a0ca077fd57f9a42c385a04a259c7",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshResult.java",
+      "baselineBlob": "3c47dc276807bb40afdf495a152b76aececc94a8",
+      "currentBlob": "3c47dc276807bb40afdf495a152b76aececc94a8",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakRefreshService.java",
+      "baselineBlob": "dafcff3098adc2ca42b28d8271c55220db44ef4b",
+      "currentBlob": "dafcff3098adc2ca42b28d8271c55220db44ef4b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CelesTrakSourceHealthTracker.java",
+      "baselineBlob": "786cf51fefef835287fb5abc7d3670dbe7a1a682",
+      "currentBlob": "786cf51fefef835287fb5abc7d3670dbe7a1a682",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CurrentOrbitalStateCalculationException.java",
+      "baselineBlob": "27753b5223f46c965f996453152f62a340e38e51",
+      "currentBlob": "27753b5223f46c965f996453152f62a340e38e51",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/CurrentOrbitalStateService.java",
+      "baselineBlob": "bd1d81fe86a1132f76f7c46953664f9eac589638",
+      "currentBlob": "bd1d81fe86a1132f76f7c46953664f9eac589638",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/InvalidOrbitalSampleRequestException.java",
+      "baselineBlob": "79f2261621a58ced5f7132d95ae557fb791566c1",
+      "currentBlob": "79f2261621a58ced5f7132d95ae557fb791566c1",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/NoCurrentOrbitalStateException.java",
+      "baselineBlob": "de9224cc40414a304f26eab7a427b011fe8600ef",
+      "currentBlob": "de9224cc40414a304f26eab7a427b011fe8600ef",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalElementSetRepository.java",
+      "baselineBlob": "66c6755376d20d5ae88137d066a989cfdffd3de0",
+      "currentBlob": "66c6755376d20d5ae88137d066a989cfdffd3de0",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalElementsSource.java",
+      "baselineBlob": "6d7ae722f765c8d67eb11578f6b5bd2faabe995a",
+      "currentBlob": "6d7ae722f765c8d67eb11578f6b5bd2faabe995a",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalFreshnessPolicy.java",
+      "baselineBlob": "eb9cb9c249a398c6655be36b0af8c7b4e1ccaac6",
+      "currentBlob": "eb9cb9c249a398c6655be36b0af8c7b4e1ccaac6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalQualityEvaluator.java",
+      "baselineBlob": "e9e18f516ad587da791a743466178eb0582d403f",
+      "currentBlob": "e9e18f516ad587da791a743466178eb0582d403f",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalSampleWindow.java",
+      "baselineBlob": "ddcf51ff069644ef056caf226900cd26e5e5c952",
+      "currentBlob": "ddcf51ff069644ef056caf226900cd26e5e5c952",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/application/OrbitalSampleWindowService.java",
+      "baselineBlob": "5fc078090d34bf4e0156962e6dd184197fd507f4",
+      "currentBlob": "5fc078090d34bf4e0156962e6dd184197fd507f4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/CartesianState.java",
+      "baselineBlob": "4c8362ec3da3d41186c6e440d2e295d26ba77dbd",
+      "currentBlob": "4c8362ec3da3d41186c6e440d2e295d26ba77dbd",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/DataClassification.java",
+      "baselineBlob": "7609a392df187ec684c65cf56af211e9ce86d7d4",
+      "currentBlob": "7609a392df187ec684c65cf56af211e9ce86d7d4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/GeodeticPoint.java",
+      "baselineBlob": "bfd5f41a38d7319c1c8de716b2a1b66b8e33a5b9",
+      "currentBlob": "bfd5f41a38d7319c1c8de716b2a1b66b8e33a5b9",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalElementSet.java",
+      "baselineBlob": "1079afcfee1c88aeac5cbf5e380b529ab6da011c",
+      "currentBlob": "1079afcfee1c88aeac5cbf5e380b529ab6da011c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalEvaluation.java",
+      "baselineBlob": "00d3dbcc6704fb8e2a0cd418d97f7f062e5ee145",
+      "currentBlob": "00d3dbcc6704fb8e2a0cd418d97f7f062e5ee145",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalQualityReason.java",
+      "baselineBlob": "f780997602ff59f351525b255805747054853430",
+      "currentBlob": "f780997602ff59f351525b255805747054853430",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/OrbitalState.java",
+      "baselineBlob": "005bb654105ee323f52dd149d475a72875a9b062",
+      "currentBlob": "005bb654105ee323f52dd149d475a72875a9b062",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/Quality.java",
+      "baselineBlob": "d0aaa30e3a9ba173ba6f875ca2839289046895c6",
+      "currentBlob": "d0aaa30e3a9ba173ba6f875ca2839289046895c6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/SourceAcquisitionHealth.java",
+      "baselineBlob": "4ce6cb72ac4df2221834a68dc14e308573add414",
+      "currentBlob": "4ce6cb72ac4df2221834a68dc14e308573add414",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/SourceFailureCategory.java",
+      "baselineBlob": "8f891c4b7f59450cfe118121fce17a4ee70f9d48",
+      "currentBlob": "8f891c4b7f59450cfe118121fce17a4ee70f9d48",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/domain/Vector3.java",
+      "baselineBlob": "0a680ba79932d54b4c8c9392f0295c765bb5f9ac",
+      "currentBlob": "0a680ba79932d54b4c8c9392f0295c765bb5f9ac",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemDocument.java",
+      "baselineBlob": "c103af6d55181dc315678ae3c00a0607e575b0ca",
+      "currentBlob": "c103af6d55181dc315678ae3c00a0607e575b0ca",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemRepository.java",
+      "baselineBlob": "967f164e85f730f4fbf8f181e4b3f59e62ec84f4",
+      "currentBlob": "967f164e85f730f4fbf8f181e4b3f59e62ec84f4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/oem/NasaOemTrajectoryService.java",
+      "baselineBlob": "0637ec36a10bd35778387d4e02873ce8de73f32c",
+      "currentBlob": "0637ec36a10bd35778387d4e02873ce8de73f32c",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/persistence/JdbcNasaOemRepository.java",
+      "baselineBlob": "6a2839a8f17dc9c755dee34b9e08d2e233a7a6b6",
+      "currentBlob": "6a2839a8f17dc9c755dee34b9e08d2e233a7a6b6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/persistence/JdbcOrbitalElementSetRepository.java",
+      "baselineBlob": "c1f14ad412d38a2ccc7aea2e40d96ac286d359ca",
+      "currentBlob": "c1f14ad412d38a2ccc7aea2e40d96ac286d359ca",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrbitalCalculationException.java",
+      "baselineBlob": "d143bb1a18aeb2efc6b3afa98e2ffc4086264997",
+      "currentBlob": "d143bb1a18aeb2efc6b3afa98e2ffc4086264997",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrekitData.java",
+      "baselineBlob": "f6d17d5d9d66de84adffc9305a1cc9192953c4b4",
+      "currentBlob": "f6d17d5d9d66de84adffc9305a1cc9192953c4b4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/OrekitOrbitalPropagator.java",
+      "baselineBlob": "764ef9155c52a3d9e072b138d604bd015c73f9bb",
+      "currentBlob": "764ef9155c52a3d9e072b138d604bd015c73f9bb",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/orbital/propagation/TleElementParser.java",
+      "baselineBlob": "756aa7daa0d864d5c5cd7388dacc97736b369d39",
+      "currentBlob": "756aa7daa0d864d5c5cd7388dacc97736b369d39",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/celestrak/CelesTrakOrbitalElementsSource.java",
+      "baselineBlob": "7e561f939612b8a2dd5f8ba9202fed338c69abfc",
+      "currentBlob": "7e561f939612b8a2dd5f8ba9202fed338c69abfc",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/celestrak/SourceFetchException.java",
+      "baselineBlob": "d08429afe5f675d546b31cfd5ca8fe11233a1820",
+      "currentBlob": "d08429afe5f675d546b31cfd5ca8fe11233a1820",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/nasa/NasaOemSource.java",
+      "baselineBlob": "c7b2bf4be33b29295f3f8f3917f1184c978943e4",
+      "currentBlob": "c7b2bf4be33b29295f3f8f3917f1184c978943e4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/orbital/nasa/NasaOemXmlParser.java",
+      "baselineBlob": "1ea049b9b4fa15d7840bcdd15ac6a2fa7716a0ae",
+      "currentBlob": "1ea049b9b4fa15d7840bcdd15ac6a2fa7716a0ae",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V1__orbital_element_history.sql",
+      "baselineBlob": "0eddbde422eaae535ca9c48652da7f381db1492b",
+      "currentBlob": "0eddbde422eaae535ca9c48652da7f381db1492b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V2__nasa_oem_ephemeris.sql",
+      "baselineBlob": "8bfbc29462971269e79f40ba2fd4a703d9ab9e48",
+      "currentBlob": "8bfbc29462971269e79f40ba2fd4a703d9ab9e48",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/db/migration/V3__crew_source_observation_history.sql",
+      "baselineBlob": "4e92f2b6f49667b4c2e8055990b42d50b62273bd",
+      "currentBlob": "4e92f2b6f49667b4c2e8055990b42d50b62273bd",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/orekit-data/finals2000A.all",
+      "baselineBlob": "c366ae70e6a39cd121c1f2a8b5e0e97d0a6c5522",
+      "currentBlob": "c366ae70e6a39cd121c1f2a8b5e0e97d0a6c5522",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/resources/orekit-data/tai-utc.dat",
+      "baselineBlob": "89d16226f380b98240d9e47de4a845396d3c0ac0",
+      "currentBlob": "89d16226f380b98240d9e47de4a845396d3c0ac0",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/.nvmrc",
+      "baselineBlob": "df6ae3370f9f89272d88629c442cf554d6c1f9fb",
+      "currentBlob": "df6ae3370f9f89272d88629c442cf554d6c1f9fb",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/README.md",
+      "baselineBlob": "f0069c75ff58d41bb09cebac421145e958f531b4",
+      "currentBlob": "f0069c75ff58d41bb09cebac421145e958f531b4",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/index.html",
+      "baselineBlob": "528333fee46986069960ad8a2e1b6bffc9415866",
+      "currentBlob": "528333fee46986069960ad8a2e1b6bffc9415866",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "baselineBlob": "fb14eebb5a90b5fca837b51af42219952fc66fc8",
+      "currentBlob": "fb14eebb5a90b5fca837b51af42219952fc66fc8",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/package.json",
+      "baselineBlob": "6629dfc306ebed0bb536a58bdbf3d9d97211d083",
+      "currentBlob": "6629dfc306ebed0bb536a58bdbf3d9d97211d083",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/imagery/black-marble-2016-color.jpg",
+      "baselineBlob": "bfe6cefcd30ae490899d87c160f1785fd45fc963",
+      "currentBlob": "bfe6cefcd30ae490899d87c160f1785fd45fc963",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/models/iss-vtad-source-png.glb",
+      "baselineBlob": "fad0fc95f75090dfe478792c43bcc15b3f193de2",
+      "currentBlob": "fad0fc95f75090dfe478792c43bcc15b3f193de2",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeX.png",
+      "baselineBlob": "e23546f3d7f24db14d4aac7ae75aeea985c8918c",
+      "currentBlob": "e23546f3d7f24db14d4aac7ae75aeea985c8918c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeY.png",
+      "baselineBlob": "db933a5c758d08c22df6985b9c6c5be682f2c1e1",
+      "currentBlob": "db933a5c758d08c22df6985b9c6c5be682f2c1e1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-negativeZ.png",
+      "baselineBlob": "07ffd949fad94c5d0bbe611e1d7fc8b5ce75c1b0",
+      "currentBlob": "07ffd949fad94c5d0bbe611e1d7fc8b5ce75c1b0",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveX.png",
+      "baselineBlob": "d0bc608c113471cbdcc138174595ef0e20a13079",
+      "currentBlob": "d0bc608c113471cbdcc138174595ef0e20a13079",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveY.png",
+      "baselineBlob": "b505fcf96f32607ffd46aacde2a27e17f8a17d31",
+      "currentBlob": "b505fcf96f32607ffd46aacde2a27e17f8a17d31",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/public/skybox/tycho-positiveZ.png",
+      "baselineBlob": "550d3c7805d07f84cad6ecb30134608cfe4572f9",
+      "currentBlob": "550d3c7805d07f84cad6ecb30134608cfe4572f9",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/scripts/add-verified-module-features.py",
+      "baselineBlob": "91a39a12e08d7387384ae23612421fc13058b9fa",
+      "currentBlob": "91a39a12e08d7387384ae23612421fc13058b9fa",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/scripts/generate-tycho-skybox.py",
+      "baselineBlob": "9d204a9b7c1baf1cadd374daa18ca8989fa9aead",
+      "currentBlob": "9d204a9b7c1baf1cadd374daa18ca8989fa9aead",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/scripts/research-decode-igoal-draco.cjs",
+      "baselineBlob": "2017cd1a05e2ca9d0c9ae18afab05706e7d2449f",
+      "currentBlob": "2017cd1a05e2ca9d0c9ae18afab05706e7d2449f",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/scripts/research-inspect-igoal-fbx.py",
+      "baselineBlob": "3e02ac1bf646158e0444e02b98c0cb57154f0bd1",
+      "currentBlob": "3e02ac1bf646158e0444e02b98c0cb57154f0bd1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/scripts/research-iss-geometry-registration.py",
+      "baselineBlob": "f398b8521dbfe9e8c285b7461e76404b18ee313a",
+      "currentBlob": "f398b8521dbfe9e8c285b7461e76404b18ee313a",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "baselineBlob": "99d073541d3f1681db1a93e1cbe131cb22f6756c",
+      "currentBlob": "99d073541d3f1681db1a93e1cbe131cb22f6756c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/api/orbitalApi.test.ts",
+      "baselineBlob": "ebd0d3a1e737c21b1db5708f7c1eebe9688ef30b",
+      "currentBlob": "ebd0d3a1e737c21b1db5708f7c1eebe9688ef30b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/api/orbitalApi.ts",
+      "baselineBlob": "7c0c4158b9159e2923b3a28a09f4c541cf944dd5",
+      "currentBlob": "7c0c4158b9159e2923b3a28a09f4c541cf944dd5",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/api/useComparisonDelivery.ts",
+      "baselineBlob": "ad3bf29ec0b6baabb2ff71d6ae2bbadeff519146",
+      "currentBlob": "ad3bf29ec0b6baabb2ff71d6ae2bbadeff519146",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/api/useOrbitalDelivery.ts",
+      "baselineBlob": "4844266a2f2af120fc8621ece73d3db3fb832a19",
+      "currentBlob": "4844266a2f2af120fc8621ece73d3db3fb832a19",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/EarthView.tsx",
+      "baselineBlob": "872fd16f685065cf44388204bee078c4b3a0b18c",
+      "currentBlob": "872fd16f685065cf44388204bee078c4b3a0b18c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/arcLengthPath.test.ts",
+      "baselineBlob": "10c164e107211ce35c52cb7bd51563a7afc09cfd",
+      "currentBlob": "10c164e107211ce35c52cb7bd51563a7afc09cfd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/arcLengthPath.ts",
+      "baselineBlob": "e77567157d1b001baabca2f9b728f1d311e3f695",
+      "currentBlob": "e77567157d1b001baabca2f9b728f1d311e3f695",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/cameraPose.ts",
+      "baselineBlob": "333806d33065b70eff6f6606077cf60ede91c374",
+      "currentBlob": "333806d33065b70eff6f6606077cf60ede91c374",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/displayIsolation.test.ts",
+      "baselineBlob": "10f69c4a5d17f9306b11eff99ef2c4239de8438d",
+      "currentBlob": "10f69c4a5d17f9306b11eff99ef2c4239de8438d",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/displayRetarget.test.ts",
+      "baselineBlob": "e8b3ab204dd3e9d1e9817075923f826ccd70b660",
+      "currentBlob": "e8b3ab204dd3e9d1e9817075923f826ccd70b660",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/displayRetarget.ts",
+      "baselineBlob": "73e9c0a602d054f310f1510fcb1abcecb4a535db",
+      "currentBlob": "73e9c0a602d054f310f1510fcb1abcecb4a535db",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/earthImagery.ts",
+      "baselineBlob": "48651655d2d55dffa5d3557f1553e3754c32d230",
+      "currentBlob": "48651655d2d55dffa5d3557f1553e3754c32d230",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/earthLighting.test.ts",
+      "baselineBlob": "4c3cdc3483aa5c01590d3cead72c4ffe5ce75223",
+      "currentBlob": "4c3cdc3483aa5c01590d3cead72c4ffe5ce75223",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/earthLighting.ts",
+      "baselineBlob": "bfc62b3e9276b311ad159740dc753d2e7d0bfef6",
+      "currentBlob": "bfc62b3e9276b311ad159740dc753d2e7d0bfef6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/earthViewPresentation.test.ts",
+      "baselineBlob": "a6a978f849e4be5eabac766c5afe4c980d975b10",
+      "currentBlob": "a6a978f849e4be5eabac766c5afe4c980d975b10",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/earthViewPresentation.ts",
+      "baselineBlob": "093a59351ec6f6894f01a81f72378fc4dca94a0e",
+      "currentBlob": "093a59351ec6f6894f01a81f72378fc4dca94a0e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/graphicsAssets.test.ts",
+      "baselineBlob": "991b87c111a36508518296f37acaaa0d5c8f6531",
+      "currentBlob": "991b87c111a36508518296f37acaaa0d5c8f6531",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/graphicsQuality.ts",
+      "baselineBlob": "cd98d7e31148c145d6f43ecf0f309e305927043e",
+      "currentBlob": "cd98d7e31148c145d6f43ecf0f309e305927043e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionAntialiasing.ts",
+      "baselineBlob": "fb689d5ee75bdc14198030ebd6c0886f5aeea66e",
+      "currentBlob": "fb689d5ee75bdc14198030ebd6c0886f5aeea66e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionControls.ts",
+      "baselineBlob": "6be7456b3ec7b6de375e599c8783a6da321f92c3",
+      "currentBlob": "6be7456b3ec7b6de375e599c8783a6da321f92c3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionMode.test.ts",
+      "baselineBlob": "a18d028b3f1ae96b56a005d19ddf6ab8d7f12cad",
+      "currentBlob": "a18d028b3f1ae96b56a005d19ddf6ab8d7f12cad",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionMode.ts",
+      "baselineBlob": "1aedd2adc8ec03b170bb8d412ed41dc086161eb3",
+      "currentBlob": "1aedd2adc8ec03b170bb8d412ed41dc086161eb3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionRenderingWarmup.test.ts",
+      "baselineBlob": "ce0570ba5f5f9e6c26fedf3149620e1a9f0c4f37",
+      "currentBlob": "ce0570ba5f5f9e6c26fedf3149620e1a9f0c4f37",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionRenderingWarmup.ts",
+      "baselineBlob": "8ee3a189e19687844e16bae756210d0a4be2d1c2",
+      "currentBlob": "8ee3a189e19687844e16bae756210d0a4be2d1c2",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionTransition.test.ts",
+      "baselineBlob": "42c8fcbbdb0d6fc2a69dff575ca2a272288bc5dd",
+      "currentBlob": "42c8fcbbdb0d6fc2a69dff575ca2a272288bc5dd",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/inspectionTransition.ts",
+      "baselineBlob": "4b1908dd15e834ee3cbcb71b5e8e14c13f8430ae",
+      "currentBlob": "4b1908dd15e834ee3cbcb71b5e8e14c13f8430ae",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/issMaterialQuality.ts",
+      "baselineBlob": "988f322bdf8dae570f70fde3184daceb818537f5",
+      "currentBlob": "988f322bdf8dae570f70fde3184daceb818537f5",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/issModelManifest.json",
+      "baselineBlob": "7b69b5da251d45a58259b300d68893deb9a5a083",
+      "currentBlob": "7b69b5da251d45a58259b300d68893deb9a5a083",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/modelPresentation.test.ts",
+      "baselineBlob": "fbb510cad5c1125017ea5efa571eb5c6ca5e652c",
+      "currentBlob": "fbb510cad5c1125017ea5efa571eb5c6ca5e652c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/modelPresentation.ts",
+      "baselineBlob": "186d2ab405f5999ab7587c5b025cf5184830a6a6",
+      "currentBlob": "186d2ab405f5999ab7587c5b025cf5184830a6a6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/perceptualPath.test.ts",
+      "baselineBlob": "8e69142719d74bcc931969a0bbb5cf0008c5645f",
+      "currentBlob": "8e69142719d74bcc931969a0bbb5cf0008c5645f",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/perceptualPath.ts",
+      "baselineBlob": "1aef6ff552449375565da40527e0b5b03c9ec722",
+      "currentBlob": "1aef6ff552449375565da40527e0b5b03c9ec722",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/sampleProperty.test.ts",
+      "baselineBlob": "5dafd2bdcaa7d9c8d58c474bab0a8704380c78a2",
+      "currentBlob": "5dafd2bdcaa7d9c8d58c474bab0a8704380c78a2",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/sampleProperty.ts",
+      "baselineBlob": "13aeb6608460c9d852a6570158e9a4cf82faeaf3",
+      "currentBlob": "13aeb6608460c9d852a6570158e9a4cf82faeaf3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/skyRenderingWarmup.test.ts",
+      "baselineBlob": "64bbd2d9ed23c785c0f8641e8616e71fb787acc3",
+      "currentBlob": "64bbd2d9ed23c785c0f8641e8616e71fb787acc3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/skyRenderingWarmup.ts",
+      "baselineBlob": "7365368cc31ed151f4c6719c7ee873b0e9503bb3",
+      "currentBlob": "7365368cc31ed151f4c6719c7ee873b0e9503bb3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/skyboxManifest.json",
+      "baselineBlob": "625b2303b16dcce29e2f9838bf37d807218316d9",
+      "currentBlob": "625b2303b16dcce29e2f9838bf37d807218316d9",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryAppearance.ts",
+      "baselineBlob": "da3dc03df34468b1a3f88d7b485573e55a65b1ef",
+      "currentBlob": "da3dc03df34468b1a3f88d7b485573e55a65b1ef",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryClearance.test.ts",
+      "baselineBlob": "26325f43de8c259f4ebb4c333ea4be8d77283c11",
+      "currentBlob": "26325f43de8c259f4ebb4c333ea4be8d77283c11",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryClearance.ts",
+      "baselineBlob": "d6235dfb14635be49d07a42ed9a59d4328a2bfa1",
+      "currentBlob": "d6235dfb14635be49d07a42ed9a59d4328a2bfa1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryCoverage.ts",
+      "baselineBlob": "8f1171d5955fa4b4c55afed6b6472baf5da21f8b",
+      "currentBlob": "8f1171d5955fa4b4c55afed6b6472baf5da21f8b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryGeometry.test.ts",
+      "baselineBlob": "5c5e0272ca575125d7bcfae6c5b867c865a2bdb8",
+      "currentBlob": "5c5e0272ca575125d7bcfae6c5b867c865a2bdb8",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryGeometry.ts",
+      "baselineBlob": "df07e1f50a446c750838e32b1c0d8079f150e34a",
+      "currentBlob": "df07e1f50a446c750838e32b1c0d8079f150e34a",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryOrientation.test.ts",
+      "baselineBlob": "5aa8009a91404a9a788ba5dd767e900eaf0411f5",
+      "currentBlob": "5aa8009a91404a9a788ba5dd767e900eaf0411f5",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryOrientation.ts",
+      "baselineBlob": "c02dfd6afb225e3172a250e418511d6e916e49d8",
+      "currentBlob": "c02dfd6afb225e3172a250e418511d6e916e49d8",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryRendering.test.ts",
+      "baselineBlob": "b8438cdfd78891d403c771646b4f2c598bf87095",
+      "currentBlob": "b8438cdfd78891d403c771646b4f2c598bf87095",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryRendering.ts",
+      "baselineBlob": "017303ae3c3c6bd3ed3414ec32079bf60d167958",
+      "currentBlob": "017303ae3c3c6bd3ed3414ec32079bf60d167958",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectorySelection.test.ts",
+      "baselineBlob": "07b51ddc30a6a73c62061fcc79d399f427825ccf",
+      "currentBlob": "07b51ddc30a6a73c62061fcc79d399f427825ccf",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectorySelection.ts",
+      "baselineBlob": "d008db6b782cec15bcd2c3a487cabb11fe21d3e3",
+      "currentBlob": "d008db6b782cec15bcd2c3a487cabb11fe21d3e3",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryVisibility.test.ts",
+      "baselineBlob": "b3ec179998ebabf56f7e71f91c8764b28b172012",
+      "currentBlob": "b3ec179998ebabf56f7e71f91c8764b28b172012",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/trajectoryVisibility.ts",
+      "baselineBlob": "dbf14fa9db94dbbb34a3e6aafeec518b81a3b82b",
+      "currentBlob": "dbf14fa9db94dbbb34a3e6aafeec518b81a3b82b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/transitionComposition.ts",
+      "baselineBlob": "2549cfb2f215f23c3171591e5ad340afb8f5190c",
+      "currentBlob": "2549cfb2f215f23c3171591e5ad340afb8f5190c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/transitionFocus.test.ts",
+      "baselineBlob": "59ee3a5b73c175c9d2e763c93ee511c87405228c",
+      "currentBlob": "59ee3a5b73c175c9d2e763c93ee511c87405228c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/velocityProperty.ts",
+      "baselineBlob": "7df4b2f259cc1fdedfb3b19e397873caa1183584",
+      "currentBlob": "7df4b2f259cc1fdedfb3b19e397873caa1183584",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/cesium/visualWindow.ts",
+      "baselineBlob": "7b2f477cf9c19050d0f65207a01e214325d0a208",
+      "currentBlob": "7b2f477cf9c19050d0f65207a01e214325d0a208",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/ModuleInfo.test.tsx",
+      "baselineBlob": "a833bddcdab6259efc88009596f13cc38a1ee864",
+      "currentBlob": "a833bddcdab6259efc88009596f13cc38a1ee864",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/ModuleInfo.tsx",
+      "baselineBlob": "f93bdb7714335fc0dd97c724a5be2de7b4a11876",
+      "currentBlob": "f93bdb7714335fc0dd97c724a5be2de7b4a11876",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/OrbitalStatus.tsx",
+      "baselineBlob": "0b89e8a48bec42c6a920ca2c761fbf70288f5f4f",
+      "currentBlob": "0b89e8a48bec42c6a920ca2c761fbf70288f5f4f",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/TrajectorySelector.test.tsx",
+      "baselineBlob": "f3f86794272095172b94374197587379b0a9d02b",
+      "currentBlob": "f3f86794272095172b94374197587379b0a9d02b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/TrajectorySelector.tsx",
+      "baselineBlob": "787440f91df4b2645edf11343caffc9ff790da3b",
+      "currentBlob": "787440f91df4b2645edf11343caffc9ff790da3b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "baselineBlob": "9a302348ad04846674fab5fcfff299289534e63c",
+      "currentBlob": "9a302348ad04846674fab5fcfff299289534e63c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/bufferState.test.ts",
+      "baselineBlob": "4a6600d6b9ec1f633934e282bcd24c85fa58e060",
+      "currentBlob": "4a6600d6b9ec1f633934e282bcd24c85fa58e060",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/bufferState.ts",
+      "baselineBlob": "0ba4ef0cd70ef3671f715064e47abb860e4d92b2",
+      "currentBlob": "0ba4ef0cd70ef3671f715064e47abb860e4d92b2",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/comparison.test.ts",
+      "baselineBlob": "1264ec921f23da7a3bef3cc8cca14b6f43050719",
+      "currentBlob": "1264ec921f23da7a3bef3cc8cca14b6f43050719",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/comparison.ts",
+      "baselineBlob": "4ec9a5371390ccd804b1bf0445bad2aa1a1b76cb",
+      "currentBlob": "4ec9a5371390ccd804b1bf0445bad2aa1a1b76cb",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/sampleMapping.test.ts",
+      "baselineBlob": "d0beccdbfb1e3cf21722029230783097abb9503f",
+      "currentBlob": "d0beccdbfb1e3cf21722029230783097abb9503f",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/sampleMapping.ts",
+      "baselineBlob": "495cbd8ad417c6f4ce237253a49b050ab4fc25b9",
+      "currentBlob": "495cbd8ad417c6f4ce237253a49b050ab4fc25b9",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/orbital/types.ts",
+      "baselineBlob": "6045032f50a3a6974e301eebdf940c87db1454f6",
+      "currentBlob": "6045032f50a3a6974e301eebdf940c87db1454f6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "baselineBlob": "c3787e483ee239b8cabe44db7d8b85a747e09b0d",
+      "currentBlob": "c3787e483ee239b8cabe44db7d8b85a747e09b0d",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/test/comparisonFixture.ts",
+      "baselineBlob": "96c499c2e78f2327f136626bd8664f51f89dbbbc",
+      "currentBlob": "96c499c2e78f2327f136626bd8664f51f89dbbbc",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/test/orbitalFixture.ts",
+      "baselineBlob": "b022507a596d4ddef36967012ccf6df89d60a6b6",
+      "currentBlob": "b022507a596d4ddef36967012ccf6df89d60a6b6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "baselineBlob": "80801ff36c840cf6988299b766284f9b8f9348c1",
+      "currentBlob": "80801ff36c840cf6988299b766284f9b8f9348c1",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "baselineBlob": "37bbd784dafb178712861a82d71328f1d9546154",
+      "currentBlob": "37bbd784dafb178712861a82d71328f1d9546154",
+      "unchanged": true
+    }
+  ],
+  "retainedCrewFiles": 35,
+  "retainedCrewUnchanged": true,
+  "retainedCrew": [
+    {
+      "path": "backend/src/main/java/org/mission1/CrewConfiguration.java",
+      "baselineBlob": "5c1ceeb795f037791506b65a9c0223daf773e8c4",
+      "currentBlob": "5c1ceeb795f037791506b65a9c0223daf773e8c4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewIngestionPolicy.java",
+      "baselineBlob": "05a8a488feb8d8b6e0b8337087cc9552cbf6406d",
+      "currentBlob": "05a8a488feb8d8b6e0b8337087cc9552cbf6406d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewIngestionService.java",
+      "baselineBlob": "c685585d72916ba997aa00ea0f70751e3ab80e5d",
+      "currentBlob": "c685585d72916ba997aa00ea0f70751e3ab80e5d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewPresenceVerificationSource.java",
+      "baselineBlob": "3808f3d3a66f98b6b233ddfa74c92e37edbfb538",
+      "currentBlob": "3808f3d3a66f98b6b233ddfa74c92e37edbfb538",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewProfileSource.java",
+      "baselineBlob": "9a8e677472ebd96377597d55fd3252f4b5419ba7",
+      "currentBlob": "9a8e677472ebd96377597d55fd3252f4b5419ba7",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewQueryService.java",
+      "baselineBlob": "08eb7f905a03232c05fb59b8f8bb649914e898d3",
+      "currentBlob": "08eb7f905a03232c05fb59b8f8bb649914e898d3",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewRepository.java",
+      "baselineBlob": "2fd1089a2061b9fef353d1434af63fbbc4419d5b",
+      "currentBlob": "2fd1089a2061b9fef353d1434af63fbbc4419d5b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewSnapshotValidator.java",
+      "baselineBlob": "49493f3396726b4450eeef2403a3446ec2512c36",
+      "currentBlob": "49493f3396726b4450eeef2403a3446ec2512c36",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewSourceDocumentSource.java",
+      "baselineBlob": "a8956f8c9e7e8f7103fcc9da687dd6779a2f2748",
+      "currentBlob": "a8956f8c9e7e8f7103fcc9da687dd6779a2f2748",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/CrewSyncRun.java",
+      "baselineBlob": "6ab1d3882bc95df69fc5361ca947a305a75c3642",
+      "currentBlob": "6ab1d3882bc95df69fc5361ca947a305a75c3642",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/application/StructuredCrewSource.java",
+      "baselineBlob": "a36421c39484fdd80f8a8e221f7458436df7bd55",
+      "currentBlob": "a36421c39484fdd80f8a8e221f7458436df7bd55",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/Agency.java",
+      "baselineBlob": "a7610fdc1470a05042af0265867aafed01c5cc38",
+      "currentBlob": "a7610fdc1470a05042af0265867aafed01c5cc38",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/AstronautProfile.java",
+      "baselineBlob": "fbfc8fd854bd0d6134a39440b4a2c25091e203e6",
+      "currentBlob": "fbfc8fd854bd0d6134a39440b4a2c25091e203e6",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CareerStatistics.java",
+      "baselineBlob": "aa87de26fe6978ae2cf4e2f6864ca090010fe055",
+      "currentBlob": "aa87de26fe6978ae2cf4e2f6864ca090010fe055",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewAssignment.java",
+      "baselineBlob": "2ae71c342597aedf4361113571627d916652fa97",
+      "currentBlob": "2ae71c342597aedf4361113571627d916652fa97",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewMediaAsset.java",
+      "baselineBlob": "70b3edc05821c618a56d905c10c3e1a1e8e1d7f0",
+      "currentBlob": "70b3edc05821c618a56d905c10c3e1a1e8e1d7f0",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewRole.java",
+      "baselineBlob": "2764f5f9d389aaecc518ecd3364520cd3fbc0c7d",
+      "currentBlob": "2764f5f9d389aaecc518ecd3364520cd3fbc0c7d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSource.java",
+      "baselineBlob": "0a7592e02a4c256f76d57cca7c769492265080f1",
+      "currentBlob": "0a7592e02a4c256f76d57cca7c769492265080f1",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSourceDocument.java",
+      "baselineBlob": "8db55f617835067b6d311c9bbdbbdece26d34a58",
+      "currentBlob": "8db55f617835067b6d311c9bbdbbdece26d34a58",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSourceObservation.java",
+      "baselineBlob": "cde75b726018bac91f46499ac303bce5e8ef6a70",
+      "currentBlob": "cde75b726018bac91f46499ac303bce5e8ef6a70",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSourceResult.java",
+      "baselineBlob": "c0ecd2b803ab4a84b9a7ea60362010fbe5b9f5a0",
+      "currentBlob": "c0ecd2b803ab4a84b9a7ea60362010fbe5b9f5a0",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSourceSnapshot.java",
+      "baselineBlob": "2754a17d071dc426a74e5988f8ba573a931aea79",
+      "currentBlob": "2754a17d071dc426a74e5988f8ba573a931aea79",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/CrewSourceState.java",
+      "baselineBlob": "226dcf9756f261b76dfbf8deeb5599caa69c4d87",
+      "currentBlob": "226dcf9756f261b76dfbf8deeb5599caa69c4d87",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/Expedition.java",
+      "baselineBlob": "1a309527396c265ed4425732df55990c1715e469",
+      "currentBlob": "1a309527396c265ed4425732df55990c1715e469",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/ExternalId.java",
+      "baselineBlob": "edef423cc74c2f1d05c46b920b06d5991359b69d",
+      "currentBlob": "edef423cc74c2f1d05c46b920b06d5991359b69d",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/Nationality.java",
+      "baselineBlob": "28cb586494f54a2b304cd1735d3386f595a47df4",
+      "currentBlob": "28cb586494f54a2b304cd1735d3386f595a47df4",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/PersonReference.java",
+      "baselineBlob": "a6d6cf7a0ce59601eb5ac35b732ca3ed72ce8b8b",
+      "currentBlob": "a6d6cf7a0ce59601eb5ac35b732ca3ed72ce8b8b",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/Station.java",
+      "baselineBlob": "414cfcc5359088772d6305b0245846fde3b8123f",
+      "currentBlob": "414cfcc5359088772d6305b0245846fde3b8123f",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/domain/StationPresence.java",
+      "baselineBlob": "f3fcab11e6a7ff9ab6f62847a78689c8333f4b54",
+      "currentBlob": "f3fcab11e6a7ff9ab6f62847a78689c8333f4b54",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/crew/persistence/JdbcCrewRepository.java",
+      "baselineBlob": "654d4d146305285c3fdea87517e47ce97aeecd11",
+      "currentBlob": "654d4d146305285c3fdea87517e47ce97aeecd11",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/crew/CrewHttpReader.java",
+      "baselineBlob": "8fd3eaeae5a56e340c0f4934fd72b95a09bc2ddf",
+      "currentBlob": "8fd3eaeae5a56e340c0f4934fd72b95a09bc2ddf",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/crew/ll2/LaunchLibrary2CrewSource.java",
+      "baselineBlob": "e567846b035d31d48eb49b2e4ca76844eb8eb590",
+      "currentBlob": "e567846b035d31d48eb49b2e4ca76844eb8eb590",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/crew/ll2/Ll2CrewMapper.java",
+      "baselineBlob": "2fe553e92215f8a29a7d1bc1f2811cc09b042439",
+      "currentBlob": "2fe553e92215f8a29a7d1bc1f2811cc09b042439",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/crew/ll2/Ll2Dtos.java",
+      "baselineBlob": "4fe23ff54ec74fcbacf16d92aee9784787292fa1",
+      "currentBlob": "4fe23ff54ec74fcbacf16d92aee9784787292fa1",
+      "unchanged": true
+    },
+    {
+      "path": "backend/src/main/java/org/mission1/source/crew/nasa/NasaCrewDocumentSource.java",
+      "baselineBlob": "80a660e8220fd4da6cf556e22f2f0161c735cb93",
+      "currentBlob": "80a660e8220fd4da6cf556e22f2f0161c735cb93",
+      "unchanged": true
+    }
+  ]
+}

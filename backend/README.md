@@ -115,7 +115,7 @@ This additive contract enables frontend trajectory alignment; it supplies no ver
 
 ## Independent Crew source/domain foundation — 2026-10-03
 
-`org.mission1.crew.domain` defines people/profiles, expeditions, assignments, independent physical-presence evidence, media rights, external IDs, observation hashes/times and conflict/result vocabulary. `crew.application` exposes separate structured/profile/document/verification ports. `source.crew.ll2.LaunchLibrary2CrewSource` implements dynamic active-expedition discovery and explicit profile enrichment using the existing Java HttpClient/Jackson stack. `source.crew.nasa.NasaCrewDocumentSource` captures explicitly chosen official documents; semantic NASA parsing is **not implemented**.
+`org.mission1.crew.domain` defines people/profiles, expeditions, assignments, independent physical-presence evidence, media rights, external IDs, observation hashes/times and conflict/result vocabulary. `crew.application` exposes separate structured/profile/document/verification ports. `source.crew.ll2.LaunchLibrary2CrewSource` implements dynamic active-expedition discovery and explicit profile enrichment using the existing Java HttpClient/Jackson stack. `source.crew.nasa.NasaCrewDocumentSource` captures explicitly chosen official documents; NASA RSS semantic parsing is now implemented in the V4 extension below.
 
 At the completed source/domain foundation milestone, Crew was independent of Orbit/Orekit and `CrewConfiguration` registered inert capabilities using the UTC Clock, without persistence or polling. Current ingestion/persistence is described in the following section; there is still no immediate startup fetch, Crew REST controller or frontend change. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
 
@@ -150,7 +150,7 @@ The manual main is not a JUnit test. It makes exactly one LL2 request, no retrie
 
 These are MISSION1 policies. Startup applies migrations and registers scheduling without an immediate Crew request. Persisted actual-attempt times also enforce scheduled eligibility after restart. Persisted `Retry-After` suppresses both manual and scheduled calls until eligibility; there are zero immediate retries. A normal refresh makes one expedition GET, no astronaut detail calls. A process-local guard prevents overlap. Tests disable both Crew and CelesTrak scheduling, and all default tests use fixture/loopback/mock sources plus real PostgreSQL Testcontainers, never H2 or public network dependence.
 
-The existing local startup commands apply V3 automatically; no manual table setup is needed. Database unavailability can prevent completing a failed run; the scheduler logs this and continues future ticks. No failure erases observations. Crew REST, NASA semantic ingestion/reconciliation and Crew frontend remain future work.
+The existing local startup commands apply V4 automatically; no manual table setup is needed. Database unavailability can prevent completing a failed run; the scheduler logs this and continues future ticks. No failure erases observations. NASA semantic ingestion/reconciliation is implemented in V4 below; Crew REST and frontend remain future work.
 
 A controlled **one-request** live ingestion can use the same opt-in probe with persistence, after offline gates:
 
@@ -161,3 +161,30 @@ MISSION1_CREW_LIVE_VALIDATION=1 java -cp "target/classes:target/test-classes:$(c
 ```
 
 The `--persist` mode boots the actual non-web application with both schedulers disabled, applies Flyway, makes one service ingestion, writes the run/snapshot/UUIDs/timing/counts to an external report and shuts down. It writes to the configured database; set `MISSION1_DB_URL` to a separately provisioned validation database when isolation is desired. Source-only mode retains its original one-path invocation. Do not run either probe in a retry loop.
+
+## NASA Crew verification and reconciliation — 2026-10-03
+
+[Authoritative design](../docs/crew/nasa-verification-and-reconciliation.md) and [validation dossier](../docs/crew/reconciliation-validation/README.md). Flyway V4 adds twelve Crew tables for exact raw documents, typed evidence, identity audits and immutable derived state, reusing V3 sync runs and UUIDs. Official NASA RSS uses conditional HTTP, secure XML and jsoup DOM parsing. Partial article coverage never means an exhaustive roster. Required-anchor failures preserve the prior capture and degrade current verification. Reconciliation remains separate from source parsing and preserves LL2 profile/assignment authority.
+
+| Setting | Environment override | Default |
+| --- | --- | --- |
+| mission1.crew.verification.enabled | MISSION1_CREW_VERIFICATION_ENABLED | true |
+| mission1.crew.verification.fixed-delay | MISSION1_CREW_VERIFICATION_FIXED_DELAY | PT2H, minimum PT1H |
+| mission1.crew.verification.initial-delay | MISSION1_CREW_VERIFICATION_INITIAL_DELAY | PT10M, minimum PT6M |
+| mission1.crew.verification.primary-max-age | MISSION1_CREW_PRIMARY_MAX_AGE | PT6H |
+| mission1.crew.verification.fetch-max-age | MISSION1_CREW_VERIFICATION_FETCH_MAX_AGE | PT6H |
+| mission1.crew.verification.current-assertion-max-age | MISSION1_CREW_CURRENT_ASSERTION_MAX_AGE | PT72H |
+| mission1.crew.verification.event-implication-max-age | MISSION1_CREW_EVENT_IMPLICATION_MAX_AGE | P14D |
+
+These are configurable project policies, not NASA guarantees. No immediate NASA startup request; one RSS request per normal tick, no retry or article/profile fetch. Independent schedulers trigger persisted-input reconciliation, with no provider coupling. `CrewReconciliationQueryService` is the internal read-only current interpretation/health entry point. No Crew controller or frontend exists. Default tests disable all public-source scheduling and use mocks/fixtures/PostgreSQL Testcontainers.
+
+After offline gates, an explicit manual validation can make **two NASA requests**, the second conditional, with both source schedulers disabled. It never fetches LL2; use a database already holding a dated validated LL2 snapshot. Provision a separate database if isolation is needed.
+
+```sh
+mvn -o test
+mvn -o dependency:build-classpath -Dmdep.outputFile=target/crew-probe-classpath.txt
+MISSION1_NASA_CREW_LIVE_VALIDATION=1 java -cp "target/classes:target/test-classes:$(cat target/crew-probe-classpath.txt)" \
+  org.mission1.source.crew.nasa.LiveNasaCrewValidation /tmp/mission1-nasa-reconciliation.json
+```
+
+Production classes must precede test classes so the real datasource configuration is loaded. Set MISSION1_DB_URL when using a validation database. The optional `--report-only` argument exports retained PostgreSQL observations/current interpretation with **zero requests and zero writes**, including recovery after report export errors; it is not a retry mode. Do not loop live validation. Raw official fixture bytes are test-only, never a runtime fallback. Crash/total-database-outage IN_PROGRESS runs stay observable; abandoned-run recovery is deliberately deferred until ownership/liveness rules exist.

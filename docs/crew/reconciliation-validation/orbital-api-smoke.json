@@ -1,0 +1,51 @@
+[
+  {
+    "route": "/api/iss/state",
+    "httpStatus": 200,
+    "retrievedAt": "2026-10-03T11:56:05.958805+00:00",
+    "bytes": 1205,
+    "topLevelFields": [
+      "satellite",
+      "propagationTime",
+      "state",
+      "geodetic",
+      "source",
+      "classification",
+      "quality",
+      "sourceHealth"
+    ]
+  },
+  {
+    "route": "/api/iss/orbit/samples",
+    "httpStatus": 200,
+    "retrievedAt": "2026-10-03T11:56:05.997196+00:00",
+    "bytes": 18897,
+    "topLevelFields": [
+      "generatedAt",
+      "windowStart",
+      "windowEnd",
+      "stepSeconds",
+      "frame",
+      "positionUnit",
+      "velocityUnit",
+      "classification",
+      "timeSemantics",
+      "source",
+      "qualityAtGeneratedAt",
+      "sourceHealth",
+      "currentGeodetic",
+      "samples"
+    ]
+  },
+  {
+    "route": "/api/iss/orbit/comparison",
+    "httpStatus": 200,
+    "retrievedAt": "2026-10-03T11:56:06.347608+00:00",
+    "bytes": 90269,
+    "topLevelFields": [
+      "generatedAt",
+      "primary",
+      "oem"
+    ]
+  }
+]

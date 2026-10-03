@@ -1,38 +1,19 @@
-# Crew source authority and future reconciliation
+# Crew source authority and implemented reconciliation
 
-LL2 and NASA produce source observations. Source order never decides universal truth. `verifiedAgainst: "NASA"` and a boolean `verified=true` cannot explain which field, document, time or event was checked.
+LL2 and NASA observations stay independent. A provider's overall priority or a boolean verified flag cannot explain field, time, identity or completeness.
 
-| Field/claim | Preferred source | What it cannot establish alone |
+| Field | Authority | Boundary |
 | --- | --- | --- |
-| Profile, biography, career statistics | LL2 structured profile; official agency material may corroborate | ISS physical presence or provider accuracy guarantees. |
-| Structured Expedition membership and role | LL2 detailed expedition; NASA mission roster may corroborate/contradict | Everyone physically aboard during handover/visits. |
-| Current station presence | Relevant, time-qualified NASA official operational evidence | Indefinite present occupancy after later departures; complete canonical identity resolution. |
-| Observed arrival/departure/hatch/undocking | NASA official operational post; LL2 docking records provide structured corroboration | Docking does not itself prove a named person entered; announced future departure is not completed departure. Landing time is not station departure time. |
-| Media display/reuse | Source-provided rights metadata and the relevant rights holder's terms | A URL, NASA agency affiliation or `singleUse=false` alone is not unlimited reuse permission. |
+| Source biography/career/agency/nationalities/media/role | LL2 structured profile/assignment | NASA interpretation never rewrites these observations. |
+| Structured current expedition and assignments | LL2 active detailed expedition | Assignment is not physical presence. NASA expedition mentions remain contextual evidence. |
+| Positive physical presence and completed named arrival/departure | Time-qualified official NASA assertion | Subject resolution, completed status and applicability are mandatory. |
+| Official count | Separate official NASA count assertion | It can exceed resolved identities. No person is fabricated. Later completed transition invalidates an older count. |
+| Derived current state | Versioned reconciliation | May be partial, unavailable, stale or ambiguous; original observations survive. |
 
-## NASA source categories
+CrewAssignment != StationPresence. LL2 in_space != currentlyAboardIss. Planned event != completed event. Partial omission != departure.
 
-`NASA_EXPEDITION_PAGE`, `NASA_ISS_OPERATIONAL_POST`, `NASA_VISITING_VEHICLES` and `NASA_STATION_OVERVIEW` remain distinct. Each observation carries its specific URL, retrieval time and hash. Evidence additionally carries the publication/event timestamps only when supported, assertion type, subjects/count, supporting text and method. Page metadata/HTML structure supplies no stable official Crew API; an official website can contain stale sections.
+The authoritative [implemented design](nasa-verification-and-reconciliation.md) defines all eight exact status rules and precedence, identity hierarchy, source acquisition, temporal/freshness policy, immutable persistence and failure semantics. Live operational lists are PARTIAL, count assertions COUNT_ONLY and hatch assertions EVENT_ONLY. No live source is treated as an exhaustive roster. Exhaustive omission is available only to explicitly classified, fully resolved source evidence after a person's prior known presence.
 
-## Reconciliation contract — future, not implemented
+The [2026-10-03 live validation](reconciliation-validation/README.md) produced PARTIAL_MATCH: six shared resolved identities, one LL2-only name, two NASA-only resolved UUIDs and three unresolved NASA subjects, with a separate official count of eleven. This is dated evidence. The narrower capture does not demonstrate a measured LL2 update delay and is not automatically NASA_AHEAD. The earlier source-validation divergence remains preserved as historical context.
 
-Input: structured source result(s), independent verification evidence result(s), reviewed identity mappings, evaluation instant and explicit policy version. Output: canonical presence/as-of state and count, current expedition reference, retained assignment/profile observations, per-field provenance, unresolved identities and conflicts, plus structured reconciliation status. Count must derive from reconciled physical presence, **never permanent `LL2 crew.length` logic**. Inputs must remain inspectable and immutable; canonical output must not rewrite them.
-
-| Status | Intended meaning, after temporal/identity comparison |
-| --- | --- |
-| `MATCH` | Comparable, resolved observations agree. |
-| `NASA_AHEAD` | Time-qualified operational evidence precedes structured source coverage. |
-| `LL2_AHEAD` | Structured source describes a change before comparable NASA evidence exists. |
-| `PARTIAL_MATCH` | Some comparable fields/people agree, with missing/unresolved coverage. |
-| `PRIMARY_UNAVAILABLE` | Structured source unavailable; official evidence may still exist. |
-| `VERIFICATION_UNAVAILABLE` | Structured observations exist without usable official evidence. |
-| `STALE` | Relevant evidence fails a documented future freshness policy. |
-| `AMBIGUOUS` | Multiple expedition candidates, unresolved identities/times or contradictory comparable evidence prevent an answer. |
-
-These statuses are vocabulary, not today's inferred winners. The current seven-versus-eleven capture supports a handover semantic difference, but does not establish a measured LL2 update delay or justify emitting `NASA_AHEAD` automatically. Preserve the difference neutrally.
-
-No fuzzy matching, universal NASA override, runtime LLM extraction, canonical reconciliation service or reconciled-state persistence exists. Next work must specify evidence completeness, negative evidence, interval boundaries, identity review, subsequent departures and as-of knowledge before asserting canonical current presence.
-
-## Persisted observations, without reconciliation — 2026-10-03
-
-LL2 structured observations now have durable [immutable snapshots and sync-run history](persistence-and-ingestion.md). UUID anchors link the same exact source IDs across snapshots; they do not resolve NASA names. A new fetch updates request history, never historical source fields or canonical presence. Source failure leaves the last successful observation graph queryable. There is still no canonical winner or currently-aboard roster.
+Event time takes precedence within person-presence scope when explicit; publication is the fallback assertion context. Retrieval never rewinds event ordering. Planned/future claims are inert, equal-time conflicts ambiguous, unrelated partial articles cannot imply departure, and old historic events can remain true while their current implications become stale. No runtime search, LLM or fuzzy matching is used. [ADR-0007](../adr/0007-independent-crew-observations-and-field-authority.md), [ADR-0008](../adr/0008-immutable-crew-source-history-and-identity-anchors.md) and [ADR-0009](../adr/0009-field-aware-crew-reconciliation.md) remain consistent.

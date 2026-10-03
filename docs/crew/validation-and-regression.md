@@ -1,4 +1,8 @@
-# Crew milestone validation and regression — 2026-10-03
+# Crew milestone validation and regression — historical records and current gate
+
+Current NASA verification/reconciliation acceptance is recorded in [the current dossier](reconciliation-validation/README.md). The source/domain foundation and LL2 ingestion records below remain dated historical evidence.
+
+## Source/domain foundation record — 2026-10-03
 
 Baseline verified before implementation: clean `main`, `origin/main` and direct remote `main` at `8b3f660c66f9ba6adc0c01f49ee873406c8f7a1c`, remote `git@github.com:therabo/MISSION1.git`. Changes are confined to independent Crew Java records/ports/adapters/configuration/tests/fixtures and Crew/architecture documentation. The external project context is `/Users/daniel/Desktop/mission1-project.md`, outside the repository.
 
@@ -50,3 +54,11 @@ Next single milestone: **ISS CREW INGESTION + POSTGRESQL PERSISTENCE**. It has n
 ## Subsequent persistence milestone
 
 The dated source/domain milestone above remains historical. Current ingestion/persistence acceptance is recorded separately in [ingestion validation](ingestion-validation/README.md), with [persistence semantics](persistence-and-ingestion.md) and ADR-0008.
+
+## NASA verification/reconciliation acceptance — 2026-10-03
+
+Starting baseline c2ada2b1ae76b3d49090ffb9b050ba679d0b2d44, clean main/origin/main. Context reviewed: project AGENTS, original external context, all Crew documents and architecture03/05, draft Crew API, ADR0007/0008/index; existing Java domain/ports/HTTP/source adapters, LL2 ingestion/policy/query/JDBC migration/history, root configuration and scheduler/tests. Applied skills: iss-public-data-sources, mission-data-pipeline, iss-ground-segment-architecture, telemetry-quality-and-provenance, software-architect, devops-local-platform, architecture-decisions, realtime-api-contracts and flight-dynamics-orekit for frozen boundaries. No delegated agents or frontend implementation skill was needed.
+
+225 offline backend tests include 42 real Crew PostgreSQL/Testcontainers tests (24 retained LL2 + 18 NASA/reconciliation). New parser/identity/status/time/count/error/configuration tests cover partial/count-only safety, planned/completed/future events, old late arrivals, insertion-order independence, exhaustive omission, unknown/ambiguous identities, all eight statuses, stale read-time quality, conditional HTTP, overlap/rate limits and transaction rollback. V4 empty migration and V3 upgrade preserve Crew and orbital sentinel rows. Maven test/verify, frontend171 tests/26 files, typecheck/build, executable startup, orbital API/browser smoke and byte-freeze evidence are summarized in [the dossier](reconciliation-validation/README.md). No default public-source requests or H2 substitution.
+
+Scope ends at internal canonical query. No Crew controller/frontend, universal NASA override, fuzzy/LLM identity extraction, docking refresh, RTN analysis or Replay implementation. [ADR0009](../adr/0009-field-aware-crew-reconciliation.md) records the significant derived-state and field-authority decision without superseding ADR0007/0008. Next single milestone: ISS CREW REST API.
