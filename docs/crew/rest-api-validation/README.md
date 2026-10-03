@@ -1,5 +1,7 @@
 # ISS Crew REST API — validation dossier
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](../event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](../event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 Validated **2026-10-03** from clean synchronized baseline `46c09d635454fb48ffd6ceec7f237bec9eb90c9f`, repository `/Users/daniel/Desktop/MISSION1`. Initial fetch confirmed local main == origin/main; accepted history is retained. Ordinary commit/push follows these gates, with final hash/synchronization reported in the chat and external project context. This milestone implements Crew REST only. Next: **ISS CREW EARTH VIEW PANEL**; not started.
 
 ## Context reviewed

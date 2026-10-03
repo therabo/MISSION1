@@ -1,5 +1,7 @@
 # Crew domain contract — v1
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 ## Earth View consumption — 2026-10-03
 
 The implemented [Crew panel](../frontend/crew-earth-view-panel-review/README.md) preserves domain distinctions through the public REST DTOs. `officialAboard` is the main nullable count, never member-array length; confirmed resolved identities, retained official count, unidentified gap, unresolved assertion entries and structured assignments retain separate labels. Role grouping uses backend assignment codes. NASA-only confirmed people have no invented assignment; unresolved subjects remain source reports without a person UUID or canonical presence. The frontend displays backend presence/status/applicability rather than deriving new states. Cumulative career duration is formatted as elapsed time, independently of timestamps and the Cesium clock. No domain behavior changes.

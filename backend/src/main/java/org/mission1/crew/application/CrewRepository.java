@@ -14,6 +14,9 @@ public interface CrewRepository {
             Instant retryAfterAt, String errorCode, String errorSummary) { }
 
     long startRun(CrewSource source, Station station, Instant startedAt, URI sourceUrl);
+    default long startTriggeredRun(CrewSource source, Station station, Instant at, URI url, long triggerId) {
+        throw new UnsupportedOperationException("Triggered ingestion requires an atomic audit adapter");
+    }
     void completeRun(long id, Completion completion);
     StoreResult storeSuccessfulRun(long runId, CrewSourceSnapshot snapshot, Completion completion);
     Optional<StoredSnapshot> findSnapshot(long id);

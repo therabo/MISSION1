@@ -50,25 +50,41 @@ public final class NasaCrewVerificationIngestionService {
     }
 
     public Result ingest() {
-        return execute(false);
+        return execute(false, policy.fixedDelay(), null);
     }
 
     public Result ingestScheduled() {
-        return execute(true);
+        return execute(true, policy.fixedDelay(), null);
     }
 
-    private Result execute(boolean scheduled) {
+    /** Explicit authorized probe; still observes provider cooldown and overlap protection. */
+    public Result ingestTriggered(long triggerId) {
+        return execute(false, policy.fixedDelay(), triggerId);
+    }
+
+    public Result ingestWhenDue(java.time.Duration minimumInterval, long triggerId) {
+        if (minimumInterval == null || minimumInterval.compareTo(java.time.Duration.ofMinutes(15)) < 0)
+            throw new IllegalArgumentException("Bounded refresh interval required");
+        return execute(true, minimumInterval, triggerId);
+    }
+
+    private long start(Instant at, Long triggerId) {
+        return triggerId == null ? runs.startRun(CrewSource.NASA_OFFICIAL, Station.ISS, at, url)
+                : runs.startTriggeredRun(CrewSource.NASA_OFFICIAL, Station.ISS, at, url, triggerId);
+    }
+
+    private Result execute(boolean scheduled, java.time.Duration minimumInterval, Long triggerId) {
         Instant at = now();
         if (!running.compareAndSet(false, true))
-            return skip(at, CrewSyncRun.Outcome.SKIPPED_OVERLAP, null);
+            return skip(at, CrewSyncRun.Outcome.SKIPPED_OVERLAP, null, triggerId);
         try {
             var retry = runs.retryAfterAt(CrewSource.NASA_OFFICIAL, Station.ISS).orElse(null);
             if (retry != null && at.isBefore(retry))
-                return skip(at, CrewSyncRun.Outcome.SKIPPED_RATE_LIMIT, retry);
+                return skip(at, CrewSyncRun.Outcome.SKIPPED_RATE_LIMIT, retry, triggerId);
             var last = runs.lastFetchAttemptAt(CrewSource.NASA_OFFICIAL, Station.ISS).orElse(null);
-            if (scheduled && last != null && at.isBefore(last.plus(policy.fixedDelay())))
-                return skip(at, CrewSyncRun.Outcome.SKIPPED_NOT_DUE, null);
-            long run = runs.startRun(CrewSource.NASA_OFFICIAL, Station.ISS, at, url);
+            if (scheduled && last != null && at.isBefore(last.plus(minimumInterval)))
+                return skip(at, CrewSyncRun.Outcome.SKIPPED_NOT_DUE, null, triggerId);
+            long run = start(at, triggerId);
             final CrewVerificationHttpSource.Fetch fetched;
             var old =
                     verification
@@ -177,8 +193,8 @@ public final class NasaCrewVerificationIngestionService {
         }
     }
 
-    private Result skip(Instant at, CrewSyncRun.Outcome outcome, Instant retry) {
-        long run = runs.startRun(CrewSource.NASA_OFFICIAL, Station.ISS, at, url);
+    private Result skip(Instant at, CrewSyncRun.Outcome outcome, Instant retry, Long triggerId) {
+        long run = start(at, triggerId);
         runs.completeRun(
                 run,
                 new CrewRepository.Completion(

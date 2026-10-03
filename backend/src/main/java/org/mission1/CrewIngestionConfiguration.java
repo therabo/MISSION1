@@ -26,6 +26,7 @@ class CrewIngestionConfiguration {
     }
     @Bean
     @ConditionalOnProperty(name = "mission1.crew.ingestion.enabled", havingValue = "true", matchIfMissing = true)
+    @org.springframework.boot.autoconfigure.condition.ConditionalOnExpression("!${mission1.crew.refresh.event-aware.enabled:false}")
     CrewIngestionScheduler crewIngestionScheduler(CrewIngestionService service, org.springframework.beans.factory.ObjectProvider<CrewReconciliationService> reconciliation) {
         return new CrewIngestionScheduler(service, () -> {
             var next = reconciliation.getIfAvailable(); if (next != null) next.reconcile();

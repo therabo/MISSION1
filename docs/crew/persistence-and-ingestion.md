@@ -1,5 +1,7 @@
 # Crew persistence and ingestion
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 ## Design recorded before implementation — 2026-10-03
 
 LL2 → existing source adapter → `CrewIngestionService` → existing Spring JDBC/PostgreSQL → internal `CrewQueryService`. Crew remains independent of Orbit. A fetch attempt is a sync run; a unique validated source state is an immutable snapshot. Two identical successful fetches produce two runs and one snapshot. Latest state follows the latest successful run, including a run reusing an older snapshot.

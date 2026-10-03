@@ -1,5 +1,7 @@
 # NASA Crew verification and reconciliation
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 ## Earth View consumer — 2026-10-03
 
 The existing REST boundary now feeds the [Crew panel and lazy UUID detail](../frontend/crew-earth-view-panel-review/README.md). NASA-only partial profiles, unresolved named assertion entries, current versus retained counts, source health and as-of presence stay separate. Frontend code consumes no RSS/HTML, runs no provider parser or reconciliation policy, and triggers no source refresh. The current UI refreshes on open or explicit Refresh only. Event-aware refresh, notifications, history and Replay remain future; the source/identity/policy implementation below is unchanged.

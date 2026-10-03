@@ -26,19 +26,35 @@ public final class CrewIngestionService {
         this.sourceUrl = Objects.requireNonNull(sourceUrl);
     }
 
-    public Result ingest() { return execute(false); }
-    public Result ingestScheduled() { return execute(true); }
+    public Result ingest() { return execute(false, policy.fixedDelay(), null); }
+    public Result ingestScheduled() { return execute(true, policy.fixedDelay(), null); }
 
-    private Result execute(boolean scheduled) {
+    /** Explicit authorized probe; still observes provider cooldown and overlap protection. */
+    public Result ingestTriggered(long triggerId) {
+        return execute(false, policy.fixedDelay(), triggerId);
+    }
+
+    public Result ingestWhenDue(java.time.Duration minimumInterval, long triggerId) {
+        if (minimumInterval == null || minimumInterval.compareTo(java.time.Duration.ofMinutes(15)) < 0)
+            throw new IllegalArgumentException("Bounded refresh interval required");
+        return execute(true, minimumInterval, triggerId);
+    }
+
+    private long start(Instant at, Long triggerId) {
+        return triggerId == null ? repository.startRun(CrewSource.LAUNCH_LIBRARY_2, Station.ISS, at, sourceUrl)
+                : repository.startTriggeredRun(CrewSource.LAUNCH_LIBRARY_2, Station.ISS, at, sourceUrl, triggerId);
+    }
+
+    private Result execute(boolean scheduled, java.time.Duration minimumInterval, Long triggerId) {
         Instant started = now();
-        if (!running.compareAndSet(false, true)) return skipped(started, CrewSyncRun.Outcome.SKIPPED_OVERLAP, null);
+        if (!running.compareAndSet(false, true)) return skipped(started, CrewSyncRun.Outcome.SKIPPED_OVERLAP, null, triggerId);
         try {
             var retry = repository.retryAfterAt(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null);
-            if (retry != null && started.isBefore(retry)) return skipped(started, CrewSyncRun.Outcome.SKIPPED_RATE_LIMIT, retry);
+            if (retry != null && started.isBefore(retry)) return skipped(started, CrewSyncRun.Outcome.SKIPPED_RATE_LIMIT, retry, triggerId);
             var last = repository.lastFetchAttemptAt(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null);
-            if (scheduled && last != null && started.isBefore(last.plus(policy.fixedDelay())))
-                return skipped(started, CrewSyncRun.Outcome.SKIPPED_NOT_DUE, null);
-            long run = repository.startRun(CrewSource.LAUNCH_LIBRARY_2, Station.ISS, started, sourceUrl);
+            if (scheduled && last != null && started.isBefore(last.plus(minimumInterval)))
+                return skipped(started, CrewSyncRun.Outcome.SKIPPED_NOT_DUE, null, triggerId);
+            long run = start(started, triggerId);
             CrewSourceResult<CrewSourceSnapshot> fetched;
             try { fetched = source.fetchCurrentExpedition(Station.ISS); }
             catch (RuntimeException e) {
@@ -67,8 +83,8 @@ public final class CrewIngestionService {
         } finally { running.set(false); }
     }
 
-    private Result skipped(Instant started, CrewSyncRun.Outcome outcome, Instant retry) {
-        long run = repository.startRun(CrewSource.LAUNCH_LIBRARY_2, Station.ISS, started, sourceUrl);
+    private Result skipped(Instant started, CrewSyncRun.Outcome outcome, Instant retry, Long triggerId) {
+        long run = start(started, triggerId);
         repository.completeRun(run, new CrewRepository.Completion(now(), outcome, null, null, null, null, retry, null, null));
         return new Result(run, outcome, null, false);
     }

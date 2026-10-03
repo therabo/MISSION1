@@ -1,5 +1,7 @@
 # MISSION1 orbital core
 
+**Crew scheduling extension (2026-10-03):** [Event-aware refresh](../docs/crew/event-aware-refresh.md) uses the existing ingestion services with a one-minute eligibility coordinator. Baseline LL2/NASA remain 2h; event calendar is one GET/6h (15m initial delay). Precise crewed/unknown windows shorten NASA to 30m/1h; completed named NASA transfers permit LL2 1h follow-up, at most six attempts/24h. Provider Retry-After and the shared LL2 rolling-hour budget win. V5 adds operational history; Orbit/REST JSON/parser/reconciler are unchanged. `MISSION1_CREW_EVENT_AWARE_ENABLED=false` restores baseline schedulers; existing ingestion/verification flags still suppress their source. `MISSION1_CREW_EVENT_CATALOG_ENABLED=false` suppresses discovery. All detailed bounds and configuration are in the design. Default tests disable automatic refresh and use recorded/explicit TEST_ONLY inputs. Next milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. Delayed schedulers run the independent CelesTrak refresh and LL2 Crew ingestion services. The Earth View now consumes the existing read-only Crew REST endpoints through a DOM list/detail panel; backend behavior and the independent orbital track are unchanged. [Frontend evidence](../docs/frontend/crew-earth-view-panel-review/README.md).
 
 ## Data path and meaning
@@ -198,3 +200,14 @@ Production classes must precede test classes so the real datasource configuratio
 Every GET reads PostgreSQL in a read-only repeatable-read composition transaction. Zero NASA/LL2 requests, source refreshes, identity-resolution writes or reconciliation writes. Source failure/staleness retains useful state with quality; total absence gives 503. Unknown UUID gives 404, malformed UUID 400, sanitized internal errors 500 ProblemDetail. Official current count is nullable and distinct from resolved/member/assignment counts. Durations and timestamps are ISO-8601 strings; media rights remain attached. The subsequent Crew frontend consumes these resources; no new runtime configuration, migration, CORS/security change or production scheduler-default change. Cache-Control no-store avoids frozen age-based quality. [Full contract](../docs/api/crew-api.md), [HTTP/PostgreSQL/read-only/performance evidence](../docs/crew/rest-api-validation/README.md).
 
 For source-isolated local HTTP validation, start the usual database/backend with temporary `MISSION1_CREW_INGESTION_ENABLED=false`, `MISSION1_CREW_VERIFICATION_ENABLED=false` and `MISSION1_CELESTRAK_REFRESH_ENABLED=false`. These runtime overrides do not change committed defaults. Read known UUIDs from `/api/iss/crew`; then request the detail resource. All default tests are offline, with real PostgreSQL Testcontainers where applicable.
+
+## Bounded Crew event validation (explicit live opt-in)
+
+After offline tests and classpath generation, use Java 21:
+
+```sh
+MISSION1_CREW_EVENT_LIVE_VALIDATION=1 java -cp "target/classes:target/test-classes:$(cat target/crew-probe-classpath.txt)" \
+  org.mission1.source.crew.ll2.LiveCrewEventRefreshValidation /tmp/mission1-crew-event-live.json
+```
+
+This probe disables all automatic source schedules, migrates the configured PostgreSQL database to V5, persists one calendar request and one roster request, then checks the accepted NASA conditional pipeline (one request, with a second only following 200). It has no retries or enrichment. The result report retains URI, timestamps, hash, candidate history and sync-run lineage. Use a disposable database for repeat experiments; do not run this as a default test or startup hook.

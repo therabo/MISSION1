@@ -1,5 +1,7 @@
 # MISSION1 Earth View
 
+**Backend scheduling note (2026-10-03):** [Crew event-aware refresh](../docs/crew/event-aware-refresh.md) changes background backend source eligibility. Frontend runtime and accepted Crew API contract are byte-identical to the Crew panel baseline; source quality, presence and assignment distinctions remain unchanged. Historical visual evidence below is retained. Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 ## ISS Crew Earth View panel — 2026-10-03
 
 Open **ISS Crew** in the existing ISS orbital-information surface, in Overview or Inspection. Crew is a bounded DOM panel in the same Earth View; opening it issues no camera command. Selecting a mapped station module closes Crew so the two detail surfaces cannot overlap. Closing Crew restores keyboard focus to its launcher. Escape returns from a person to their card, then closes the list; the existing Earth/ISS Back control remains separate.

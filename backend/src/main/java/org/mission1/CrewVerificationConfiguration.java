@@ -86,6 +86,7 @@ class CrewVerificationConfiguration {
             name = "mission1.crew.verification.enabled",
             havingValue = "true",
             matchIfMissing = true)
+    @org.springframework.boot.autoconfigure.condition.ConditionalOnExpression("!${mission1.crew.refresh.event-aware.enabled:false}")
     CrewVerificationScheduler crewVerificationScheduler(
             NasaCrewVerificationIngestionService service,
             CrewReconciliationService reconciliation) {

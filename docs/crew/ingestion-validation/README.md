@@ -1,5 +1,7 @@
 # Crew ingestion/persistence acceptance — 2026-10-03
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](../event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](../event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 The implemented milestone is **ISS CREW INGESTION + POSTGRESQL PERSISTENCE**. The accepted starting repository was `/Users/daniel/Desktop/MISSION1`, clean `main == origin/main == 1f46df25709400932e0640669b3277c565c6bd48`, fetched from `git@github.com:therabo/MISSION1.git` before modification. The durable decision and short design note were written before migration/code implementation. No history rewrite is used.
 
 ## Context reviewed

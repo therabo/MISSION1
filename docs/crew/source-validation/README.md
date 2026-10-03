@@ -1,5 +1,7 @@
 # Crew source validation — 2026-10-03 UTC
 
+**Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](../event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](../event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+
 This is a dated capture, not a live Crew service. Current names and person/expedition IDs below are validation evidence only; no production current roster constants exist. Full capture metadata and exact original-body/fixture SHA-256 values are in [`capture-manifest.json`](../../../backend/src/test/resources/fixtures/crew/capture-manifest.json). All 13 initial data/document requests returned HTTP 200; one subsequent opt-in Java adapter request also returned 200. There were no retries.
 
 ## Launch Library 2
@@ -59,6 +61,8 @@ The [provider overview](https://thespacedevs.com/llapi) publishes an unauthentic
 Normal future structured acquisition needs **one active detailed expedition query** for roster, roles, nested profile, agency, nationality, media, durations and basic flight dates. It does not need a second expedition-detail request. Flight/spacewalk counts require explicit detail enrichment; that port performs one requested person GET, never a per-person roster-refresh loop. Future ingestion must cache/enrich only when needed and account for all calls; this milestone introduces no scheduler/cache policy. Pagination is deliberately bounded: multiple or incomplete candidates are retained as `AMBIGUOUS`; `next` is not fetched and no arbitrary candidate is selected.
 
 The inspected docking record (`docking_events/?space_station=4&ordering=-docking&limit=1`, count 576) contained event 644, docking `2026-10-01T23:05:00Z`, departure null, Harmony forward, Crew Dragon Grace/Crew-13. This corroborates a vehicle event, not a named person's entry. Docking acquisition/refresh is not implemented.
+
+**2026-10-03 correction:** the historical docking probe's `space_station=4` filter was ignored; count576 was the cross-station catalog. The payload independently identified event644 as ISS. The verified docking occurrence filter is `space_station_target__id=4`. Future planning now uses the implemented, bounded `/events/?spacestation__ids=4&type__ids=2,8&...` adapter in [event-aware refresh](../event-aware-refresh.md); the earlier “not implemented” statement is historical. No docking/vehicle event is treated as a named person's transfer or aboard truth.
 
 ## NASA official evidence
 

@@ -35,6 +35,18 @@ public class JdbcCrewRepository implements CrewRepository {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public long startTriggeredRun(CrewSource source, Station station, Instant at, URI url, long triggerId) {
+        long id = startRun(source, station, at, url);
+        if (jdbc.update("""
+                UPDATE crew_refresh_trigger SET source_sync_run_id=? WHERE id=? AND source_sync_run_id IS NULL
+                AND target=?
+                """, id, triggerId, source == CrewSource.LAUNCH_LIBRARY_2 ? "LL2_ROSTER" : "NASA_VERIFICATION") != 1)
+            throw new IllegalStateException("Matching unclaimed source trigger required");
+        return id;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void completeRun(long id, Completion completion) {
         if (completion.outcome() == CrewSyncRun.Outcome.SUCCESS || completion.outcome() == CrewSyncRun.Outcome.IN_PROGRESS)
             throw new IllegalArgumentException("Use atomic graph operation for success");
@@ -215,9 +227,13 @@ public class JdbcCrewRepository implements CrewRepository {
     }
     @Override public Optional<Instant> retryAfterAt(CrewSource source, Station station) {
         return Optional.ofNullable(jdbc.queryForObject("""
-                SELECT max(retry_after_at) AS value FROM crew_source_sync_run
-                WHERE source = ? AND station = ? AND source_state = 'RATE_LIMITED'
-                """, (rs, n) -> instant(rs, "value"), source.name(), station.name()));
+                SELECT max(at) AS value FROM (
+                    SELECT retry_after_at AS at FROM crew_source_sync_run
+                        WHERE source = ? AND station = ? AND source_state = 'RATE_LIMITED'
+                    UNION ALL SELECT retry_after_at AS at FROM crew_event_catalog_run
+                        WHERE ? = 'LAUNCH_LIBRARY_2'
+                ) shared
+                """, (rs, n) -> instant(rs, "value"), source.name(), station.name(), source.name()));
     }
     private Optional<CrewSyncRun> run(String sql, Object... args) {
         return jdbc.query(sql, (rs, n) -> new CrewSyncRun(rs.getLong("id"), CrewSource.valueOf(rs.getString("source")),
