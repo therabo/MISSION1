@@ -1,0 +1,54 @@
+[
+  {
+    "label": "baseline-development-webkit-night",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-development-webkit-oblique",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-development-limb",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-production-webkit-night",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-production-webkit-oblique",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-production-limb",
+    "exitCode": 0
+  },
+  {
+    "label": "development-oblique-confirmed",
+    "exitCode": 0
+  },
+  {
+    "label": "development-memory",
+    "exitCode": 0
+  },
+  {
+    "label": "production-memory",
+    "exitCode": 0
+  },
+  {
+    "label": "development-switch-night",
+    "exitCode": 0
+  },
+  {
+    "label": "development-switch-oblique",
+    "exitCode": 0
+  },
+  {
+    "label": "production-switch-night",
+    "exitCode": 0
+  },
+  {
+    "label": "production-switch-oblique",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,305 @@
+[
+  {
+    "label": "development-gpu",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-gpu-coverage.cjs",
+      "5191",
+      "development-gpu"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 3.841137170791626
+  },
+  {
+    "label": "development-rectangle",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-rectangle-isolation.cjs",
+      "5191",
+      "development-rectangle"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 20.236580848693848
+  },
+  {
+    "label": "development-oblique",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-oblique-isolation.cjs",
+      "5191",
+      "development-oblique"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 23.470829963684082
+  },
+  {
+    "label": "development-angles",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-angle-qa.cjs",
+      "5191",
+      "development-angles"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 47.45337796211243
+  },
+  {
+    "label": "development-lighting",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-lighting.cjs",
+      "5191",
+      "development-lighting"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 10.506248950958252
+  },
+  {
+    "label": "development-limb",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-limb.cjs",
+      "5191",
+      "development-limb"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 16.065518856048584
+  },
+  {
+    "label": "development-webkit-night",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-webkit-isolation.cjs",
+      "5191",
+      "development-webkit-night"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 15.50808596611023
+  },
+  {
+    "label": "development-webkit-oblique",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-webkit-oblique.cjs",
+      "5191",
+      "development-webkit-oblique"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 7.34606409072876
+  },
+  {
+    "label": "development-fast",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-stress-raster.cjs",
+      "5191",
+      "development-fast"
+    ],
+    "environment": {
+      "MISSION1_QA_FRAME_COUNT": "100"
+    },
+    "exitCode": 0,
+    "seconds": 113.5969409942627
+  },
+  {
+    "label": "production-gpu",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-gpu-coverage.cjs",
+      "4174",
+      "production-gpu"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 1.89605712890625
+  },
+  {
+    "label": "production-rectangle",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-rectangle-isolation.cjs",
+      "4174",
+      "production-rectangle"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 17.67331290245056
+  },
+  {
+    "label": "production-oblique",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-oblique-isolation.cjs",
+      "4174",
+      "production-oblique"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 17.208096027374268
+  },
+  {
+    "label": "production-angles",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-angle-qa.cjs",
+      "4174",
+      "production-angles"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 46.67647385597229
+  },
+  {
+    "label": "production-lighting",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-lighting.cjs",
+      "4174",
+      "production-lighting"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 9.54057002067566
+  },
+  {
+    "label": "production-limb",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-limb.cjs",
+      "4174",
+      "production-limb"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 15.325951099395752
+  },
+  {
+    "label": "production-webkit-night",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-webkit-isolation.cjs",
+      "4174",
+      "production-webkit-night"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 13.525604248046875
+  },
+  {
+    "label": "production-webkit-oblique",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-webkit-oblique.cjs",
+      "4174",
+      "production-webkit-oblique"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 6.444492816925049
+  },
+  {
+    "label": "production-fast",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-stress-raster.cjs",
+      "4174",
+      "production-fast"
+    ],
+    "environment": {
+      "MISSION1_QA_FRAME_COUNT": "100"
+    },
+    "exitCode": 0,
+    "seconds": 114.41018438339233
+  },
+  {
+    "label": "baseline-development-performance",
+    "port": 5190,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-matched-perf.cjs",
+      "5190",
+      "baseline-development-performance"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 130.53907871246338
+  },
+  {
+    "label": "candidate-development-performance",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-matched-perf.cjs",
+      "5191",
+      "candidate-development-performance"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 130.0008249282837
+  },
+  {
+    "label": "baseline-production-performance",
+    "port": 4173,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-matched-perf.cjs",
+      "4173",
+      "baseline-production-performance"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 127.79516315460205
+  },
+  {
+    "label": "candidate-production-performance",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/tmp/mission1-matched-perf.cjs",
+      "4174",
+      "candidate-production-performance"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 128.63312005996704
+  },
+  {
+    "label": "clean-live",
+    "port": 0,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/scripts/clean-live-smoke.cjs",
+      "0",
+      "clean-live"
+    ],
+    "environment": {},
+    "exitCode": 0,
+    "seconds": 55.641704082489014
+  }
+]

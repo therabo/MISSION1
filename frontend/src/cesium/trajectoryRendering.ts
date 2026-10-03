@@ -1,11 +1,13 @@
 import {
-  ArcType, Cartesian2, Cartesian3, Color, GeometryInstance, Material,
-  JulianDate, PolylineGeometry, PolylineMaterialAppearance, Primitive, type PrimitiveCollection, type SampledPositionProperty, type Scene,
+  Cartesian2, Cartesian3, Color, GeometryInstance, Material,
+  JulianDate, Primitive, type PrimitiveCollection, type SampledPositionProperty, type Scene,
 } from 'cesium';
 import type { ComparisonResponse, TrajectorySample } from '../orbital/comparison';
 import type { TrajectorySource } from './trajectorySelection';
 import { makeSampledPosition } from './sampleProperty';
 import { earliestClearTime, initialRegion, projectedSourceEvaluator, protectedCircle, startRampCssPixels, type InitialRegion, type Pixel } from './trajectoryClearance';
+import { EARTH_OCCLUSION_GLSL } from './trajectoryCoverage';
+import { trajectoryGeometry } from './trajectoryGeometry';
 import { trajectoryAppearance } from './trajectoryAppearance';
 
 // Distinct selected accents make a switch visible even for subpixel-coincident paths.
@@ -79,14 +81,14 @@ const localPosition = new Cartesian3();
 const nextPosition = new Cartesian3();
 
 export function adaptTrailClearance(trail: ForwardTrail, sceneMs: number, scene: Scene,
-  hull: Pixel[] | null, desiredGap: number, silhouetteSize: number): void {
+  hull: Pixel[] | null, desiredGap: number, silhouetteSize: number, stationNearDepth = 1e20): void {
   const begin = Math.max(sceneMs + 1, trail.startMs);
   const endMs = Math.min(sceneMs + FORWARD_TRAIL.horizonRevolutions * trail.periodSeconds * 1000, trail.endMs);
   // A local projection failure must not blank the safe far trail. Protection
   // remains in the current-frame fragment mask, with no source extrapolation.
   trail.gapSeconds = Math.max(0.001, (begin - sceneMs) / 1000);
   trail.firstExitMs = null;
-  updateClearanceMask(trail, scene, hull, desiredGap, silhouetteSize);
+  updateClearanceMask(trail, scene, hull, desiredGap, silhouetteSize, stationNearDepth);
   if (!hull || endMs <= begin) return;
   const circle = protectedCircle(hull, maskCircle);
   localDate.setTime(begin); JulianDate.fromDate(localDate, localTime);
@@ -125,10 +127,11 @@ export function adaptTrailClearance(trail: ForwardTrail, sceneMs: number, scene:
 
 /** Current-frame circular SDF protects both layers without a rectangular cut. */
 export function updateClearanceMask(trail: ForwardTrail, scene: Scene, hull: Pixel[] | null,
-  desiredGap: number, silhouetteSize: number): void {
+  desiredGap: number, silhouetteSize: number, stationNearDepth = 1e20): void {
   const circle = hull ? protectedCircle(hull, maskCircle) : null;
   for (const layer of trail.layers) {
     const u = layer.material.materials.clearanceMask.uniforms;
+    u.stationNearDepth = stationNearDepth;
     u.radius = circle ? circle.radius + desiredGap + silhouetteSize : 0;
     u.initialExternal = false;
     u.softness = startRampCssPixels(desiredGap);
@@ -140,9 +143,11 @@ export function updateClearanceMask(trail: ForwardTrail, scene: Scene, hull: Pix
 }
 function clearanceMaterial() {
   return { type: 'Mission1ScreenClearance', uniforms: {
-    center: new Cartesian2(), radius: 0, softness: 1, cssHeight: 1, bufferToCss: new Cartesian2(1, 1),
+    center: new Cartesian2(), radius: 0, stationNearDepth: 1e20, softness: 1, cssHeight: 1, bufferToCss: new Cartesian2(1, 1),
     origin: new Cartesian2(), tangentA: new Cartesian2(), tangentB: new Cartesian2(), initialExternal: false,
   }, source: `
+    ${EARTH_OCCLUSION_GLSL}
+    uniform float stationNearDepth;
     uniform vec2 center;
     uniform float radius;
     uniform float softness;
@@ -167,7 +172,8 @@ function clearanceMaterial() {
         float triangle = min(segmentDistance(pixel, origin, tangentA), min(segmentDistance(pixel, tangentA, tangentB), segmentDistance(pixel, tangentB, origin)));
         distance = min(distance, inside ? -triangle : triangle);
       }
-      material.alpha = radius <= 0.0 ? 1.0 : smoothstep(0.0, softness, distance);
+      material.alpha = radius <= 0.0 || stationNearDepth <= 0.0 || mission1EarthOccludesDepth(stationNearDepth)
+        ? 1.0 : smoothstep(0.0, softness, distance);
       return material;
     }` };
 }
@@ -177,11 +183,9 @@ function createTrail(source: TrajectorySource, samples: TrajectorySample[], peri
   const layers = FORWARD_TRAIL.layers.map((layer) => {
     const material = trailMaterial(layer.alphaScale, layer.glowPower);
     const primitive = new Primitive({
-      geometryInstances: new GeometryInstance({ geometry: new PolylineGeometry({
-        positions, width: layer.width, arcType: ArcType.NONE, vertexFormat: PolylineMaterialAppearance.VERTEX_FORMAT,
-      }) }),
+      geometryInstances: new GeometryInstance({ geometry: trajectoryGeometry(positions, layer.width) }),
       appearance: trajectoryAppearance(material, samples.length),
-      show: false, asynchronous: true, allowPicking: false,
+      show: false, asynchronous: false, allowPicking: false,
     });
     return { primitive, material };
   });

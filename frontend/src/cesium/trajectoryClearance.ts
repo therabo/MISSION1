@@ -116,6 +116,26 @@ const footprintWorld = new Cartesian3();
 const footprintPoints = Array.from({ length: 8 }, () => new Cartesian2());
 const footprintHull: Pixel[] = [];
 
+/** Nearest possible displayed model depth, including minimum-pixel scaling.
+ * Mask visibility uses this conservative depth rather than masking an occulted
+ * station's projection over unrelated foreground trajectory fragments.
+ */
+export function displayedModelNearDepth(scene: Scene, model: Model): number {
+  const center = model.boundingSphere.center, radius = model.boundingSphere.radius;
+  Matrix4.getTranslation(model.modelMatrix, footprintOrigin);
+  Cartesian3.clone(footprintOrigin, footprintSphere.center); footprintSphere.radius = radius;
+  const metersPerPixel = scene.camera.getPixelSize(footprintSphere, scene.drawingBufferWidth, scene.drawingBufferHeight);
+  const scale = Math.min(model.maximumScale ?? Infinity,
+    Math.max(model.scale, model.minimumPixelSize * metersPerPixel / (2 * radius / model.scale)));
+  // Minimum-pixel scaling also scales the asset's off-origin center about the
+  // modelMatrix translation. Its public physical sphere alone omits that shift.
+  Cartesian3.subtract(center, footprintOrigin, footprintWorld);
+  Cartesian3.multiplyByScalar(footprintWorld, scale / model.scale, footprintWorld);
+  Cartesian3.add(footprintOrigin, footprintWorld, footprintWorld);
+  return Cartesian3.dot(Cartesian3.subtract(footprintWorld, scene.camera.positionWC, footprintWorld), scene.camera.directionWC)
+    - radius * scale / model.scale;
+}
+
 export function projectedModelFootprint(scene: Scene, model: Model): Pixel[] | null {
   if (!model.ready) return null;
   const radius = model.boundingSphere.radius;

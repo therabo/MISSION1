@@ -59,7 +59,7 @@ import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
 import type { SampledProperty } from 'cesium';
-import { desiredGapCssPixels, projectedModelFootprint } from './trajectoryClearance';
+import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
 interface EarthViewProps {
@@ -407,11 +407,12 @@ export const EarthView = memo(function EarthView({ window, comparison, selectedS
       trajectoryTransitionVisibility = trajectoryVisibilityForView(viewMode.current, displayedRange, trajectoryOverviewRange);
       if (trajectoryTransitionVisibility > 0 && model.current?.ready) {
         const hull = projectedModelFootprint(instance.scene, model.current);
+        const stationNearDepth = displayedModelNearDepth(instance.scene, model.current);
         const gap = desiredGapCssPixels(displayedRange);
         for (let i = 0; i < 2; i++) {
           const group = i === 0 ? primaryLine.current : pendingPrimaryLine.current;
           if (group) for (const trail of group.trails)
-            adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize);
+            adaptTrailClearance(trail, sceneMs, instance.scene, hull, gap, model.current.silhouetteSize, stationNearDepth);
         }
       }
       if (primaryLine.current) {

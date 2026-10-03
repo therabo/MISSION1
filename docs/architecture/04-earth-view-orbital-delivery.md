@@ -1,5 +1,9 @@
 # Earth View orbital delivery decision and validation
 
+## Night-side protection and rounded trajectory joins — 2026-10-03
+
+The existing physical/presentation boundary is unchanged. Constant adjacent-endpoint attributes support GPU capsule ownership; fragment-ray visibility limits the curved station mask at the Earth limb. Geometry is prepared once on response replacement, never on camera motion. Sources, backend, API, first temporal exit, camera and provenance remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](../frontend/trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.
+
 ## Trajectory physical/presentation boundary — 2026-10-02
 
 The existing physical/presentation boundary now explicitly separates retained source geometry, bounded first temporal exit, local curved re-entry masking and GPU capsule cross-section. Camera-only updates mutate current-frame uniforms; source/UTC/window continue to determine physical samples and the endpoint. A missing local projection cannot globally blank the body. Source adapters, persistence, APIs, orbital computation and camera implementation remain byte-identical to the accepted baseline. [Physical camera-independence, fast-motion and regression evidence](../frontend/trajectory-rendering-artifact-review/final-candidate/README.md). ADR-0006 is unchanged; no new ADR or infrastructure was introduced. Earlier dated 10 Hz/support-direction notes describe the previous baseline.

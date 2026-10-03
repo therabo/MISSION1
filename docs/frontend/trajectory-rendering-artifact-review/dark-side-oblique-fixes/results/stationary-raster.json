@@ -1,0 +1,354 @@
+{
+  "movingStationaryPairs": 40,
+  "patchPairs": 108,
+  "maximumCoordinateRoundoffCssPx": 1.3642420526593924e-12,
+  "pixelCorrectionFailures": [],
+  "presencePairs": 528,
+  "missingPresencePairs": [],
+  "rows": [
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-following-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-rotate-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-oscillation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-against-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-heading-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-reverse-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-crossing-100-raster.json",
+      "patchMaxDifferences": []
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-crossing-100-raster.json",
+      "patchMaxDifferences": []
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-pitch-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-rotate-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-pitch-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-reverse-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-oscillation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-following-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-PRIMARY_GP_TLE-against-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "development",
+      "file": "development-stationary-NASA_OEM-heading-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-heading-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-pitch-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-pitch-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-crossing-100-raster.json",
+      "patchMaxDifferences": []
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-following-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-against-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-following-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-crossing-100-raster.json",
+      "patchMaxDifferences": []
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-against-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-oscillation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-oscillation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-heading-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-rotate-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-reverse-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-NASA_OEM-rotate-zoom-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "build": "production",
+      "file": "production-stationary-PRIMARY_GP_TLE-reverse-rotation-100-raster.json",
+      "patchMaxDifferences": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

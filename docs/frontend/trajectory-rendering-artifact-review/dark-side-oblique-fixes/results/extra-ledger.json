@@ -1,0 +1,34 @@
+[
+  {
+    "label": "baseline-development-oblique-performance",
+    "exitCode": 0
+  },
+  {
+    "label": "candidate-development-oblique-performance",
+    "exitCode": 0
+  },
+  {
+    "label": "baseline-production-oblique-performance",
+    "exitCode": 0
+  },
+  {
+    "label": "candidate-production-oblique-performance",
+    "exitCode": 0
+  },
+  {
+    "label": "development-gpu",
+    "exitCode": 0
+  },
+  {
+    "label": "development-stationary",
+    "exitCode": 0
+  },
+  {
+    "label": "production-gpu",
+    "exitCode": 0
+  },
+  {
+    "label": "production-stationary",
+    "exitCode": 0
+  }
+]

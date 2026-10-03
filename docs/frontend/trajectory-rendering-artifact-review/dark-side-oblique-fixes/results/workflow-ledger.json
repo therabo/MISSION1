@@ -1,0 +1,262 @@
+[
+  {
+    "label": "development-matrix",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/browser-matrix.cjs",
+      "5191",
+      "development-matrix"
+    ],
+    "environment": {},
+    "exitCode": 0
+  },
+  {
+    "label": "development-desktop",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "5191",
+      "development-desktop"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "1280",
+      "MISSION1_QA_HEIGHT": "720"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-clearance-desktop",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "5191",
+      "development-clearance-desktop"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "1280",
+      "MISSION1_QA_HEIGHT": "720"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-narrow",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "5191",
+      "development-narrow"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "900",
+      "MISSION1_QA_HEIGHT": "700"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-clearance-narrow",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "5191",
+      "development-clearance-narrow"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "900",
+      "MISSION1_QA_HEIGHT": "700",
+      "MISSION1_QA_CANONICAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-mobile",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "5191",
+      "development-mobile"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "390",
+      "MISSION1_QA_HEIGHT": "844"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-clearance-mobile",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "5191",
+      "development-clearance-mobile"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "390",
+      "MISSION1_QA_HEIGHT": "844",
+      "MISSION1_QA_CANONICAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-partial",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "5191",
+      "development-partial"
+    ],
+    "environment": {
+      "MISSION1_QA_PARTIAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "development-lint",
+    "port": 5191,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/visual-lint.cjs",
+      "5191",
+      "development-lint"
+    ],
+    "environment": {},
+    "exitCode": 0
+  },
+  {
+    "label": "production-matrix",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/browser-matrix.cjs",
+      "4174",
+      "production-matrix"
+    ],
+    "environment": {},
+    "exitCode": 0
+  },
+  {
+    "label": "production-desktop",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "4174",
+      "production-desktop"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "1280",
+      "MISSION1_QA_HEIGHT": "720"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-clearance-desktop",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "4174",
+      "production-clearance-desktop"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "1280",
+      "MISSION1_QA_HEIGHT": "720"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-narrow",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "4174",
+      "production-narrow"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "900",
+      "MISSION1_QA_HEIGHT": "700"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-clearance-narrow",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "4174",
+      "production-clearance-narrow"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "900",
+      "MISSION1_QA_HEIGHT": "700",
+      "MISSION1_QA_CANONICAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-mobile",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/scripts/browser-regressions-responsive.cjs",
+      "4174",
+      "production-mobile"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "390",
+      "MISSION1_QA_HEIGHT": "844"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-clearance-mobile",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "4174",
+      "production-clearance-mobile"
+    ],
+    "environment": {
+      "MISSION1_QA_WIDTH": "390",
+      "MISSION1_QA_HEIGHT": "844",
+      "MISSION1_QA_CANONICAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-partial",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/trajectory-rendering-artifact-review/final-candidate/scripts/clearance-audit-final.cjs",
+      "4174",
+      "production-partial"
+    ],
+    "environment": {
+      "MISSION1_QA_PARTIAL_ONLY": "1"
+    },
+    "exitCode": 0
+  },
+  {
+    "label": "production-lint",
+    "port": 4174,
+    "command": [
+      "/opt/homebrew/opt/node@24/bin/node",
+      "/Users/daniel/Desktop/MISSION1/docs/frontend/camera-transition-perfecting-review/focus-optimization/scripts/visual-lint.cjs",
+      "4174",
+      "production-lint"
+    ],
+    "environment": {},
+    "exitCode": 0
+  }
+]

@@ -1,5 +1,9 @@
 # MISSION1 Earth View
 
+## Night-side protection and rounded trajectory joins — 2026-10-03
+
+The station protection mask now checks visibility per fragment at the Earth limb, and retained trajectory segments render rounded joins without halo overdraw. Physical data, origin/reveal policy, camera and graphics quality remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](../docs/frontend/trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.
+
 ## Trajectory rendering correction — 2026-10-02
 
 The renderer retains camera-independent physical paths and the exact future horizon. Each `preRender` uses the current camera/source/UTC/model snapshot for a bounded first temporal exit, curved local re-entry mask and capsule coverage of both layers. An ambiguous start never hides the safe far body. The local search also handles an exit before the next projection crosses the camera plane. Camera, assets, quality, source interpolation and provenance remain frozen. [Classification, physical invariants, native raster traces, independent fast-motion tests, performance and regressions](../docs/frontend/trajectory-rendering-artifact-review/final-candidate/README.md). Earlier dated trajectory start/mask descriptions are historical; the original failed investigation remains preserved.

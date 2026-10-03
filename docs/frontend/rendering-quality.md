@@ -1,5 +1,9 @@
 # Desktop rendering quality and asset reproducibility
 
+## Night-side protection and rounded trajectory joins — 2026-10-03
+
+Independent capsule quads eliminate folded native-join halo overdraw. Adjacent overlap has one owner, prioritizing a globe-visible segment before distance and previous-segment ties. The curved station mask applies only where its conservative displayed depth is visible. Widths, glow, alpha, MSAA, FXAA, DPR, Earth and model quality remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.
+
 ## Trajectory raster correction — 2026-10-02
 
 A curved fragment-distance mask replaces the projected-envelope rectangular cut. Projected genuine-segment capsule coverage bounds both halo/body without changing physical vertices, widths, colors, depth testing, MSAA, FXAA, model/texture/PBR or device resolution. Physical body clipping is independent of local origin selection, and mask/reveal preparation uses the current render camera. [Native layer-isolation and continuity evidence, baseline/experiment/final profiling and frozen graphics audit](trajectory-rendering-artifact-review/final-candidate/README.md). The original failed experiment and earlier dated start/mask descriptions remain historical evidence.

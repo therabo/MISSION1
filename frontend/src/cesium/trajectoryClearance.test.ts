@@ -1,10 +1,41 @@
 import { describe, expect, it } from 'vitest';
-import { Cartesian3, JulianDate } from 'cesium';
+import { BoundingSphere, Cartesian3, JulianDate, Matrix4, type Model, type Scene } from 'cesium';
 import { makeSampledPosition } from './sampleProperty';
-import { convexFootprint, desiredGapCssPixels, earliestClearTime, footprintDistance, initialRegion, initialRegionDistance, segmentDistance, protectedCircle } from './trajectoryClearance';
+import { convexFootprint, desiredGapCssPixels, displayedModelNearDepth, earliestClearTime, footprintDistance, initialRegion, initialRegionDistance, segmentDistance, protectedCircle } from './trajectoryClearance';
 
 const hull = convexFootprint([{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }]);
 describe('screen-space source-specific trajectory clearance', () => {
+  it.each([Cartesian3.UNIT_X, Cartesian3.UNIT_Y, Cartesian3.UNIT_Z])(
+    'uses positive camera depth and the enhanced displayed sphere for globe visibility %j', direction => {
+      const center = Cartesian3.multiplyByScalar(direction, 10_000_000, new Cartesian3());
+      const model = { boundingSphere: new BoundingSphere(center, 70), scale: 1,
+        minimumPixelSize: 120, maximumScale: 1000, modelMatrix: Matrix4.fromTranslation(center) } as Model;
+      const scene = { drawingBufferWidth: 2560, drawingBufferHeight: 1440,
+        camera: { positionWC: Cartesian3.ZERO, directionWC: direction, getPixelSize: () => 100 } } as unknown as Scene;
+      expect(displayedModelNearDepth(scene, model)).toBe(10_000_000 - 6000);
+      expect(model.boundingSphere.center).toEqual(center);
+      expect(model.scale).toBe(1);
+    });
+  it('respects maximum display scale and keeps a camera-plane intersection conservative', () => {
+    const model = { boundingSphere: new BoundingSphere(new Cartesian3(0, 0, 500), 70),
+      scale: 1, minimumPixelSize: 120, maximumScale: 10,
+      modelMatrix: Matrix4.fromTranslation(new Cartesian3(0, 0, 500)) } as Model;
+    const scene = { drawingBufferWidth: 2560, drawingBufferHeight: 1440,
+      camera: { positionWC: Cartesian3.ZERO, directionWC: Cartesian3.UNIT_Z, getPixelSize: () => 100 } } as unknown as Scene;
+    expect(displayedModelNearDepth(scene, model)).toBe(-200);
+    model.minimumPixelSize = 0;
+    expect(displayedModelNearDepth(scene, model)).toBe(430);
+  });
+  it('includes the minimum-pixel shift of an off-origin asset without moving physical values', () => {
+    const model = { boundingSphere: new BoundingSphere(new Cartesian3(0, 0, 10_000), 70),
+      scale: 1, minimumPixelSize: 20, maximumScale: 1000,
+      modelMatrix: Matrix4.fromTranslation(new Cartesian3(0, 0, 10_020)) } as Model;
+    const scene = { drawingBufferWidth: 2560, drawingBufferHeight: 1440,
+      camera: { positionWC: Cartesian3.ZERO, directionWC: Cartesian3.UNIT_Z, getPixelSize: () => 100 } } as unknown as Scene;
+    expect(displayedModelNearDepth(scene, model)).toBeCloseTo(10_020 - 20 * (1000 / 70) - 1000);
+    expect(model.boundingSphere.center.z).toBe(10_000);
+    expect(model.modelMatrix[14]).toBe(10_020);
+  });
   it('smoothly decreases with selected ISS range, within bounds', () => {
     const far = desiredGapCssPixels(17_000_000), medium = desiredGapCssPixels(6_000_000), close = desiredGapCssPixels(1_500_000);
     expect(far).toBeGreaterThan(medium); expect(medium).toBeGreaterThan(close); expect(close).toBeGreaterThan(0);

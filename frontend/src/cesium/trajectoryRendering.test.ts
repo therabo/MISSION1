@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createHash } from 'node:crypto';
-import { Cartesian2, Cartesian3, Color, GeometryInstance, PolylineGeometry, PrimitiveCollection, SceneTransforms, type Scene } from 'cesium';
+import { Cartesian2, Cartesian3, Color, GeometryInstance, Geometry, PolylineGeometry, PrimitiveCollection, SceneTransforms, type Scene } from 'cesium';
 import { fixture } from '../test/comparisonFixture';
 import { parseComparison } from '../orbital/comparison';
 import { adaptTrailClearance, createTrajectoryTrails, FORWARD_TRAIL, forwardBounds, forwardOpacity, orderTrails, TRAJECTORY_ACCENTS, updateTrail } from './trajectoryRendering';
@@ -104,7 +104,7 @@ describe('future only continuous trajectories', () => {
     // Synthetic TEST fixture, independently hashed in the untouched baseline.
     const group = createTrajectoryTrails(parseComparison(fixture(true)));
     for (const trail of group.trails) for (const layer of trail.layers) {
-      const geometry = PolylineGeometry.createGeometry((layer.primitive.geometryInstances as GeometryInstance).geometry as unknown as PolylineGeometry)!;
+      const geometry = (layer.primitive.geometryInstances as GeometryInstance).geometry as Geometry;
       const bytes = Buffer.from(new Float64Array(Array.from(geometry.attributes.position!.values!)).buffer);
       expect(createHash('sha256').update(bytes).digest('hex')).toBe('4593a73d006aaf87251bb9daa9a3af0f9cfe81425e041e53fb90b2a63faebbcb');
       layer.primitive.destroy(); layer.material.destroy();
@@ -114,8 +114,9 @@ describe('future only continuous trajectories', () => {
     const group = createTrajectoryTrails(parseComparison(fixture(true)));
     for (const trail of group.trails) for (const layer of trail.layers) {
       const appearance = layer.primitive.appearance!;
-      expect(appearance.fragmentShaderSource).toContain('distanceToSegment');
-      expect(appearance.fragmentShaderSource).toContain('czm_readNonPerspective(v_mission1Segment');
+      expect(appearance.fragmentShaderSource).toContain('capsule(v_mission1Segment');
+      expect(appearance.fragmentShaderSource).toContain('ownsOverlap(before, own, ownHidden, true)');
+      expect(appearance.fragmentShaderSource).toContain('ownsOverlap(after, own, ownHidden, false)');
       expect(appearance.vertexShaderSource).toContain('clipLineSegmentToNearPlane');
       expect(appearance.getRenderState()).toMatchObject({ depthMask: false, depthTest: { enabled: true } });
       expect(appearance.material).toBe(layer.material);
@@ -202,7 +203,7 @@ describe('future only continuous trajectories', () => {
       expect(trail.positions.map((p)=>p.x)).toEqual(samples.map((p)=>p.xMeters));
       expect(trail.positions).toHaveLength(181);
       expect(trail.positions[0]).not.toEqual(trail.positions[180]);
-      const vertices=trail.layers.map(({primitive})=> Array.from(PolylineGeometry.createGeometry((primitive.geometryInstances as GeometryInstance).geometry as unknown as PolylineGeometry)!.attributes.position!.values!));
+      const vertices=trail.layers.map(({primitive})=> Array.from(((primitive.geometryInstances as GeometryInstance).geometry as Geometry).attributes.position!.values!));
       expect(vertices[0]).toEqual(vertices[1]);
       const primitives=trail.layers.map((layer)=>layer.primitive);
       updateTrail(trail,now,'PRIMARY_GP_TLE');
