@@ -1,0 +1,249 @@
+{
+  "backend": 268,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "crewPostgres": 53,
+  "restControllerAndPostgres": 40,
+  "restArchitecture": 3,
+  "frontend": 171,
+  "frontendFiles": 26,
+  "mavenTest": "PASS",
+  "mavenVerify": "PASS",
+  "frontendTypecheck": "PASS",
+  "frontendBuild": "PASS",
+  "sqlQueries": {
+    "crew": 39,
+    "expedition": 11,
+    "person": 39
+  },
+  "rosterGrowth": {
+    "members": [
+      7,
+      37
+    ],
+    "sqlQueries": [
+      31,
+      31
+    ]
+  },
+  "ll2CallsOnGet": 0,
+  "nasaCallsOnGet": 0,
+  "databaseWritesOnGet": 0,
+  "reconciliationWritesOnGet": 0,
+  "readOnlyTransactions": true,
+  "isolation": "REPEATABLE_READ",
+  "testSuites": [
+    {
+      "name": "org.mission1.orbital.application.OrbitalSampleWindowServiceTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.oem.NasaOemTrajectoryServiceTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.api.crew.CrewPostgresApiTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.crew.nasa.NasaOperationalFeedHttpSourceTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.orbital.celestrak.CelesTrakRefreshIntegrationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.api.crew.CrewApiTest",
+      "tests": "29",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.application.CrewPersonResolverTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.crew.nasa.NasaOperationalFeedParserTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.application.CurrentOrbitalStateServiceTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.domain.CrewEvidenceContractTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.persistence.JdbcCrewRepositoryTest",
+      "tests": "24",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.propagation.OrbitalInterpolationExperimentTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.crew.nasa.NasaCrewDocumentSourceTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.application.CrewReconciliationEngineTest",
+      "tests": "24",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.CrewIngestionConfigurationTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.orbital.nasa.NasaOemXmlParserTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.CrewConfigurationTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.propagation.OrbitalCoreTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.application.OrbitalQualityEvaluatorTest",
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.crew.ll2.LaunchLibrary2CrewSourceTest",
+      "tests": "27",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.persistence.JdbcOrbitalElementSetRepositoryTest",
+      "tests": "14",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.CrewArchitectureTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.CrewVerificationConfigurationTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSourceTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.orbital.application.CelesTrakRefreshServiceTest",
+      "tests": "14",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.api.crew.CrewRestArchitectureTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.api.CurrentOrbitalStateApiTest",
+      "tests": "16",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.persistence.JdbcCrewVerificationRepositoryTest",
+      "tests": "18",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.mission1.crew.application.CrewIngestionPolicyTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "finalStartupSmoke": "PASS",
+  "browserSmoke": "PASS",
+  "orbitalApiSmoke": "PASS",
+  "crewApiSmoke": "PASS",
+  "diffCheck": "PASS",
+  "frozenAudit": "PASS",
+  "documentationLinks": "PASS",
+  "secretScopeReview": "PASS"
+}

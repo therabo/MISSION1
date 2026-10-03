@@ -1,0 +1,35 @@
+{
+  "validatedAt": "2026-10-03T13:18:58.291891+00:00",
+  "schedulerOverrides": {},
+  "defaultsRestored": true,
+  "http": [
+    {
+      "path": "/api/iss/crew",
+      "status": 200
+    },
+    {
+      "path": "/api/iss/expedition/current",
+      "status": 200
+    },
+    {
+      "path": "/api/iss/crew/8036ce99-4648-40d8-9aa7-2956ddefaa91",
+      "status": 200
+    },
+    {
+      "path": "/api/iss/state",
+      "status": 200
+    },
+    {
+      "path": "/api/iss/orbit/samples",
+      "status": 200
+    },
+    {
+      "path": "/api/iss/orbit/comparison",
+      "status": 200
+    }
+  ],
+  "crewTablesUnchanged": true,
+  "backendPid": 87271,
+  "port": 8080,
+  "flywayVersion": 4
+}

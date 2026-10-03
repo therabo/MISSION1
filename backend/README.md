@@ -1,6 +1,6 @@
 # MISSION1 orbital core
 
-This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. Delayed schedulers run the independent CelesTrak refresh and LL2 Crew ingestion services. Crew has no public REST or UI; the existing Earth View remains on its orbital track.
+This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. Delayed schedulers run the independent CelesTrak refresh and LL2 Crew ingestion services. Crew has read-only REST; its UI remains future; the existing Earth View remains on its orbital track.
 
 ## Data path and meaning
 
@@ -117,7 +117,7 @@ This additive contract enables frontend trajectory alignment; it supplies no ver
 
 `org.mission1.crew.domain` defines people/profiles, expeditions, assignments, independent physical-presence evidence, media rights, external IDs, observation hashes/times and conflict/result vocabulary. `crew.application` exposes separate structured/profile/document/verification ports. `source.crew.ll2.LaunchLibrary2CrewSource` implements dynamic active-expedition discovery and explicit profile enrichment using the existing Java HttpClient/Jackson stack. `source.crew.nasa.NasaCrewDocumentSource` captures explicitly chosen official documents; NASA RSS semantic parsing is now implemented in the V4 extension below.
 
-At the completed source/domain foundation milestone, Crew was independent of Orbit/Orekit and `CrewConfiguration` registered inert capabilities using the UTC Clock, without persistence or polling. Current ingestion/persistence is described in the following section; there is still no immediate startup fetch, Crew REST controller or frontend change. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
+At the completed source/domain foundation milestone, Crew was independent of Orbit/Orekit and `CrewConfiguration` registered inert capabilities using the UTC Clock, without persistence or polling. Current ingestion/persistence is described in the following section; there is still no immediate startup fetch; Crew REST is now implemented below, with frontend unchanged. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
 
 | Setting | Environment override | Default |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ The manual main is not a JUnit test. It makes exactly one LL2 request, no retrie
 
 These are MISSION1 policies. Startup applies migrations and registers scheduling without an immediate Crew request. Persisted actual-attempt times also enforce scheduled eligibility after restart. Persisted `Retry-After` suppresses both manual and scheduled calls until eligibility; there are zero immediate retries. A normal refresh makes one expedition GET, no astronaut detail calls. A process-local guard prevents overlap. Tests disable both Crew and CelesTrak scheduling, and all default tests use fixture/loopback/mock sources plus real PostgreSQL Testcontainers, never H2 or public network dependence.
 
-The existing local startup commands apply V4 automatically; no manual table setup is needed. Database unavailability can prevent completing a failed run; the scheduler logs this and continues future ticks. No failure erases observations. NASA semantic ingestion/reconciliation is implemented in V4 below; Crew REST and frontend remain future work.
+The existing local startup commands apply V4 automatically; no manual table setup is needed. Database unavailability can prevent completing a failed run; the scheduler logs this and continues future ticks. No failure erases observations. NASA semantic ingestion/reconciliation is implemented in V4 below; Crew REST is implemented below; frontend remains future work.
 
 A controlled **one-request** live ingestion can use the same opt-in probe with persistence, after offline gates:
 
@@ -176,7 +176,7 @@ The `--persist` mode boots the actual non-web application with both schedulers d
 | mission1.crew.verification.current-assertion-max-age | MISSION1_CREW_CURRENT_ASSERTION_MAX_AGE | PT72H |
 | mission1.crew.verification.event-implication-max-age | MISSION1_CREW_EVENT_IMPLICATION_MAX_AGE | P14D |
 
-These are configurable project policies, not NASA guarantees. No immediate NASA startup request; one RSS request per normal tick, no retry or article/profile fetch. Independent schedulers trigger persisted-input reconciliation, with no provider coupling. `CrewReconciliationQueryService` is the internal read-only current interpretation/health entry point. No Crew controller or frontend exists. Default tests disable all public-source scheduling and use mocks/fixtures/PostgreSQL Testcontainers.
+These are configurable project policies, not NASA guarantees. No immediate NASA startup request; one RSS request per normal tick, no retry or article/profile fetch. Independent schedulers trigger persisted-input reconciliation, with no provider coupling. `CrewReconciliationQueryService` is the internal read-only current interpretation/health entry point. Crew REST is now implemented below; Crew frontend remains future. Default tests disable all public-source scheduling and use mocks/fixtures/PostgreSQL Testcontainers.
 
 After offline gates, an explicit manual validation can make **two NASA requests**, the second conditional, with both source schedulers disabled. It never fetches LL2; use a database already holding a dated validated LL2 snapshot. Provision a separate database if isolation is needed.
 
@@ -188,3 +188,13 @@ MISSION1_NASA_CREW_LIVE_VALIDATION=1 java -cp "target/classes:target/test-classe
 ```
 
 Production classes must precede test classes so the real datasource configuration is loaded. Set MISSION1_DB_URL when using a validation database. The optional `--report-only` argument exports retained PostgreSQL observations/current interpretation with **zero requests and zero writes**, including recovery after report export errors; it is not a retry mode. Do not loop live validation. Raw official fixture bytes are test-only, never a runtime fallback. Crash/total-database-outage IN_PROGRESS runs stay observable; abandoned-run recovery is deliberately deferred until ownership/liveness rules exist.
+
+## ISS Crew REST API — 2026-10-03
+
+- GET `/api/iss/crew`: effective reconciled interpretation, structured context, distinct counts, resolved members, unresolved NASA assertions, reconciliation/freshness/provenance.
+- GET `/api/iss/expedition/current`: latest usable structured LL2 outcome; assignments do not establish physical presence. Explicit NO_ACTIVE_EXPEDITION returns 200/null expedition/empty assignments; later failures retain the last valid semantic state.
+- GET `/api/iss/crew/{astronautId}`: persisted MISSION1 UUID person, including partial NASA-only and historically known identities; LL2 integer IDs are external mappings.
+
+Every GET reads PostgreSQL in a read-only repeatable-read composition transaction. Zero NASA/LL2 requests, source refreshes, identity-resolution writes or reconciliation writes. Source failure/staleness retains useful state with quality; total absence gives 503. Unknown UUID gives 404, malformed UUID 400, sanitized internal errors 500 ProblemDetail. Official current count is nullable and distinct from resolved/member/assignment counts. Durations and timestamps are ISO-8601 strings; media rights remain attached. No Crew frontend, new runtime configuration, migration, CORS/security change or production scheduler-default change. Cache-Control no-store avoids frozen age-based quality. [Full contract](../docs/api/crew-api.md), [HTTP/PostgreSQL/read-only/performance evidence](../docs/crew/rest-api-validation/README.md).
+
+For source-isolated local HTTP validation, start the usual database/backend with temporary `MISSION1_CREW_INGESTION_ENABLED=false`, `MISSION1_CREW_VERIFICATION_ENABLED=false` and `MISSION1_CELESTRAK_REFRESH_ENABLED=false`. These runtime overrides do not change committed defaults. Read known UUIDs from `/api/iss/crew`; then request the detail resource. All default tests are offline, with real PostgreSQL Testcontainers where applicable.

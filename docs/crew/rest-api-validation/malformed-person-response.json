@@ -1,0 +1,7 @@
+{
+  "type": "urn:mission1:problem:bad-request",
+  "title": "Invalid astronaut identifier",
+  "status": 400,
+  "detail": "astronautId must be a canonical MISSION1 UUID.",
+  "instance": "/api/iss/crew/not-a-uuid"
+}
