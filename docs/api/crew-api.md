@@ -1,5 +1,9 @@
 # ISS Crew REST API
 
+## Earth View consumer — 2026-10-03
+
+The [Crew panel](../frontend/crew-earth-view-panel-review/README.md) reads the collection once on open and fetches one UUID detail when selected. It uses the collection's structured input and does not also request the independently latest Expedition endpoint. Refresh is user initiated; no automatic polling or provider request is added. Abort/late-response protection prevents abandoned detail from replacing the current view. The consumer preserves nulls, all public status/presence values, distinct counts and assertion applicability; it performs no identity matching. Biography is rendered as text. Media is displayed only under an explicit reviewed reuse policy, with original URL and credit. This consumer note does not change the backend contract below.
+
 Contract selected before implementation, 2026-10-03. Three read-only resources:
 
 - `GET /api/iss/crew`: current age-aware reconciled interpretation plus structured context.

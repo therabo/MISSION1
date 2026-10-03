@@ -6,6 +6,8 @@ import type { PositionSnapshot, TrajectorySource } from '../cesium/trajectorySel
 import type { ComparisonDelivery } from '../api/useComparisonDelivery';
 
 interface OrbitalStatusProps {
+  crewOpen: boolean;
+  onCrewOpen: () => void;
   delivery: OrbitalDelivery;
   comparison: ComparisonDelivery;
   buffer: BufferStatus;
@@ -40,7 +42,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, returning, selectedSource, position }: OrbitalStatusProps) {
+export function OrbitalStatus({ crewOpen, onCrewOpen, delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, returning, selectedSource, position }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -50,6 +52,7 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
   const bufferText = buffer === 'active' ? 'ACTIVE' : buffer === 'expired' ? 'EXPIRED' : 'WAITING';
 
   return <aside className="status-panel" aria-label="ISS orbital status">
+    <button id="crew-launcher" className="crew-launcher" type="button" aria-controls="crew-panel" aria-expanded={crewOpen} onClick={onCrewOpen}>ISS Crew <span aria-hidden="true">↗</span></button>
     <details className="orbital-details" open={!inspecting}>
     <summary>ISS orbital details</summary>
     <div className="panel-head">

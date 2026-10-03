@@ -1,0 +1,48 @@
+{
+  "node": "24",
+  "java": "21",
+  "frontend": {
+    "tests": 269,
+    "files": 30,
+    "baselineTests": 171,
+    "baselineFiles": 26,
+    "test": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS",
+    "buildWarning": "Existing Cesium bundle size warning"
+  },
+  "backend": {
+    "tests": 268,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "mvnOfflineTest": "PASS",
+    "mvnOfflineVerify": "PASS"
+  },
+  "dependencyAudit": {
+    "baseline": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 3,
+      "critical": 0,
+      "total": 3
+    },
+    "current": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 3,
+      "critical": 0,
+      "total": 3
+    },
+    "packages": [
+      "braces",
+      "chokidar",
+      "vite-plugin-static-copy"
+    ],
+    "newAdvisoryPackages": []
+  },
+  "nativePinch": "UNVERIFIED; automation has no native pinch action and user unable to test",
+  "newADR": false
+}

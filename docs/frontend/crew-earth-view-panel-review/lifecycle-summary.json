@@ -1,0 +1,135 @@
+{
+  "cycles": 10,
+  "extraRequests": 20,
+  "viewersBefore": 1,
+  "viewersAfter": 1,
+  "domBefore": {
+    "panels": 0,
+    "details": 0,
+    "portraits": 0,
+    "canvases": 1,
+    "nodes": 162
+  },
+  "domAfter": {
+    "panels": 0,
+    "details": 0,
+    "portraits": 0,
+    "canvases": 1,
+    "nodes": 162
+  },
+  "listenersBefore": {
+    "preRender": 3,
+    "postRender": 3,
+    "clock": 4
+  },
+  "listenersAfter": {
+    "preRender": 3,
+    "postRender": 3,
+    "clock": 4
+  },
+  "heapBeforeBytes": 204444484,
+  "heapAfterBytes": 197958190,
+  "forcedGc": false,
+  "cameraAndTime": [
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03940000003603927
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03940000003603927
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03789999997570703
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.037699999988035415
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.037799999952767394
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03909999996358238
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.039899999976114486
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.04060000002391462
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03889999997772975
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.0387000000464468
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.038599999963480514
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.039999999999054126
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.04280000001199369
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03950000000077125
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.041600000024118344
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.04480000001240114
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.04089999997631821
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.04170000004705798
+    },
+    {
+      "action": "crew-launcher",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03790000003573368
+    },
+    {
+      "action": "close",
+      "identicalPoseSourceClockPolicy": true,
+      "naturalEpochAdvanceSeconds": 0.03909999996358238
+    }
+  ]
+}

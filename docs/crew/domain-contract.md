@@ -1,5 +1,9 @@
 # Crew domain contract — v1
 
+## Earth View consumption — 2026-10-03
+
+The implemented [Crew panel](../frontend/crew-earth-view-panel-review/README.md) preserves domain distinctions through the public REST DTOs. `officialAboard` is the main nullable count, never member-array length; confirmed resolved identities, retained official count, unidentified gap, unresolved assertion entries and structured assignments retain separate labels. Role grouping uses backend assignment codes. NASA-only confirmed people have no invented assignment; unresolved subjects remain source reports without a person UUID or canonical presence. The frontend displays backend presence/status/applicability rather than deriving new states. Cumulative career duration is formatted as elapsed time, independently of timestamps and the Cesium clock. No domain behavior changes.
+
 **CrewAssignment != StationPresence. LL2 in_space != currentlyAboardIss.**
 
 All production domain types are in `org.mission1.crew.domain`, with no Spring, Jackson, SQL, Orekit or provider DTO dependency. Collections are immutable defensive copies. Absolute times use `Instant`; cumulative elapsed times use `Duration`. Nullable optional fields mean unknown/not supplied, never zero, false or a fabricated event time.

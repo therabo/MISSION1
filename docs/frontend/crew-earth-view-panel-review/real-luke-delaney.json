@@ -1,0 +1,56 @@
+{
+  "id": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+  "name": "Luke Delaney",
+  "officialProfileUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+  "externalIds": [
+    {
+      "source": "NASA_OFFICIAL",
+      "value": "profile:nasa-astronaut-luke-delaney"
+    }
+  ],
+  "agency": null,
+  "nationalities": [],
+  "biography": null,
+  "image": null,
+  "career": null,
+  "profileAvailability": "UNAVAILABLE",
+  "currentAssignment": null,
+  "currentPresence": {
+    "state": "CONFIRMED_ABOARD",
+    "lastKnownState": "CONFIRMED_ABOARD",
+    "asOf": "2026-10-02T02:01:55Z",
+    "authority": "NASA_OFFICIAL",
+    "evidence": [
+      {
+        "source": "NASA_OFFICIAL",
+        "sourceType": "NASA_ISS_OPERATIONAL_POST",
+        "type": "PERSON_ENTERED_STATION",
+        "assertion": "COMPLETED",
+        "completeness": "PARTIAL",
+        "asOf": "2026-10-02T02:01:55Z",
+        "provenance": {
+          "source": "NASA_OFFICIAL",
+          "sourceType": "NASA_ISS_OPERATIONAL_POST",
+          "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+          "observedAt": "2026-10-03T11:45:46.137144Z",
+          "sourcePublishedAt": "2026-10-02T02:01:55Z",
+          "sourceEventAt": null,
+          "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+          "sourceVersion": "NASA_RSS",
+          "methodVersion": "NasaOperationalFeedParser/1.0.0"
+        }
+      }
+    ]
+  },
+  "reconciliation": {
+    "status": "PARTIAL_MATCH",
+    "evaluatedAt": "2026-10-03T14:17:36.256474Z",
+    "reconciledAt": "2026-10-03T11:45:46.258811Z",
+    "algorithmVersion": "crew-reconciliation-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+    "lastAttemptAt": "2026-10-03T13:23:18.866356Z",
+    "lastAttemptCompletedAt": "2026-10-03T13:23:18.902238Z",
+    "lastAttemptResult": "SUCCESS"
+  },
+  "profileProvenance": null,
+  "profileLastSuccessfulFetchAt": null
+}

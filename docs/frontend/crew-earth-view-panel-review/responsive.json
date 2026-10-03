@@ -1,0 +1,34 @@
+[
+  {
+    "height": 700,
+    "overflow": false,
+    "panel": {
+      "bottom": 534,
+      "height": 452,
+      "left": 568,
+      "right": 878,
+      "top": 82,
+      "width": 310,
+      "x": 568,
+      "y": 82
+    },
+    "scrollY": 0,
+    "width": 900
+  },
+  {
+    "height": 1024,
+    "overflow": false,
+    "panel": {
+      "bottom": 858,
+      "height": 776,
+      "left": 436,
+      "right": 746,
+      "top": 82,
+      "width": 310,
+      "x": 436,
+      "y": 82
+    },
+    "scrollY": 0,
+    "width": 768
+  }
+]

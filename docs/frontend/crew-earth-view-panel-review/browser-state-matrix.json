@@ -1,0 +1,58 @@
+[
+  {
+    "state": "STALE",
+    "count": "Crew aboard: unavailable",
+    "memberButtons": 9,
+    "status": "Crew data may be outdated",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "MATCH",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Sources aligned",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "NASA_AHEAD",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Recent NASA update",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "LL2_AHEAD",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Structured roster newer",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "PARTIAL_MATCH",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Sources partially reconciled",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "VERIFICATION_UNAVAILABLE",
+    "count": "Crew aboard: unavailable",
+    "memberButtons": 9,
+    "status": "NASA verification unavailable",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "PRIMARY_UNAVAILABLE",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Structured roster unavailable",
+    "unresolvedButtons": 0
+  },
+  {
+    "state": "AMBIGUOUS",
+    "count": "11 aboard",
+    "memberButtons": 9,
+    "status": "Crew state requires reconciliation",
+    "unresolvedButtons": 0
+  }
+]

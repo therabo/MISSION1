@@ -1,0 +1,81 @@
+{
+  "kind": "REAL_BACKEND",
+  "state": null,
+  "requests": [],
+  "transitions": [],
+  "latency": [],
+  "samples": {
+    "closed": {
+      "intervalMs": {
+        "n": 1800,
+        "median": 20,
+        "p95": 21.599999964237213
+      },
+      "renderMs": {
+        "n": 1800,
+        "median": 5.600000023841858,
+        "p95": 6.100000023841858
+      }
+    }
+  },
+  "viewersCreated": 1,
+  "pose": {
+    "position": [
+      -7118991.685646318,
+      16782924.738793507,
+      -14621877.46902944
+    ],
+    "direction": [
+      0.303820808134689,
+      -0.7162533659485476,
+      0.628230875006761
+    ],
+    "up": [
+      -0.2453251869675178,
+      0.5783507456129998,
+      0.7780269710544999
+    ],
+    "transform": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "fov": 1.0471975511965976,
+    "epoch": {
+      "dayNumber": 2461317,
+      "secondsOfDay": 9103.102835000025
+    },
+    "source": "MISSION1 GP/TLE",
+    "multiplier": 1,
+    "animate": true
+  },
+  "dom": {
+    "panels": 0,
+    "details": 0,
+    "portraits": 0,
+    "canvases": 1,
+    "nodes": 162
+  },
+  "listeners": {
+    "preRender": 3,
+    "postRender": 3,
+    "clock": 4
+  },
+  "memory": {
+    "used": 248981296,
+    "total": 335779636
+  }
+}

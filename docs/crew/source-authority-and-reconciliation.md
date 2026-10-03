@@ -1,5 +1,9 @@
 # Crew source authority and implemented reconciliation
 
+## Earth View presentation — 2026-10-03
+
+The [Crew UI](../frontend/crew-earth-view-panel-review/README.md) receives the existing backend interpretation. It neither promotes LL2-only assignments to confirmed presence nor assigns NASA-only people a structured role. Source spelling variants such as the dated Andrei/Andrey reports stay distinct. All eight reconciliation statuses, per-member states and unresolved assertion applicability remain visible; latest successful fetch, original observation, publication and reconciled/evaluated times have separate labels. A manual UI refresh requests another read-time evaluation, not provider acquisition. No browser identity matching or authority override is introduced.
+
 LL2 and NASA observations stay independent. A provider's overall priority or a boolean verified flag cannot explain field, time, identity or completeness.
 
 | Field | Authority | Boundary |

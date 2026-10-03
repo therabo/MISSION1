@@ -1,0 +1,60 @@
+{
+  "capturedAt": "2026-10-03T14:17:36.351235+00:00",
+  "requests": [
+    {
+      "path": "/api/iss/crew",
+      "status": 200,
+      "ms": 295.682,
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/api/iss/expedition/current",
+      "status": 200,
+      "ms": 27.766,
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/api/iss/state",
+      "status": 200,
+      "ms": 14.733,
+      "cacheControl": null
+    },
+    {
+      "path": "/api/iss/orbit/samples",
+      "status": 200,
+      "ms": 27.012,
+      "cacheControl": null
+    },
+    {
+      "path": "/api/iss/orbit/comparison",
+      "status": 200,
+      "ms": 53.084,
+      "cacheControl": null
+    },
+    {
+      "path": "/api/iss/crew/4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+      "status": 200,
+      "ms": 41.222
+    },
+    {
+      "path": "/api/iss/crew/09dea926-7480-4fc5-a340-01d44a6e5dae",
+      "status": 200,
+      "ms": 48.814
+    },
+    {
+      "path": "/api/iss/crew/0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+      "status": 200,
+      "ms": 48.339
+    }
+  ],
+  "counts": {
+    "officialAboard": 11,
+    "lastKnownOfficialAboard": 11,
+    "resolvedAboard": 8,
+    "unresolvedSubjects": 3,
+    "unidentifiedAboard": 3,
+    "structuredAssignments": 7
+  },
+  "expedition": "Expedition 75",
+  "status": "PARTIAL_MATCH"
+}

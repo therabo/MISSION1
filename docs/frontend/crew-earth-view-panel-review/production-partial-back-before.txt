@@ -1,0 +1,12 @@
+Browser tab: 4, Title: "MISSION1 · Earth View", URL: "http://127.0.0.1:4175/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 212-277, 287-289, 296-300, 360-377
+~		8 button Back to Earth View
++			360 button (collapsed) ISS orbital details, Secondary Actions: Expand
++				361 text ISS orbital details
++		362 text Approaching moving ISS target
++		363 text Model not to scale · Attitude unavailable
+~				99 checkbox (disabled) MISSION1 GP/TLE, Value: 0
+~				100 checkbox (disabled) NASA OEM, Value: 1
+~			102 text Return to Earth View to change source
+The focused UI element is 8 button Back to Earth View

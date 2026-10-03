@@ -1,5 +1,19 @@
 # MISSION1 Earth View
 
+## ISS Crew Earth View panel — 2026-10-03
+
+Open **ISS Crew** in the existing ISS orbital-information surface, in Overview or Inspection. Crew is a bounded DOM panel in the same Earth View; opening it issues no camera command. Selecting a mapped station module closes Crew so the two detail surfaces cannot overlap. Closing Crew restores keyboard focus to its launcher. Escape returns from a person to their card, then closes the list; the existing Earth/ISS Back control remains separate.
+
+`api/crewApi.ts` consumes the [implemented MISSION1 contract](../docs/api/crew-api.md), with explicit nullable types/runtime decoding in `crew/`. One `GET /api/iss/crew` loads the list. A resolved person opens one lazy `GET /api/iss/crew/{MISSION1 UUID}`. The client supports `/api/iss/expedition/current`, but this panel does not request it: the collection already carries its exact structured Expedition context. Hooks own cancellable HTTP state; the memoized CrewPanel owns selected detail state. There is no new global state library, polling timer, Cesium dependency, or provider acquisition/parsing/reconciliation in the frontend. Source/media hyperlinks are references; only expressly reusable portraits are loaded from their original URLs.
+
+The main view separates official current count, confirmed identities, retained count, unidentified gap, assignment count and unresolved assertion entries. Roles come from backend assignment codes; NASA-only confirmed identities are **Other confirmed crew**, without invented roles. Unresolved reports have no profile button or UUID. All eight backend quality states retain text labels, with expandable explanations and source/freshness detail. The displayed assessment is explicitly as of the response; Refresh obtains a new backend evaluation. HTTP errors remain local to Crew, and useful prior responses remain visibly dated on refresh failure.
+
+Person detail shows assignment separately from presence, safe plain-text biography, nationalities, source cumulative career totals with deterministic ISO elapsed-duration formatting, profile/source timestamps and portrait rights. Missing structured NASA-only fields remain unavailable. Unknown/restricted/broken portraits use initials; no images are mirrored. Long biographies are expandable and scroll inside the panel.
+
+Desktop uses a 344 px side panel (310 px on narrow desktop). Tablet widths 721–820 px use a compact 430 px bottom drawer; mobile uses a sheet with safe-area spacing and at most 58dvh/520 px. Orbital information is temporarily hidden underneath the Crew drawer/sheet, then restored. Earth pointers outside the surface, source controls and Back remain accessible; the document does not scroll. Crew controls use visible focus and 44 px minimum touch targets.
+
+Validation: 269 tests/30 files, typecheck/build, real API and development/production browser checks. `jsdom` is a test-only dependency. [Native screenshots, state/error matrices, measured request/latency/frame/lifecycle results and limits](../docs/frontend/crew-earth-view-panel-review/README.md). Camera/orbital/rendering source and assets remain byte-identical. No events, automatic refresh, notifications, history/admin or Replay UI are added. Next single Crew milestone: **ISS CREW EVENT-AWARE REFRESH**; independent orbital RTN remains pending.
+
 ## Night-side protection and rounded trajectory joins — 2026-10-03
 
 The station protection mask now checks visibility per fragment at the Earth limb, and retained trajectory segments render rounded joins without halo overdraw. Physical data, origin/reveal policy, camera and graphics quality remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](../docs/frontend/trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.

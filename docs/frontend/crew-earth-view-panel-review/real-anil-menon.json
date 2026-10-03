@@ -1,0 +1,106 @@
+{
+  "id": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+  "name": "Anil Menon",
+  "officialProfileUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+  "externalIds": [
+    {
+      "source": "LAUNCH_LIBRARY_2",
+      "value": "713"
+    },
+    {
+      "source": "NASA_OFFICIAL",
+      "value": "profile:nasa-astronaut-anil-menon"
+    }
+  ],
+  "agency": {
+    "name": "National Aeronautics and Space Administration",
+    "abbreviation": "NASA",
+    "type": "Government",
+    "externalIds": [
+      {
+        "source": "LAUNCH_LIBRARY_2",
+        "value": "44"
+      }
+    ]
+  },
+  "nationalities": [
+    {
+      "alpha2": "US",
+      "alpha3": "USA",
+      "displayName": "United States of America"
+    }
+  ],
+  "biography": "Anil Menon is a US Air Force lieutenant colonel from Minneapolis, Minnesota. He was SpaceX’s first flight surgeon, helping to launch the company’s first humans to space during NASA’s SpaceX Demo-2 mission and building a medical organization to support the human system during future missions. Prior to that, he served NASA as the crew flight surgeon for various expeditions taking astronauts to the International Space Station. Menon is an actively practicing emergency medicine physician with fellowship training in wilderness and aerospace medicine. As a physician, he was a first responder during the 2010 earthquake in Haiti, 2015 earthquake in Nepal, and the 2011 Reno Air Show accident. In the Air Force, Menon supported the 45th Space Wing as a flight surgeon and the 173rd Fighter Wing, where he logged over 100 sorties in the F-15 fighter jet and transported over 100 patients as part of the critical care air transport team.\r\n\r\nExact date of birth unknown.",
+  "image": {
+    "url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/anil_menon_image_20211206185413.jpg",
+    "thumbnailUrl": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190559.jpeg",
+    "credit": "NASA",
+    "licenseName": "NASA Image and Media Guidelines",
+    "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "singleUse": false
+  },
+  "career": {
+    "timeInSpace": "PT1930H38M39S",
+    "evaTime": "PT19H29M",
+    "flightsCount": null,
+    "spacewalksCount": null,
+    "firstFlight": "2026-07-14T14:47:43Z",
+    "lastFlight": "2026-07-14T14:47:43Z"
+  },
+  "profileAvailability": "AVAILABLE",
+  "currentAssignment": {
+    "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+    "role": "Flight Engineer",
+    "roleCode": "FLIGHT_ENGINEER",
+    "validFrom": null,
+    "validUntil": null
+  },
+  "currentPresence": {
+    "state": "CONFIRMED_ABOARD",
+    "lastKnownState": "CONFIRMED_ABOARD",
+    "asOf": "2026-10-02T02:01:55Z",
+    "authority": "NASA_OFFICIAL",
+    "evidence": [
+      {
+        "source": "NASA_OFFICIAL",
+        "sourceType": "NASA_ISS_OPERATIONAL_POST",
+        "type": "PERSON_CURRENTLY_ABOARD",
+        "assertion": "OBSERVED",
+        "completeness": "PARTIAL",
+        "asOf": "2026-10-02T02:01:55Z",
+        "provenance": {
+          "source": "NASA_OFFICIAL",
+          "sourceType": "NASA_ISS_OPERATIONAL_POST",
+          "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+          "observedAt": "2026-10-03T11:45:46.137144Z",
+          "sourcePublishedAt": "2026-10-02T02:01:55Z",
+          "sourceEventAt": null,
+          "contentHash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+          "sourceVersion": "NASA_RSS",
+          "methodVersion": "NasaOperationalFeedParser/1.0.0"
+        }
+      }
+    ]
+  },
+  "reconciliation": {
+    "status": "PARTIAL_MATCH",
+    "evaluatedAt": "2026-10-03T14:17:36.305073Z",
+    "reconciledAt": "2026-10-03T11:45:46.258811Z",
+    "algorithmVersion": "crew-reconciliation-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H",
+    "lastAttemptAt": "2026-10-03T13:23:18.866356Z",
+    "lastAttemptCompletedAt": "2026-10-03T13:23:18.902238Z",
+    "lastAttemptResult": "SUCCESS"
+  },
+  "profileProvenance": {
+    "source": "LAUNCH_LIBRARY_2",
+    "sourceType": null,
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+    "observedAt": "2026-10-03T10:30:18.796289Z",
+    "sourcePublishedAt": null,
+    "sourceEventAt": null,
+    "contentHash": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+    "sourceVersion": "2.3.0",
+    "methodVersion": "ll2-crew-v1"
+  },
+  "profileLastSuccessfulFetchAt": "2026-10-03T13:23:18.808440Z"
+}

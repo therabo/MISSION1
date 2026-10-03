@@ -1,5 +1,9 @@
 # Crew milestone validation and regression — historical records and current gate
 
+## Earth View Crew panel acceptance — 2026-10-03
+
+The current frontend gate is [the Crew Earth View dossier](../frontend/crew-earth-view-panel-review/README.md). It records 269 frontend tests/30 files, API/SSR/mounted-hook tests, all eight statuses and six presence states, request/cancellation/no-polling tests, count/group/unresolved semantics, safe biography/media/duration cases, real PostgreSQL-backed API smoke, native desktop/narrow/tablet/mobile screenshots, development/served-production workflows, keyboard/focus checks, passive camera/time/frame measurements and bounded lifecycle observations. Backend Maven test/verify retain 268 passing tests with zero source changes. Graphics/orbital/backend byte-freeze and complete diff checks are required before commit. Physical touch-pinch verification is explicitly distinguished from unchanged tested pinch wiring; no unobserved gesture is claimed. Next single Crew milestone: **ISS CREW EVENT-AWARE REFRESH**.
+
 Current NASA verification/reconciliation acceptance is recorded in [the current dossier](reconciliation-validation/README.md). The source/domain foundation and LL2 ingestion records below remain dated historical evidence.
 
 ## Source/domain foundation record — 2026-10-03

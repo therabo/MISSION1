@@ -101,8 +101,8 @@ Crew track:
 2. **Done:** [ingestion + PostgreSQL persistence](../crew/persistence-and-ingestion.md), with sync runs, immutable observations and UUID anchors under ADR-0008.
 3. **Done:** [NASA verification + reconciliation](../crew/nasa-verification-and-reconciliation.md), immutable evidence and temporal canonical queries under ADR-0009.
 4. **Done:** [ISS Crew REST API](../api/crew-api.md), read-only reconciled/structured/person resources.
-5. **Next:** ISS CREW EARTH VIEW PANEL.
-6. **Future:** event-aware refresh.
+5. **Done:** [ISS Crew Earth View panel](../frontend/crew-earth-view-panel-review/README.md), API-only DOM list/lazy detail and responsive quality/provenance.
+6. **Next:** ISS CREW EVENT-AWARE REFRESH.
 7. **Future:** Replay integration.
 
  Orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS** and the existing Replay plans remain pending, not abandoned. Earlier dated “next” notes above are historical orbital context.
@@ -113,8 +113,8 @@ Crew track:
 2. **Done:** ingestion + PostgreSQL persistence.
 3. **Done:** NASA verification + reconciliation.
 4. **Done:** ISS Crew REST API, public UUID DTO boundary, source quality/provenance and unresolved-subject support.
-5. **Next:** ISS CREW EARTH VIEW PANEL.
-6. **Future:** event-aware refresh.
+5. **Done:** [ISS Crew Earth View panel](../frontend/crew-earth-view-panel-review/README.md), API-only DOM list/lazy detail and responsive quality/provenance.
+6. **Next:** ISS CREW EVENT-AWARE REFRESH.
 7. **Future:** Replay integration.
 
-[Implemented contract](../api/crew-api.md) and [REST evidence](../crew/rest-api-validation/README.md). The independent GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS remains pending. Orbit/graphics and Crew source/reconciliation/schedulers are unchanged. No Crew frontend is implemented.
+[Implemented contract](../api/crew-api.md) and [REST evidence](../crew/rest-api-validation/README.md). The independent GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS remains pending. Orbit/graphics and Crew source/reconciliation/schedulers are unchanged. Earth View Crew UI is implemented through the existing REST boundary; no events, history or Replay UI is added.
