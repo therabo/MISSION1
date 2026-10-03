@@ -34,17 +34,21 @@ public final class LaunchLibrary2CrewSource implements StructuredCrewSource, Cre
         this.issExternalId = issExternalId;
     }
 
+    public URI currentExpeditionUrl() {
+        return baseUrl.resolve("expeditions/?space_station=" + issExternalId
+                + "&is_active=true&mode=detailed&ordering=-start&limit=10");
+    }
+
     @Override public CrewSourceResult<CrewSourceSnapshot> fetchCurrentExpedition(Station station) {
         if (station != Station.ISS) throw new IllegalArgumentException("Only ISS mapping is configured");
-        URI url = baseUrl.resolve("expeditions/?space_station=" + issExternalId
-                + "&is_active=true&mode=detailed&ordering=-start&limit=10");
+        URI url = currentExpeditionUrl();
         var fetched = http.fetch(url, CrewSource.LAUNCH_LIBRARY_2, "application/json", API_VERSION, ADAPTER_VERSION);
         if (fetched.failure() != null) return copyFailure(fetched);
         try {
             var snapshot = mapper.snapshot(json.readValue(fetched.value(), Ll2Dtos.Page.class), issExternalId, fetched.observation());
             var state = snapshot.totalActiveExpeditions() == 0 ? CrewSourceState.NO_ACTIVE_EXPEDITION
                     : snapshot.totalActiveExpeditions() == 1 ? CrewSourceState.AVAILABLE : CrewSourceState.AMBIGUOUS;
-            return new CrewSourceResult<>(state, snapshot, fetched.observation(), null);
+            return new CrewSourceResult<>(state, snapshot, fetched.observation(), null, fetched.httpStatus());
         } catch (java.io.IOException | IllegalArgumentException | NullPointerException e) { return malformed(fetched); }
     }
 
@@ -59,15 +63,15 @@ public final class LaunchLibrary2CrewSource implements StructuredCrewSource, Cre
             if (!"detailed".equals(dto.responseMode()) || !Ll2CrewMapper.id(dto.id()).equals(id))
                 throw new IllegalArgumentException("Wrong astronaut or response mode");
             var profile = mapper.profile(dto, fetched.observation());
-            return new CrewSourceResult<>(CrewSourceState.AVAILABLE, profile, fetched.observation(), null);
+            return new CrewSourceResult<>(CrewSourceState.AVAILABLE, profile, fetched.observation(), null, fetched.httpStatus());
         } catch (java.io.IOException | IllegalArgumentException | NullPointerException e) { return malformed(fetched); }
     }
 
     private static <T> CrewSourceResult<T> copyFailure(CrewSourceResult<byte[]> fetched) {
-        return new CrewSourceResult<>(fetched.state(), null, fetched.observation(), fetched.failure());
+        return new CrewSourceResult<>(fetched.state(), null, fetched.observation(), fetched.failure(), fetched.httpStatus());
     }
     private static <T> CrewSourceResult<T> malformed(CrewSourceResult<byte[]> fetched) {
         return CrewHttpReader.failed(CrewSourceState.MALFORMED_RESPONSE,
-                CrewSourceResult.FailureCode.INVALID_RESPONSE, 200, null, fetched.observation());
+                CrewSourceResult.FailureCode.INVALID_RESPONSE, fetched.httpStatus(), null, fetched.observation());
     }
 }

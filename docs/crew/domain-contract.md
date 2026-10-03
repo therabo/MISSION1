@@ -8,13 +8,13 @@ All production domain types are in `org.mission1.crew.domain`, with no Spring, J
 | --- | --- |
 | `Station` | MISSION1 station concept `ISS`; unrelated to NORAD or LL2 numeric keys. |
 | `CrewSource`, `ExternalId` | Explicit provider/value pair, used in its person/agency/expedition/assignment context. LL2 IDs are not public MISSION1 IDs. |
-| `PersonReference` | Nullable future MISSION1 UUID, display name, external mappings and optional official profile URI. Unresolved NASA names can have zero external IDs. |
+| `PersonReference` | Nullable MISSION1 UUID before persistence, display name, external mappings and optional official profile URI. Unresolved NASA names can have zero external IDs. |
 | `AstronautProfile` | Person, nullable agency, zero/multiple structured nationalities, optional biography/career/media and nullable source `inSpace`, with observation lineage. No aboard-ISS flag exists. |
 | `Agency` | Source-neutral name, abbreviation, type and external mappings; not limited to NASA. |
 | `Nationality` | Optional ISO alpha-2/alpha-3 and display name. An empty list means no nationality supplied, not statelessness. |
 | `CareerStatistics` | Optional cumulative space/EVA durations, flights/spacewalk counts and first/last flight instants; negative statistics rejected. Not a current mission duration. |
 | `CrewMediaAsset` | Source URL, thumbnail, credit, license name/link, nullable `singleUse`. Unknown rights remain unknown. No image downloading or mirroring. |
-| `Expedition` | Nullable future internal UUID, external identity, name, start/end, station and source reference/observation. Source-neutral model of an observed expedition, not canonical occupancy. |
+| `Expedition` | Nullable internal UUID before persistence, external identity, name, start/end, station and source reference/observation. Source-neutral model of an observed expedition, not canonical occupancy. |
 | `CrewAssignment` | Person ↔ expedition reference, optional source assignment ID, normalized `CrewRole`, original label, optional individual validity times and source observation. LL2 does not supply individual presence/validity intervals; those remain null. |
 | `StationPresence` | Separate person/station/as-of claim (`PRESENT`, `DEPARTED`, `UNKNOWN`), optional entry/departure bounds and evidence. Confirmed state requires a compatible assertion naming that person; count, membership or hatch opening alone cannot confirm it. Merely assigned/in-space can remain `UNKNOWN`. This milestone does not derive it automatically. |
 | `CrewSourceObservation` | Source/URL, retrieval, optional publication/event times, optional ETag/raw HTTP Last-Modified, SHA-256, source generation and adapter/method version. |
@@ -26,7 +26,7 @@ All production domain types are in `org.mission1.crew.domain`, with no Spring, J
 
 ## Identity and roles
 
-Future persistence will allocate MISSION1-owned person/expedition UUIDs, with separately unique, entity-scoped `(source, externalId)` mappings. Initial source observations leave internal UUIDs null. Public resources must eventually use those internal IDs. No NASA IDs are manufactured from names. Prefer stable source IDs, then verified official profile URL/slug, then explicitly reviewed deterministic mappings. Name normalization/transliteration is supporting evidence, never automatic identity truth. For example, the capture contains LL2 “Andrei Fedyaev” and NASA “Andrey Fedyaev”; this milestone does not silently merge them.
+Persistence allocates MISSION1-owned person/expedition UUIDs, with separately unique, entity-scoped `(source, externalId)` mappings. Initial adapter observations leave internal UUIDs null; persisted graph reads populate them. Anchors hold identity and creation time only. Source-derived names/profile/expedition fields belong to immutable snapshot observations. Public resources must eventually use those internal IDs. No NASA IDs are manufactured from names. Prefer stable source IDs, then verified official profile URL/slug, then explicitly reviewed deterministic mappings. Name normalization/transliteration is supporting evidence, never automatic identity truth. For example, the capture contains LL2 “Andrei Fedyaev” and NASA “Andrey Fedyaev”; this milestone does not silently merge them.
 
 The adapter normalizes validated source labels Commander/Flight Engineer to enum values, retains the label, uses `OTHER` for a new non-null role and `UNKNOWN` when role is absent. Source role IDs and priorities are source-only metadata, not cross-provider role logic.
 
@@ -43,3 +43,7 @@ SHA-256 identifies exact HTTP bytes. Fixture metadata distinguishes original-bod
 ## Port boundaries
 
 `StructuredCrewSource.fetchCurrentExpedition(Station)` returns source snapshots. `CrewProfileSource.fetchAstronautProfile(ExternalId)` performs explicit enrichment. `CrewSourceDocumentSource.fetchDocument(type, URI)` captures a NASA document. `CrewPresenceVerificationSource.verify(document)` defines future deterministic extraction into evidence, **without an implementation** today. None owns polling, persistence, public delivery or canonical reconciliation.
+
+## Durable source history — 2026-10-03
+
+[Persistence and ingestion](persistence-and-ingestion.md) separates sync attempts from unique source states. `CrewSourceSnapshot.sourceStationExternalId` retains the validated station mapping; `AstronautProfile.sourceProfileMode` retains the source response mode. `CrewSourceResult.httpStatus` preserves the actual transport result when available, including successful responses; timeout/network failures do not acquire an invented status. Immutable snapshot provenance contains the first retrieval; a later identical successful run carries its own retrieval time. Persistence truncates absolute instants to PostgreSQL microseconds explicitly. Durations retain nanosecond precision as ISO-8601 text. No source meaning, physical-presence inference or NASA contract changes.

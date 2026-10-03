@@ -5,7 +5,7 @@ import java.util.Objects;
 /** Structured source candidates only. Never a canonical currently-aboard roster. */
 public record CrewSourceSnapshot(Station station, int totalActiveExpeditions, boolean candidatesComplete,
         List<Expedition> expeditions, List<CrewAssignment> assignments, List<AstronautProfile> profiles,
-        CrewSourceObservation observation) {
+        CrewSourceObservation observation, String sourceStationExternalId) {
     public CrewSourceSnapshot {
         Objects.requireNonNull(station); Objects.requireNonNull(observation);
         expeditions = List.copyOf(expeditions); assignments = List.copyOf(assignments); profiles = List.copyOf(profiles);

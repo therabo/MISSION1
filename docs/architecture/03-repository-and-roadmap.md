@@ -93,6 +93,16 @@ This updates presentation within ADR-0006, with no new service, source contract,
 
 ## Parallel Crew operational-context track — 2026-10-03
 
-The accepted orbital/graphics subsystem is frozen. [Crew Source Validation + Domain Contract](../crew/README.md) is the current independent Crew milestone: verified LL2 2.3.0 structured observations, NASA official evidence categories, source-neutral records/ports, minimal read-only adapters and offline fixtures/tests. [ADR-0007](../adr/0007-independent-crew-observations-and-field-authority.md) separates assignment from physical presence and establishes field-aware authority. See [Crew architecture](05-crew-operational-context.md).
+The accepted orbital/graphics subsystem is frozen. [Crew Source Validation + Domain Contract](../crew/README.md) is the completed independent Crew foundation: verified LL2 2.3.0 structured observations, NASA official evidence categories, source-neutral records/ports, minimal read-only adapters and offline fixtures/tests. [ADR-0007](../adr/0007-independent-crew-observations-and-field-authority.md) separates assignment from physical presence and establishes field-aware authority. See [Crew architecture](05-crew-operational-context.md).
 
-Next single Crew milestone: **ISS CREW INGESTION + POSTGRESQL PERSISTENCE**, not started. Reconciliation, public API/UI, docking-triggered refresh and Crew Replay follow separate gates. Orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS** and the existing Replay plans remain pending, not abandoned. Earlier dated “next” notes above are historical orbital context.
+Crew track:
+
+1. **Done:** source validation + domain contract.
+2. **Done:** [ingestion + PostgreSQL persistence](../crew/persistence-and-ingestion.md), with sync runs, immutable observations and UUID anchors under ADR-0008.
+3. **Next:** NASA CREW VERIFICATION + RECONCILIATION.
+4. **Future:** REST API.
+5. **Future:** Earth View Crew UI.
+6. **Future:** event-aware refresh.
+7. **Future:** Replay integration.
+
+ Orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS** and the existing Replay plans remain pending, not abandoned. Earlier dated “next” notes above are historical orbital context.

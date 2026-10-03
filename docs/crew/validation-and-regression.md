@@ -46,3 +46,7 @@ This is a focused unchanged-system smoke, not a new graphics/camera performance 
 Real source evidence, semantic domain/ports, minimal LL2 adapter, NASA document/evidence contract, fixture/error/startup/dependency tests, authority matrix and ADR-0007 are implemented. Persistence, periodic ingestion, canonical temporal reconciliation, REST/UI, docking-triggered refresh and Crew Replay remain future phases. Orbital RTN analysis and the existing Replay roadmap remain pending.
 
 Next single milestone: **ISS CREW INGESTION + POSTGRESQL PERSISTENCE**. It has not been started.
+
+## Subsequent persistence milestone
+
+The dated source/domain milestone above remains historical. Current ingestion/persistence acceptance is recorded separately in [ingestion validation](ingestion-validation/README.md), with [persistence semantics](persistence-and-ingestion.md) and ADR-0008.

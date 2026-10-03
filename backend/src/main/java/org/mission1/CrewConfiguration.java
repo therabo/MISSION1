@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Registers inert read-only capabilities; it never fetches or schedules Crew data. */
+/** Registers source capabilities; ingestion scheduling is composed separately. */
 @Configuration
 class CrewConfiguration {
     @Bean CrewHttpReader crewHttpReader(Clock utcClock,

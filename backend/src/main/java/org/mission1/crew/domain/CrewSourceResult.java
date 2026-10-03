@@ -2,7 +2,10 @@ package org.mission1.crew.domain;
 
 import java.util.Objects;
 public record CrewSourceResult<T>(CrewSourceState state, T value, CrewSourceObservation observation,
-        Failure failure) {
+        Failure failure, Integer httpStatus) {
+    public CrewSourceResult(CrewSourceState state, T value, CrewSourceObservation observation, Failure failure) {
+        this(state, value, observation, failure, failure == null ? null : failure.httpStatus());
+    }
     public enum FailureCode { TIMEOUT, NETWORK_ERROR, INTERRUPTED, HTTP_ERROR, INVALID_RESPONSE }
     public record Failure(FailureCode code, Integer httpStatus, String retryAfter) { }
     public CrewSourceResult {

@@ -32,3 +32,7 @@ Input: structured source result(s), independent verification evidence result(s),
 These statuses are vocabulary, not today's inferred winners. The current seven-versus-eleven capture supports a handover semantic difference, but does not establish a measured LL2 update delay or justify emitting `NASA_AHEAD` automatically. Preserve the difference neutrally.
 
 No fuzzy matching, universal NASA override, runtime LLM extraction, canonical reconciliation service or reconciled-state persistence exists. Next work must specify evidence completeness, negative evidence, interval boundaries, identity review, subsequent departures and as-of knowledge before asserting canonical current presence.
+
+## Persisted observations, without reconciliation — 2026-10-03
+
+LL2 structured observations now have durable [immutable snapshots and sync-run history](persistence-and-ingestion.md). UUID anchors link the same exact source IDs across snapshots; they do not resolve NASA names. A new fetch updates request history, never historical source fields or canonical presence. Source failure leaves the last successful observation graph queryable. There is still no canonical winner or currently-aboard roster.

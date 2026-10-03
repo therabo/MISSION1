@@ -1,6 +1,6 @@
 # MISSION1 orbital core
 
-This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. A delayed scheduler runs the separate CelesTrak refresh service; there is no UI in this milestone.
+This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP without an immediate ISS request. Delayed schedulers run the independent CelesTrak refresh and LL2 Crew ingestion services. Crew has no public REST or UI; the existing Earth View remains on its orbital track.
 
 ## Data path and meaning
 
@@ -117,7 +117,7 @@ This additive contract enables frontend trajectory alignment; it supplies no ver
 
 `org.mission1.crew.domain` defines people/profiles, expeditions, assignments, independent physical-presence evidence, media rights, external IDs, observation hashes/times and conflict/result vocabulary. `crew.application` exposes separate structured/profile/document/verification ports. `source.crew.ll2.LaunchLibrary2CrewSource` implements dynamic active-expedition discovery and explicit profile enrichment using the existing Java HttpClient/Jackson stack. `source.crew.nasa.NasaCrewDocumentSource` captures explicitly chosen official documents; semantic NASA parsing is **not implemented**.
 
-Crew is independent of Orbit/Orekit. `CrewConfiguration` registers inert capabilities and reuses the UTC Clock: no Crew request on startup, no scheduler, DB table/migration, REST controller or frontend change. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
+At the completed source/domain foundation milestone, Crew was independent of Orbit/Orekit and `CrewConfiguration` registered inert capabilities using the UTC Clock, without persistence or polling. Current ingestion/persistence is described in the following section; there is still no immediate startup fetch, Crew REST controller or frontend change. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
 
 | Setting | Environment override | Default |
 | --- | --- | --- |
@@ -137,3 +137,27 @@ MISSION1_CREW_LIVE_VALIDATION=1 java -cp "target/test-classes:target/classes:$(c
 ```
 
 The manual main is not a JUnit test. It makes exactly one LL2 request, no retries/profile enrichment, and writes an external report. Confirm remaining provider budget before intentionally running it; do not use it in a refresh loop. API generation 2.3.0 is validated; a generation change needs revalidation, DTO/mapping review and fixtures. Current expedition IDs/names exist only in timestamped evidence/tests, never application constants.
+
+## Crew ingestion and PostgreSQL history — 2026-10-03
+
+[Persistence and ingestion](../docs/crew/persistence-and-ingestion.md) is the authoritative current Crew document. Flyway V3 adds nine Crew-only tables, using the existing JDBC/Flyway/PostgreSQL stack. `CrewIngestionService` receives validated structured LL2 results through the existing source port. `CrewRepository` atomically persists UUID identity anchors and immutable observation graphs; `CrewQueryService` follows the latest successful run to its snapshot. Two identical fetches produce two runs and one graph. A source/persistence failure preserves prior successful observations and records operational outcome. No canonical ISS presence is inferred from `in_space` or expedition membership.
+
+| Setting | Environment override | Default |
+| --- | --- | --- |
+| `mission1.crew.ingestion.enabled` | `MISSION1_CREW_INGESTION_ENABLED` | `true` |
+| `mission1.crew.ingestion.fixed-delay` | `MISSION1_CREW_INGESTION_FIXED_DELAY` | `PT2H`, minimum `PT1H` |
+| `mission1.crew.ingestion.initial-delay` | `MISSION1_CREW_INGESTION_INITIAL_DELAY` | `PT5M`, minimum `PT1M` |
+
+These are MISSION1 policies. Startup applies migrations and registers scheduling without an immediate Crew request. Persisted actual-attempt times also enforce scheduled eligibility after restart. Persisted `Retry-After` suppresses both manual and scheduled calls until eligibility; there are zero immediate retries. A normal refresh makes one expedition GET, no astronaut detail calls. A process-local guard prevents overlap. Tests disable both Crew and CelesTrak scheduling, and all default tests use fixture/loopback/mock sources plus real PostgreSQL Testcontainers, never H2 or public network dependence.
+
+The existing local startup commands apply V3 automatically; no manual table setup is needed. Database unavailability can prevent completing a failed run; the scheduler logs this and continues future ticks. No failure erases observations. Crew REST, NASA semantic ingestion/reconciliation and Crew frontend remain future work.
+
+A controlled **one-request** live ingestion can use the same opt-in probe with persistence, after offline gates:
+
+```sh
+mvn -o dependency:build-classpath -Dmdep.outputFile=target/crew-probe-classpath.txt
+MISSION1_CREW_LIVE_VALIDATION=1 java -cp "target/classes:target/test-classes:$(cat target/crew-probe-classpath.txt)" \
+  org.mission1.source.crew.ll2.LiveCrewValidation /tmp/mission1-crew-live-ingestion.json --persist
+```
+
+The `--persist` mode boots the actual non-web application with both schedulers disabled, applies Flyway, makes one service ingestion, writes the run/snapshot/UUIDs/timing/counts to an external report and shuts down. It writes to the configured database; set `MISSION1_DB_URL` to a separately provisioned validation database when isolation is desired. Source-only mode retains its original one-path invocation. Do not run either probe in a retry loop.

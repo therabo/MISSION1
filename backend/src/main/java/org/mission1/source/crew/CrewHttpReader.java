@@ -55,7 +55,7 @@ public final class CrewHttpReader {
         }
         if (bytes.length == 0 || bytes.length > MAX_BYTES)
             return failed(CrewSourceState.MALFORMED_RESPONSE, CrewSourceResult.FailureCode.INVALID_RESPONSE, status, null, observation);
-        return new CrewSourceResult<>(CrewSourceState.AVAILABLE, bytes, observation, null);
+        return new CrewSourceResult<>(CrewSourceState.AVAILABLE, bytes, observation, null, status);
     }
 
     public static String sha256(byte[] bytes) {

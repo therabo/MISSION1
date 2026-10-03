@@ -45,7 +45,7 @@ final class Ll2CrewMapper {
                 profiles.add(profile);
             }
         }
-        return new CrewSourceSnapshot(Station.ISS, page.count(), page.next() == null, expeditions, assignments, profiles, observation);
+        return new CrewSourceSnapshot(Station.ISS, page.count(), page.next() == null, expeditions, assignments, profiles, observation, Integer.toString(stationId));
     }
 
     AstronautProfile profile(Ll2Dtos.AstronautDto dto, CrewSourceObservation observation) {
@@ -62,7 +62,7 @@ final class Ll2CrewMapper {
                 image.license() == null ? null : uri(image.license().link()), image.singleUse());
         return new AstronautProfile(person, agency, nationalities, dto.bio(),
                 new CareerStatistics(dto.timeInSpace(), dto.evaTime(), dto.flightsCount(), dto.spacewalksCount(),
-                        dto.firstFlight(), dto.lastFlight()), media, dto.inSpace(), observation);
+                        dto.firstFlight(), dto.lastFlight()), media, dto.inSpace(), observation, dto.responseMode());
     }
 
     static ExternalId id(Integer id) {
