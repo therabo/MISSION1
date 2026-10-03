@@ -1,0 +1,5 @@
+package org.mission1.crew.domain;
+
+public enum NasaSourceType {
+    NASA_EXPEDITION_PAGE, NASA_ISS_OPERATIONAL_POST, NASA_VISITING_VEHICLES, NASA_STATION_OVERVIEW
+}

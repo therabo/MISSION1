@@ -1,0 +1,5 @@
+{
+  "fixtureKind": "SYNTHETIC_TEST_VARIATION",
+  "sourceFixture": "astronaut-detail.json",
+  "purpose": "Missing optional fields and unknown fields; not a real astronaut observation."
+}

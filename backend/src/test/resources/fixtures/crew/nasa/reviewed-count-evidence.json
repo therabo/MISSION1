@@ -1,0 +1,13 @@
+{
+  "kind": "MANUALLY_REVIEWED_SOURCE_EVIDENCE_TEST_ONLY",
+  "type": "CREW_COUNT_ABOARD",
+  "crewCount": 11,
+  "sourceType": "NASA_ISS_OPERATIONAL_POST",
+  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/02/station-crew-expands-as-nasas-spacex-crew-12-prepares-to-depart/",
+  "retrievedAt": "2026-10-03T08:34:43.510797+00:00",
+  "sourcePublishedAt": "2026-10-02T18:14:13+00:00",
+  "sourceEventAt": null,
+  "rawBodySha256": "91da1eb624f2686d5e3d1672a6d74e217820b78acd036166745de89842c112f8",
+  "supportingExcerpt": "October 2, 2026 2:14PM The Expedition 75 crew slept in Friday and spent the rest of the day relaxing following the Oct. 1 arrival of NASA’s SpaceX Crew-13 mission. The four new crew members, who arrived after a record-setting 7-hour, 55-minute Dragon spacecraft flight from Florida, bring the number of people living aboard the International Space Station to 11.",
+  "method": "reviewed-evidence-v1"
+}

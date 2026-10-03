@@ -111,3 +111,29 @@ Offline tests use a labeled 2026-09-30 NASA XML excerpt for parsing, unit/frame 
 The sample DTOs previously omitted the available physical velocity. They now add `velocityUnit:m/s` and three Earth-fixed velocity components at each existing sample UTC. GP forwards the propagated Orekit ITRF PV; OEM evaluates the analytic derivative of the existing bounded source-Hermite polynomial and transforms the complete EME2000 PV, including Earth rotation. Position samples, source classifications, quality, cadence, storage and deployment remain unchanged. The independent OEM centered-position-difference test detects a missing rotating-frame velocity term.
 
 This additive contract enables frontend trajectory alignment; it supplies no verified attitude. [API contract](../docs/api/orbital-samples.md), [comparison contract](../docs/api/orbital-comparison.md), [measured review](../docs/frontend/inspection-orientation-review/README.md). Next milestone: **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**, not started.
+
+
+## Independent Crew source/domain foundation — 2026-10-03
+
+`org.mission1.crew.domain` defines people/profiles, expeditions, assignments, independent physical-presence evidence, media rights, external IDs, observation hashes/times and conflict/result vocabulary. `crew.application` exposes separate structured/profile/document/verification ports. `source.crew.ll2.LaunchLibrary2CrewSource` implements dynamic active-expedition discovery and explicit profile enrichment using the existing Java HttpClient/Jackson stack. `source.crew.nasa.NasaCrewDocumentSource` captures explicitly chosen official documents; semantic NASA parsing is **not implemented**.
+
+Crew is independent of Orbit/Orekit. `CrewConfiguration` registers inert capabilities and reuses the UTC Clock: no Crew request on startup, no scheduler, DB table/migration, REST controller or frontend change. Assignment and LL2 `in_space` do not prove physical ISS presence. See [Crew docs](../docs/crew/README.md) and [validated source contract](../docs/crew/source-validation/README.md).
+
+| Setting | Environment override | Default |
+| --- | --- | --- |
+| `mission1.crew.ll2.base-url` | `MISSION1_CREW_LL2_BASE_URL` | `https://ll.thespacedevs.com/2.3.0/` |
+| `mission1.crew.ll2.iss-external-id` | `MISSION1_CREW_LL2_ISS_EXTERNAL_ID` | `4`, verified external LL2 mapping for MISSION1 `ISS` |
+| `mission1.crew.request-timeout` | `MISSION1_CREW_REQUEST_TIMEOUT` | `PT20S` |
+
+A snapshot makes one bounded detailed-expedition request, retaining ambiguous candidates without pagination or per-person requests. Detail enrichment is explicit. Non-2xx/timeout/network/invalid payload failures return structured results without retry. The default test suite uses frozen fixtures and loopback/mock HTTP, with no LL2/NASA network requirement. Testcontainers still requires local Docker and the existing PostgreSQL image.
+
+For one intentional live-source validation **after offline tests**, from `backend/`, using Java 21:
+
+```sh
+mvn -o test
+mvn -o dependency:build-classpath -Dmdep.outputFile=target/crew-probe-classpath.txt
+MISSION1_CREW_LIVE_VALIDATION=1 java -cp "target/test-classes:target/classes:$(cat target/crew-probe-classpath.txt)" \
+  org.mission1.source.crew.ll2.LiveCrewValidation /tmp/mission1-crew-live-report.json
+```
+
+The manual main is not a JUnit test. It makes exactly one LL2 request, no retries/profile enrichment, and writes an external report. Confirm remaining provider budget before intentionally running it; do not use it in a refresh loop. API generation 2.3.0 is validated; a generation change needs revalidation, DTO/mapping review and fixtures. Current expedition IDs/names exist only in timestamped evidence/tests, never application constants.

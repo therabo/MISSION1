@@ -1,0 +1,190 @@
+[
+  {
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+    "retrievedAt": "2026-10-03T08:33:38.930260+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:33:39 GMT",
+      "Content-Type": "application/json"
+    },
+    "bytes": 34160,
+    "rawBodySha256": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+    "fixtureSha256": "cbad7a8647bb63d906b72415bbc6a15fc63500f08aea547db68143bfc41e0d74",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Frozen structured assignment roster, nested profile and media contract; station unrelated fields projected out.",
+    "fixture": "ll2/active-iss-expedition-detailed.json"
+  },
+  {
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/astronauts/573/",
+    "retrievedAt": "2026-10-03T08:34:39.915242+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:40 GMT",
+      "Content-Type": "application/json"
+    },
+    "bytes": 120603,
+    "rawBodySha256": "a6a5c4b50772cf35ab42e32f80fd9815c409e6b3f297bac8db7391a97600b75e",
+    "fixtureSha256": "40fa319b9b5e49aad2a9ded9a2d9c51c04780afa91f24eb263420ea4ae8ce259",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Detailed profile counts/durations/media; flight/landing/EVA history arrays omitted.",
+    "fixture": "ll2/astronaut-detail.json"
+  },
+  {
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/astronauts/747/",
+    "retrievedAt": "2026-10-03T08:34:41.439239+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:41 GMT",
+      "Content-Type": "application/json"
+    },
+    "bytes": 79677,
+    "rawBodySha256": "aa066e2c2702893c3b762257d7d8e8d6977743e91348f52a5cd10ceb4d5af55a",
+    "fixtureSha256": "84e7769ec572aaeca73647c7f500ff1a6abacdb27509abfb747d157cf7402ea1",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Detailed profile counts/durations/media; flight/landing/EVA history arrays omitted.",
+    "fixture": "ll2/astronaut-detail-2.json"
+  },
+  {
+    "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+    "retrievedAt": "2026-10-03T08:34:43.318408+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:43 GMT",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "bytes": 283825,
+    "rawBodySha256": "fe24a87eee5e7986180dcf9b1e712b51fcda0e0758fec7f15eccd46ea0aa0f73",
+    "fixtureSha256": "be32e3f24f268ee5621d19cf2600ac8ceba4e3863e3afb9e3f4a339b75d65d07",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Reviewed operational evidence fragment; no production parser is claimed. Outbound anchors removed; assertion text and time retained.",
+    "fixture": "nasa/nasa-arrival-fragment.html",
+    "sourcePublishedAt": "2026-10-02T02:01:55+00:00"
+  },
+  {
+    "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/02/station-crew-expands-as-nasas-spacex-crew-12-prepares-to-depart/",
+    "retrievedAt": "2026-10-03T08:34:43.510797+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:43 GMT",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "bytes": 287489,
+    "rawBodySha256": "91da1eb624f2686d5e3d1672a6d74e217820b78acd036166745de89842c112f8",
+    "fixtureSha256": "4b71e163b966737c3c578cb65390cc9a710575b3c0963ea6b154f433de6afc14",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Reviewed operational evidence fragment; no production parser is claimed. Outbound anchors removed; assertion text and time retained.",
+    "fixture": "nasa/nasa-count-fragment.html",
+    "sourcePublishedAt": "2026-10-02T18:14:13+00:00"
+  },
+  {
+    "sourceUrl": "https://www.nasa.gov/mission/expedition-75/",
+    "retrievedAt": "2026-10-03T08:34:42.372185+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:42 GMT",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "bytes": 395937,
+    "rawBodySha256": "33d733fe311fc63528d9832e2bc626077dd376aacde4b3843fa519ccc98adcf7",
+    "fixtureSha256": "225ac586f8c9588ba619bc927055f78efccb25787d95af9e8304440468ba068e",
+    "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+    "purpose": "Seven base Expedition crew members; other page cards include handover visitors.",
+    "fixture": "nasa/expedition-roster-fragment.html"
+  },
+  {
+    "capture": "root",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/",
+    "retrievedAt": "2026-10-03T08:33:13.301070+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:33:13 GMT",
+      "Content-Type": "application/json"
+    },
+    "sha256": "9a212b5496dd6b60cd612b3a14a9e9458582457519668c7125bcb75782ccdef7",
+    "bytes": 4546
+  },
+  {
+    "capture": "station",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/space_stations/4/",
+    "retrievedAt": "2026-10-03T08:33:38.452354+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:33:38 GMT",
+      "Content-Type": "application/json"
+    },
+    "sha256": "f1b23ea69682c287f405a82f7fb9d7a7745cfffbd7d61ff94e68f4d7aca940e1",
+    "bytes": 174977
+  },
+  {
+    "capture": "expedition-detail",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/168/",
+    "retrievedAt": "2026-10-03T08:34:38.026979+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:38 GMT",
+      "Content-Type": "application/json"
+    },
+    "sha256": "d6c1c936bcd4f83e0dbd43f2e4606ddbc6a3e53d3d30232809f35e5da33fe93a",
+    "bytes": 34108
+  },
+  {
+    "capture": "astronaut-list",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/astronauts/?limit=1&mode=detailed",
+    "retrievedAt": "2026-10-03T08:33:40.445156+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:33:40 GMT",
+      "Content-Type": "application/json"
+    },
+    "sha256": "5321aa8945f8df0f41cf9731a1c48ad85b30647e6d71d5001e524e82518dfa51",
+    "bytes": 105461
+  },
+  {
+    "capture": "docking",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/docking_events/?space_station=4&ordering=-docking&limit=1",
+    "retrievedAt": "2026-10-03T08:33:41.485828+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:33:41 GMT",
+      "Content-Type": "application/json"
+    },
+    "sha256": "a6a8cd7d2e33471127a125eb6a1bbdf2b2d560f04b72f49ed99026fc02b48294",
+    "bytes": 6865
+  },
+  {
+    "capture": "nasa-vehicles",
+    "sourceUrl": "https://www.nasa.gov/international-space-station/space-station-visiting-vehicles/",
+    "retrievedAt": "2026-10-03T08:34:44.520775+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:44 GMT",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "sha256": "e36b94c7e6ff3bdddf589394341606aa5aa6f4eefae2a3e45cae4f5dc94d6d3e",
+    "bytes": 439016
+  },
+  {
+    "capture": "nasa-overview",
+    "sourceUrl": "https://www.nasa.gov/international-space-station/",
+    "retrievedAt": "2026-10-03T08:34:45.532377+00:00",
+    "httpStatus": 200,
+    "headers": {
+      "Date": "Sat, 03 Oct 2026 08:34:45 GMT",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "sha256": "86d23ea13d434400767ef0de88f6494afa8ff714027ca219671bf1e152af3bb8",
+    "bytes": 399953
+  },
+  {
+    "capture": "java-adapter-opt-in",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+    "retrievedAt": "2026-10-03T08:49:53.858577Z",
+    "httpStatus": 200,
+    "rawBodySha256": "7d391ce4dd63dbc5dbf94cafa8cd82b96be50da74dc82ff4ddd11932f3573f91",
+    "sourceVersion": "2.3.0",
+    "adapterVersion": "ll2-crew-v1",
+    "state": "AVAILABLE",
+    "assignments": 7,
+    "purpose": "Single explicitly opted-in production-adapter request; no profile enrichment or retry."
+  }
+]

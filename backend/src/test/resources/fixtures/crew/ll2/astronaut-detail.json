@@ -1,0 +1,113 @@
+{
+  "id": 573,
+  "url": "https://ll.thespacedevs.com/2.3.0/astronauts/573/",
+  "name": "Jessica Meir",
+  "status": {
+    "id": 1,
+    "name": "Active"
+  },
+  "agency": {
+    "response_mode": "list",
+    "id": 44,
+    "url": "https://ll.thespacedevs.com/2.3.0/agencies/44/",
+    "name": "National Aeronautics and Space Administration",
+    "abbrev": "NASA",
+    "type": {
+      "id": 1,
+      "name": "Government"
+    }
+  },
+  "image": {
+    "id": 842,
+    "name": "[AUTO] Jessica Meir - image",
+    "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/jessica_meir_image_20200417064900.jpeg",
+    "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305190924.jpeg",
+    "credit": null,
+    "license": {
+      "id": 1,
+      "name": "Unknown",
+      "priority": 9,
+      "link": null
+    },
+    "single_use": true,
+    "variants": []
+  },
+  "response_mode": "detailed",
+  "type": {
+    "id": 2,
+    "name": "Government"
+  },
+  "in_space": true,
+  "time_in_space": "P436DT6H28M11S",
+  "eva_time": "P1DT18H29M",
+  "age": 49,
+  "date_of_birth": "1977-07-01",
+  "date_of_death": null,
+  "nationality": [
+    {
+      "id": 2,
+      "name": "United States of America",
+      "alpha_2_code": "US",
+      "alpha_3_code": "USA",
+      "nationality_name": "American",
+      "nationality_name_composed": "Americano"
+    }
+  ],
+  "bio": "Jessica Ulrika Meir is Assistant Professor of Anesthesia at Harvard Medical School, Massachusetts General Hospital, Boston, following postdoctoral research in comparative physiology at the University of British Columbia. She has studied the diving physiology and behavior of emperor penguins in Antarctica, and the physiology of bar-headed geese, which are able to migrate over the Himalayas. In 2000, Meir graduated with a Master of Space Studies from the International Space University in Strasbourg, France. In September 2002, Meir served as an aquanaut on the NASA Extreme Environment Mission Operations 4 (NEEMO 4) crew. In June 2013 she was named an astronaut candidate by NASA, becoming one of the eight members of NASA Astronaut Group 21. She is from Caribou, Maine.",
+  "wiki": "https://en.wikipedia.org/wiki/Jessica_Meir",
+  "last_flight": "2026-02-13T10:15:56Z",
+  "first_flight": "2019-09-25T13:57:42Z",
+  "social_media_links": [
+    {
+      "id": 25,
+      "social_media": {
+        "id": 1,
+        "name": "X",
+        "url": "https://x.com",
+        "logo": {
+          "id": 2320,
+          "name": "X logo",
+          "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/x_logo_image_20250211191027.jpg",
+          "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/x_logo_image_thumbnail_20250211191027.jpeg",
+          "credit": "X",
+          "license": {
+            "id": 1,
+            "name": "Unknown",
+            "priority": 9,
+            "link": null
+          },
+          "single_use": true,
+          "variants": []
+        }
+      },
+      "url": "https://twitter.com/Astro_Jessica"
+    },
+    {
+      "id": 26,
+      "social_media": {
+        "id": 2,
+        "name": "Instagram",
+        "url": "https://instagram.com",
+        "logo": {
+          "id": 2322,
+          "name": "Instagram logo",
+          "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/instagram_logo_image_20250211191139.png",
+          "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/instagram_logo_image_thumbnail_20250211191139.png",
+          "credit": "Instagram",
+          "license": {
+            "id": 1,
+            "name": "Unknown",
+            "priority": 9,
+            "link": null
+          },
+          "single_use": true,
+          "variants": []
+        }
+      },
+      "url": "https://www.instagram.com/astro_jessica/"
+    }
+  ],
+  "flights_count": 2,
+  "landings_count": 1,
+  "spacewalks_count": 6
+}

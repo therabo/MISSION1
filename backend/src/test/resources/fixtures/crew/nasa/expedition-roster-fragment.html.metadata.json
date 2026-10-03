@@ -1,0 +1,15 @@
+{
+  "sourceUrl": "https://www.nasa.gov/mission/expedition-75/",
+  "retrievedAt": "2026-10-03T08:34:42.372185+00:00",
+  "httpStatus": 200,
+  "headers": {
+    "Date": "Sat, 03 Oct 2026 08:34:42 GMT",
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "bytes": 395937,
+  "rawBodySha256": "33d733fe311fc63528d9832e2bc626077dd376aacde4b3843fa519ccc98adcf7",
+  "fixtureSha256": "225ac586f8c9588ba619bc927055f78efccb25787d95af9e8304440468ba068e",
+  "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+  "purpose": "Seven base Expedition crew members; other page cards include handover visitors.",
+  "fixture": "nasa/expedition-roster-fragment.html"
+}

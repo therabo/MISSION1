@@ -1,0 +1,16 @@
+{
+  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+  "retrievedAt": "2026-10-03T08:34:43.318408+00:00",
+  "httpStatus": 200,
+  "headers": {
+    "Date": "Sat, 03 Oct 2026 08:34:43 GMT",
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "bytes": 283825,
+  "rawBodySha256": "fe24a87eee5e7986180dcf9b1e712b51fcda0e0758fec7f15eccd46ea0aa0f73",
+  "fixtureSha256": "be32e3f24f268ee5621d19cf2600ac8ceba4e3863e3afb9e3f4a339b75d65d07",
+  "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+  "purpose": "Reviewed operational evidence fragment; no production parser is claimed. Outbound anchors removed; assertion text and time retained.",
+  "fixture": "nasa/nasa-arrival-fragment.html",
+  "sourcePublishedAt": "2026-10-02T02:01:55+00:00"
+}

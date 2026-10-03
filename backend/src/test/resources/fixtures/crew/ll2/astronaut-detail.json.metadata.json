@@ -1,0 +1,15 @@
+{
+  "sourceUrl": "https://ll.thespacedevs.com/2.3.0/astronauts/573/",
+  "retrievedAt": "2026-10-03T08:34:39.915242+00:00",
+  "httpStatus": 200,
+  "headers": {
+    "Date": "Sat, 03 Oct 2026 08:34:40 GMT",
+    "Content-Type": "application/json"
+  },
+  "bytes": 120603,
+  "rawBodySha256": "a6a5c4b50772cf35ab42e32f80fd9815c409e6b3f297bac8db7391a97600b75e",
+  "fixtureSha256": "40fa319b9b5e49aad2a9ded9a2d9c51c04780afa91f24eb263420ea4ae8ce259",
+  "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+  "purpose": "Detailed profile counts/durations/media; flight/landing/EVA history arrays omitted.",
+  "fixture": "ll2/astronaut-detail.json"
+}

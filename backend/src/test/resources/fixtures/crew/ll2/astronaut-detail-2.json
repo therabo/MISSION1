@@ -1,0 +1,89 @@
+{
+  "id": 747,
+  "url": "https://ll.thespacedevs.com/2.3.0/astronauts/747/",
+  "name": "Sophie Adenot",
+  "status": {
+    "id": 1,
+    "name": "Active"
+  },
+  "agency": {
+    "response_mode": "list",
+    "id": 27,
+    "url": "https://ll.thespacedevs.com/2.3.0/agencies/27/",
+    "name": "European Space Agency",
+    "abbrev": "ESA",
+    "type": {
+      "id": 2,
+      "name": "Multinational"
+    }
+  },
+  "image": {
+    "id": 262,
+    "name": "[AUTO] Sophie Adenot - image",
+    "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/sophie_adenot_image_20221123150954.jpg",
+    "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185354.jpeg",
+    "credit": null,
+    "license": {
+      "id": 1,
+      "name": "Unknown",
+      "priority": 9,
+      "link": null
+    },
+    "single_use": true,
+    "variants": []
+  },
+  "response_mode": "detailed",
+  "type": {
+    "id": 2,
+    "name": "Government"
+  },
+  "in_space": true,
+  "time_in_space": "P231DT15H10M43S",
+  "eva_time": "PT19H42M",
+  "age": 44,
+  "date_of_birth": "1982-07-05",
+  "date_of_death": null,
+  "nationality": [
+    {
+      "id": 1,
+      "name": "France",
+      "alpha_2_code": "FR",
+      "alpha_3_code": "FRA",
+      "nationality_name": "French",
+      "nationality_name_composed": "Franco"
+    }
+  ],
+  "bio": "Between 2001 and 2003, Sophie studied engineering and graduated from ISAE-SUPAERO in Toulouse, France, where she specialised in spacecraft and aircraft flight dynamics. She then completed a Master of Science in human factors engineering at MIT – Massachusetts Institute of Technology in Boston, USA, in 2004.\r\nIn 2005, Sophie joined the French Air Force for her basic military training and initial flying training to become a helicopter pilot.  \r\n\r\nIn 2018, she graduated with honours as a helicopter test pilot from the Empire Test Pilots’ School in Boscombe Down, UK. She was awarded the Mac Kenna trophy and the Patuxtent Shield.\r\nBetween 2019 and 2022, Sophie worked as a helicopter experimental test pilot in Cazaux Flight Test Center with DGA (Direction Générale de l’Armement – the French Defence Procurement Agency). She has logged 3000 hours and flew on 22 different helicopter types. She also holds a military parachute license, a light aircraft pilot license and a glider pilot license.",
+  "wiki": "https://en.wikipedia.org/wiki/Sophie_Adenot",
+  "last_flight": "2026-02-13T10:15:56Z",
+  "first_flight": "2026-02-13T10:15:56Z",
+  "social_media_links": [
+    {
+      "id": 24,
+      "social_media": {
+        "id": 1,
+        "name": "X",
+        "url": "https://x.com",
+        "logo": {
+          "id": 2320,
+          "name": "X logo",
+          "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/x_logo_image_20250211191027.jpg",
+          "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/x_logo_image_thumbnail_20250211191027.jpeg",
+          "credit": "X",
+          "license": {
+            "id": 1,
+            "name": "Unknown",
+            "priority": 9,
+            "link": null
+          },
+          "single_use": true,
+          "variants": []
+        }
+      },
+      "url": "https://twitter.com/Soph_astro"
+    }
+  ],
+  "flights_count": 1,
+  "landings_count": 0,
+  "spacewalks_count": 3
+}

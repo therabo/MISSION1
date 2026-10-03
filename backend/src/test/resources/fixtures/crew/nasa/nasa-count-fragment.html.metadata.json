@@ -1,0 +1,16 @@
+{
+  "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/02/station-crew-expands-as-nasas-spacex-crew-12-prepares-to-depart/",
+  "retrievedAt": "2026-10-03T08:34:43.510797+00:00",
+  "httpStatus": 200,
+  "headers": {
+    "Date": "Sat, 03 Oct 2026 08:34:43 GMT",
+    "Content-Type": "text/html; charset=UTF-8"
+  },
+  "bytes": 287489,
+  "rawBodySha256": "91da1eb624f2686d5e3d1672a6d74e217820b78acd036166745de89842c112f8",
+  "fixtureSha256": "4b71e163b966737c3c578cb65390cc9a710575b3c0963ea6b154f433de6afc14",
+  "fixtureKind": "RECORDED_SOURCE_PROJECTION",
+  "purpose": "Reviewed operational evidence fragment; no production parser is claimed. Outbound anchors removed; assertion text and time retained.",
+  "fixture": "nasa/nasa-count-fragment.html",
+  "sourcePublishedAt": "2026-10-02T18:14:13+00:00"
+}
