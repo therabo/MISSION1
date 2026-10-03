@@ -91,9 +91,9 @@ Measured first NASA ingestion operational span446.240ms (network+parse/storage),
 | Maven test / verify, Corretto21.0.3 | 225 tests, 0 failure/error/skip; 156 accepted +69 new |
 | Crew real PostgreSQL16.10 Testcontainers | 42 tests:24 retained LL2 +18 NASA/derived; no H2 |
 | Frontend | 171 tests /26 files; typecheck/build pass, existing large-chunk warning |
-| Backend startup | Packaged final jar, PID81668, port8080; Flyway4 and PostgreSQL healthy |
+| Backend startup | Packaged final jar, PID82475, port8080; Flyway4 and PostgreSQL healthy |
 | Startup source isolation | Before configured delay, one retained LL2 run, zero new NASA runs; both scheduling defaults enabled. First NASA tick at11:45:45 UTC then succeeded, reconciliation SUCCESS; LL2 tick skipped as not yet due |
-| Orbital API smoke | state/samples/comparison HTTP200 at2026-10-03T11:56:05.958805+00:00; [record](orbital-api-smoke.json) |
+| Orbital API smoke | state/samples/comparison HTTP200 at2026-10-03T12:06:20.357001+00:00; [record](orbital-api-smoke.json) |
 | Browser dev5175/prod4175 | Four GP/OEM Inspection/Back cycles, real source responses, no interception/clock override; console0/page errors0/request failures0; served bundle equals build |
 | Frozen-byte audit | 144 files unchanged:92 frontend/52 backend;35 additional retained Crew runtime files unchanged; [record](frozen-baseline-audit.json) |
 | Diff check / complete scope review | Passed before commit; no unrelated production or credentials introduced |
@@ -105,3 +105,5 @@ CelesTrak, Orekit, GP/TLE, NASA OEM, V1/V2 orbital persistence, orbital REST, tr
 Created NASA authoritative design, this dossier plus bounded metadata/JSON/screenshots, and ADR0009 **Reconcile Crew through field-aware source authority**. Updated Crew README, domain contract, source authority, source validation (historical captures preserved), persistence/ingestion, validation/regression, architecture03/05, draft API, backend README and ADR index. Original external project context is updated separately and remains outside Git. ADR0007/0008 remain accepted;0009 explains independent source/evidence/identity/derived lineage and bounded official extraction in the existing process/database. REST API, Earth View Crew UI, event-aware refresh and Replay remain future; independent RTN work remains pending.
 
 The final internal query includes exact typed evidence/identity audits and NASA-only names/profile links. It reads structured LL2 inputs by the interpretation’s snapshot/run references rather than another latest lookup, preserving coherence if ingestion completes concurrently. The PostgreSQL test uses the same deterministic Clock for ingestion, reconciliation and canonical query.
+
+Post-push metadata review found and corrected persistence failures incorrectly labelled as malformed NASA responses. Real PostgreSQL document/subject rollback tests now assert the parsed AVAILABLE source state alongside PERSISTENCE_FAILURE/error code. The actual parse state is retained independently, and the current interpretation still degrades because ingestion failed. The correction is a normal additional commit; the feature commit is retained without amendment.

@@ -370,7 +370,11 @@ class JdbcCrewVerificationRepositoryTest {
     void evidenceTransactionFailureRollsBackDocumentGraphAndRecordsFailure() {
         rejectInserts("crew_evidence_subject");
         try {
-            assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, ingest().outcome());
+            var result = ingest();
+            assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, result.outcome());
+            var run = runs.findRun(result.runId()).orElseThrow();
+            assertEquals(CrewSourceState.AVAILABLE, run.sourceState());
+            assertEquals("PERSISTENCE_FAILURE", run.errorCode());
         } finally {
             allowInserts("crew_evidence_subject");
         }
@@ -505,7 +509,11 @@ class JdbcCrewVerificationRepositoryTest {
     void documentWriteFailureLeavesOnlyOperationalFailureRun() {
         rejectInserts("crew_source_document");
         try {
-            assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, ingest().outcome());
+            var result = ingest();
+            assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, result.outcome());
+            var run = runs.findRun(result.runId()).orElseThrow();
+            assertEquals(CrewSourceState.AVAILABLE, run.sourceState());
+            assertEquals("PERSISTENCE_FAILURE", run.errorCode());
         } finally {
             allowInserts("crew_source_document");
         }

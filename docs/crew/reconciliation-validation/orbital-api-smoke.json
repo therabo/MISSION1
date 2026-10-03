@@ -2,8 +2,8 @@
   {
     "route": "/api/iss/state",
     "httpStatus": 200,
-    "retrievedAt": "2026-10-03T11:56:05.958805+00:00",
-    "bytes": 1205,
+    "retrievedAt": "2026-10-03T12:06:20.357001+00:00",
+    "bytes": 1204,
     "topLevelFields": [
       "satellite",
       "propagationTime",
@@ -18,8 +18,8 @@
   {
     "route": "/api/iss/orbit/samples",
     "httpStatus": 200,
-    "retrievedAt": "2026-10-03T11:56:05.997196+00:00",
-    "bytes": 18897,
+    "retrievedAt": "2026-10-03T12:06:20.393355+00:00",
+    "bytes": 18875,
     "topLevelFields": [
       "generatedAt",
       "windowStart",
@@ -40,8 +40,8 @@
   {
     "route": "/api/iss/orbit/comparison",
     "httpStatus": 200,
-    "retrievedAt": "2026-10-03T11:56:06.347608+00:00",
-    "bytes": 90269,
+    "retrievedAt": "2026-10-03T12:06:20.751545+00:00",
+    "bytes": 90294,
     "topLevelFields": [
       "generatedAt",
       "primary",

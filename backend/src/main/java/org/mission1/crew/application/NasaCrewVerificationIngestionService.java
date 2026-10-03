@@ -107,6 +107,7 @@ public final class NasaCrewVerificationIngestionService {
                         fetched,
                         fetched.failure().code().name());
             }
+            CrewSourceState parsedSourceState = null;
             try {
                 if (fetched.status() != null && fetched.status() == 304) {
                     if (old == null)
@@ -116,6 +117,7 @@ public final class NasaCrewVerificationIngestionService {
                                 CrewSourceState.MALFORMED_RESPONSE,
                                 fetched,
                                 "UNEXPECTED_304");
+                    parsedSourceState = CrewSourceState.AVAILABLE;
                     verification.storeNotModified(run, old, fetched.retrievedAt(), now());
                     return new Result(run, CrewSyncRun.Outcome.SUCCESS, old.id(), false, 0);
                 }
@@ -143,6 +145,7 @@ public final class NasaCrewVerificationIngestionService {
                         new CrewSourceDocument(
                                 NasaSourceType.NASA_ISS_OPERATIONAL_FEED, o, fetched.body());
                 var parsed = parser.verify(document);
+                parsedSourceState = parsed.state();
                 boolean success = parsed.state() == CrewSourceState.AVAILABLE;
                 var stored =
                         verification.storeFetch(
@@ -165,7 +168,7 @@ public final class NasaCrewVerificationIngestionService {
                 return fail(
                         run,
                         CrewSyncRun.Outcome.PERSISTENCE_FAILURE,
-                        CrewSourceState.MALFORMED_RESPONSE,
+                        parsedSourceState,
                         fetched,
                         "PERSISTENCE_FAILURE");
             }
