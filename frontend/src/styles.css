@@ -19,10 +19,9 @@ button { font: inherit; }
 .earth-view { position: absolute; inset: 0; }
 .earth-view .cesium-viewer, .earth-view .cesium-widget { width: 100%; height: 100%; }
 .earth-view .cesium-widget-credits { right: 12px; left: auto; bottom: 8px; font-size: 10px; }
-.top-brand { position: absolute; top: 24px; left: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; color: #e9f4f5; font-size: 12px; font-weight: 800; letter-spacing: .19em; text-shadow: 0 1px 10px #001; }
+.top-brand { position: absolute; top: 8px; left: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; color: #e9f4f5; font-size: 12px; font-weight: 800; letter-spacing: .19em; text-shadow: 0 1px 10px #001; pointer-events: none; }
 .top-brand em { color: #a6c7ce; font-style: normal; font-weight: 500; }
-.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--accent); border-radius: 8px; background: #0b2833; color: var(--accent); font-size: 16px; letter-spacing: -.08em; }
-.brand-mark span { font-size: 9px; align-self: end; padding-bottom: 8px; }
+.brand-wordmark { display: block; flex: none; width: clamp(144px, 16vw, 180px); height: auto; object-fit: contain; }
 .top-actions { position: absolute; z-index: 2; top: 23px; right: 24px; display: flex; align-items: center; gap: 10px; }
 .scene-chip, .top-actions button { min-height: 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: #d9edef; font-size: 10px; font-weight: 700; letter-spacing: .09em; }
 .scene-chip { display: flex; align-items: center; gap: 8px; padding: 0 13px; }
@@ -102,7 +101,8 @@ dl { margin: 8px 0 0; }
 .inspection-hint span { color: var(--muted); font-size: 10px; }
 .is-inspecting .status-panel .panel-section:first-of-type { display: none; }
 @media (max-width: 720px) {
-  .top-brand { top: 13px; left: 12px; gap: 8px; font-size: 10px; }
+  .top-brand { top: 7px; left: 12px; gap: 8px; font-size: 10px; }
+  .brand-wordmark { width: clamp(120px, 34vw, 144px); }
   .top-brand em { display: none; }
   .top-actions { top: 12px; right: 12px; }
   .scene-chip { display: none; }

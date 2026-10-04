@@ -1,0 +1,37 @@
+{
+  "backend": {
+    "tests": 382,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java": "21.0.3",
+    "mvn_test": "PASS",
+    "mvn_verify": "PASS"
+  },
+  "frontend": {
+    "tests": 284,
+    "files": 34,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "node": "24.21.0",
+    "warning": "Existing Cesium bundle exceeds 500 kB"
+  },
+  "browser": {
+    "dev_port": 5175,
+    "production_port": 4175,
+    "viewports": [
+      "1440x900",
+      "1280x720",
+      "900x700",
+      "768x1024",
+      "390x844"
+    ],
+    "states_per_viewport": 12,
+    "page_errors": 0,
+    "console_errors": 0,
+    "logo_image_requests_per_page": 1,
+    "same_viewer": true,
+    "input_smoke": "PASS"
+  },
+  "native_two_finger_pinch": "UNVERIFIED"
+}

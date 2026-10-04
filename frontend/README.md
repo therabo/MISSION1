@@ -1,5 +1,19 @@
 # MISSION1 Earth View
 
+## Approved application wordmark — 2026-10-04
+
+The upper-left brand uses the exact transparent [`MISSION1-logo.png`](../MISSION1-logo.png)
+referenced by the [root README](../README.md). `src/App.tsx` imports that original
+2172×724 PNG directly; Vite serves it in development and emits the same bytes in
+the production build. No second source asset or modified artwork is maintained.
+
+The existing brand container replaces the M1 badge/plain-text logo, retains the
+view-state label, and stays present in LIVE, REPLAY and Inspection. The image has
+`alt="MISSION1"`, no link or keyboard action, and passes pointer events through to
+the scene. Responsive CSS uses `height: auto` and `object-fit: contain`: 180px wide
+at 1440/1280px, 144px at 900/768px, and about 132.6px at 390px. Transparency and
+the exact 3:1 ratio are preserved. [Before/after screenshots and validation](../docs/frontend/branding-wordmark-integration/README.md).
+
 **Backend scheduling note (2026-10-03):** [Crew event-aware refresh](../docs/crew/event-aware-refresh.md) changes background backend source eligibility. Frontend runtime and accepted Crew API contract are byte-identical to the Crew panel baseline; source quality, presence and assignment distinctions remain unchanged. Historical visual evidence below is retained. Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## ISS Crew Earth View panel — 2026-10-03

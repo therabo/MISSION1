@@ -1,0 +1,2157 @@
+[
+  {
+    "phase": "after",
+    "port": 4175,
+    "width": 1440,
+    "height": 900,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "logoRequests": [
+      "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png"
+    ],
+    "states": {
+      "overview": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "replay": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "replay-crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "replay-crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "approaching-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 348.03125,
+          "height": 60,
+          "right": 374.03125,
+          "bottom": 68
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "inspection-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 331,
+          "height": 60,
+          "right": 357,
+          "bottom": 68
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "returning-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 378.65625,
+          "height": 60,
+          "right": 404.65625,
+          "bottom": 68
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "approaching-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 348.03125,
+          "height": 60,
+          "right": 374.03125,
+          "bottom": 68
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "inspection-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 331,
+          "height": 60,
+          "right": 357,
+          "bottom": 68
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      },
+      "returning-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 378.65625,
+          "height": 60,
+          "right": 404.65625,
+          "bottom": 68
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1440,
+        "viewportWidth": 1440,
+        "canvasCount": 1
+      }
+    },
+    "initialPose": {
+      "sameViewer": true,
+      "position": [
+        -7411332.540847672,
+        -13738967.454647047,
+        -17386682.122617215
+      ],
+      "direction": [
+        0.3159995473099966,
+        0.5857931043097804,
+        0.7463181124982753
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:52:22.8949749999883352Z"
+    },
+    "replayPose": {
+      "sameViewer": true,
+      "position": [
+        -7411332.540847672,
+        -13738967.454647047,
+        -17386682.122617215
+      ],
+      "direction": [
+        0.3159995473099966,
+        0.5857931043097804,
+        0.7463181124982753
+      ],
+      "animate": false,
+      "epoch": "2026-10-02T23:00:00Z"
+    },
+    "finalPose": {
+      "sameViewer": true,
+      "position": [
+        -7411332.540847672,
+        -13738967.454647047,
+        -17386682.122617215
+      ],
+      "direction": [
+        0.3159995473099966,
+        0.5857931043097804,
+        0.7463181124982753
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:52:50.7651000000478234Z"
+    }
+  },
+  {
+    "phase": "after",
+    "port": 4175,
+    "width": 1280,
+    "height": 720,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "logoRequests": [
+      "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png"
+    ],
+    "states": {
+      "overview": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "replay": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "replay-crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "replay-crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60,
+          "right": 326.796875,
+          "bottom": 68
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "approaching-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 348.03125,
+          "height": 60,
+          "right": 374.03125,
+          "bottom": 68
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "inspection-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 331,
+          "height": 60,
+          "right": 357,
+          "bottom": 68
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "returning-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 378.65625,
+          "height": 60,
+          "right": 404.65625,
+          "bottom": 68
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "approaching-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 348.03125,
+          "height": 60,
+          "right": 374.03125,
+          "bottom": 68
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "inspection-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 331,
+          "height": 60,
+          "right": 357,
+          "bottom": 68
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      },
+      "returning-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 378.65625,
+          "height": 60,
+          "right": 404.65625,
+          "bottom": 68
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 180,
+            "height": 60,
+            "right": 206,
+            "bottom": 68
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 1280,
+        "viewportWidth": 1280,
+        "canvasCount": 1
+      }
+    },
+    "initialPose": {
+      "sameViewer": true,
+      "position": [
+        -6874733.223768451,
+        -14281909.87959982,
+        -17168654.257122263
+      ],
+      "direction": [
+        0.29314384998625376,
+        0.6089914926135346,
+        0.7370183478988676
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:52:53.8018749999901047Z"
+    },
+    "replayPose": {
+      "sameViewer": true,
+      "position": [
+        -6874733.223768451,
+        -14281909.87959982,
+        -17168654.257122263
+      ],
+      "direction": [
+        0.29314384998625376,
+        0.6089914926135346,
+        0.7370183478988676
+      ],
+      "animate": false,
+      "epoch": "2026-10-02T23:00:00Z"
+    },
+    "finalPose": {
+      "sameViewer": true,
+      "position": [
+        -6874733.223768451,
+        -14281909.87959982,
+        -17168654.257122263
+      ],
+      "direction": [
+        0.29314384998625376,
+        0.6089914926135346,
+        0.7370183478988676
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:53:20.32160000059229787Z"
+    }
+  },
+  {
+    "phase": "after",
+    "port": 4175,
+    "width": 900,
+    "height": 700,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "logoRequests": [
+      "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png"
+    ],
+    "states": {
+      "overview": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "replay": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "replay-crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "replay-crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "approaching-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 312.03125,
+          "height": 48,
+          "right": 338.03125,
+          "bottom": 56
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "inspection-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 295,
+          "height": 48,
+          "right": 321,
+          "bottom": 56
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "returning-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 342.65625,
+          "height": 48,
+          "right": 368.65625,
+          "bottom": 56
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "approaching-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 312.03125,
+          "height": 48,
+          "right": 338.03125,
+          "bottom": 56
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "inspection-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 295,
+          "height": 48,
+          "right": 321,
+          "bottom": 56
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      },
+      "returning-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 342.65625,
+          "height": 48,
+          "right": 368.65625,
+          "bottom": 56
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 900,
+        "viewportWidth": 900,
+        "canvasCount": 1
+      }
+    },
+    "initialPose": {
+      "sameViewer": true,
+      "position": [
+        -6366878.930910396,
+        -14776321.27935386,
+        -16945050.992681302
+      ],
+      "direction": [
+        0.27151057255112593,
+        0.6301246645792727,
+        0.7274784643422916
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:53:23.35582099997554906Z"
+    },
+    "replayPose": {
+      "sameViewer": true,
+      "position": [
+        -6366878.930910396,
+        -14776321.27935386,
+        -16945050.992681302
+      ],
+      "direction": [
+        0.27151057255112593,
+        0.6301246645792727,
+        0.7274784643422916
+      ],
+      "animate": false,
+      "epoch": "2026-10-02T23:00:00Z"
+    },
+    "finalPose": {
+      "sameViewer": true,
+      "position": [
+        -6366878.930910396,
+        -14776321.27935386,
+        -16945050.992681302
+      ],
+      "direction": [
+        0.27151057255112593,
+        0.6301246645792727,
+        0.7274784643422916
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:53:48.6059000001696404Z"
+    }
+  },
+  {
+    "phase": "after",
+    "port": 4175,
+    "width": 768,
+    "height": 1024,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "logoRequests": [
+      "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png"
+    ],
+    "states": {
+      "overview": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "replay": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "replay-crew": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "replay-crew-detail": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48,
+          "right": 290.796875,
+          "bottom": 56
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "approaching-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 312.03125,
+          "height": 48,
+          "right": 338.03125,
+          "bottom": 56
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "inspection-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 295,
+          "height": 48,
+          "right": 321,
+          "bottom": 56
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "returning-gp": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 342.65625,
+          "height": 48,
+          "right": 368.65625,
+          "bottom": 56
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "approaching-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 312.03125,
+          "height": 48,
+          "right": 338.03125,
+          "bottom": 56
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "inspection-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 295,
+          "height": 48,
+          "right": 321,
+          "bottom": 56
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      },
+      "returning-oem": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 342.65625,
+          "height": 48,
+          "right": 368.65625,
+          "bottom": 56
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 26,
+            "y": 8,
+            "width": 144,
+            "height": 48,
+            "right": 170,
+            "bottom": 56
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 768,
+        "viewportWidth": 768,
+        "canvasCount": 1
+      }
+    },
+    "initialPose": {
+      "sameViewer": true,
+      "position": [
+        -5872734.808625566,
+        -15239742.72730802,
+        -16711887.257550864
+      ],
+      "direction": [
+        0.2504590798676418,
+        0.649941137354788,
+        0.717528234486852
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:53:52.18538200005423278Z"
+    },
+    "replayPose": {
+      "sameViewer": true,
+      "position": [
+        -5872734.808625566,
+        -15239742.72730802,
+        -16711887.257550864
+      ],
+      "direction": [
+        0.2504590798676418,
+        0.649941137354788,
+        0.717528234486852
+      ],
+      "animate": false,
+      "epoch": "2026-10-02T23:00:00Z"
+    },
+    "finalPose": {
+      "sameViewer": true,
+      "position": [
+        -5872734.808625566,
+        -15239742.72730802,
+        -16711887.257550864
+      ],
+      "direction": [
+        0.2504590798676418,
+        0.649941137354788,
+        0.717528234486852
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:54:19.66340000012132805Z"
+    }
+  },
+  {
+    "phase": "after",
+    "port": 4175,
+    "width": 390,
+    "height": 844,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "logoRequests": [
+      "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png"
+    ],
+    "states": {
+      "overview": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "crew": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "crew-detail": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "replay": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "replay-crew": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "replay-crew-detail": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ EARTH VIEW",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "approaching-gp": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "inspection-gp": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "returning-gp": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "approaching-oem": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ APPROACHING ISS",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "inspection-oem": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ ISS INSPECTION",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      },
+      "returning-oem": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875,
+          "right": 144.59375,
+          "bottom": 51.1875
+        },
+        "text": "/ RETURNING TO EARTH",
+        "image": {
+          "src": "http://127.0.0.1:4175/assets/MISSION1-logo-Cobk_ZMu.png",
+          "alt": "MISSION1",
+          "naturalWidth": 2172,
+          "naturalHeight": 724,
+          "rect": {
+            "x": 12,
+            "y": 7,
+            "width": 132.59375,
+            "height": 44.1875,
+            "right": 144.59375,
+            "bottom": 51.1875
+          },
+          "pointerEvents": "none",
+          "fit": "contain"
+        },
+        "overlaps": [],
+        "documentWidth": 390,
+        "viewportWidth": 390,
+        "canvasCount": 1
+      }
+    },
+    "initialPose": {
+      "sameViewer": true,
+      "position": [
+        -5322562.549879779,
+        -15735741.529608784,
+        -16434705.542927906
+      ],
+      "direction": [
+        0.22701763599594155,
+        0.671159955231646,
+        0.7056963280620563
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:54:23.5339680000615772Z"
+    },
+    "replayPose": {
+      "sameViewer": true,
+      "position": [
+        -5322562.549879779,
+        -15735741.529608784,
+        -16434705.542927906
+      ],
+      "direction": [
+        0.22701763599594155,
+        0.671159955231646,
+        0.7056963280620563
+      ],
+      "animate": false,
+      "epoch": "2026-10-02T23:00:00Z"
+    },
+    "finalPose": {
+      "sameViewer": true,
+      "position": [
+        -5322562.549879779,
+        -15735741.529608784,
+        -16434705.542927906
+      ],
+      "direction": [
+        0.22701763599594155,
+        0.671159955231646,
+        0.7056963280620563
+      ],
+      "animate": true,
+      "epoch": "2026-10-04T10:54:48.6361999998771353Z"
+    }
+  }
+]

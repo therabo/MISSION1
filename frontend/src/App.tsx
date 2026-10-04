@@ -24,6 +24,7 @@ import type {
   TrajectorySource,
 } from "./cesium/trajectorySelection";
 import type { ViewMode } from "./cesium/inspectionMode";
+import mission1Wordmark from "../../MISSION1-logo.png";
 
 export default function App() {
   const [replaying, setReplaying] = useState(false);
@@ -126,23 +127,25 @@ export default function App() {
         onModuleSelection={onModuleSelection}
         onViewModeChange={setViewMode}
       />
-      <div className="top-brand" aria-hidden="true">
-        <span className="brand-mark">
-          M<span>1</span>
-        </span>
-        <span>
-          MISSION1{" "}
-          <em>
-            /{" "}
-            {approaching
-              ? "APPROACHING ISS"
-              : returning
-                ? "RETURNING TO EARTH"
-                : inspecting
-                  ? "ISS INSPECTION"
-                  : "EARTH VIEW"}
-          </em>
-        </span>
+      <div className="top-brand">
+        <img
+          className="brand-wordmark"
+          src={mission1Wordmark}
+          alt="MISSION1"
+          width={2172}
+          height={724}
+          draggable={false}
+        />
+        <em aria-hidden="true">
+          /{" "}
+          {approaching
+            ? "APPROACHING ISS"
+            : returning
+              ? "RETURNING TO EARTH"
+              : inspecting
+                ? "ISS INSPECTION"
+                : "EARTH VIEW"}
+        </em>
       </div>
       <ReplayControls
         enabled={replaying}
