@@ -1,0 +1,1060 @@
+{
+  "before": [
+    {
+      "name": "overview-gp",
+      "label": "baseline",
+      "count": 1023,
+      "medianMs": 29.19999998807907,
+      "p95Ms": 31.400000035762787,
+      "p99Ms": 33.10000002384186,
+      "medianFps": 34.246575356446954,
+      "onePercentLowFps": 28.357824187590516,
+      "over20": 1023,
+      "over33": 10,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28949.700000047684,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr1.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "overview-oem",
+      "label": "baseline",
+      "count": 1037,
+      "medianMs": 29.100000023841858,
+      "p95Ms": 30.600000023841858,
+      "p99Ms": 31.900000035762787,
+      "medianFps": 34.36426114022997,
+      "onePercentLowFps": 30.145245279571157,
+      "over20": 1037,
+      "over33": 4,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28951.900000035763,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr1.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "inspection-oem",
+      "label": "baseline",
+      "count": 1120,
+      "medianMs": 27.100000023841858,
+      "p95Ms": 28.599999964237213,
+      "p99Ms": 30.5,
+      "medianFps": 36.90036897122607,
+      "onePercentLowFps": 30.052592035165905,
+      "over20": 1119,
+      "over33": 2,
+      "over50": 1,
+      "longestRollingBelow55Ms": 28966.099999964237,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr1.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "inspection-gp",
+      "label": "baseline",
+      "count": 1108,
+      "medianMs": 27.19999998807907,
+      "p95Ms": 28.69999998807907,
+      "p99Ms": 29.80000001192093,
+      "medianFps": 36.76470589846579,
+      "onePercentLowFps": 32.76897869589693,
+      "over20": 1108,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28976.899999976158,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr1.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "crew-open",
+      "label": "baseline",
+      "count": 1026,
+      "medianMs": 29.30000001192093,
+      "p95Ms": 30.600000023841858,
+      "p99Ms": 31.899999976158142,
+      "medianFps": 34.12969281887858,
+      "onePercentLowFps": 30.504714373014853,
+      "over20": 1026,
+      "over33": 2,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28964.69999998808,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr1.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "replay",
+      "label": "baseline",
+      "count": 1397,
+      "medianMs": 21.599999964237213,
+      "p95Ms": 24.600000023841858,
+      "p99Ms": 26.400000035762787,
+      "medianFps": 46.29629637294836,
+      "onePercentLowFps": 36.871214111777306,
+      "over20": 1023,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28959.0,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-replay.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    }
+  ],
+  "after": [
+    {
+      "name": "overview-gp",
+      "label": "final",
+      "count": 1148,
+      "medianMs": 26.19999998807907,
+      "p95Ms": 27.399999976158142,
+      "p99Ms": 28.399999976158142,
+      "medianFps": 38.167938948664016,
+      "onePercentLowFps": 32.90375651865495,
+      "over20": 1147,
+      "over33": 2,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28944.400000035763,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "overview-oem",
+      "label": "final",
+      "count": 1163,
+      "medianMs": 26.100000023841858,
+      "p95Ms": 27.30000001192093,
+      "p99Ms": 28.19999998807907,
+      "medianFps": 38.31417621021145,
+      "onePercentLowFps": 34.197777129382445,
+      "over20": 1162,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28944.19999998808,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "inspection-oem",
+      "label": "final",
+      "count": 1251,
+      "medianMs": 24.19999998807907,
+      "p95Ms": 25.399999976158142,
+      "p99Ms": 26.600000023841858,
+      "medianFps": 41.322314069942166,
+      "onePercentLowFps": 36.292573988263115,
+      "over20": 1249,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28985.399999976158,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "inspection-gp",
+      "label": "final",
+      "count": 1240,
+      "medianMs": 24.400000035762787,
+      "p95Ms": 25.5,
+      "p99Ms": 26.30000001192093,
+      "medianFps": 40.98360649730787,
+      "onePercentLowFps": 36.5579302440111,
+      "over20": 1240,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28959.299999952316,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "crew-open",
+      "label": "final",
+      "count": 1146,
+      "medianMs": 26.19999998807907,
+      "p95Ms": 27.19999998807907,
+      "p99Ms": 28.100000023841858,
+      "medianFps": 38.167938948664016,
+      "onePercentLowFps": 34.285714268197815,
+      "over20": 1146,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28969.0,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "replay",
+      "label": "final",
+      "count": 1634,
+      "medianMs": 18.400000035762787,
+      "p95Ms": 19.299999952316284,
+      "p99Ms": 20.399999976158142,
+      "medianFps": 54.34782598132447,
+      "onePercentLowFps": 47.07837164686694,
+      "over20": 29,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 24749.100000023842,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr1/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    }
+  ],
+  "secondary": [
+    {
+      "name": "baseline native DPR2 / overview-gp",
+      "label": "baseline native DPR2",
+      "count": 495,
+      "medianMs": 60.60000002384186,
+      "p95Ms": 63.5,
+      "p99Ms": 65.69999998807907,
+      "medianFps": 16.501650158524257,
+      "onePercentLowFps": 14.88095238095238,
+      "over20": 495,
+      "over33": 495,
+      "over50": 495,
+      "longestRollingBelow55Ms": 28913.30000001192,
+      "canvas": [
+        2880,
+        1800
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 2,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "before/performance-dpr2.json",
+      "servedBundle": null,
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final native DPR2 / overview-gp",
+      "label": "final native DPR2",
+      "count": 547,
+      "medianMs": 54.700000047683716,
+      "p95Ms": 57.799999952316284,
+      "p99Ms": 59.89999997615814,
+      "medianFps": 18.281535633057924,
+      "onePercentLowFps": 16.43385373762856,
+      "over20": 547,
+      "over33": 547,
+      "over50": 532,
+      "longestRollingBelow55Ms": 28942.700000047684,
+      "canvas": [
+        2880,
+        1800
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 2,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/dpr2/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / overview-gp",
+      "label": "final actual LIVE",
+      "count": 1212,
+      "medianMs": 24.700000047683716,
+      "p95Ms": 26,
+      "p99Ms": 27.200000047683716,
+      "medianFps": 40.48582988135568,
+      "onePercentLowFps": 35.82254063539183,
+      "over20": 1212,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28974.80000001192,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 30,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / overview-oem",
+      "label": "final actual LIVE",
+      "count": 1325,
+      "medianMs": 22.80000001192093,
+      "p95Ms": 24.69999998807907,
+      "p99Ms": 26.399999976158142,
+      "medianFps": 43.8596490998751,
+      "onePercentLowFps": 30.89143865924152,
+      "over20": 1270,
+      "over33": 2,
+      "over50": 1,
+      "longestRollingBelow55Ms": 28960.400000035763,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 1,
+      "domMutationDeliveries": 30,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / inspection-oem",
+      "label": "final actual LIVE",
+      "count": 1250,
+      "medianMs": 23.69999998807907,
+      "p95Ms": 26.400000035762787,
+      "p99Ms": 30.799999952316284,
+      "medianFps": 42.19409284822754,
+      "onePercentLowFps": 28.940338383949186,
+      "over20": 1249,
+      "over33": 6,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28942.5,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 30,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / inspection-gp",
+      "label": "final actual LIVE",
+      "count": 1241,
+      "medianMs": 24.599999964237213,
+      "p95Ms": 26,
+      "p99Ms": 26.80000001192093,
+      "medianFps": 40.650406563161454,
+      "onePercentLowFps": 35.30689842019673,
+      "over20": 1240,
+      "over33": 1,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28969.19999998808,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 30,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / crew-open",
+      "label": "final actual LIVE",
+      "count": 1232,
+      "medianMs": 24,
+      "p95Ms": 28.19999998807907,
+      "p99Ms": 32.30000001192093,
+      "medianFps": 41.666666666666664,
+      "onePercentLowFps": 27.718550110132526,
+      "over20": 1229,
+      "over33": 10,
+      "over50": 1,
+      "longestRollingBelow55Ms": 28966.80000001192,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 30,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "final actual LIVE / replay",
+      "label": "final actual LIVE",
+      "count": 1589,
+      "medianMs": 18.69999998807907,
+      "p95Ms": 21.69999998807907,
+      "p99Ms": 26.19999998807907,
+      "medianFps": 53.475935862967,
+      "onePercentLowFps": 35.04161191231832,
+      "over20": 217,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 11135.0,
+      "canvas": [
+        1800,
+        1125
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/live/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "1280\u00d7720 / overview-gp",
+      "label": "1280\u00d7720",
+      "count": 1752,
+      "medianMs": 16.700000047683716,
+      "p95Ms": 20.19999998807907,
+      "p99Ms": 22,
+      "medianFps": 59.880239349981295,
+      "onePercentLowFps": 37.390943070638656,
+      "over20": 98,
+      "over33": 1,
+      "over50": 1,
+      "longestRollingBelow55Ms": 2054.5,
+      "canvas": [
+        1600,
+        900
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 1,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/1280x720/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "1280\u00d7720 / inspection-gp",
+      "label": "1280\u00d7720",
+      "count": 1579,
+      "medianMs": 18.900000035762787,
+      "p95Ms": 20.30000001192093,
+      "p99Ms": 21.30000001192093,
+      "medianFps": 52.91005280993593,
+      "onePercentLowFps": 44.94382023224399,
+      "over20": 123,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 28969.100000023842,
+      "canvas": [
+        1600,
+        900
+      ],
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/1280x720/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "900\u00d7700 / overview-gp",
+      "label": "900\u00d7700",
+      "count": 1799,
+      "medianMs": 16.69999998807907,
+      "p95Ms": 17.399999976158142,
+      "p99Ms": 17.899999976158142,
+      "medianFps": 59.88023956370228,
+      "onePercentLowFps": 54.18422637160123,
+      "over20": 1,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 0,
+      "canvas": [
+        1125,
+        875
+      ],
+      "viewport": [
+        900,
+        700
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/900x700/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    },
+    {
+      "name": "390\u00d7844 emulation / overview-gp",
+      "label": "390\u00d7844 emulation",
+      "count": 1799,
+      "medianMs": 16.69999998807907,
+      "p95Ms": 17.100000023841858,
+      "p99Ms": 17.600000023841858,
+      "medianFps": 59.88023956370228,
+      "onePercentLowFps": 55.865921800111245,
+      "over20": 0,
+      "over33": 0,
+      "over50": 0,
+      "longestRollingBelow55Ms": 0,
+      "canvas": [
+        487,
+        1055
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "visibility": "visible",
+      "focus": true,
+      "longTasks": 0,
+      "domMutationDeliveries": 0,
+      "tileQueueSettled": true,
+      "source": "after/390x844/performance.json",
+      "servedBundle": [
+        "http://127.0.0.1:4175/assets/index-BmpYcoTR.js"
+      ],
+      "pageErrors": [],
+      "requestFailures": []
+    }
+  ],
+  "loading": {
+    "before": [
+      {
+        "mode": "cold",
+        "viewerReady": 599.9000000357628,
+        "firstObservedEarthFrame": 615.8000000119209,
+        "modelResourcesReady": 1538.9000000357628,
+        "inspectionReady": 2395.100000023842,
+        "tileQueueIdle": 3549.5,
+        "starDecodedAt": null,
+        "fullSceneReady": null,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 55416997,
+        "observedResponseHeaderBytes": 22460,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 53970062,
+        "localBodyBytes": 53935076,
+        "externalBodyBytes": 1481921
+      },
+      {
+        "mode": "warm",
+        "viewerReady": 330.10000002384186,
+        "firstObservedEarthFrame": 336.10000002384186,
+        "modelResourcesReady": 1120.7000000476837,
+        "inspectionReady": 2348.7000000476837,
+        "tileQueueIdle": 3796.300000011921,
+        "starDecodedAt": null,
+        "fullSceneReady": null,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 34326808,
+        "observedResponseHeaderBytes": 12022,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 32868791,
+        "localBodyBytes": 32844960,
+        "externalBodyBytes": 1481848
+      },
+      {
+        "mode": "repeat",
+        "viewerReady": 334.19999998807907,
+        "firstObservedEarthFrame": 339.5,
+        "modelResourcesReady": 1102.1000000238419,
+        "inspectionReady": 1815.199999988079,
+        "tileQueueIdle": 3397.300000011921,
+        "starDecodedAt": null,
+        "fullSceneReady": null,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 34326761,
+        "observedResponseHeaderBytes": 12022,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 32868785,
+        "localBodyBytes": 32844936,
+        "externalBodyBytes": 1481825
+      }
+    ],
+    "after": [
+      {
+        "mode": "cold",
+        "viewerReady": 464.19999998807907,
+        "firstObservedEarthFrame": 485,
+        "modelResourcesReady": 1255.5999999642372,
+        "inspectionReady": 2067.099999964237,
+        "tileQueueIdle": 4247,
+        "starDecodedAt": 3041.699999988079,
+        "fullSceneReady": 4247,
+        "requestsStartedBySettled": 191,
+        "observedResponseBodyBytes": 73867345,
+        "observedResponseHeaderBytes": 23282,
+        "requestsWithSizes": 191,
+        "localResourceTimingTransferBytes": 71826938,
+        "localBodyBytes": 71791047,
+        "externalBodyBytes": 2076298
+      },
+      {
+        "mode": "warm",
+        "viewerReady": 349.19999998807907,
+        "firstObservedEarthFrame": 355.19999998807907,
+        "modelResourcesReady": 1037,
+        "inspectionReady": 1807.800000011921,
+        "tileQueueIdle": 4065.900000035763,
+        "starDecodedAt": 2632.600000023842,
+        "fullSceneReady": 4065.900000035763,
+        "requestsStartedBySettled": 191,
+        "observedResponseBodyBytes": 48787325,
+        "observedResponseHeaderBytes": 12693,
+        "requestsWithSizes": 191,
+        "localResourceTimingTransferBytes": 46735771,
+        "localBodyBytes": 46711064,
+        "externalBodyBytes": 2076261
+      },
+      {
+        "mode": "repeat",
+        "viewerReady": 308.30000001192093,
+        "firstObservedEarthFrame": 314.5,
+        "modelResourcesReady": 932,
+        "inspectionReady": 1623.699999988079,
+        "tileQueueIdle": 4196.199999988079,
+        "starDecodedAt": 2455.400000035763,
+        "fullSceneReady": 4196.199999988079,
+        "requestsStartedBySettled": 191,
+        "observedResponseBodyBytes": 48787198,
+        "observedResponseHeaderBytes": 12693,
+        "requestsWithSizes": 191,
+        "localResourceTimingTransferBytes": 46735706,
+        "localBodyBytes": 46710945,
+        "externalBodyBytes": 2076253
+      }
+    ],
+    "baselineRecheck": [
+      {
+        "mode": "cold",
+        "viewerReady": 491.7000000476837,
+        "firstObservedEarthFrame": 505.2000000476837,
+        "modelResourcesReady": 1463,
+        "inspectionReady": 2270.300000011921,
+        "tileQueueIdle": 3645.400000035763,
+        "starDecodedAt": 829.9000000357628,
+        "fullSceneReady": 3645.400000035763,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 55736262,
+        "observedResponseHeaderBytes": 22470,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 53990625,
+        "localBodyBytes": 53955579,
+        "externalBodyBytes": 1780683
+      },
+      {
+        "mode": "warm",
+        "viewerReady": 305.10000002384186,
+        "firstObservedEarthFrame": 310.60000002384186,
+        "modelResourcesReady": 1094.9000000357628,
+        "inspectionReady": 1801.199999988079,
+        "tileQueueIdle": 3035.400000035763,
+        "starDecodedAt": 451,
+        "fullSceneReady": 3035.400000035763,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 34625535,
+        "observedResponseHeaderBytes": 12022,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 32868708,
+        "localBodyBytes": 32844907,
+        "externalBodyBytes": 1780628
+      },
+      {
+        "mode": "repeat",
+        "viewerReady": 305.89999997615814,
+        "firstObservedEarthFrame": 311.5999999642372,
+        "modelResourcesReady": 1025.2999999523163,
+        "inspectionReady": 1741.2999999523163,
+        "tileQueueIdle": 3079.5,
+        "starDecodedAt": 450.7999999523163,
+        "fullSceneReady": 3079.599999964237,
+        "requestsStartedBySettled": 178,
+        "observedResponseBodyBytes": 34625634,
+        "observedResponseHeaderBytes": 12022,
+        "requestsWithSizes": 178,
+        "localResourceTimingTransferBytes": 32868742,
+        "localBodyBytes": 32844935,
+        "externalBodyBytes": 1780699
+      }
+    ]
+  },
+  "gpu": [
+    {
+      "mode": "overview",
+      "cpuMedianMs": 6.099999964237213,
+      "cpuP95Ms": 7.5,
+      "gpuMedianMs": 29.088375,
+      "gpuP95Ms": 33.998375,
+      "gpuSamples": 208,
+      "medianDrawCalls": 717,
+      "p95DrawCalls": 717,
+      "liveTextures": 232,
+      "cumulativeTextures": 278,
+      "textureEstimateMiB": 726.7535088857032,
+      "unknownTextureFormats": [],
+      "liveRenderbuffers": 4,
+      "renderbufferEstimateMiB": 123.59619140625,
+      "heap": {
+        "used": 253483155,
+        "total": 300330415
+      },
+      "defaultSamples": 0,
+      "sceneMsaa": 4,
+      "maximumAnisotropy": 16,
+      "maximumTexture": 16384,
+      "maximumCube": 16384,
+      "contextLoss": 0,
+      "tileCacheSize": 100,
+      "screenSpaceError": 2,
+      "tileQueueSettled": true
+    },
+    {
+      "mode": "inspection",
+      "cpuMedianMs": 7,
+      "cpuP95Ms": 7.800000011920929,
+      "gpuMedianMs": 25.915833,
+      "gpuP95Ms": 26.956458,
+      "gpuSamples": 201,
+      "medianDrawCalls": 733,
+      "p95DrawCalls": 736,
+      "liveTextures": 339,
+      "cumulativeTextures": 501,
+      "textureEstimateMiB": 764.4201755523751,
+      "unknownTextureFormats": [],
+      "liveRenderbuffers": 4,
+      "renderbufferEstimateMiB": 123.59619140625,
+      "heap": {
+        "used": 268893809,
+        "total": 314902389
+      },
+      "defaultSamples": 0,
+      "sceneMsaa": 4,
+      "maximumAnisotropy": 16,
+      "maximumTexture": 16384,
+      "maximumCube": 16384,
+      "contextLoss": 0,
+      "tileCacheSize": 100,
+      "screenSpaceError": 2,
+      "tileQueueSettled": true
+    },
+    {
+      "mode": "returned",
+      "cpuMedianMs": 7.200000047683716,
+      "cpuP95Ms": 8.299999952316284,
+      "gpuMedianMs": 29.597999,
+      "gpuP95Ms": 31.313208,
+      "gpuSamples": 200,
+      "medianDrawCalls": 717,
+      "p95DrawCalls": 717,
+      "liveTextures": 300,
+      "cumulativeTextures": 589,
+      "textureEstimateMiB": 749.4201755523727,
+      "unknownTextureFormats": [],
+      "liveRenderbuffers": 4,
+      "renderbufferEstimateMiB": 123.59619140625,
+      "heap": {
+        "used": 258814337,
+        "total": 321795997
+      },
+      "defaultSamples": 0,
+      "sceneMsaa": 4,
+      "maximumAnisotropy": 16,
+      "maximumTexture": 16384,
+      "maximumCube": 16384,
+      "contextLoss": 0,
+      "tileCacheSize": 100,
+      "screenSpaceError": 2,
+      "tileQueueSettled": true
+    }
+  ]
+}

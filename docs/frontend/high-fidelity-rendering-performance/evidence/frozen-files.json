@@ -1,0 +1,390 @@
+{
+  "baseline": "6fbb52d7999cc189b9240a7cad5e6136c36f8164",
+  "trackedFiles": 5529,
+  "unchangedCount": 5511,
+  "backendFiles": 210,
+  "backendUnchanged": true,
+  "changes": [
+    {
+      "file": "docs/architecture/04-earth-view-orbital-delivery.md",
+      "blob": "858389ec55e9562534c257c4a6625ae46847df16",
+      "currentBlob": "e3849dfa79b1e82e66710cc0c9299a2b4843fbfd",
+      "unchanged": false
+    },
+    {
+      "file": "docs/frontend/earth-visualization.md",
+      "blob": "145925fd8130d7a0fbf2d28e98b725ab06d956a3",
+      "currentBlob": "bf1e4b9721a1fdcd1951ba05ee1cbdd6bbcec982",
+      "unchanged": false
+    },
+    {
+      "file": "docs/frontend/iss-inspection-mode.md",
+      "blob": "3de42e85361df49d42b99b2e861a6c1d58a11704",
+      "currentBlob": "90ae2d6d4e51cbe8ff760ca91953a4f741dbf046",
+      "unchanged": false
+    },
+    {
+      "file": "docs/frontend/iss-model.md",
+      "blob": "4d83040b776663d7adbb08694114b3347c63531c",
+      "currentBlob": "0fd08a8efcbe6d6b611c53280a16f4a403c2c8b2",
+      "unchanged": false
+    },
+    {
+      "file": "docs/frontend/rendering-quality.md",
+      "blob": "8a809f12da83a8cb53dfaae8d70e6c2581c22219",
+      "currentBlob": "b7347ecd2ccfa7048323ec42fc35fa84ddea7f29",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/README.md",
+      "blob": "fbd74c10806631e2b4e969448555ceb4e5a77565",
+      "currentBlob": "fabfb45dbcdb27886cf5612b9c1080b1c229b61e",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-negativeX.png",
+      "blob": "e23546f3d7f24db14d4aac7ae75aeea985c8918c",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-negativeY.png",
+      "blob": "db933a5c758d08c22df6985b9c6c5be682f2c1e1",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-negativeZ.png",
+      "blob": "07ffd949fad94c5d0bbe611e1d7fc8b5ce75c1b0",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-positiveX.png",
+      "blob": "d0bc608c113471cbdcc138174595ef0e20a13079",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-positiveY.png",
+      "blob": "b505fcf96f32607ffd46aacde2a27e17f8a17d31",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/public/skybox/tycho-positiveZ.png",
+      "blob": "550d3c7805d07f84cad6ecb30134608cfe4572f9",
+      "currentBlob": null,
+      "unchanged": false
+    },
+    {
+      "file": "frontend/scripts/generate-tycho-skybox.py",
+      "blob": "9d204a9b7c1baf1cadd374daa18ca8989fa9aead",
+      "currentBlob": "863a740ced1af020dbeff580cb4ea3522baac10b",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/src/cesium/EarthView.tsx",
+      "blob": "4203819bb6e35e042d83ab4304aeb27f1e21ca36",
+      "currentBlob": "8b08e6fa06a035f5b9eafc26d2074410bf011109",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/src/cesium/earthImagery.ts",
+      "blob": "48651655d2d55dffa5d3557f1553e3754c32d230",
+      "currentBlob": "91f7f31b92f0a88162c39830e511fd360b14c20b",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/src/cesium/graphicsAssets.test.ts",
+      "blob": "991b87c111a36508518296f37acaaa0d5c8f6531",
+      "currentBlob": "fcd6e14d47bd73324bebe5c017961ea3970160b9",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/src/cesium/graphicsQuality.ts",
+      "blob": "cd98d7e31148c145d6f43ecf0f309e305927043e",
+      "currentBlob": "a1436d43d25a4fa166182e9678454f53190912eb",
+      "unchanged": false
+    },
+    {
+      "file": "frontend/src/cesium/skyboxManifest.json",
+      "blob": "625b2303b16dcce29e2f9838bf37d807218316d9",
+      "currentBlob": "03fca013fa8db081d5bf056ca9023677c65fe45c",
+      "unchanged": false
+    }
+  ],
+  "explicitFrozenFiles": [
+    {
+      "file": "frontend/public/models/iss-vtad-source-png.glb",
+      "blob": "fad0fc95f75090dfe478792c43bcc15b3f193de2",
+      "currentBlob": "fad0fc95f75090dfe478792c43bcc15b3f193de2"
+    },
+    {
+      "file": "frontend/src/App.tsx",
+      "blob": "a601637e4e84ff4530ce561018844f3039bd1184",
+      "currentBlob": "a601637e4e84ff4530ce561018844f3039bd1184"
+    },
+    {
+      "file": "frontend/src/cesium/arcLengthPath.test.ts",
+      "blob": "10c164e107211ce35c52cb7bd51563a7afc09cfd",
+      "currentBlob": "10c164e107211ce35c52cb7bd51563a7afc09cfd"
+    },
+    {
+      "file": "frontend/src/cesium/arcLengthPath.ts",
+      "blob": "e77567157d1b001baabca2f9b728f1d311e3f695",
+      "currentBlob": "e77567157d1b001baabca2f9b728f1d311e3f695"
+    },
+    {
+      "file": "frontend/src/cesium/cameraPose.ts",
+      "blob": "333806d33065b70eff6f6606077cf60ede91c374",
+      "currentBlob": "333806d33065b70eff6f6606077cf60ede91c374"
+    },
+    {
+      "file": "frontend/src/cesium/displayIsolation.test.ts",
+      "blob": "10f69c4a5d17f9306b11eff99ef2c4239de8438d",
+      "currentBlob": "10f69c4a5d17f9306b11eff99ef2c4239de8438d"
+    },
+    {
+      "file": "frontend/src/cesium/displayRetarget.test.ts",
+      "blob": "e8b3ab204dd3e9d1e9817075923f826ccd70b660",
+      "currentBlob": "e8b3ab204dd3e9d1e9817075923f826ccd70b660"
+    },
+    {
+      "file": "frontend/src/cesium/displayRetarget.ts",
+      "blob": "73e9c0a602d054f310f1510fcb1abcecb4a535db",
+      "currentBlob": "73e9c0a602d054f310f1510fcb1abcecb4a535db"
+    },
+    {
+      "file": "frontend/src/cesium/earthLighting.test.ts",
+      "blob": "4c3cdc3483aa5c01590d3cead72c4ffe5ce75223",
+      "currentBlob": "4c3cdc3483aa5c01590d3cead72c4ffe5ce75223"
+    },
+    {
+      "file": "frontend/src/cesium/earthLighting.ts",
+      "blob": "bfc62b3e9276b311ad159740dc753d2e7d0bfef6",
+      "currentBlob": "bfc62b3e9276b311ad159740dc753d2e7d0bfef6"
+    },
+    {
+      "file": "frontend/src/cesium/earthViewPresentation.test.ts",
+      "blob": "a6a978f849e4be5eabac766c5afe4c980d975b10",
+      "currentBlob": "a6a978f849e4be5eabac766c5afe4c980d975b10"
+    },
+    {
+      "file": "frontend/src/cesium/earthViewPresentation.ts",
+      "blob": "093a59351ec6f6894f01a81f72378fc4dca94a0e",
+      "currentBlob": "093a59351ec6f6894f01a81f72378fc4dca94a0e"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionAntialiasing.ts",
+      "blob": "fb689d5ee75bdc14198030ebd6c0886f5aeea66e",
+      "currentBlob": "fb689d5ee75bdc14198030ebd6c0886f5aeea66e"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionControls.ts",
+      "blob": "6be7456b3ec7b6de375e599c8783a6da321f92c3",
+      "currentBlob": "6be7456b3ec7b6de375e599c8783a6da321f92c3"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionMode.test.ts",
+      "blob": "a18d028b3f1ae96b56a005d19ddf6ab8d7f12cad",
+      "currentBlob": "a18d028b3f1ae96b56a005d19ddf6ab8d7f12cad"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionMode.ts",
+      "blob": "1aedd2adc8ec03b170bb8d412ed41dc086161eb3",
+      "currentBlob": "1aedd2adc8ec03b170bb8d412ed41dc086161eb3"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionRenderingWarmup.test.ts",
+      "blob": "ce0570ba5f5f9e6c26fedf3149620e1a9f0c4f37",
+      "currentBlob": "ce0570ba5f5f9e6c26fedf3149620e1a9f0c4f37"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionRenderingWarmup.ts",
+      "blob": "8ee3a189e19687844e16bae756210d0a4be2d1c2",
+      "currentBlob": "8ee3a189e19687844e16bae756210d0a4be2d1c2"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionTransition.test.ts",
+      "blob": "42c8fcbbdb0d6fc2a69dff575ca2a272288bc5dd",
+      "currentBlob": "42c8fcbbdb0d6fc2a69dff575ca2a272288bc5dd"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionTransition.ts",
+      "blob": "4b1908dd15e834ee3cbcb71b5e8e14c13f8430ae",
+      "currentBlob": "4b1908dd15e834ee3cbcb71b5e8e14c13f8430ae"
+    },
+    {
+      "file": "frontend/src/cesium/issMaterialQuality.ts",
+      "blob": "988f322bdf8dae570f70fde3184daceb818537f5",
+      "currentBlob": "988f322bdf8dae570f70fde3184daceb818537f5"
+    },
+    {
+      "file": "frontend/src/cesium/issModelManifest.json",
+      "blob": "7b69b5da251d45a58259b300d68893deb9a5a083",
+      "currentBlob": "7b69b5da251d45a58259b300d68893deb9a5a083"
+    },
+    {
+      "file": "frontend/src/cesium/modelPresentation.test.ts",
+      "blob": "fbb510cad5c1125017ea5efa571eb5c6ca5e652c",
+      "currentBlob": "fbb510cad5c1125017ea5efa571eb5c6ca5e652c"
+    },
+    {
+      "file": "frontend/src/cesium/modelPresentation.ts",
+      "blob": "186d2ab405f5999ab7587c5b025cf5184830a6a6",
+      "currentBlob": "186d2ab405f5999ab7587c5b025cf5184830a6a6"
+    },
+    {
+      "file": "frontend/src/cesium/perceptualPath.test.ts",
+      "blob": "8e69142719d74bcc931969a0bbb5cf0008c5645f",
+      "currentBlob": "8e69142719d74bcc931969a0bbb5cf0008c5645f"
+    },
+    {
+      "file": "frontend/src/cesium/perceptualPath.ts",
+      "blob": "1aef6ff552449375565da40527e0b5b03c9ec722",
+      "currentBlob": "1aef6ff552449375565da40527e0b5b03c9ec722"
+    },
+    {
+      "file": "frontend/src/cesium/sampleProperty.test.ts",
+      "blob": "5dafd2bdcaa7d9c8d58c474bab0a8704380c78a2",
+      "currentBlob": "5dafd2bdcaa7d9c8d58c474bab0a8704380c78a2"
+    },
+    {
+      "file": "frontend/src/cesium/sampleProperty.ts",
+      "blob": "13aeb6608460c9d852a6570158e9a4cf82faeaf3",
+      "currentBlob": "13aeb6608460c9d852a6570158e9a4cf82faeaf3"
+    },
+    {
+      "file": "frontend/src/cesium/skyRenderingWarmup.test.ts",
+      "blob": "64bbd2d9ed23c785c0f8641e8616e71fb787acc3",
+      "currentBlob": "64bbd2d9ed23c785c0f8641e8616e71fb787acc3"
+    },
+    {
+      "file": "frontend/src/cesium/skyRenderingWarmup.ts",
+      "blob": "7365368cc31ed151f4c6719c7ee873b0e9503bb3",
+      "currentBlob": "7365368cc31ed151f4c6719c7ee873b0e9503bb3"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryAppearance.ts",
+      "blob": "da3dc03df34468b1a3f88d7b485573e55a65b1ef",
+      "currentBlob": "da3dc03df34468b1a3f88d7b485573e55a65b1ef"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryClearance.test.ts",
+      "blob": "26325f43de8c259f4ebb4c333ea4be8d77283c11",
+      "currentBlob": "26325f43de8c259f4ebb4c333ea4be8d77283c11"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryClearance.ts",
+      "blob": "d6235dfb14635be49d07a42ed9a59d4328a2bfa1",
+      "currentBlob": "d6235dfb14635be49d07a42ed9a59d4328a2bfa1"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryCoverage.ts",
+      "blob": "8f1171d5955fa4b4c55afed6b6472baf5da21f8b",
+      "currentBlob": "8f1171d5955fa4b4c55afed6b6472baf5da21f8b"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryGeometry.test.ts",
+      "blob": "5c5e0272ca575125d7bcfae6c5b867c865a2bdb8",
+      "currentBlob": "5c5e0272ca575125d7bcfae6c5b867c865a2bdb8"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryGeometry.ts",
+      "blob": "df07e1f50a446c750838e32b1c0d8079f150e34a",
+      "currentBlob": "df07e1f50a446c750838e32b1c0d8079f150e34a"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryOrientation.test.ts",
+      "blob": "5aa8009a91404a9a788ba5dd767e900eaf0411f5",
+      "currentBlob": "5aa8009a91404a9a788ba5dd767e900eaf0411f5"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryOrientation.ts",
+      "blob": "c02dfd6afb225e3172a250e418511d6e916e49d8",
+      "currentBlob": "c02dfd6afb225e3172a250e418511d6e916e49d8"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryRendering.test.ts",
+      "blob": "b8438cdfd78891d403c771646b4f2c598bf87095",
+      "currentBlob": "b8438cdfd78891d403c771646b4f2c598bf87095"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryRendering.ts",
+      "blob": "017303ae3c3c6bd3ed3414ec32079bf60d167958",
+      "currentBlob": "017303ae3c3c6bd3ed3414ec32079bf60d167958"
+    },
+    {
+      "file": "frontend/src/cesium/trajectorySelection.test.ts",
+      "blob": "07b51ddc30a6a73c62061fcc79d399f427825ccf",
+      "currentBlob": "07b51ddc30a6a73c62061fcc79d399f427825ccf"
+    },
+    {
+      "file": "frontend/src/cesium/trajectorySelection.ts",
+      "blob": "d008db6b782cec15bcd2c3a487cabb11fe21d3e3",
+      "currentBlob": "d008db6b782cec15bcd2c3a487cabb11fe21d3e3"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryVisibility.test.ts",
+      "blob": "b3ec179998ebabf56f7e71f91c8764b28b172012",
+      "currentBlob": "b3ec179998ebabf56f7e71f91c8764b28b172012"
+    },
+    {
+      "file": "frontend/src/cesium/trajectoryVisibility.ts",
+      "blob": "dbf14fa9db94dbbb34a3e6aafeec518b81a3b82b",
+      "currentBlob": "dbf14fa9db94dbbb34a3e6aafeec518b81a3b82b"
+    },
+    {
+      "file": "frontend/src/cesium/transitionComposition.ts",
+      "blob": "2549cfb2f215f23c3171591e5ad340afb8f5190c",
+      "currentBlob": "2549cfb2f215f23c3171591e5ad340afb8f5190c"
+    },
+    {
+      "file": "frontend/src/cesium/transitionFocus.test.ts",
+      "blob": "59ee3a5b73c175c9d2e763c93ee511c87405228c",
+      "currentBlob": "59ee3a5b73c175c9d2e763c93ee511c87405228c"
+    },
+    {
+      "file": "frontend/src/cesium/velocityProperty.ts",
+      "blob": "7df4b2f259cc1fdedfb3b19e397873caa1183584",
+      "currentBlob": "7df4b2f259cc1fdedfb3b19e397873caa1183584"
+    },
+    {
+      "file": "frontend/src/cesium/visualWindow.ts",
+      "blob": "7b2f477cf9c19050d0f65207a01e214325d0a208",
+      "currentBlob": "7b2f477cf9c19050d0f65207a01e214325d0a208"
+    },
+    {
+      "file": "frontend/src/cesium/workspaceGeometry.test.ts",
+      "blob": "19fbab15011cdb9f4888208c66d8df19679ea78f",
+      "currentBlob": "19fbab15011cdb9f4888208c66d8df19679ea78f"
+    },
+    {
+      "file": "frontend/src/cesium/workspaceGeometry.ts",
+      "blob": "327c5c987a93fe08ea386639fe0cc52239a5db1c",
+      "currentBlob": "327c5c987a93fe08ea386639fe0cc52239a5db1c"
+    },
+    {
+      "file": "frontend/src/cesium/workspaceProjection.test.ts",
+      "blob": "0dfaf09d05a469c5355d5913b8ef09a63a7c9334",
+      "currentBlob": "0dfaf09d05a469c5355d5913b8ef09a63a7c9334"
+    },
+    {
+      "file": "frontend/src/cesium/workspaceProjection.ts",
+      "blob": "c6eaee1c2cbf539f16eb61bac76bdb7d6e2f5602",
+      "currentBlob": "c6eaee1c2cbf539f16eb61bac76bdb7d6e2f5602"
+    },
+    {
+      "file": "frontend/src/layout/useEarthWorkspace.ts",
+      "blob": "40aca8ed86c1f74a07001c73fda79e0b3b4b8110",
+      "currentBlob": "40aca8ed86c1f74a07001c73fda79e0b3b4b8110"
+    },
+    {
+      "file": "frontend/src/styles.css",
+      "blob": "0914c24a9dbfcab7786f341119a68207412f2418",
+      "currentBlob": "0914c24a9dbfcab7786f341119a68207412f2418"
+    }
+  ],
+  "allPreviousEvidenceUnchanged": true
+}

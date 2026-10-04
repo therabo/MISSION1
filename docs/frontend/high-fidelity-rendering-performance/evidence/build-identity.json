@@ -1,0 +1,13 @@
+{
+  "baseline": "6fbb52d7999cc189b9240a7cad5e6136c36f8164",
+  "productionJavaScript": {
+    "path": "/Users/daniel/Desktop/MISSION1/frontend/dist/assets/index-BmpYcoTR.js",
+    "bytes": 4522743,
+    "sha256": "0317c34f8b975521d7a744c6ff9039f138ab62c725159685ce57a2abd83a7361"
+  },
+  "productionStylesheet": {
+    "path": "/Users/daniel/Desktop/MISSION1/frontend/dist/assets/index-CKc_6PVT.css",
+    "bytes": 42827,
+    "sha256": "664422f6658c53acecca8709ba93a7ea55da154c037fa292698f459a3d1ddc3a"
+  }
+}

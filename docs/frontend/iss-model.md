@@ -1,5 +1,10 @@
 # ISS model asset and presentation record
 
+## Native-source fidelity reverified — 2026-10-04
+
+A fresh download of NASA's pinned source GLB confirms that all 19 unique runtime PNG payloads are byte-identical to its 26 embedded entries. The runtime GLB, 132-node hierarchy, 131 meshes, 343 primitives, 27 original PBR materials and 14 semantic identities are unchanged. No authoritative finer texture was verified for this model; the genuine 512²/1024² source limit remains. Browser sampling/mipmap/anisotropy, close and oblique evidence and the current rendering costs are recorded in the [high-fidelity audit](high-fidelity-rendering-performance/README.md). No private Cesium sampler patch or geometry rewrite was adopted.
+
+
 ## Explicit camera focus refinement — 2026-10-01
 
 Earth↔ISS now uses an explicit positive focal ray independently of the retained cubic/hybrid position path. It captures the actual Earth composition and actual orbited/zoomed Inspection pose, blends a quaternion rail with smooth angular containment around the displayed station, and retains focal as well as pose derivatives on partial Back. There is no target threshold switch or final recenter. The canonical 90m /42.5° /100° and 6/5s remain; captured range/angle gives bounded durations for other starts. The same selected-source physical frame, lift/silhouette/FOV, native resolution and NASA PNG/PBR asset remain. Automatic motion copies the public world camera basis, avoiding Cesium’s nadir heading/roll conversion. Graphics readiness requires the retained Moon/Sun startup draws and eight model/globe preparation renders; temporary celestial views cannot count toward model readiness. Optional imagery failure retains the existing local fallback. [Focus definition, gates, arbitrary geometry, profiles and evidence](camera-transition-perfecting-review/focus-optimization/README.md). The earlier dated records below preserve preceding behavior; the focal model above supersedes their residual-aim composition.

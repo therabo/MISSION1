@@ -1,5 +1,14 @@
 # Earth View orbital delivery decision and validation
 
+## Graphics source fidelity and loading ownership — 2026-10-04
+
+EarthView still owns one Viewer and its graphics lifecycle. The Earth-imagery helper owns independent source probes, ordered local/tiled layers and per-tile bounded retry cleanup. It uses only public imagery APIs; data acquisition, persistence, GP/OEM delivery and Replay are unaffected. The pinned NASA SVS Tycho product now uses a lossless TIFF input and 4096² cube derivatives; NASA VTAD geometry/PNG/PBR stays unchanged. Public Viewer context options remove redundant browser AA while keeping Cesium MSAA 4 and its retained FXAA pipeline.
+
+Within that same lifecycle, ISS resources and existing first-use rendering preparation have priority; high-resolution stars refine the visible bundled skybox after model readiness. No extra service, global asset cache, per-frame UI state or new data contract is introduced.
+
+These are reversible controls and preprocessing within the existing graphics/source boundary, with no new library, service, API, deployment or cross-cutting convention. No new ADR is required; ADR-0006 remains unchanged. The [graphics dossier](../frontend/high-fidelity-rendering-performance/README.md) records the quality/memory tradeoff, rejected alternatives and the honest 60 FPS target failure on the reference machine.
+
+
 ## Full-screen occlusion presentation boundary — 2026-10-04
 
 App owns event-driven rendered dashboard geometry; CSS owns side/bottom/hidden

@@ -1,5 +1,14 @@
 # MISSION1 Earth View
 
+## High-fidelity rendering and measured performance — 2026-10-04
+
+The current rendering policy preserves the full NASA VTAD PNG/PBR model and the accepted camera, trajectory and full-screen occlusion-aware geometry. NASA SVS Tycho II now uses its verified 16K TIFF source and six seam-checked 4096² lossless WebP cube faces. Blue Marble August 2004 and Black Marble 2016 remain fixed historical imagery; independent probes refine local day/night layers, with at most two retries per failing tile rather than removing a whole high-detail layer. Night brightness is 1.15 (formerly 1.8), with neutral contrast/gamma and no invented emission.
+
+Stars refine the bundled skybox after ISS texture, feature and first-use shader readiness; this measured ordering protects first Earth/ISS use. The maximum-quality configuration is fixed, including native DPR, existing low-DPR supersampling and Cesium MSAA 4. The reference Apple M1 does not reach the requested 60 FPS; the dossier reports actual performance without a reduced-quality fallback being presented as a pass.
+
+Cesium MSAA 4, retained mode-aware FXAA, atmosphere, native DPR and low-DPR 1.25 supersampling remain. Only redundant browser drawing-buffer antialiasing is disabled; the resolved image still receives Cesium AA. Maximum quality is fixed, without an adaptive resolution controller. The 60 FPS target is **not achieved** on the reference M1 Air; the [complete measured report, source inventory, loading tradeoff and reproducible QA](../docs/frontend/high-fidelity-rendering-performance/README.md) documents the real result. No dashboard restyling, backend/data change, texture upscaling or geometry decimation was performed. Earlier dated records below retain historical settings.
+
+
 ## Occlusion-aware full-screen framing — 2026-10-04
 
 Cesium remains full-screen. In left-dashboard layouts, the dashboard is treated

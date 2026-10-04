@@ -1,5 +1,14 @@
 # ISS Inspection Mode
 
+## Source fidelity and redundant-AA removal — 2026-10-04
+
+The 90 m / 42.5° / 100° canonical pose, accepted 6s entry/5s return, responsive widening, source frame and occlusion-aware projection remain byte-identical in their helpers. One persistent NASA VTAD model retains its 19 original full-resolution 512²/1024² PNGs, original PBR and all 14 semantic feature identities. No model reload, decimation or material/detail invention is introduced.
+
+Cesium MSAA 4 and retained complementary FXAA remain. Public Viewer options disable only the redundant browser drawing-buffer antialiasing applied after Cesium's resolved output. The source/fidelity and native sampler audit, close/oblique views, both-build input/module QA, exact camera regression and actual FPS are in the [high-fidelity review](high-fidelity-rendering-performance/README.md). Native two-finger pinch remains unverified.
+
+The eight model/globe preparation renders and celestial readiness gate remain. High-resolution star refinement starts afterward, preserving source-texture readiness before reveal and avoiding an extra star-decoder delay before the Inspection control becomes available. This is loading order within the same Viewer; steady camera and rendering semantics are unchanged.
+
+
 ## Canonical pose and occlusion-aware composition — 2026-10-04
 
 The station's physical pivot, 90m slant range, 42.5° elevation, zero lateral

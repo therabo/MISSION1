@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convert NASA SVS Tycho II plate-carree sky imagery into Cesium cube faces.
 
-Usage: python3 generate-tycho-skybox.py NASA_TYCHO.jpg OUTPUT_DIRECTORY [FACE_SIZE] [MANIFEST.json]
+Usage: python3 generate-tycho-skybox.py NASA_TYCHO.tif OUTPUT_DIRECTORY [FACE_SIZE] [MANIFEST.json]
 Requires Pillow and NumPy. The downloaded NASA source stays outside Git.
 """
 
@@ -13,8 +13,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-SOURCE_URL = "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.jpg"
-SOURCE_SHA256 = "1e08506a6b18d151be51964f424a7327465eea64887eff7080753aadeff0a1ba"
+SOURCE_URL = "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.tif"
+SOURCE_SHA256 = "2eb9baf5796c62bb04d8c87625b93356cd5ff4172bc56d6b731df554393de04f"
 SOURCE_SIZE = (16384, 8192)
 FACES = ("positiveX", "negativeX", "positiveY", "negativeY", "positiveZ", "negativeZ")
 Image.MAX_IMAGE_PIXELS = SOURCE_SIZE[0] * SOURCE_SIZE[1]
@@ -102,10 +102,14 @@ def main(source_path: Path, destination: Path, size: int, manifest_path: Path) -
     faces = {}
     rendered = {}
     for face in FACES:
-        path = destination / f"tycho-{face}.png"
+        path = destination / f"tycho-{face}.webp"
         rendered[face] = np.asarray(render_face(source, face, size))
-        Image.fromarray(rendered[face], "RGB").save(path, optimize=True)
-        faces[face] = {"url": f"/skybox/{path.name}", "sha256": sha256(path), "bytes": path.stat().st_size}
+        pixels = Image.fromarray(rendered[face], "RGB")
+        pixels.save(path, lossless=True, quality=100, method=4)
+        if not np.array_equal(np.asarray(Image.open(path).convert("RGB")), rendered[face]):
+            raise ValueError("Lossless WebP round trip changed source-derived pixels")
+        faces[face] = {"url": f"/skybox/{path.name}", "sha256": sha256(path), "bytes": path.stat().st_size,
+                       "rgbaSha256": hashlib.sha256(pixels.convert("RGBA").tobytes()).hexdigest()}
         print(face, faces[face])
     verify_edges(rendered, size)
     print("Cube edge verification: 12/12 identical shared edges")
@@ -114,7 +118,10 @@ def main(source_path: Path, destination: Path, size: int, manifest_path: Path) -
         "sourceSha256": SOURCE_SHA256,
         "sourceWidth": SOURCE_SIZE[0],
         "sourceHeight": SOURCE_SIZE[1],
+        "sourceFormat": "TIFF RGB uint8",
+        "sourceBytes": source_path.stat().st_size,
         "faceSize": size,
+        "faceFormat": "WebP RGB uint8 lossless (VP8L)",
         "projection": "plate-carree celestial RA/Dec to TEME-axis cube directions",
         "faces": faces,
     }
@@ -124,7 +131,7 @@ def main(source_path: Path, destination: Path, size: int, manifest_path: Path) -
 
 if __name__ == "__main__":
     if len(sys.argv) not in (3, 4, 5):
-        raise SystemExit("usage: generate-tycho-skybox.py SOURCE.jpg OUTPUT_DIRECTORY [2048|4096] [MANIFEST.json]")
+        raise SystemExit("usage: generate-tycho-skybox.py SOURCE.tif OUTPUT_DIRECTORY [2048|4096] [MANIFEST.json]")
     output_dir = Path(sys.argv[2])
     manifest = Path(sys.argv[4]) if len(sys.argv) == 5 else output_dir / "skybox-manifest.json"
-    main(Path(sys.argv[1]), output_dir, int(sys.argv[3]) if len(sys.argv) >= 4 else 2048, manifest)
+    main(Path(sys.argv[1]), output_dir, int(sys.argv[3]) if len(sys.argv) >= 4 else 4096, manifest)

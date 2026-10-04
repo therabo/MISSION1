@@ -1,7 +1,6 @@
 import type { ReplayState } from '../replay/replayApi';
 import { memo, useEffect, useRef } from 'react';
 import {
-  buildModuleUrl,
   Cartesian2,
   Cartesian3,
   ClockRange,
@@ -12,7 +11,6 @@ import {
   Credit,
   Ellipsoid,
   EllipsoidTerrainProvider,
-  ImageryLayer,
   JulianDate,
   LabelStyle,
   Matrix4,
@@ -24,9 +22,7 @@ import {
   Math as CesiumMath,
   ScreenSpaceEventType,
   SceneTransforms,
-  SingleTileImageryProvider,
   SkyBox,
-  TileMapServiceImageryProvider,
   Viewer,
   type Entity,
 } from 'cesium';
@@ -42,8 +38,8 @@ import { InspectionTransition, poseQuaternion, initialTangent, transitionDuratio
 import { warmSkyRendering } from './skyRenderingWarmup';
 import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
-import { enableEarthLighting, NIGHT_LIGHTS } from './earthLighting';
-import { DAY_IMAGERY, NIGHT_IMAGERY, gibsAvailable, gibsProvider } from './earthImagery';
+import { enableEarthLighting } from './earthLighting';
+import { installEarthImagery } from './earthImagery';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
 import { createIssMaterialShader } from './issMaterialQuality';
 import { warmInspectionRendering } from './inspectionRenderingWarmup';
@@ -158,6 +154,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
         scene3DOnly: true,
         useBrowserRecommendedResolution: GRAPHICS_QUALITY.useBrowserRecommendedResolution,
         msaaSamples: GRAPHICS_QUALITY.msaaSamples,
+        contextOptions: { webgl: { antialias: GRAPHICS_QUALITY.browserAntialias } },
       });
     } catch {
       errorCallback.current('3D Earth could not start. Check browser WebGL support.');
@@ -313,68 +310,16 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     instance.clock.multiplier = 1;
     instance.clock.shouldAnimate = true;
 
-    // Keep Natural Earth II beneath NASA tiles, so a failed or slow request
-    // cannot leave a blank globe. The local night image is the outage fallback.
-    const loadLocalNightLights = (): void => {
-      void SingleTileImageryProvider.fromUrl(NIGHT_LIGHTS.url, {
-        credit: 'Earth night-lights fallback: NASA Black Marble, 2016',
-      }).then((provider) => {
-        if (destroyed) return;
-        const layer = new ImageryLayer(provider, {
-          dayAlpha: NIGHT_LIGHTS.dayAlpha,
-          nightAlpha: NIGHT_LIGHTS.nightAlpha,
-          brightness: 1.8,
-        });
-        instance.imageryLayers.add(layer);
-      }).catch(() => {
-        if (!destroyed) errorCallback.current('Earth night-lights imagery is unavailable.');
-      });
-    };
-    void (async () => {
-      try {
-        const provider = await TileMapServiceImageryProvider.fromUrl(buildModuleUrl('Assets/Textures/NaturalEarthII'));
-        if (destroyed) return;
-        instance.imageryLayers.add(new ImageryLayer(provider));
-      } catch {
-        if (!destroyed) errorCallback.current('Local Earth imagery is unavailable.');
-      }
-      const probeStarted = performance.now();
-      const [dayAvailable, nightAvailable] = await Promise.all([
-        gibsAvailable(DAY_IMAGERY), gibsAvailable(NIGHT_IMAGERY),
-      ]);
-      if (destroyed) return;
-      if (diagnostics) console.info('[graphics] GIBS probes', JSON.stringify({dayAvailable, nightAvailable,
-        elapsedMs: Math.round(performance.now() - probeStarted)}));
-      if (dayAvailable) {
-        const provider = gibsProvider(DAY_IMAGERY);
-        const layer = new ImageryLayer(provider);
-        // The omitted maximumAnisotropy uses Cesium's highest supported value.
-        instance.imageryLayers.add(layer);
-        provider.errorEvent.addEventListener(() => {
-          if (!destroyed && instance.imageryLayers.contains(layer)) instance.imageryLayers.remove(layer);
-        });
-      }
-      if (nightAvailable) {
-        const provider = gibsProvider(NIGHT_IMAGERY);
-        const layer = new ImageryLayer(provider, {
-          dayAlpha: NIGHT_IMAGERY.dayAlpha,
-          nightAlpha: NIGHT_IMAGERY.nightAlpha,
-          brightness: 1.8,
-        });
-        instance.imageryLayers.add(layer);
-        provider.errorEvent.addEventListener(() => {
-          if (destroyed || !instance.imageryLayers.contains(layer)) return;
-          instance.imageryLayers.remove(layer);
-          loadLocalNightLights();
-        });
-      } else {
-        loadLocalNightLights();
-      }
-    })();
+    const disposeImagery = installEarthImagery(instance, message => errorCallback.current(message));
 
-    // Decode every face before replacing the bundled skybox. Cesium uses
-    // TEME axes; the NASA map is a historical celestial visualization.
-    if (instance.scene.maximumCubeMapSize >= skyboxManifest.faceSize) {
+    // Give the non-streaming ISS textures, feature tables and first-use shaders
+    // first use of the decoder/upload queue. Refine stars after Inspection is
+    // available; the bundled skybox remains visible during this loading phase.
+    // Cesium uses TEME axes; this NASA map is a historical visualization.
+    let highQualitySkyboxStarted = false;
+    const loadHighQualitySkybox = (): void => {
+      if (destroyed || highQualitySkyboxStarted || instance.scene.maximumCubeMapSize < skyboxManifest.faceSize) return;
+      highQualitySkyboxStarted = true;
       const keys = ['positiveX', 'negativeX', 'positiveY', 'negativeY', 'positiveZ', 'negativeZ'] as const;
       const skyboxStarted = performance.now();
       void Promise.all(keys.map((key) => new Promise<HTMLImageElement>((resolve, reject) => {
@@ -396,7 +341,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
           if (!oldSkyBox.isDestroyed()) oldSkyBox.destroy();
         });
       }).catch(() => { /* Bundled Cesium stars remain visible. */ });
-    }
+    };
 
     const markerVisibility = new ConstantProperty(true);
     let displayCenteringOffset: Cartesian3 | null = null;
@@ -622,6 +567,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
         const loadMs = performance.now() - loadStarted;
         modelCallback.current('ready', loadMs);
         if (diagnostics) console.info('[graphics] ISS textures, features and rendering ready', Math.round(loadMs), 'ms');
+        loadHighQualitySkybox();
       }
     };
     const cancelSkyWarmup = warmSkyRendering(instance, () => {
@@ -656,6 +602,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
         return;
       }
       loaded.errorEvent.addEventListener(() => {
+        loadHighQualitySkybox();
         modelGraphicsWarming = false;
         cancelGraphicsWarmup?.();
         cancelGraphicsWarmup = null;
@@ -693,6 +640,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       model.current = loaded;
     }).catch(() => {
       if (!destroyed) {
+        loadHighQualitySkybox();
         modelStatus.current = modelLoadTransition(modelStatus.current, 'failed');
         modelCallback.current(modelStatus.current);
         leaveInspection();
@@ -938,6 +886,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     instance.clock.onTick.addEventListener(tick);
     return () => {
       destroyed = true;
+      disposeImagery();
       viewportObserver.disconnect();
       removeComposition();
       removePicking();

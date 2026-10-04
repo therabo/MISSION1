@@ -1,5 +1,16 @@
 # Desktop rendering quality and asset reproducibility
 
+## Current fidelity and graphics efficiency — 2026-10-04
+
+The verified NASA SVS Tycho II TIFF replaces the JPEG input to the cube generator; face resolution increases 2048²→4096², preserving source information without sharpening or invented stars. All 12 shared edges match exactly, and each WebP round trip preserves every RGB pixel. The six lossless WebP faces total 34,451,680 bytes, replacing 17,421,296 bytes; the practical quality gain costs 4× cube texels and is measured explicitly in loading/memory evidence. NASA VTAD model and all 19 full-resolution embedded PNG payloads remain byte-identical; a fresh NASA download verifies that identity.
+
+The browser's redundant multisampled drawing buffer is disabled through public Viewer context options. Cesium MSAA 4 and the retained native-resolution FXAA/bypass stage remain, with native DPR and unchanged 1.25 low-DPR supersampling. A controlled 696,800-pixel Overview comparison was exactly identical with browser AA on/off. Mode-disabling the retained stage was rejected: it saves about 2 ms steady-state but adds 72–75 ms on every new Inspection entry. Atmosphere, night images, stars, trajectories, PBR and source detail remain enabled. Maximum quality is fixed; no silent adaptive degradation is used.
+
+Earth imagery now loads independent local and tiled day/night sources. Fallback layers stay beneath finer imagery; an individual failed tile gets two bounded retries and can use its ancestor/local source while other high-detail tiles remain. Cesium's shared layer error counter cannot reset these per-tile bounds. Night brightness changes 1.8→1.15; gamma and contrast remain 1, with no bloom/sharpening added. [Complete sources, before/after views, actual performance target failure, loading and regression evidence](high-fidelity-rendering-performance/README.md). Historical sections below describe earlier settings.
+
+The final loading sequence starts high-resolution star refinement after ISS/feature/shader readiness, keeping bundled stars visible. Eager refinement and refinement at Model.readyEvent were measured and rejected because they competed with ISS preparation. Native glTF textures retain trilinear mip filtering; their observed anisotropy is 1 because Cesium 1.145's public Model API does not expose an override. Imagery uses supported maximum anisotropy 16 on the reference GPU. These are explicit renderer limits, not source-resolution gains.
+
+
 ## Night-side protection and rounded trajectory joins — 2026-10-03
 
 Independent capsule quads eliminate folded native-join halo overdraw. Adjacent overlap has one owner, prioritizing a globe-visible segment before distance and previous-segment ties. The curved station mask applies only where its conservative displayed depth is visible. Widths, glow, alpha, MSAA, FXAA, DPR, Earth and model quality remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.

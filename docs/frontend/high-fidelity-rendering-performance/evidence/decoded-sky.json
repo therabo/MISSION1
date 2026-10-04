@@ -1,0 +1,53 @@
+{
+  "browser": "151.0.7922.34",
+  "rows": [
+    {
+      "face": "positiveX",
+      "url": "/skybox/tycho-positiveX.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "84a4e6d5abf6415181793f7c1b54047fea04442b95963ded288e728febe7efe5",
+      "identicalToSourceDerivedRgba": true
+    },
+    {
+      "face": "negativeX",
+      "url": "/skybox/tycho-negativeX.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "802b909b4b3a623d95a2ac728bcdfd89160102f574ad8fca854148ef8fa1c16b",
+      "identicalToSourceDerivedRgba": true
+    },
+    {
+      "face": "positiveY",
+      "url": "/skybox/tycho-positiveY.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "36e179b94fe200cac2c54dda99b8a6635ac247f5ccb93eef4a95f03404fedc42",
+      "identicalToSourceDerivedRgba": true
+    },
+    {
+      "face": "negativeY",
+      "url": "/skybox/tycho-negativeY.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "495740aba6255cf28b54d4b9f66b2d5e97f12b8722a96f994f55a1a211d00ce9",
+      "identicalToSourceDerivedRgba": true
+    },
+    {
+      "face": "positiveZ",
+      "url": "/skybox/tycho-positiveZ.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "5aa2d333c8787750516d8211353402ca35c1385dc9ae95f6be46b4fb79108333",
+      "identicalToSourceDerivedRgba": true
+    },
+    {
+      "face": "negativeZ",
+      "url": "/skybox/tycho-negativeZ.webp",
+      "width": 4096,
+      "height": 4096,
+      "rgbaSha256": "74d41cc565eedf143de7dc15f474ec8895c11fad73b2da80cf887d9b2880ca08",
+      "identicalToSourceDerivedRgba": true
+    }
+  ]
+}

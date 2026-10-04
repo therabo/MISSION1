@@ -1,40 +1,49 @@
 {
-  "source": "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.jpg",
-  "sourceSha256": "1e08506a6b18d151be51964f424a7327465eea64887eff7080753aadeff0a1ba",
+  "source": "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.tif",
+  "sourceSha256": "2eb9baf5796c62bb04d8c87625b93356cd5ff4172bc56d6b731df554393de04f",
   "sourceWidth": 16384,
   "sourceHeight": 8192,
-  "faceSize": 2048,
+  "sourceFormat": "TIFF RGB uint8",
+  "sourceBytes": 402653312,
+  "faceSize": 4096,
+  "faceFormat": "WebP RGB uint8 lossless (VP8L)",
   "projection": "plate-carree celestial RA/Dec to TEME-axis cube directions",
   "faces": {
     "positiveX": {
-      "url": "/skybox/tycho-positiveX.png",
-      "sha256": "1944fb5a164a3a16342ccb0b88f9bd3477b4b646d442a714cbcbec9ecb9fc8b5",
-      "bytes": 2362615
+      "url": "/skybox/tycho-positiveX.webp",
+      "sha256": "0c1f7a0e5c908afb9fe99fa1c015d2ff367090fdf2161726a11f703cb6ecae7e",
+      "bytes": 4300948,
+      "rgbaSha256": "84a4e6d5abf6415181793f7c1b54047fea04442b95963ded288e728febe7efe5"
     },
     "negativeX": {
-      "url": "/skybox/tycho-negativeX.png",
-      "sha256": "bd5f71111eccab2f0eb0fd30bb71162414f83798bfe6983b3ae9d33133f23df5",
-      "bytes": 2198516
+      "url": "/skybox/tycho-negativeX.webp",
+      "sha256": "f3d2d5af961a48da9f0f610182301ed30d17f202d2427bdf913c0fe2ed5f4735",
+      "bytes": 3938734,
+      "rgbaSha256": "802b909b4b3a623d95a2ac728bcdfd89160102f574ad8fca854148ef8fa1c16b"
     },
     "positiveY": {
-      "url": "/skybox/tycho-positiveY.png",
-      "sha256": "28f5fd817b31f2e55732bf0ea320146b16277a77fae10196c5fb2ba2bde28685",
-      "bytes": 3137564
+      "url": "/skybox/tycho-positiveY.webp",
+      "sha256": "f0fad9f0ffb8baa39041231b21bc07387b4289c291b074efd5ee19cb618fd0fa",
+      "bytes": 6501276,
+      "rgbaSha256": "36e179b94fe200cac2c54dda99b8a6635ac247f5ccb93eef4a95f03404fedc42"
     },
     "negativeY": {
-      "url": "/skybox/tycho-negativeY.png",
-      "sha256": "b23b672e3dc32a901b0b17024e974ab195feff3028c868de695a982e9ecced33",
-      "bytes": 3324966
+      "url": "/skybox/tycho-negativeY.webp",
+      "sha256": "e6e33a3bddfd1fa724492465c8df8ad3dc8081c411d4a9d0e5a72be1975e26fc",
+      "bytes": 6679566,
+      "rgbaSha256": "495740aba6255cf28b54d4b9f66b2d5e97f12b8722a96f994f55a1a211d00ce9"
     },
     "positiveZ": {
-      "url": "/skybox/tycho-positiveZ.png",
-      "sha256": "8c3f1cef8816280f05b6154e47594ffc2cedb1d033960261ec17a3a6900ff992",
-      "bytes": 2922147
+      "url": "/skybox/tycho-positiveZ.webp",
+      "sha256": "1fa29fe30a6021c9a6b7607b4b1f67a9f7b93d5e7243511cce811515e9972d80",
+      "bytes": 5844548,
+      "rgbaSha256": "5aa2d333c8787750516d8211353402ca35c1385dc9ae95f6be46b4fb79108333"
     },
     "negativeZ": {
-      "url": "/skybox/tycho-negativeZ.png",
-      "sha256": "3bff8fc4b4ce9bec5287a9a47aee73fb2c7d7b7a9384844e654616fe5f0b395e",
-      "bytes": 3475488
+      "url": "/skybox/tycho-negativeZ.webp",
+      "sha256": "384d47c872b7507d2c7440a99572f66d4ccd78024f92f316666008084a9a2388",
+      "bytes": 7186608,
+      "rgbaSha256": "74d41cc565eedf143de7dc15f474ec8895c11fad73b2da80cf887d9b2880ca08"
     }
   }
 }

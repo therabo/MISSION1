@@ -1,0 +1,3762 @@
+{
+  "generatedAt": "2026-10-04T22:05:42.248806+00:00",
+  "scope": "All saved evidence under this directory excluding this manifest itself. Runtime WebP assets are inventoried separately in assets.md and skyboxManifest.json.",
+  "records": [
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/1280x720/cadence.json",
+      "evidencePath": "after/1280x720/cadence.json",
+      "bytes": 4552,
+      "sha256": "c29f8653e2a27296de7ff4ed80953765c11349abcd8a4931b1ff9bdbc72cc751",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/1280x720/initial-fixture.json",
+      "evidencePath": "after/1280x720/initial-fixture.json",
+      "bytes": 2288,
+      "sha256": "7be320f059f5d6fb398c4aeb14c474a82ecb62de5fe6d6af14f7aee1880424c9",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/1280x720/inspection-gp.png",
+      "evidencePath": "after/1280x720/inspection-gp.png",
+      "bytes": 553928,
+      "sha256": "9ff5e73b828165d703e76ba3bf09968e8d3350eac62bce530acd9c3d8f1b047e",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/1280x720/overview-gp.png",
+      "evidencePath": "after/1280x720/overview-gp.png",
+      "bytes": 744616,
+      "sha256": "c86687b48f367f7308de06625f79830364085b27450bfdcc27a1aeb7a4115b15",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/1280x720/performance.json",
+      "evidencePath": "after/1280x720/performance.json",
+      "bytes": 94373,
+      "sha256": "b1489c71de8338bdf858dc29aeb4e77b837406540ba80255431640db03223e81",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/390x844/cadence.json",
+      "evidencePath": "after/390x844/cadence.json",
+      "bytes": 4519,
+      "sha256": "42114badb289beb3ce557410e1d1b0870af9afa9ee4309f390455f6002947f06",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/390x844/initial-fixture.json",
+      "evidencePath": "after/390x844/initial-fixture.json",
+      "bytes": 2014,
+      "sha256": "b692e3129526aa223f93d105865f83e5bb4445e0bbdfbf85bf3c861670159051",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/390x844/overview-gp.png",
+      "evidencePath": "after/390x844/overview-gp.png",
+      "bytes": 168412,
+      "sha256": "54193274d8b212b3837ac08280813ce0e230d45f644102ec5a7cd2cb5d564bf4",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/390x844/performance.json",
+      "evidencePath": "after/390x844/performance.json",
+      "bytes": 50776,
+      "sha256": "cb09fea16506d3e46021fbb18738fa75b7404eee19a1e79b57dbe64274d506ba",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/900x700/cadence.json",
+      "evidencePath": "after/900x700/cadence.json",
+      "bytes": 4490,
+      "sha256": "6d663cf66a1ac5acee0ab6f87b3eed52708e77b68830120ef50b4b1796361b54",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/900x700/initial-fixture.json",
+      "evidencePath": "after/900x700/initial-fixture.json",
+      "bytes": 2285,
+      "sha256": "da2b4f33b2e9c7075596a58a3e0ad3d5266b958325fcfd58d8bce5a2911edca3",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/900x700/overview-gp.png",
+      "evidencePath": "after/900x700/overview-gp.png",
+      "bytes": 326642,
+      "sha256": "81e73cabe31d609ad61e4f86cc6ce531ae50ef6d1fae15f1f9eb4dcebdd1a666",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        900,
+        700
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/900x700/performance.json",
+      "evidencePath": "after/900x700/performance.json",
+      "bytes": 50480,
+      "sha256": "84e5821777647ed74e420c45e250fa376311e35eb80d71f7f80797d21fd915e8",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/day-max-level.png",
+      "evidencePath": "after/day-max-level.png",
+      "bytes": 791562,
+      "sha256": "f89d970d967305d3c2ff6d43e9268d5a5b170448fe9171f9fef43ffa21ca6ed3",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/cadence.json",
+      "evidencePath": "after/dpr1/cadence.json",
+      "bytes": 4448,
+      "sha256": "1cdb4f8b4a7c97d8d47c47e8915a5ac5bfd35be1997928a764f1091d4a1119fe",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/crew-open.png",
+      "evidencePath": "after/dpr1/crew-open.png",
+      "bytes": 546612,
+      "sha256": "c127e4886aa812f7c5e6d13e7428688cfe0c2333e981aea2debd3f2433c35683",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/initial-fixture.json",
+      "evidencePath": "after/dpr1/initial-fixture.json",
+      "bytes": 2290,
+      "sha256": "5296d6ddbae6ed70dfcc1d24918d56782cc07f49c7331d8f8a0f0e4bc5943f28",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/inspection-gp.png",
+      "evidencePath": "after/dpr1/inspection-gp.png",
+      "bytes": 760485,
+      "sha256": "8bce87481c234d100ff9016141234665618cb91b6f79a19a10cf410ddc649c50",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/inspection-oem.png",
+      "evidencePath": "after/dpr1/inspection-oem.png",
+      "bytes": 759950,
+      "sha256": "8201dd7bb9d90833eb820004ac2ee0137758d1bfaba43daa410684347dac50d3",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/overview-gp.png",
+      "evidencePath": "after/dpr1/overview-gp.png",
+      "bytes": 616935,
+      "sha256": "10f3d1ef0bc7360ad678893438849896984758dee0ed702cb0951783794a22ec",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/overview-oem.png",
+      "evidencePath": "after/dpr1/overview-oem.png",
+      "bytes": 616075,
+      "sha256": "c0b309e90cd0610f607b0b93d576115e9b0f849dfac8cdf2267e47e20b8db9e8",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/performance.json",
+      "evidencePath": "after/dpr1/performance.json",
+      "bytes": 222267,
+      "sha256": "9a9e04308a69573f33242cba2f464f60d9038f0a19c601c684d62b45acca2057",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr1/replay.png",
+      "evidencePath": "after/dpr1/replay.png",
+      "bytes": 894818,
+      "sha256": "56a416f048db740a19468c77e18208547430bfa31247915616a226850ab7c186",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr2/cadence.json",
+      "evidencePath": "after/dpr2/cadence.json",
+      "bytes": 4474,
+      "sha256": "aa1124a7ce9ca7399521048e2245f078d18737405a1ee0075b34d30fd3d0e303",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr2/initial-fixture.json",
+      "evidencePath": "after/dpr2/initial-fixture.json",
+      "bytes": 2286,
+      "sha256": "7631b73d0694573ff53ceb6330ad2d8c9d1abe44afad5d7638f9240aabb4ef93",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr2/overview-gp.png",
+      "evidencePath": "after/dpr2/overview-gp.png",
+      "bytes": 1723997,
+      "sha256": "b9d5c543ee16d6caaabd047baa89bbdaa9c9b831539751df00a1029f32fc8a2f",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        2880,
+        1800
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/dpr2/performance.json",
+      "evidencePath": "after/dpr2/performance.json",
+      "bytes": 19017,
+      "sha256": "add4cdb31dddccf3800f849e78f06f562ecc80335a9c94119c1ac947f1060abc",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-day.png",
+      "evidencePath": "after/earth-day.png",
+      "bytes": 1079283,
+      "sha256": "d50f8d8cd06e67b58668fc584cc0f79502e608e2da0da9d57d8c78b0ef82a5b1",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-night-east-asia.png",
+      "evidencePath": "after/earth-night-east-asia.png",
+      "bytes": 1157383,
+      "sha256": "78d55b9ad08783a86f0e106598655b52546a0c1e237cfdc9d2541b601f041f9d",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-night-europe.png",
+      "evidencePath": "after/earth-night-europe.png",
+      "bytes": 1433062,
+      "sha256": "deb456432d8656349fce944b7ddac199f38213abba937fee4c371270f6b016b6",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-night-india-middle-east.png",
+      "evidencePath": "after/earth-night-india-middle-east.png",
+      "bytes": 858366,
+      "sha256": "06069064d70f4ef40cdd6625b74592f8bf270130b8ac00b7b0491f9dfa572ab0",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-night-north-america.png",
+      "evidencePath": "after/earth-night-north-america.png",
+      "bytes": 1397751,
+      "sha256": "d1224f2b4008d83bc356e1f99e4485b19134e82f21d6dca65f7f6b76ec954208",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-night.png",
+      "evidencePath": "after/earth-night.png",
+      "bytes": 1123541,
+      "sha256": "b01712b95b7ffa1221c43549eac762722c44422a9be3d78b5d960434e8d0236b",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/earth-terminator.png",
+      "evidencePath": "after/earth-terminator.png",
+      "bytes": 1279697,
+      "sha256": "82da3f8881eab841b7a7976c91d297173abcd1ec820c66a68566ba292ebffe9e",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/fixtures.json",
+      "evidencePath": "after/fixtures.json",
+      "bytes": 1142153,
+      "sha256": "2c0dfdc3b49721b6844d88977cb27460f809f21c9c87d8332745053412b694ad",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/gpu/gpu-audit.json",
+      "evidencePath": "after/gpu/gpu-audit.json",
+      "bytes": 687347,
+      "sha256": "6461ab91653909dfcb47bbf2f0fb32380820c7dd269d89728652fd6fe3b7139a",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/cadence.json",
+      "evidencePath": "after/initial-dpr1/cadence.json",
+      "bytes": 4377,
+      "sha256": "3d2eadad954747e05bd59cb5c1cd59959175c32eb2a5831536f63132da0f2151",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/crew-open.png",
+      "evidencePath": "after/initial-dpr1/crew-open.png",
+      "bytes": 546612,
+      "sha256": "c127e4886aa812f7c5e6d13e7428688cfe0c2333e981aea2debd3f2433c35683",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/initial-fixture.json",
+      "evidencePath": "after/initial-dpr1/initial-fixture.json",
+      "bytes": 2291,
+      "sha256": "e106cf2feec11bbf7fb028f38193a2a94d9d7701f6a9e34fbd3157c5360b5de8",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/inspection-gp.png",
+      "evidencePath": "after/initial-dpr1/inspection-gp.png",
+      "bytes": 760461,
+      "sha256": "cf3c5cfb372549144e6da4afb3052893461124baf2a82fd22ed68880a3c92d2d",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/inspection-oem.png",
+      "evidencePath": "after/initial-dpr1/inspection-oem.png",
+      "bytes": 759936,
+      "sha256": "d3da7a9c04c9c34d7c251bf4b96c8b7a059ceaa784b27cd0c56ffbc2c85e5305",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/overview-gp.png",
+      "evidencePath": "after/initial-dpr1/overview-gp.png",
+      "bytes": 616935,
+      "sha256": "10f3d1ef0bc7360ad678893438849896984758dee0ed702cb0951783794a22ec",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/overview-oem.png",
+      "evidencePath": "after/initial-dpr1/overview-oem.png",
+      "bytes": 616075,
+      "sha256": "c0b309e90cd0610f607b0b93d576115e9b0f849dfac8cdf2267e47e20b8db9e8",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/performance.json",
+      "evidencePath": "after/initial-dpr1/performance.json",
+      "bytes": 219368,
+      "sha256": "66a3e70b008f5e0754b49678d13fcaba90a697ec481327386f129ab886bfafc5",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/initial-dpr1/replay.png",
+      "evidencePath": "after/initial-dpr1/replay.png",
+      "bytes": 895277,
+      "sha256": "c212ba3241d9bc85a6e27e302eb94d8bae8714e8284696907f1e73a553f24316",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/iss-canonical.png",
+      "evidencePath": "after/iss-canonical.png",
+      "bytes": 829163,
+      "sha256": "89cb216e0106d1909ec202b76d83b3fa75a6278e6d0a282b5c76fb69291726f7",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/iss-close.png",
+      "evidencePath": "after/iss-close.png",
+      "bytes": 1120323,
+      "sha256": "6f73b4020e914efe71a2f89bca7f19d2e309907391a6616caad72ab428df7678",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/iss-oblique.png",
+      "evidencePath": "after/iss-oblique.png",
+      "bytes": 873631,
+      "sha256": "e022eba951b4a9b60bc1f355e1a1e10b2c7152e782d75067e5f586c575a2e62f",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/cadence.json",
+      "evidencePath": "after/live/cadence.json",
+      "bytes": 4468,
+      "sha256": "4e41f78b0e00ddf4483d9853a955e197947652a494c11a993a67255a63bafc60",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/crew-open.png",
+      "evidencePath": "after/live/crew-open.png",
+      "bytes": 791114,
+      "sha256": "ebbf69e30437f58060535379bc6fd32ed082217d97cf17ceaf558b1e461151c6",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/initial-fixture.json",
+      "evidencePath": "after/live/initial-fixture.json",
+      "bytes": 2317,
+      "sha256": "84c815b3f0bedb419dcc57e163a464e1824c5b823997c4a6a711612a7a1566df",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/inspection-gp.png",
+      "evidencePath": "after/live/inspection-gp.png",
+      "bytes": 864303,
+      "sha256": "bf74b0c77c1dd4815002f00eea136da436da81e5d114058cffc314336b565c5b",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/inspection-oem.png",
+      "evidencePath": "after/live/inspection-oem.png",
+      "bytes": 772647,
+      "sha256": "6bbe5753520ea7194543b2321b10548837a5c441a127dbed1553d978bf4d482b",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/overview-gp.png",
+      "evidencePath": "after/live/overview-gp.png",
+      "bytes": 863257,
+      "sha256": "2bc05b76e3950248e05ead6454e528df71635382ac14ee7bde8df3ddbee33d66",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/overview-oem.png",
+      "evidencePath": "after/live/overview-oem.png",
+      "bytes": 959748,
+      "sha256": "854552045817d12dc194e660bbd72173e922e3c975009a63d79d3aa2624ff823",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/performance.json",
+      "evidencePath": "after/live/performance.json",
+      "bytes": 240957,
+      "sha256": "83dcdf82afda35831401c14ce641d72d54fd9f9389f0a0e4ac6f3f7cf0bcb1ca",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live/replay.png",
+      "evidencePath": "after/live/replay.png",
+      "bytes": 1075482,
+      "sha256": "f6690125586278073f275e24229c1c5dca126fb66a0888ea112899e6160569b7",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-orbital/performance.json",
+      "evidencePath": "after/live-orbital/performance.json",
+      "bytes": 157061,
+      "sha256": "b95d4a5406ad4f7782b081750d085f254b95b438b0e0c44db6d8b122dd1d29d2",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-remainder/cadence.json",
+      "evidencePath": "after/live-remainder/cadence.json",
+      "bytes": 4462,
+      "sha256": "e7a26cd7ef790f03cad0abef423c48e0ccede0612de899b41662981e09b542e8",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-remainder/crew-open.png",
+      "evidencePath": "after/live-remainder/crew-open.png",
+      "bytes": 791114,
+      "sha256": "ebbf69e30437f58060535379bc6fd32ed082217d97cf17ceaf558b1e461151c6",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-remainder/initial-fixture.json",
+      "evidencePath": "after/live-remainder/initial-fixture.json",
+      "bytes": 2269,
+      "sha256": "2b5922adad631f450103e8951a64c259f1c118edfd0e965c2f1d68267fb08867",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-remainder/performance.json",
+      "evidencePath": "after/live-remainder/performance.json",
+      "bytes": 83330,
+      "sha256": "5201fd33a15103aa72ca2a1ab6de6277063236e191ff4c66808c5e67234c795d",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/live-remainder/replay.png",
+      "evidencePath": "after/live-remainder/replay.png",
+      "bytes": 1075482,
+      "sha256": "f6690125586278073f275e24229c1c5dca126fb66a0888ea112899e6160569b7",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/loading.json",
+      "evidencePath": "after/loading.json",
+      "bytes": 1546882,
+      "sha256": "98887404c0cbf38231bd93b0f773c7dc36cd5d700cdf836b7bb30598b0a1da31",
+      "category": "final"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/mobile-inspection.png",
+      "evidencePath": "after/mobile-inspection.png",
+      "bytes": 181081,
+      "sha256": "117de0eda03a7cd7efdd56b1f15e15567d21bf89d72e3f207f6b84e50e4e831c",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/mobile-overview.png",
+      "evidencePath": "after/mobile-overview.png",
+      "bytes": 248708,
+      "sha256": "57b626cc0cb0205a72f1efbd30f7254adaeca79252835693c9add6140c688e18",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/night-max-level.png",
+      "evidencePath": "after/night-max-level.png",
+      "bytes": 787561,
+      "sha256": "abea9eceb488c9d048393948e56f01a069015546c125066718bff21b7958b246",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/night-one-tile-outage.png",
+      "evidencePath": "after/night-one-tile-outage.png",
+      "bytes": 1433020,
+      "sha256": "d76eb9d38a99691f871993bf6f3a11e8b460dd131fc02e65afaa3df6ad31a3b5",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/stars-limb.png",
+      "evidencePath": "after/stars-limb.png",
+      "bytes": 1009544,
+      "sha256": "c8d2a4ef7c9bc78927cf5273044d888544fdefbc1d6352b8a8835e779f5c24da",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/after/stars-with-earth-limb.png",
+      "evidencePath": "after/stars-with-earth-limb.png",
+      "bytes": 786827,
+      "sha256": "dc0b8b8cafbf425ceca1694bfb1a5f978cce7f8a99ade46c0255a86a879115f5",
+      "category": "final",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/cadence-dpr1.json",
+      "evidencePath": "before/cadence-dpr1.json",
+      "bytes": 4446,
+      "sha256": "f284c4e6c4eabf540fa42f12b8deac86ccad9164242ed096791dc52df92d6e3e",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/cadence-dpr2.json",
+      "evidencePath": "before/cadence-dpr2.json",
+      "bytes": 4359,
+      "sha256": "40a5514b454b610ece7888d105ed82bbf8c3db11614cf2f5605df2770b1d7f3c",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/day-max-level.png",
+      "evidencePath": "before/day-max-level.png",
+      "bytes": 791570,
+      "sha256": "292080889cd38cb9f6c7a86cee88a5f4071d128ae4a023fbcdd7acb888de38f4",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-day.png",
+      "evidencePath": "before/earth-day.png",
+      "bytes": 1107282,
+      "sha256": "8dc22d44f7ed8a07a94034e5260c64e1133795bb67cb188d3a181bd8c0a46a3f",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-night-east-asia.png",
+      "evidencePath": "before/earth-night-east-asia.png",
+      "bytes": 1279795,
+      "sha256": "9ea9876a64f6208738cbb28c8f812d257cbf79768df9d0100b1cce02a5fc3c42",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-night-europe.png",
+      "evidencePath": "before/earth-night-europe.png",
+      "bytes": 1593088,
+      "sha256": "a452e372bfef828fec6e452cb6e1f97ef973b8552e118353a0dcd53536e2c5e3",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-night-india-middle-east.png",
+      "evidencePath": "before/earth-night-india-middle-east.png",
+      "bytes": 959554,
+      "sha256": "3ff5fd127b83af4191a845fe082bc2419231a306dddda3a4db68f2963bdf0d28",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-night-north-america.png",
+      "evidencePath": "before/earth-night-north-america.png",
+      "bytes": 1577555,
+      "sha256": "acb41e58bdb1d2b238b450a869b1613b9b34ecc70c960bf89430a8914cf14fdf",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-night.png",
+      "evidencePath": "before/earth-night.png",
+      "bytes": 1112783,
+      "sha256": "1f094f812025041ff9b89bb4399f2a55aabd0f6d594bbf2802b99e7564425a64",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/earth-terminator.png",
+      "evidencePath": "before/earth-terminator.png",
+      "bytes": 1241708,
+      "sha256": "4fa9366f067c6874a3577c11a681ef29f448bfa48dfd028870e70fdd332f4af7",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/fixtures.json",
+      "evidencePath": "before/fixtures.json",
+      "bytes": 1190729,
+      "sha256": "b442466f4d97f436ea3f1dc6e29568f71bdcea83d61848462e904edabb582d52",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/initial-fixture-dpr1.json",
+      "evidencePath": "before/initial-fixture-dpr1.json",
+      "bytes": 2292,
+      "sha256": "5485498bb5a3ecfb42b92f547e20230e5ade4ac11e269f722326fd440b07b831",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/initial-fixture-dpr2.json",
+      "evidencePath": "before/initial-fixture-dpr2.json",
+      "bytes": 2291,
+      "sha256": "26239099fe0299df31623bedc66ccff61bd844023f83baa175dba03baabbe652",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/iss-canonical.png",
+      "evidencePath": "before/iss-canonical.png",
+      "bytes": 857122,
+      "sha256": "1db1d8ce37a9f4a09c873908562877c39e50593773345b4b9e3332d6c7d95260",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/iss-close.png",
+      "evidencePath": "before/iss-close.png",
+      "bytes": 1143011,
+      "sha256": "93f8f7e3d0c01b59d85f33a3bdfdae01f347beaab081bd916d622699d5708b3e",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/iss-oblique.png",
+      "evidencePath": "before/iss-oblique.png",
+      "bytes": 880165,
+      "sha256": "3a252103ffd499b2648190c041f54cc4dd24150d039e45febb6738ea34de6de0",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/loading-recheck/loading.json",
+      "evidencePath": "before/loading-recheck/loading.json",
+      "bytes": 1440564,
+      "sha256": "5ac17d03544f6e99871484adc27fbf801134906a493ad08679f8c13a4e689a7f",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/loading.json",
+      "evidencePath": "before/loading.json",
+      "bytes": 1061553,
+      "sha256": "b66e477a42680f671449a0403ea9501e7f4aa65948e5c1ed8cefd6e32e41657c",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/mobile-inspection.png",
+      "evidencePath": "before/mobile-inspection.png",
+      "bytes": 190815,
+      "sha256": "673d2ec705f1c67432a145cfb617a70733114b95dbf10b32978c61847559b6cf",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/mobile-overview.png",
+      "evidencePath": "before/mobile-overview.png",
+      "bytes": 248958,
+      "sha256": "4665ed31bc3283043380d7c0c9813ea730febec454def51b055fbafad73c1c4c",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/night-max-level.png",
+      "evidencePath": "before/night-max-level.png",
+      "bytes": 484938,
+      "sha256": "13b3089bb63c5307c7e3cd668b8e36c3af1448051cd310eb1255e02e678fb570",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/night-one-tile-outage.png",
+      "evidencePath": "before/night-one-tile-outage.png",
+      "bytes": 971715,
+      "sha256": "8980e3df6164c96b3f580e43e417510d70d9dbdee2a17dbffd24dd259cb359a1",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/performance-dpr1.json",
+      "evidencePath": "before/performance-dpr1.json",
+      "bytes": 156593,
+      "sha256": "666393ed611510e486e30aeb1b796fc27f4cc91c332839745c7629ecf239d6cd",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/performance-dpr2.json",
+      "evidencePath": "before/performance-dpr2.json",
+      "bytes": 17357,
+      "sha256": "d8a52b8f454a4d207f62d223f20a3582e52c7e167ea20ecd2fa6a4fd57ed60f9",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/performance-replay.json",
+      "evidencePath": "before/performance-replay.json",
+      "bytes": 39404,
+      "sha256": "e9197366f2e7e632d3d8cb4aaaa5751d52a7998c69e6c2566efcdee3846b6a7e",
+      "category": "baseline"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/stars-limb.png",
+      "evidencePath": "before/stars-limb.png",
+      "bytes": 1007203,
+      "sha256": "d2d706b9b7f8855b330d605685956f8fd7986a290a972553048e8594827c7236",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/before/stars-with-earth-limb.png",
+      "evidencePath": "before/stars-with-earth-limb.png",
+      "bytes": 807826,
+      "sha256": "91bb2c880bea38ac532ece2b7a0a43171cfdd4e2ed0820bb57fdb74b18cf3417",
+      "category": "baseline",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/build-identity.json",
+      "evidencePath": "build-identity.json",
+      "bytes": 502,
+      "sha256": "292e2fd83f848ae07ce6dc865d0fa94b93fdee2eab8bca688a1116a2b82767c0",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/camera-fixture-comparison.json",
+      "evidencePath": "camera-fixture-comparison.json",
+      "bytes": 4522,
+      "sha256": "30efadc033f1ef2a570e6c8bd8d37abdd698f77a8dbf02bfc82baec72f05d328",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/decoded-sky.json",
+      "evidencePath": "decoded-sky.json",
+      "bytes": 1602,
+      "sha256": "59df2911a7d1bcc04d14b3808cc853a327eefc9f826b10f458821c7df3d4ccdb",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/costs.json",
+      "evidencePath": "diagnostics/costs.json",
+      "bytes": 193904,
+      "sha256": "dd53851d5b2188043547ab658b6c9fbc7c566617a0b660a46de24bfdb0cca383",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/after-model-ready-loading.json",
+      "evidencePath": "diagnostics/eager-webp/after-model-ready-loading.json",
+      "bytes": 1299638,
+      "sha256": "24e2ba3ce685a06a27e39eda8974a01071573f366c337dd7ad5c37962583d107",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/cadence.json",
+      "evidencePath": "diagnostics/eager-webp/dpr1/cadence.json",
+      "bytes": 4366,
+      "sha256": "c1f8831bae9f90f4f43b9a4adb766d69f0a436beaecea01c94cf47f2c60e76f4",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/crew-open.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/crew-open.png",
+      "bytes": 768233,
+      "sha256": "8852b0632202ba295aa507a83f523a4f02657ef086bc9bf9793c913ee06b6041",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/initial-fixture.json",
+      "evidencePath": "diagnostics/eager-webp/dpr1/initial-fixture.json",
+      "bytes": 2290,
+      "sha256": "ea5ec50c8503a8a087776d5e180133169797958cabb900066db5e683a3584761",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/inspection-gp.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/inspection-gp.png",
+      "bytes": 760455,
+      "sha256": "7e27856208a0a71d8999b41b463137465897b23d27fe155b180abfa156bc571d",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/inspection-oem.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/inspection-oem.png",
+      "bytes": 759935,
+      "sha256": "24ee15df6e94d2d5071ae8c4dc294da10a506edc9a77d9ad9c5bfc58caf69edf",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/overview-gp.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/overview-gp.png",
+      "bytes": 617203,
+      "sha256": "b098178442e12bed3c2187f93a16ffe94c08833890a8996d445621b45929c3b7",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/overview-oem.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/overview-oem.png",
+      "bytes": 616075,
+      "sha256": "c0b309e90cd0610f607b0b93d576115e9b0f849dfac8cdf2267e47e20b8db9e8",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/performance.json",
+      "evidencePath": "diagnostics/eager-webp/dpr1/performance.json",
+      "bytes": 209486,
+      "sha256": "15dd138bbf62194abc3ca52113e5161bbb99e827e08e33dea163146645c3a758",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr1/replay.png",
+      "evidencePath": "diagnostics/eager-webp/dpr1/replay.png",
+      "bytes": 808015,
+      "sha256": "f143086debab914a5655750366c8969629a035ef49f901a89f9d95dff451d302",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr2/cadence.json",
+      "evidencePath": "diagnostics/eager-webp/dpr2/cadence.json",
+      "bytes": 4343,
+      "sha256": "034933df142d0b54e6fbc3f0dba66c0ba27b19b083a747c2ac39352faee1793f",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr2/initial-fixture.json",
+      "evidencePath": "diagnostics/eager-webp/dpr2/initial-fixture.json",
+      "bytes": 2286,
+      "sha256": "009943bb996dc2bb98bc9baaa90f48fa53a5b74b55bde0bca8bec316d1df6bda",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr2/overview-gp.png",
+      "evidencePath": "diagnostics/eager-webp/dpr2/overview-gp.png",
+      "bytes": 2009488,
+      "sha256": "5057b612f9e80dde8b4d342d6eaef6cce3158875b34ce450d327a779aaad0374",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        2880,
+        1800
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/dpr2/performance.json",
+      "evidencePath": "diagnostics/eager-webp/dpr2/performance.json",
+      "bytes": 18153,
+      "sha256": "53c1d4b4cd7518837f3b152e074f0f123f7d7530414dd8514b9650fab57f1a22",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/live/cadence.json",
+      "evidencePath": "diagnostics/eager-webp/live/cadence.json",
+      "bytes": 4451,
+      "sha256": "bd3fe4163d85db1fa3ed1d7191d97a7315da30bdd1b113f6a9662eaddd4b413b",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/live/initial-fixture.json",
+      "evidencePath": "diagnostics/eager-webp/live/initial-fixture.json",
+      "bytes": 2285,
+      "sha256": "52ea75b059924a6870aef79257cb0eacdd5382fb1f231fab5bcd0875c0d2a9e8",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/live/overview-gp.png",
+      "evidencePath": "diagnostics/eager-webp/live/overview-gp.png",
+      "bytes": 1140179,
+      "sha256": "1728d6f9946a58083b28b909de57781918e553cd32614fd79d894533274453f5",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/live/performance.json",
+      "evidencePath": "diagnostics/eager-webp/live/performance.json",
+      "bytes": 38212,
+      "sha256": "18701075f81844c1223cd660980e8a2c8a0d3bcf0de9b01cae48d719f7fcaa42",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/loading-with-test-overlap.json",
+      "evidencePath": "diagnostics/eager-webp/loading-with-test-overlap.json",
+      "bytes": 1340158,
+      "sha256": "1af72a1dc42ad36e385cf6c0bf77352a190370b9bc404dded764575fef1888cb",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/eager-webp/loading.json",
+      "evidencePath": "diagnostics/eager-webp/loading.json",
+      "bytes": 1368548,
+      "sha256": "457fc7b5f3c27ce43fe03918157248a05c81e2c438129e212d0e2d66a129e841",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/gpu-inherited-method-overcount/gpu-audit.json",
+      "evidencePath": "diagnostics/gpu-inherited-method-overcount/gpu-audit.json",
+      "bytes": 668724,
+      "sha256": "0f88073aeefcdfa25ff5832e5da288632db565d0951e1373f047b12426203075",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/live-crew-click-unconfirmed/crew-not-visible.png",
+      "evidencePath": "diagnostics/live-crew-click-unconfirmed/crew-not-visible.png",
+      "bytes": 749264,
+      "sha256": "e505f7e227c99b5eb47a2ef9c0b8d07b51dfb1ce24fab88233134fdf93b5c0cd",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/live-crew-click-unconfirmed/performance.json",
+      "evidencePath": "diagnostics/live-crew-click-unconfirmed/performance.json",
+      "bytes": 195651,
+      "sha256": "151ac23e06fb326a162032493534715dbf7e5ca8bbe8f1f68ef1c459713edc84",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/live-crew-click-unconfirmed/run.txt",
+      "evidencePath": "diagnostics/live-crew-click-unconfirmed/run.txt",
+      "bytes": 6663,
+      "sha256": "0feac4b01e37b075ac7396f2bbd44872ad4dcac467822135f2b0e5e8030690e0",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/live-first-window/performance.json",
+      "evidencePath": "diagnostics/live-first-window/performance.json",
+      "bytes": 38081,
+      "sha256": "62a92e714180289e988a45c64ce28058f40da7143410b740fe5c4e131916afff",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/mission1-aa-cycle.json",
+      "evidencePath": "diagnostics/mission1-aa-cycle.json",
+      "bytes": 73629,
+      "sha256": "d304f8e48e5c8335bad00de5c56cc7addfbdca3222bc87e47aee6938ccb6c5cd",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/mission1-context-aa-1.png",
+      "evidencePath": "diagnostics/mission1-context-aa-1.png",
+      "bytes": 617346,
+      "sha256": "cbd64984044624c1e0c6763efc8113f01047c14d56717fe5c10fa153e8a5c7e5",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/mission1-context-aa-2.png",
+      "evidencePath": "diagnostics/mission1-context-aa-2.png",
+      "bytes": 617648,
+      "sha256": "b7e72fb962fc87d6422941c3cf572ac3e4885df4ec091436e5642134ff1eb9db",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/mission1-context-aa-3.png",
+      "evidencePath": "diagnostics/mission1-context-aa-3.png",
+      "bytes": 617348,
+      "sha256": "6ccb78bc2c8ee4ba2c9b72df15d4fda408ae42763adb64e09e87fd99dc2e6545",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/mission1-context-aa.json",
+      "evidencePath": "diagnostics/mission1-context-aa.json",
+      "bytes": 47176,
+      "sha256": "6a7022fc09a3a5c225ed897b0616a2294843e70c679ccc739f3f9520573412b7",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-day.png",
+      "evidencePath": "diagnostics/png-candidate/earth-day.png",
+      "bytes": 1079372,
+      "sha256": "541aed6f1b9adadd31c6cd255693639537f2cc2711217cdc65ef5aad238139e0",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-night-east-asia.png",
+      "evidencePath": "diagnostics/png-candidate/earth-night-east-asia.png",
+      "bytes": 1157402,
+      "sha256": "ed50690ecbe8d3699a2e248cf168892ac4d2ff62017103e8ce767472a23f3dec",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-night-europe.png",
+      "evidencePath": "diagnostics/png-candidate/earth-night-europe.png",
+      "bytes": 1432970,
+      "sha256": "d453f1c733ba0b177568c4e8b1721857d399319c4f8f14f098ce9199b752afec",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-night-india-middle-east.png",
+      "evidencePath": "diagnostics/png-candidate/earth-night-india-middle-east.png",
+      "bytes": 858384,
+      "sha256": "fd4331990f77d1e78bc0784103fd95bd5bcde4cef710d8ff7edb4cadf3f7d087",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-night-north-america.png",
+      "evidencePath": "diagnostics/png-candidate/earth-night-north-america.png",
+      "bytes": 1397721,
+      "sha256": "17b5157e91f325356e1a300419efd354e12b6cd51a7700d427701fc91fb6a12b",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-night.png",
+      "evidencePath": "diagnostics/png-candidate/earth-night.png",
+      "bytes": 1123669,
+      "sha256": "c27f460155cb01259a739009aebe218b06120f3584b9378d605ad733b3dcb614",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/earth-terminator.png",
+      "evidencePath": "diagnostics/png-candidate/earth-terminator.png",
+      "bytes": 1279806,
+      "sha256": "d8384aa88a6e425e11a7743d546c820df2ddd31d5a8650aca766ce844d098031",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/fixtures.json",
+      "evidencePath": "diagnostics/png-candidate/fixtures.json",
+      "bytes": 1188121,
+      "sha256": "6884201e8b3cff24535ece86473350afce5dbce07057d6cc878b856030df3413",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/gpu-uncontrolled/gpu-audit.json",
+      "evidencePath": "diagnostics/png-candidate/gpu-uncontrolled/gpu-audit.json",
+      "bytes": 433220,
+      "sha256": "d3783833ac8a9fa704637b529f897a6524fc6f1b161e28958c0dfc0f1f165288",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/iss-canonical.png",
+      "evidencePath": "diagnostics/png-candidate/iss-canonical.png",
+      "bytes": 828077,
+      "sha256": "625123c590f3493a7c303dbc5eb75359bacb04e0936a2276e55371b745b9b07f",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/iss-close.png",
+      "evidencePath": "diagnostics/png-candidate/iss-close.png",
+      "bytes": 1117209,
+      "sha256": "4580469cf69cd05d3c7d4f7f90af93d5f82fdc35c90aea87ccfb15a1be1b2f6b",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/iss-oblique.png",
+      "evidencePath": "diagnostics/png-candidate/iss-oblique.png",
+      "bytes": 862075,
+      "sha256": "0aac94764e6098da2bc0888eb887cb9b318049a82698d0704070ea1eea0b1b49",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/loading.json",
+      "evidencePath": "diagnostics/png-candidate/loading.json",
+      "bytes": 1425026,
+      "sha256": "4b13871bbdb44e2d690574f2d90a34ca53bffaa45df6ba2c379c4a8d076341d4",
+      "category": "diagnostic / not final acceptance"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/mobile-inspection.png",
+      "evidencePath": "diagnostics/png-candidate/mobile-inspection.png",
+      "bytes": 181062,
+      "sha256": "03dd6ba41fabb1e32f3472dd548cff675ab2d49bd5cf66b81c34f5fb530478d7",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/mobile-overview.png",
+      "evidencePath": "diagnostics/png-candidate/mobile-overview.png",
+      "bytes": 248714,
+      "sha256": "9aa48eb17820737bf2b9bd5c31bc151acc3f37d1eb48679abc6a46219b8582d1",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/diagnostics/png-candidate/stars-limb.png",
+      "evidencePath": "diagnostics/png-candidate/stars-limb.png",
+      "bytes": 1009820,
+      "sha256": "94425a2cc296e9b12226ef3fa4b45fa224110e0447a0f104f85bf8b37ecadcde",
+      "category": "diagnostic / not final acceptance",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/fixed-comparison.json",
+      "evidencePath": "fixed-comparison.json",
+      "bytes": 321280,
+      "sha256": "5801df31771c0c96c729ccfbd7b107d2ec7d6ce2134703dcfbcf93dfcc640d3c",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/frozen-files.json",
+      "evidencePath": "frozen-files.json",
+      "bytes": 14449,
+      "sha256": "f83991ab1e7355f50c0f88a76f7b38df9694c1cbc7643b9121f47ac969107fc0",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/gibs-capabilities-excerpt.json",
+      "evidencePath": "gibs-capabilities-excerpt.json",
+      "bytes": 3451,
+      "sha256": "54963b1fcbe18edbdc80cb96d14b4b8f8a1bbbdf2b71e09ceca609e62f1bf9e7",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/iss-source-verification.json",
+      "evidencePath": "iss-source-verification.json",
+      "bytes": 12227,
+      "sha256": "516a2a2129086eb3fc11d70d7ec1b1351064ef68be32664dbd029fa29ec17c32",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/metrics.json",
+      "evidencePath": "metrics.json",
+      "bytes": 28365,
+      "sha256": "a4fb938ad691662bc34e51b87bdb56de8e5fd0af242ee1924b87abac81ead653",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/mission1-iss-audit.json",
+      "evidencePath": "mission1-iss-audit.json",
+      "bytes": 7095,
+      "sha256": "d16cacd7f8a2e92661982e14849598e28e157aa79790c687f9b46ef647eee20f",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/after/day-max-level.png",
+      "evidencePath": "normal-network/after/day-max-level.png",
+      "bytes": 791569,
+      "sha256": "058c10229de7f0601c559cd67335c34b54da9b6be9c686f76f3d788dd7fd293f",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/after/night-max-level.png",
+      "evidencePath": "normal-network/after/night-max-level.png",
+      "bytes": 787693,
+      "sha256": "16a5d216f70d661f006277bb2379716b2d90ace5e833da8dbc936399904e2284",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/after/stars-with-earth-limb.png",
+      "evidencePath": "normal-network/after/stars-with-earth-limb.png",
+      "bytes": 786846,
+      "sha256": "5ae0938297b9e5444a40b62af3ee6a2e85c8412f215a525e66f9a2ee7b9e007b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/before/day-max-level.png",
+      "evidencePath": "normal-network/before/day-max-level.png",
+      "bytes": 791515,
+      "sha256": "386b1af433829315c39f6e7898fd4da1d7d877f91da91cbb19d9b19c5eafc537",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/before/night-max-level.png",
+      "evidencePath": "normal-network/before/night-max-level.png",
+      "bytes": 885396,
+      "sha256": "39d65af5ee29e61d84639d214d81571e8626b59bad0b3c1eee90510667cca599",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/before/stars-with-earth-limb.png",
+      "evidencePath": "normal-network/before/stars-with-earth-limb.png",
+      "bytes": 777277,
+      "sha256": "83f185798937891b5c0a173d5a9730a284e841a329d92369d7c8e3bec18ba8ec",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/normal-network/fixed-comparison.json",
+      "evidencePath": "normal-network/fixed-comparison.json",
+      "bytes": 215398,
+      "sha256": "0982412637fe2144d1b68a5fba50ac46b640a7466919d86ca69b44f4c6a9c77d",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/real-comparison.json",
+      "evidencePath": "real-comparison.json",
+      "bytes": 90200,
+      "sha256": "578b739a85445c0a4aaaed1be23ac2de192cac515c43d728107010db3b5b6c87",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/real-samples.json",
+      "evidencePath": "real-samples.json",
+      "bytes": 18986,
+      "sha256": "d5b68a3ff4e51e3a9027cc1a5d201cae073d1340689e8fb86aaa3d9be3a97d86",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1024x768-overview.png",
+      "evidencePath": "regression/after-development-1024x768-overview.png",
+      "bytes": 525572,
+      "sha256": "642e0614aa988274cad178f82fa765b025076955a722f0075397c8af0e2ddf24",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1280x720-overview.png",
+      "evidencePath": "regression/after-development-1280x720-overview.png",
+      "bytes": 643306,
+      "sha256": "08f4d3e87849a05edf5e4ad23360e85416662e816aaec1a2b045adfd588ce749",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-back.png",
+      "evidencePath": "regression/after-development-1440x900-back.png",
+      "bytes": 928350,
+      "sha256": "681afc5da02ca5e1b18c2cc1bbc8ca0d88911da60a5ea0d20d987e21d4e71ac0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-combined-436x583.png",
+      "evidencePath": "regression/after-development-1440x900-combined-436x583.png",
+      "bytes": 943731,
+      "sha256": "84d9ae9b7f105d55c3e52246ed8ee7506d53fc55fb54d3fdfe0a4872018c8fb2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-combined-restored.png",
+      "evidencePath": "regression/after-development-1440x900-combined-restored.png",
+      "bytes": 933235,
+      "sha256": "de04d4baa910a36c32ffcafe585feb2af901e6f719001bc0d7eaed1938447d8e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-height-633.png",
+      "evidencePath": "regression/after-development-1440x900-height-633.png",
+      "bytes": 971884,
+      "sha256": "a3a89ae3924afc106834fe9491442b8a4ba14c3198de7ad5175002e3d9e9e2f5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-height-restored.png",
+      "evidencePath": "regression/after-development-1440x900-height-restored.png",
+      "bytes": 933174,
+      "sha256": "71a23bf3aff91fda94e4e886e39229f0dfa400db4d89f5560377f897ca55e213",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-inspection-crew-closed.png",
+      "evidencePath": "regression/after-development-1440x900-inspection-crew-closed.png",
+      "bytes": 911212,
+      "sha256": "a3a5bd902bb63e0a4d2e394bf6d719ffbd53879f2565aad8c8bc6918f4f6f867",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-inspection-crew-detail.png",
+      "evidencePath": "regression/after-development-1440x900-inspection-crew-detail.png",
+      "bytes": 802410,
+      "sha256": "c460429e089d00babd1d6a513a79127a93038e280710a6336f50c1517e3febe2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-inspection-crew.png",
+      "evidencePath": "regression/after-development-1440x900-inspection-crew.png",
+      "bytes": 799168,
+      "sha256": "a6a4467e51099f578822cea70f1c462d93dc0dfacbde151619e4cdeb33fdfa0d",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-inspection.png",
+      "evidencePath": "regression/after-development-1440x900-inspection.png",
+      "bytes": 910165,
+      "sha256": "8e4fdb6d6d94783490a004f8fab5cf7a9ae6be178ca847b4d770198f8cd25ce4",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-live-crew-closed.png",
+      "evidencePath": "regression/after-development-1440x900-live-crew-closed.png",
+      "bytes": 933379,
+      "sha256": "15dfbc5ea36309325c71a53a6a51e4b65d6223b58db633e748d680027703525e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-live-crew-detail.png",
+      "evidencePath": "regression/after-development-1440x900-live-crew-detail.png",
+      "bytes": 667441,
+      "sha256": "441a4d9a3d50017e8a22abb6a3d91fdb4e41b93d0d1de34abc05b0f824d58644",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-live-crew.png",
+      "evidencePath": "regression/after-development-1440x900-live-crew.png",
+      "bytes": 666784,
+      "sha256": "f2f29aadcc7081d1d2d4d5199ab1e60d0ee399b4a6573d8a3076ec889d7d98f6",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-overview.png",
+      "evidencePath": "regression/after-development-1440x900-overview.png",
+      "bytes": 934675,
+      "sha256": "0ab6a5b0cc03d4bf98b5e62aa3e17e4008bf57aeff019d2e41d42b4ae95ebe31",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-position-only.png",
+      "evidencePath": "regression/after-development-1440x900-position-only.png",
+      "bytes": 958427,
+      "sha256": "e8cd1d1c6cb9506082894b0508370179a8cb4a70c041e27707192ccfe1b99b96",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-position-restored.png",
+      "evidencePath": "regression/after-development-1440x900-position-restored.png",
+      "bytes": 932708,
+      "sha256": "8318412cae8b2ae07e4194de217146b983197b2bd2370168e5b774241e8e24a5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-reduced-motion-height.png",
+      "evidencePath": "regression/after-development-1440x900-reduced-motion-height.png",
+      "bytes": 990429,
+      "sha256": "a17cf36cd4f085909ad838db031567e6a38401bfd213c86894d81185d1507e7a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-reduced-motion-restored.png",
+      "evidencePath": "regression/after-development-1440x900-reduced-motion-restored.png",
+      "bytes": 929311,
+      "sha256": "25e856a5c58d0b03fbf0c5fe80758176e2bc592a5882c7155cc4c89874f37ffe",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay-crew-closed.png",
+      "evidencePath": "regression/after-development-1440x900-replay-crew-closed.png",
+      "bytes": 715788,
+      "sha256": "526a406010f03f4642583707801cee99fb671cb394c542f01f74b97a7cc63eec",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay-crew-detail.png",
+      "evidencePath": "regression/after-development-1440x900-replay-crew-detail.png",
+      "bytes": 593230,
+      "sha256": "30fd9356574fad36a567b84349274b4b4a043ffd2e2ff99d295c44043240f997",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay-crew.png",
+      "evidencePath": "regression/after-development-1440x900-replay-crew.png",
+      "bytes": 582196,
+      "sha256": "104fae06be837ca0c7d093ec104807027574815fd5a1bf935de32fe9512f9139",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay-inspection.png",
+      "evidencePath": "regression/after-development-1440x900-replay-inspection.png",
+      "bytes": 828753,
+      "sha256": "93383bdd574d506db6890e4bdaf32440c839590ea199673b3426fba064670e75",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay-seek.png",
+      "evidencePath": "regression/after-development-1440x900-replay-seek.png",
+      "bytes": 948154,
+      "sha256": "41cdf80dbaa824164c99dd22453a511ce981f64c5586c3579b88a74d8db0bf1a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-replay.png",
+      "evidencePath": "regression/after-development-1440x900-replay.png",
+      "bytes": 716582,
+      "sha256": "4e0d902bd54dc90d49280adfc7da17ddbe504246c7a8da6f6cb8b0437d48091c",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-return-live.png",
+      "evidencePath": "regression/after-development-1440x900-return-live.png",
+      "bytes": 929992,
+      "sha256": "1eefbaa108d9dbb43719cb002060e4d13def234d47301532fe93a8c0f6f56aca",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-width-436.png",
+      "evidencePath": "regression/after-development-1440x900-width-436.png",
+      "bytes": 879876,
+      "sha256": "98e6df0b30708e058f5083102dae714f48b893f6536bab518ead9cac8686b8b0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-1440x900-width-restored.png",
+      "evidencePath": "regression/after-development-1440x900-width-restored.png",
+      "bytes": 934317,
+      "sha256": "f2ff42f898ae1ba984a9d099641f36a937a49c37d02d7ba90a7e60ddf48e708b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-back.png",
+      "evidencePath": "regression/after-development-390x844-back.png",
+      "bytes": 177327,
+      "sha256": "e952488459e7a641fbbf489e591a7eb69f82b878eb66eded216c2fcaea740e71",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-inspection-crew-closed.png",
+      "evidencePath": "regression/after-development-390x844-inspection-crew-closed.png",
+      "bytes": 206584,
+      "sha256": "e0016b6dbeeca406b9f84b9af98c56a5bbdc32b84b23685da1452e22c288e280",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-inspection-crew-detail.png",
+      "evidencePath": "regression/after-development-390x844-inspection-crew-detail.png",
+      "bytes": 169798,
+      "sha256": "1a2f5037e4bd642d580df73f9a8279c4d1eaf43090ffbd503e2e6c5ce8e1aa5f",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-inspection-crew.png",
+      "evidencePath": "regression/after-development-390x844-inspection-crew.png",
+      "bytes": 160690,
+      "sha256": "d59ebf569fca095bf81890ae7e68f95de464b4f5583d1e9aee70aafb17886d6c",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-inspection.png",
+      "evidencePath": "regression/after-development-390x844-inspection.png",
+      "bytes": 204962,
+      "sha256": "8bb2f25e315038d18935c6a512d90f0fb79840e30351bc4159d879d809eb773d",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-live-crew-closed.png",
+      "evidencePath": "regression/after-development-390x844-live-crew-closed.png",
+      "bytes": 179086,
+      "sha256": "055d5e98654215f125f55be9bfe46838fbc2131341bfe20b94a8a33a110531f0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-live-crew-detail.png",
+      "evidencePath": "regression/after-development-390x844-live-crew-detail.png",
+      "bytes": 139372,
+      "sha256": "ccf52f33315d505cb890befcb51934fcb2b5424ee47f890f275e5b594bdd59d5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-live-crew.png",
+      "evidencePath": "regression/after-development-390x844-live-crew.png",
+      "bytes": 130456,
+      "sha256": "ede9708355502c6791de5f16501781f1f823372eae3842c603ffa7f69b700347",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-overview.png",
+      "evidencePath": "regression/after-development-390x844-overview.png",
+      "bytes": 178948,
+      "sha256": "feeb66b464fc60cce4b286e1f2b7502b0d72e76c6423316c67e9cc3941849987",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay-crew-closed.png",
+      "evidencePath": "regression/after-development-390x844-replay-crew-closed.png",
+      "bytes": 155727,
+      "sha256": "6a491beb75c289f641c001b9731c6d8c2ed76c5dd3d0c38c798e1c356dcd97d2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay-crew-detail.png",
+      "evidencePath": "regression/after-development-390x844-replay-crew-detail.png",
+      "bytes": 126866,
+      "sha256": "c593e4aecb237600ceb689c21a5e15c427d7be21e55b014392a074168af34b1c",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay-crew.png",
+      "evidencePath": "regression/after-development-390x844-replay-crew.png",
+      "bytes": 123839,
+      "sha256": "5fb0a3da35f014788c882591d0f9b9c68e30dea6a2c95aa943272d762ecd65e1",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay-inspection.png",
+      "evidencePath": "regression/after-development-390x844-replay-inspection.png",
+      "bytes": 179907,
+      "sha256": "7c4c9037ee769f4ec3ac123b1a27536703abc787ea8a6700edbc7f3cc8243c2a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay-seek.png",
+      "evidencePath": "regression/after-development-390x844-replay-seek.png",
+      "bytes": 156001,
+      "sha256": "8c13a6dbfe220837320d1bb46a3115b6e1fd4f908236951b78c30f0e6c836bdd",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-replay.png",
+      "evidencePath": "regression/after-development-390x844-replay.png",
+      "bytes": 155866,
+      "sha256": "ea6c74e81281b1f9f4862096919957ac3ba790456c47fe36d539e3009f693927",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-390x844-return-live.png",
+      "evidencePath": "regression/after-development-390x844-return-live.png",
+      "bytes": 177780,
+      "sha256": "7f024bea55d1d10ba18d744363d822ba14269a0e1e2535d2699516ff813e3749",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-back.png",
+      "evidencePath": "regression/after-development-768x1024-back.png",
+      "bytes": 392257,
+      "sha256": "950527b8921d2de5e45fdd0684cfe26b6796ff13c5e44b4859511fab08478fd0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-inspection-crew-closed.png",
+      "evidencePath": "regression/after-development-768x1024-inspection-crew-closed.png",
+      "bytes": 536012,
+      "sha256": "4117fd7c2d1aa027b6d7dcb2d582fb31e4f743884a7a791236c71b97b65119ba",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-inspection-crew-detail.png",
+      "evidencePath": "regression/after-development-768x1024-inspection-crew-detail.png",
+      "bytes": 450071,
+      "sha256": "5e52f640b835a93bed3e80934b8206c946f7f6cd8359614f35bf99425f74208a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-inspection-crew.png",
+      "evidencePath": "regression/after-development-768x1024-inspection-crew.png",
+      "bytes": 443627,
+      "sha256": "76085657931ef177b24bd25aa21a333120787dc713f41802a1da2780959121e2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-inspection.png",
+      "evidencePath": "regression/after-development-768x1024-inspection.png",
+      "bytes": 534062,
+      "sha256": "1cbdf7f15febe87c911759279e00f64e4cf989268183f005ed91de747883895e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-live-crew-closed.png",
+      "evidencePath": "regression/after-development-768x1024-live-crew-closed.png",
+      "bytes": 393648,
+      "sha256": "22d39d5a994096661d34aa81a0d11cabbc28a49957faaa40fb61781708e3c8e0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-live-crew-detail.png",
+      "evidencePath": "regression/after-development-768x1024-live-crew-detail.png",
+      "bytes": 428603,
+      "sha256": "77882e80982270b4077766c124864925f8d12d07e4b1578594ea93def5e888eb",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-live-crew.png",
+      "evidencePath": "regression/after-development-768x1024-live-crew.png",
+      "bytes": 421938,
+      "sha256": "18843474cd24b02045721190a336e0659dcab695c0da5215bd1c300f3c50181a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-overview.png",
+      "evidencePath": "regression/after-development-768x1024-overview.png",
+      "bytes": 392947,
+      "sha256": "7e487b73bb2b53be2a0cc43172491814be4f32add397e01eaa67094d108d513d",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay-crew-closed.png",
+      "evidencePath": "regression/after-development-768x1024-replay-crew-closed.png",
+      "bytes": 390098,
+      "sha256": "ddbb1f1f9b4cd30f9d5e791855df3793ba12e6f6688aa4ef2f0049fd3535d5c1",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay-crew-detail.png",
+      "evidencePath": "regression/after-development-768x1024-replay-crew-detail.png",
+      "bytes": 343724,
+      "sha256": "8da30edb885a1cbf5e5b69194a3391d435292084ccade7b9da8f4ed28fa12c46",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay-crew.png",
+      "evidencePath": "regression/after-development-768x1024-replay-crew.png",
+      "bytes": 338658,
+      "sha256": "9551052019b6e16ddd9b6a99d85e8fea3281ea4352d6a9a7bd377cf2e6bb5655",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay-inspection.png",
+      "evidencePath": "regression/after-development-768x1024-replay-inspection.png",
+      "bytes": 472453,
+      "sha256": "c610c507661ad2c30770690ac040d2efaa5e833405dfbd3b9df9fc70b88720a7",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay-seek.png",
+      "evidencePath": "regression/after-development-768x1024-replay-seek.png",
+      "bytes": 482216,
+      "sha256": "8a302551b235622ad843fea950b2880831c5a6a55d3633469fe55766799d5cd4",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-replay.png",
+      "evidencePath": "regression/after-development-768x1024-replay.png",
+      "bytes": 390508,
+      "sha256": "c4f9f745fee1b797992eb6cf16c30f50d1563fe6d9570bafe302a4e606f69c06",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-768x1024-return-live.png",
+      "evidencePath": "regression/after-development-768x1024-return-live.png",
+      "bytes": 393049,
+      "sha256": "d12b22ed0d667baab5e1e20f9470a67a0e013b147bd023d4f5d38e9f803fe76d",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-900x700-overview.png",
+      "evidencePath": "regression/after-development-900x700-overview.png",
+      "bytes": 409903,
+      "sha256": "e8335a800b300dc9533f518eee575cba02445c41696a5ef2c8c0d4f98d2b4903",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        900,
+        700
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-900x700-resize-1024x768.png",
+      "evidencePath": "regression/after-development-900x700-resize-1024x768.png",
+      "bytes": 521804,
+      "sha256": "33a014518d4ef9a4191fd1f4dee6920b1d54569a2371b87833ae0a217572a220",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-900x700-resize-390x844.png",
+      "evidencePath": "regression/after-development-900x700-resize-390x844.png",
+      "bytes": 186915,
+      "sha256": "3bfc892c30be12cf49f5683f82c3a9a90285486e4492a73849b90a5dea83b45e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-900x700-resize-768x1024.png",
+      "evidencePath": "regression/after-development-900x700-resize-768x1024.png",
+      "bytes": 395791,
+      "sha256": "54fd17c7b5c5f7f224d2cc0c8f2e844cfee0cceda0a93009e0e289f3e16cf1a0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-development-900x700-resize-900x700.png",
+      "evidencePath": "regression/after-development-900x700-resize-900x700.png",
+      "bytes": 409434,
+      "sha256": "45e4b8e9b1265325b6fdaa5a742f339ca74a9a7d95964f35c0b706748c412114",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        900,
+        700
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-input-4175-1440-inspection.png",
+      "evidencePath": "regression/after-input-4175-1440-inspection.png",
+      "bytes": 872210,
+      "sha256": "c80026725a26af2f954e42685fa55a03f3dbf9c4ecf36de118bfb53712a3d9f9",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-input-4175-390-inspection.png",
+      "evidencePath": "regression/after-input-4175-390-inspection.png",
+      "bytes": 218706,
+      "sha256": "c3ce0dc4fc83081231dfbcf74b9b5c14eba299a0d06c5409cc628d4444297f5d",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-input-5175-1440-inspection.png",
+      "evidencePath": "regression/after-input-5175-1440-inspection.png",
+      "bytes": 848998,
+      "sha256": "9d506cca8907d67349f96f9c8107986c27a1abe4fbe9b43acda18c139c9d4509",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-input-5175-390-inspection.png",
+      "evidencePath": "regression/after-input-5175-390-inspection.png",
+      "bytes": 225638,
+      "sha256": "12cb8e85e57731c9779370654150f367e7dc9f5c391fc209ea17883e4bc9f9d9",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1024x768-overview.png",
+      "evidencePath": "regression/after-production-1024x768-overview.png",
+      "bytes": 436354,
+      "sha256": "3c1f5af7ac2917ea9a11645899bea4aaa9f015a101163952df61b5aa414a9d66",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1280x720-overview.png",
+      "evidencePath": "regression/after-production-1280x720-overview.png",
+      "bytes": 515351,
+      "sha256": "f539cf724b829def639888a28cee9db2530a7e518a54dec9cc88588b5db9a0cf",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-back.png",
+      "evidencePath": "regression/after-production-1440x900-back.png",
+      "bytes": 763027,
+      "sha256": "27ae1dae3d8def1905673bef869ea39f8355091f19ed867c06b9b813d734e53b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-combined-436x583.png",
+      "evidencePath": "regression/after-production-1440x900-combined-436x583.png",
+      "bytes": 767119,
+      "sha256": "2c354b8856aa8ba9822432f2c083d88fb2dd393167ed640f92ebdaee5ffd1817",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-combined-restored.png",
+      "evidencePath": "regression/after-production-1440x900-combined-restored.png",
+      "bytes": 766657,
+      "sha256": "92c3ddbe08d92203529d52d4833ac3b88d3bf833c2c3bc4c627b952c65ebb3e9",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-height-633.png",
+      "evidencePath": "regression/after-production-1440x900-height-633.png",
+      "bytes": 795830,
+      "sha256": "001ef96be10dd314ab63b60fd50b5c2406e3e91f588a9841d88299439c5053f7",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-height-restored.png",
+      "evidencePath": "regression/after-production-1440x900-height-restored.png",
+      "bytes": 766193,
+      "sha256": "8a115b7555b62106e66142b097a9a2169c4fdba6c010518a357b8a9869b754e0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-inspection-crew-closed.png",
+      "evidencePath": "regression/after-production-1440x900-inspection-crew-closed.png",
+      "bytes": 904699,
+      "sha256": "87e2f1c3976d36510aee408e044b7b73e0863b2c2297dd2cf14136aa5a4b96a5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-inspection-crew-detail.png",
+      "evidencePath": "regression/after-production-1440x900-inspection-crew-detail.png",
+      "bytes": 820813,
+      "sha256": "f0585106af9c90bbad653b992c44ae1a6daf55af7eb17014074be650c1561530",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-inspection-crew.png",
+      "evidencePath": "regression/after-production-1440x900-inspection-crew.png",
+      "bytes": 818199,
+      "sha256": "dd3247ad38e134a4bf40831c23722f0a8ef3f76c64e7da427e382c2488d72a8b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-inspection.png",
+      "evidencePath": "regression/after-production-1440x900-inspection.png",
+      "bytes": 903396,
+      "sha256": "b7b2de14b849fe37ecaea7a835543bfb4541074f260cec3b84d7ab6003bc0ad3",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-live-crew-closed.png",
+      "evidencePath": "regression/after-production-1440x900-live-crew-closed.png",
+      "bytes": 766213,
+      "sha256": "39ba93fb4d14f65c0fe50375c555398e95fcd12f21c1b7aea65331c8904a50fc",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-live-crew-detail.png",
+      "evidencePath": "regression/after-production-1440x900-live-crew-detail.png",
+      "bytes": 578546,
+      "sha256": "e20c05ba90b083913aed9f85730fa64bf92f29d6a6f05470fd0fd48a516fa1c5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-live-crew.png",
+      "evidencePath": "regression/after-production-1440x900-live-crew.png",
+      "bytes": 577235,
+      "sha256": "099fd3d7c6f81aee0f7c339b365dfb0ce0d261a6ad0d45d115e0ef99ea580ff8",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-overview.png",
+      "evidencePath": "regression/after-production-1440x900-overview.png",
+      "bytes": 767021,
+      "sha256": "6c091049a5ebd18cf4aa0c053ab49a05382fd1b10ba4ce715df00fd481727245",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-position-only.png",
+      "evidencePath": "regression/after-production-1440x900-position-only.png",
+      "bytes": 785149,
+      "sha256": "4f33e87438bdacd721fa3fbca89e0f2daf8b1bae6c8248569d748cbb543af54e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-position-restored.png",
+      "evidencePath": "regression/after-production-1440x900-position-restored.png",
+      "bytes": 766582,
+      "sha256": "a922758b9ed6868433f6a318055f719a69e4f6160a0c92c77508e9ca851d405f",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-reduced-motion-height.png",
+      "evidencePath": "regression/after-production-1440x900-reduced-motion-height.png",
+      "bytes": 810782,
+      "sha256": "f2d65c171fbd552689f855a14cc7a21c619cd6ef892a663a1a618b99cd0b768a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-reduced-motion-restored.png",
+      "evidencePath": "regression/after-production-1440x900-reduced-motion-restored.png",
+      "bytes": 763124,
+      "sha256": "3cc08250a3fa67e67d2e479a8ddbb31a21ae3271e5a35e4e98237be445580df7",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay-crew-closed.png",
+      "evidencePath": "regression/after-production-1440x900-replay-crew-closed.png",
+      "bytes": 587215,
+      "sha256": "857b9a778bbee91389885775a634babea89933b78b3e409726c0f5f1a2d62afd",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay-crew-detail.png",
+      "evidencePath": "regression/after-production-1440x900-replay-crew-detail.png",
+      "bytes": 550228,
+      "sha256": "bea61909c76bd539e1c0d11008162769d7b1ba75580a77ee20883cf1a083da35",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay-crew.png",
+      "evidencePath": "regression/after-production-1440x900-replay-crew.png",
+      "bytes": 539084,
+      "sha256": "fd393bc2d410656332b63f8913118a05eddf74d5960197cce0f943f88c6959a4",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay-inspection.png",
+      "evidencePath": "regression/after-production-1440x900-replay-inspection.png",
+      "bytes": 828247,
+      "sha256": "97f39cc3040d6fcf226c97b6a243f256f843576e70ec996180e1152368ae461e",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay-seek.png",
+      "evidencePath": "regression/after-production-1440x900-replay-seek.png",
+      "bytes": 749794,
+      "sha256": "914e0fd99e209e1a1abca46cbbfa97492aa727600a3b79ff131ca6d37abefa84",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-replay.png",
+      "evidencePath": "regression/after-production-1440x900-replay.png",
+      "bytes": 587914,
+      "sha256": "1d6a27f066a5c49024b8d1df7225c426aaa81283d9c9587394aae11dcf052f91",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-return-live.png",
+      "evidencePath": "regression/after-production-1440x900-return-live.png",
+      "bytes": 763590,
+      "sha256": "32786e829a49151cff0fdc1c05c6ca2226a93cca387d8d60f2fc2cde56740eb6",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-width-436.png",
+      "evidencePath": "regression/after-production-1440x900-width-436.png",
+      "bytes": 719106,
+      "sha256": "0592f5aa3305083df967bc96032d362da0d44b7bc07db292853629dd43e6609c",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-1440x900-width-restored.png",
+      "evidencePath": "regression/after-production-1440x900-width-restored.png",
+      "bytes": 766051,
+      "sha256": "28622307310f1247416b93fd0ad6f23d3236c6ee97a972f476409941844519d5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-back.png",
+      "evidencePath": "regression/after-production-390x844-back.png",
+      "bytes": 167016,
+      "sha256": "080529874712b70c77d5158c26d4f5e55bbaed96c8673d4b9be812c6eb928065",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-inspection-crew-closed.png",
+      "evidencePath": "regression/after-production-390x844-inspection-crew-closed.png",
+      "bytes": 218615,
+      "sha256": "979dab2fbc59a90a2eb04b4704fc1f617915e9f2550717bb3bd98cdf3efa90d3",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-inspection-crew-detail.png",
+      "evidencePath": "regression/after-production-390x844-inspection-crew-detail.png",
+      "bytes": 176154,
+      "sha256": "748206a70f4a639f6b6c6b18f2a27da918ba7cadaaa17935754f4807d0a2b767",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-inspection-crew.png",
+      "evidencePath": "regression/after-production-390x844-inspection-crew.png",
+      "bytes": 167110,
+      "sha256": "ddeb33b9e40bc77863194b49d48834cb0afdbae934587305d50e0f3aa79ff4d6",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-inspection.png",
+      "evidencePath": "regression/after-production-390x844-inspection.png",
+      "bytes": 217401,
+      "sha256": "957245ef9f5407a9d164fa65d09417b2a0817497a2c4ab5779b12c89b5c6f923",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-live-crew-closed.png",
+      "evidencePath": "regression/after-production-390x844-live-crew-closed.png",
+      "bytes": 169108,
+      "sha256": "5126917c2368638911aa9291e33869235a9701b21258548e2cb35b057f95d372",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-live-crew-detail.png",
+      "evidencePath": "regression/after-production-390x844-live-crew-detail.png",
+      "bytes": 139168,
+      "sha256": "42d30142eb678bbd33c0a7472c6a31fb5b0482297c29f007145fa8e327406c29",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-live-crew.png",
+      "evidencePath": "regression/after-production-390x844-live-crew.png",
+      "bytes": 130366,
+      "sha256": "f258c33c9e902c9b6ca83d1f56ef278b923a14a1f8a34f8f672d2594c95420e7",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-overview.png",
+      "evidencePath": "regression/after-production-390x844-overview.png",
+      "bytes": 169255,
+      "sha256": "61559a4d9e02dc093d2f3308f6b1c749afa5fa0416ed4d30858cc22c4c743629",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay-crew-closed.png",
+      "evidencePath": "regression/after-production-390x844-replay-crew-closed.png",
+      "bytes": 155859,
+      "sha256": "177a5a67fcbc5a7f257259fffbe4bc2f154d3f2f7c7022d1c7323f36185fa8f2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay-crew-detail.png",
+      "evidencePath": "regression/after-production-390x844-replay-crew-detail.png",
+      "bytes": 132058,
+      "sha256": "b1727129155418520317f659553754a8486f56bf8c12b80065f82d7428c3c2bf",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay-crew.png",
+      "evidencePath": "regression/after-production-390x844-replay-crew.png",
+      "bytes": 129171,
+      "sha256": "ae1eba8a7d450089416a562bab908b5ff3efc32d4d3657d62ba5a1f65d84672b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay-inspection.png",
+      "evidencePath": "regression/after-production-390x844-replay-inspection.png",
+      "bytes": 180036,
+      "sha256": "ace081c6793951d9335c91dc293498b1105ee3a6f1d28db8106ff51cbe0835e5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay-seek.png",
+      "evidencePath": "regression/after-production-390x844-replay-seek.png",
+      "bytes": 151251,
+      "sha256": "b9e27fce9fbca6e255d635c634f42cb7bab3ebe3c8cf76b741dab0feafe07130",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-replay.png",
+      "evidencePath": "regression/after-production-390x844-replay.png",
+      "bytes": 156042,
+      "sha256": "606569de690f16c1a58ae36c61f6a3f7dd47ba6f65ec60eb8b3bbd575e52c6a0",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-390x844-return-live.png",
+      "evidencePath": "regression/after-production-390x844-return-live.png",
+      "bytes": 168993,
+      "sha256": "07fd5dc26bbc270164ebc440b4109be087bce52eeaba519ed02877bd5e0b87e9",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-back.png",
+      "evidencePath": "regression/after-production-768x1024-back.png",
+      "bytes": 361101,
+      "sha256": "976d5a6eb8343d009439005e267be6d0692548cadfa3eeca203962146132cdb2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-inspection-crew-closed.png",
+      "evidencePath": "regression/after-production-768x1024-inspection-crew-closed.png",
+      "bytes": 526967,
+      "sha256": "d46ebdf72f179e89d83275e55b3bf022f8576e776c7727fcd68ffb1b557b48a5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-inspection-crew-detail.png",
+      "evidencePath": "regression/after-production-768x1024-inspection-crew-detail.png",
+      "bytes": 463390,
+      "sha256": "66a662afdb486ff60d18422950b6ba10cdc430f7b701b4330016b20e2bbcce80",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-inspection-crew.png",
+      "evidencePath": "regression/after-production-768x1024-inspection-crew.png",
+      "bytes": 456955,
+      "sha256": "fa9ced9ad580cb417586c29462e1671df3773b04b57156eb43bb8be88f258d55",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-inspection.png",
+      "evidencePath": "regression/after-production-768x1024-inspection.png",
+      "bytes": 525928,
+      "sha256": "824cb3278d81cc6242fec425db11dd5de92cc2d7baa806bb00ca99aa3e49703b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-live-crew-closed.png",
+      "evidencePath": "regression/after-production-768x1024-live-crew-closed.png",
+      "bytes": 362913,
+      "sha256": "607850bcf7c8b47e7852bbe9ccb71b673433e9172221c43a3774c4d97370a7ce",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-live-crew-detail.png",
+      "evidencePath": "regression/after-production-768x1024-live-crew-detail.png",
+      "bytes": 383434,
+      "sha256": "099433fdd9b557dcfd388d953fd460c5501a8e05fc3897765f7ee3740af5479b",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-live-crew.png",
+      "evidencePath": "regression/after-production-768x1024-live-crew.png",
+      "bytes": 377546,
+      "sha256": "391cd78ed09525a2526662a22a831510ece1055d546fbd38e45063b2dd816ab3",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-overview.png",
+      "evidencePath": "regression/after-production-768x1024-overview.png",
+      "bytes": 363033,
+      "sha256": "ecdb234b398b4bc8656411f2ca42cd2c3e4104b7ce11cf51260fcbfaf58299e7",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay-crew-closed.png",
+      "evidencePath": "regression/after-production-768x1024-replay-crew-closed.png",
+      "bytes": 403686,
+      "sha256": "328d37f703f830ffa5a8acd52ab410c2b8eab1db5d8053345ff72c5fd766337a",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay-crew-detail.png",
+      "evidencePath": "regression/after-production-768x1024-replay-crew-detail.png",
+      "bytes": 357330,
+      "sha256": "33b183cb9db9d6a4d4b4b89b1bd587f2f77ad689fbaa82311e44607e00ae2084",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay-crew.png",
+      "evidencePath": "regression/after-production-768x1024-replay-crew.png",
+      "bytes": 352382,
+      "sha256": "26aec99eeb1d316b341e579e4731934370144ff24216ab3abe6c23fa48352736",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay-inspection.png",
+      "evidencePath": "regression/after-production-768x1024-replay-inspection.png",
+      "bytes": 472255,
+      "sha256": "6d52f9ce02a786f4caefd119171c119def770e0a1d6bb5eb76a7e31a56cf79ae",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay-seek.png",
+      "evidencePath": "regression/after-production-768x1024-replay-seek.png",
+      "bytes": 398778,
+      "sha256": "2affa65f39e086bec8e55d0cffad5be1b2a43c6ce9f865b52b91b28d8e5fd6fc",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-replay.png",
+      "evidencePath": "regression/after-production-768x1024-replay.png",
+      "bytes": 404003,
+      "sha256": "3f8e224e804d9ceb1f11d9a2cc77fdc1e9c19a0146aba58628055038c34fff80",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-768x1024-return-live.png",
+      "evidencePath": "regression/after-production-768x1024-return-live.png",
+      "bytes": 361772,
+      "sha256": "c37532ba59cd4861645d9aa145058aba0d6c3be50cc6c630c38f0dcd7efd33bb",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-900x700-overview.png",
+      "evidencePath": "regression/after-production-900x700-overview.png",
+      "bytes": 340666,
+      "sha256": "a5de857d57943a8b77576c303f627267ccb904f5d81196cecccaf5c8d352eb55",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        900,
+        700
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-900x700-resize-1024x768.png",
+      "evidencePath": "regression/after-production-900x700-resize-1024x768.png",
+      "bytes": 431009,
+      "sha256": "6c1ed6941c5c78db9d493aee695958bdd32980a76b368f9891801656baaeaad5",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-900x700-resize-390x844.png",
+      "evidencePath": "regression/after-production-900x700-resize-390x844.png",
+      "bytes": 168981,
+      "sha256": "2e2f725ba935902f42ca802586a6a96c2d656995061c18ee3584f34455602fee",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        390,
+        844
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-900x700-resize-768x1024.png",
+      "evidencePath": "regression/after-production-900x700-resize-768x1024.png",
+      "bytes": 363923,
+      "sha256": "d197c53a2082c7b6f2f9a7c789e9fc6c533093954e3e9e55e5a2bdf7054191a1",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        768,
+        1024
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/after-production-900x700-resize-900x700.png",
+      "evidencePath": "regression/after-production-900x700-resize-900x700.png",
+      "bytes": 340803,
+      "sha256": "c64a145f60c4808a8112b9d3a3b612dfe6a325dd8e03ce90a1316b600d3b14ce",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        900,
+        700
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-browser.json",
+      "evidencePath": "regression/development-browser.json",
+      "bytes": 172208,
+      "sha256": "dd192a62194446f4dac8057e3c7ea2eb903650058c51d496bb4c834c49e85eab",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-1024.json",
+      "evidencePath": "regression/development-requests-1024.json",
+      "bytes": 15852,
+      "sha256": "4430aa3c38ee3ddf93e068114befbaa91696d004183b70b322bc18533bfe3438",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-1280.json",
+      "evidencePath": "regression/development-requests-1280.json",
+      "bytes": 21882,
+      "sha256": "8d1cf2343201bc6b96d07a1692fa116fbda9b53aaafefa4c371cd26fa4f4242d",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-1440.json",
+      "evidencePath": "regression/development-requests-1440.json",
+      "bytes": 109990,
+      "sha256": "b0df26ac915c00fb148f153d55efd99ac1fdacd9539250fafb7f5d9666acecd5",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-390.json",
+      "evidencePath": "regression/development-requests-390.json",
+      "bytes": 66899,
+      "sha256": "f6d0620279b127e8171e775518600d557b667c395b48bfafd90b0fefe72683d9",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-768.json",
+      "evidencePath": "regression/development-requests-768.json",
+      "bytes": 86334,
+      "sha256": "fdc687a18e0641a24b02c3792a8c2d676ae8e870e9a29fcf2dd9ec09f73959b7",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development-requests-900.json",
+      "evidencePath": "regression/development-requests-900.json",
+      "bytes": 15852,
+      "sha256": "08bf5602907937763bb8a7644267a88537fe3b671bb437b8ce20d394e94b7ca9",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/development.txt",
+      "evidencePath": "regression/development.txt",
+      "bytes": 19197,
+      "sha256": "0318184cc85f82a43c0aad82c122daddde93850c4ebd317288861ef4d2ed77c8",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/full-scene-edge.json",
+      "evidencePath": "regression/full-scene-edge.json",
+      "bytes": 12677,
+      "sha256": "1e34fccdbddd8ccdfbd20e6c50d1a5730e8d81d741a3a903156c1156c4b5a83e",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/full-scene-edge.txt",
+      "evidencePath": "regression/full-scene-edge.txt",
+      "bytes": 402,
+      "sha256": "355db980081a59c6622faf0704dd55b9cafa2b5472b9b220d18ce3a888fee48f",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/gpu-edge-pick-4175.png",
+      "evidencePath": "regression/gpu-edge-pick-4175.png",
+      "bytes": 1390375,
+      "sha256": "103ebfeb792f3b256c321107a78c61c9d2752877cdaf9003be378a8b039c5047",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/gpu-edge-pick-5175.png",
+      "evidencePath": "regression/gpu-edge-pick-5175.png",
+      "bytes": 1391836,
+      "sha256": "3fc3f28c2193776c26eafb636400b71802d0d73cf7cb1a3f5ec6e717097ea660",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/idle-lifecycle.json",
+      "evidencePath": "regression/idle-lifecycle.json",
+      "bytes": 70820,
+      "sha256": "fd22ebca0a143b64451b2dcccfd53224ebf091a7ad73efebb3b89508e8907b66",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/idle-lifecycle.txt",
+      "evidencePath": "regression/idle-lifecycle.txt",
+      "bytes": 943,
+      "sha256": "f243eec5cd4dec8456a12ddb5918e02eb093a373a221751b7544404bf0314133",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/input-regression.json",
+      "evidencePath": "regression/input-regression.json",
+      "bytes": 7505,
+      "sha256": "2290e1f82d8295caeb61bcb75aa7e0dc213380cdf7858340d459c59cbf9f4710",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/input.txt",
+      "evidencePath": "regression/input.txt",
+      "bytes": 214,
+      "sha256": "35f85179ba5ca4d682056293251148ca1c36bb58d66b2a15c874682dcb605ace",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-browser.json",
+      "evidencePath": "regression/production-browser.json",
+      "bytes": 172460,
+      "sha256": "f02f0aaddf5f86dc06757e62bf88613b1bd66381cacf3024876f8353cf943f9a",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-1024.json",
+      "evidencePath": "regression/production-requests-1024.json",
+      "bytes": 13698,
+      "sha256": "29d36f37649bb88dd8416e3ff13104450a532e18905c55e6a5d397f61c94fa73",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-1280.json",
+      "evidencePath": "regression/production-requests-1280.json",
+      "bytes": 13698,
+      "sha256": "9ba881d9783d99b382bcc6baf412c62b6e06a5c6b317744e7dabc586f5980f19",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-1440.json",
+      "evidencePath": "regression/production-requests-1440.json",
+      "bytes": 99607,
+      "sha256": "6d138e9cd41d2aba0320579b39eb8c567f0f4272e6353bf9e45ed2d76c281ba9",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-390.json",
+      "evidencePath": "regression/production-requests-390.json",
+      "bytes": 63368,
+      "sha256": "c7f9fb4ec8d22c8201dc0fc7abc8abd5948c361d0ca450006863d9efe5558b53",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-768.json",
+      "evidencePath": "regression/production-requests-768.json",
+      "bytes": 81644,
+      "sha256": "3093015ba76601dbea6f5a15aac789e2422019ae4ba1161a38700522f8f20bb3",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production-requests-900.json",
+      "evidencePath": "regression/production-requests-900.json",
+      "bytes": 13698,
+      "sha256": "d00264640a250f4304b13d588a81106fd6fb0440d6bc6feaf0d27c0c7331f38b",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/production.txt",
+      "evidencePath": "regression/production.txt",
+      "bytes": 19146,
+      "sha256": "5c26cc3aea8097bb36f3e353fa940a6dc93aab55612576315f5d4eb303a91512",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/space-below-dashboard-inspection-4175.png",
+      "evidencePath": "regression/space-below-dashboard-inspection-4175.png",
+      "bytes": 731309,
+      "sha256": "a07ab2875e6ee9413e7fdd0389e7d3b477e64b082b57256a19bda4d7f38ac6cf",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/space-below-dashboard-inspection-5175.png",
+      "evidencePath": "regression/space-below-dashboard-inspection-5175.png",
+      "bytes": 724589,
+      "sha256": "eb1562ca32e6ef41d47dd7c024a4d853610bfcf4eb21a35d4775bc930162c7d2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/space-below-dashboard-overview-4175.png",
+      "evidencePath": "regression/space-below-dashboard-overview-4175.png",
+      "bytes": 200163,
+      "sha256": "8e0df572e06c2d8aa208ea46b2e42ef37c409a29b1b10335e6694a56b9083bd2",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/space-below-dashboard-overview-5175.png",
+      "evidencePath": "regression/space-below-dashboard-overview-5175.png",
+      "bytes": 194500,
+      "sha256": "4d615d94e908d593bd40d4925b312954abbdeb38f79e87822dde07fcbc9f21c6",
+      "category": "QA/source/validation record",
+      "format": "PNG",
+      "dimensions": [
+        1440,
+        900
+      ],
+      "provenance": "Local real-browser QA capture, not an application runtime asset or synthesized ISS telemetry. Source epoch/camera/network are in the corresponding fixture/run JSON. NASA imagery/model credits remain in captures."
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/transitions.json",
+      "evidencePath": "regression/transitions.json",
+      "bytes": 4609899,
+      "sha256": "2e0c0f871fcbd4d206a23c03794eae3d05a67fa6a0e1d949021945ff18c2936d",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/transitions.txt",
+      "evidencePath": "regression/transitions.txt",
+      "bytes": 6825,
+      "sha256": "856ca496ce632d471de9c31daa024450d46e2eb018d8ee677588d81c9181b060",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/visual-lint.json",
+      "evidencePath": "regression/visual-lint.json",
+      "bytes": 9848,
+      "sha256": "88cade2bb20bab3d0f4a8101c769382438b0fcfd874fb9dbc6003cdacd0c6e88",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression/visual-lint.txt",
+      "evidencePath": "regression/visual-lint.txt",
+      "bytes": 34,
+      "sha256": "9113d74096b5e213477ffbe92513347e354775aca3189c694537b56ff6bd430d",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/regression-summary.json",
+      "evidencePath": "regression-summary.json",
+      "bytes": 801,
+      "sha256": "ecb5fd75570dad7ad4e41662a12716e25274f814d6a70a0bf8c92d8c461d9ad9",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/backend-test.txt",
+      "evidencePath": "validation/backend-test.txt",
+      "bytes": 72520,
+      "sha256": "0f179b2d4080bb18c0f6190657729b7116d9798f00467e4ec1a0a0dbe2041a0c",
+      "category": "QA/source/validation record",
+      "textLogNormalization": "Trailing whitespace and extra EOF blank lines removed only; numbers and results unchanged.",
+      "preNormalizationSha256": "5c6ee1e10eafaec9ef382ffe53bdf9bb7da514c937b978db2e1a6ebc6ec47d6a"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/backend-verify.txt",
+      "evidencePath": "validation/backend-verify.txt",
+      "bytes": 72985,
+      "sha256": "c588ca0def11c9a89783fa2f1c939b3d3faf72563be0ed7ebc5a7bb1cabfedb2",
+      "category": "QA/source/validation record",
+      "textLogNormalization": "Trailing whitespace and extra EOF blank lines removed only; numbers and results unchanged.",
+      "preNormalizationSha256": "e13e7203faa2178d45eabd8ef140d1014e6e52858373bb9f08b71fc5ac9cf192"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/final-live-remainder.txt",
+      "evidencePath": "validation/final-live-remainder.txt",
+      "bytes": 2490,
+      "sha256": "3624bd091f0c583e33c0192568a2a0316299b351ed9a25a82e5ede93e6b2318e",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/frontend-tests.txt",
+      "evidencePath": "validation/frontend-tests.txt",
+      "bytes": 459,
+      "sha256": "2308ce2100247db2c2b5bbcd5e8b9679046b3b87d6bdf9a9c25ce18126ceb71c",
+      "category": "QA/source/validation record",
+      "textLogNormalization": "Trailing whitespace and extra EOF blank lines removed only; numbers and results unchanged.",
+      "preNormalizationSha256": "4635cc7dca23d149dbbbf8f7f2df23a49280cba959b7b4d49a7950a97c797109"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/gpu-audit.txt",
+      "evidencePath": "validation/gpu-audit.txt",
+      "bytes": 434,
+      "sha256": "9c1a42227f6221ccddf112ba047358867e8adf1fd2315e14328eefbe1718d503",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/loading-final.txt",
+      "evidencePath": "validation/loading-final.txt",
+      "bytes": 394,
+      "sha256": "ab0af1b46cc3307582bc8123d986ea7e33112dfcc99b0449423e69ed4efbd081",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/production-build.txt",
+      "evidencePath": "validation/production-build.txt",
+      "bytes": 909,
+      "sha256": "6122479eb21bcf28efb0ad5c0946073845aebb98167571bfe8e22e75ab3a9aa2",
+      "category": "QA/source/validation record",
+      "textLogNormalization": "Trailing whitespace and extra EOF blank lines removed only; numbers and results unchanged.",
+      "preNormalizationSha256": "ae1aeb76d8e0fae68fddba5b07ad2494f5fd78273740b080fe9007a2b81251bb"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/skybox-generation.txt",
+      "evidencePath": "validation/skybox-generation.txt",
+      "bytes": 1421,
+      "sha256": "eb9235a9c2948b58e0e87d6a6ce8114ceae4d133408bbc8e8c4723c732caab59",
+      "category": "QA/source/validation record"
+    },
+    {
+      "path": "docs/frontend/high-fidelity-rendering-performance/evidence/validation/typecheck.txt",
+      "evidencePath": "validation/typecheck.txt",
+      "bytes": 54,
+      "sha256": "1c3bfe3118a139412e5bf4d39abe1a8cbbaa827b54783ab2426e758381d36606",
+      "category": "QA/source/validation record",
+      "textLogNormalization": "Trailing whitespace and extra EOF blank lines removed only; numbers and results unchanged.",
+      "preNormalizationSha256": "40093b8a9388dfbd872cb2fa656379fbe84b8adb35e18f876b55d70b4e3d7441"
+    }
+  ]
+}
