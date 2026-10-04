@@ -63,7 +63,10 @@ import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
+import { workspaceProjectionFov, type WorkspaceGeometry } from './workspaceGeometry';
+
 interface EarthViewProps {
+  workspace?: WorkspaceGeometry | null;
   replay?: { atMs: number; state: ReplayState | null } | null;
   window: OrbitalWindow | null;
   comparison: ComparisonResponse | null;
@@ -83,8 +86,11 @@ export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ workspace = null, replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
+  const workspaceRef = useRef(workspace);
+  workspaceRef.current = workspace;
+  const resizeWorkspace = useRef<(() => void) | null>(null);
   const viewer = useRef<Viewer | null>(null);
   const iss = useRef<Entity | null>(null);
   const active = useRef<VisualWindow | null>(null);
@@ -157,6 +163,33 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
       return;
     }
     viewer.current = instance;
+    // Canonical camera optics stay in full-shell coordinates. The native
+    // symmetric frustum crops that lens to the real free viewport, keeping
+    // pixel scale and Cesium's own picking/controller geometry coherent.
+    let canonicalFov = instance.camera.frustum instanceof PerspectiveFrustum ? instance.camera.frustum.fov! : Math.PI / 3;
+    let viewportWidth = 0, viewportHeight = 0;
+    const applyFov = (fov: number): void => {
+      canonicalFov = fov;
+      const full = workspaceRef.current;
+      if (instance.camera.frustum instanceof PerspectiveFrustum && viewportWidth > 0 && viewportHeight > 0) {
+        instance.camera.frustum.fov = workspaceProjectionFov(fov, full?.width ?? viewportWidth,
+          full?.height ?? viewportHeight, viewportWidth, viewportHeight);
+      }
+    };
+    const resize = (width: number, height: number): void => {
+      if (width <= 0 || height <= 0) return;
+      viewportWidth = width; viewportHeight = height;
+      instance.resize();
+      applyFov(canonicalFov);
+      instance.scene.requestRender();
+    };
+    const viewportObserver = new ResizeObserver(entries => {
+      const bounds = entries[0].contentRect;
+      if (bounds.width !== viewportWidth || bounds.height !== viewportHeight) resize(bounds.width, bounds.height);
+    });
+    viewportObserver.observe(container.current);
+    resizeWorkspace.current = () => resize(container.current!.clientWidth, container.current!.clientHeight);
+    resizeWorkspace.current();
     const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
     const visualFrame = new TrajectoryVisualFrame();
     const sceneVelocity = new Cartesian3();
@@ -473,7 +506,7 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
     let liftRate = 0, visibilityRate = 0;
     const capturePose = (): CameraPose => ({ position: Cartesian3.clone(instance.camera.positionWC),
       direction: Cartesian3.clone(instance.camera.directionWC), up: Cartesian3.clone(instance.camera.upWC),
-      fov: instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3 });
+      fov: canonicalFov });
 
     const leaveInspection = (retarget = false): void => {
       if (viewMode.current === 'EARTH_OVERVIEW' || (viewMode.current === 'EXITING_INSPECTION' && !retarget)) return;
@@ -527,7 +560,7 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
         transform: Matrix4.clone(instance.camera.transform) };
       instance.camera.cancelFlight();
       instance.camera.lookAtTransform(Matrix4.IDENTITY);
-      const endpoint = rearInspectionOffset(instance.scene.canvas.clientWidth / instance.scene.canvas.clientHeight, new Cartesian3());
+      const endpoint = rearInspectionOffset((workspaceRef.current?.width ?? viewportWidth) / (workspaceRef.current?.height ?? viewportHeight), new Cartesian3());
       const endpointDirection = Cartesian3.negate(Matrix4.multiplyByPointAsVector(trackingFrame, endpoint, new Cartesian3()), new Cartesian3());
       const duration = transitionDuration('entry', pose, position, Cartesian3.angleBetween(pose.direction, endpointDirection));
       entry.current = new InspectionTransition('entry', pose, trackingFrame,
@@ -756,7 +789,7 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
         Cartesian3.clone(pose.direction, instance.camera.direction);
         Cartesian3.clone(pose.up, instance.camera.up);
         Cartesian3.normalize(Cartesian3.cross(pose.direction, pose.up, instance.camera.right), instance.camera.right);
-        if (instance.camera.frustum instanceof PerspectiveFrustum) instance.camera.frustum.fov = pose.fov;
+        applyFov(pose.fov);
         if (progress === 1) {
           if (flight.kind === 'entry' && position) {
             instance.camera.lookAtTransform(trackingFrame, flight.endOffset);
@@ -821,7 +854,7 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
       // Retain actual camera/presentation derivatives for C1 Back, without frame allocations.
       const wall = performance.now(), elapsed = (wall - previousWall) / 1000;
       poseQuaternion(instance.camera.directionWC, instance.camera.upWC, currentQuaternion);
-      const fov = instance.camera.frustum instanceof PerspectiveFrustum ? (instance.camera.frustum.fov ?? Math.PI / 3) : Math.PI / 3;
+      const fov = canonicalFov;
       if (entry.current) Cartesian3.clone(entry.current.focusPoint, focusPoint);
       else if (viewMode.current === 'ISS_INSPECTION') displayedPosition(scenePosition, displayLiftMeters, focusPoint);
       else {
@@ -871,6 +904,8 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
     instance.clock.onTick.addEventListener(tick);
     return () => {
       destroyed = true;
+      viewportObserver.disconnect();
+      resizeWorkspace.current = null;
       cancelSkyWarmup();
       cancelGraphicsWarmup?.();
       removeDiagnostics?.();
@@ -898,6 +933,8 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
       instance.destroy();
     };
   }, []);
+
+  useEffect(() => { resizeWorkspace.current?.(); }, [workspace]);
 
   useEffect(() => {
     if (!window || !viewer.current || !iss.current) return;
@@ -955,5 +992,5 @@ export const EarthView = memo(function EarthView({ replay = null, window, compar
     if (overviewRequest > 0) exitInspection.current?.();
   }, [overviewRequest]);
 
-  return <div className="earth-view" ref={container} aria-label="Interactive 3D Earth and selected ISS trajectory" />;
+  return <div className="earth-view" style={{ left: workspace?.left ?? 0 }} ref={container} aria-label="Interactive 3D Earth and selected ISS trajectory" />;
 });

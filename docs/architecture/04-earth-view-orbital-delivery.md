@@ -1,5 +1,21 @@
 # Earth View orbital delivery decision and validation
 
+## Dynamic workspace presentation boundary — 2026-10-04
+
+App owns event-driven rendered dashboard geometry; CSS owns whether that surface
+is a side panel or bottom/full-width overlay. EarthView retains sole ownership
+of Viewer, physical camera, scene and resize/projection adaptation. The new
+workspace prop carries only local layout dimensions, with no source or API
+coupling. The real free viewport uses a symmetric crop of the existing camera
+lens so canonical pose/FOV, apparent scale, picking and transitions remain
+coherent. Two observers have distinct responsibilities: shell/dashboard
+measurement and Cesium-container resize. Neither introduces a frame-loop DOM
+measurement, provider call or frame-driven React state.
+
+This is a reversible local presentation adapter within the accepted React/Cesium
+boundary. No service, dependency, persistence or public contract changes; no new
+ADR required. [Alternatives, formula, regression evidence and limits](../frontend/dynamic-workspace-centering/README.md).
+
 ## Night-side protection and rounded trajectory joins — 2026-10-03
 
 The existing physical/presentation boundary is unchanged. Constant adjacent-endpoint attributes support GPU capsule ownership; fragment-ray visibility limits the curved station mask at the Earth limb. Geometry is prepared once on response replacement, never on camera motion. Sources, backend, API, first temporal exit, camera and provenance remain unchanged. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](../frontend/trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.

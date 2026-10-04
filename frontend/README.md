@@ -1,5 +1,14 @@
 # MISSION1 Earth View
 
+## Dynamic free-workspace framing — 2026-10-04
+
+On left-dashboard layouts, Cesium content is framed against the free workspace
+to the right of the dashboard; geometry is derived dynamically from rendered
+layout dimensions. Bottom/full-width panels use the full horizontal viewport.
+The same Viewer and accepted camera pose, scale, data and physics remain;
+[numerical, visual, interaction and lifecycle evidence](../docs/frontend/dynamic-workspace-centering/README.md)
+records the actual viewport and symmetric lens crop.
+
 ## Approved application wordmark — 2026-10-04
 
 The upper-left brand imports the frontend-owned

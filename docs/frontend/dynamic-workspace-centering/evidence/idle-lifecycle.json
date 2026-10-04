@@ -1,0 +1,296 @@
+[
+  {
+    "port": 5175,
+    "idleSeconds": 10,
+    "idleMeasurements": 0,
+    "idleCallbacks": 0,
+    "activeObservers": 2,
+    "windowResizeListeners": 1,
+    "before": {
+      "observers": [
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 7,
+          "totalMs": 0.19999992847442627
+        }
+      ],
+      "measurements": 4
+    },
+    "after": {
+      "observers": [
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 7,
+          "totalMs": 0.19999992847442627
+        }
+      ],
+      "measurements": 4
+    },
+    "afterFourCrewCycles": {
+      "observers": [
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 7,
+          "totalMs": 0.19999992847442627
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.19999998807907104
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.19999998807907104
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0
+        }
+      ],
+      "measurements": 36
+    },
+    "pageErrors": []
+  },
+  {
+    "port": 4175,
+    "idleSeconds": 10,
+    "idleMeasurements": 0,
+    "idleCallbacks": 0,
+    "activeObservers": 2,
+    "windowResizeListeners": 1,
+    "before": {
+      "observers": [
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 11,
+          "totalMs": 0.3999999761581421
+        }
+      ],
+      "measurements": 4
+    },
+    "after": {
+      "observers": [
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 11,
+          "totalMs": 0.3999999761581421
+        }
+      ],
+      "measurements": 4
+    },
+    "afterFourCrewCycles": {
+      "observers": [
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": true,
+          "targets": [
+            "earth-view"
+          ],
+          "calls": 11,
+          "totalMs": 0.3999999761581421
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.09999996423721313
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.09999996423721313
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.20000004768371582
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.19999998807907104
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.10000002384185791
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0
+        },
+        {
+          "active": false,
+          "targets": [
+            "app-shell  has-crew-panel",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0
+        },
+        {
+          "active": true,
+          "targets": [
+            "app-shell  ",
+            "status-panel"
+          ],
+          "calls": 1,
+          "totalMs": 0.09999996423721313
+        }
+      ],
+      "measurements": 36
+    },
+    "pageErrors": []
+  }
+]

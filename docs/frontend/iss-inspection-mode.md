@@ -1,5 +1,25 @@
 # ISS Inspection Mode
 
+## Canonical pose and workspace composition — 2026-10-04
+
+A visible left status panel also defines Inspection's free horizontal viewport;
+its rendered right edge is 302px in the current desktop layout. The station's
+physical pivot and canonical 90m /42.5° /zero-lateral pose, 100° full-window FOV,
+6s entry and 5s return remain unchanged. Responsive range widening still uses
+the **full shell aspect**, preserving the existing 144m at 768×1024 and
+233.723077m at 390×844 endpoints.
+
+The actual Cesium container occupies the free region. A symmetric crop of the
+full-window camera lens preserves apparent scale: at 1440×900 the native cropped
+frustum FOV is 86.567463°, equivalent to the canonical 100° lens at the original
+full-window pixel scale. Camera snapshots, focus/pacing calculations and Back
+retain the canonical lens; the native crop is solely screen composition. It
+uses zero x/y frustum offsets and Cesium's normal ray/picking geometry. On mobile
+the bottom panel reserves no horizontal strip, so the native FOV remains 100°.
+No physical camera offset, model scale or source sample changes. Native viewport
+clipping can crop outer arrays at the preserved apparent scale; orbit and zoom
+remain available. [Validation and limits](dynamic-workspace-centering/README.md).
+
 ## Inspection range and clearance audit — 2026-10-02
 
 The selected physical pivot, frame translation and centred model coincide in stable Inspection. Measured GP and OEM desktop ranges before and after the clearance correction are **90 m**, with Forward **−66.354960 m**, Left **≈0 m**, Up **+60.803119 m**, elevation **42.5°** and FOV **100°**. Arbitrary Earth entries reach that same endpoint without a handoff correction. Accepted portrait widening remains `90 × max(1, 1.2/aspect)`; 390×844 uses 233.723077 m. No camera change was required. [Full measurements and reveal audit](final-graphics-regression-fixes/README.md).

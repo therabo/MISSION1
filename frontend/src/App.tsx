@@ -1,7 +1,7 @@
 import { useMissionReplay } from "./replay/useMissionReplay";
 import { ReplayControls } from "./replay/ReplayControls";
 import { ReplayCrewPanel } from "./replay/ReplayCrewPanel";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useOrbitalDelivery } from "./api/useOrbitalDelivery";
 import { useComparisonDelivery } from "./api/useComparisonDelivery";
 import { EarthView } from "./cesium/EarthView";
@@ -24,6 +24,7 @@ import type {
   TrajectorySource,
 } from "./cesium/trajectorySelection";
 import type { ViewMode } from "./cesium/inspectionMode";
+import { useEarthWorkspace } from "./layout/useEarthWorkspace";
 import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
 
 export default function App() {
@@ -87,6 +88,8 @@ export default function App() {
   const approaching = viewMode === "ENTERING_INSPECTION";
   const returning = viewMode === "EXITING_INSPECTION";
   const stationFocused = inspecting || returning;
+  const shell = useRef<HTMLElement>(null);
+  const workspace = useEarthWorkspace(shell, `${replaying}:${crewOpen}:${stationFocused}`);
   const oemReason = oemUnavailableReason(comparison.response, sceneTimeMs);
   const chooseSource = (next: TrajectorySource) => {
     setSelectedSource((current) =>
@@ -103,9 +106,11 @@ export default function App() {
 
   return (
     <main
+      ref={shell}
       className={`app-shell ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
     >
       <EarthView
+        workspace={workspace}
         replay={
           replaying
             ? {

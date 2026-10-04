@@ -1,0 +1,2234 @@
+[
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 911.0794144989211,
+      "y": 449.3856601534215
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:27.2551880000046367Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "altered-dashboard-width",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 460,
+        "width": 436,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 460,
+    "expectedCenter": 950,
+    "observedEarth": {
+      "x": 949.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 951.471709510362,
+      "y": 449.8776226228158
+    },
+    "canvas": {
+      "left": 460,
+      "width": 980,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 42.901606481915806,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495915,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:28.37368800000513147Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "restored-width",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 911.847201508657,
+      "y": 450.348513064422
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:29.4442880000297009Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "crew",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 912.3997720993824,
+      "y": 451.041471133697
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:31.019788000026892405Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "crew-detail",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 912.8100135757487,
+      "y": 451.5559395958812
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:32.1894880000163539Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "crew-closed",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 913.192158954423,
+      "y": 452.03517379557593
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:33.2790880000429752Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "replay",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 30,
+        "right": 390,
+        "width": 360,
+        "height": 322.5625,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 390,
+    "expectedCenter": 915,
+    "observedEarth": {
+      "x": 914.9999999999997,
+      "y": 447.29978719307786
+    },
+    "observedModel": {
+      "x": 650.6702846235241,
+      "y": 721.9501984129614
+    },
+    "canvas": {
+      "left": 390,
+      "width": 1050,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 45.660683517310204,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1246.6015046566586,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": false,
+    "epoch": "2026-10-02T23:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "replay-seek",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 30,
+        "right": 390,
+        "width": 360,
+        "height": 322.5625,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 390,
+    "expectedCenter": 915,
+    "observedEarth": {
+      "x": 914.9999999999997,
+      "y": 447.29978719307786
+    },
+    "observedModel": {
+      "x": 1260.4921852694788,
+      "y": 441.1535867786175
+    },
+    "canvas": {
+      "left": 390,
+      "width": 1050,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 45.660683517310204,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1246.6015046566586,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": false,
+    "epoch": "2026-10-02T22:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "return-live",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 914.7940618621004,
+      "y": 454.04533688131755
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:37.8489000000336091Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "inspection",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 302,
+        "width": 278,
+        "height": 101,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 302,
+    "expectedCenter": 871,
+    "observedEarth": {
+      "x": 869.85731639272,
+      "y": 1109.5869573848456
+    },
+    "observedModel": {
+      "x": 871.0000000018014,
+      "y": 450.00000000094207
+    },
+    "canvas": {
+      "left": 302,
+      "width": 1138,
+      "height": 900
+    },
+    "position": [
+      4524349.030171715,
+      4566598.568791656,
+      2200957.9822795256
+    ],
+    "direction": [
+      -0.6412379422617611,
+      0.0003404139256795724,
+      -0.7673420264277604
+    ],
+    "up": [
+      0.3144774065304627,
+      0.9122798249063808,
+      -0.2623918479119684
+    ],
+    "nativeFovDegrees": 86.56746259287229,
+    "canonicalFovDegrees": 100.00000000000003,
+    "pixelLens": 603.9393788292064,
+    "inspection": {
+      "range": 90.0000000079638,
+      "elevation": 42.50000000889655,
+      "lateral": -4.190951585769653e-9
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:45.4878000000098837Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1440,
+    "height": 900,
+    "state": "back",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 783,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1440,
+    "dashboardRight": 380,
+    "expectedCenter": 910,
+    "observedEarth": {
+      "x": 909.9999999999997,
+      "y": 447.298758148563
+    },
+    "observedModel": {
+      "x": 919.6400892680483,
+      "y": 460.1323579784588
+    },
+    "canvas": {
+      "left": 380,
+      "width": 1060,
+      "height": 900
+    },
+    "position": [
+      15693497.608469699,
+      15365445.94234036,
+      8002331.240822989
+    ],
+    "direction": [
+      -0.670830050978602,
+      -0.6568072422075097,
+      -0.34437086010261064
+    ],
+    "up": [
+      -0.2460652215239467,
+      -0.24092155578981134,
+      0.9388336970476656
+    ],
+    "nativeFovDegrees": 46.05039662305787,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1247.0765814495917,
+    "inspection": {
+      "range": 23375630.504477937,
+      "elevation": 20.01928960448212,
+      "lateral": 15365445.94234036
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:51.6877999999924214Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1280,
+    "height": 720,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 603,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1280,
+    "dashboardRight": 380,
+    "expectedCenter": 830,
+    "observedEarth": {
+      "x": 830.0000000000001,
+      "y": 357.74228288495345
+    },
+    "observedModel": {
+      "x": 830.8431663566272,
+      "y": 359.43040897355957
+    },
+    "canvas": {
+      "left": 380,
+      "width": 900,
+      "height": 720
+    },
+    "position": [
+      15507722.664738787,
+      15821113.17607554,
+      7459114.492761173
+    ],
+    "direction": [
+      -0.6629484554966165,
+      -0.6763457646921439,
+      -0.32102297727366796
+    ],
+    "up": [
+      -0.22471556591643005,
+      -0.2292567695238431,
+      0.9470714059997536
+    ],
+    "nativeFovDegrees": 44.18932779635655,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 1108.5125168440813,
+    "inspection": {
+      "range": 23375959.304224584,
+      "elevation": 18.608106839832406,
+      "lateral": 15821113.17607554
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:55.7823900000421418Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 1024,
+    "height": 768,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 651,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1024,
+    "dashboardRight": 380,
+    "expectedCenter": 702,
+    "observedEarth": {
+      "x": 702.0000000000001,
+      "y": 382.21020880403967
+    },
+    "observedModel": {
+      "x": 702.6895392112791,
+      "y": 383.5773612172044
+    },
+    "canvas": {
+      "left": 380,
+      "width": 644,
+      "height": 768
+    },
+    "position": [
+      15480707.31519517,
+      15883281.201423116,
+      7382860.152507963
+    ],
+    "direction": [
+      -0.6618015646717911,
+      -0.6790116328151343,
+      -0.31774501018850715
+    ],
+    "up": [
+      -0.22177749731096383,
+      -0.2275447938015281,
+      0.9481762011885267
+    ],
+    "nativeFovDegrees": 46.82644889274108,
+    "canonicalFovDegrees": 60.00000000000001,
+    "pixelLens": 886.8100134752651,
+    "inspection": {
+      "range": 23376003.6091225,
+      "elevation": 18.410971142101523,
+      "lateral": 15883281.201423116
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:56:59.8654050000441202Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 900,
+    "height": 700,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 583,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 900,
+    "dashboardRight": 380,
+    "expectedCenter": 640,
+    "observedEarth": {
+      "x": 640.0000000000049,
+      "y": 348.4415967266358
+    },
+    "observedModel": {
+      "x": 640.5712673024448,
+      "y": 349.5963968184471
+    },
+    "canvas": {
+      "left": 380,
+      "width": 520,
+      "height": 700
+    },
+    "position": [
+      15453090.49676878,
+      15945857.815036194,
+      7305561.94535979
+    ],
+    "direction": [
+      -0.6606289586335599,
+      -0.681695059319624,
+      -0.3144220493444327
+    ],
+    "up": [
+      -0.2188138272746742,
+      -0.22579135082496407,
+      0.9492832953792282
+    ],
+    "nativeFovDegrees": 48.364948711112845,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 779.4228634059948,
+    "inspection": {
+      "range": 23376048.05556674,
+      "elevation": 18.211368093135903,
+      "lateral": 15945857.815036194
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:03.7736620000359835Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 900,
+    "height": 700,
+    "state": "resize-390x844",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000463,
+      "y": 420.5385640414229
+    },
+    "observedModel": {
+      "x": 195.7257067943751,
+      "y": 421.86394073017107
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15453090.49676878,
+      15945857.815036194,
+      7305561.94535979
+    ],
+    "direction": [
+      -0.6606289586335599,
+      -0.681695059319624,
+      -0.3144220493444327
+    ],
+    "up": [
+      -0.2188138272746742,
+      -0.22579135082496407,
+      0.9492832953792282
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376048.05556674,
+      "elevation": 18.211368093135903,
+      "lateral": 15945857.815036194
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:04.7063620000208175Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 900,
+    "height": 700,
+    "state": "resize-1024x768",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 651,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 1024,
+    "dashboardRight": 380,
+    "expectedCenter": 702,
+    "observedEarth": {
+      "x": 702.0000000000056,
+      "y": 382.22688338675005
+    },
+    "observedModel": {
+      "x": 703.0971364963946,
+      "y": 384.1136347131937
+    },
+    "canvas": {
+      "left": 380,
+      "width": 644,
+      "height": 768
+    },
+    "position": [
+      15453090.49676878,
+      15945857.815036194,
+      7305561.94535979
+    ],
+    "direction": [
+      -0.6606289586335599,
+      -0.681695059319624,
+      -0.3144220493444327
+    ],
+    "up": [
+      -0.2188138272746742,
+      -0.22579135082496407,
+      0.9492832953792282
+    ],
+    "nativeFovDegrees": 46.82644889274108,
+    "canonicalFovDegrees": 60.00000000000001,
+    "pixelLens": 886.8100134752651,
+    "inspection": {
+      "range": 23376048.05556674,
+      "elevation": 18.211368093135903,
+      "lateral": 15945857.815036194
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:05.5901620000331604Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 900,
+    "height": 700,
+    "state": "resize-768x1024",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 380,
+    "expectedCenter": 574,
+    "observedEarth": {
+      "x": 574.0000000000056,
+      "y": 510.22688338675005
+    },
+    "observedModel": {
+      "x": 575.3269060389697,
+      "y": 512.4079858778578
+    },
+    "canvas": {
+      "left": 380,
+      "width": 388,
+      "height": 1024
+    },
+    "position": [
+      15453090.49676878,
+      15945857.815036194,
+      7305561.94535979
+    ],
+    "direction": [
+      -0.6606289586335599,
+      -0.681695059319624,
+      -0.3144220493444327
+    ],
+    "up": [
+      -0.2188138272746742,
+      -0.22579135082496407,
+      0.9492832953792282
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376048.05556674,
+      "elevation": 18.211368093135903,
+      "lateral": 15945857.815036194
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:06.52356200000031095Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 900,
+    "height": 700,
+    "state": "resize-900x700",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 583,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 900,
+    "dashboardRight": 380,
+    "expectedCenter": 640,
+    "observedEarth": {
+      "x": 640.0000000000049,
+      "y": 348.4415967266358
+    },
+    "observedModel": {
+      "x": 641.3645358595481,
+      "y": 350.61263039242414
+    },
+    "canvas": {
+      "left": 380,
+      "width": 520,
+      "height": 700
+    },
+    "position": [
+      15453090.49676878,
+      15945857.815036194,
+      7305561.94535979
+    ],
+    "direction": [
+      -0.6606289586335599,
+      -0.681695059319624,
+      -0.3144220493444327
+    ],
+    "up": [
+      -0.2188138272746742,
+      -0.22579135082496407,
+      0.9492832953792282
+    ],
+    "nativeFovDegrees": 48.364948711112845,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 779.4228634059948,
+    "inspection": {
+      "range": 23376048.05556674,
+      "elevation": 18.211368093135903,
+      "lateral": 15945857.815036194
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:07.4401620000226103Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 380,
+    "expectedCenter": 574,
+    "observedEarth": {
+      "x": 573.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 574.6465404430243,
+      "y": 511.56252623469095
+    },
+    "canvas": {
+      "left": 380,
+      "width": 388,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:11.318567999989682Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "crew",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 0,
+    "expectedCenter": 384,
+    "observedEarth": {
+      "x": 383.9999999999994,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 384.91659086545593,
+      "y": 511.90989371204466
+    },
+    "canvas": {
+      "left": 0,
+      "width": 768,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:12.4183680000005552Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "crew-detail",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 0,
+    "expectedCenter": 384,
+    "observedEarth": {
+      "x": 383.9999999999994,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 385.1743621512736,
+      "y": 512.2414664631156
+    },
+    "canvas": {
+      "left": 0,
+      "width": 768,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:13.468168000008518Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "crew-closed",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 380,
+    "expectedCenter": 574,
+    "observedEarth": {
+      "x": 573.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 575.4199036572423,
+      "y": 512.5573079756216
+    },
+    "canvas": {
+      "left": 380,
+      "width": 388,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:14.46816800000488Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "replay",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 30,
+        "right": 390,
+        "width": 360,
+        "height": 322.5625,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 390,
+    "expectedCenter": 579,
+    "observedEarth": {
+      "x": 578.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 386.8574084138726,
+      "y": 702.003906613455
+    },
+    "canvas": {
+      "left": 390,
+      "width": 378,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": false,
+    "epoch": "2026-10-02T23:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "replay-seek",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 30,
+        "right": 390,
+        "width": 360,
+        "height": 322.5625,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 390,
+    "expectedCenter": 579,
+    "observedEarth": {
+      "x": 578.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 828.1005337544018,
+      "y": 509.8046373398633
+    },
+    "canvas": {
+      "left": 390,
+      "width": 378,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": false,
+    "epoch": "2026-10-02T22:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "return-live",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 380,
+    "expectedCenter": 574,
+    "observedEarth": {
+      "x": 573.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 576.3919941219343,
+      "y": 513.8077848834696
+    },
+    "canvas": {
+      "left": 380,
+      "width": 388,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:18.4273999999713851Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "inspection",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 302,
+        "width": 278,
+        "height": 101,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 302,
+    "expectedCenter": 535,
+    "observedEarth": {
+      "x": 534.2708835693836,
+      "y": 981.2089600260908
+    },
+    "observedModel": {
+      "x": 534.9999999985237,
+      "y": 512.0000000015517
+    },
+    "canvas": {
+      "left": 302,
+      "width": 466,
+      "height": 1024
+    },
+    "position": [
+      4442834.686730262,
+      4745468.135267342,
+      1977764.678035537
+    ],
+    "direction": [
+      -0.6535281285826484,
+      -0.04008112273323694,
+      -0.7558402534608121
+    ],
+    "up": [
+      0.28706504655245346,
+      0.9108654945080652,
+      -0.29650920721356316
+    ],
+    "nativeFovDegrees": 100.00000000000003,
+    "canonicalFovDegrees": 100.00000000000003,
+    "pixelLens": 429.61901116276726,
+    "inspection": {
+      "range": 143.9999999983756,
+      "elevation": 42.49999999835263,
+      "lateral": 4.6566128730773926e-9
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:25.8771999999462423Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 768,
+    "height": 1024,
+    "state": "back",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 24,
+        "right": 380,
+        "width": 356,
+        "height": 907,
+        "side": true
+      }
+    ],
+    "layout": "LEFT_DASHBOARD",
+    "viewportLeft": 0,
+    "viewportRight": 768,
+    "dashboardRight": 380,
+    "expectedCenter": 574,
+    "observedEarth": {
+      "x": 573.9999999999993,
+      "y": 510.2581300172038
+    },
+    "observedModel": {
+      "x": 579.6909209060052,
+      "y": 518.0558084488031
+    },
+    "canvas": {
+      "left": 380,
+      "width": 388,
+      "height": 1024
+    },
+    "position": [
+      15401018.033824127,
+      16061269.54526329,
+      7161543.1314519625
+    ],
+    "direction": [
+      -0.6584174893698385,
+      -0.6866442690255504,
+      -0.30823052656459293
+    ],
+    "up": [
+      -0.21333109889417365,
+      -0.2224767397974248,
+      0.9513116957620742
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 886.8100134752652,
+    "inspection": {
+      "range": 23376129.61778371,
+      "elevation": 17.840086037605467,
+      "lateral": 16061269.54526329
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:31.8768999999083462Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "overview",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 195.5197331917554,
+      "y": 421.69179343139655
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:35.5191870000053314Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "crew",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 195.73747795177272,
+      "y": 421.97510306496645
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:36.6023869999917224Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "crew-detail",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 195.94177304894149,
+      "y": 422.24091322377967
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:37.6186870000019553Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "crew-closed",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 196.1260656071635,
+      "y": 422.4806979025687
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:38.5354870000155643Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "replay",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 12,
+        "right": 378,
+        "width": 366,
+        "height": 303.375,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 34.95300691485747,
+      "y": 577.0969305315072
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": false,
+    "epoch": "2026-10-02T23:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "replay-seek",
+    "panels": [
+      {
+        "class": "orbital-panel replay-orbit",
+        "left": 12,
+        "right": 378,
+        "width": 366,
+        "height": 303.375,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 401.65428958445943,
+      "y": 421.846271089261
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": false,
+    "epoch": "2026-10-02T22:00:00Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "return-live",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 196.88423695015578,
+      "y": 423.46717909559686
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:42.3073000000058528Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "inspection",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 234,
+        "width": 225,
+        "height": 87,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 194.44016645119365,
+      "y": 808.7273025938856
+    },
+    "observedModel": {
+      "x": 194.99999999894246,
+      "y": 421.9999999990764
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      4391098.562327773,
+      4846387.4343316825,
+      1844539.5576344703
+    ],
+    "direction": [
+      -0.660241566594151,
+      -0.06379564566713514,
+      -0.7483389535065076
+    ],
+    "up": [
+      0.27065019104658783,
+      0.9092320037254322,
+      -0.3162999169900008
+    ],
+    "nativeFovDegrees": 100.00000000000003,
+    "canonicalFovDegrees": 100.00000000000003,
+    "pixelLens": 354.1000443568121,
+    "inspection": {
+      "range": 233.72307692236274,
+      "elevation": 42.50000000064824,
+      "lateral": 2.3283064365386963e-10
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:49.6402999999736494Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  {
+    "build": "development",
+    "width": 390,
+    "height": 844,
+    "state": "back",
+    "panels": [
+      {
+        "class": "status-panel",
+        "left": 9,
+        "right": 381,
+        "width": 372,
+        "height": 205,
+        "side": false
+      }
+    ],
+    "layout": "FULL_WIDTH / BOTTOM_PANEL",
+    "viewportLeft": 0,
+    "viewportRight": 390,
+    "dashboardRight": 0,
+    "expectedCenter": 195,
+    "observedEarth": {
+      "x": 195.00000000000009,
+      "y": 420.64890590180585
+    },
+    "observedModel": {
+      "x": 199.5550630410714,
+      "y": 426.94560585715897
+    },
+    "canvas": {
+      "left": 0,
+      "width": 390,
+      "height": 844
+    },
+    "position": [
+      15227124.758611782,
+      16424330.81605971,
+      6695616.537522703
+    ],
+    "direction": [
+      -0.6510282027063712,
+      -0.7022141567328333,
+      -0.28819708077096856
+    ],
+    "up": [
+      -0.1959378518626654,
+      -0.21134312284139345,
+      0.9575711162284982
+    ],
+    "nativeFovDegrees": 59.99999999999999,
+    "canonicalFovDegrees": 59.99999999999999,
+    "pixelLens": 730.9254407940663,
+    "inspection": {
+      "range": 23376382.354574118,
+      "elevation": 16.644139187445834,
+      "lateral": 16424330.81605971
+    },
+    "animate": true,
+    "epoch": "2026-10-04T14:57:55.6067999999722815Z",
+    "modelReady": true,
+    "pageErrors": [],
+    "consoleErrors": []
+  }
+]

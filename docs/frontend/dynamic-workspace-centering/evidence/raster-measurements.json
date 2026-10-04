@@ -1,0 +1,222 @@
+[
+  {
+    "file": "after-development-1024x768-overview.png",
+    "width": 1024,
+    "height": 768,
+    "expected": 702.0,
+    "observed": 700.7878756816388,
+    "difference": -1.2121243183612478,
+    "radius": 251.91017820368234,
+    "samples": 252,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-1280x720-overview.png",
+    "width": 1280,
+    "height": 720,
+    "expected": 830.0,
+    "observed": 829.0232782797641,
+    "difference": -0.9767217202359006,
+    "radius": 314.8747324997995,
+    "samples": 95,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-1440x900-altered-dashboard-width.png",
+    "width": 1440,
+    "height": 900,
+    "expected": 950.0,
+    "observed": 949.5984411951408,
+    "difference": -0.40155880485917805,
+    "radius": 354.6742830643811,
+    "samples": 95,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-1440x900-overview.png",
+    "width": 1440,
+    "height": 900,
+    "expected": 910.0,
+    "observed": 909.6007709597436,
+    "difference": -0.3992290402563867,
+    "radius": 354.6409387567189,
+    "samples": 97,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-390x844-overview.png",
+    "width": 390,
+    "height": 844,
+    "expected": 195.0,
+    "observed": 194.71257702770586,
+    "difference": -0.28742297229413794,
+    "radius": 208.17088702426395,
+    "samples": 211,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-768x1024-overview.png",
+    "width": 768,
+    "height": 1024,
+    "expected": 574.0,
+    "observed": 577.0522328238707,
+    "difference": 3.0522328238706677,
+    "radius": 253.61128437075777,
+    "samples": 106,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-development-900x700-overview.png",
+    "width": 900,
+    "height": 700,
+    "expected": 640.0,
+    "observed": 640.5888759480854,
+    "difference": 0.5888759480853878,
+    "radius": 222.88902422402938,
+    "samples": 269,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-1024x768-overview.png",
+    "width": 1024,
+    "height": 768,
+    "expected": 702.0,
+    "observed": 702.8164512746863,
+    "difference": 0.8164512746863011,
+    "radius": 253.66883447977708,
+    "samples": 236,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-1280x720-overview.png",
+    "width": 1280,
+    "height": 720,
+    "expected": 830.0,
+    "observed": 830.6693496639447,
+    "difference": 0.6693496639446721,
+    "radius": 316.31447851959666,
+    "samples": 85,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-1440x900-altered-dashboard-width.png",
+    "width": 1440,
+    "height": 900,
+    "expected": 950.0,
+    "observed": 950.1957182745213,
+    "difference": 0.1957182745212549,
+    "radius": 355.668220378222,
+    "samples": 89,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-1440x900-overview.png",
+    "width": 1440,
+    "height": 900,
+    "expected": 910.0,
+    "observed": 909.5578419927517,
+    "difference": -0.44215800724828114,
+    "radius": 355.1885469129367,
+    "samples": 95,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-390x844-overview.png",
+    "width": 390,
+    "height": 844,
+    "expected": 195.0,
+    "observed": 193.59726645099101,
+    "difference": -1.4027335490089854,
+    "radius": 207.50093928572997,
+    "samples": 239,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-768x1024-overview.png",
+    "width": 768,
+    "height": 1024,
+    "expected": 574.0,
+    "observed": 577.2697605309079,
+    "difference": 3.269760530907888,
+    "radius": 253.87604407994937,
+    "samples": 121,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "after-production-900x700-overview.png",
+    "width": 900,
+    "height": 700,
+    "expected": 640.0,
+    "observed": 640.8747433657686,
+    "difference": 0.8747433657686088,
+    "radius": 223.18402873391994,
+    "samples": 256,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-1024x768-overview.png",
+    "width": 1024,
+    "height": 768,
+    "expected": 512.0,
+    "observed": 511.8142391634084,
+    "difference": -0.18576083659161213,
+    "radius": 252.22525267504972,
+    "samples": 370,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-1280x720-overview.png",
+    "width": 1280,
+    "height": 720,
+    "expected": 640.0,
+    "observed": 639.320901660726,
+    "difference": -0.6790983392739918,
+    "radius": 315.8365409991654,
+    "samples": 183,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-1440x900-overview.png",
+    "width": 1440,
+    "height": 900,
+    "expected": 720.0,
+    "observed": 716.4695374456054,
+    "difference": -3.530462554394603,
+    "radius": 357.6895029452998,
+    "samples": 237,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-390x844-overview.png",
+    "width": 390,
+    "height": 844,
+    "expected": 195.0,
+    "observed": 194.5785908654777,
+    "difference": -0.42140913452229256,
+    "radius": 207.20796596821867,
+    "samples": 109,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-768x1024-overview.png",
+    "width": 768,
+    "height": 1024,
+    "expected": 384.0,
+    "observed": 383.84703606193915,
+    "difference": -0.15296393806085007,
+    "radius": 252.2137854498398,
+    "samples": 343,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  },
+  {
+    "file": "before-900x700-overview.png",
+    "width": 900,
+    "height": 700,
+    "expected": 450.0,
+    "observed": 449.6783107993843,
+    "difference": -0.32168920061570816,
+    "radius": 221.7092985418424,
+    "samples": 346,
+    "method": "radial limb gradients + circle least squares, residual trimmed to 2 CSS pixels"
+  }
+]
