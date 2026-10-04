@@ -1,0 +1,966 @@
+{
+  "date": "2026-10-04 Europe/Rome",
+  "verdict": "ROOT_ASSET_COUPLING_FOUND_AND_FIXED",
+  "previousImport": "import mission1Wordmark from \"../../MISSION1-logo.png\";",
+  "finalImport": "import mission1Wordmark from \"./assets/branding/MISSION1-logo.png\";",
+  "assets": {
+    "root": "MISSION1-logo.png",
+    "frontend": "frontend/src/assets/branding/MISSION1-logo.png",
+    "rootSha256": "6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb",
+    "frontendSha256": "6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb",
+    "byteIdentical": true,
+    "format": "PNG RGBA with transparency",
+    "width": 2172,
+    "height": 724,
+    "aspectRatio": "3:1",
+    "bytes": 1067446,
+    "copyNotSymlink": true
+  },
+  "runtimeRootReferences": [],
+  "deployment": {
+    "artifacts": [
+      {
+        "path": "/assets/MISSION1-logo-Cobk_ZMu.png",
+        "status": 200,
+        "sha256": "6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb",
+        "byteLength": 1067446
+      },
+      {
+        "path": "/assets/index-5hyAdw8H.js",
+        "status": 200,
+        "sha256": "a35dd3655e52984808791f839e1a45304310e46e19a59fc4b39cf5f3b945dc9c",
+        "byteLength": 4517008
+      },
+      {
+        "path": "/assets/index-WWCa3Dg0.css",
+        "status": 200,
+        "sha256": "27dc489f202dbd8dc031e2fa88e8d664014270b9f4591279beaa655d55607e1d",
+        "byteLength": 42727
+      }
+    ],
+    "absentRootFiles": [
+      {
+        "path": "/MISSION1-logo.png",
+        "status": 404
+      },
+      {
+        "path": "/README.md",
+        "status": 404
+      }
+    ],
+    "isolatedArtifactOnly": true,
+    "backendApi": "proxy to existing 8080; no mocking"
+  },
+  "build": {
+    "frontendOnlyWithNoRootLogoOrReadme": true,
+    "existingTypecheckFixtureCopies": [
+      "crew-response.json",
+      "person-response.json",
+      "expedition-response.json"
+    ],
+    "dependencyReuse": "node_modules only",
+    "emittedLogo": "assets/MISSION1-logo-Cobk_ZMu.png",
+    "jsCssPngHashesEqualAcceptedBuild": true,
+    "backendApi": "existing real-data backend, no mocking"
+  },
+  "visualRegression": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "before": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1440,
+        "src": "http://127.0.0.1:5175/@fs/Users/daniel/Desktop/MISSION1/MISSION1-logo.png"
+      },
+      "development": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1440,
+        "src": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png"
+      },
+      "isolatedArtifact": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1440,
+        "src": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png"
+      },
+      "unchanged": true,
+      "screenshot": "1440x900.png",
+      "screenshotSha256": "30c3224d5695321ee27444c22080aee1e47610d1f23a6d6417df27205ac943b3"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "before": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1280,
+        "src": "http://127.0.0.1:5175/@fs/Users/daniel/Desktop/MISSION1/MISSION1-logo.png"
+      },
+      "development": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1280,
+        "src": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png"
+      },
+      "isolatedArtifact": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 300.796875,
+          "height": 60
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 180,
+          "height": 60
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 1280,
+        "src": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png"
+      },
+      "unchanged": true,
+      "screenshot": "1280x720.png",
+      "screenshotSha256": "467d4f1d44ad4c78c8eed5e0186f717c04fd3c7acbaa8bde0ce806f18f78d92d"
+    },
+    {
+      "viewport": [
+        900,
+        700
+      ],
+      "before": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 900,
+        "src": "http://127.0.0.1:5175/@fs/Users/daniel/Desktop/MISSION1/MISSION1-logo.png"
+      },
+      "development": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 900,
+        "src": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png"
+      },
+      "isolatedArtifact": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 900,
+        "src": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png"
+      },
+      "unchanged": true,
+      "screenshot": "900x700.png",
+      "screenshotSha256": "f53b0a02244b6eedb16e5fa871251a568b1fbc013951ee173e263266b4900ab6"
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "before": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 768,
+        "src": "http://127.0.0.1:5175/@fs/Users/daniel/Desktop/MISSION1/MISSION1-logo.png"
+      },
+      "development": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 768,
+        "src": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png"
+      },
+      "isolatedArtifact": {
+        "brand": {
+          "x": 26,
+          "y": 8,
+          "width": 264.796875,
+          "height": 48
+        },
+        "image": {
+          "x": 26,
+          "y": 8,
+          "width": 144,
+          "height": 48
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 768,
+        "src": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png"
+      },
+      "unchanged": true,
+      "screenshot": "768x1024.png",
+      "screenshotSha256": "314e4dbf6fcb73791b6bd44dbc632bb2033aed62bb07fe249ae440dd714fa461"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "before": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "image": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 390,
+        "src": "http://127.0.0.1:5175/@fs/Users/daniel/Desktop/MISSION1/MISSION1-logo.png"
+      },
+      "development": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "image": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 390,
+        "src": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png"
+      },
+      "isolatedArtifact": {
+        "brand": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "image": {
+          "x": 12,
+          "y": 7,
+          "width": 132.59375,
+          "height": 44.1875
+        },
+        "naturalSize": [
+          2172,
+          724
+        ],
+        "alt": "MISSION1",
+        "objectFit": "contain",
+        "pointerEvents": "none",
+        "text": "/ EARTH VIEW",
+        "overlaps": [],
+        "documentWidth": 390,
+        "src": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png"
+      },
+      "unchanged": true,
+      "screenshot": "390x844.png",
+      "screenshotSha256": "a944f07b948ff8a5eb462fc776ed5db4a5bf40500abb93414cb1439d94d7378d"
+    }
+  ],
+  "functionalSmoke": [
+    {
+      "port": 5175,
+      "viewport": [
+        1440,
+        900
+      ],
+      "states": [
+        "overview",
+        "crew",
+        "crew-detail",
+        "replay",
+        "replay-crew",
+        "replay-crew-detail",
+        "approaching-gp",
+        "inspection-gp",
+        "returning-gp",
+        "approaching-oem",
+        "inspection-oem",
+        "returning-oem"
+      ],
+      "oneLogoImageRequest": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "retainedViewer": true,
+      "replayPaused": true,
+      "liveRestored": true,
+      "allBrandLayoutsPass": true
+    },
+    {
+      "port": 5175,
+      "viewport": [
+        390,
+        844
+      ],
+      "states": [
+        "overview",
+        "crew",
+        "crew-detail",
+        "replay",
+        "replay-crew",
+        "replay-crew-detail",
+        "approaching-gp",
+        "inspection-gp",
+        "returning-gp",
+        "approaching-oem",
+        "inspection-oem",
+        "returning-oem"
+      ],
+      "oneLogoImageRequest": "http://127.0.0.1:5175/src/assets/branding/MISSION1-logo.png",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "retainedViewer": true,
+      "replayPaused": true,
+      "liveRestored": true,
+      "allBrandLayoutsPass": true
+    },
+    {
+      "port": 4185,
+      "viewport": [
+        1440,
+        900
+      ],
+      "states": [
+        "overview",
+        "crew",
+        "crew-detail",
+        "replay",
+        "replay-crew",
+        "replay-crew-detail",
+        "approaching-gp",
+        "inspection-gp",
+        "returning-gp",
+        "approaching-oem",
+        "inspection-oem",
+        "returning-oem"
+      ],
+      "oneLogoImageRequest": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "retainedViewer": true,
+      "replayPaused": true,
+      "liveRestored": true,
+      "allBrandLayoutsPass": true
+    },
+    {
+      "port": 4185,
+      "viewport": [
+        390,
+        844
+      ],
+      "states": [
+        "overview",
+        "crew",
+        "crew-detail",
+        "replay",
+        "replay-crew",
+        "replay-crew-detail",
+        "approaching-gp",
+        "inspection-gp",
+        "returning-gp",
+        "approaching-oem",
+        "inspection-oem",
+        "returning-oem"
+      ],
+      "oneLogoImageRequest": "http://127.0.0.1:4185/assets/MISSION1-logo-Cobk_ZMu.png",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "retainedViewer": true,
+      "replayPaused": true,
+      "liveRestored": true,
+      "allBrandLayoutsPass": true
+    }
+  ],
+  "tests": {
+    "java": "21.0.3",
+    "node": "24.21.0",
+    "mvnTest": {
+      "passed": true,
+      "tests": 382,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "mvnVerify": {
+      "passed": true,
+      "tests": 382,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "frontend": {
+      "passed": true,
+      "tests": 284,
+      "files": 34
+    },
+    "typecheck": true,
+    "productionBuild": true,
+    "isolatedBuild": true,
+    "diffCheck": true
+  },
+  "sharedVisualRuntime": {
+    "lint": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "findings": [
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div.earth-view > div.cesium-viewer > div.cesium-viewer-bottom > div.cesium-widget-credits",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Data attribution"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div.cesium-viewer > div.cesium-viewer-bottom > div.cesium-widget-credits > a.cesium-credit-expand-link",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Data attribution"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.top-actions > span.scene-chip",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "AWAITING DATA"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.top-actions > button",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Inspect ISS"
+          },
+          {
+            "rule": "text_overflow",
+            "severity": "major",
+            "selector": "body > div > main.app-shell > aside.status-panel",
+            "message": "Element text appears clipped or scrollable.",
+            "sample": "ISS Crew \u2197 ORBITAL STATE / ISS Earth View MISSION1 GP/TLE propagated state SCENE TIME \u00b7 UTC \u2014 Backend-aligned clock \u00b7 1\u00d7",
+            "bounds": {
+              "x": 24,
+              "y": 82,
+              "width": 356,
+              "height": 783
+            }
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.panel-head > span.eyebrow",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "ORBITAL STATE / ISS"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.time-card > span.mini-label",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "SCENE TIME \u00b7 UTC"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.time-card > span",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Backend-aligned clock \u00b7 1\u00d7"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "WGS84"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "TWO SOURCES"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "INDEPENDENT"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section.provenance > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "GP / TLE"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "body > div > main.app-shell > div.scene-legend.trajectory-selector",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "POSITION / TRAJECTORY SOURCE MISSION1 GP/TLE NASA OEM MISSION1 GP/TLE propagated state OEM unavailable \u00b7 Waiting for NAS"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > span.mini-label",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "POSITION / TRAJECTORY SOURCE"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > div.source-options",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "MISSION1 GP/TLE NASA OEM"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > small",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "MISSION1 GP/TLE propagated state"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > small",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "OEM unavailable \u00b7 Waiting for NASA OEM"
+          }
+        ],
+        "brandFindings": []
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "findings": [
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div.earth-view > div.cesium-viewer > div.cesium-viewer-bottom > div.cesium-widget-credits",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Data attribution"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div.cesium-viewer > div.cesium-viewer-bottom > div.cesium-widget-credits > a.cesium-credit-expand-link",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Data attribution"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.top-actions > button",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Inspect ISS"
+          },
+          {
+            "rule": "text_overflow",
+            "severity": "major",
+            "selector": "body > div > main.app-shell > aside.status-panel",
+            "message": "Element text appears clipped or scrollable.",
+            "sample": "ISS Crew \u2197 ORBITAL STATE / ISS Earth View MISSION1 GP/TLE propagated state SCENE TIME \u00b7 UTC \u2014 Backend-aligned clock \u00b7 1\u00d7",
+            "bounds": {
+              "x": 9,
+              "y": 605,
+              "width": 372,
+              "height": 205
+            }
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.panel-head > span.eyebrow",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "ORBITAL STATE / ISS"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.time-card > span.mini-label",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "SCENE TIME \u00b7 UTC"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "aside.status-panel > details.orbital-details > div.time-card > span",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "Backend-aligned clock \u00b7 1\u00d7"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "WGS84"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "TWO SOURCES"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "INDEPENDENT"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "details.orbital-details > section.panel-section.provenance > div.section-title > span",
+            "message": "Text is 9px, which is likely too small for general UI reading.",
+            "sample": "GP / TLE"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "body > div > main.app-shell > div.scene-legend.trajectory-selector",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "POSITION / TRAJECTORY SOURCE MISSION1 GP/TLE NASA OEM MISSION1 GP/TLE propagated state OEM unavailable \u00b7 Waiting for NAS"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > span.mini-label",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "POSITION / TRAJECTORY SOURCE"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > div.source-options",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "MISSION1 GP/TLE NASA OEM"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > small",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "MISSION1 GP/TLE propagated state"
+          },
+          {
+            "rule": "tiny_text",
+            "severity": "minor",
+            "selector": "div > main.app-shell > div.scene-legend.trajectory-selector > small",
+            "message": "Text is 10px, which is likely too small for general UI reading.",
+            "sample": "OEM unavailable \u00b7 Waiting for NASA OEM"
+          }
+        ],
+        "brandFindings": []
+      }
+    ],
+    "captureConsole": [
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x13c0054ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "location": {
+          "url": "http://127.0.0.1:4185/",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x13c0054ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "location": {
+          "url": "http://127.0.0.1:4185/",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x13c0054ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "location": {
+          "url": "http://127.0.0.1:4185/",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "type": "warning",
+        "text": "[.WebGL-0x13c0054ba00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+        "location": {
+          "url": "http://127.0.0.1:4185/",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "captureRequestFailures": [],
+    "readiness": "load; networkidle timed out with ongoing scene requests",
+    "acceptedFindings": "existing small text, intentionally scrolling status panel, GPU-driver ReadPixels warnings; no branding finding"
+  },
+  "freeze": {
+    "baseline": "9ca553bb4f01b7de5620dd7ffc4114b4647136bf",
+    "existingTrackedFiles": 5167,
+    "unchangedExistingTrackedFiles": 5163,
+    "changedExistingFiles": [
+      "docs/frontend/branding-wordmark-integration/README.md",
+      "frontend/README.md",
+      "frontend/src/App.tsx",
+      "frontend/src/replay/AppReplay.test.tsx"
+    ],
+    "unchangedBackendFiles": 210,
+    "unchangedCesiumFiles": 51,
+    "unchangedPriorDossierEvidenceFiles": 52,
+    "rootLogoUnchanged": true,
+    "rootReadmeUnchanged": true,
+    "cssUnchanged": true,
+    "appOnlyImportChanged": true
+  },
+  "nativeTwoFingerPinch": "UNVERIFIED"
+}

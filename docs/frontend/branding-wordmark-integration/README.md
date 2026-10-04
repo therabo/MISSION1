@@ -1,7 +1,104 @@
 # Approved MISSION1 wordmark integration
 
-Validated on 2026-10-04 (Europe/Rome). This milestone changes only the existing
-upper-left branding presentation.
+Original integration validated on 2026-10-04 (Europe/Rome), with its visual
+evidence preserved below. The subsequent asset-ownership correction is recorded first.
+
+## Asset ownership correction — 2026-10-04
+
+**Verdict: `ROOT_ASSET_COUPLING_FOUND_AND_FIXED`.** This small corrective
+milestone started from clean synchronized `main` / `origin/main` / GitHub main
+at `9ca553bb4f01b7de5620dd7ffc4114b4647136bf`. History is preserved.
+
+The previous exact runtime import in `frontend/src/App.tsx` was:
+
+```ts
+import mission1Wordmark from "../../MISSION1-logo.png";
+```
+
+It reached the repository-root README asset. The final import is:
+
+```ts
+import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
+```
+
+The frontend owns [src/assets/branding/MISSION1-logo.png](../../../frontend/src/assets/branding/MISSION1-logo.png).
+This small imported image follows the existing Vite module-import convention;
+large Cesium/model/imagery resources retain their existing `public/` convention.
+The original [root image](../../../MISSION1-logo.png) and
+[root README](../../../README.md) remain byte-for-byte unchanged. The image was
+copied without moving, symlinking, editing, recompressing or re-exporting it.
+
+| Asset | Responsibility | SHA-256 |
+| --- | --- | --- |
+| `MISSION1-logo.png` | Root README / repository documentation | `6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb` |
+| `frontend/src/assets/branding/MISSION1-logo.png` | Application runtime | `6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb` |
+
+Both files are **PNG, 2172×724, 3:1, 1,067,446 bytes, RGBA with transparency**.
+The only runtime source change is the import above; JSX and all CSS are unchanged.
+The existing branding test now compares the rendered source with the imported
+frontend asset. Comprehensive frontend search finds no runtime reference to the
+root logo; the frontend README's root link is documentation only.
+
+Vite emits `assets/MISSION1-logo-Cobk_ZMu.png` with the same approved hash.
+The emitted JS, CSS and PNG hashes all equal the accepted pre-correction build.
+An isolated source build succeeded with no root logo or root README. Its
+existing typecheck requires three recorded Crew JSON test fixtures from
+`docs/crew/rest-api-validation`; those were copied separately, with no product
+or configuration change. Dependencies were reused through `node_modules` only.
+The resulting `dist` was copied to a separate directory and served on port 4185,
+with real backend API requests proxied to the existing 8080 service. The logo,
+JS and CSS returned HTTP 200 with matching hashes; `/MISSION1-logo.png` and
+`/README.md` returned HTTP 404. Runtime deployment therefore needs only the built
+frontend artifact for branding, independently of the README asset location.
+
+Before/after browser measurements match exactly in development and the isolated
+production artifact, including image/container size, placement, fit, accessible
+alt, pointer behavior, state label, zero brand overlap and no horizontal overflow.
+Screenshots were visually inspected; transparency, sharpness and lack of cropping
+are unchanged. Scene UTC, orbital motion and imagery loading can differ.
+
+| Viewport | Unchanged image rectangle, CSS pixels | Current isolated artifact |
+| --- | --- | --- |
+| 1440×900 | x=26, y=8, 180×60 | [Screenshot](asset-ownership/1440x900.png) |
+| 1280×720 | x=26, y=8, 180×60 | [Screenshot](asset-ownership/1280x720.png) |
+| 900×700 | x=26, y=8, 144×48 | [Screenshot](asset-ownership/900x700.png) |
+| 768×1024 | x=26, y=8, 144×48 | [Screenshot](asset-ownership/768x1024.png) |
+| 390×844 | x=12, y=7, 132.59375×44.1875 | [Screenshot](asset-ownership/390x844.png) |
+
+Final gates: **382 backend tests** with zero failures/errors/skips in both
+`mvn test` and `mvn verify` (Java 21); **284 frontend tests / 34 files**,
+typecheck and production build pass (Node 24.21.0). Desktop/mobile browser smoke
+in development and the isolated artifact covers LIVE, REPLAY, current/historical
+Crew/detail, GP and OEM approach/Inspection/Back: one logo image request per page,
+zero page/console errors, retained Viewer, paused Replay time and restored LIVE.
+Shared visual-runtime lint has no branding findings; existing small-text and
+intentional status-panel overflow findings remain. Its capture records four
+GPU-driver `ReadPixels` warnings and no failed requests. The accepted Cesium
+large-chunk build warning remains. `git diff --check` passes.
+
+[Machine-readable verification](asset-ownership/verification.json) records asset
+integrity, standalone deployment, all five layout comparisons, browser smoke,
+test gates and the freeze audit against `9ca553b`. All previous evidence below
+is preserved: 5,163 of 5,167 existing tracked files are unchanged, including all
+210 backend files, 51 Cesium files and 52 prior dossier evidence files. Those
+original sections describe the earlier integration,
+including its superseded root import; they are historical rather than current
+asset-ownership guidance.
+
+Context review for this correction: actual AGENTS.md and external project
+context; no additional applicable repository instructions found; actual
+frontend-design-codex, software-architect, iss-3d-earth-view and
+devops-local-platform skills and relevant reference contracts; root/frontend
+READMEs and this dossier; architecture baseline/repository/Earth View delivery
+documentation; App, branding CSS, AppReplay test, main entry point, asset
+conventions, package/Vite/TypeScript configuration and local Maven layout.
+
+No redesign or behavior change to dashboard, Crew, Replay, Inspection, GP/OEM or
+Back. Backend and Cesium are unchanged. No new ADR is required.
+**Native two-finger pinch remains unverified.** No other dashboard restyling
+was started.
+
+## Original integration record — preserved
 
 ## Baseline correction and preserved history
 

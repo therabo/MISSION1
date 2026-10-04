@@ -2,10 +2,17 @@
 
 ## Approved application wordmark — 2026-10-04
 
-The upper-left brand uses the exact transparent [`MISSION1-logo.png`](../MISSION1-logo.png)
-referenced by the [root README](../README.md). `src/App.tsx` imports that original
-2172×724 PNG directly; Vite serves it in development and emits the same bytes in
-the production build. No second source asset or modified artwork is maintained.
+The upper-left brand imports the frontend-owned
+[`src/assets/branding/MISSION1-logo.png`](src/assets/branding/MISSION1-logo.png)
+from `src/App.tsx`. It is a byte-identical copy of the approved transparent
+2172×724 PNG, with SHA-256
+`6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb`.
+The [root asset](../MISSION1-logo.png) remains unchanged for the
+[root README](../README.md); application imports resolve entirely inside
+`frontend/`. Vite serves the frontend copy in development and emits the same
+bytes at `assets/MISSION1-logo-Cobk_ZMu.png` in the production artifact. A build
+and standalone artifact served without the root README or root logo verify
+this separation. The 2026-10-04 ownership correction changes no artwork or CSS.
 
 The existing brand container replaces the M1 badge/plain-text logo, retains the
 view-state label, and stays present in LIVE, REPLAY and Inspection. The image has

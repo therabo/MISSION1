@@ -24,7 +24,7 @@ import type {
   TrajectorySource,
 } from "./cesium/trajectorySelection";
 import type { ViewMode } from "./cesium/inspectionMode";
-import mission1Wordmark from "../../MISSION1-logo.png";
+import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
 
 export default function App() {
   const [replaying, setReplaying] = useState(false);

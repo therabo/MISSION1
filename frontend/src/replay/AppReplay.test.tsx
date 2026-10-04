@@ -3,6 +3,7 @@ import { act } from 'react';
 import { createRoot,type Root } from 'react-dom/client';
 import { beforeEach,afterEach,expect,it,vi } from 'vitest';
 import App from '../App';
+import mission1Wordmark from '../assets/branding/MISSION1-logo.png';
 import { replayFixture } from '../test/replayFixture';
 const flags=vi.hoisted(() => ({live:[] as boolean[],comparison:[] as boolean[]}));
 vi.mock('../api/useOrbitalDelivery',() => ({useOrbitalDelivery:(enabled=true) => {flags.live.push(enabled);return {window:null,status:'loading',message:null};}}));
@@ -17,7 +18,7 @@ async function click(text:string) {const button=[...node.querySelectorAll('butto
 it('keeps the approved accessible wordmark mounted in LIVE and REPLAY',async()=>{
   await act(async()=>root.render(<App/>));
   const logo=node.querySelector<HTMLImageElement>('.top-brand img');
-  expect(logo?.getAttribute('src')).toContain('/MISSION1-logo.png');
+  expect(logo?.getAttribute('src')).toBe(mission1Wordmark);
   expect(logo?.alt).toBe('MISSION1');
   expect(logo?.width).toBe(2172);
   expect(logo?.height).toBe(724);
