@@ -14,12 +14,28 @@ bytes at `assets/MISSION1-logo-Cobk_ZMu.png` in the production artifact. A build
 and standalone artifact served without the root README or root logo verify
 this separation. The 2026-10-04 ownership correction changes no artwork or CSS.
 
-The existing brand container replaces the M1 badge/plain-text logo, retains the
-view-state label, and stays present in LIVE, REPLAY and Inspection. The image has
+The existing brand container replaces the M1 badge/plain-text logo and now stands
+alone: the adjacent `/ EARTH VIEW` / `/ ISS INSPECTION` presentation is removed,
+including transition labels, while view-state logic stays unchanged. The image stays
+present in LIVE, REPLAY and Inspection. It has
 `alt="MISSION1"`, no link or keyboard action, and passes pointer events through to
 the scene. Responsive CSS uses `height: auto` and `object-fit: contain`: 180px wide
 at 1440/1280px, 144px at 900/768px, and about 132.6px at 390px. Transparency and
 the exact 3:1 ratio are preserved. [Before/after screenshots and validation](../docs/frontend/branding-wordmark-integration/README.md).
+
+## Cesium attribution audit — 2026-10-04
+
+**Verdict: `ION_ATTRIBUTION_NOT_REQUIRED`.** Installed CesiumJS 1.145.0 uses
+direct NASA GIBS imagery, existing local imagery/model/skybox assets and
+`EllipsoidTerrainProvider`; geocoding is disabled. There is no configured ion
+token, ion imagery/terrain/Asset Depot dependency or observed ion service request
+in the development/production audit. The library's bundled default token is unused.
+`src/main.tsx` sets the documented public `CreditDisplay.cesiumCredit` to an empty
+`Credit` before Viewer creation, removing only the default combined Cesium ion logo.
+The visible NASA VTAD model acknowledgment and **Data attribution** popup with
+NASA imagery/star-map acknowledgments remain intact. No credit container, CSS,
+provider or scene logic is changed. [Provider terms, exact credit inventory,
+network evidence and before/after screenshots](../docs/frontend/cesium-attribution-audit/README.md).
 
 **Backend scheduling note (2026-10-03):** [Crew event-aware refresh](../docs/crew/event-aware-refresh.md) changes background backend source eligibility. Frontend runtime and accepted Crew API contract are byte-identical to the Crew panel baseline; source quality, presence and assignment distinctions remain unchanged. Historical visual evidence below is retained. Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 

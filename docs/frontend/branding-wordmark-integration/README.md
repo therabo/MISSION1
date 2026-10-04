@@ -1,7 +1,30 @@
 # Approved MISSION1 wordmark integration
 
 Original integration validated on 2026-10-04 (Europe/Rome), with its visual
-evidence preserved below. The subsequent asset-ownership correction is recorded first.
+evidence preserved below. Subsequent follow-ups are recorded first.
+
+## Standalone wordmark and attribution follow-up — 2026-10-04
+
+Starting from clean synchronized `7fa39af0733b83a04336ab2b151edb2105edd004`,
+`frontend/src/App.tsx` now renders only the existing image inside `.top-brand`.
+The adjacent `em` presentation (`/ EARTH VIEW`, `/ ISS INSPECTION` and transition
+labels) is removed. The `viewMode`, `inspecting`, `approaching`, `returning` and
+`stationFocused` state/logic remain unchanged. The frontend-owned PNG, import,
+responsive CSS, placement, accessible alt and pointer behavior are unchanged.
+The existing LIVE/REPLAY wordmark test now also checks that the brand has no text.
+
+The [Cesium attribution audit](../cesium-attribution-audit/README.md) records
+`ION_ATTRIBUTION_NOT_REQUIRED`: only the default ion logo is removed through the
+public `CreditDisplay.cesiumCredit` API. NASA model/imagery/skybox acknowledgments
+and their credit popup are retained. Its dossier preserves development/production
+before/after screenshots, all five responsive measurements and regressions.
+Both Maven gates pass with 382 tests; frontend has 284 tests/34 files with
+typecheck/build passing. Backend, Cesium scene/camera/providers/assets and all CSS
+are unchanged. No new ADR. **Native two-finger pinch remains unverified.**
+
+The ownership correction and original integration below are historical records;
+their references to a retained view label describe those earlier milestones.
+All prior screenshots and machine-readable evidence are preserved byte-for-byte.
 
 ## Asset ownership correction — 2026-10-04
 

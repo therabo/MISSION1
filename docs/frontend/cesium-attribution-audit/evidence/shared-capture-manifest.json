@@ -1,0 +1,17 @@
+{
+  "tool": "capture_page",
+  "target": "http://127.0.0.1:4175/",
+  "title": "MISSION1 · Earth View",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "device_scale_factor": 1,
+  "screenshot_path": "/tmp/mission1-header-credit-evidence/shared-capture-mobile/screenshot.png",
+  "pdf_path": null,
+  "console_events_path": "/tmp/mission1-header-credit-evidence/shared-capture-mobile/console-events.json",
+  "request_failures_path": "/tmp/mission1-header-credit-evidence/shared-capture-mobile/request-failures.json",
+  "console_event_count": 4,
+  "request_failure_count": 0,
+  "generated_at": "2026-10-04T11:54:23.884Z"
+}

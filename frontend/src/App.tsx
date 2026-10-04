@@ -136,16 +136,6 @@ export default function App() {
           height={724}
           draggable={false}
         />
-        <em aria-hidden="true">
-          /{" "}
-          {approaching
-            ? "APPROACHING ISS"
-            : returning
-              ? "RETURNING TO EARTH"
-              : inspecting
-                ? "ISS INSPECTION"
-                : "EARTH VIEW"}
-        </em>
       </div>
       <ReplayControls
         enabled={replaying}
