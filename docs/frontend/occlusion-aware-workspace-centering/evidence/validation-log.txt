@@ -1,0 +1,84 @@
+Java 21 / Corretto 21.0.3, Node 24, npm package scripts. Backend unchanged.
+
+=== mvn-test ===
+[INFO] Tests run: 382, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  01:05 min
+[INFO] Finished at: 2026-10-04T17:57:04+02:00
+
+=== mvn-verify ===
+[INFO] Tests run: 382, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Total time:  01:04 min
+[INFO] Finished at: 2026-10-04T17:59:17+02:00
+
+=== typecheck ===
+
+> mission1-earth-view@0.1.0 typecheck
+> tsc --noEmit
+
+
+=== frontend-tests ===
+
+> mission1-earth-view@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /Users/daniel/Desktop/MISSION1/frontend
+
+
+ Test Files  37 passed (37)
+      Tests  319 passed (319)
+   Start at  18:29:35
+   Duration  6.47s (import 62%, tests 23%, environment 10%, transform 5%, worker 1%)
+
+    Isolate  37 workers spawned · ~231ms startup each (spawn + environment, per file)
+             at least ~989ms faster with isolate: false — reuses workers across files instead of one per file
+
+
+=== build ===
+
+> mission1-earth-view@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 1536 modules transformed.
+rendering chunks...
+[vite-plugin-static-copy] Copied 389 items.
+computing gzip size...
+dist/index.html                             0.45 kB │ gzip:     0.30 kB
+dist/assets/MISSION1-logo-Cobk_ZMu.png  1,067.44 kB
+dist/assets/index-CKc_6PVT.css             42.82 kB │ gzip:     9.74 kB
+dist/assets/index-CbogHXgM.js           4,520.87 kB │ gzip: 1,235.68 kB
+
+✓ built in 985ms
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+=== FINAL frontend gates after GlobeFS projection-ray correction ===
+2026-10-04 19:31 Europe/Rome. Sequential normal npm scripts, exits 0.
+npm run typecheck: tsc --noEmit PASS.
+npm test: Vitest 5.0.2, 319 tests / 37 files PASS; 5.93s.
+npm run build: tsc --noEmit and Vite 8.3.1 PASS; 1536 modules, 389 copied items.
+Final JS: index-k8rMlxoq.js (4,521.72 kB; gzip 1,235.95 kB).
+Final CSS: index-CKc_6PVT.css. Inherited bundle-size warning remains.
+Earlier candidate build and browser rows above are historical attempts, not final-source acceptance.
+Final-source SHA-256 and served-build equality are in validated-source.json.
+
+=== FINAL real-browser and freeze gates after fragment-ray correction ===
+Development 65 states PASS; production 65 states PASS; full-screen bounds and <=2 CSSpx presentation-focus/ISS-pivot checks.
+Native input 4 cases / 56 module selections PASS; real scene clock paused for surface scan/click, resumed for orbit/zoom.
+Space below dashboard + expanded native GPU edge pick: 2 builds PASS.
+Transitions: 12 cases / 7651 samples PASS; LIVE 6s/5s; Replay adaptive 6.1-6.2s/5.1-5.2s; world return 0m.
+Idle 10s/build PASS: 0 geometry reads, Resize/Mutation callbacks and offset writes; 2 Resize/1 layout Mutation/1 window listener, stable after four Crew cycles.
+Visual lint: 8 states PASS with no blockers.
+Globe raster: 498000 neutral pixels/build, RGB delta 0; shifted lit samples >99.8% within predefined tolerance PASS.
+Freeze audit: 443 original blobs (210 backend) identical; runtime source hashes match final served production SHA-256.
+Camera comparison: 12 rows PASS at 1mm / 1e-8 basis/HPR tolerance; actual maximum translation about 1um, basis 2.916e-10.
+Development recorded four GIBS CORS tile failures; fallback retained. Production matrix: zero console errors; both: zero application JS/ResizeObserver errors.
+Failed attempts retained/identified: moving-edge click timeout, host-clock-expired buffer timeout, initially stricter angular tolerance; omitted lint module path corrected before final pass.
+No product, backend, scientific or provider change was made to bypass these QA issues. Native two-finger pinch remains unverified.

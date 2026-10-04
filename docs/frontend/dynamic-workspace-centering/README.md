@@ -1,5 +1,15 @@
 # Dynamic Earth centering in the free workspace
 
+## Current status — rectangular viewport model superseded
+
+The right-side rectangular viewport model introduced by this milestone was later
+corrected by the [occlusion-aware full-screen centering milestone](../occlusion-aware-workspace-centering/README.md).
+Cesium now remains full-screen and only the actual two-dimensional dashboard
+footprint defines occlusion. The implementation/results below are preserved as
+historical evidence of this earlier milestone; they do not describe current
+viewport ownership, projection or picking architecture.
+
+
 Implemented 2026-10-04 from clean synchronized baseline
 `f8ca08b3134773327cf18549402b8acc8bb0d99e` (`refactor: simplify MISSION1 viewport branding`).
 Before editing, HEAD, fetched origin/main and direct GitHub main were identical.

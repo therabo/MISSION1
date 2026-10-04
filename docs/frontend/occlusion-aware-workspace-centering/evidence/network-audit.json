@@ -1,0 +1,41 @@
+{
+  "method": "Unintercepted actual browser requests; geometry adapter has no request code path",
+  "builds": {
+    "development": {
+      "requests": 2649,
+      "hosts": {
+        "127.0.0.1:5175": 978,
+        "gibs.earthdata.nasa.gov": 1665,
+        "thespacedevs-prod.nyc3.digitaloceanspaces.com": 6
+      }
+    },
+    "production": {
+      "requests": 2621,
+      "hosts": {
+        "127.0.0.1:4175": 578,
+        "gibs.earthdata.nasa.gov": 2037,
+        "thespacedevs-prod.nyc3.digitaloceanspaces.com": 6
+      }
+    }
+  },
+  "consoleDiagnostics": {
+    "development": {
+      "pageErrors": [],
+      "uniqueConsoleMessages": [
+        "Access to XMLHttpRequest at 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/3/3/1.jpeg' from origin 'http://127.0.0.1:5175' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Failed to load resource: net::ERR_FAILED",
+        "Access to XMLHttpRequest at 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/3/2/0.jpeg' from origin 'http://127.0.0.1:5175' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Access to XMLHttpRequest at 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/3/0/0.png' from origin 'http://127.0.0.1:5175' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "Access to XMLHttpRequest at 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/3/4/3.png' from origin 'http://127.0.0.1:5175' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+      ],
+      "resizeObserverWarnings": [],
+      "note": "Messages recur cumulatively in capture rows; this inventory deduplicates them rather than treating each row as a new failure."
+    },
+    "production": {
+      "pageErrors": [],
+      "uniqueConsoleMessages": [],
+      "resizeObserverWarnings": [],
+      "note": "Messages recur cumulatively in capture rows; this inventory deduplicates them rather than treating each row as a new failure."
+    }
+  }
+}

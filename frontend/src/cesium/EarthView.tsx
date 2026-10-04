@@ -63,7 +63,8 @@ import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
 
-import { workspaceProjectionFov, type WorkspaceGeometry } from './workspaceGeometry';
+import type { WorkspaceGeometry } from './workspaceGeometry';
+import { applyWorkspaceProjection, createWorkspaceGlobeProjection, installWorkspacePicking, WorkspacePerspectiveFrustum } from './workspaceProjection';
 
 interface EarthViewProps {
   workspace?: WorkspaceGeometry | null;
@@ -163,25 +164,51 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       return;
     }
     viewer.current = instance;
-    // Canonical camera optics stay in full-shell coordinates. The native
-    // symmetric frustum crops that lens to the real free viewport, keeping
-    // pixel scale and Cesium's own picking/controller geometry coherent.
+    if (instance.camera.frustum instanceof PerspectiveFrustum)
+      instance.camera.frustum = instance.camera.frustum.clone(new WorkspacePerspectiveFrustum());
+    // Full-screen native lens; only the projected principal point changes.
     let canonicalFov = instance.camera.frustum instanceof PerspectiveFrustum ? instance.camera.frustum.fov! : Math.PI / 3;
     let viewportWidth = 0, viewportHeight = 0;
+    let offsetX = 0, offsetY = 0;
+    let pendingViewportComposition = false;
+    let adaptation: { x: number; y: number; targetX: number; targetY: number; start: number } | null = null;
+    const reducedMotion = globalThis.window.matchMedia('(prefers-reduced-motion: reduce)');
     const applyFov = (fov: number): void => {
       canonicalFov = fov;
-      const full = workspaceRef.current;
-      if (instance.camera.frustum instanceof PerspectiveFrustum && viewportWidth > 0 && viewportHeight > 0) {
-        instance.camera.frustum.fov = workspaceProjectionFov(fov, full?.width ?? viewportWidth,
-          full?.height ?? viewportHeight, viewportWidth, viewportHeight);
+      if (instance.camera.frustum instanceof PerspectiveFrustum) {
+        instance.camera.frustum.fov = fov;
+        applyWorkspaceProjection(instance.camera.frustum, offsetX, offsetY);
       }
     };
+    const compose = (immediate = false): void => {
+      const full = workspaceRef.current;
+      const matchesViewport = full?.width === viewportWidth && full?.height === viewportHeight;
+      const x = matchesViewport && full.width > 0 ? full.focalPoint.x / full.width - 0.5 : 0;
+      const y = matchesViewport && full.height > 0 ? full.focalPoint.y / full.height - 0.5 : 0;
+      if (immediate || reducedMotion.matches) {
+        offsetX = x; offsetY = y; adaptation = null;
+        applyFov(canonicalFov);
+      } else if (x !== (adaptation?.targetX ?? offsetX) || y !== (adaptation?.targetY ?? offsetY)) {
+        adaptation = { x: offsetX, y: offsetY, targetX: x, targetY: y, start: performance.now() };
+      }
+      instance.scene.requestRender();
+    };
+    const removeComposition = instance.scene.preRender.addEventListener(() => {
+      if (!adaptation) return;
+      const t = Math.min(1, (performance.now() - adaptation.start) / 650);
+      const ease = t * t * t * (10 + t * (-15 + 6 * t));
+      offsetX = adaptation.x + (adaptation.targetX - adaptation.x) * ease;
+      offsetY = adaptation.y + (adaptation.targetY - adaptation.y) * ease;
+      if (t === 1) adaptation = null;
+      applyFov(canonicalFov);
+    });
     const resize = (width: number, height: number): void => {
       if (width <= 0 || height <= 0) return;
+      const changed = width !== viewportWidth || height !== viewportHeight;
       viewportWidth = width; viewportHeight = height;
-      instance.resize();
-      applyFov(canonicalFov);
-      instance.scene.requestRender();
+      if (changed) { instance.resize(); pendingViewportComposition = true; }
+      compose(pendingViewportComposition);
+      if (workspaceRef.current?.width === width && workspaceRef.current?.height === height) pendingViewportComposition = false;
     };
     const viewportObserver = new ResizeObserver(entries => {
       const bounds = entries[0].contentRect;
@@ -190,6 +217,10 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     viewportObserver.observe(container.current);
     resizeWorkspace.current = () => resize(container.current!.clientWidth, container.current!.clientHeight);
     resizeWorkspace.current();
+    const motionChanged = () => { if (reducedMotion.matches) compose(true); };
+    reducedMotion.addEventListener('change', motionChanged);
+    const removePicking = installWorkspacePicking(instance.scene,
+      () => ({ width: viewportWidth, height: viewportHeight }), () => model.current);
     const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
     const visualFrame = new TrajectoryVisualFrame();
     const sceneVelocity = new Cartesian3();
@@ -268,6 +299,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     }));
     instance.scene.globe.baseColor = Color.fromCssColorString('#18394a');
     enableEarthLighting(instance.scene.globe);
+    const globeProjection = createWorkspaceGlobeProjection();
+    instance.scene.globe.material = globeProjection;
     instance.scene.backgroundColor = Color.fromCssColorString('#040b14');
     if (instance.scene.sun) {
       instance.scene.sun.show = true;
@@ -798,6 +831,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
             const saved = cameraSnapshot.current;
             if (saved) {
               instance.camera.frustum.near = saved.near; instance.camera.frustum.far = saved.far;
+              applyFov(canonicalFov);
               instance.camera.lookAtTransform(saved.transform);
             }
             setMode('EXIT_COMPLETE');
@@ -905,6 +939,9 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     return () => {
       destroyed = true;
       viewportObserver.disconnect();
+      removeComposition();
+      removePicking();
+      reducedMotion.removeEventListener('change', motionChanged);
       resizeWorkspace.current = null;
       cancelSkyWarmup();
       cancelGraphicsWarmup?.();
@@ -931,6 +968,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       iss.current = null;
       viewer.current = null;
       instance.destroy();
+      globeProjection.destroy();
     };
   }, []);
 
@@ -992,5 +1030,5 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     if (overviewRequest > 0) exitInspection.current?.();
   }, [overviewRequest]);
 
-  return <div className="earth-view" style={{ left: workspace?.left ?? 0 }} ref={container} aria-label="Interactive 3D Earth and selected ISS trajectory" />;
+  return <div className="earth-view" ref={container} aria-label="Interactive 3D Earth and selected ISS trajectory" />;
 });

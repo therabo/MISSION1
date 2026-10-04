@@ -1,24 +1,26 @@
 # ISS Inspection Mode
 
-## Canonical pose and workspace composition — 2026-10-04
+## Canonical pose and occlusion-aware composition — 2026-10-04
 
-A visible left status panel also defines Inspection's free horizontal viewport;
-its rendered right edge is 302px in the current desktop layout. The station's
-physical pivot and canonical 90m /42.5° /zero-lateral pose, 100° full-window FOV,
-6s entry and 5s return remain unchanged. Responsive range widening still uses
-the **full shell aspect**, preserving the existing 144m at 768×1024 and
-233.723077m at 390×844 endpoints.
+The station's physical pivot, 90m slant range, 42.5° elevation, zero lateral
+canonical geometry, 100° FOV and accepted 6s entry/5s return policy remain.
+Responsive range widening uses the full shell aspect: 144m at 768×1024 and
+233.723077m at 390×844. Camera focus, path, warmup and native controls are retained.
 
-The actual Cesium container occupies the free region. A symmetric crop of the
-full-window camera lens preserves apparent scale: at 1440×900 the native cropped
-frustum FOV is 86.567463°, equivalent to the canonical 100° lens at the original
-full-window pixel scale. Camera snapshots, focus/pacing calculations and Back
-retain the canonical lens; the native crop is solely screen composition. It
-uses zero x/y frustum offsets and Cesium's normal ray/picking geometry. On mobile
-the bottom panel reserves no horizontal strip, so the native FOV remains 100°.
-No physical camera offset, model scale or source sample changes. Native viewport
-clipping can crop outer arrays at the preserved apparent scale; orbit and zoom
-remain available. [Validation and limits](dynamic-workspace-centering/README.md).
+Cesium stays full-screen beneath the dashboard. The actual visible side panel's
+clipped two-dimensional footprint defines the remaining area's centroid; its
+short Inspection height has less composition weight than the Overview panel.
+Public perspective frustum offsets compose the physical pivot at that centroid.
+The former 86.567463° native crop is removed: the full-screen native/canonical
+Inspection FOV is now 100°. Apparent scale stays unchanged. Mobile bottom panels
+apply zero desktop offset. Canonical pose and screen composition remain distinct.
+
+Cesium 1.145 needs local adapters for its symmetric native input ray/pick culling
+and offset-dependent pixel-size helper. Native GPU feature IDs remain the source
+of module selection; synchronous picking restores its temporary lens and minimum
+footprint before the next scene render. No physical position, basis, model scale,
+asset or onboard-attitude semantics change. [Correction and native picking/
+physical-pose evidence](occlusion-aware-workspace-centering/README.md).
 
 ## Inspection range and clearance audit — 2026-10-02
 

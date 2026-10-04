@@ -1,13 +1,15 @@
 # MISSION1 Earth View
 
-## Dynamic free-workspace framing — 2026-10-04
+## Occlusion-aware full-screen framing — 2026-10-04
 
-On left-dashboard layouts, Cesium content is framed against the free workspace
-to the right of the dashboard; geometry is derived dynamically from rendered
-layout dimensions. Bottom/full-width panels use the full horizontal viewport.
-The same Viewer and accepted camera pose, scale, data and physics remain;
-[numerical, visual, interaction and lifecycle evidence](../docs/frontend/dynamic-workspace-centering/README.md)
-records the actual viewport and symmetric lens crop.
+Cesium remains full-screen. In left-dashboard layouts, the dashboard is treated
+as an occluding overlay and focal composition is derived dynamically from the
+remaining visible area. Its actual clipped width, height and position determine
+the free-area centroid; margins and space below it stay in the scene. Bottom or
+hidden panels retain normal full-viewport horizontal centering. Public perspective
+frustum offsets and a pinned Cesium input/pixel-scale/globe-ray compatibility adapter
+preserve the accepted physical camera and apparent scale. [Correction, native
+picking tests and evidence](../docs/frontend/occlusion-aware-workspace-centering/README.md).
 
 ## Approved application wordmark — 2026-10-04
 

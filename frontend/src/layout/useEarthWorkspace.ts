@@ -1,8 +1,8 @@
 import { useLayoutEffect, useState, type RefObject } from 'react';
-import { workspaceGeometry, type WorkspaceGeometry } from '../cesium/workspaceGeometry';
+import { sameWorkspace, workspaceGeometry, type WorkspaceGeometry } from '../cesium/workspaceGeometry';
 
-/** CSS owns whether a panel reserves a side strip; rendered bounds own its size.
- * Crew and module detail are right-side/bottom overlays, not workspace owners. */
+/** LIVE and REPLAY replace one another's persistent dashboard. Crew/detail are
+ * separate overlays; CSS decides when the persistent owner is hidden/bottom. */
 export function useEarthWorkspace(shell: RefObject<HTMLElement | null>, layoutKey: string): WorkspaceGeometry | null {
   const [geometry, setGeometry] = useState<WorkspaceGeometry | null>(null);
   useLayoutEffect(() => {
@@ -11,21 +11,24 @@ export function useEarthWorkspace(shell: RefObject<HTMLElement | null>, layoutKe
     const panels = [...root.querySelectorAll<HTMLElement>('.status-panel, .replay-orbit')];
     const measure = () => {
       const viewport = root.getBoundingClientRect();
-      const sidePanels = panels.filter(panel => {
+      const owner = panels.find(panel => {
         const style = getComputedStyle(panel);
         return style.getPropertyValue('--earth-workspace-side').trim() === '1' &&
           style.visibility !== 'hidden' && style.display !== 'none';
-      }).map(panel => panel.getBoundingClientRect()).filter(panel => panel.width > 0 && panel.height > 0);
-      const next = workspaceGeometry(viewport, sidePanels);
-      setGeometry(current => current && Math.abs(current.left - next.left) < 0.25 &&
-        current.width === next.width && current.height === next.height ? current : next);
+      });
+      const next = workspaceGeometry(viewport, owner?.getBoundingClientRect() ?? null);
+      setGeometry(current => sameWorkspace(current, next) ? current : next);
     };
     const observer = new ResizeObserver(measure);
     observer.observe(root);
     panels.forEach(panel => observer.observe(panel));
+    // Position/visibility-only inline or class changes need not resize a panel.
+    const attributes = new MutationObserver(measure);
+    [root, ...panels].forEach(element => attributes.observe(element,
+      { attributes: true, attributeFilter: ['class', 'style', 'hidden'] }));
     window.addEventListener('resize', measure);
     measure();
-    return () => { observer.disconnect(); window.removeEventListener('resize', measure); };
+    return () => { observer.disconnect(); attributes.disconnect(); window.removeEventListener('resize', measure); };
   }, [shell, layoutKey]);
   return geometry;
 }

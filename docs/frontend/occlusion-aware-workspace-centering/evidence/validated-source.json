@@ -1,0 +1,1134 @@
+{
+  "baseline": "47b295601da2ba6a90112e4b4212985c48d4be79",
+  "runtimeSha256": {
+    "frontend/src/cesium/EarthView.tsx": "d1026605f7ae9475f7cce026073e15016dff4d7a518e7be533b8ed5d8b26de3e",
+    "frontend/src/cesium/workspaceGeometry.ts": "e62076df4a3d1d1e560dc1cd4db44d976fbe27b80102b8b089363741a2e740bf",
+    "frontend/src/cesium/workspaceProjection.ts": "3f4552d7c7abe2610e262bd332e065a77035a48d602e24b26318569178793dd2",
+    "frontend/src/layout/useEarthWorkspace.ts": "1b5d6a5aa3dff5b1c3be45cd2b8e1cdf52d58b632732891d0773a3dbe941b471",
+    "frontend/src/styles.css": "0d59ccfef2e4f4d6bbb9203981b7e5f1986aef57f54463209d2395f98a3597ce"
+  },
+  "productionBundles": {
+    "frontend/dist/assets/index-CKc_6PVT.css": "664422f6658c53acecca8709ba93a7ea55da154c037fa292698f459a3d1ddc3a",
+    "frontend/dist/assets/index-k8rMlxoq.js": "58024293f35f4b81a1fa9c2577d1bdd7b462b871835113e68019f89fd002dafe"
+  },
+  "servedProduction": {
+    "url": "http://127.0.0.1:4175",
+    "asset": "/assets/index-k8rMlxoq.js",
+    "sha256": "58024293f35f4b81a1fa9c2577d1bdd7b462b871835113e68019f89fd002dafe",
+    "identicalToBuild": true
+  },
+  "finalCandidate": "After the far GlobeFS ray correction; all after QA recaptured against these unchanged source hashes.",
+  "validationCompletedAtUtc": "2026-10-04T19:20:42.752848+00:00",
+  "evidenceFiles": {
+    "after-development-1024x768-overview.png": {
+      "sha256": "6e28b02dc2c5579bbdf46cac2b9250d74a45921c35da732899021bb2dd9f360b",
+      "bytes": 569056,
+      "modifiedUtc": "2026-10-04T17:36:45.596688+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1280x720-overview.png": {
+      "sha256": "d4947b65a45e9c025133a4974579ac7cbeaef070b7d1f0824a528c47412b3a15",
+      "bytes": 704865,
+      "modifiedUtc": "2026-10-04T17:36:31.394125+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-back.png": {
+      "sha256": "41cf770b5d63ca901ef641ed32964cd12b6ba7586ea92c3a6193cb5705d49d10",
+      "bytes": 962976,
+      "modifiedUtc": "2026-10-04T17:36:14.135833+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-combined-436x583.png": {
+      "sha256": "9fb37403c14b3c927dfeb5bd524b4c7e7e2a08a0e841af0c3e413ee3536f2e32",
+      "bytes": 975253,
+      "modifiedUtc": "2026-10-04T17:34:58.482002+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-combined-restored.png": {
+      "sha256": "be5b36897db3c325daa49388647be64494f83fff59ecd52566eb0db825c20ef9",
+      "bytes": 967862,
+      "modifiedUtc": "2026-10-04T17:34:59.686181+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-height-633.png": {
+      "sha256": "00382a3a75710637c2474eb2bdefdb3ec3d1ca47a59576369ef38835e99efcd6",
+      "bytes": 1003174,
+      "modifiedUtc": "2026-10-04T17:34:56.155316+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-height-restored.png": {
+      "sha256": "7199dae407c498d39667c6b59da8fb096ef71caee5a7c7b887891c74c4e39612",
+      "bytes": 968388,
+      "modifiedUtc": "2026-10-04T17:34:57.327862+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-inspection-crew-closed.png": {
+      "sha256": "295fe1bde3ff1a0c5888eaea8eda5933248829079535df8d07c67d2298bda9da",
+      "bytes": 1751629,
+      "modifiedUtc": "2026-10-04T17:35:59.371247+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-inspection-crew-detail.png": {
+      "sha256": "931989bd62285abc232628ca2a8f5afdce69e1703faf0acd0dacf4be5977a192",
+      "bytes": 1566959,
+      "modifiedUtc": "2026-10-04T17:35:57.940845+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-inspection-crew.png": {
+      "sha256": "6f0c9cae4987875562c2ae97f534d939946199116f8aa672af70d0883bd71a1e",
+      "bytes": 1564130,
+      "modifiedUtc": "2026-10-04T17:35:56.220071+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-inspection.png": {
+      "sha256": "6b81a2c799b2eb0412d09e36b60769ca31de608abb6b3572064e79018387376f",
+      "bytes": 1752619,
+      "modifiedUtc": "2026-10-04T17:35:54.765636+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-live-crew-closed.png": {
+      "sha256": "cfc1be54629711eb67242abb5dfd561cddd8a73c57a25bdaad1bf821f48592b5",
+      "bytes": 966599,
+      "modifiedUtc": "2026-10-04T17:35:07.432535+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-live-crew-detail.png": {
+      "sha256": "2c766260365c0998ef6e03fab6803d6bfc1d9f9b6237cf0de2d810cc56338913",
+      "bytes": 752552,
+      "modifiedUtc": "2026-10-04T17:35:06.227717+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-live-crew.png": {
+      "sha256": "22b6cad36bd7c6fc586bbd8c733d38485c7553605bdb69167263ce2935c87ea1",
+      "bytes": 750272,
+      "modifiedUtc": "2026-10-04T17:35:04.804677+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-overview.png": {
+      "sha256": "c929a42b07ad395a849549c245bc3365e556e584ab131fd1028e97b8ac64bc92",
+      "bytes": 968886,
+      "modifiedUtc": "2026-10-04T17:34:52.648798+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-position-only.png": {
+      "sha256": "b3e368dff856338a604b3df2b1d3cb2f596fde4028d23e28dca9338ff25a6a6d",
+      "bytes": 986442,
+      "modifiedUtc": "2026-10-04T17:35:00.954163+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-position-restored.png": {
+      "sha256": "f23c9703d484dfa82dc23e214a63e5d6a6ef82b9740635b484e9cbabb7f4bd02",
+      "bytes": 967120,
+      "modifiedUtc": "2026-10-04T17:35:02.393617+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-reduced-motion-height.png": {
+      "sha256": "d1c59ecba240a0787bf4b5bea49390916cc339fcd76127f931772a9f12b38a98",
+      "bytes": 1019631,
+      "modifiedUtc": "2026-10-04T17:36:15.379338+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-reduced-motion-restored.png": {
+      "sha256": "424182b9b687e0ef35f390830f4deaa495e15913af49dd7c8bfbf06af7c4b7b8",
+      "bytes": 962505,
+      "modifiedUtc": "2026-10-04T17:36:16.555843+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay-crew-closed.png": {
+      "sha256": "60511295205604efd34ba115ce3ac39ef15b5b550e5f85c8716af2ed3569b2ba",
+      "bytes": 1007783,
+      "modifiedUtc": "2026-10-04T17:35:13.662619+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay-crew-detail.png": {
+      "sha256": "967059886424b4524a8f57f75db5bf2559b659be31aecbce11054a2017169cc8",
+      "bytes": 946405,
+      "modifiedUtc": "2026-10-04T17:35:12.414752+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay-crew.png": {
+      "sha256": "6408a1a0f4ac1ba594f4de8683469a52a3dbdbd5a5d4695526959d6f8da4e5bf",
+      "bytes": 934856,
+      "modifiedUtc": "2026-10-04T17:35:11.177021+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay-inspection.png": {
+      "sha256": "6365991d3b876e4b1215bd0cbaf6056f95e2cfd0429e47416ea614870b16214c",
+      "bytes": 856744,
+      "modifiedUtc": "2026-10-04T17:35:23.930586+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay-seek.png": {
+      "sha256": "c49566323e560dfba765ae1813cb9d186899dfea8f81e5640a50f82986634871",
+      "bytes": 958970,
+      "modifiedUtc": "2026-10-04T17:35:15.546848+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-replay.png": {
+      "sha256": "df43320e8030bd066f946d97312e34a5bda59b1de7218bcd154c6eede7d3c75d",
+      "bytes": 1008480,
+      "modifiedUtc": "2026-10-04T17:35:09.957913+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-return-live.png": {
+      "sha256": "7e234b7ef6de10421fdca26d8f196591546f2a884c170832bc83fe9ac4c8480f",
+      "bytes": 964028,
+      "modifiedUtc": "2026-10-04T17:35:47.033681+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-width-436.png": {
+      "sha256": "1f52289427076ad894ee28eb8a6cd92f6ce1d49d854c202f7941aff9c7bd5737",
+      "bytes": 917890,
+      "modifiedUtc": "2026-10-04T17:34:53.824637+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-1440x900-width-restored.png": {
+      "sha256": "dbd515246afae18108ed35abf8e5623517b63d2d74b9f97d686c9dc4ad13c68d",
+      "bytes": 968709,
+      "modifiedUtc": "2026-10-04T17:34:54.978421+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-back.png": {
+      "sha256": "f9ab53834708cfaa59d57c5e6942a0de751dae9381187363b50a0606eac72cfe",
+      "bytes": 273561,
+      "modifiedUtc": "2026-10-04T17:39:55.085649+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-inspection-crew-closed.png": {
+      "sha256": "f359df1debb5b69e09cb8d53cf6a4779672e220338297684e511173ea522ada7",
+      "bytes": 241030,
+      "modifiedUtc": "2026-10-04T17:39:41.396261+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-inspection-crew-detail.png": {
+      "sha256": "a95eb8a911e9c5f4484c32a86e04e7e083009396d4a59ef5a6fcf969d4a4d2aa",
+      "bytes": 182669,
+      "modifiedUtc": "2026-10-04T17:39:40.386903+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-inspection-crew.png": {
+      "sha256": "bb0e8423ffa0432f172fd8cc77fc2c6b2e2b93ceb9b772b909796f565a9c42f4",
+      "bytes": 173271,
+      "modifiedUtc": "2026-10-04T17:39:39.325575+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-inspection.png": {
+      "sha256": "a391352acc44fcae03a169fe14492639d052bf2e88f3c8dec3fa7805420504f3",
+      "bytes": 240454,
+      "modifiedUtc": "2026-10-04T17:39:37.527850+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-live-crew-closed.png": {
+      "sha256": "3fceae10dc9b9c49ccd521bb36d5fd47d69f12a6c00f99be5d80f40608126d00",
+      "bytes": 272061,
+      "modifiedUtc": "2026-10-04T17:38:53.769022+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-live-crew-detail.png": {
+      "sha256": "1e157f81dfd4802a4a592c785994b1d7b0c48d883b839a57f5ea95b4868eb0f9",
+      "bytes": 165578,
+      "modifiedUtc": "2026-10-04T17:38:52.767084+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-live-crew.png": {
+      "sha256": "c771903561dda5b8faf9242bdf4362a96cb71d8048ef55c43bf3b69055d9303b",
+      "bytes": 156946,
+      "modifiedUtc": "2026-10-04T17:38:51.717632+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-overview.png": {
+      "sha256": "e9eff8d702f9c2c2fd2352b5aef5060289d124f0b277f396addfc1cbc86c7ca6",
+      "bytes": 271832,
+      "modifiedUtc": "2026-10-04T17:38:50.455492+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay-crew-closed.png": {
+      "sha256": "bee10a7429da5dcfa3bb0f632c8e33fa829e511f6797552b178706b29e674cf0",
+      "bytes": 256002,
+      "modifiedUtc": "2026-10-04T17:38:58.081012+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay-crew-detail.png": {
+      "sha256": "7b3b80f95db8ac48d449c071d9a9967c8aa40a410d2ef7a7e658b58fa5e5f956",
+      "bytes": 172043,
+      "modifiedUtc": "2026-10-04T17:38:57.084134+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay-crew.png": {
+      "sha256": "7d1a31d96bfa7b249345832928b75d0b317141efb88e320cfa8c19801661716e",
+      "bytes": 168947,
+      "modifiedUtc": "2026-10-04T17:38:56.086685+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay-inspection.png": {
+      "sha256": "a47f8e6989d3b0e843e41125f1f2b3f5a43c3707f7e191890e68b76a049c06bf",
+      "bytes": 154571,
+      "modifiedUtc": "2026-10-04T17:39:07.950840+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay-seek.png": {
+      "sha256": "ba3ed2a9908ed9721dc1ccf4ccc5a96ed9e9d3e78ccaf3a3ec89e333154c86fe",
+      "bytes": 259077,
+      "modifiedUtc": "2026-10-04T17:38:59.750042+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-replay.png": {
+      "sha256": "b3310438925259b76c371695a4883ff22416ec43623f4c501e846ef984342702",
+      "bytes": 256235,
+      "modifiedUtc": "2026-10-04T17:38:55.099449+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-390x844-return-live.png": {
+      "sha256": "065c4494793236726433f78dd2c9ee0b89b198b113f01cab921595731bd734e2",
+      "bytes": 273914,
+      "modifiedUtc": "2026-10-04T17:39:29.995220+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-back.png": {
+      "sha256": "7736dbb75cb74530ab4ba27361bc1a2f634399bf7e82a50219b682c7e78a979e",
+      "bytes": 519547,
+      "modifiedUtc": "2026-10-04T17:38:36.642043+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-inspection-crew-closed.png": {
+      "sha256": "dbc1c7e19eb94828f2cea9695676c759ee173b569f029340ca700481cd0c1f50",
+      "bytes": 1049298,
+      "modifiedUtc": "2026-10-04T17:38:16.987412+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-inspection-crew-detail.png": {
+      "sha256": "a3d3a669f8c88d2654a86b34245c4a211598a5f140bb32efe3b8a4666dd506dd",
+      "bytes": 763936,
+      "modifiedUtc": "2026-10-04T17:38:15.656968+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-inspection-crew.png": {
+      "sha256": "74ce716d681b3fc61c07c46af5ef5b51cf5de8058a85b56959450f47364bb7d0",
+      "bytes": 756241,
+      "modifiedUtc": "2026-10-04T17:38:13.844608+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-inspection.png": {
+      "sha256": "aee28dffd2245c1ed40dced7035cd385085aea54d41a5892b717b779a1cd2982",
+      "bytes": 1049866,
+      "modifiedUtc": "2026-10-04T17:38:12.366435+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-live-crew-closed.png": {
+      "sha256": "ed2e8b2ae8c427b88ca051f2fae85314bbcf5a468a0f9a208ef7673e02f40692",
+      "bytes": 519937,
+      "modifiedUtc": "2026-10-04T17:37:19.764448+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-live-crew-detail.png": {
+      "sha256": "ee6bf267bdc113851ba9454b96460f2363a19d267868667d7cdc482ee8c509e9",
+      "bytes": 443642,
+      "modifiedUtc": "2026-10-04T17:37:18.717885+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-live-crew.png": {
+      "sha256": "06bae6a3be15e47afb8213973f48e90f44d97b5598b6327bb87ee4dca7ffa1a3",
+      "bytes": 437884,
+      "modifiedUtc": "2026-10-04T17:37:17.482067+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-overview.png": {
+      "sha256": "7a84c6ba083b33431a2a0d73e45bd81452487a125bc5da86dc36862f5e1e7e34",
+      "bytes": 519827,
+      "modifiedUtc": "2026-10-04T17:37:16.088355+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay-crew-closed.png": {
+      "sha256": "6c263cc845890f11afe8c00f772c24471817ac128c113a15f730f443c419be21",
+      "bytes": 684617,
+      "modifiedUtc": "2026-10-04T17:37:24.538600+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay-crew-detail.png": {
+      "sha256": "1c778ea67e2ccc9ea0f7e2c5b882a1e8cc0c2f27fd82889c514d99dd119a4221",
+      "bytes": 532853,
+      "modifiedUtc": "2026-10-04T17:37:23.418079+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay-crew.png": {
+      "sha256": "35c751af51eea116656ad43681236d7b00e142b3635fb05c5e09ab0e421ebe28",
+      "bytes": 527860,
+      "modifiedUtc": "2026-10-04T17:37:22.250156+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay-inspection.png": {
+      "sha256": "975366dbd4eb0133c5c6faa819bbf61f641c25e0ec354ba82933715f899bff7a",
+      "bytes": 485759,
+      "modifiedUtc": "2026-10-04T17:37:34.650391+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay-seek.png": {
+      "sha256": "6dbc8ee80ed5f22fcd27b0c0d40b587baf9fece3a4b89fc89fd840a2b38221e8",
+      "bytes": 653222,
+      "modifiedUtc": "2026-10-04T17:37:26.256704+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-replay.png": {
+      "sha256": "202418b29d2957ca51b83c3fb5450dfecf3b18e228c9459f5a5ac57475c1d9e6",
+      "bytes": 685092,
+      "modifiedUtc": "2026-10-04T17:37:21.211258+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-768x1024-return-live.png": {
+      "sha256": "ebe1debc4b66223ed312a0648a34e91d86095d4140226e9394965633cec70acd",
+      "bytes": 519729,
+      "modifiedUtc": "2026-10-04T17:38:04.819729+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-900x700-overview.png": {
+      "sha256": "47c819f1cc42523e27cf06d613c2e5e711dc74ba2323ec040d9c974e82f6a6df",
+      "bytes": 449121,
+      "modifiedUtc": "2026-10-04T17:36:59.350883+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-900x700-resize-1024x768.png": {
+      "sha256": "15643f0b2e43163260429eafd59fb8a93505713b50f5fe62d1ae1f073fca484f",
+      "bytes": 566931,
+      "modifiedUtc": "2026-10-04T17:37:01.287416+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-900x700-resize-390x844.png": {
+      "sha256": "10bf5ecf7de118e9465f9b313113b80f25c49a071d44a1a9bccedfed5ae04851",
+      "bytes": 261989,
+      "modifiedUtc": "2026-10-04T17:37:00.286413+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-900x700-resize-768x1024.png": {
+      "sha256": "b5d42de9b543a909ce6501d2a202e8097e6dbca9f8f6c49efbd2a2c2115735c0",
+      "bytes": 516611,
+      "modifiedUtc": "2026-10-04T17:37:02.322735+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-development-900x700-resize-900x700.png": {
+      "sha256": "655e89943a89c48127748b21d7ee7a5efbb88c1e67d0f7b597b7b61281ad4869",
+      "bytes": 448759,
+      "modifiedUtc": "2026-10-04T17:37:03.308999+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-input-4175-1440-inspection.png": {
+      "sha256": "ec8fa76a93cd41ab636cf12ad69914f481ca8554ae8122b9dbaa80ba566e0ad3",
+      "bytes": 773874,
+      "modifiedUtc": "2026-10-04T17:52:10.562750+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-input-4175-390-inspection.png": {
+      "sha256": "d30952da759c9cda477c3b7a24ecfdd0b8ef8dcc832bcfb1e76cc3b9c03f42ec",
+      "bytes": 206427,
+      "modifiedUtc": "2026-10-04T17:52:30.375731+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-input-5175-1440-inspection.png": {
+      "sha256": "3341b79197f4a7453bc18fe16cfe4c79dfe0b471e22b564c1c054433190a5f0b",
+      "bytes": 787661,
+      "modifiedUtc": "2026-10-04T17:51:27.037832+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-input-5175-390-inspection.png": {
+      "sha256": "4605e44a94b26c15599acc2d327342b239c1203a9aa5ec87d8fb8408ea866362",
+      "bytes": 208945,
+      "modifiedUtc": "2026-10-04T17:51:47.844878+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1024x768-overview.png": {
+      "sha256": "2f51f16eae34b3b5dafc42c4b3e1db4ac87ebabd5200e69d78589b8da496d596",
+      "bytes": 616752,
+      "modifiedUtc": "2026-10-04T17:43:18.135764+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1280x720-overview.png": {
+      "sha256": "9f8821f65ecc27e061199b3cc07f2e198a07025b00445c556e63af43e79de293",
+      "bytes": 751795,
+      "modifiedUtc": "2026-10-04T17:42:53.696469+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-back.png": {
+      "sha256": "ee88e2947dab6b3491e35a292f1f391fe1575276c3de1780d5a355572e79b992",
+      "bytes": 978687,
+      "modifiedUtc": "2026-10-04T17:42:27.100747+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-combined-436x583.png": {
+      "sha256": "40954069e5006972e6980a7fb82f3602b9ef4eda8f81be1daf5898cbda0f94f4",
+      "bytes": 969911,
+      "modifiedUtc": "2026-10-04T17:40:35.191154+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-combined-restored.png": {
+      "sha256": "1faf65a054d88de8e0835e8ac483e309621aba56328f4e3357ee67c7b2f5c700",
+      "bytes": 978994,
+      "modifiedUtc": "2026-10-04T17:40:36.416506+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-height-633.png": {
+      "sha256": "4f7299a9efaf08cb5ec033739c1e2d8496cdec96964f32748001e3ca71a993fa",
+      "bytes": 995355,
+      "modifiedUtc": "2026-10-04T17:40:32.763745+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-height-restored.png": {
+      "sha256": "d3776849ab9d40a6a40e6d7afbbde3fbcd958d9557aa72ca6b2cb07b0683e6c5",
+      "bytes": 978591,
+      "modifiedUtc": "2026-10-04T17:40:33.977185+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-inspection-crew-closed.png": {
+      "sha256": "c2b5137f6276ad27014d19e06657f8249b91a04db5672d597c51f6936669d12d",
+      "bytes": 1516302,
+      "modifiedUtc": "2026-10-04T17:41:59.612167+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-inspection-crew-detail.png": {
+      "sha256": "2fb9a469a0ce3dc92a138f701f97eadc26b4acf2f4828d4592ecc6b6daf51a94",
+      "bytes": 1311746,
+      "modifiedUtc": "2026-10-04T17:41:57.920096+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-inspection-crew.png": {
+      "sha256": "4a92831c97be350e6ea12bd18a46faab10ff2e582988d2f55fcd13a827efcd0c",
+      "bytes": 1309010,
+      "modifiedUtc": "2026-10-04T17:41:55.135484+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-inspection.png": {
+      "sha256": "dc01e94374e8e68a15485ff813aed20b9a0d33c2b70d1f75d4fc1b6748c09237",
+      "bytes": 1517198,
+      "modifiedUtc": "2026-10-04T17:41:52.245430+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-live-crew-closed.png": {
+      "sha256": "a482ecbbaa73bcc426b5661cb12c49ca6ebee5efd1657783cb2a999453e1cf01",
+      "bytes": 978619,
+      "modifiedUtc": "2026-10-04T17:40:46.160639+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-live-crew-detail.png": {
+      "sha256": "eaf1e9487ea7222c2e7a5ac18166cb5974cb2019eca24e8177f95a8e0e2230b2",
+      "bytes": 875095,
+      "modifiedUtc": "2026-10-04T17:40:44.224353+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-live-crew.png": {
+      "sha256": "fe504bc31a8c5754716290bddf161681a5c7e6b068e8a87d321ed0767c6888b1",
+      "bytes": 872624,
+      "modifiedUtc": "2026-10-04T17:40:40.783634+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-overview.png": {
+      "sha256": "aca70046ce3e2d06e4a25267543a88673f1b8a74b5aff06b8e559cd0f34349e5",
+      "bytes": 978983,
+      "modifiedUtc": "2026-10-04T17:40:29.195531+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-position-only.png": {
+      "sha256": "71fa4c26ee437711ac42d665abc4ea21d6372c7c65155df0badd47d6df85b2a7",
+      "bytes": 985898,
+      "modifiedUtc": "2026-10-04T17:40:37.599428+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-position-restored.png": {
+      "sha256": "584a4bc3490c4e5076dde9ed13ceb3920ebb65767e1eb52d16ceeb3c21fc312c",
+      "bytes": 979307,
+      "modifiedUtc": "2026-10-04T17:40:38.761095+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-reduced-motion-height.png": {
+      "sha256": "cce84283c9fa31e49bbc1ba2948bd2aeeeb28219ce1b1c50abdfe14fe95e0e7e",
+      "bytes": 1006478,
+      "modifiedUtc": "2026-10-04T17:42:28.965590+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-reduced-motion-restored.png": {
+      "sha256": "27e5ace477c7c70fdf733dab37226211c8407b40bf3c333f8a01b6fe3b4eee18",
+      "bytes": 979431,
+      "modifiedUtc": "2026-10-04T17:42:30.503024+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay-crew-closed.png": {
+      "sha256": "7f34156dc292f6a95b103392f8368c843b76980157dca7dd6aaf69abf1cc5d0e",
+      "bytes": 1157250,
+      "modifiedUtc": "2026-10-04T17:40:53.137938+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay-crew-detail.png": {
+      "sha256": "0139815d070be96b4c9ada70236cb4e7cc9db20d01f363b5fd39ea91810313c5",
+      "bytes": 1077549,
+      "modifiedUtc": "2026-10-04T17:40:51.270269+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay-crew.png": {
+      "sha256": "1748dc43ad46c5c96fb083214ae30700988d1247007beb9f533842e49cd7430f",
+      "bytes": 1066051,
+      "modifiedUtc": "2026-10-04T17:40:49.806163+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay-inspection.png": {
+      "sha256": "fa83f17f593aa6808269c77571401f96d773702b9ce1982cd65ddfbd7d20c0c1",
+      "bytes": 855935,
+      "modifiedUtc": "2026-10-04T17:41:04.018498+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay-seek.png": {
+      "sha256": "1bef505710cc52b4482f24e72b8245c4df9b0fc33fea72ada6a38f77237e53d0",
+      "bytes": 1150660,
+      "modifiedUtc": "2026-10-04T17:40:55.303165+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-replay.png": {
+      "sha256": "eb0ecdd9c11d88fb9024e1892909d6dd8621dd7d6bba2ba612d24a202570db1c",
+      "bytes": 1157748,
+      "modifiedUtc": "2026-10-04T17:40:48.133118+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-return-live.png": {
+      "sha256": "f04f2fd233ca81e794affd39c99b911a3fe22a0a1a2a577e4e752a2031a45add",
+      "bytes": 979076,
+      "modifiedUtc": "2026-10-04T17:41:44.110071+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-width-436.png": {
+      "sha256": "4d374b2d1e8649130db30da6ce07033a89c79a1a04ed000d165a95804da8b6a7",
+      "bytes": 939592,
+      "modifiedUtc": "2026-10-04T17:40:30.363311+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-1440x900-width-restored.png": {
+      "sha256": "5cda1062eff5160b3d99f25dfaad685c49c2668dfec8372ebffb3e8257e6ba88",
+      "bytes": 978375,
+      "modifiedUtc": "2026-10-04T17:40:31.524581+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-back.png": {
+      "sha256": "6e58c96c4e07f0af7f7dd289d49b62493f7ac880369f859fad52301bbd992635",
+      "bytes": 289779,
+      "modifiedUtc": "2026-10-04T17:47:08.165935+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-inspection-crew-closed.png": {
+      "sha256": "85c8d1cb8277069dcb4985001d2baa82ec20cef0d610b408720119e9d85e111f",
+      "bytes": 369059,
+      "modifiedUtc": "2026-10-04T17:46:51.914022+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-inspection-crew-detail.png": {
+      "sha256": "f1845722499e73cda850fcff6ee74148079b6a9b27319bbfeb27012b9b7211c2",
+      "bytes": 198295,
+      "modifiedUtc": "2026-10-04T17:46:50.930044+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-inspection-crew.png": {
+      "sha256": "efe507d421aa474f70e90eedcf4e4baa2d3eaf8a3955e2fc45aa209f01a22299",
+      "bytes": 189019,
+      "modifiedUtc": "2026-10-04T17:46:49.775578+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-inspection.png": {
+      "sha256": "a519cf5e038a279c446a91bd46326b5380ebdc998dc10c4af8ca72428b506259",
+      "bytes": 367775,
+      "modifiedUtc": "2026-10-04T17:46:48.643539+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-live-crew-closed.png": {
+      "sha256": "b2e1be625153b44337fb451809b85952b9b99376d31e36b4458ab8e6a2eddd0c",
+      "bytes": 289261,
+      "modifiedUtc": "2026-10-04T17:46:02.233969+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-live-crew-detail.png": {
+      "sha256": "244db11e4a8c5691977f6ef733f64aaa2366aaf095deb2bff4ef173a1920dee3",
+      "bytes": 174160,
+      "modifiedUtc": "2026-10-04T17:46:01.188947+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-live-crew.png": {
+      "sha256": "6da65558ece0ab75d8c140e11b25386fab83a263c136d276fca7aea673b1f904",
+      "bytes": 164862,
+      "modifiedUtc": "2026-10-04T17:46:00.043459+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-overview.png": {
+      "sha256": "11f5b871e716ec2732d64d8f461e8b2dc4f758e59e16aa540852305c1ee95cd3",
+      "bytes": 289529,
+      "modifiedUtc": "2026-10-04T17:45:58.870084+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay-crew-closed.png": {
+      "sha256": "1a6da558480b874ac47eaa2e1338fe1a0fa16ee79d1dd2546834ec3a7a3b543a",
+      "bytes": 280053,
+      "modifiedUtc": "2026-10-04T17:46:06.920462+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay-crew-detail.png": {
+      "sha256": "0ed91c76bf5ababb6baba18a8527c16908ea40c949bc3bf0bb1db139e91cd1f6",
+      "bytes": 196896,
+      "modifiedUtc": "2026-10-04T17:46:05.900964+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay-crew.png": {
+      "sha256": "78272c2181ccd0880315d2c32282bc0e26c844257b0aea8c37b1e8533a92c70c",
+      "bytes": 193803,
+      "modifiedUtc": "2026-10-04T17:46:04.872005+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay-inspection.png": {
+      "sha256": "a2818f435bea51437a74e83d5d90ba564911ea318c4c58c98403a2a13d3086fc",
+      "bytes": 189503,
+      "modifiedUtc": "2026-10-04T17:46:16.920342+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay-seek.png": {
+      "sha256": "fdf70a5e080d72b16cf2217d958a45b1bf0555e4d8bbec08cbcf5ebb32d6b865",
+      "bytes": 283656,
+      "modifiedUtc": "2026-10-04T17:46:08.616291+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-replay.png": {
+      "sha256": "463009268f852611b09059d474916803a8f757ebd690317dd5ae1baa44bebf6f",
+      "bytes": 280080,
+      "modifiedUtc": "2026-10-04T17:46:03.783538+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-390x844-return-live.png": {
+      "sha256": "677ca782e4af32a54da46c17b9419ea4914de709d7c5684076d4ef94c813d18a",
+      "bytes": 289685,
+      "modifiedUtc": "2026-10-04T17:46:41.267591+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-back.png": {
+      "sha256": "7ddfbaaa69c014a754826ab6c4f97ed4df353155597c1e67ad3084aa0fc02376",
+      "bytes": 568216,
+      "modifiedUtc": "2026-10-04T17:45:38.139798+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-inspection-crew-closed.png": {
+      "sha256": "da207c011709c719c175969a775ccc569a3e2de2e5c121e6d133abfb59eefbeb",
+      "bytes": 954796,
+      "modifiedUtc": "2026-10-04T17:45:16.843515+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-inspection-crew-detail.png": {
+      "sha256": "e535fbe04044a640602f6db75f5e80fe0d39ff9fddd1f5f518a61bb640fd1ae1",
+      "bytes": 699107,
+      "modifiedUtc": "2026-10-04T17:45:14.890323+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-inspection-crew.png": {
+      "sha256": "4b8393636584a6833f2170c2776eb03d81a1aac7fc96ec95759e866e5200c948",
+      "bytes": 691044,
+      "modifiedUtc": "2026-10-04T17:45:13.684985+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-inspection.png": {
+      "sha256": "2b612effef0a3a86947e32f87c4641e845328c2e86ffe706bd56de4d9909eaf6",
+      "bytes": 953483,
+      "modifiedUtc": "2026-10-04T17:45:12.445179+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-live-crew-closed.png": {
+      "sha256": "03811e49df023e9dc911abb26e135484d0cc193139176851b514be76cdf21df2",
+      "bytes": 568241,
+      "modifiedUtc": "2026-10-04T17:44:07.361058+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-live-crew-detail.png": {
+      "sha256": "1a27a12241f884b867a4ce09be0119a51715907b5cba6bf25bbe1ac2d74110bf",
+      "bytes": 534713,
+      "modifiedUtc": "2026-10-04T17:44:06.216259+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-live-crew.png": {
+      "sha256": "fd27141b897ce3c331aa971c22c1820f3e9a1b48622ce42e769637bf97798eb3",
+      "bytes": 528451,
+      "modifiedUtc": "2026-10-04T17:44:04.849679+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-overview.png": {
+      "sha256": "8c14a44eef683c04051e30608d36c7825f762bc4e008abc13d9b6ffb45d11aa2",
+      "bytes": 568295,
+      "modifiedUtc": "2026-10-04T17:44:03.460924+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay-crew-closed.png": {
+      "sha256": "02e996bec444927035d970bf100e45b4bd23bfa6dd62764cbabf4c24a8057816",
+      "bytes": 763874,
+      "modifiedUtc": "2026-10-04T17:44:12.423598+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay-crew-detail.png": {
+      "sha256": "095ae8dd380e80cbb0a5b44b8c868c059c8c5e74f6922369ea772b79bd5d4248",
+      "bytes": 612959,
+      "modifiedUtc": "2026-10-04T17:44:11.269204+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay-crew.png": {
+      "sha256": "a24acc911787c5ccf819ee3cd4b9e6a7667258677a6621add992982786428198",
+      "bytes": 608117,
+      "modifiedUtc": "2026-10-04T17:44:10.124364+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay-inspection.png": {
+      "sha256": "f41f84afa48ecc535b0dc179bb9892e2ef95cdf088b2363d18ea3edae53268de",
+      "bytes": 485264,
+      "modifiedUtc": "2026-10-04T17:44:22.582451+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay-seek.png": {
+      "sha256": "f65d94bf7c9d065ea3c169856e6f6aa22d27104552a5a3dd8d6e74b744cec368",
+      "bytes": 762965,
+      "modifiedUtc": "2026-10-04T17:44:14.227289+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-replay.png": {
+      "sha256": "4c2284c0a970f127b96b97f3c05f7cc18127eab677606e5a66c2ca09b12697df",
+      "bytes": 764214,
+      "modifiedUtc": "2026-10-04T17:44:08.964408+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-768x1024-return-live.png": {
+      "sha256": "c0a3a7d5af83f7cd5f1c795f3fd25b428af78e255ef64089d45163121688b2aa",
+      "bytes": 568797,
+      "modifiedUtc": "2026-10-04T17:45:04.935404+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-900x700-overview.png": {
+      "sha256": "6e10797d27784320babc67008cd672948f9569d76445518f0c7abc82d3d85c35",
+      "bytes": 488533,
+      "modifiedUtc": "2026-10-04T17:43:39.779687+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-900x700-resize-1024x768.png": {
+      "sha256": "be637d3bf9ba52a94666e8e03b676df3fe220208ea8a0a23a1843c1cb062c663",
+      "bytes": 618693,
+      "modifiedUtc": "2026-10-04T17:43:41.882720+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-900x700-resize-390x844.png": {
+      "sha256": "f366ff6e1ffa7ae3bd8ceda221314ce32ed2f014889ee7a04a93677605a0bc83",
+      "bytes": 284346,
+      "modifiedUtc": "2026-10-04T17:43:40.760528+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-900x700-resize-768x1024.png": {
+      "sha256": "cba46ad8792a813221b14c24b55972b0dd68d010027455d29b6d8bbc0ab6cfee",
+      "bytes": 570166,
+      "modifiedUtc": "2026-10-04T17:43:42.962631+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "after-production-900x700-resize-900x700.png": {
+      "sha256": "dc7888ac788d2319c3b9306d04780fa1f48b3c4a8398cd0ef5486882c0f53b0b",
+      "bytes": 488452,
+      "modifiedUtc": "2026-10-04T17:43:44.018542+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "before-1280x720-overview.png": {
+      "sha256": "bbc42b0819c6d22d0181bf8535dcc396d10c5160ce4b0705e88e31e3a009152a",
+      "bytes": 528553,
+      "modifiedUtc": "2026-10-04T16:00:08.739234+00:00",
+      "role": "retained baseline"
+    },
+    "before-1440x900-inspection.png": {
+      "sha256": "8c3ee2d5e06819712b8164c1e17148823e9e4520dcb11a1b76c1896d1799ac5b",
+      "bytes": 743606,
+      "modifiedUtc": "2026-10-04T16:00:08.740278+00:00",
+      "role": "retained baseline"
+    },
+    "before-1440x900-overview.png": {
+      "sha256": "15f531ff9aa1dfb378a52e8800a649ba16b56d707955ac065ff1dc047aa9be70",
+      "bytes": 767606,
+      "modifiedUtc": "2026-10-04T16:00:08.741315+00:00",
+      "role": "retained baseline"
+    },
+    "before-1440x900-replay-inspection.png": {
+      "sha256": "fabd33838be3eec4902c43aa1b7b84d511a535c8172d6f22171f8cb70ff45aa9",
+      "bytes": 754277,
+      "modifiedUtc": "2026-10-04T16:00:08.743007+00:00",
+      "role": "retained baseline"
+    },
+    "before-1440x900-replay.png": {
+      "sha256": "7e8eeafd8279b67d2c9aef3d2c7e2006c9900edd3752763c9658d8615bf31179",
+      "bytes": 653303,
+      "modifiedUtc": "2026-10-04T16:00:08.745172+00:00",
+      "role": "retained baseline"
+    },
+    "before-390x844-inspection.png": {
+      "sha256": "6cb3e778ece027bc8051991add290d53d8cca9c35e23e192c820f348b580a86a",
+      "bytes": 165453,
+      "modifiedUtc": "2026-10-04T16:00:08.745977+00:00",
+      "role": "retained baseline"
+    },
+    "before-390x844-overview.png": {
+      "sha256": "9db4642aa6b2a6b048719dc32d36fc0be6dadfd2752e79a4a393e091ccaf21e2",
+      "bytes": 220842,
+      "modifiedUtc": "2026-10-04T16:00:08.746501+00:00",
+      "role": "retained baseline"
+    },
+    "before-390x844-replay-inspection.png": {
+      "sha256": "0616cb291c9be04a91df134fa051ec294a8a0f12722054e129d12ce4ffdf7bf5",
+      "bytes": 189670,
+      "modifiedUtc": "2026-10-04T16:00:08.747026+00:00",
+      "role": "retained baseline"
+    },
+    "before-390x844-replay.png": {
+      "sha256": "427f984ddaff715af90112aa068854b11a11b02fd836efcaa1972c479f2078a9",
+      "bytes": 206457,
+      "modifiedUtc": "2026-10-04T16:00:08.748056+00:00",
+      "role": "retained baseline"
+    },
+    "before-768x1024-overview.png": {
+      "sha256": "11d27505c99b345e1e85645b6db161f9438081e26a289056a7eee8d386ea3442",
+      "bytes": 424964,
+      "modifiedUtc": "2026-10-04T16:00:08.749352+00:00",
+      "role": "retained baseline"
+    },
+    "before-900x700-overview.png": {
+      "sha256": "a879097f9a345f3416853411dfcad5daf7e634a87909f558974a4a3be55d8d93",
+      "bytes": 389488,
+      "modifiedUtc": "2026-10-04T16:00:08.750179+00:00",
+      "role": "retained baseline"
+    },
+    "before.json": {
+      "sha256": "e76a00e4a4fc6fa3004a76727f56c2123ac8b7aadb989374f2d04b4ff08502e1",
+      "bytes": 19825,
+      "modifiedUtc": "2026-10-04T16:00:08.751194+00:00",
+      "role": "retained baseline"
+    },
+    "camera-freeze.json": {
+      "sha256": "ab5a44c2985cf48e2f51cb2b0766305a44cec9835bad98973e26e262827caef7",
+      "bytes": 5521,
+      "modifiedUtc": "2026-10-04T19:18:19.136945+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-browser.json": {
+      "sha256": "e520f6f33444fc692f1d7e4396527249053d80af9b346ab7e0dd72236e3d4889",
+      "bytes": 182110,
+      "modifiedUtc": "2026-10-04T17:39:55.087301+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-1024.json": {
+      "sha256": "7cf7f21331bdac390ca392d7613bd068a17c58704c9cd971f78a5e84cc01e0c8",
+      "bytes": 15783,
+      "modifiedUtc": "2026-10-04T17:36:45.600907+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-1280.json": {
+      "sha256": "522a5c2a90c3ad3bcb5a66d901a77beae479f4f6255e281378386677da41b3c0",
+      "bytes": 18195,
+      "modifiedUtc": "2026-10-04T17:36:31.396697+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-1440.json": {
+      "sha256": "c654f9dd25ae1ee764c3f69bad6001669f225ca0bbf1ae1b955c4febeb8ecca6",
+      "bytes": 117674,
+      "modifiedUtc": "2026-10-04T17:36:16.560050+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-390.json": {
+      "sha256": "47574a288f8fd70a6afdcbc01e75a324780395c700d89b76e0404acce6389262",
+      "bytes": 19395,
+      "modifiedUtc": "2026-10-04T17:39:55.090977+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-768.json": {
+      "sha256": "612d4871e64a15da32755feb3772f01a527cbc1a9e36b70e9372b4006fe5d9a0",
+      "bytes": 97473,
+      "modifiedUtc": "2026-10-04T17:38:36.649719+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "development-requests-900.json": {
+      "sha256": "73632a14de3872991deeec6b6d1570041cbb00bf3185b10bc99f0e7c9ca649ea",
+      "bytes": 15783,
+      "modifiedUtc": "2026-10-04T17:37:03.311379+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "freeze-audit.json": {
+      "sha256": "fbd8f941754f4256827e82c2e1b6547a96bc66aab127244170a0c76bd1b0986b",
+      "bytes": 115661,
+      "modifiedUtc": "2026-10-04T19:18:25.567339+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "full-scene-edge.json": {
+      "sha256": "a565596d1d2a1ba68ab13628f002ebd865eb2f67736063895158d892168a6b86",
+      "bytes": 12664,
+      "modifiedUtc": "2026-10-04T17:53:40.313984+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-4175-off-center-adapter.png": {
+      "sha256": "380298c2363892d14443d0670b348d974b21d6b51c9c8517ade30ed12a7ee5e4",
+      "bytes": 973895,
+      "modifiedUtc": "2026-10-04T17:34:11.496068+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-4175-symmetric-adapter.png": {
+      "sha256": "f47af01e0a76e6b1b141151ee261196b8e9fb9ec6e239e2e75180ba6ce90bb02",
+      "bytes": 1061201,
+      "modifiedUtc": "2026-10-04T17:34:09.299469+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-4175-symmetric-native.png": {
+      "sha256": "f47af01e0a76e6b1b141151ee261196b8e9fb9ec6e239e2e75180ba6ce90bb02",
+      "bytes": 1061201,
+      "modifiedUtc": "2026-10-04T17:34:07.161463+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-5175-off-center-adapter.png": {
+      "sha256": "d574980fdb6d1a5276c3acbc2fd75ee536fc49a665154a25d3c2fd765fefcc06",
+      "bytes": 977502,
+      "modifiedUtc": "2026-10-04T17:33:40.697877+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-5175-symmetric-adapter.png": {
+      "sha256": "73a2e749e3466267dd13e3617499a7c340e96ccc3271b0a3d0f8e1a8b0f2d695",
+      "bytes": 1063604,
+      "modifiedUtc": "2026-10-04T17:33:38.526692+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-5175-symmetric-native.png": {
+      "sha256": "73a2e749e3466267dd13e3617499a7c340e96ccc3271b0a3d0f8e1a8b0f2d695",
+      "bytes": 1063604,
+      "modifiedUtc": "2026-10-04T17:33:36.422335+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "globe-projection.json": {
+      "sha256": "97ac463ef729ebe4c6c0b5a5eede8151dbb914fc33d752a569b1caf8cbbbd669",
+      "bytes": 4401,
+      "modifiedUtc": "2026-10-04T17:34:12.088642+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "gpu-edge-pick-4175.png": {
+      "sha256": "49955089118010b623400912cdb863060c0319a7fe317c1052a376477aefc727",
+      "bytes": 1471029,
+      "modifiedUtc": "2026-10-04T17:53:40.311337+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "gpu-edge-pick-5175.png": {
+      "sha256": "138bd382aaced1ad1c0e9e858360ff848034d42b6d7b8c613d43c3fb88383400",
+      "bytes": 1466505,
+      "modifiedUtc": "2026-10-04T17:53:07.896482+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "idle-lifecycle.json": {
+      "sha256": "ae1227cf9f502638d7c743cdddbe3ee7b071d94ba2ec2cb93299bc2da12a02c6",
+      "bytes": 63759,
+      "modifiedUtc": "2026-10-04T19:15:44.534137+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "input-moving-edge-attempt.txt": {
+      "sha256": "2f16417ddb48aca43d045d9b49b8248c590c664c1207466b9685ff15d67efb56",
+      "bytes": 434,
+      "modifiedUtc": "2026-10-04T17:51:00.456264+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "input-regression.json": {
+      "sha256": "ac54ec34371cbd31c71e5266a6bd724489bfdc85fc76518da14c374b3d7b1733",
+      "bytes": 7511,
+      "modifiedUtc": "2026-10-04T17:52:35.456801+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "network-audit.json": {
+      "sha256": "7700b659eff8936616cbe511540ca0001f8dfa81523aaab381db74cf6f34d7fd",
+      "bytes": 2403,
+      "modifiedUtc": "2026-10-04T19:18:25.579344+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-browser.json": {
+      "sha256": "a3dba836bf6eac1f930c58890e69abe4a5d5940a16d9e1c9585fb44e210315b1",
+      "bytes": 171977,
+      "modifiedUtc": "2026-10-04T17:47:08.167444+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-1024.json": {
+      "sha256": "8b221ca5155f248b29fa7b65d7abe518bf68d9aa7328e9ed72c297c14b33d9c6",
+      "bytes": 13629,
+      "modifiedUtc": "2026-10-04T17:43:18.139333+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-1280.json": {
+      "sha256": "f168814de2be739c9a6854a1556cb0d8568132e0738c61ebb9772a90bc458750",
+      "bytes": 13629,
+      "modifiedUtc": "2026-10-04T17:42:53.703843+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-1440.json": {
+      "sha256": "d151b514b9e4890af4a766f1a41e206f3b2455abed6b9921ad4b24bad049d685",
+      "bytes": 105306,
+      "modifiedUtc": "2026-10-04T17:42:30.507493+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-390.json": {
+      "sha256": "722e2292c68f8c4ac235052238de55c51d6c0341e490266e3054ec7fccd84b7e",
+      "bytes": 73152,
+      "modifiedUtc": "2026-10-04T17:47:08.169110+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-768.json": {
+      "sha256": "31a9fa5ac5c94e22a2cf23cc151ee40a72fdedc528489e42736bfd66e86eae45",
+      "bytes": 90203,
+      "modifiedUtc": "2026-10-04T17:45:38.221260+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "production-requests-900.json": {
+      "sha256": "07f250123bcb84221f391c7158ac7a7bc4163c6e2944c4c4618040e69e073575",
+      "bytes": 13629,
+      "modifiedUtc": "2026-10-04T17:43:44.020176+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "space-below-dashboard-inspection-4175.png": {
+      "sha256": "213b6f45a6b213da487d4dc28b447d1c1c98aa37a47e2e5ee91ed7957323956e",
+      "bytes": 701179,
+      "modifiedUtc": "2026-10-04T17:53:39.140928+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "space-below-dashboard-inspection-5175.png": {
+      "sha256": "c9ca66cfe3be815c6684aaa2152b7fdcf85da4332ee12d5eff4b226a43088fed",
+      "bytes": 698193,
+      "modifiedUtc": "2026-10-04T17:53:06.721374+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "space-below-dashboard-overview-4175.png": {
+      "sha256": "c5f4c9c994b7f7184cb270c9b5b91958559e19a7166024e897fdcae4a69e1640",
+      "bytes": 944760,
+      "modifiedUtc": "2026-10-04T17:53:21.614594+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "space-below-dashboard-overview-5175.png": {
+      "sha256": "cbdad4a79c819ba1264e8347fdf1d0852f294a78bcabc61df4a1ce1247b28e29",
+      "bytes": 890239,
+      "modifiedUtc": "2026-10-04T17:52:49.562824+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "transitions-clock-attempt.txt": {
+      "sha256": "566c9ffde3a6e888c2983dc44213ce03e5ef592e60b51e94db9768bf615a7f9a",
+      "bytes": 4329,
+      "modifiedUtc": "2026-10-04T19:13:00.579022+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "transitions.json": {
+      "sha256": "18ada7bf59c557f173284b3196e192ac10fc1b6a9b70d2a0346686fd9a7e58bf",
+      "bytes": 4227842,
+      "modifiedUtc": "2026-10-04T19:14:52.503734+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "validation-log.txt": {
+      "sha256": "b71d1482a478d1365f0809f8cfcd5289fa6a104d71ab240923310bcd9a59a299",
+      "bytes": 4086,
+      "modifiedUtc": "2026-10-04T19:26:51.125055+00:00",
+      "role": "final gates and earlier attempts, trailing whitespace normalized for Git"
+    },
+    "visual-lint.json": {
+      "sha256": "88cade2bb20bab3d0f4a8101c769382438b0fcfd874fb9dbc6003cdacd0c6e88",
+      "bytes": 9848,
+      "modifiedUtc": "2026-10-04T19:17:47.601667+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    },
+    "visual-review.json": {
+      "sha256": "1838b2b1cbb541b810c3a0b0950607f3b72978bfeeb8e91c4b9d07e32e786269",
+      "bytes": 2502,
+      "modifiedUtc": "2026-10-04T19:20:42.752697+00:00",
+      "role": "final evidence or explicitly named failed attempt"
+    }
+  }
+}

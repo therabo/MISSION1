@@ -1,20 +1,27 @@
 # Earth View orbital delivery decision and validation
 
-## Dynamic workspace presentation boundary — 2026-10-04
+## Full-screen occlusion presentation boundary — 2026-10-04
 
-App owns event-driven rendered dashboard geometry; CSS owns whether that surface
-is a side panel or bottom/full-width overlay. EarthView retains sole ownership
-of Viewer, physical camera, scene and resize/projection adaptation. The new
-workspace prop carries only local layout dimensions, with no source or API
-coupling. The real free viewport uses a symmetric crop of the existing camera
-lens so canonical pose/FOV, apparent scale, picking and transitions remain
-coherent. Two observers have distinct responsibilities: shell/dashboard
-measurement and Cesium-container resize. Neither introduces a frame-loop DOM
-measurement, provider call or frame-driven React state.
+App owns event-driven rendered dashboard geometry; CSS owns side/bottom/hidden
+layout roles. EarthView retains sole ownership of the full-screen Viewer, physical
+camera and projection/input adaptation. The DOM dashboard occludes only its
+actual clipped rectangle. The layout prop carries viewport, occlusion, areas and
+remaining-area centroid, without source/API coupling or copied panel dimensions.
 
-This is a reversible local presentation adapter within the accepted React/Cesium
-boundary. No service, dependency, persistence or public contract changes; no new
-ADR required. [Alternatives, formula, regression evidence and limits](../frontend/dynamic-workspace-centering/README.md).
+Two ResizeObservers retain separate responsibilities: shell/dashboard geometry
+and native full-screen Cesium size. One scoped attribute observer also detects
+position/visibility-only changes. Window resize/layout state rebinds actual owners;
+all observers/listeners/adapters are cleaned up. No frame-loop DOM reads occur.
+Public perspective frustum offsets preserve canonical pose/FOV and pixel scale;
+a local Cesium 1.145 compatibility adapter preserves native rays/GPU picking
+and the globe's far ground-atmosphere projection ray through a neutral public
+Fabric material. Imagery colour and native lighting/scattering remain unchanged.
+Only cached projection arithmetic interpolates for 650ms after a layout change.
+
+The superseded right-side rectangular viewport assumption was a reversible local
+presentation adapter, not an accepted service/module/API/ADR boundary. This
+correction changes no backend, dependency, persistence, source or deployment rule;
+no new ADR is required. [Derivation, API audit, trade-offs, regressions and limits](../frontend/occlusion-aware-workspace-centering/README.md).
 
 ## Night-side protection and rounded trajectory joins — 2026-10-03
 

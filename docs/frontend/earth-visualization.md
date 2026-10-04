@@ -1,25 +1,29 @@
 # Earth illumination and imagery
 
-## Horizontal workspace framing — 2026-10-04
+## Full-screen occlusion-aware framing — 2026-10-04
 
-The browser viewport center and effective Earth workspace center differ when
-an orbital dashboard is left-docked. App measures the rendered right edge of
-`.status-panel` in LIVE or `.replay-orbit` in REPLAY and assigns the real Cesium
-container to the region from that edge to the shell's right edge. CSS declares
-side versus bottom/full-width ownership in the existing responsive rules; it
-contains no width value for the camera. Hidden panels reserve no workspace.
-Desktop Crew/detail and module information are right overlays and do not own
-the left region. At 768px, opening the live Crew bottom drawer hides the status
-panel and restores full-width Earth centering.
+The Cesium container/canvas fill the complete app shell, beneath the DOM dashboard.
+App measures `aside.status-panel` in LIVE/Inspection or `aside.replay-orbit` in
+REPLAY. CSS retains sole ownership of its side versus bottom/hidden role.
+Only the actual rectangle intersecting the viewport is subtracted, including
+neither margins nor a full-height left strip. The remaining area's two-dimensional
+centroid defines the projected principal/focal point. Changing dashboard height,
+width or position recomposes automatically through observers/layout events.
+Desktop Crew/detail remain separate overlays; the existing 768px live drawer
+hides the dashboard and restores normal centering. Bottom/mobile layouts retain
+full-viewport composition, with no stale left offset.
 
-The native symmetric perspective frustum crops the existing full-window lens,
-keeping its pixel scale without changing the physical camera position, basis,
-Earth/ISS target, model scale or orbital data. Its principal ray maps to the
-workspace center and Cesium uses the same dimensions for rendering and picking.
-The layout adaptation eases over 650ms (immediate for reduced motion); the
-accepted physical camera transition durations remain unchanged. Measurement is
-event-driven, with no per-frame DOM geometry reads. [Contract, measurements,
-screenshots and limits](dynamic-workspace-centering/README.md).
+Public `PerspectiveFrustum.xOffset/yOffset` shift screen composition with the
+full-size canonical lens, preserving physical camera pose, FOV and pixel scale.
+The Cesium 1.145 compatibility adapter aligns native rays/GPU feature picking and
+pixel-size calculations with this off-center lens. A neutral public Fabric
+material corrects the far ground-atmosphere projection ray in this pinned
+version; imagery colour, lighting parameters and native scattering are retained.
+Geometry is cached; a bounded
+650ms C2 interpolation changes only projection, immediately settling for reduced
+motion and viewport resizing. There are no per-frame DOM measurements or React
+layout updates. Scientific/orbital and imagery semantics remain unchanged.
+[Derivation, implementation, picking and measured evidence](occlusion-aware-workspace-centering/README.md).
 
 The same Cesium Viewer, globe, native Sun, atmosphere, skybox and 1× scene clock render Earth Overview and ISS Inspection. `Globe.enableLighting` shades historical imagery using the scene's Sun direction. `dynamicAtmosphereLighting` and `dynamicAtmosphereLightingFromSun` retain the atmospheric limb. The default Cesium fade would turn shading off near the ISS; MISSION1 sets the fade interval to 6,370–6,600 km from Earth's center so the station camera at roughly 400 km altitude still sees the moving terminator. These values are rendering configuration, not orbital geometry. No second globe or Sun exists.
 
