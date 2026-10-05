@@ -1,5 +1,9 @@
 # ISS Inspection Mode
 
+## Browser antialiasing restored — 2026-10-05
+
+The existing Viewer now requests `contextOptions.webgl.antialias=true`, retaining Cesium MSAA 4, Inspection FXAA, DPR/resolutionScale, native ISS textures and all camera/transition/framing behavior. Black Marble brightness returns to 1.8 with gamma/contrast 1. [Matched native ISS thin-geometry, trajectory and responsive QA plus measured frame cost](rendering-quality-restoration/README.md). The earlier dated browser-AA removal is superseded. Native two-finger pinch remains unverified.
+
 ## Source fidelity and redundant-AA removal — 2026-10-04
 
 The 90 m / 42.5° / 100° canonical pose, accepted 6s entry/5s return, responsive widening, source frame and occlusion-aware projection remain byte-identical in their helpers. One persistent NASA VTAD model retains its 19 original full-resolution 512²/1024² PNGs, original PBR and all 14 semantic feature identities. No model reload, decimation or material/detail invention is introduced.

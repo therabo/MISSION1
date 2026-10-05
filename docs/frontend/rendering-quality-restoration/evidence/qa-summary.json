@@ -1,0 +1,96 @@
+{
+  "sessions": [
+    {
+      "folder": "before-dpr1",
+      "startedAtUtc": "2026-10-05T09:17:20.245Z",
+      "recordedAtUtc": "2026-10-05T09:20:47.209Z",
+      "states": 10,
+      "maxFocusErrorPixels": 2.5971263489017694e-9,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "after-dpr1",
+      "startedAtUtc": "2026-10-05T09:13:37.200Z",
+      "recordedAtUtc": "2026-10-05T09:17:05.962Z",
+      "states": 10,
+      "maxFocusErrorPixels": 2.5971263489017694e-9,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "before-dpr2",
+      "startedAtUtc": "2026-10-05T09:21:00.938Z",
+      "recordedAtUtc": "2026-10-05T09:22:09.568Z",
+      "states": 6,
+      "maxFocusErrorPixels": 2.5971263489017694e-9,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "after-dpr2",
+      "startedAtUtc": "2026-10-05T09:22:33.753Z",
+      "recordedAtUtc": "2026-10-05T09:23:43.726Z",
+      "states": 6,
+      "maxFocusErrorPixels": 2.5971263489017694e-9,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "development-dpr1",
+      "startedAtUtc": "2026-10-05T09:24:18.550Z",
+      "recordedAtUtc": "2026-10-05T09:25:06.142Z",
+      "states": 10,
+      "maxFocusErrorPixels": 2.6629385787009825e-9,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "before-dpr1-twilight",
+      "startedAtUtc": "2026-10-05T09:25:48.326Z",
+      "recordedAtUtc": "2026-10-05T09:26:14.529Z",
+      "states": 1,
+      "maxFocusErrorPixels": 2.3437142008433856e-13,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    },
+    {
+      "folder": "after-dpr1-twilight",
+      "startedAtUtc": "2026-10-05T09:26:53.078Z",
+      "recordedAtUtc": "2026-10-05T09:27:19.619Z",
+      "states": 1,
+      "maxFocusErrorPixels": 2.3437142008433856e-13,
+      "errors": [],
+      "consoleErrors": [],
+      "requestFailures": [],
+      "allTileQueuesSettled": true,
+      "allStarsReady": true,
+      "allInputLocks": true
+    }
+  ],
+  "captures": 44
+}

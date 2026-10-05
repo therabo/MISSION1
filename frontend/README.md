@@ -1,5 +1,11 @@
 # MISSION1 Earth View
 
+## Rendering quality restoration — 2026-10-05
+
+The current policy explicitly enables browser WebGL antialiasing (`contextOptions.webgl.antialias=true`) alongside Cesium MSAA 4 and the existing FXAA behavior. Both tiled and local Black Marble night layers use brightness **1.8**, gamma 1 and contrast 1. Native DPR/resolutionScale, 4K Tycho stars, ISS PNG/PBR, trajectory geometry, camera, full-screen occlusion-aware framing and progressive loading/retries remain unchanged. Visual quality takes priority over the measured extra GPU cost. [Matched comparisons, performance and validation](../docs/frontend/rendering-quality-restoration/README.md).
+
+The two settings in the preceding performance milestone are superseded; its dated measurements remain historical.
+
 ## High-fidelity rendering and measured performance — 2026-10-04
 
 The current rendering policy preserves the full NASA VTAD PNG/PBR model and the accepted camera, trajectory and full-screen occlusion-aware geometry. NASA SVS Tycho II now uses its verified 16K TIFF source and six seam-checked 4096² lossless WebP cube faces. Blue Marble August 2004 and Black Marble 2016 remain fixed historical imagery; independent probes refine local day/night layers, with at most two retries per failing tile rather than removing a whole high-detail layer. Night brightness is 1.15 (formerly 1.8), with neutral contrast/gamma and no invented emission.

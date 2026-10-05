@@ -1,0 +1,6 @@
+{"build":"before","dpr":2,"name":"gp-canonical","antialias":false,"defaultSamples":0,"timing":{"medianMs":55.19999998807907,"p95Ms":56.80000001192093,"medianFps":18.115942032897806}}
+{"build":"before","dpr":2,"name":"oem-canonical","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":2,"name":"gp-oblique","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":2,"name":"oem-oblique","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":2,"name":"iss-thin-geometry","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":2,"name":"iss-oblique","antialias":false,"defaultSamples":0}

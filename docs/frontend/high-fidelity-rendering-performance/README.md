@@ -1,5 +1,9 @@
 # High-fidelity mission rendering and measured performance
 
+## Subsequent two-setting quality restoration — 2026-10-05
+
+This is the preserved report for accepted commit `b190e8b7df435251d6db46bf6d6357d3fdf7e868`. A subsequent user-requested correction restores browser WebGL antialiasing **false→true** and Black Marble brightness **1.15→1.8** (gamma/contrast remain 1). All source-quality, star assets, loading, retry/fallback and other rendering/camera behavior from this milestone remain. [Current correction and matched evidence](../rendering-quality-restoration/README.md). Original measurements and evidence below are historical and are not rewritten as results for the restored settings.
+
 The accepted `main` baseline was `6fbb52d7999cc189b9240a7cad5e6136c36f8164`, equal to `origin/main` and direct GitHub `refs/heads/main`, with a clean tree before implementation. The target checkout is `/Users/daniel/Desktop/MISSION1`. [Context actually reviewed](context-reviewed.md) distinguishes the separate instruction/skill directory from this repository.
 
 The final change preserves the original NASA ISS geometry, full PNG/PBR textures, 14 semantic feature identities, scientific delivery, camera and trajectory rendering. It improves historical night-image resilience and restrained contrast, replaces JPEG-derived 2048² stars with TIFF-derived lossless 4096² faces, and removes redundant browser multisampling while retaining Cesium MSAA 4, Inspection FXAA, atmosphere, Sun, native device resolution and trajectories. High-resolution stars refine the visible bundled skybox after the ISS and its first-use shaders are ready.

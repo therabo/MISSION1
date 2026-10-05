@@ -1,5 +1,11 @@
 # Desktop rendering quality and asset reproducibility
 
+## Browser antialiasing and night brightness restored — 2026-10-05
+
+Browser WebGL antialiasing is explicitly **true** again; Cesium MSAA 4, mode-aware FXAA and the native DPR/resolutionScale policy are unchanged. Historical Black Marble imagery brightness is **1.8**, gamma/contrast 1, for both tiled and local fallback layers. The independent loading, layer order and bounded per-tile retries remain. No HDR, bloom, sharpening, atmosphere, exposure, asset, geometry or camera change compensates for the restored quality cost. [Same-camera/epoch GP, OEM, oblique joins/halo and ISS comparisons, with measured cost](rendering-quality-restoration/README.md).
+
+The antialias=false/brightness=1.15 choice recorded below belongs to the dated preceding milestone and is superseded.
+
 ## Current fidelity and graphics efficiency — 2026-10-04
 
 The verified NASA SVS Tycho II TIFF replaces the JPEG input to the cube generator; face resolution increases 2048²→4096², preserving source information without sharpening or invented stars. All 12 shared edges match exactly, and each WebP round trip preserves every RGB pixel. The six lossless WebP faces total 34,451,680 bytes, replacing 17,421,296 bytes; the practical quality gain costs 4× cube texels and is measured explicitly in loading/memory evidence. NASA VTAD model and all 19 full-resolution embedded PNG payloads remain byte-identical; a fresh NASA download verifies that identity.

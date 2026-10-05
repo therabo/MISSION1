@@ -1,5 +1,9 @@
 # Earth View orbital delivery decision and validation
 
+## Existing graphics controls restored — 2026-10-05
+
+Browser WebGL antialiasing is explicitly enabled again and historical Black Marble brightness returns to 1.8 (gamma/contrast 1). Cesium MSAA 4, retained FXAA, source/loading ownership and all delivery/camera boundaries remain unchanged. This supersedes the browser-AA removal described in the preceding dated milestone; it creates no architecture decision or new ADR. [Matched quality comparisons and measured frame cost](../frontend/rendering-quality-restoration/README.md).
+
 ## Graphics source fidelity and loading ownership — 2026-10-04
 
 EarthView still owns one Viewer and its graphics lifecycle. The Earth-imagery helper owns independent source probes, ordered local/tiled layers and per-tile bounded retry cleanup. It uses only public imagery APIs; data acquisition, persistence, GP/OEM delivery and Replay are unaffected. The pinned NASA SVS Tycho product now uses a lossless TIFF input and 4096² cube derivatives; NASA VTAD geometry/PNG/PBR stays unchanged. Public Viewer context options remove redundant browser AA while keeping Cesium MSAA 4 and its retained FXAA pipeline.

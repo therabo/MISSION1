@@ -1,5 +1,9 @@
 # Earth illumination and imagery
 
+## Night brightness restoration — 2026-10-05
+
+Both historical Black Marble layers now use brightness **1.8**, gamma 1 and contrast 1 again. The NASA source, tile levels, dayAlpha=0/nightAlpha=1, scene-time terminator, independent progressive loading and retry/fallback improvements are unchanged. Browser WebGL antialiasing is also restored through the existing graphics policy. [Fixed night/terminator and trajectory comparisons](rendering-quality-restoration/README.md). The 1.15 presentation recorded in the dated section below is superseded.
+
 ## High-fidelity historical imagery and sky — 2026-10-04
 
 NASA GIBS BlueMarble_NextGeneration (August 2004) and VIIRS_Black_Marble (2016-01-01) retain the verified Web Mercator GoogleMapsCompatible_Level8 matrix, 256² tiles and maximum useful level 8. Local Natural Earth II and the unchanged 3600×1800 Black Marble JPEG now load immediately beneath network refinement. Day and night probes are independent; one tile failure no longer discards the complete provider. Two retries per failed tile are tracked independently of Cesium's shared error counter, with bounded outage bookkeeping. No extra provider polling/cache or invented finer level is added.
@@ -53,7 +57,7 @@ In the final served-production outage regression, a temporary test-only query fl
 
 ## Scene-time blend and limits
 
-The GIBS night imagery is an `ImageryLayer` above the day layer with `dayAlpha = 0`, `nightAlpha = 1` and brightness 1.15. When GIBS is unavailable, the local night fallback uses the same alpha policy. With `Globe.enableLighting`, Cesium interpolates layer alpha around the moving terminator: the night composite is absent in full daylight, blends through twilight and appears on the night side. These are image pixels lit by a rendering model, not physically emitted 3D city lights. Cesium's default maximum-safe anisotropy is used on the imagery layers; nearest-neighbor sampling is not selected.
+The GIBS night imagery is an `ImageryLayer` above the day layer with `dayAlpha = 0`, `nightAlpha = 1` and brightness 1.8. When GIBS is unavailable, the local night fallback uses the same alpha policy. With `Globe.enableLighting`, Cesium interpolates layer alpha around the moving terminator: the night composite is absent in full daylight, blends through twilight and appears on the night side. These are image pixels lit by a rendering model, not physically emitted 3D city lights. Cesium's default maximum-safe anisotropy is used on the imagery layers; nearest-neighbor sampling is not selected.
 
 The same scene clock advances the Sun and the sampled ISS position. No static longitude mask, second timebase, client orbital propagation, replay control, custom Sun position or invented station lights are used. The Black Marble image is a historical composite. A bright pixel does not assert present-day power, population or a continuously illuminated facility. Source imagery is separate from computed orbital state and from measured onboard telemetry. The [rendering-quality record](rendering-quality.md) explains the network/local tradeoff, skybox, Sun and GPU settings.
 

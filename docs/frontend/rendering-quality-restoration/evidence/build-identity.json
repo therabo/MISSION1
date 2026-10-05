@@ -1,0 +1,37 @@
+{
+  "acceptedParent": "b190e8b7df435251d6db46bf6d6357d3fdf7e868",
+  "assets": [
+    {
+      "file": "frontend/dist/assets/index-CKc_6PVT.css",
+      "bytes": 42827,
+      "sha256": "664422f6658c53acecca8709ba93a7ea55da154c037fa292698f459a3d1ddc3a"
+    },
+    {
+      "file": "frontend/dist/assets/index-Ckiadbl8.js",
+      "bytes": 4522742,
+      "sha256": "17c7c326bd93bd7a216902c3dd0aa9d884665eebf4fd381cdcc6fb8fb3a47638"
+    }
+  ],
+  "sources": [
+    {
+      "file": "frontend/src/cesium/graphicsQuality.ts",
+      "bytes": 871,
+      "sha256": "c3ba7fafe73a1074206de8e8abd2492c9dbef5f6a1e3c625892fbc5d38e9bc76"
+    },
+    {
+      "file": "frontend/src/cesium/earthImagery.ts",
+      "bytes": 6077,
+      "sha256": "025d72b6d6c420f45748e9517e961e0ed43c87708248447c7f59d128e1059080"
+    },
+    {
+      "file": "frontend/src/cesium/EarthView.tsx",
+      "bytes": 55434,
+      "sha256": "9e0a7fbc24c598783e6720f2a5e609f17dab487a96f151cd74c12135bd74de70"
+    },
+    {
+      "file": "frontend/src/cesium/inspectionAntialiasing.ts",
+      "bytes": 1123,
+      "sha256": "63ebc88c13647a2406c31f0d92d43a5f7a047c25c88af9436981d9ea60e380dc"
+    }
+  ]
+}

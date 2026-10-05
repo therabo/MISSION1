@@ -1,0 +1,10 @@
+{"build":"before","dpr":1,"name":"gp-canonical","antialias":false,"defaultSamples":0,"timing":{"medianMs":25.899999976158142,"p95Ms":33.69999998807907,"medianFps":38.6100386455805}}
+{"build":"before","dpr":1,"name":"oem-canonical","antialias":false,"defaultSamples":0,"timing":{"medianMs":26.299999952316284,"p95Ms":28,"medianFps":38.022813757150914}}
+{"build":"before","dpr":1,"name":"gp-oblique","antialias":false,"defaultSamples":0,"timing":{"medianMs":25.799999952316284,"p95Ms":28.599999964237213,"medianFps":38.75968999411651}}
+{"build":"before","dpr":1,"name":"oem-oblique","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":1,"name":"iss-thin-geometry","antialias":false,"defaultSamples":0,"timing":{"medianMs":25.19999998807907,"p95Ms":26.30000001192093,"medianFps":39.68253970131162}}
+{"build":"before","dpr":1,"name":"iss-oblique","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":1,"name":"night-cities","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":1,"name":"terminator","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":1,"name":"mobile-overview","antialias":false,"defaultSamples":0}
+{"build":"before","dpr":1,"name":"mobile-inspection","antialias":false,"defaultSamples":0}

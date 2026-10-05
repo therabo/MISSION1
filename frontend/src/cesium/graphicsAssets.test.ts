@@ -62,7 +62,7 @@ describe('desktop renderer policy and local star asset', () => {
   it('retains native texture resolution and stable model lighting with complementary AA', () => {
     expect(GRAPHICS_QUALITY.useBrowserRecommendedResolution).toBe(false);
     expect(GRAPHICS_QUALITY.msaaSamples).toBe(4);
-    expect(GRAPHICS_QUALITY.browserAntialias).toBe(false);
+    expect(GRAPHICS_QUALITY.browserAntialias).toBe(true);
     expect(GRAPHICS_QUALITY.inspectionFxaa).toBe(true);
     expect(GRAPHICS_QUALITY.modelEnvironmentPositionEpsilon).toBe(Infinity);
     expect(GRAPHICS_QUALITY.modelEnvironmentTimeEpsilon).toBe(Infinity);

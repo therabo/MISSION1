@@ -2,8 +2,8 @@ import { ImageryLayer, SingleTileImageryProvider, TileMapServiceImageryProvider,
   WebMapTileServiceImageryProvider, WebMercatorTilingScheme, buildModuleUrl, type TileProviderError, type Viewer } from 'cesium';
 import { NIGHT_LIGHTS } from './earthLighting';
 
-/** Keep dim clusters and bright city cores distinct; no synthetic emission/glow. */
-export const NIGHT_PRESENTATION = { brightness: 1.15, contrast: 1, gamma: 1 } as const;
+/** Established city-light presentation; no synthetic emission/glow. */
+export const NIGHT_PRESENTATION = { brightness: 1.8, contrast: 1, gamma: 1 } as const;
 
 /** Fixed, historical NASA GIBS layers. Dates are image acquisition composites, not scene time. */
 export const DAY_IMAGERY = {
