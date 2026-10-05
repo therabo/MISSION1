@@ -1,5 +1,11 @@
 # ISS model asset and presentation record
 
+## Transient semantic hover — 2026-10-05
+
+The same 14 verified direct feature identities now support a mouse hover affordance in stable Inspection. Hover reuses `resolveVerifiedModulePick(featureId, moduleCode)`; the manifest, GLB, textures and unmapped geometry remain unchanged. Public Cesium `ModelFeature.color`, `Model.colorBlendMode = MIX` and `colorBlendAmount = 0.45` apply a temporary `#53d9cd` tint. Each prior feature color and blend setting is saved and restored when the target changes, the pointer leaves, the camera moves, Inspection exits or the Viewer unmounts. White untouched features bypass blending in the pinned Cesium 1.145 shader. Original PBR texture detail remains underneath. There is no persistent selected-module styling to override.
+
+[Hover state, browser evidence and limitations](inspection-module-hover/README.md). Clicks still open the existing information panel; no telemetry functionality is added.
+
 ## Native-source fidelity reverified — 2026-10-04
 
 A fresh download of NASA's pinned source GLB confirms that all 19 unique runtime PNG payloads are byte-identical to its 26 embedded entries. The runtime GLB, 132-node hierarchy, 131 meshes, 343 primitives, 27 original PBR materials and 14 semantic identities are unchanged. No authoritative finer texture was verified for this model; the genuine 512²/1024² source limit remains. Browser sampling/mipmap/anisotropy, close and oblique evidence and the current rendering costs are recorded in the [high-fidelity audit](high-fidelity-rendering-performance/README.md). No private Cesium sampler patch or geometry rewrite was adopted.

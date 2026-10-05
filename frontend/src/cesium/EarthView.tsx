@@ -58,6 +58,7 @@ import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, i
 import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
+import { InspectionCameraMotion, InspectionHover, paintInspectionHover, resolveInspectionHoverPick } from './inspectionHover';
 
 import type { WorkspaceGeometry } from './workspaceGeometry';
 import { applyWorkspaceProjection, createWorkspaceGlobeProjection, installWorkspacePicking, WorkspacePerspectiveFrustum } from './workspaceProjection';
@@ -452,6 +453,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       const next = nextViewMode(viewMode.current, event);
       if (viewMode.current === next) return;
       viewMode.current = next;
+      hover.setMode(next);
       applyControls(next);
       modeCallback.current(next);
     };
@@ -646,6 +648,62 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
         leaveInspection();
       }
     });
+
+    const hoverPosition = new Cartesian3();
+    const canvas = instance.canvas;
+    const normalCursor = canvas.style.cursor;
+    const hover = new InspectionHover(point => {
+      if (checkHoverMotion()) return null;
+      const position = positionAt(instance.clock.currentTime, hoverPosition);
+      const distance = position ? Cartesian3.distance(instance.camera.positionWC, position) : null;
+      if (!model.current?.show || !modulePickingAvailable(modelStatus.current, distance)) return null;
+      const rect = canvas.getBoundingClientRect();
+      if (document.elementFromPoint(rect.left + point.x, rect.top + point.y) !== canvas) return null;
+      return resolveInspectionHoverPick(instance.scene.pick(point));
+    }, target => paintInspectionHover(model.current!, target),
+    interactive => { canvas.style.cursor = interactive ? 'pointer' : normalCursor; });
+    const hoverMotion = new InspectionCameraMotion();
+    const hoverPose = new Float64Array(17);
+    const checkHoverMotion = (): boolean => {
+      if (viewMode.current !== 'ISS_INSPECTION') return false;
+      const c = instance.camera, f = c.frustum as PerspectiveFrustum;
+      hoverPose[0] = c.position.x; hoverPose[1] = c.position.y; hoverPose[2] = c.position.z;
+      hoverPose[3] = c.direction.x; hoverPose[4] = c.direction.y; hoverPose[5] = c.direction.z;
+      hoverPose[6] = c.up.x; hoverPose[7] = c.up.y; hoverPose[8] = c.up.z;
+      hoverPose[9] = c.right.x; hoverPose[10] = c.right.y; hoverPose[11] = c.right.z;
+      hoverPose[12] = f.fov ?? 0; hoverPose[13] = f.aspectRatio ?? 0;
+      hoverPose[14] = f.xOffset ?? 0; hoverPose[15] = f.yOffset ?? 0; hoverPose[16] = f.near;
+      const changed = hoverMotion.changed(hoverPose);
+      if (changed) hover.motion();
+      return changed;
+    };
+    // Camera events include the continuously moving tracking transform. Local
+    // pose/lens changes distinguish manipulation and inertia from normal follow.
+    const removeHoverStart = instance.camera.moveStart.addEventListener(checkHoverMotion);
+    const removeHoverEnd = instance.camera.moveEnd.addEventListener(checkHoverMotion);
+    const removeHoverMotion = instance.scene.preRender.addEventListener(checkHoverMotion);
+    let mousePointer = false;
+    const pointerMove = (event: PointerEvent): void => {
+      mousePointer = event.pointerType === 'mouse';
+      if (!mousePointer) hover.pointerLeave();
+    };
+    const pointerDown = (event: PointerEvent): void => { pointerMove(event); hover.pointerDown(); };
+    const pointerUp = (): void => hover.pointerUp();
+    const pointerLeave = (): void => hover.pointerLeave();
+    const blur = (): void => { hover.pointerLeave(); hover.pointerUp(); };
+    const wheelStart = (): void => hover.motion();
+    canvas.addEventListener('pointermove', pointerMove, true);
+    canvas.addEventListener('pointerdown', pointerDown, true);
+    canvas.addEventListener('pointerleave', pointerLeave);
+    canvas.addEventListener('wheel', wheelStart, { capture: true, passive: true });
+    globalThis.window.addEventListener('pointerup', pointerUp);
+    globalThis.window.addEventListener('pointercancel', pointerUp);
+    globalThis.window.addEventListener('blur', blur);
+    instance.screenSpaceEventHandler.setInputAction((event: { endPosition: Cartesian2 }) => {
+      if (!mousePointer) return;
+      checkHoverMotion();
+      hover.pointerMove(event.endPosition);
+    }, ScreenSpaceEventType.MOUSE_MOVE);
 
     instance.screenSpaceEventHandler.setInputAction((event: { position: Cartesian2 }) => {
       const current = active.current;
@@ -899,6 +957,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       removeReadyListener();
       removeTrajectoryRender();
       instance.clock.onTick.removeEventListener(tick);
+      removeHoverStart(); removeHoverEnd(); removeHoverMotion();
+      canvas.removeEventListener('pointermove', pointerMove, true);
+      canvas.removeEventListener('pointerdown', pointerDown, true);
+      canvas.removeEventListener('pointerleave', pointerLeave);
+      canvas.removeEventListener('wheel', wheelStart, true);
+      globalThis.window.removeEventListener('pointerup', pointerUp);
+      globalThis.window.removeEventListener('pointercancel', pointerUp);
+      globalThis.window.removeEventListener('blur', blur);
+      hover.dispose();
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;
       materialShader.destroy();

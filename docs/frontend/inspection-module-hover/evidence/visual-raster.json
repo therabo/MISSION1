@@ -1,0 +1,83 @@
+[
+  {
+    "case": "canonical-zvezda",
+    "changedPixelsAbove2": 2867,
+    "maxChannelDelta": 109,
+    "bboxYX": [
+      [
+        554,
+        713
+      ],
+      [
+        657,
+        753
+      ]
+    ],
+    "normalMeanRgbOnChangedPixels": [
+      128.6274851761423,
+      130.5978374607604,
+      129.4607603767004
+    ],
+    "hoverMeanRgbOnChangedPixels": [
+      125.3337983955354,
+      157.90408092082316,
+      155.84652947331705
+    ],
+    "restoredChangedPixels": 0,
+    "restoredMaxChannelDelta": 0
+  },
+  {
+    "case": "oblique-zarya",
+    "changedPixelsAbove2": 448,
+    "maxChannelDelta": 118,
+    "bboxYX": [
+      [
+        469,
+        637
+      ],
+      [
+        503,
+        719
+      ]
+    ],
+    "normalMeanRgbOnChangedPixels": [
+      138.30580357142858,
+      140.45982142857142,
+      140.67857142857142
+    ],
+    "hoverMeanRgbOnChangedPixels": [
+      140.40848214285714,
+      163.19866071428572,
+      163.65401785714286
+    ],
+    "restoredChangedPixels": 0,
+    "restoredMaxChannelDelta": 0
+  },
+  {
+    "case": "shadow-zvezda",
+    "changedPixelsAbove2": 2162,
+    "maxChannelDelta": 100,
+    "bboxYX": [
+      [
+        454,
+        825
+      ],
+      [
+        501,
+        923
+      ]
+    ],
+    "normalMeanRgbOnChangedPixels": [
+      88.15541165587419,
+      90.15911193339501,
+      91.67298797409806
+    ],
+    "hoverMeanRgbOnChangedPixels": [
+      85.69657724329325,
+      113.26688251618872,
+      114.54902867715079
+    ],
+    "restoredChangedPixels": 0,
+    "restoredMaxChannelDelta": 0
+  }
+]

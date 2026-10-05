@@ -1,0 +1,19 @@
+
+> mission1-earth-view@0.1.0 test
+> vitest run --reporter=dot
+
+
+ RUN  v5.0.2 /Users/daniel/Desktop/MISSION1/frontend
+
+················································································································································································································································································································································stdout | src/cesium/sampleProperty.test.ts > Cesium fixed-frame temporal mapping > agrees with backend WGS84 for a deterministic verified-TLE sample
+COORDINATE_CHECK latDeg=4.263256e-14 lonDeg=4.689582e-13 heightM=8.731149e-10
+
+········
+
+ Test Files  38 passed (38)
+      Tests  344 passed (344)
+   Start at  12:50:11
+   Duration  16.08s (import 66%, tests 19%, environment 8%, transform 6%)
+
+    Isolate  38 workers spawned · ~476ms startup each (spawn + environment, per file)
+             at least ~2.11s faster with isolate: false — reuses workers across files instead of one per file

@@ -1,0 +1,46 @@
+[
+  {
+    "port": 5175,
+    "source": "MISSION1 GP/TLE",
+    "hover": true,
+    "drag": true,
+    "wheel": true,
+    "back": true
+  },
+  {
+    "port": 5175,
+    "source": "NASA OEM",
+    "hover": true,
+    "drag": true,
+    "wheel": true,
+    "back": true
+  },
+  {
+    "port": 5175,
+    "errors": [],
+    "consoleErrors": [],
+    "qaGlobals": []
+  },
+  {
+    "port": 4175,
+    "source": "MISSION1 GP/TLE",
+    "hover": true,
+    "drag": true,
+    "wheel": true,
+    "back": true
+  },
+  {
+    "port": 4175,
+    "source": "NASA OEM",
+    "hover": true,
+    "drag": true,
+    "wheel": true,
+    "back": true
+  },
+  {
+    "port": 4175,
+    "errors": [],
+    "consoleErrors": [],
+    "qaGlobals": []
+  }
+]

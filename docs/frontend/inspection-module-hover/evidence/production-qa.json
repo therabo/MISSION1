@@ -1,0 +1,1830 @@
+[
+  {
+    "label": "production",
+    "width": 1440,
+    "height": 900,
+    "overview": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 900,
+        "width": 1440,
+        "height": 900
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 900,
+        "width": 1440,
+        "height": 900
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 380,
+          "bottom": 865,
+          "width": 356,
+          "height": 783,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 865,
+        "width": 356,
+        "height": 783,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 865
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 1296000,
+      "dashboardArea": 278748,
+      "freeArea": 1017252,
+      "centroid": {
+        "x": 861.94266907315,
+        "y": 443.56051597834164
+      },
+      "focal": {
+        "x": 861.9426690731506,
+        "y": 443.56051598298734
+      },
+      "error": 4.645698971432093e-09,
+      "earth": {
+        "x": 861.9426690731506,
+        "y": 439.4743130481173
+      },
+      "model": {
+        "x": 868.9270175162906,
+        "y": 441.66924316582526
+      },
+      "position": [
+        11424212.851942219,
+        9134455.412915312,
+        18220276.891172785
+      ],
+      "direction": [
+        -0.48694452930367715,
+        -0.38934613256363504,
+        -0.7818533202839013
+      ],
+      "up": [
+        -0.6106530026122157,
+        -0.4882596899598059,
+        0.6234624171199413
+      ],
+      "right": [
+        -0.6244901406602874,
+        0.7810326908766971,
+        -4.718447854656914e-16
+      ],
+      "local": [
+        11424212.851942219,
+        9134455.412915312,
+        18220276.891172785
+      ],
+      "heading": 6.283185307179586,
+      "pitch": -1.5707963267948966,
+      "roll": 0,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "range": 23365132.248031996,
+      "elevation": 51.24284212471103,
+      "lateral": 9134455.412915312,
+      "nativeFovDegrees": 59.99999999999999,
+      "xOffset": -0.011382033083177383,
+      "yOffset": -0.0005163663657426047,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 0.8018753738744802,
+        "y": 0.8018753738744803
+      },
+      "rayDot": 1,
+      "animate": true,
+      "time": "2026-10-05T10:49:43.05096700004651211Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "inspection": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 900,
+        "width": 1440,
+        "height": 900
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 900,
+        "width": 1440,
+        "height": 900
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 302,
+          "bottom": 183,
+          "width": 278,
+          "height": 101,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183,
+        "width": 278,
+        "height": 101,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 1296000,
+      "dashboardArea": 28078,
+      "freeArea": 1267922,
+      "centroid": {
+        "x": 732.3347067090878,
+        "y": 457.03100427313353
+      },
+      "focal": {
+        "x": 732.3347067089712,
+        "y": 457.03100427313353
+      },
+      "error": 1.1652900866465643e-10,
+      "earth": {
+        "x": 729.4469384795198,
+        "y": 1115.8614608830185
+      },
+      "model": {
+        "x": 732.3347067046675,
+        "y": 457.03100427938534
+      },
+      "position": [
+        3250841.3742139884,
+        2791090.930875579,
+        5273109.445412179
+      ],
+      "direction": [
+        -0.7152453183219984,
+        0.3406736784461246,
+        -0.6102176492305427
+      ],
+      "up": [
+        -0.009771804455023625,
+        0.8681843514174812,
+        0.4961455872941937
+      ],
+      "right": [
+        0.6988051562890445,
+        0.36082873606157545,
+        -0.617635796223025
+      ],
+      "local": [
+        -66.35496031399816,
+        2.7939677238464355e-09,
+        60.803118681535125
+      ],
+      "heading": 1.7532530918491611,
+      "pitch": -0.7427279047750104,
+      "roll": 4.549112553320356e-08,
+      "transform": [
+        -0.5339358989073173,
+        0.837707828557322,
+        -0.11470854297658718,
+        0,
+        -0.6988051562665624,
+        -0.3608287360968483,
+        0.6176357962278549,
+        0,
+        0.476008203115556,
+        0.40993684535612007,
+        0.7780539656001839,
+        0,
+        3250777.0021353406,
+        2791121.5915066386,
+        5273054.52582375,
+        1
+      ],
+      "range": 89.9999999990423,
+      "elevation": 42.49999999721334,
+      "lateral": 3.259629011154175e-09,
+      "nativeFovDegrees": 100,
+      "xOffset": -0.002041657088076568,
+      "yOffset": 0.0011637811947294646,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 1.655213323047514,
+        "y": 1.655213323047514
+      },
+      "rayDot": 1,
+      "animate": true,
+      "time": "2026-10-05T10:49:51.10536700011289213Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "sequence": {
+      "a": {
+        "x": 731.9234326998162,
+        "y": 434.3648728385027,
+        "featureId": 0
+      },
+      "b": {
+        "x": 769.633295767206,
+        "y": 401.8340566221974,
+        "featureId": 1
+      },
+      "non": {
+        "x": 400,
+        "y": 274,
+        "featureId": null
+      },
+      "afterOrbit": {
+        "state": {
+          "tinted": [],
+          "cursor": "",
+          "blend": 0,
+          "amount": 0.5
+        },
+        "picks": [
+          {
+            "phase": "inertia",
+            "time": 27701.200000047684,
+            "x": 781.9234619140625,
+            "y": 454.3648681640625,
+            "featureId": null,
+            "ms": 197.60000002384186
+          }
+        ]
+      },
+      "wheelPicks": [
+        {
+          "phase": "wheel",
+          "time": 31149.30000001192,
+          "x": 731.9234619140625,
+          "y": 434.3648681640625,
+          "featureId": null,
+          "ms": 172.30000001192093
+        }
+      ],
+      "idleCalls": 0,
+      "emptyMove": {
+        "calls": 20,
+        "rows": [
+          {
+            "phase": "empty-move",
+            "time": 33574.700000047684,
+            "x": 793.7310791015625,
+            "y": 398.9283752441406,
+            "featureId": null,
+            "ms": 69.30000001192093
+          },
+          {
+            "phase": "empty-move",
+            "time": 33606.200000047684,
+            "x": 855.5387573242188,
+            "y": 363.4919128417969,
+            "featureId": null,
+            "ms": 23.900000035762787
+          },
+          {
+            "phase": "empty-move",
+            "time": 33636.60000002384,
+            "x": 917.3463745117188,
+            "y": 328.055419921875,
+            "featureId": null,
+            "ms": 24.100000023841858
+          },
+          {
+            "phase": "empty-move",
+            "time": 33667.200000047684,
+            "x": 979.154052734375,
+            "y": 292.6189270019531,
+            "featureId": null,
+            "ms": 24
+          },
+          {
+            "phase": "empty-move",
+            "time": 33697.90000003576,
+            "x": 1040.961669921875,
+            "y": 257.18243408203125,
+            "featureId": null,
+            "ms": 24
+          },
+          {
+            "phase": "empty-move",
+            "time": 33732.200000047684,
+            "x": 1102.7694091796875,
+            "y": 221.74595642089844,
+            "featureId": null,
+            "ms": 27.599999964237213
+          },
+          {
+            "phase": "empty-move",
+            "time": 33762.90000003576,
+            "x": 1164.5770263671875,
+            "y": 186.30946350097656,
+            "featureId": null,
+            "ms": 23.80000001192093
+          },
+          {
+            "phase": "empty-move",
+            "time": 33793.700000047684,
+            "x": 1226.3846435546875,
+            "y": 150.8729705810547,
+            "featureId": null,
+            "ms": 23.900000035762787
+          },
+          {
+            "phase": "empty-move",
+            "time": 33824,
+            "x": 1288.1923828125,
+            "y": 115.43648529052734,
+            "featureId": null,
+            "ms": 23.399999976158142
+          },
+          {
+            "phase": "empty-move",
+            "time": 33855.10000002384,
+            "x": 1350,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.399999976158142
+          },
+          {
+            "phase": "empty-move",
+            "time": 33886.5,
+            "x": 1357,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.69999998807907
+          },
+          {
+            "phase": "empty-move",
+            "time": 33917.60000002384,
+            "x": 1364,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.600000023841858
+          },
+          {
+            "phase": "empty-move",
+            "time": 33948.80000001192,
+            "x": 1371,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.599999964237213
+          },
+          {
+            "phase": "empty-move",
+            "time": 33980.200000047684,
+            "x": 1378,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.200000047683716
+          },
+          {
+            "phase": "empty-move",
+            "time": 34011.90000003576,
+            "x": 1385,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.19999998807907
+          },
+          {
+            "phase": "empty-move",
+            "time": 34043.90000003576,
+            "x": 1392,
+            "y": 80,
+            "featureId": null,
+            "ms": 23.400000035762787
+          },
+          {
+            "phase": "empty-move",
+            "time": 34077,
+            "x": 1399,
+            "y": 80,
+            "featureId": null,
+            "ms": 24.19999998807907
+          },
+          {
+            "phase": "empty-move",
+            "time": 34108.40000003576,
+            "x": 1406,
+            "y": 80,
+            "featureId": null,
+            "ms": 23.600000023841858
+          },
+          {
+            "phase": "empty-move",
+            "time": 34139.90000003576,
+            "x": 1413,
+            "y": 80,
+            "featureId": null,
+            "ms": 23.80000001192093
+          },
+          {
+            "phase": "empty-move",
+            "time": 34172.40000003576,
+            "x": 1420,
+            "y": 80,
+            "featureId": null,
+            "ms": 24
+          }
+        ]
+      },
+      "moduleMove": {
+        "calls": 10,
+        "rows": [
+          {
+            "phase": "module-move",
+            "time": 34874.10000002384,
+            "x": 731.9234619140625,
+            "y": 434.3648681640625,
+            "featureId": 0,
+            "ms": 66.10000002384186
+          },
+          {
+            "phase": "module-move",
+            "time": 34928.80000001192,
+            "x": 769.63330078125,
+            "y": 401.83404541015625,
+            "featureId": 1,
+            "ms": 30.5
+          },
+          {
+            "phase": "module-move",
+            "time": 34983.200000047684,
+            "x": 731.9234619140625,
+            "y": 434.3648681640625,
+            "featureId": 0,
+            "ms": 34.60000002384186
+          },
+          {
+            "phase": "module-move",
+            "time": 35036.80000001192,
+            "x": 769.63330078125,
+            "y": 401.83404541015625,
+            "featureId": 1,
+            "ms": 38.39999997615814
+          },
+          {
+            "phase": "module-move",
+            "time": 35113.700000047684,
+            "x": 731.9234619140625,
+            "y": 434.3648681640625,
+            "featureId": 0,
+            "ms": 49.700000047683716
+          },
+          {
+            "phase": "module-move",
+            "time": 35166,
+            "x": 769.63330078125,
+            "y": 401.83404541015625,
+            "featureId": 1,
+            "ms": 34.19999998807907
+          },
+          {
+            "phase": "module-move",
+            "time": 35218.700000047684,
+            "x": 731.9234619140625,
+            "y": 434.3648681640625,
+            "featureId": 0,
+            "ms": 36.90000003576279
+          },
+          {
+            "phase": "module-move",
+            "time": 35270,
+            "x": 769.63330078125,
+            "y": 401.83404541015625,
+            "featureId": 1,
+            "ms": 38.39999997615814
+          },
+          {
+            "phase": "module-move",
+            "time": 35346,
+            "x": 731.9234619140625,
+            "y": 434.3648681640625,
+            "featureId": 0,
+            "ms": 48.59999996423721
+          },
+          {
+            "phase": "module-move",
+            "time": 35399.30000001192,
+            "x": 769.63330078125,
+            "y": 401.83404541015625,
+            "featureId": 1,
+            "ms": 34.09999996423721
+          }
+        ]
+      }
+    },
+    "moduleResults": [
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Columbus",
+        "componentId": "COLUMBUS",
+        "featureId": 1,
+        "moduleCode": 2,
+        "pixel": {
+          "x": 761.3378269717136,
+          "y": 478.5196132320713,
+          "featureId": 1
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Pirs",
+        "componentId": "PIRS",
+        "featureId": 3,
+        "moduleCode": 4,
+        "pixel": {
+          "x": 734.4995298574988,
+          "y": 505.05835602064,
+          "featureId": 3
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Poisk",
+        "componentId": "POISK",
+        "featureId": 4,
+        "moduleCode": 5,
+        "pixel": {
+          "x": 730.1699129831283,
+          "y": 466.557539503243,
+          "featureId": 4
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Zvezda",
+        "componentId": "ZVEZDA",
+        "featureId": 5,
+        "moduleCode": 6,
+        "pixel": {
+          "x": 733.1958396484794,
+          "y": 478.27844456964885,
+          "featureId": 5
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Rassvet",
+        "componentId": "RASSVET",
+        "featureId": 6,
+        "moduleCode": 7,
+        "pixel": {
+          "x": 731.2059254711154,
+          "y": 514.7933288648134,
+          "featureId": 6
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Kibo Exposed Facility",
+        "componentId": "KIBO_EXPOSED_FACILITY",
+        "featureId": 8,
+        "moduleCode": 9,
+        "pixel": {
+          "x": 658.067717777566,
+          "y": 490.2559720183301,
+          "featureId": 8
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Kibo Pressurized Module",
+        "componentId": "KIBO_PRESSURIZED_MODULE",
+        "featureId": 9,
+        "moduleCode": 10,
+        "pixel": {
+          "x": 686.3128788683141,
+          "y": 477.25590222921187,
+          "featureId": 9
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Quest",
+        "componentId": "QUEST",
+        "featureId": 10,
+        "moduleCode": 11,
+        "pixel": {
+          "x": 754.301186042514,
+          "y": 496.404130093277,
+          "featureId": 10
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Cupola",
+        "componentId": "CUPOLA",
+        "featureId": 11,
+        "moduleCode": 12,
+        "pixel": {
+          "x": 697.2808824894424,
+          "y": 498.18166095120637,
+          "featureId": 11
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Tranquility",
+        "componentId": "TRANQUILITY",
+        "featureId": 12,
+        "moduleCode": 13,
+        "pixel": {
+          "x": 703.4644434401268,
+          "y": 483.4785866802232,
+          "featureId": 12
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Destiny",
+        "componentId": "DESTINY",
+        "featureId": 0,
+        "moduleCode": 1,
+        "pixel": {
+          "x": 729.9074023240202,
+          "y": 474.8684474769709,
+          "featureId": 0
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Harmony",
+        "componentId": "HARMONY",
+        "featureId": 2,
+        "moduleCode": 3,
+        "pixel": {
+          "x": 732.3346930448358,
+          "y": 477.44753081322267,
+          "featureId": 2
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Zarya",
+        "componentId": "ZARYA",
+        "featureId": 7,
+        "moduleCode": 8,
+        "pixel": {
+          "x": 694.9679741398152,
+          "y": 468.73890315357727,
+          "featureId": 7
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "MISSION1 GP/TLE",
+        "name": "Unity",
+        "componentId": "UNITY",
+        "featureId": 13,
+        "moduleCode": 14,
+        "pixel": {
+          "x": 726.5320357988538,
+          "y": 485.68120580775394,
+          "featureId": 13
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Columbus",
+        "componentId": "COLUMBUS",
+        "featureId": 1,
+        "moduleCode": 2,
+        "pixel": {
+          "x": 761.3378269764745,
+          "y": 478.519613234818,
+          "featureId": 1
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Pirs",
+        "componentId": "PIRS",
+        "featureId": 3,
+        "moduleCode": 4,
+        "pixel": {
+          "x": 734.4995298577408,
+          "y": 505.0583560216921,
+          "featureId": 3
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Poisk",
+        "componentId": "POISK",
+        "featureId": 4,
+        "moduleCode": 5,
+        "pixel": {
+          "x": 730.1699129759791,
+          "y": 466.5575394915852,
+          "featureId": 4
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Zvezda",
+        "componentId": "ZVEZDA",
+        "featureId": 5,
+        "moduleCode": 6,
+        "pixel": {
+          "x": 733.1958396419117,
+          "y": 478.27844455815097,
+          "featureId": 5
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Rassvet",
+        "componentId": "RASSVET",
+        "featureId": 6,
+        "moduleCode": 7,
+        "pixel": {
+          "x": 731.2059254732808,
+          "y": 514.7933288660945,
+          "featureId": 6
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Kibo Exposed Facility",
+        "componentId": "KIBO_EXPOSED_FACILITY",
+        "featureId": 8,
+        "moduleCode": 9,
+        "pixel": {
+          "x": 658.0677177795724,
+          "y": 490.25597202603313,
+          "featureId": 8
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Kibo Pressurized Module",
+        "componentId": "KIBO_PRESSURIZED_MODULE",
+        "featureId": 9,
+        "moduleCode": 10,
+        "pixel": {
+          "x": 686.312878868576,
+          "y": 477.25590224074085,
+          "featureId": 9
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Quest",
+        "componentId": "QUEST",
+        "featureId": 10,
+        "moduleCode": 11,
+        "pixel": {
+          "x": 754.3011860458022,
+          "y": 496.40413009711597,
+          "featureId": 10
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Cupola",
+        "componentId": "CUPOLA",
+        "featureId": 11,
+        "moduleCode": 12,
+        "pixel": {
+          "x": 697.2808824878878,
+          "y": 498.1816609534126,
+          "featureId": 11
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Tranquility",
+        "componentId": "TRANQUILITY",
+        "featureId": 12,
+        "moduleCode": 13,
+        "pixel": {
+          "x": 703.4644434399912,
+          "y": 483.4785866838773,
+          "featureId": 12
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Destiny",
+        "componentId": "DESTINY",
+        "featureId": 0,
+        "moduleCode": 1,
+        "pixel": {
+          "x": 729.9074023317098,
+          "y": 474.8684474786894,
+          "featureId": 0
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Harmony",
+        "componentId": "HARMONY",
+        "featureId": 2,
+        "moduleCode": 3,
+        "pixel": {
+          "x": 732.334693059116,
+          "y": 477.44753081170376,
+          "featureId": 2
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Zarya",
+        "componentId": "ZARYA",
+        "featureId": 7,
+        "moduleCode": 8,
+        "pixel": {
+          "x": 694.9679741430477,
+          "y": 468.73890315297086,
+          "featureId": 7
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      },
+      {
+        "source": "NASA OEM",
+        "name": "Unity",
+        "componentId": "UNITY",
+        "featureId": 13,
+        "moduleCode": 14,
+        "pixel": {
+          "x": 726.5320358000048,
+          "y": 485.6812058067248,
+          "featureId": 13
+        },
+        "picked": true,
+        "hovered": true,
+        "restored": true,
+        "clicked": true
+      }
+    ],
+    "lint": {
+      "overflow": false,
+      "unnamed": 0
+    },
+    "errors": [],
+    "consoleErrors": [],
+    "frameCount": 2531,
+    "pickCount": 127,
+    "traceFile": "production-1440-trace.json"
+  },
+  {
+    "label": "production",
+    "width": 1280,
+    "height": 720,
+    "overview": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1280,
+        "bottom": 720,
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 1280,
+        "bottom": 720,
+        "width": 1280,
+        "height": 720
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 380,
+          "bottom": 685,
+          "width": 356,
+          "height": 603,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 685,
+        "width": 356,
+        "height": 603,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 685
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 921600,
+      "dashboardArea": 214668,
+      "freeArea": 706932,
+      "centroid": {
+        "x": 773.003717472119,
+        "y": 352.86395579772875
+      },
+      "focal": {
+        "x": 773.0037174721191,
+        "y": 352.86395579566397
+      },
+      "error": 2.06478034982979e-09,
+      "earth": {
+        "x": 773.003717472119,
+        "y": 349.199883477648
+      },
+      "model": {
+        "x": 777.5647713154798,
+        "y": 351.5233178378623
+      },
+      "position": [
+        10156703.309876967,
+        11062373.90869945,
+        17900163.51474312
+      ],
+      "direction": [
+        -0.43297150184980726,
+        -0.47157945832836806,
+        -0.7682112294601307
+      ],
+      "up": [
+        -0.5195492176667083,
+        -0.5658772866006877,
+        0.6401964596366921
+      ],
+      "right": [
+        -0.7366167857222871,
+        0.676310365876619,
+        -8.326672684688673e-17
+      ],
+      "local": [
+        10156703.309876967,
+        11062373.90869945,
+        17900163.51474312
+      ],
+      "heading": 6.283185307179586,
+      "pitch": -1.5707963267948966,
+      "roll": 0,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "range": 23365585.643747102,
+      "elevation": 50.004144916415754,
+      "lateral": 11062373.90869945,
+      "nativeFovDegrees": 59.99999999999999,
+      "xOffset": -0.011998395638398255,
+      "yOffset": -0.0006437495376766228,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 0.9021097956087903,
+        "y": 0.9021097956087902
+      },
+      "rayDot": 1,
+      "animate": true,
+      "time": "2026-10-05T10:51:12.39339700013806578Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "inspection": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1280,
+        "bottom": 720,
+        "width": 1280,
+        "height": 720
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 1280,
+        "bottom": 720,
+        "width": 1280,
+        "height": 720
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 302,
+          "bottom": 183,
+          "width": 278,
+          "height": 101,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183,
+        "width": 278,
+        "height": 101,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 921600,
+      "dashboardArea": 28078,
+      "freeArea": 893522,
+      "centroid": {
+        "x": 654.9892291404129,
+        "y": 367.14895100512354
+      },
+      "focal": {
+        "x": 654.9892291405808,
+        "y": 367.14895100512354
+      },
+      "error": 1.6791545931482688e-10,
+      "earth": {
+        "x": 652.4775873265244,
+        "y": 952.8993135996453
+      },
+      "model": {
+        "x": 654.989229139501,
+        "y": 367.14895100512354
+      },
+      "position": [
+        2888585.948232706,
+        3327673.205199538,
+        5171370.628443918
+      ],
+      "direction": [
+        -0.7060599391069314,
+        0.2580091235669119,
+        -0.6594775618203779
+      ],
+      "up": [
+        -0.07354419748060348,
+        0.8995136796235219,
+        0.43065809081809464
+      ],
+      "right": [
+        0.7043228048311728,
+        0.352571173419476,
+        -0.6161354999254333
+      ],
+      "local": [
+        -66.35496031306684,
+        1.862645149230957e-09,
+        60.80311869829893
+      ],
+      "heading": 1.8762909288804863,
+      "pitch": -0.743023745663919,
+      "roll": 4.90667035890624e-08,
+      "transform": [
+        -0.5702477311535478,
+        0.7979269131072616,
+        -0.19526947138082704,
+        0,
+        -0.7043228048151654,
+        -0.35257117344187455,
+        0.6161354999309147,
+        0,
+        0.4227847108535614,
+        0.4888826126964797,
+        0.7630510332025862,
+        0,
+        2888522.4028381803,
+        3327696.426020661,
+        5171311.275463348,
+        1
+      ],
+      "range": 90.00000000865114,
+      "elevation": 42.50000000608307,
+      "lateral": 1.862645149230957e-09,
+      "nativeFovDegrees": 100,
+      "xOffset": -0.0027911668247351347,
+      "yOffset": 0.0013312168818181154,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 1.8621149884284527,
+        "y": 1.862114988428453
+      },
+      "rayDot": 1,
+      "animate": true,
+      "time": "2026-10-05T10:51:20.2837970000691712Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "sequence": null,
+    "moduleResults": [],
+    "lint": {
+      "overflow": false,
+      "unnamed": 0
+    },
+    "errors": [],
+    "consoleErrors": [],
+    "frameCount": 1685,
+    "pickCount": 2,
+    "traceFile": "production-1280-trace.json"
+  },
+  {
+    "label": "production",
+    "width": 900,
+    "height": 700,
+    "overview": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 900,
+        "bottom": 700,
+        "width": 900,
+        "height": 700
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 900,
+        "bottom": 700,
+        "width": 900,
+        "height": 700
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 380,
+          "bottom": 665,
+          "width": 356,
+          "height": 583,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 665,
+        "width": 356,
+        "height": 583,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 380,
+        "bottom": 665
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 630000,
+      "dashboardArea": 207548,
+      "freeArea": 422452,
+      "centroid": {
+        "x": 571.8408339882401,
+        "y": 338.4545983922434
+      },
+      "focal": {
+        "x": 571.8408339882401,
+        "y": 338.45459839369516
+      },
+      "error": 1.4517809177050367e-09,
+      "earth": {
+        "x": 571.8408339882401,
+        "y": 335.865199826166
+      },
+      "model": {
+        "x": 574.5224414364087,
+        "y": 337.5311613448384
+      },
+      "position": [
+        9487008.40468382,
+        11994872.736692593,
+        17665943.39083615
+      ],
+      "direction": [
+        -0.4044587812115873,
+        -0.5113763370838362,
+        -0.7582264412242271
+      ],
+      "up": [
+        -0.4703610910373747,
+        -0.5946997395406246,
+        0.6519913065589479
+      ],
+      "right": [
+        -0.7843299932674819,
+        0.6203438253589957,
+        -8.326672684688674e-17
+      ],
+      "local": [
+        9487008.40468382,
+        11994872.736692593,
+        17665943.39083615
+      ],
+      "heading": 6.283185307179586,
+      "pitch": -1.5707963267948966,
+      "roll": 0,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "range": 23365912.272543952,
+      "elevation": 49.11774601994245,
+      "lateral": 11994872.736692593,
+      "nativeFovDegrees": 59.99999999999999,
+      "xOffset": -0.01563218628919976,
+      "yOffset": -0.0014812757169201385,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 1.2830005981991681,
+        "y": 1.2830005981991681
+      },
+      "rayDot": 1,
+      "animate": true,
+      "time": "2026-10-05T10:51:57.45052599991322495Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "inspection": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 900,
+        "bottom": 700,
+        "width": 900,
+        "height": 700
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 900,
+        "bottom": 700,
+        "width": 900,
+        "height": 700
+      },
+      "panels": [
+        {
+          "left": 24,
+          "top": 82,
+          "right": 302,
+          "bottom": 183,
+          "width": 278,
+          "height": 101,
+          "owner": "status-panel",
+          "side": true
+        }
+      ],
+      "dashboard": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183,
+        "width": 278,
+        "height": 101,
+        "owner": "status-panel",
+        "side": true
+      },
+      "clipped": {
+        "left": 24,
+        "top": 82,
+        "right": 302,
+        "bottom": 183
+      },
+      "layout": "LEFT_DASHBOARD",
+      "viewportArea": 630000,
+      "dashboardArea": 28078,
+      "freeArea": 601922,
+      "centroid": {
+        "x": 463.3877578822505,
+        "y": 360.14577470170553
+      },
+      "focal": {
+        "x": 463.3877578820294,
+        "y": 360.1457747013539
+      },
+      "error": 4.153799374650729e-10,
+      "earth": {
+        "x": 461.6487924514908,
+        "y": 772.0446958481798
+      },
+      "model": {
+        "x": 463.38775788174684,
+        "y": 360.14577469389087
+      },
+      "position": [
+        2697811.5072830585,
+        3587060.5893941424,
+        5100385.564251279
+      ],
+      "direction": [
+        -0.6991631795380362,
+        0.21533993322626727,
+        -0.6817621003960037
+      ],
+      "up": [
+        -0.1052321814314329,
+        0.9121839830996041,
+        0.3960385953006639
+      ],
+      "right": [
+        0.7071753929326484,
+        0.34863891655213686,
+        -0.6151047630248903
+      ],
+      "local": [
+        -66.35496030584909,
+        -6.51925802230835e-09,
+        60.80311869457364
+      ],
+      "heading": 1.9343678333322032,
+      "pitch": -0.743158846607872,
+      "roll": 5.065245911595184e-08,
+      "transform": [
+        -0.5865709981865707,
+        0.7750278191056342,
+        -0.2350879488590905,
+        0,
+        -0.707175392990278,
+        -0.3486389164759917,
+        0.6151047630017933,
+        0,
+        0.3947624952239713,
+        0.5270510274449817,
+        0.752582079798432,
+        0,
+        2697748.5825968995,
+        3587079.969988133,
+        5100324.205662243,
+        1
+      ],
+      "range": 90.00000000098454,
+      "elevation": 42.50000000733873,
+      "lateral": -6.51925802230835e-09,
+      "nativeFovDegrees": 100,
+      "xOffset": -0.0035455352339896717,
+      "yOffset": 0.0026869474334242295,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 2.648341316876022,
+        "y": 2.648341316876022
+      },
+      "rayDot": 0.9999999999999999,
+      "animate": true,
+      "time": "2026-10-05T10:52:05.13322599996172357Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "sequence": null,
+    "moduleResults": [],
+    "lint": {
+      "overflow": false,
+      "unnamed": 0
+    },
+    "errors": [],
+    "consoleErrors": [],
+    "frameCount": 1773,
+    "pickCount": 2,
+    "traceFile": "production-900-trace.json"
+  },
+  {
+    "label": "production",
+    "width": 390,
+    "height": 844,
+    "overview": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "panels": [
+        {
+          "left": 9,
+          "top": 605,
+          "right": 381,
+          "bottom": 810,
+          "width": 372,
+          "height": 205,
+          "owner": "status-panel",
+          "side": false
+        }
+      ],
+      "dashboard": null,
+      "clipped": null,
+      "layout": "FULL_VIEWPORT / BOTTOM_OR_HIDDEN",
+      "viewportArea": 329160,
+      "dashboardArea": 0,
+      "freeArea": 329160,
+      "centroid": {
+        "x": 195,
+        "y": 422
+      },
+      "focal": {
+        "x": 195.00000000136288,
+        "y": 422
+      },
+      "error": 1.362877810606733e-09,
+      "earth": {
+        "x": 194.99999999999994,
+        "y": 419.56084389554724
+      },
+      "model": {
+        "x": 206.4141360867312,
+        "y": 425.04871984692403
+      },
+      "position": [
+        8840431.524427835,
+        12845070.410820697,
+        17402118.96960245
+      ],
+      "direction": [
+        -0.37693038333141343,
+        -0.5476765812269556,
+        -0.7469764711804434
+      ],
+      "up": [
+        -0.42349090365201136,
+        -0.6153286138488853,
+        0.6648504730409781
+      ],
+      "right": [
+        -0.8237590306914011,
+        0.566940084448404,
+        -5.551115123125783e-17
+      ],
+      "local": [
+        8840431.524427835,
+        12845070.410820697,
+        17402118.96960245
+      ],
+      "heading": 6.283185307179586,
+      "pitch": -1.5707963267948966,
+      "roll": 0,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "range": 23366275.013986208,
+      "elevation": 48.13794503788078,
+      "lateral": 12845070.410820697,
+      "nativeFovDegrees": 59.99999999999999,
+      "xOffset": 0,
+      "yOffset": 0,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 1.3667253911549289,
+        "y": 1.3681285999754162
+      },
+      "rayDot": 1.0000000000000002,
+      "animate": true,
+      "time": "2026-10-05T10:53:10.5642139998526545Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "inspection": {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "canvas": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "panels": [
+        {
+          "left": 9,
+          "top": 592,
+          "right": 234,
+          "bottom": 679,
+          "width": 225,
+          "height": 87,
+          "owner": "status-panel",
+          "side": false
+        }
+      ],
+      "dashboard": null,
+      "clipped": null,
+      "layout": "FULL_VIEWPORT / BOTTOM_OR_HIDDEN",
+      "viewportArea": 329160,
+      "dashboardArea": 0,
+      "freeArea": 329160,
+      "centroid": {
+        "x": 195,
+        "y": 422
+      },
+      "focal": {
+        "x": 195.00000000010317,
+        "y": 422.00000000032975
+      },
+      "error": 3.455117975891298e-10,
+      "earth": {
+        "x": 193.41872581030736,
+        "y": 808.3222719958836
+      },
+      "model": {
+        "x": 195.00000000114758,
+        "y": 422.00000000282193
+      },
+      "position": [
+        2375673.192850442,
+        3993236.6980781173,
+        4956763.246222299
+      ],
+      "direction": [
+        -0.684705215643136,
+        0.14445890793246316,
+        -0.714360127379774
+      ],
+      "up": [
+        -0.15617181258927026,
+        0.9283117367594989,
+        0.33741322491441406
+      ],
+      "right": [
+        0.7118912365127614,
+        0.342591510860271,
+        -0.6130594784054875
+      ],
+      "local": [
+        -172.31872770842165,
+        4.190951585769653e-09,
+        157.90102206543088
+      ],
+      "heading": 2.022662973144378,
+      "pitch": -0.7433699580789952,
+      "roll": 1.3742652615889028e-07,
+      "transform": [
+        -0.6103257851984801,
+        0.7336645978785069,
+        -0.2987284615526744,
+        0,
+        -0.7118912364979177,
+        -0.3425915108781144,
+        0.6130594784127528,
+        0,
+        0.347438200719674,
+        0.586828181407488,
+        0.7313818306374967,
+        0,
+        2375513.1614406537,
+        3993270.461458569,
+        4956596.283775293,
+        1
+      ],
+      "range": 233.72307692797008,
+      "elevation": 42.499999999698304,
+      "lateral": 3.259629011154175e-09,
+      "nativeFovDegrees": 100,
+      "xOffset": 0,
+      "yOffset": 0,
+      "near": 0.1,
+      "far": 10000000000,
+      "pixels": {
+        "x": 2.8211641735004513,
+        "y": 2.8240606459578435
+      },
+      "rayDot": 1.0000000000000002,
+      "animate": true,
+      "time": "2026-10-05T10:53:18.32381399990117643Z",
+      "primitives": 6,
+      "modelReady": true,
+      "minimumPixelSize": 80
+    },
+    "sequence": null,
+    "moduleResults": [],
+    "lint": {
+      "overflow": false,
+      "unnamed": 0
+    },
+    "errors": [],
+    "consoleErrors": [],
+    "frameCount": 2061,
+    "pickCount": 0,
+    "traceFile": "production-390-trace.json"
+  }
+]

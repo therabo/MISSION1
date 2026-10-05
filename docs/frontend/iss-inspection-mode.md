@@ -1,5 +1,13 @@
 # ISS Inspection Mode
 
+## Semantic module hover — 2026-10-05
+
+In stable Inspection, recognized ISS modules provide a transient hover affordance. Hover feedback is suspended during camera manipulation and transitions and resumes only after the scene becomes stable.
+
+The existing feature ID + `moduleCode` manifest resolver gates both click and hover. Only one recognized module receives the temporary cyan tint; leaving it restores its exact previous appearance. The cursor is `pointer` only over a valid module while static. Pointer-down and wheel input clear feedback immediately; orbit, inertia, programmatic local camera/lens changes, entry and exit keep it off. After 200 ms without a view change, the current pointer is re-picked once. Station tracking itself moves the camera and model together and remains interactive. Mouse movement triggers picking only at changed coordinates; no render-frame picking or hover React state exists. Touch has no hover gesture. Existing module clicks and information panels are unchanged.
+
+[Implementation, all 14 modules, motion/pick traces, screenshots and validation](inspection-module-hover/README.md). Native two-finger pinch remains unverified.
+
 ## Browser antialiasing restored — 2026-10-05
 
 The existing Viewer now requests `contextOptions.webgl.antialias=true`, retaining Cesium MSAA 4, Inspection FXAA, DPR/resolutionScale, native ISS textures and all camera/transition/framing behavior. Black Marble brightness returns to 1.8 with gamma/contrast 1. [Matched native ISS thin-geometry, trajectory and responsive QA plus measured frame cost](rendering-quality-restoration/README.md). The earlier dated browser-AA removal is superseded. Native two-finger pinch remains unverified.

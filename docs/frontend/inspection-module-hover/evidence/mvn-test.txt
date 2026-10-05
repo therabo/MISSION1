@@ -1,0 +1,543 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -------------------< org.mission1:mission1-backend >--------------------
+[INFO] Building MISSION1 orbital core 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ mission1-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 7 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.0:compile (default-compile) @ mission1-backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ mission1-backend ---
+[INFO] Copying 27 resources from src/test/resources to target/test-classes
+[INFO]
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mission1-backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ mission1-backend ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.mission1.CrewIngestionConfigurationTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/Users/daniel/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+12:37:14.147 [main] WARN org.springframework.context.annotation.AnnotationConfigApplicationContext -- Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'crewIngestionPolicy' defined in org.mission1.CrewIngestionConfiguration: Failed to instantiate [org.mission1.crew.application.CrewIngestionPolicy]: Factory method 'crewIngestionPolicy' threw exception with message: Crew initial delay must be at least one minute
+12:37:14.197 [main] INFO org.springframework.scheduling.config.TaskSchedulerRouter -- No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+Oct 05, 2026 12:37:14 PM org.mission1.CrewIngestionScheduler refresh
+WARNING: Crew ingestion could not record/complete a run: IllegalStateException
+Oct 05, 2026 12:37:14 PM org.mission1.CrewIngestionScheduler refresh
+WARNING: Crew ingestion run 2: SOURCE_RESULT, snapshot null, inserted false
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.220 s -- in org.mission1.CrewIngestionConfigurationTest
+[INFO] Running org.mission1.source.crew.ll2.LaunchLibrary2CrewSourceTest
+[INFO] Tests run: 27, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.418 s -- in org.mission1.source.crew.ll2.LaunchLibrary2CrewSourceTest
+[INFO] Running org.mission1.source.crew.ll2.LaunchLibrary2CrewEventSourceTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in org.mission1.source.crew.ll2.LaunchLibrary2CrewEventSourceTest
+[INFO] Running org.mission1.source.crew.nasa.NasaOperationalFeedHttpSourceTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in org.mission1.source.crew.nasa.NasaOperationalFeedHttpSourceTest
+[INFO] Running org.mission1.source.crew.nasa.NasaCrewDocumentSourceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.mission1.source.crew.nasa.NasaCrewDocumentSourceTest
+[INFO] Running org.mission1.source.crew.nasa.NasaOperationalFeedParserTest
+[Fatal Error] :1:48: DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.144 s -- in org.mission1.source.crew.nasa.NasaOperationalFeedParserTest
+[INFO] Running org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSourceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.182 s -- in org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSourceTest
+[INFO] Running org.mission1.source.orbital.celestrak.CelesTrakRefreshIntegrationTest
+12:37:16.200 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.mission1.source.orbital.celestrak.CelesTrakRefreshIntegrationTest]: CelesTrakRefreshIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:37:16.244 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.source.orbital.celestrak.CelesTrakRefreshIntegrationTest
+12:37:16.279 [main] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+12:37:16.281 [main] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+12:37:16.284 [main] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.21.3
+12:37:16.381 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+12:37:16.570 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+12:37:16.571 [main] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+12:37:16.583 [main] INFO org.testcontainers.DockerClientFactory -- Connected to docker:
+  Server Version: 28.3.2
+  API Version: 1.51
+  Operating System: Docker Desktop
+  Total Memory: 3919 MB
+  Labels:
+    com.docker.desktop.address=unix:///Users/daniel/Library/Containers/com.docker.docker/Data/docker-cli.sock
+12:37:16.732 [main] INFO tc.testcontainers/ryuk:0.12.0 -- Creating container for image: testcontainers/ryuk:0.12.0
+12:37:16.869 [main] INFO org.testcontainers.utility.RegistryAuthLocator -- Credential helper/store (docker-credential-desktop) does not have credentials for https://index.docker.io/v1/
+12:37:17.073 [main] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 is starting: 57816605a91020332c54a4f3f624cd3e98ccadfcf178a171654bcc4fe323fc21
+12:37:17.499 [main] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 started in PT0.766915S
+12:37:17.505 [main] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+12:37:17.505 [main] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+12:37:17.506 [main] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+12:37:17.506 [main] INFO tc.postgres:16.10 -- Creating container for image: postgres:16.10
+12:37:17.575 [main] INFO tc.postgres:16.10 -- Container postgres:16.10 is starting: ee2b416eefa3c892302fc5c8fb087601493d9e801b10fe89684ce8b13f8332ce
+12:37:19.123 [main] INFO tc.postgres:16.10 -- Container postgres:16.10 started in PT1.617414S
+12:37:19.124 [main] INFO tc.postgres:16.10 -- Container is started (JDBC URL: jdbc:postgresql://localhost:59415/mission1_refresh_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:37:19.241+02:00  INFO 5701 --- [           main] .m.s.o.c.CelesTrakRefreshIntegrationTest : Starting CelesTrakRefreshIntegrationTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:37:19.241+02:00  INFO 5701 --- [           main] .m.s.o.c.CelesTrakRefreshIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:37:19.767+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-05T12:37:19.846+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1e387974
+2026-10-05T12:37:19.847+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-05T12:37:19.862+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59415/mission1_refresh_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:19.887+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:37:19.889+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.010s)
+2026-10-05T12:37:19.898+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:37:19.927+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:37:19.934+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:37:19.953+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:19.967+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:37:19.998+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:20.032+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:37:20.054+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.077s)
+2026-10-05T12:37:20.729+02:00  INFO 5701 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T12:37:20.729+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T12:37:20.730+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-05T12:37:20.742+02:00  INFO 5701 --- [           main] .m.s.o.c.CelesTrakRefreshIntegrationTest : Started CelesTrakRefreshIntegrationTest in 1.595 seconds (process running for 8.165)
+2026-10-05T12:37:20.767+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:37:20.774+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_NEW_ELEMENT, observationInserted=true
+2026-10-05T12:37:20.879+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh skipped; next eligible at 2026-09-28T17:10:00Z
+2026-10-05T12:37:20.881+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:37:20.888+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_ALREADY_KNOWN_ELEMENT, observationInserted=true
+2026-10-05T12:37:20.890+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:37:20.891+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=RATE_LIMITED_OR_BLOCKED, httpStatus=403
+2026-10-05T12:37:20.903+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh suspended after non-200 response; operator review required
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.994 s -- in org.mission1.source.orbital.celestrak.CelesTrakRefreshIntegrationTest
+[INFO] Running org.mission1.source.orbital.nasa.NasaOemXmlParserTest
+[Fatal Error] :1:10: DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in org.mission1.source.orbital.nasa.NasaOemXmlParserTest
+[INFO] Running org.mission1.CrewRefreshConfigurationTest
+2026-10-05T12:37:21.380+02:00  WARN 5701 --- [           main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'crewRefreshPolicy' defined in org.mission1.CrewRefreshConfiguration: Failed to instantiate [org.mission1.crew.application.CrewRefreshPolicy]: Factory method 'crewRefreshPolicy' threw exception with message: Refresh policy exceeds bounded provider-use limits
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.171 s -- in org.mission1.CrewRefreshConfigurationTest
+[INFO] Running org.mission1.crew.CrewArchitectureTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s -- in org.mission1.crew.CrewArchitectureTest
+[INFO] Running org.mission1.crew.persistence.JdbcCrewRefreshRepositoryTest
+2026-10-05T12:37:21.412+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.crew.persistence.JdbcCrewRefreshRepositoryTest]: JdbcCrewRefreshRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:37:21.420+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.crew.persistence.JdbcCrewRefreshRepositoryTest
+2026-10-05T12:37:21.421+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:37:21.476+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: fcd0eb010e4b2a7525c6440624fb29e578b1d6e9dce1a43e48171b1989c60950
+2026-10-05T12:37:22.318+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT0.89733S
+2026-10-05T12:37:22.319+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59430/mission1_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:37:22.332+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRefreshRepositoryTest    : Starting JdbcCrewRefreshRepositoryTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:37:22.332+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRefreshRepositoryTest    : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:37:22.454+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-05T12:37:22.462+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3c1133ad
+2026-10-05T12:37:22.462+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-05T12:37:22.463+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59430/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:22.470+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:37:22.471+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.002s)
+2026-10-05T12:37:22.476+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:37:22.489+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:37:22.492+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:37:22.502+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:22.511+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:37:22.537+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:22.562+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:37:22.578+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.057s)
+2026-10-05T12:37:22.902+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRefreshRepositoryTest    : Started JdbcCrewRefreshRepositoryTest in 0.581 seconds (process running for 10.325)
+TEST_ONLY 24h normal: LL2 roster=12, calendar=4, NASA=12
+TEST_ONLY 24h crewed: LL2 roster=12, calendar=4, NASA=31
+TEST_ONLY 24h rescheduled: LL2 roster=12, calendar=4, NASA=22
+2026-10-05T12:37:42.391+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59430/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:42.396+02:00  INFO 5701 --- [           main] o.f.core.internal.database.base.Schema   : Creating schema "event_refresh_upgrade" ...
+2026-10-05T12:37:42.398+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "event_refresh_upgrade"."flyway_schema_history" ...
+2026-10-05T12:37:42.412+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "event_refresh_upgrade": null
+2026-10-05T12:37:42.413+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "event_refresh_upgrade" to version "1 - orbital element history"
+2026-10-05T12:37:42.423+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "event_refresh_upgrade" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:42.438+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "event_refresh_upgrade" to version "3 - crew source observation history"
+2026-10-05T12:37:42.461+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "event_refresh_upgrade" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:42.484+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "event_refresh_upgrade", now at version v4 (execution time 00:00.045s)
+2026-10-05T12:37:42.513+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59430/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:42.519+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.002s)
+2026-10-05T12:37:42.527+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "event_refresh_upgrade": 4
+2026-10-05T12:37:42.529+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "event_refresh_upgrade" to version "5 - crew event aware refresh"
+2026-10-05T12:37:42.544+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "event_refresh_upgrade", now at version v5 (execution time 00:00.012s)
+2026-10-05T12:37:42.557+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.002s)
+[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.55 s -- in org.mission1.crew.persistence.JdbcCrewRefreshRepositoryTest
+[INFO] Running org.mission1.crew.persistence.JdbcCrewRepositoryTest
+2026-10-05T12:37:42.964+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.crew.persistence.JdbcCrewRepositoryTest]: JdbcCrewRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:37:42.966+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.crew.persistence.JdbcCrewRepositoryTest
+2026-10-05T12:37:42.969+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:37:43.045+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 07e72df96d1f2933a151b34e7de1d521f86a47e73baa05cbb10572f453de7173
+2026-10-05T12:37:43.965+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT0.995885S
+2026-10-05T12:37:43.965+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59642/mission1_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:37:43.981+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRepositoryTest           : Starting JdbcCrewRepositoryTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:37:43.981+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRepositoryTest           : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:37:44.159+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-10-05T12:37:44.173+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@78a4914d
+2026-10-05T12:37:44.173+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-10-05T12:37:44.174+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59642/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:44.180+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:37:44.181+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.002s)
+2026-10-05T12:37:44.185+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:37:44.197+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:37:44.199+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:37:44.209+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:44.216+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:37:44.243+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:44.268+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:37:44.283+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.058s)
+2026-10-05T12:37:44.605+02:00  INFO 5701 --- [           main] o.m.c.p.JdbcCrewRepositoryTest           : Started JdbcCrewRepositoryTest in 0.637 seconds (process running for 32.028)
+2026-10-05T12:37:44.683+02:00  WARN 5701 --- [           main] o.m.c.application.CrewIngestionService   : Crew snapshot transaction failed for run 2: UncategorizedSQLException
+2026-10-05T12:37:45.104+02:00  WARN 5701 --- [           main] o.m.c.application.CrewIngestionService   : Crew snapshot transaction failed for run 1: UncategorizedSQLException
+2026-10-05T12:37:45.391+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59642/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:45.395+02:00  INFO 5701 --- [           main] o.f.core.internal.database.base.Schema   : Creating schema "crew_upgrade_test" ...
+2026-10-05T12:37:45.397+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "crew_upgrade_test"."flyway_schema_history" ...
+2026-10-05T12:37:45.410+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "crew_upgrade_test": null
+2026-10-05T12:37:45.412+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "crew_upgrade_test" to version "1 - orbital element history"
+2026-10-05T12:37:45.420+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "crew_upgrade_test" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:45.425+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "crew_upgrade_test", now at version v2 (execution time 00:00.006s)
+2026-10-05T12:37:45.438+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59642/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:45.444+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.003s)
+2026-10-05T12:37:45.455+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "crew_upgrade_test": 2
+2026-10-05T12:37:45.457+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "crew_upgrade_test" to version "3 - crew source observation history"
+2026-10-05T12:37:45.479+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "crew_upgrade_test" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:45.505+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "crew_upgrade_test" to version "5 - crew event aware refresh"
+2026-10-05T12:37:45.521+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "crew_upgrade_test", now at version v5 (execution time 00:00.048s)
+2026-10-05T12:37:45.533+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.002s)
+[INFO] Tests run: 24, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.941 s -- in org.mission1.crew.persistence.JdbcCrewRepositoryTest
+[INFO] Running org.mission1.crew.persistence.JdbcCrewVerificationRepositoryTest
+2026-10-05T12:37:45.906+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.crew.persistence.JdbcCrewVerificationRepositoryTest]: JdbcCrewVerificationRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:37:45.907+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.crew.persistence.JdbcCrewVerificationRepositoryTest
+2026-10-05T12:37:45.908+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:37:46.028+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 63b11e3c1999501ab1f1431b1a38db3d8b7b57808d12ae9c5d6bb7d2b0f825be
+2026-10-05T12:37:47.306+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT1.397747S
+2026-10-05T12:37:47.307+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59708/mission1_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:37:47.350+02:00  INFO 5701 --- [           main] m.c.p.JdbcCrewVerificationRepositoryTest : Starting JdbcCrewVerificationRepositoryTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:37:47.350+02:00  INFO 5701 --- [           main] m.c.p.JdbcCrewVerificationRepositoryTest : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:37:47.558+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-10-05T12:37:47.586+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@ddf8b1d
+2026-10-05T12:37:47.586+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-10-05T12:37:47.588+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59708/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:47.597+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:37:47.597+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.003s)
+2026-10-05T12:37:47.605+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:37:47.623+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:37:47.626+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:37:47.643+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:47.657+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:37:47.697+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:47.733+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:37:47.756+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.094s)
+2026-10-05T12:37:48.605+02:00  INFO 5701 --- [           main] m.c.p.JdbcCrewVerificationRepositoryTest : Started JdbcCrewVerificationRepositoryTest in 1.281 seconds (process running for 36.028)
+2026-10-05T12:37:49.698+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59708/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:49.710+02:00  INFO 5701 --- [           main] o.f.core.internal.database.base.Schema   : Creating schema "verification_upgrade" ...
+2026-10-05T12:37:49.712+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "verification_upgrade"."flyway_schema_history" ...
+2026-10-05T12:37:49.738+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "verification_upgrade": null
+2026-10-05T12:37:49.740+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "verification_upgrade" to version "1 - orbital element history"
+2026-10-05T12:37:49.752+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "verification_upgrade" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:49.768+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "verification_upgrade" to version "3 - crew source observation history"
+2026-10-05T12:37:49.797+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "verification_upgrade", now at version v3 (execution time 00:00.036s)
+2026-10-05T12:37:49.813+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59708/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:49.819+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.002s)
+2026-10-05T12:37:49.831+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "verification_upgrade": 3
+2026-10-05T12:37:49.834+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "verification_upgrade" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:49.864+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "verification_upgrade" to version "5 - crew event aware refresh"
+2026-10-05T12:37:49.881+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "verification_upgrade", now at version v5 (execution time 00:00.038s)
+2026-10-05T12:37:49.899+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.002s)
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.218 s -- in org.mission1.crew.persistence.JdbcCrewVerificationRepositoryTest
+[INFO] Running org.mission1.crew.application.CrewIngestionPolicyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 s -- in org.mission1.crew.application.CrewIngestionPolicyTest
+[INFO] Running org.mission1.crew.application.CrewPersonResolverTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in org.mission1.crew.application.CrewPersonResolverTest
+[INFO] Running org.mission1.crew.application.CrewRefreshPolicyTest
+[INFO] Tests run: 38, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.060 s -- in org.mission1.crew.application.CrewRefreshPolicyTest
+[INFO] Running org.mission1.crew.application.CrewReconciliationEngineTest
+[INFO] Tests run: 27, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 s -- in org.mission1.crew.application.CrewReconciliationEngineTest
+[INFO] Running org.mission1.crew.domain.CrewEvidenceContractTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in org.mission1.crew.domain.CrewEvidenceContractTest
+[INFO] Running org.mission1.orbital.oem.NasaOemTrajectoryServiceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.197 s -- in org.mission1.orbital.oem.NasaOemTrajectoryServiceTest
+[INFO] Running org.mission1.orbital.propagation.OrbitalCoreTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.095 s -- in org.mission1.orbital.propagation.OrbitalCoreTest
+[INFO] Running org.mission1.orbital.propagation.OrbitalInterpolationExperimentTest
+INTERPOLATION step=1s linearMax=0.999m linearMean=0.998m hermiteMax=0.000003m hermiteMean=0.000002m points=600
+INTERPOLATION step=2s linearMax=3.995m linearMean=3.327m hermiteMax=0.002779m hermiteMean=0.001622m points=900
+INTERPOLATION step=5s linearMax=24.966m linearMean=18.301m hermiteMax=0.007119m hermiteMean=0.004325m points=1080
+INTERPOLATION step=10s linearMax=99.865m linearMean=69.876m hermiteMax=0.014251m hermiteMean=0.008455m points=1140
+INTERPOLATION step=30s linearMax=898.751m linearMean=608.907m hermiteMax=0.043337m hermiteMean=0.028558m points=1180
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.408 s -- in org.mission1.orbital.propagation.OrbitalInterpolationExperimentTest
+[INFO] Running org.mission1.orbital.persistence.JdbcOrbitalElementSetRepositoryTest
+2026-10-05T12:37:56.004+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.orbital.persistence.JdbcOrbitalElementSetRepositoryTest]: JdbcOrbitalElementSetRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:37:56.072+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.orbital.persistence.JdbcOrbitalElementSetRepositoryTest
+2026-10-05T12:37:56.078+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:37:56.479+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 33ab27938a364ecc14e1b593f524019e9b22b4542b8ee26638593e7bc7ab1c3c
+2026-10-05T12:37:58.736+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT2.657651S
+2026-10-05T12:37:58.741+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59768/mission1_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:37:58.788+02:00  INFO 5701 --- [           main] .o.p.JdbcOrbitalElementSetRepositoryTest : Starting JdbcOrbitalElementSetRepositoryTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:37:58.789+02:00  INFO 5701 --- [           main] .o.p.JdbcOrbitalElementSetRepositoryTest : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:37:59.273+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-10-05T12:37:59.306+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@21e00efb
+2026-10-05T12:37:59.306+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-10-05T12:37:59.308+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59768/mission1_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:37:59.318+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:37:59.318+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.003s)
+2026-10-05T12:37:59.330+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:37:59.348+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:37:59.354+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:37:59.368+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:37:59.381+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:37:59.417+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:37:59.451+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:37:59.480+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.093s)
+2026-10-05T12:38:00.086+02:00  INFO 5701 --- [           main] .o.p.JdbcOrbitalElementSetRepositoryTest : Started JdbcOrbitalElementSetRepositoryTest in 1.33 seconds (process running for 47.51)
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.063 s -- in org.mission1.orbital.persistence.JdbcOrbitalElementSetRepositoryTest
+[INFO] Running org.mission1.orbital.application.CelesTrakRefreshServiceTest
+2026-10-05T12:38:01.364+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:01.366+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=TIMEOUT, httpStatus=null
+2026-10-05T12:38:01.367+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh skipped; next eligible at 2026-09-28T17:10:00Z
+2026-10-05T12:38:01.371+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:01.372+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=RATE_LIMITED_OR_BLOCKED, httpStatus=403
+2026-10-05T12:38:01.372+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh suspended after non-200 response; operator review required
+2026-10-05T12:38:01.375+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:01.376+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=WRONG_SATELLITE, httpStatus=200
+2026-10-05T12:38:01.940+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:01.940+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_NEW_ELEMENT, observationInserted=true
+2026-10-05T12:38:01.944+02:00 ERROR 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh could not read local retrieval history
+2026-10-05T12:38:01.946+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh skipped; next eligible at 2026-09-28T15:00:00.000000001Z
+2026-10-05T12:38:01.947+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:01.947+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=NETWORK_ERROR, httpStatus=null
+2026-10-05T12:38:02.348+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:02.354+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_NEW_ELEMENT, observationInserted=true
+2026-10-05T12:38:02.817+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:02.818+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_NEW_ELEMENT, observationInserted=true
+2026-10-05T12:38:02.828+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:02.829+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=NETWORK_ERROR, httpStatus=null
+2026-10-05T12:38:02.832+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:02.832+02:00  WARN 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh failed: category=INVALID_RESPONSE, httpStatus=200
+2026-10-05T12:38:03.157+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:03.157+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch: outcome=FETCHED_ALREADY_KNOWN_ELEMENT, observationInserted=true
+2026-10-05T12:38:03.159+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak refresh skipped; next eligible at 2026-09-28T17:09:00Z
+2026-10-05T12:38:03.638+02:00  INFO 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : Eligible CelesTrak ISS GP refresh started
+2026-10-05T12:38:03.638+02:00 ERROR 5701 --- [           main] o.m.o.a.CelesTrakRefreshService          : CelesTrak valid fetch could not be persisted locally
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.563 s -- in org.mission1.orbital.application.CelesTrakRefreshServiceTest
+[INFO] Running org.mission1.orbital.application.OrbitalSampleWindowServiceTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.730 s -- in org.mission1.orbital.application.OrbitalSampleWindowServiceTest
+[INFO] Running org.mission1.orbital.application.CurrentOrbitalStateServiceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.266 s -- in org.mission1.orbital.application.CurrentOrbitalStateServiceTest
+[INFO] Running org.mission1.orbital.application.OrbitalQualityEvaluatorTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.332 s -- in org.mission1.orbital.application.OrbitalQualityEvaluatorTest
+[INFO] Running org.mission1.CrewVerificationConfigurationTest
+2026-10-05T12:38:10.138+02:00  INFO 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA Crew verification run 1: SUCCESS, document 1, new evidence 3
+2026-10-05T12:38:10.139+02:00  WARN 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA verification/reconciliation failed: IllegalStateException
+2026-10-05T12:38:10.139+02:00  INFO 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA Crew verification run 1: SUCCESS, document 1, new evidence 3
+2026-10-05T12:38:10.139+02:00  WARN 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA verification/reconciliation failed: IllegalStateException
+2026-10-05T12:38:10.145+02:00  INFO 5701 --- [           main] o.s.s.config.TaskSchedulerRouter         : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2026-10-05T12:38:10.149+02:00  WARN 5701 --- [           main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'nasaCrewVerificationIngestionService' defined in org.mission1.CrewVerificationConfiguration: Failed to instantiate [org.mission1.crew.application.NasaCrewVerificationIngestionService]: Factory method 'nasaCrewVerificationIngestionService' threw exception with message: NASA startup delay must be at least six minutes
+2026-10-05T12:38:10.150+02:00  WARN 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA verification/reconciliation failed: IllegalStateException
+2026-10-05T12:38:10.150+02:00  INFO 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA Crew verification run 2: SOURCE_RESULT, document null, new evidence 0
+2026-10-05T12:38:10.150+02:00  INFO 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA Crew verification run 3: SUCCESS, document 1, new evidence 3
+2026-10-05T12:38:10.151+02:00  INFO 5701 --- [           main] org.mission1.CrewVerificationScheduler   : NASA Crew verification run 1: SKIPPED_NOT_DUE, document null, new evidence 0
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.167 s -- in org.mission1.CrewVerificationConfigurationTest
+[INFO] Running org.mission1.api.crew.CrewApiTest
+2026-10-05T12:38:10.155+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.api.crew.CrewApiTest]: CrewApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:38:10.187+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.api.crew.CrewApiTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:38:10.195+02:00  INFO 5701 --- [           main] org.mission1.api.crew.CrewApiTest        : Starting CrewApiTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:38:10.195+02:00  INFO 5701 --- [           main] org.mission1.api.crew.CrewApiTest        : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:38:10.510+02:00  INFO 5701 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T12:38:10.510+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T12:38:10.510+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-05T12:38:10.513+02:00  INFO 5701 --- [           main] org.mission1.api.crew.CrewApiTest        : Started CrewApiTest in 0.323 seconds (process running for 57.936)
+[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.662 s -- in org.mission1.api.crew.CrewApiTest
+[INFO] Running org.mission1.api.crew.CrewRestArchitectureTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in org.mission1.api.crew.CrewRestArchitectureTest
+[INFO] Running org.mission1.api.crew.CrewPostgresApiTest
+2026-10-05T12:38:10.838+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.api.crew.CrewPostgresApiTest
+2026-10-05T12:38:10.841+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:38:11.068+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 28b1f7a4c147a118f609b696d121559aaa644152dd3afde0a8cc82cd5b348675
+2026-10-05T12:38:12.914+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT2.072722S
+2026-10-05T12:38:12.916+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59784/crew_api_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:38:12.940+02:00  INFO 5701 --- [           main] o.mission1.api.crew.CrewPostgresApiTest  : Starting CrewPostgresApiTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:38:12.941+02:00  INFO 5701 --- [           main] o.mission1.api.crew.CrewPostgresApiTest  : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:38:13.059+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-10-05T12:38:13.074+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@ef76bed
+2026-10-05T12:38:13.082+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-10-05T12:38:13.084+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59784/crew_api_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:38:13.095+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:38:13.095+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.003s)
+2026-10-05T12:38:13.100+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:38:13.119+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:38:13.121+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:38:13.131+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:38:13.138+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:38:13.161+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:38:13.190+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:38:13.228+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.076s)
+2026-10-05T12:38:13.544+02:00  INFO 5701 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T12:38:13.544+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T12:38:13.544+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-05T12:38:13.547+02:00  INFO 5701 --- [           main] o.mission1.api.crew.CrewPostgresApiTest  : Started CrewPostgresApiTest in 0.622 seconds (process running for 60.97)
+CREW_REST_ROSTER_SQL=35 queries for 7 and 35 for 37 members
+CREW_REST_QUERY_COUNTS={"/api/iss/crew":43,"/api/iss/expedition/current":11,"/api/iss/crew/0abae5e6-f5cf-4624-87a0-5ef18b0820e6":43}
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.895 s -- in org.mission1.api.crew.CrewPostgresApiTest
+[INFO] Running org.mission1.api.crew.CrewReplayPostgresTest
+2026-10-05T12:38:14.728+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.api.crew.CrewReplayPostgresTest]: CrewReplayPostgresTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:38:14.732+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.api.crew.CrewReplayPostgresTest
+2026-10-05T12:38:14.733+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:38:14.829+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 5e69010dac2e1c82cc6c8a8e3ad24ad50870053c4cb04ccb1b96180bd6534a3e
+2026-10-05T12:38:15.682+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT0.948663S
+2026-10-05T12:38:15.682+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59815/crew_api_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:38:15.712+02:00  INFO 5701 --- [           main] o.m.api.crew.CrewReplayPostgresTest      : Starting CrewReplayPostgresTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:38:15.712+02:00  INFO 5701 --- [           main] o.m.api.crew.CrewReplayPostgresTest      : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:38:15.797+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-10-05T12:38:15.807+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@57a79923
+2026-10-05T12:38:15.807+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-10-05T12:38:15.808+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59815/crew_api_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:38:15.815+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:38:15.816+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.003s)
+2026-10-05T12:38:15.821+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:38:15.833+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:38:15.835+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:38:15.844+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:38:15.850+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:38:15.870+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:38:15.894+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:38:15.908+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.050s)
+2026-10-05T12:38:16.202+02:00  INFO 5701 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T12:38:16.202+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T12:38:16.203+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-05T12:38:16.205+02:00  INFO 5701 --- [           main] o.m.api.crew.CrewReplayPostgresTest      : Started CrewReplayPostgresTest in 0.501 seconds (process running for 63.628)
+REPLAY_PERFORMANCE CrewReplay n=30 medianMs=3.705 p95Ms=5.182 worstMs=5.657 queriesPerCall=9.0
+REPLAY_PERFORMANCE OrbitHistoricalState n=30 medianMs=1.519 p95Ms=2.466 worstMs=2.765 queriesPerCall=2.0
+REPLAY_PERFORMANCE MissionReplay n=30 medianMs=4.081 p95Ms=5.887 worstMs=5.959 queriesPerCall=11.0
+2026-10-05T12:38:17.241+02:00  WARN 5701 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'at' for method parameter type String is not present]
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.025 s -- in org.mission1.api.crew.CrewReplayPostgresTest
+[INFO] Running org.mission1.api.CurrentOrbitalStateApiTest
+2026-10-05T12:38:17.755+02:00  INFO 5701 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.mission1.api.CurrentOrbitalStateApiTest]: CurrentOrbitalStateApiTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T12:38:17.763+02:00  INFO 5701 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.mission1.Mission1Application for test class org.mission1.api.CurrentOrbitalStateApiTest
+2026-10-05T12:38:17.764+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Creating container for image: postgres:16.10
+2026-10-05T12:38:17.830+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 is starting: 7e82461bc2f4c91d5ff7af6fa726a8456f6c016d4b028c1e335878d0b20e2640
+2026-10-05T12:38:18.736+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container postgres:16.10 started in PT0.972265S
+2026-10-05T12:38:18.736+02:00  INFO 5701 --- [           main] tc.postgres:16.10                        : Container is started (JDBC URL: jdbc:postgresql://localhost:59853/mission1_api_test?loggerLevel=OFF)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-05T12:38:18.743+02:00  INFO 5701 --- [           main] o.m.api.CurrentOrbitalStateApiTest       : Starting CurrentOrbitalStateApiTest using Java 21.0.3 with PID 5701 (started by daniel in /Users/daniel/Desktop/MISSION1/backend)
+2026-10-05T12:38:18.743+02:00  INFO 5701 --- [           main] o.m.api.CurrentOrbitalStateApiTest       : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T12:38:18.863+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2026-10-05T12:38:18.874+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@47e4126a
+2026-10-05T12:38:18.874+02:00  INFO 5701 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2026-10-05T12:38:18.875+02:00  INFO 5701 --- [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:59853/mission1_api_test?loggerLevel=OFF (PostgreSQL 16.10)
+2026-10-05T12:38:18.882+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-10-05T12:38:18.882+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.002s)
+2026-10-05T12:38:18.887+02:00  INFO 5701 --- [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-10-05T12:38:18.898+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-10-05T12:38:18.899+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - orbital element history"
+2026-10-05T12:38:18.908+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - nasa oem ephemeris"
+2026-10-05T12:38:18.914+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - crew source observation history"
+2026-10-05T12:38:18.934+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "4 - crew nasa verification and reconciliation"
+2026-10-05T12:38:18.956+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "5 - crew event aware refresh"
+2026-10-05T12:38:18.968+02:00  INFO 5701 --- [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 5 migrations to schema "public", now at version v5 (execution time 00:00.047s)
+2026-10-05T12:38:19.227+02:00  INFO 5701 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T12:38:19.227+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T12:38:19.227+02:00  INFO 5701 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-05T12:38:19.229+02:00  INFO 5701 --- [           main] o.m.api.CurrentOrbitalStateApiTest       : Started CurrentOrbitalStateApiTest in 0.492 seconds (process running for 66.653)
+ORBIT_WINDOW samples=73 payloadBytes=18534 medianGenerationMs=3.03
+ORBIT_WINDOW samples=181 payloadBytes=43885 warmGenerationMs=4.10
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.962 s -- in org.mission1.api.CurrentOrbitalStateApiTest
+[INFO] Running org.mission1.replay.OrbitHistoricalQueryServiceTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.745 s -- in org.mission1.replay.OrbitHistoricalQueryServiceTest
+[INFO] Running org.mission1.CrewConfigurationTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in org.mission1.CrewConfigurationTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 382, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:11 min
+[INFO] Finished at: 2026-10-05T12:38:22+02:00
+[INFO] ------------------------------------------------------------------------

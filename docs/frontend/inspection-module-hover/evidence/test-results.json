@@ -1,0 +1,20 @@
+{
+  "frontend": {
+    "tests": 344,
+    "files": 38,
+    "failures": 0
+  },
+  "backend": {
+    "java": "21.0.3",
+    "test": 382,
+    "verify": 382,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "diffCheck": "PASS",
+  "devQA": "PASS",
+  "productionQA": "PASS"
+}

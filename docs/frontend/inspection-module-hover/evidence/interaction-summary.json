@@ -1,0 +1,190 @@
+[
+  {
+    "build": "development",
+    "viewport": [
+      1440,
+      900
+    ],
+    "frames": 2942,
+    "modules": 28,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 1,
+    "emptyMovePicks": 20,
+    "repeatedModuleMovePicks": 10,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 31,
+      "median": 89.79999995231628,
+      "p95": 146.80000001192093,
+      "context": "QA observer, with overlapping browser workload in final desktop audits; not a standalone latency benchmark"
+    },
+    "modulePhaseExtraSettlementPicks": 1
+  },
+  {
+    "build": "development",
+    "viewport": [
+      1280,
+      720
+    ],
+    "frames": 1684,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  },
+  {
+    "build": "development",
+    "viewport": [
+      900,
+      700
+    ],
+    "frames": 1708,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  },
+  {
+    "build": "development",
+    "viewport": [
+      390,
+      844
+    ],
+    "frames": 1742,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  },
+  {
+    "build": "production",
+    "viewport": [
+      1440,
+      900
+    ],
+    "frames": 2531,
+    "modules": 28,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 1,
+    "emptyMovePicks": 20,
+    "repeatedModuleMovePicks": 10,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 31,
+      "median": 24.599999964237213,
+      "p95": 68.80000001192093,
+      "context": "QA observer, with overlapping browser workload in final desktop audits; not a standalone latency benchmark"
+    },
+    "modulePhaseExtraSettlementPicks": 1
+  },
+  {
+    "build": "production",
+    "viewport": [
+      1280,
+      720
+    ],
+    "frames": 1685,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  },
+  {
+    "build": "production",
+    "viewport": [
+      900,
+      700
+    ],
+    "frames": 1773,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  },
+  {
+    "build": "production",
+    "viewport": [
+      390,
+      844
+    ],
+    "frames": 2061,
+    "modules": 0,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "idlePicks": 0,
+    "heldDragPicks": 0,
+    "orbitSettledPicks": 0,
+    "emptyMovePicks": 0,
+    "repeatedModuleMovePicks": 0,
+    "movingFramesWithHover": 0,
+    "multiHoveredFrames": 0,
+    "nativePickDurationMs": {
+      "n": 0,
+      "median": null,
+      "p95": null
+    }
+  }
+]
