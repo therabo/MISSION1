@@ -91,9 +91,9 @@ export default function App() {
   const approaching = viewMode === "ENTERING_INSPECTION";
   const returning = viewMode === "EXITING_INSPECTION";
   const stationFocused = inspecting || returning;
-  // Phase 2 adopts S1 only. OEM, Historical, Inspection and Crew retain their
+  // S1 and S3 share the current Earth shell. Other workspaces retain their
   // existing presentations until their individual implementation phases.
-  const earthCurrent = !replaying && !stationFocused && !crewOpen && selectedSource === "PRIMARY_GP_TLE";
+  const earthCurrent = !replaying && !stationFocused && !crewOpen;
   const earthControls = useRef<EarthSceneControls | null>(null);
   const onControlsReady = useCallback((controls: EarthSceneControls | null) => { earthControls.current = controls; }, []);
   const shell = useRef<HTMLElement>(null);
@@ -111,6 +111,24 @@ export default function App() {
     );
     setSourceNotice(null);
   };
+
+  const orbitalStatus = <OrbitalStatus
+    delivery={delivery}
+    comparison={comparison}
+    buffer={buffer}
+    sceneTimeMs={sceneTimeMs}
+    sceneError={sceneError}
+    modelState={modelState}
+    inspecting={stationFocused}
+    approaching={approaching}
+    returning={returning}
+    selectedSource={selectedSource}
+    position={position}
+    crewOpen={crewOpen}
+    onCrewOpen={openCrew}
+    compact={earthCurrent}
+    sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null}
+  />;
 
   return (
     <main
@@ -145,7 +163,7 @@ export default function App() {
         <img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
           width={2172} height={724} draggable={false} />
       </div>
-      {earthCurrent ? <>
+      {earthCurrent ? <div className="earth-current-ui">
         <TopContextBar sceneTimeMs={sceneTimeMs}
           inspectionDisabled={!delivery.window || buffer !== "active" || modelState.status !== "ready"}
           onInspect={() => setInspectionRequest(value => value + 1)}
@@ -157,10 +175,13 @@ export default function App() {
           onCrew={openCrew}
           source={<TrajectorySelector presentation="context" selectedSource={selectedSource} viewMode={viewMode}
             oemReason={oemReason} sourceNotice={sourceNotice} onSelect={chooseSource} />} />
-        <TrajectoryLegend oemReason={oemReason} />
-        <SceneControls onZoomIn={() => earthControls.current?.zoomIn()}
-          onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
-      </> : <>
+        <div className="earth-scene-ui">
+          <TrajectoryLegend selectedSource={selectedSource} oemReason={oemReason} />
+          <SceneControls onZoomIn={() => earthControls.current?.zoomIn()}
+            onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
+        </div>
+        {orbitalStatus}
+      </div> : <>
       <ReplayControls
         enabled={replaying}
         at={replayAt}
@@ -213,24 +234,7 @@ export default function App() {
         )}
       </div>
       </>}
-      {!replaying && (
-        <OrbitalStatus
-          delivery={delivery}
-          comparison={comparison}
-          buffer={buffer}
-          sceneTimeMs={sceneTimeMs}
-          sceneError={sceneError}
-          modelState={modelState}
-          inspecting={stationFocused}
-          approaching={approaching}
-          returning={returning}
-          selectedSource={selectedSource}
-          position={position}
-          crewOpen={crewOpen}
-          onCrewOpen={openCrew}
-          compact={earthCurrent}
-        />
-      )}
+      {!replaying && !earthCurrent && orbitalStatus}
       {replaying && (
         <aside
           className="orbital-panel replay-orbit"
