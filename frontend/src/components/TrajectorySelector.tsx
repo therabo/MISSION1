@@ -2,7 +2,8 @@ import type { ViewMode } from '../cesium/inspectionMode';
 import { SOURCE_LABELS } from '../cesium/trajectorySelection';
 import type { TrajectorySource } from '../cesium/trajectorySelection';
 import { TRAJECTORY_ACCENTS } from '../cesium/trajectoryRendering';
-import type { CSSProperties } from 'react';
+import { useId, type CSSProperties } from 'react';
+import sourceChevron from '../assets/interface/source-chevron.svg';
 
 interface Props {
   selectedSource: TrajectorySource;
@@ -10,9 +11,29 @@ interface Props {
   oemReason: string | null;
   sourceNotice: string | null;
   onSelect: (source: TrajectorySource) => void;
+  presentation?: 'legacy' | 'context';
 }
 
-export function TrajectorySelector({selectedSource, viewMode, oemReason, sourceNotice, onSelect}: Props) {
+export function TrajectorySelector({selectedSource, viewMode, oemReason, sourceNotice, onSelect, presentation = 'legacy'}: Props) {
+  const descriptionId = useId();
+  if (presentation === 'context') return <div className="context-source">
+    <label htmlFor={`${descriptionId}-select`}>SOURCE</label>
+    <div className="context-source-control">
+      <select id={`${descriptionId}-select`} aria-label="Orbital source" aria-describedby={descriptionId}
+        value={selectedSource} disabled={viewMode !== 'EARTH_OVERVIEW'}
+        onChange={event => {
+          const next = event.target.value;
+          if ((next === 'PRIMARY_GP_TLE' || next === 'NASA_OEM') && viewMode === 'EARTH_OVERVIEW' && !(next === 'NASA_OEM' && oemReason)) onSelect(next);
+        }}>
+        <option value="PRIMARY_GP_TLE">GP/TLE</option>
+        <option value="NASA_OEM" disabled={!!oemReason}>NASA OEM{ oemReason ? ' — unavailable' : '' }</option>
+      </select>
+      <img src={sourceChevron} className="source-select-chevron" alt="" />
+    </div>
+    <span id={descriptionId} className="sr-only">{SOURCE_LABELS[selectedSource]}. {viewMode !== 'EARTH_OVERVIEW'
+      ? 'Return to Earth View to change source' : oemReason ? `OEM unavailable · ${oemReason}` : 'NASA OEM is source-provided predicted ephemeris.'}</span>
+    {sourceNotice && <span className="sr-only" role="status">{sourceNotice}</span>}
+  </div>;
   return <div className="scene-legend trajectory-selector" aria-label="Position / trajectory source">
       <span className="mini-label">POSITION / TRAJECTORY SOURCE</span>
       <div className="source-options" role="group" aria-label="Choose position and trajectory source">

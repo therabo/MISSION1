@@ -24,4 +24,14 @@ describe('accessible position-source selector', () => {
       expect(html).toContain('Return to Earth View to change source');
     }
   });
+  it('uses the same source identities, classification and guards in the compact context selector', () => {
+    const html = renderToStaticMarkup(<TrajectorySelector {...props} presentation="context" oemReason="Coverage missing" />);
+    expect(html).toContain('SOURCE'); expect(html).toContain('aria-label="Orbital source"');
+    expect(html).toContain('MISSION1 GP/TLE propagated state'); expect(html).toContain('OEM unavailable · Coverage missing');
+    expect(html).toContain('<option value="NASA_OEM" disabled=""');
+    for (const mode of ['ENTERING_INSPECTION', 'ISS_INSPECTION', 'EXITING_INSPECTION'] as const) {
+      const locked = renderToStaticMarkup(<TrajectorySelector {...props} presentation="context" viewMode={mode} />);
+      expect(locked).toMatch(/<select[^>]*disabled=""/); expect(locked).toContain('Return to Earth View to change source');
+    }
+  });
 });

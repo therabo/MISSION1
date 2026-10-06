@@ -26,6 +26,9 @@ import type {
 import type { ViewMode } from "./cesium/inspectionMode";
 import { useEarthWorkspace } from "./layout/useEarthWorkspace";
 import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
+import { TopContextBar } from "./components/TopContextBar";
+import { TrajectoryLegend } from "./components/TrajectoryLegend";
+import { SceneControls, type EarthSceneControls } from "./components/SceneControls";
 
 export default function App() {
   const [replaying, setReplaying] = useState(false);
@@ -88,8 +91,13 @@ export default function App() {
   const approaching = viewMode === "ENTERING_INSPECTION";
   const returning = viewMode === "EXITING_INSPECTION";
   const stationFocused = inspecting || returning;
+  // Phase 2 adopts S1 only. OEM, Historical, Inspection and Crew retain their
+  // existing presentations until their individual implementation phases.
+  const earthCurrent = !replaying && !stationFocused && !crewOpen && selectedSource === "PRIMARY_GP_TLE";
+  const earthControls = useRef<EarthSceneControls | null>(null);
+  const onControlsReady = useCallback((controls: EarthSceneControls | null) => { earthControls.current = controls; }, []);
   const shell = useRef<HTMLElement>(null);
-  const workspace = useEarthWorkspace(shell, `${replaying}:${crewOpen}:${stationFocused}`);
+  const workspace = useEarthWorkspace(shell, `${replaying}:${crewOpen}:${stationFocused}:${earthCurrent}`);
   const oemReason = oemUnavailableReason(comparison.response, sceneTimeMs);
   const chooseSource = (next: TrajectorySource) => {
     setSelectedSource((current) =>
@@ -107,7 +115,7 @@ export default function App() {
   return (
     <main
       ref={shell}
-      className={`app-shell ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
+      className={`app-shell ${earthCurrent ? "earth-current" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
     >
       <EarthView
         workspace={workspace}
@@ -131,17 +139,28 @@ export default function App() {
         onModelStatus={onModelStatus}
         onModuleSelection={onModuleSelection}
         onViewModeChange={setViewMode}
+        onControlsReady={onControlsReady}
       />
       <div className="top-brand">
-        <img
-          className="brand-wordmark"
-          src={mission1Wordmark}
-          alt="MISSION1"
-          width={2172}
-          height={724}
-          draggable={false}
-        />
+        <img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
+          width={2172} height={724} draggable={false} />
       </div>
+      {earthCurrent ? <>
+        <TopContextBar sceneTimeMs={sceneTimeMs}
+          inspectionDisabled={!delivery.window || buffer !== "active" || modelState.status !== "ready"}
+          onInspect={() => setInspectionRequest(value => value + 1)}
+          onHistorical={() => {
+            setSelectedModule(null);
+            setReplaying(true);
+            setReplayAt(new Date(Date.now() - 60000).toISOString());
+          }}
+          onCrew={openCrew}
+          source={<TrajectorySelector presentation="context" selectedSource={selectedSource} viewMode={viewMode}
+            oemReason={oemReason} sourceNotice={sourceNotice} onSelect={chooseSource} />} />
+        <TrajectoryLegend oemReason={oemReason} />
+        <SceneControls onZoomIn={() => earthControls.current?.zoomIn()}
+          onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
+      </> : <>
       <ReplayControls
         enabled={replaying}
         at={replayAt}
@@ -193,6 +212,7 @@ export default function App() {
           </button>
         )}
       </div>
+      </>}
       {!replaying && (
         <OrbitalStatus
           delivery={delivery}
@@ -208,6 +228,7 @@ export default function App() {
           position={position}
           crewOpen={crewOpen}
           onCrewOpen={openCrew}
+          compact={earthCurrent}
         />
       )}
       {replaying && (
@@ -286,7 +307,7 @@ export default function App() {
           <span>Model not to scale · Attitude unavailable</span>
         </div>
       )}
-      {!replaying && (
+      {!replaying && !earthCurrent && (
         <TrajectorySelector
           selectedSource={selectedSource}
           viewMode={viewMode}

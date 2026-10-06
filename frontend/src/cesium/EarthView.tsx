@@ -61,6 +61,7 @@ import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectory
 import { InspectionCameraMotion, InspectionHover, paintInspectionHover, resolveInspectionHoverPick } from './inspectionHover';
 
 import type { WorkspaceGeometry } from './workspaceGeometry';
+import type { EarthSceneControls } from '../components/SceneControls';
 import { applyWorkspaceProjection, createWorkspaceGlobeProjection, installWorkspacePicking, WorkspacePerspectiveFrustum } from './workspaceProjection';
 
 interface EarthViewProps {
@@ -78,13 +79,14 @@ interface EarthViewProps {
   onModelStatus: (status: ModelLoadStatus, loadMs?: number) => void;
   onModuleSelection: (module: SemanticMapping | null) => void;
   onViewModeChange: (mode: ViewMode) => void;
+  onControlsReady?: (controls: EarthSceneControls | null) => void;
 }
 
 export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ workspace = null, replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ workspace = null, replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange, onControlsReady }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef(workspace);
   workspaceRef.current = workspace;
@@ -127,6 +129,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   const moduleCallback = useRef(onModuleSelection);
   const modeCallback = useRef(onViewModeChange);
   const selectedModule = useRef<SemanticMapping | null>(null);
+  const controlsCallback = useRef(onControlsReady);
+  controlsCallback.current = onControlsReady;
   timeCallback.current = onSceneTime;
   errorCallback.current = onSceneError;
   modelCallback.current = onModelStatus;
@@ -942,7 +946,23 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       }
     };
     instance.clock.onTick.addEventListener(tick);
+    // Presentation-only toolbar bridge. Reuse the native camera operations and
+    // the accepted initial Earth pose; never enter the Inspection pipeline here.
+    controlsCallback.current?.({
+      zoomIn: () => {
+        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomIn(instance.camera.positionCartographic.height * 0.2);
+      },
+      zoomOut: () => {
+        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomOut(instance.camera.positionCartographic.height * 0.2);
+      },
+      resetView: () => {
+        const geo = active.current?.orbital.response.currentGeodetic;
+        if (viewMode.current === 'EARTH_OVERVIEW' && geo)
+          instance.camera.setView({ destination: Cartesian3.fromDegrees(geo.longitudeDegrees, geo.latitudeDegrees, 17_000_000) });
+      },
+    });
     return () => {
+      controlsCallback.current?.(null);
       destroyed = true;
       disposeImagery();
       viewportObserver.disconnect();

@@ -1,4 +1,46 @@
+@font-face { font-family: Inter; src: url('./assets/fonts/Inter-variable.ttf') format('truetype'); font-style: normal; font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Roboto Mono'; src: url('./assets/fonts/RobotoMono-variable.ttf') format('truetype'); font-style: normal; font-weight: 100 700; font-display: swap; }
+
 :root {
+  /* Approved Figma foundations. Legacy aliases below remain until later phases. */
+  --color-background: #10151c;
+  --color-graphite: #151d27;
+  --surface-context: rgb(21 29 39 / .88);
+  --surface-operational: rgb(21 29 39 / .90);
+  --surface-historical: rgb(21 29 39 / .50);
+  --surface-module: rgb(21 29 39 / .50);
+  --surface-crew: rgb(21 29 39 / .60);
+  --surface-calendar: rgb(21 29 39 / .94);
+  --control-normal: rgb(29 40 52 / .92);
+  --control-selected: rgb(36 61 76 / .92);
+  --control-source: rgb(21 29 39 / .92);
+  --control-hover: rgb(33 44 56 / .92);
+  --color-text-primary: #e9eff6;
+  --color-text-secondary: #a8b5c4;
+  --color-interaction: #8cc8e6;
+  --color-trajectory-gp: #53d9cd;
+  --color-trajectory-oem: #edb86a;
+  --color-success: #8dd5b0;
+  --color-warning: #edb86a;
+  --color-border: #2a3542;
+  --border-context: rgb(42 53 66 / .60);
+  --border-divider: rgb(42 53 66 / .45);
+  --border-overlay: rgb(42 53 66 / .75);
+  --radius-control: 4px;
+  --radius-surface: 6px;
+  --font-interface: Inter, ui-sans-serif, sans-serif;
+  --font-numeric: 'Roboto Mono', ui-monospace, monospace;
+  --motion-fast: 120ms;
+  --motion-compact: 160ms;
+  --motion-ui: 200ms;
+  --motion-dock: 240ms;
+  --motion-workspace: 280ms;
+  --ease-enter: cubic-bezier(0, 0, .58, 1);
+  --ease-exit: cubic-bezier(.42, 0, 1, 1);
+  --ease-state: cubic-bezier(.42, 0, .58, 1);
+  --space-primary: 24px;
+  --context-height: 64px;
+  --operational-height: 80px;
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #e9f4f5;
   background: #07111d;
@@ -242,3 +284,129 @@ dl { margin: 8px 0 0; }
 .replay-controls button:focus-visible, .replay-orbit button:focus-visible, .replay-controls input:focus-visible { outline:2px solid #edb86a; outline-offset:2px; }
 .replay-controls .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 @media(min-width:701px) { .has-crew-panel .replay-controls { max-width:calc(100vw - 420px); } }
+
+/* Phase 1 foundations. No blur, elevation, scale, or scene animation. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.context-button { display: inline-flex; align-items: center; justify-content: center; flex: none; height: 36px; padding: 0 16px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); color: var(--color-text-primary); font: 400 14px/normal var(--font-interface); cursor: pointer; transition: background-color var(--motion-fast) var(--ease-state), border-color var(--motion-fast) var(--ease-state), opacity var(--motion-fast) linear; }
+.context-button:hover:not(:disabled) { background: var(--control-hover); }
+.context-button:active:not(:disabled) { opacity: .94; }
+.context-button[aria-pressed="true"] { background: var(--control-selected); border-color: var(--color-interaction); color: var(--color-interaction); font-weight: 700; transition: none; }
+.context-button:focus-visible, .context-source select:focus-visible, .orbital-status-disclosure > summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
+.context-button:disabled { opacity: .5; cursor: not-allowed; }
+.context-dock { position: absolute; z-index: 6; top: 88px; right: 24px; bottom: 104px; width: 336px; display: flex; flex-direction: column; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-module); color: var(--color-text-primary); font-family: var(--font-interface); overflow: hidden; }
+.context-dock-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-divider); }
+.context-dock-header h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 700; }
+.context-dock-header h2:focus { outline: none; }
+.context-dock-header .context-button { width: 36px; padding: 0; }
+.context-dock-content { min-height: 0; overflow-y: auto; padding: 24px; overscroll-behavior: contain; }
+.context-dock[data-state="open"] { animation: context-dock-enter var(--motion-dock) var(--ease-enter); }
+.context-dock[data-state="exiting"] { animation: context-dock-exit var(--motion-ui) var(--ease-exit) both; pointer-events: none; }
+@keyframes context-dock-enter { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes context-dock-exit { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(16px); } }
+
+/* S1, 1440 × 900: full scene with independent context and operational surfaces. */
+.earth-current { background: var(--color-background); color: var(--color-text-primary); font-family: var(--font-interface); font-optical-sizing: none; }
+.top-context-bar { position: absolute; inset: 0 0 auto; z-index: 4; height: var(--context-height); display: flex; align-items: center; padding: 14px var(--space-primary); background: var(--surface-context); }
+.top-context-bar::after { content: ''; position: absolute; top: 63px; left: 0; right: 0; height: 1px; background: var(--border-context); pointer-events: none; }
+.context-identity { width: 120px; height: 28px; flex: none; margin-right: 24px; }
+.earth-current .top-brand { top: 18px; left: 24px; z-index: 5; width: 120px; height: 28px; text-shadow: none; }
+.earth-current .brand-wordmark { width: 120px; height: 28px; object-fit: fill; }
+.context-spatial, .context-temporal { display: flex; flex: none; gap: 8px; }
+.context-spatial { margin-right: 18px; }
+.context-spatial .context-button:first-child { width: 78px; }
+.context-spatial .context-button:last-child { width: 142px; padding: 0; }
+.context-divider { height: 32px; width: 0; border-left: 1px solid var(--border-divider); flex: none; }
+.context-divider-spatial { margin-right: 25px; }
+.context-source { display: flex; align-items: center; gap: 14px; width: 194px; height: 36px; flex: none; margin-right: 46px; }
+.context-source > label { width: 52px; flex: none; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; font-weight: 700; }
+.context-source-control { position: relative; width: 128px; height: 36px; }
+.context-source select { appearance: none; width: 128px; height: 36px; padding: 0 32px 0 16px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-source); color: var(--color-text-primary); font: 700 14px/17px var(--font-interface); color-scheme: dark; cursor: pointer; transition: background-color var(--motion-fast) var(--ease-state); }
+.context-source select:hover:not(:disabled) { background: var(--control-normal); }
+.context-source select:disabled { opacity: .5; cursor: not-allowed; }
+.source-select-chevron { position: absolute; right: 11.25px; top: 15.25px; pointer-events: none; }
+.context-date { width: 220px; height: 36px; flex: none; display: flex; flex-direction: column; gap: 3px; white-space: nowrap; }
+.context-date > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; font-weight: 700; }
+.context-date > time { font: 400 14px/18px var(--font-numeric); font-variant-numeric: tabular-nums; }
+.context-temporal { margin-left: auto; margin-right: 24px; }
+.context-temporal .context-button:first-child { width: 96px; }
+.context-temporal .context-button:last-child { width: 116px; }
+.context-divider-crew { margin-right: 55px; }
+.context-crew { position: relative; width: 96px; padding: 0 24px 0 16px; }
+.crew-entry-chevron { position: absolute; right: 13.25px; top: 12.25px; }
+.operational-summary { position: absolute; inset: auto 0 0; z-index: 3; height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; }
+.summary-identity { display: flex; flex-direction: column; justify-content: center; gap: 2px; height: 38px; }
+.summary-identity strong { font-size: 14px; line-height: 17px; font-weight: 700; }
+.summary-identity span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.summary-position { display: contents; margin: 0; }
+.summary-position > div { display: flex; flex-direction: column; justify-content: center; gap: 2px; height: 38px; }
+.summary-position dt { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.summary-position dd { margin: 0; font: 400 16px/21px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.orbital-status-disclosure > summary { display: flex; flex-direction: column; justify-content: center; gap: 2px; height: 38px; list-style: none; cursor: pointer; }
+.orbital-status-disclosure > summary::-webkit-details-marker { display: none; }
+.orbital-status-disclosure > summary > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.orbital-status-disclosure > summary:hover > span { text-decoration: underline; text-underline-offset: 3px; }
+.summary-quality { font-size: 14px; line-height: 17px; font-weight: 400; }
+.summary-quality.good { color: var(--color-success); }
+.summary-quality.warning { color: var(--color-warning); }
+.summary-quality.unknown { color: var(--color-text-secondary); }
+.orbital-status-evidence { position: absolute; right: 24px; bottom: calc(var(--operational-height) + 12px); width: min(420px, calc(100vw - 48px)); max-height: calc(100dvh - 180px); overflow-y: auto; padding: 24px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); text-align: left; }
+.orbital-status-evidence .time-card { background: transparent; }
+.orbital-status-evidence .panel-head h1 { font-size: 18px; }
+.earth-current-notice { position: absolute; top: 76px; left: 24px; z-index: 4; max-width: calc(100vw - 48px); margin: 0; padding: 10px 14px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); color: var(--color-warning); font-size: 13px; line-height: 19px; }
+.trajectory-legend { position: absolute; bottom: 96px; left: 24px; z-index: 2; height: 28px; display: flex; align-items: center; gap: 28px; color: var(--color-text-secondary); font-size: 13px; line-height: 16px; }
+.trajectory-legend > span { display: flex; align-items: center; gap: 8px; height: 28px; }
+.trajectory-swatch { display: block; width: 24px; height: 2px; flex: none; }
+.trajectory-swatch.gp { background: var(--color-trajectory-gp); }
+.trajectory-swatch.oem { background: var(--color-trajectory-oem); }
+.earth-scene-controls { position: absolute; right: 24px; bottom: 92px; z-index: 2; display: flex; gap: 8px; }
+.earth-scene-controls .context-button { width: 44px; padding: 0; }
+.earth-scene-controls .context-button:last-child { width: 124px; }
+.earth-current .cesium-viewer-bottom { bottom: 84px !important; left: 24px !important; }
+/* Keep Cesium's credit dialog reachable by keyboard, without adding its default
+   attribution label to the approved scene. Source links also remain in evidence. */
+.earth-current .cesium-credit-expand-link:not(:focus-visible) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Preserve usable wrapping rather than scale the desktop canvas. Responsive
+   art direction is deferred; these are conservative overflow safeguards. */
+@media (max-width: 1399px) and (min-width: 1101px) {
+  .context-identity { margin-right: 16px; }
+  .context-spatial { margin-right: 12px; }
+  .context-divider-spatial { margin-right: 16px; }
+  .context-source { margin-right: 24px; }
+  .context-divider-crew { margin-right: 24px; }
+}
+@media (max-width: 1100px) {
+  .top-context-bar { height: auto; min-height: 64px; flex-wrap: wrap; gap: 12px 16px; padding: 14px 24px; }
+  .context-identity, .context-spatial, .context-source, .context-temporal { margin: 0; }
+  .context-divider { display: none; }
+  .context-temporal { margin-left: auto; }
+  .earth-current-notice { top: 124px; }
+}
+@media (max-width: 720px) {
+  .top-context-bar { padding: 12px; gap: 10px 12px; }
+  .context-identity { margin-right: auto; }
+  .earth-current .top-brand { top: 16px; left: 12px; }
+  .context-spatial { order: 1; }
+  .context-source { order: 2; margin-right: auto; }
+  .context-date { order: 3; }
+  .context-temporal { order: 4; margin: 0; }
+  .context-crew { margin-left: auto; }
+  .operational-summary { height: auto; min-height: 112px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 8px; padding: 12px; }
+  .summary-identity { grid-column: span 2; grid-row: 1; }
+  .orbital-status-disclosure { grid-column: 3; grid-row: 1; }
+  .orbital-status-disclosure > summary > span { font-size: 11px; }
+  .summary-position dd { font-size: 14px; }
+  .trajectory-legend { left: 12px; bottom: 164px; gap: 20px; }
+  .earth-scene-controls { right: 12px; bottom: 124px; }
+  .earth-current .cesium-viewer-bottom { bottom: 116px !important; left: 12px !important; }
+  .earth-current-notice { top: 250px; left: 12px; max-width: calc(100vw - 24px); }
+  .orbital-status-evidence { right: 12px; bottom: 124px; max-height: calc(100dvh - 330px); }
+  .context-dock { right: 12px; width: min(336px, calc(100vw - 24px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .context-button, .context-source select { transition-duration: var(--motion-fast); transition-timing-function: linear; }
+  .context-dock[data-state="open"] { animation: context-opacity-enter var(--motion-fast) linear; }
+  .context-dock[data-state="exiting"] { animation: context-opacity-exit var(--motion-fast) linear both; }
+  @keyframes context-opacity-enter { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes context-opacity-exit { from { opacity: 1; } to { opacity: 0; } }
+}
