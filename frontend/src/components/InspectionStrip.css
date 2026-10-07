@@ -4,6 +4,7 @@
 .inspection-strip .inspection-identity strong { font-weight: 700; }
 .inspection-strip span { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .inspection-strip .inspection-modules { width: 136px; border: 2px solid var(--color-interaction); }
+.inspection-strip .inspection-modules.has-selection { border: 1px solid var(--color-border); }
 .inspection-orbital-toggle > summary { width: 148px; display: flex; align-items: center; justify-content: center; padding: 0; list-style: none; cursor: pointer; }
 .inspection-orbital-toggle > summary::-webkit-details-marker { display: none; }
 .inspection-orbital-toggle[open] > summary { background: var(--control-selected); border-color: var(--color-interaction); }
@@ -28,4 +29,12 @@
   .inspection-orbital-cell { grid-area: orbit; }
   .inspection-strip .inspection-identity strong { font-size: 13px; }
   .inspection-strip .inspection-modules, .inspection-orbital-toggle { width: min(148px, 100%); }
+  /* Long verified names must fit without abbreviating their identity. This
+     changes chrome alone; the native scene stays full viewport. */
+  .earth-current:has(.inspection-modules.has-selection) { --operational-height: 132px; }
+  .inspection-strip:has(.has-selection) { grid-template-rows: 40px 68px; row-gap: 4px; align-content: center; }
+  .inspection-strip:has(.has-selection) .inspection-identity,
+  .inspection-strip:has(.has-selection) .inspection-model { height: 40px; }
+  .inspection-strip:has(.has-selection) .inspection-selection { height: 68px; }
+  .inspection-strip:has(.has-selection) .inspection-selection strong { font-size: 12px; line-height: 16px; }
 }

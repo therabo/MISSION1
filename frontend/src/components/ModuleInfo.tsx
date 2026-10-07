@@ -1,34 +1,56 @@
+import { useCallback, useRef } from 'react';
 import { ISS_MODEL, type SemanticMapping } from '../cesium/modelPresentation';
+import { ContextDock } from './ContextDock';
+import './ModuleInfo.css';
 
 interface ModuleInfoProps {
-  module: SemanticMapping;
+  module: SemanticMapping | null;
   onClose: () => void;
+  historical?: boolean;
+  acceptedAt?: string;
 }
 
-/** Source-asset identity only. No orbital or module telemetry is requested here. */
-export function ModuleInfo({ module, onClose }: ModuleInfoProps) {
-  const configurationLabel = module.configurationStatus === 'CURRENT_CONFIRMED'
+/** Source-model identity and dated assessment only, never internal telemetry or
+ * a reconstructed attachment timeline. Retained content is an inert exit snapshot;
+ * App's module prop remains the sole selected state.
+ */
+export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: ModuleInfoProps) {
+  const last = useRef<SemanticMapping | null>(null);
+  if (module?.status === 'VERIFIED') last.current = module;
+  const shown = module?.status === 'VERIFIED' ? module : last.current;
+  const restoreFocus = useCallback(() => document.querySelector<HTMLElement>('.inspection-modules')?.focus({ preventScroll: true }), []);
+  if (!shown) return null;
+  const configurationLabel = shown.configurationStatus === 'CURRENT_CONFIRMED'
     ? 'Current station component confirmed'
-    : module.configurationStatus === 'REMOVED_FROM_CURRENT_STATION'
+    : shown.configurationStatus === 'REMOVED_FROM_CURRENT_STATION'
       ? 'Removed from current station'
       : 'Current station status unverified';
-  return <aside className="module-panel" aria-label="Selected ISS module">
-    <div className="module-panel-head">
-      <span className="eyebrow">NASA MODEL / VERIFIED IDENTITY</span>
-      <button type="button" aria-label="Close module information" onClick={onClose}>×</button>
-    </div>
-    <h2>{module.displayName}</h2>
-    <p className="module-identity">{module.componentId} · {module.componentType}</p>
-    {module.agency && <p className="module-detail">Agency: {module.agency}</p>}
-    {module.role && <p className="module-detail">{module.role}</p>}
-    <p className={`module-configuration ${module.configurationStatus === 'REMOVED_FROM_CURRENT_STATION' ? 'is-historical' : ''}`}>
-      Configuration: <strong>{configurationLabel}</strong>
-      {module.configurationStatus === 'REMOVED_FROM_CURRENT_STATION' && <span>Historical NASA VTAD asset representation; this component is absent from the current ISS.</span>}
-    </p>
-    <p className="module-source">Source asset node {module.nodeIndex}: {module.nodeName}</p>
-    <p className="module-context">Mapping: {module.status}. Named geometry in the <a href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer">NASA VTAD model</a>. <a href={module.identityEvidenceUrl} target="_blank" rel="noreferrer">Component reference</a>{module.configurationEvidenceUrl && <> · <a href={module.configurationEvidenceUrl} target="_blank" rel="noreferrer">Configuration evidence</a></>}.</p>
-    <p className="module-caveat">Model geometry reflects the NASA VTAD source asset and may differ from the current ISS.</p>
-    <div className="module-telemetry">Live module telemetry: <strong>unavailable</strong></div>
-    <p className="module-scale">Earth View model display: NOT TO SCALE</p>
-  </aside>;
+  return <ContextDock open={module?.status === 'VERIFIED'} title={shown.displayName}
+    context={<><span>{shown.agency ?? 'Agency unavailable'}</span><span className="module-type"> · {shown.componentType}</span></>} entityId={shown.componentId}
+    closeLabel="Close module information" onClose={onClose} className="module-dock" sceneEscape onRestoreFocus={restoreFocus}
+    footer={<>
+      <a className="context-button module-evidence" href={ISS_MODEL.sourcePage} target="_blank" rel="noreferrer"
+        title="NASA VTAD source model" aria-label="Evidence & provenance — NASA VTAD source model">Evidence & provenance</a>
+      <p><a href={shown.identityEvidenceUrl} target="_blank" rel="noreferrer">Component reference</a>
+        {shown.configurationEvidenceUrl && <> · <a href={shown.configurationEvidenceUrl} target="_blank" rel="noreferrer">Configuration evidence</a></>}</p>
+    </>}>
+    <section className="module-role"><h3>Function / role</h3><p>{shown.role ?? 'Role unavailable for this mapped component'}</p></section>
+    <section><h3>Configuration context</h3>
+      <p>{configurationLabel}</p>
+      <p className="module-secondary">Configuration evidence: {shown.configurationEvidenceDate ?? 'Unavailable'}<br />Assessment is separate from model geometry.</p>
+      {shown.configurationStatus === 'REMOVED_FROM_CURRENT_STATION' && <p className="module-secondary">Historical NASA VTAD asset representation; this component is absent from the current ISS.</p>}
+      {historical && <p className="module-secondary">Current assessment; attachment at the selected Historical UTC is not reconstructed.{acceptedAt && <time dateTime={acceptedAt}>{acceptedAt}</time>}</p>}
+    </section>
+    <section><h3>Limitations / availability</h3><p className="module-unavailable">Live module telemetry <strong>unavailable</strong></p>
+      <p className="module-caveat">NASA VTAD geometry may differ from the current ISS.</p>
+    </section>
+    <section><h3>Supporting technical detail</h3><dl>
+      <div><dt>Module ID</dt><dd className="module-code">{shown.componentId}</dd></div>
+      <div><dt>Identity mapping</dt><dd>{shown.status === 'VERIFIED' ? 'Verified' : shown.status}</dd></div>
+      <div><dt>Asset node</dt><dd className="module-code">{shown.nodeIndex}</dd></div>
+      <div className="module-type-row"><dt>Component type</dt><dd>{shown.componentType}</dd></div>
+    </dl><p className="module-secondary">{shown.nodeName}</p>
+      <p className="module-secondary">Identity verified: {shown.identityVerifiedOn} · Earth View display: NOT TO SCALE</p>
+    </section>
+  </ContextDock>;
 }

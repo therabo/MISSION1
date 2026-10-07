@@ -30,7 +30,7 @@ vi.mock('./cesium/EarthView', () => ({ EarthView: (props: any) => {
 } }));
 let root: Root, node: HTMLDivElement;
 const originalAnimate = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'animate');
-const button = (name: string) => [...node.querySelectorAll('button')].find(b => b.textContent === name)!;
+const button = (name: string) => [...node.querySelectorAll('button')].find(b => b.textContent === name || b.getAttribute('aria-label') === name)!;
 const shown = () => node.querySelector('.context-date time')?.getAttribute('datetime');
 async function click(name: string) { await act(async () => button(name).click()); }
 async function mode(next: ViewMode) { await act(async () => scene.props.onViewModeChange(next)); }
@@ -135,12 +135,14 @@ it('Modules focuses the real canvas without choosing a fabricated module or chan
   expect(node.querySelector('.inspection-selection strong')?.textContent).toBe('None');
   expect(scene.props.window).toBe(window); expect(shown()).toBe(time);
 });
-it('keeps existing verified picking presentation without adding a Phase 7 dock', async () => {
+it('uses the verified picking state in one module dock without retaining the old panel', async () => {
   await enter(); const module = ISS_MODEL.semanticMappings.find(m => m.status === 'VERIFIED')!;
   await act(async () => scene.props.onModuleSelection(module as SemanticMapping));
   expect(node.querySelector('.inspection-selection strong')?.textContent).toBe(module.displayName);
-  expect(node.querySelector('.module-panel')?.textContent).toContain(module.displayName);
-  expect(node.querySelector('.context-dock')).toBeNull();
+  expect(node.querySelector('.context-dock')?.textContent).toContain(module.displayName);
+  expect(node.querySelectorAll('.context-dock')).toHaveLength(1);
+  expect(node.querySelector('.module-panel')).toBeNull();
+  expect(scene.props.moduleSelection).toBe(module);
   await act(async () => scene.props.onModuleSelection(null));
   expect(node.querySelector('.inspection-selection strong')?.textContent).toBe('None');
 });
@@ -148,6 +150,36 @@ it('orbital detail reuses the existing evidence region and keeps it outside the 
   await enter(); const evidence = node.querySelector('#orbital-status-evidence')!;
   expect(evidence.textContent).toContain('GP/TLE'); expect(node.querySelector('.inspection-orbital-toggle summary')?.getAttribute('aria-controls')).toBe(evidence.id);
   expect(node.querySelector('.status-panel,.replay-orbit')).toBeNull();
+});
+it('module close reconciles the authoritative renderer prop without leaving Inspection or changing source/time', async () => {
+  await enter(); const module = ISS_MODEL.semanticMappings[5], time = shown(), source = scene.props.selectedSource;
+  const requests = [scene.props.inspectionRequest, scene.props.overviewRequest], window = scene.props.window;
+  await act(async () => scene.props.onModuleSelection(module)); await click('Close module information');
+  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.inspection-selection strong')?.textContent).toBe('None');
+  expect(node.querySelector('.module-dock')?.hasAttribute('inert')).toBe(true);
+  expect(scene.props.selectedSource).toBe(source); expect(scene.props.window).toBe(window); expect(shown()).toBe(time);
+  expect([scene.props.inspectionRequest, scene.props.overviewRequest]).toEqual(requests);
+  await act(async () => vi.advanceTimersByTimeAsync(200)); expect(node.querySelector('.module-dock')).toBeNull();
+});
+it('Escape dismisses the selected module before any Inspection navigation', async () => {
+  await enter(); await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[0]));
+  await act(async () => document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true })));
+  expect(scene.props.moduleSelection).toBeNull(); expect(scene.props.overviewRequest).toBe(0);
+  expect(node.dataset.viewMode ?? node.querySelector('main')?.dataset.viewMode).toBe('ISS_INSPECTION');
+});
+it('renderer invalidation clears the dock without retaining old selected presentation', async () => {
+  await enter(); await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[0]));
+  await act(async () => scene.props.onModuleSelection(null)); await mode('EXITING_INSPECTION');
+  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.module-dock')?.getAttribute('aria-hidden')).toBe('true');
+  await act(async () => vi.advanceTimersByTimeAsync(200)); expect(node.querySelector('.module-dock')).toBeNull();
+});
+it('selected Historical detail uses accepted UTC and preserves the existing seek/mode guards', async () => {
+  await click('Historical'); await enter(); const time = shown(), state = scene.props.replay.state, at = scene.props.replay.atMs;
+  await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[3]));
+  expect(node.querySelector('.module-dock time')?.getAttribute('datetime')).toBe(state.effectiveAt);
+  expect(node.querySelector('.module-dock')?.textContent).toContain('not reconstructed');
+  expect(button('Current').disabled).toBe(true); expect(button('Historical').disabled).toBe(true);
+  await click('Current'); expect(scene.props.replay.state).toBe(state); expect(scene.props.replay.atMs).toBe(at); expect(shown()).toBe(time);
 });
 it('uses authoritative Historical details rather than the isolated Current context', async () => {
   await click('Historical'); await enter();

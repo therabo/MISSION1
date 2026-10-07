@@ -58,7 +58,8 @@ import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, i
 import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
-import { InspectionCameraMotion, InspectionHover, paintInspectionHover, resolveInspectionHoverPick } from './inspectionHover';
+import { InspectionCameraMotion, InspectionHover, resolveInspectionHoverPick } from './inspectionHover';
+import { InspectionFeatureState } from './inspectionFeatureState';
 
 import type { WorkspaceGeometry } from './workspaceGeometry';
 import type { EarthSceneControls } from '../components/SceneControls';
@@ -80,6 +81,7 @@ interface EarthViewProps {
   onSceneError: (message: string) => void;
   onModelStatus: (status: ModelLoadStatus, loadMs?: number) => void;
   onModuleSelection: (module: SemanticMapping | null) => void;
+  moduleSelection?: SemanticMapping | null;
   onViewModeChange: (mode: ViewMode) => void;
   onControlsReady?: (controls: EarthSceneControls | null) => void;
 }
@@ -88,7 +90,7 @@ export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange, onControlsReady }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, moduleSelection = null, onViewModeChange, onControlsReady }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef(workspace);
   workspaceRef.current = workspace;
@@ -131,6 +133,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   const moduleCallback = useRef(onModuleSelection);
   const modeCallback = useRef(onViewModeChange);
   const selectedModule = useRef<SemanticMapping | null>(null);
+  const selectionPresentation = useRef<((module: SemanticMapping | null) => void) | null>(null);
   const controlsCallback = useRef(onControlsReady);
   controlsCallback.current = onControlsReady;
   timeCallback.current = onSceneTime;
@@ -226,6 +229,9 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     const removePicking = installWorkspacePicking(instance.scene,
       () => ({ width: viewportWidth, height: viewportHeight }), () => model.current);
     const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
+    const features = new InspectionFeatureState(() => model.current, () => reducedMotion.matches);
+    const featureMotionChanged = () => features.reducedMotionChanged();
+    reducedMotion.addEventListener('change', featureMotionChanged);
     const visualFrame = new TrajectoryVisualFrame();
     const sceneVelocity = new Cartesian3();
     const modelDisplayFrame = new Matrix4();
@@ -469,6 +475,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       if (viewMode.current === next) return;
       viewMode.current = next;
       hover.setMode(next);
+      features.clearHover();
       applyControls(next);
       modeCallback.current(next);
     };
@@ -675,8 +682,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       const rect = canvas.getBoundingClientRect();
       if (document.elementFromPoint(rect.left + point.x, rect.top + point.y) !== canvas) return null;
       return resolveInspectionHoverPick(instance.scene.pick(point));
-    }, target => paintInspectionHover(model.current!, target),
+    }, target => features.paintHover(target),
     interactive => { canvas.style.cursor = interactive ? 'pointer' : normalCursor; });
+    // React owns selection. This ref only mirrors committed selection for native
+    // eligibility checks; close/Escape reconcile the feature and ref together.
+    selectionPresentation.current = selection => {
+      selectedModule.current = selection;
+      if (!selection) hover.pointerLeave();
+      features.select(selection);
+    };
     const hoverMotion = new InspectionCameraMotion();
     const hoverPose = new Float64Array(17);
     const checkHoverMotion = (): boolean => {
@@ -689,7 +703,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       hoverPose[12] = f.fov ?? 0; hoverPose[13] = f.aspectRatio ?? 0;
       hoverPose[14] = f.xOffset ?? 0; hoverPose[15] = f.yOffset ?? 0; hoverPose[16] = f.near;
       const changed = hoverMotion.changed(hoverPose);
-      if (changed) hover.motion();
+      if (changed) { hover.motion(); features.clearHover(); }
       return changed;
     };
     // Camera events include the continuously moving tracking transform. Local
@@ -702,11 +716,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       mousePointer = event.pointerType === 'mouse';
       if (!mousePointer) hover.pointerLeave();
     };
-    const pointerDown = (event: PointerEvent): void => { pointerMove(event); hover.pointerDown(); };
-    const pointerUp = (): void => hover.pointerUp();
+    const pointerDown = (event: PointerEvent): void => { pointerMove(event); hover.pointerDown(); features.clearHover(); };
+    const pointerUp = (): void => { hover.pointerUp(); features.clearHover(); };
     const pointerLeave = (): void => hover.pointerLeave();
     const blur = (): void => { hover.pointerLeave(); hover.pointerUp(); };
-    const wheelStart = (): void => hover.motion();
+    const wheelStart = (): void => { hover.motion(); features.clearHover(); };
     canvas.addEventListener('pointermove', pointerMove, true);
     canvas.addEventListener('pointerdown', pointerDown, true);
     canvas.addEventListener('pointerleave', pointerLeave);
@@ -745,7 +759,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       }
       const action = pickAction(viewMode.current, pick, modelStatus.current === 'ready');
       if (action === 'enter-inspection') startInspection();
-      else if (action === 'select-module') selectModule(distance !== null && modulePickingAvailable(modelStatus.current, distance) && pick.kind === 'iss-feature' ? pick.module : null);
+      else if (action === 'select-module') {
+        const selection = distance !== null && modulePickingAvailable(modelStatus.current, distance) && pick.kind === 'iss-feature' ? pick.module : null;
+        if (selection && hit instanceof ModelFeature) features.remember({ feature: hit, module: selection });
+        selectModule(selection);
+      }
       else if (action === 'clear-module') selectModule(null);
     }, ScreenSpaceEventType.LEFT_CLICK);
 
@@ -981,6 +999,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       removeComposition();
       removePicking();
       reducedMotion.removeEventListener('change', motionChanged);
+      reducedMotion.removeEventListener('change', featureMotionChanged);
       resizeWorkspace.current = null;
       cancelSkyWarmup();
       cancelGraphicsWarmup?.();
@@ -1000,6 +1019,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       globalThis.window.removeEventListener('pointercancel', pointerUp);
       globalThis.window.removeEventListener('blur', blur);
       hover.dispose();
+      features.dispose(); selectionPresentation.current = null;
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;
       materialShader.destroy();
@@ -1021,6 +1041,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       globeProjection.destroy();
     };
   }, []);
+
+  useLayoutEffect(() => { selectionPresentation.current?.(moduleSelection); }, [moduleSelection]);
 
   useEffect(() => { resizeWorkspace.current?.(); }, [workspace]);
 

@@ -185,6 +185,7 @@ export default function App() {
         onPosition={onPosition}
         inspectionRequest={inspectionRequest}
         overviewRequest={overviewRequest}
+        moduleSelection={selectedModule}
         onSceneTime={onSceneTime}
         onSceneError={onSceneError}
         onModelStatus={onModelStatus}
@@ -221,6 +222,7 @@ export default function App() {
         {stationFocused && <InspectionStrip module={selectedModule} viewMode={viewMode}
           onModules={() => document.querySelector<HTMLCanvasElement>('.earth-view canvas')?.focus({ preventScroll: true })} />}
         {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} detailOnly={stationFocused} /> : orbitalStatus}
+        <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} historical={presentationHistorical} acceptedAt={presentedAt} />
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
       </div> : <>
@@ -331,12 +333,6 @@ export default function App() {
         ) : (
           <CrewPanel onClose={closeCrew} />
         ))}
-      {selectedModule && (
-        <ModuleInfo
-          module={selectedModule}
-          onClose={() => setSelectedModule(null)}
-        />
-      )}
       {stationFocused && !sceneWorkspace && (
         <div className="inspection-hint">
           <strong>

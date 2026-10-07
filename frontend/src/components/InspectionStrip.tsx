@@ -15,7 +15,7 @@ export function InspectionStrip({ module, viewMode, onModules }: Props) {
     <div className="inspection-model" title={`${ISS_MODEL.credit} · Attitude unavailable · Reference geometry, not onboard telemetry`}>
       <strong>{ISS_MODEL.credit.replace(/^ISS 3D model:\s*/, '')}</strong><span>Reference geometry</span>
     </div>
-    <div className="inspection-modules-cell"><ContextButton className="inspection-modules" disabled={!established}
+    <div className="inspection-modules-cell"><ContextButton className={`inspection-modules${module ? ' has-selection' : ''}`} disabled={!established}
       aria-describedby="inspection-interaction-guidance" onClick={onModules}>Modules</ContextButton></div>
     <div className="inspection-orbital-cell"><details className="inspection-orbital-toggle">
       <summary className="context-button" aria-controls="orbital-status-evidence">Orbital detail</summary>
