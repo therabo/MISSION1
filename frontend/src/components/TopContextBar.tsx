@@ -9,9 +9,12 @@ interface Props {
   onInspect: () => void;
   onHistorical: () => void;
   onCrew: () => void;
+  historical?: boolean;
+  presentedHistorical?: boolean;
+  onCurrent?: () => void;
 }
 
-export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew }: Props) {
+export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew, historical = false, presentedHistorical = historical, onCurrent }: Props) {
   const date = sceneTimeMs === null ? null : new Date(sceneTimeMs).toISOString();
   return <header className="top-context-bar" aria-label="Mission context">
     <div className="context-identity" aria-hidden="true" />
@@ -22,12 +25,12 @@ export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspe
     <span className="context-divider context-divider-spatial" aria-hidden="true" />
     {source}
     <div className="context-date" aria-label="Scene UTC">
-      <span>CURRENT DATE</span>
+      <span>{presentedHistorical ? 'HISTORICAL DATE' : 'CURRENT DATE'}</span>
       <time dateTime={date ?? undefined}>{date ? date.replace('T', ' ').replace(/\.\d+Z$/, ' UTC') : 'Unavailable'}</time>
     </div>
     <nav className="context-temporal" aria-label="Temporal context">
-      <ContextButton selected>Current</ContextButton>
-      <ContextButton onClick={onHistorical}>Historical</ContextButton>
+      <ContextButton selected={!historical} onClick={onCurrent}>Current</ContextButton>
+      <ContextButton selected={historical} onClick={onHistorical}>Historical</ContextButton>
     </nav>
     <span className="context-divider context-divider-crew" aria-hidden="true" />
     <ContextButton id="crew-launcher" className="context-crew" aria-controls="crew-panel" aria-expanded={false} onClick={onCrew}>

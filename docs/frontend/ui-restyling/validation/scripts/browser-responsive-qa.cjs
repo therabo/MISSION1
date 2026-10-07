@@ -12,6 +12,7 @@ const base = process.argv[2] || 'http://127.0.0.1:5175/';
 const out = path.resolve(process.env.MISSION1_QA_OUTPUT || '/tmp/mission1-responsive-qa');
 fs.mkdirSync(out, { recursive: true });
 const matrix = [[1920,1080],[1440,900],[1280,800],[1024,768],[768,1024],[430,932],[390,844],[360,800],[320,568],[844,390]];
+const intermediateWidths = [321,379,380,599,600,601,739,740,741,767,1023,1243,1244,1399,1400];
 const slotSelector = '.summary-identity,.summary-position > div,.source-state-slot';
 const rect = r => ({ x:r.x,y:r.y,width:r.width,height:r.height });
 async function layout(page) {
@@ -21,7 +22,7 @@ async function layout(page) {
     const controls=[...document.querySelectorAll('.top-context-bar button,.top-context-bar select,.earth-scene-controls button,.source-state-slot > summary')].map(e=>({text:e.getAttribute('aria-label')||e.textContent.trim(),...box(e)}));
     const groups=['.context-identity','.context-spatial','.context-source-control','.context-temporal','.context-crew','.context-date'];
     const textClipping=[];
-    for(const e of document.querySelectorAll('.summary-position dd,.summary-position dt,.summary-identity strong,.summary-identity span,.source-state-slot > summary,.context-date time,.context-source-value,.top-context-bar button')){
+    for(const e of document.querySelectorAll('.summary-position dd,.summary-position dt,.summary-identity strong,.summary-identity span,.source-state-slot > summary,.source-state-content,.context-date time,.context-source-value,.top-context-bar button')){
       const range=document.createRange(); range.selectNodeContents(e);
       const text=range.getBoundingClientRect(), parent=e.getBoundingClientRect();
       if(text.left<parent.left-1||text.right>parent.right+1||text.top<parent.top-1||text.bottom>parent.bottom+1)textClipping.push({text:e.textContent,...box(e)});
@@ -31,9 +32,9 @@ async function layout(page) {
       geometry:Object.fromEntries(keys.map(s=>[s,box(document.querySelector(s))])),controls,
       navGroups:groups.map(s=>({selector:s,...box(document.querySelector(s))})),textClipping,
       slots:[...document.querySelectorAll(slotSelector)].map(e=>({...box(e),text:e.querySelector('summary')?.textContent||e.innerText})),
-      legend:[...document.querySelectorAll('.trajectory-legend > span')].map(e=>({text:e.textContent,color:getComputedStyle(e.querySelector('i')).backgroundColor})),
+      legend:[...document.querySelectorAll('.trajectory-legend > span')].map(e=>({text:e.textContent,color:e.querySelector('i')?getComputedStyle(e.querySelector('i')).backgroundColor:null})),
       source:document.querySelector('select[aria-label="Orbital source"]').value,
-      sourceStatus:document.querySelector('.source-state-slot > summary').textContent,
+      sourceStatus:document.querySelector('.source-state-slot > summary,.source-state-content').textContent,
       credit:box(document.querySelector('.cesium-viewer-bottom')),
       creditContent:[...document.querySelectorAll('.cesium-credit-textContainer,.cesium-credit-expand-link')].map(e=>box(e)).filter(r=>r.width>1&&r.height>1)};
   },slotSelector);
@@ -71,13 +72,13 @@ function stableSlots(a,b) {
   for(let i=0;i<5;i++)for(const k of ['x','y','width','height'])assert(Math.abs(a.slots[i][k]-b.slots[i][k])<.1,`Source layout shift: slot ${i} ${k}`);
 }
 function desktopReference(s) {
-  const expected={'.top-context-bar':[0,0,1440,64],'.operational-summary':[0,820,1440,80],'.earth-scene-controls':[1188,772,228,36],'.earth-view canvas':[0,0,1440,900]};
+  const expected={'.top-context-bar':[0,0,1440,64],'.operational-summary':[0,820,1440,80],'.earth-scene-controls':[1188,760,228,36],'.earth-view canvas':[0,0,1440,900]};
   for(const [key,values] of Object.entries(expected))for(const [i,k] of ['x','y','width','height'].entries())assert(Math.abs(s.geometry[key][k]-values[i])<.51,`Figma desktop regression: ${key} ${k}`);
   for(const [i,slot] of s.slots.entries()){assert(Math.abs(slot.x-(24+i*283.2))<.03);assert(Math.abs(slot.width-259.2)<.03);assert.equal(slot.y,841);assert.equal(slot.height,38);}
   for(const [selector,values] of [['.context-source-control',[506,14,128,36]],['.context-date',[680,14,220,36]]]){
     const group=s.navGroups.find(g=>g.selector===selector);for(const [i,k] of ['x','y','width','height'].entries())assert(Math.abs(group[k]-values[i])<.51,`Figma desktop regression: ${selector} ${k}`);
   }
-  assert.equal(s.geometry['.trajectory-legend'].x,24);assert.equal(s.geometry['.trajectory-legend'].y,776);assert.equal(s.geometry['.trajectory-legend'].height,28);
+  assert.equal(s.geometry['.trajectory-legend'].x,24);assert.equal(s.geometry['.trajectory-legend'].y,764);assert.equal(s.geometry['.trajectory-legend'].height,28);
 }
 async function canvasSamples(page) {
   return page.evaluate(async()=>{
@@ -86,7 +87,7 @@ async function canvasSamples(page) {
     return samples;
   });
 }
-(async()=>{
+async function run() {
   const browser=await chromium.launch({headless:true,args:['--use-angle=metal']});
   const report={base,viewports:[],intermediateWidths:[],errors:[],resizeWarnings:[],touch:[],credits:[],reducedMotion:null};
   let page;
@@ -95,7 +96,7 @@ async function canvasSamples(page) {
     page.on('pageerror',e=>report.errors.push(e.message));
     page.on('console',m=>{if(/ResizeObserver/i.test(m.text()))report.resizeWarnings.push(m.text());});
     await page.addInitScript(()=>{globalThis.__mission1QA={viewers:[],canvas:null,animations:[]};const native=Element.prototype.animate;Element.prototype.animate=function(frames,options){if(this.classList.contains('context-source-value'))globalThis.__mission1QA.animations.push(options);return native.call(this,frames,options);};});
-    await page.route('**/src/cesium/EarthView.tsx',async route=>{
+    await page.route('**/src/cesium/EarthView.tsx*',async route=>{
       const response=await route.fetch(),body=await response.text();
       assert(body.includes('viewer.current = instance;'),'Use the Vite development URL for public Viewer observation');
       await route.fulfill({response,body:body.replace('viewer.current = instance;','viewer.current = instance; globalThis.__mission1QA.viewers.push(instance); globalThis.__mission1QA.canvas = instance.canvas;')});
@@ -132,7 +133,7 @@ async function canvasSamples(page) {
       console.log(`${width}x${height}: PASS, stable 5 slots, single Viewer`);
     }
     // Breakpoint-adjacent widths ensure continuous reflow rather than exact-size hacks.
-    for(const width of [321,379,380,599,600,601,739,740,741,767,1023,1243,1244,1399,1400]){
+    for(const width of intermediateWidths){
       await page.setViewportSize({width,height:800});await page.waitForTimeout(100);
       const s=await layout(page);checkLayout(s);sameCamera(original,await probe(page));report.intermediateWidths.push({width,result:'PASS'});
     }
@@ -167,4 +168,6 @@ async function canvasSamples(page) {
     fs.writeFileSync(path.join(out,'responsive-qa.json'),JSON.stringify(report,null,2));
     await browser.close();
   }
-})().catch(e=>{console.error(e);process.exitCode=1;});
+}
+module.exports = { chromium, matrix, intermediateWidths, layout, probe, sameCamera, overlaps, checkLayout, stableSlots, canvasSamples };
+if (require.main === module) run().catch(e=>{console.error(e);process.exitCode=1;});

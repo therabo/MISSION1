@@ -332,6 +332,7 @@ dl { margin: 8px 0 0; }
 .context-source select option { color: var(--color-text-primary); background: var(--color-graphite); }
 .context-source-value { position: absolute; left: 16px; top: 9.5px; color: var(--color-text-primary); font: 700 14px/17px var(--font-interface); white-space: nowrap; pointer-events: none; }
 .context-source-control:has(select:disabled) .context-source-value { opacity: .5; }
+.context-source.is-automatic select:disabled, .context-source.is-automatic .context-source-control .context-source-value { opacity: 1; cursor: default; }
 .context-source select:hover:not(:disabled) { background: var(--control-normal); }
 .context-source select:disabled { opacity: .5; cursor: not-allowed; }
 .source-select-chevron { position: absolute; right: 11.25px; top: 15.25px; pointer-events: none; }
@@ -362,12 +363,14 @@ dl { margin: 8px 0 0; }
 .summary-quality.good { color: var(--color-success); }
 .summary-quality.warning { color: var(--color-warning); }
 .summary-quality.unknown { color: var(--color-text-secondary); }
+.source-state-content { height: 38px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.source-state-content > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
 .orbital-status-evidence { grid-area: scene; align-self: end; justify-self: end; position: relative; z-index: 5; display: none; width: min(420px, calc(100vw - 48px)); max-height: calc(100% - 24px); margin: 12px 24px; overflow-y: auto; pointer-events: auto; padding: 24px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); text-align: left; }
 .earth-current-ui:has(.source-state-slot[open]) > .orbital-status-evidence { display: block; }
 .orbital-status-evidence .time-card { background: transparent; }
 .orbital-status-evidence .panel-head h1 { font-size: 18px; }
 .earth-current-notice { grid-area: scene; align-self: start; justify-self: start; position: relative; z-index: 4; max-width: calc(100% - 48px); max-height: max(48px, calc(100% - 112px)); overflow-y: auto; margin: 12px 24px; padding: 10px 14px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); color: var(--color-warning); font-size: 13px; line-height: 19px; }
-.trajectory-legend { position: absolute; bottom: 16px; left: 24px; z-index: 2; height: 28px; display: flex; align-items: center; gap: 28px; color: var(--color-text-secondary); font-size: 13px; line-height: 16px; }
+.trajectory-legend { position: absolute; bottom: 28px; left: 24px; z-index: 2; height: 28px; display: flex; align-items: center; gap: 28px; color: var(--color-text-secondary); font-size: 13px; line-height: 16px; }
 /* Local contrast protection: measured bare legend fell to 3:1 over Earth.
    The .84 graphite backing guarantees >4.5:1 even over a white background. */
 .trajectory-legend::before { content: ""; position: absolute; inset: 0 -8px; z-index: -1; border-radius: var(--radius-control); background: rgb(21 29 39 / .84); }
@@ -375,13 +378,28 @@ dl { margin: 8px 0 0; }
 .trajectory-swatch { display: block; width: 24px; height: 2px; flex: none; }
 .trajectory-swatch.gp { background: var(--color-trajectory-gp); }
 .trajectory-swatch.oem { background: var(--color-trajectory-oem); }
-.earth-scene-controls { position: absolute; right: 24px; bottom: 12px; z-index: 2; display: flex; gap: 8px; }
+.earth-scene-controls { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: flex; gap: 8px; }
 .earth-scene-controls .context-button { width: 44px; padding: 0; }
 .earth-scene-controls .context-button:last-child { width: 124px; }
 .earth-current .cesium-viewer-bottom { bottom: calc(var(--operational-height) + 2px) !important; left: 24px !important; }
 /* Keep Cesium's credit dialog reachable by keyboard, without adding its default
    attribution label to the approved scene. Source links also remain in evidence. */
 .earth-current .cesium-credit-expand-link:not(:focus-visible) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* S2: one detached, transparent temporal surface; the scene itself never moves. */
+.historical-time-bar { grid-area: scene; align-self: start; justify-self: center; position: relative; z-index: 4; display: flex; align-items: center; gap: 16px; width: min(760px, calc(100% - 48px)); height: 52px; margin-top: 24px; padding: 7px 19px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-historical); pointer-events: auto; }
+.historical-calendar-trigger, .historical-date { flex: none; height: 36px; padding: 0; border: 0; background: transparent; color: var(--color-text-primary); opacity: 1; }
+.historical-calendar-trigger { width: 36px; display: flex; align-items: center; justify-content: center; }
+.historical-calendar-trigger img { flex: none; width: 36px; height: 36px; }
+.historical-date { flex: 1; min-width: 0; text-align: left; font: 400 14px/20px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.historical-steps { flex: none; display: flex; gap: 16px; }
+.historical-steps .context-button { width: 96px; padding: 0; }
+.historical-steps .context-button:active:not(:disabled) { animation: historical-step-press var(--motion-fast) var(--ease-state); }
+.historical-time-bar[data-state="open"] { animation: historical-bar-enter var(--motion-ui) var(--ease-enter); }
+.historical-time-bar[data-state="exiting"] { animation: historical-bar-exit var(--motion-compact) var(--ease-exit) both; pointer-events: none; }
+@keyframes historical-bar-enter { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes historical-bar-exit { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
+@keyframes historical-step-press { 0%, 100% { opacity: 1; } 50% { opacity: .94; } }
 
 /* Content-driven responsive composition; never scale the scene or UI canvas. */
 @media (max-width: 1399px) and (min-width: 1244px) {
@@ -400,6 +418,9 @@ dl { margin: 8px 0 0; }
   .context-temporal { order: 4; }
   .context-crew { order: 5; }
   .context-date { order: 6; width: auto; height: auto; flex-direction: row; align-items: center; gap: 8px; flex-wrap: wrap; }
+  /* Reserve the longest temporal label's intrinsic width in both modes, so
+     Current cannot briefly collapse a date row while Historical exits. */
+  .context-date > span::after { content: 'HISTORICAL DATE'; display: block; height: 0; visibility: hidden; }
   .context-divider { display: none; }
   .top-context-bar .context-button, .earth-scene-controls .context-button, .context-source-control, .context-source select { height: 44px; }
   .context-source-value { top: 13.5px; }
@@ -407,9 +428,11 @@ dl { margin: 8px 0 0; }
   .crew-entry-chevron { top: 16.25px; }
   .earth-current .top-brand { top: 20px; left: 16px; }
   .trajectory-legend, .trajectory-legend > span { height: 36px; }
-  .trajectory-legend { bottom: 28px; }
-  .earth-scene-controls { bottom: 24px; right: 16px; }
-  .source-state-slot, .orbital-status-disclosure > summary { height: 50px; }
+  .earth-scene-controls { right: 16px; }
+  .source-state-slot, .source-state-content, .orbital-status-disclosure > summary { height: 50px; }
+  .historical-time-bar { height: 60px; margin-top: 16px; }
+  .historical-time-bar button { height: 44px; }
+  .historical-calendar-trigger { width: 44px; }
 }
 @media (max-width: 740px) {
   .earth-current { --operational-height: 120px; }
@@ -444,9 +467,17 @@ dl { margin: 8px 0 0; }
   .earth-current .cesium-viewer-bottom { left: 12px !important; }
   .earth-current-notice { margin: 8px 12px; max-width: calc(100% - 24px); }
   .orbital-status-evidence { width: calc(100vw - 24px); margin: 12px; }
+  .historical-time-bar { width: calc(100% - 24px); height: auto; margin-top: 12px; padding: 8px 12px; display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "calendar date" "steps steps"; gap: 8px 12px; }
+  .historical-calendar-trigger { grid-area: calendar; }
+  .historical-date { grid-area: date; }
+  .historical-steps { grid-area: steps; gap: 12px; }
+  .historical-steps .context-button { flex: 1; width: auto; }
 }
 @media (max-width: 379px) {
-  .trajectory-legend { bottom: 80px; }
+  .historical-time-bar { margin-top: 8px; padding-top: 6px; padding-bottom: 6px; }
+  .trajectory-legend { left: 12px; }
+  .trajectory-legend::before { inset: 0 -4px; }
+  .earth-scene-controls .context-button:last-child { width: 86px; }
 }
 @media (max-height: 500px) and (min-width: 601px) {
   .top-context-bar { padding-top: 8px; padding-bottom: 8px; }
@@ -460,13 +491,12 @@ dl { margin: 8px 0 0; }
   .trajectory-legend { bottom: 68px; }
   .earth-scene-controls { bottom: 64px; }
 }
-@media (pointer: coarse) and (max-width: 379px) {
-  .trajectory-legend { bottom: 120px; }
-}
 @media (prefers-reduced-motion: reduce) {
   .context-button, .context-source select { transition-duration: var(--motion-fast); transition-timing-function: linear; }
   .context-dock[data-state="open"] { animation: context-opacity-enter var(--motion-fast) linear; }
   .context-dock[data-state="exiting"] { animation: context-opacity-exit var(--motion-fast) linear both; }
+  .historical-time-bar[data-state="open"] { animation: context-opacity-enter var(--motion-fast) linear; }
+  .historical-time-bar[data-state="exiting"] { animation: context-opacity-exit var(--motion-fast) linear both; }
   @keyframes context-opacity-enter { from { opacity: 0; } to { opacity: 1; } }
   @keyframes context-opacity-exit { from { opacity: 1; } to { opacity: 0; } }
 }

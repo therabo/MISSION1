@@ -29,6 +29,10 @@ import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
 import { TopContextBar } from "./components/TopContextBar";
 import { TrajectoryLegend } from "./components/TrajectoryLegend";
 import { SceneControls, type EarthSceneControls } from "./components/SceneControls";
+import { HistoricalTimeBar } from "./replay/HistoricalTimeBar";
+import { HistoricalOrbitalSummary } from "./replay/HistoricalOrbitalSummary";
+import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./replay/historicalPresentation";
+import { useTemporalPresentation } from "./replay/useTemporalPresentation";
 
 export default function App() {
   const [replaying, setReplaying] = useState(false);
@@ -70,7 +74,22 @@ export default function App() {
     setSourceNotice(reason);
   }, []);
   const [viewMode, setViewMode] = useState<ViewMode>("EARTH_OVERVIEW");
-  const onSceneTime = useCallback((time: number) => setSceneTimeMs(time), []);
+  const temporal = useTemporalPresentation({ historical: replaying, at: replayAt, data: replay.data,
+    delivery, comparison, source: selectedSource });
+  const presentationHistorical = temporal.presented.kind === 'historical';
+  const presentedData = temporal.presented.kind === 'historical' ? temporal.presented.data : null;
+  const presentedAt = temporal.presented.kind === 'historical' ? temporal.presented.at : replayAt;
+  const currentDelivery = temporal.presented.kind === 'current' ? temporal.presented.delivery : delivery;
+  const currentComparison = temporal.presented.kind === 'current' ? temporal.presented.comparison : comparison;
+  const currentSource = temporal.presented.kind === 'current' ? temporal.presented.source : selectedSource;
+  // These are Current presentation samples. Historical has its own authoritative
+  // replayAt/primary state; its renderer callbacks must not replace this context.
+  const onSceneTime = useCallback((time: number) => {
+    if (!presentationHistorical) setSceneTimeMs(time);
+  }, [presentationHistorical]);
+  const onPosition = useCallback((next: PositionSnapshot | null) => {
+    if (!presentationHistorical) setPosition(next);
+  }, [presentationHistorical]);
   const onSceneError = useCallback(
     (message: string) => setSceneError(message),
     [],
@@ -84,21 +103,28 @@ export default function App() {
     setSelectedModule(module);
     if (module) setCrewOpen(false);
   }, []);
-  const buffer = bufferStatus(delivery.window, sceneTimeMs);
+  const buffer = bufferStatus(currentDelivery.window, sceneTimeMs);
 
   const inspecting =
     viewMode === "ENTERING_INSPECTION" || viewMode === "ISS_INSPECTION";
   const approaching = viewMode === "ENTERING_INSPECTION";
   const returning = viewMode === "EXITING_INSPECTION";
   const stationFocused = inspecting || returning;
-  // S1 and S3 share the current Earth shell. Other workspaces retain their
+  // Current and Historical share the Earth shell. Other workspaces retain their
   // existing presentations until their individual implementation phases.
-  const earthCurrent = !replaying && !stationFocused && !crewOpen;
+  const earthWorkspace = !stationFocused && !crewOpen;
+  const earthCurrent = earthWorkspace && !presentationHistorical;
+  const replayState = coherentHistoricalState(presentedData, presentedAt);
+  const effectiveHistoricalSource = historicalSource(replayState);
+  const earthSource = presentationHistorical ? effectiveHistoricalSource : currentSource;
+  const historicalWaiting = !replayState && !replay.error && !presentedData;
+  const changeTemporalMode = (enabled: boolean) => { setSelectedModule(null); setReplaying(enabled); };
+  const stepHistorical = (seconds: -600 | 600) => setReplayAt(at => stepHistoricalUtc(at, seconds));
   const earthControls = useRef<EarthSceneControls | null>(null);
   const onControlsReady = useCallback((controls: EarthSceneControls | null) => { earthControls.current = controls; }, []);
   const shell = useRef<HTMLElement>(null);
-  const workspace = useEarthWorkspace(shell, `${replaying}:${crewOpen}:${stationFocused}:${earthCurrent}`);
-  const oemReason = oemUnavailableReason(comparison.response, sceneTimeMs);
+  const workspace = useEarthWorkspace(shell, `${replaying}:${crewOpen}:${stationFocused}:${earthWorkspace}`);
+  const oemReason = oemUnavailableReason(currentComparison.response, sceneTimeMs);
   const chooseSource = (next: TrajectorySource) => {
     setSelectedSource((current) =>
       requestedSource(
@@ -113,8 +139,8 @@ export default function App() {
   };
 
   const orbitalStatus = <OrbitalStatus
-    delivery={delivery}
-    comparison={comparison}
+    delivery={currentDelivery}
+    comparison={currentComparison}
     buffer={buffer}
     sceneTimeMs={sceneTimeMs}
     sceneError={sceneError}
@@ -122,7 +148,7 @@ export default function App() {
     inspecting={stationFocused}
     approaching={approaching}
     returning={returning}
-    selectedSource={selectedSource}
+    selectedSource={currentSource}
     position={position}
     crewOpen={crewOpen}
     onCrewOpen={openCrew}
@@ -133,23 +159,26 @@ export default function App() {
   return (
     <main
       ref={shell}
-      className={`app-shell ${earthCurrent ? "earth-current" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
+      aria-busy={temporal.holding}
+      className={`app-shell ${earthWorkspace ? "earth-current" : ""} ${replaying && earthWorkspace ? "is-historical" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
     >
       <EarthView
         workspace={workspace}
         replay={
-          replaying
+          presentationHistorical
             ? {
-                atMs: Date.parse(replayAt),
-                state: replay.data?.orbit.primary ?? null,
+                atMs: Date.parse(presentedAt),
+                state: replayState,
               }
             : null
         }
-        window={delivery.window}
-        comparison={comparison.response}
-        selectedSource={selectedSource}
+        holding={temporal.holding}
+        currentAtMs={temporal.currentAtMs}
+        window={currentDelivery.window}
+        comparison={currentComparison.response}
+        selectedSource={earthSource ?? currentSource}
         onSourceUnavailable={onSourceUnavailable}
-        onPosition={setPosition}
+        onPosition={onPosition}
         inspectionRequest={inspectionRequest}
         overviewRequest={overviewRequest}
         onSceneTime={onSceneTime}
@@ -163,24 +192,27 @@ export default function App() {
         <img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
           width={2172} height={724} draggable={false} />
       </div>
-      {earthCurrent ? <div className="earth-current-ui">
-        <TopContextBar sceneTimeMs={sceneTimeMs}
-          inspectionDisabled={!delivery.window || buffer !== "active" || modelState.status !== "ready"}
+      {earthWorkspace ? <div className="earth-current-ui">
+        <TopContextBar sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs} historical={replaying}
+          presentedHistorical={presentationHistorical}
+          onCurrent={() => changeTemporalMode(false)}
+          inspectionDisabled={temporal.holding || (presentationHistorical ? !replayState : !currentDelivery.window || buffer !== "active") || modelState.status !== "ready"}
           onInspect={() => setInspectionRequest(value => value + 1)}
-          onHistorical={() => {
-            setSelectedModule(null);
-            setReplaying(true);
-            setReplayAt(new Date(Date.now() - 60000).toISOString());
-          }}
+          onHistorical={() => changeTemporalMode(true)}
           onCrew={openCrew}
-          source={<TrajectorySelector presentation="context" selectedSource={selectedSource} viewMode={viewMode}
-            oemReason={oemReason} sourceNotice={sourceNotice} onSelect={chooseSource} />} />
+          source={<TrajectorySelector presentation="context" selectedSource={earthSource} viewMode={viewMode}
+            automatic={replaying || presentationHistorical} emptyLabel={historicalWaiting ? 'Waiting' : 'Unavailable'}
+            oemReason={presentationHistorical ? null : oemReason} sourceNotice={presentationHistorical ? null : sourceNotice} onSelect={chooseSource} />} />
         <div className="earth-scene-ui">
-          <TrajectoryLegend selectedSource={selectedSource} oemReason={oemReason} />
+          <TrajectoryLegend selectedSource={earthSource} oemReason={presentationHistorical ? null : oemReason} pending={presentationHistorical && historicalWaiting} />
           <SceneControls onZoomIn={() => earthControls.current?.zoomIn()}
             onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
         </div>
-        {orbitalStatus}
+        <HistoricalTimeBar open={replaying} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
+          presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
+        {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} /> : orbitalStatus}
+        {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
+        {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
       </div> : <>
       <ReplayControls
         enabled={replaying}
@@ -188,11 +220,7 @@ export default function App() {
         onTime={setReplayAt}
         disabled={viewMode !== "EARTH_OVERVIEW"}
         coverage={replay.coverage}
-        onMode={(next) => {
-          setSelectedModule(null);
-          setReplaying(next);
-          if (next) setReplayAt(new Date(Date.now() - 60000).toISOString());
-        }}
+        onMode={changeTemporalMode}
       />
       <div className="top-actions">
         <span className="scene-chip">
@@ -234,8 +262,8 @@ export default function App() {
         )}
       </div>
       </>}
-      {!replaying && !earthCurrent && orbitalStatus}
-      {replaying && (
+      {!replaying && !earthWorkspace && orbitalStatus}
+      {replaying && !earthWorkspace && (
         <aside
           className="orbital-panel replay-orbit"
           aria-label="Historical orbital state"
@@ -311,7 +339,7 @@ export default function App() {
           <span>Model not to scale · Attitude unavailable</span>
         </div>
       )}
-      {!replaying && !earthCurrent && (
+      {!replaying && !earthWorkspace && (
         <TrajectorySelector
           selectedSource={selectedSource}
           viewMode={viewMode}

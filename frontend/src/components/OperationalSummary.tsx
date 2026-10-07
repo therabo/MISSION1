@@ -4,7 +4,7 @@ import type { PositionSnapshot, TrajectorySource } from '../cesium/trajectorySel
 
 interface Props {
   position: PositionSnapshot | null;
-  selectedSource: TrajectorySource;
+  selectedSource: TrajectorySource | null;
   sceneTimeMs: number | null;
   buffer: BufferStatus;
   sourceStatus?: ReactNode;
@@ -21,7 +21,7 @@ export function OperationalSummary({ position, selectedSource, sceneTimeMs, buff
     [position.latitudeDegrees, position.longitudeDegrees, position.altitudeMeters].every(Number.isFinite) ? position : null;
   const nasaSelected = selectedSource === 'NASA_OEM';
   return <section className="operational-summary" aria-label="ISS operational summary">
-    <div className="summary-identity"><strong>ISS / WGS84</strong><span>{nasaSelected ? 'Predicted ephemeris' : 'Computed position'}</span></div>
+    <div className="summary-identity"><strong>ISS / WGS84</strong><span>{nasaSelected ? 'Predicted ephemeris' : selectedSource ? 'Computed position' : 'Historical position'}</span></div>
     <dl className="summary-position">
       <div className="summary-latitude"><dt>Latitude</dt><dd className={!physical ? 'measurement-unavailable' : undefined}>{physical ? coordinate(physical.latitudeDegrees, 'N', 'S') : 'Unavailable'}</dd></div>
       <div className="summary-longitude"><dt>Longitude</dt><dd className={!physical ? 'measurement-unavailable' : undefined}>{physical ? coordinate(physical.longitudeDegrees, 'E', 'W') : 'Unavailable'}</dd></div>

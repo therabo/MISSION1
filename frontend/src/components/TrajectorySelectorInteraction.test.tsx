@@ -35,10 +35,10 @@ afterEach(async () => {
   expect(listeners.size).toBe(0);
 });
 async function render(source: TrajectorySource = 'PRIMARY_GP_TLE', reason: string | null = null,
-  mode: ViewMode = 'EARTH_OVERVIEW', notice: string | null = null) {
+  mode: ViewMode = 'EARTH_OVERVIEW', notice: string | null = null, automatic = false) {
   await act(async () => root.render(<>
     <TrajectorySelector presentation="context" selectedSource={source} viewMode={mode}
-      oemReason={reason} sourceNotice={notice} onSelect={onSelect} />
+      oemReason={reason} sourceNotice={notice} onSelect={onSelect} automatic={automatic} />
     <TrajectoryLegend selectedSource={source} oemReason={reason} />
   </>));
 }
@@ -48,6 +48,15 @@ async function select(value: string) {
 }
 
 describe('native source selection and one-shot presentation emphasis', () => {
+  it('keeps source text immediate across temporal-mode changes while preserving manual Current emphasis', async () => {
+    await render('NASA_OEM');
+    await render('PRIMARY_GP_TLE', null, 'EARTH_OVERVIEW', null, true);
+    expect(container.querySelector('.context-source-value')?.textContent).toBe('GP/TLE');
+    await render('NASA_OEM');
+    expect(container.querySelector('.context-source-value')?.textContent).toBe('NASA OEM');
+    expect(animate).not.toHaveBeenCalled();
+    await render('PRIMARY_GP_TLE'); expect(animate).toHaveBeenCalledOnce();
+  });
   it('changes GP/TLE → OEM → GP/TLE through the controlled source callback', async () => {
     await render(); await select('NASA_OEM'); expect(onSelect).toHaveBeenLastCalledWith('NASA_OEM');
     await render('NASA_OEM');

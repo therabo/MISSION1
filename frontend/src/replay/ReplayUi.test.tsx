@@ -110,10 +110,10 @@ it("LIVE/REPLAY controls toggle modes and step UTC without camera controls", asy
   );
   await act(async () =>
     node
-      .querySelector<HTMLButtonElement>('[aria-label="Replay back one hour"]')
+      .querySelector<HTMLButtonElement>('[aria-label="Replay back 10 minutes"]')
       ?.click(),
   );
-  expect(time).toHaveBeenCalledWith("2026-10-03T11:00:00.000Z");
+  expect(time).toHaveBeenCalledWith("2026-10-03T11:50:00.000Z");
   await act(async () => node.querySelector("button")?.click());
   expect(mode).toHaveBeenLastCalledWith(false);
 });

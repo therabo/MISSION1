@@ -9,7 +9,7 @@ function duration(element: HTMLElement | null, token: string, fallback: number) 
 }
 
 /** Keep an exit visible, but inert. A reopened overlay cancels that exit. */
-export function useOverlayPresence(open: boolean, element: RefObject<HTMLElement | null>) {
+export function useOverlayPresence(open: boolean, element: RefObject<HTMLElement | null>, exitToken = '--motion-ui', exitFallback = 200) {
   const reducedMotion = useReducedMotion();
   const [present, setPresent] = useState(open);
   const latestOpen = useRef(open);
@@ -22,11 +22,11 @@ export function useOverlayPresence(open: boolean, element: RefObject<HTMLElement
     if (!present) return;
     const delay = reducedMotion
       ? Math.min(120, duration(element.current, '--motion-fast', 120))
-      : duration(element.current, '--motion-ui', 200);
+      : duration(element.current, exitToken, exitFallback);
     const timer = window.setTimeout(() => {
       if (!latestOpen.current) setPresent(false);
     }, delay);
     return () => window.clearTimeout(timer);
-  }, [open, present, reducedMotion, element]);
+  }, [open, present, reducedMotion, element, exitToken, exitFallback]);
   return { present: open || present, interactive: open, state: open ? 'open' : 'exiting', reducedMotion } as const;
 }
