@@ -1,20 +1,64 @@
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ContextButton } from '../components/ContextButton';
 import { useOverlayPresence } from '../layout/useOverlayPresence';
 import calendarTrigger from '../assets/interface/calendar-trigger.svg';
+import { HistoricalCalendar } from './HistoricalCalendar';
+import { calendarDraftFromUtc, validateCalendarDraft, type CalendarDraft } from './calendarDraft';
+import type { Coverage } from './replayApi';
 
-interface Props { open: boolean; at: string; onStep: (seconds: -600 | 600) => void; pending?: boolean; presentedAt?: string }
+interface Props { open: boolean; at: string; onStep: (seconds: -600 | 600) => void; pending?: boolean; presentedAt?: string;
+  coverage?: Coverage | null; onApply?: (at: string) => void }
 
-export function HistoricalTimeBar({ open, at, onStep, pending = false, presentedAt }: Props) {
+function captureCalendarMotion(phase: 'enter' | 'exit') {
+  const panel = document.getElementById('historical-calendar');
+  if (!panel) return;
+  const style = getComputedStyle(panel);
+  const matrix = style.transform.startsWith('matrix(') ? style.transform.slice(7, -1).split(',').map(Number) : [];
+  panel.style.setProperty(`--calendar-${phase}-opacity`, style.opacity || '1');
+  panel.style.setProperty(`--calendar-${phase}-y`, `${matrix[5] ?? 0}px`);
+}
+
+export function HistoricalTimeBar({ open, at, onStep, pending = false, presentedAt, coverage = null, onApply }: Props) {
   const bar = useRef<HTMLElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [calendarDraft, setCalendarDraft] = useState<CalendarDraft | null>(null);
+  const interactive = useRef(false);
+  interactive.current = calendarOpen && open;
   const presence = useOverlayPresence(open, bar, '--motion-compact', 160);
+  const restoreFocus = useCallback(() => {
+    if (open) (opener.current ?? trigger.current)?.focus({ preventScroll: true });
+    else document.querySelector<HTMLButtonElement>('.context-temporal button:first-child')?.focus({ preventScroll: true });
+  }, [open]);
+  const closeCalendar = useCallback(() => {
+    if (!interactive.current) return;
+    captureCalendarMotion('exit');
+    interactive.current = false; setCalendarOpen(false); setCalendarDraft(null); restoreFocus();
+  }, [restoreFocus]);
+  useEffect(() => {
+    if (!open) { setCalendarOpen(false); setCalendarDraft(null); }
+  }, [open]);
+  const toggleCalendar = (event: MouseEvent<HTMLButtonElement>) => {
+    if (!open) return;
+    if (interactive.current) closeCalendar();
+    else { opener.current = event.currentTarget; captureCalendarMotion('enter'); setCalendarDraft(calendarDraftFromUtc(at)); setCalendarOpen(true); interactive.current = true; }
+  };
+  const applyCalendar = () => {
+    if (!interactive.current || !calendarDraft) return;
+    const result = validateCalendarDraft(calendarDraft, coverage);
+    if (!result.value) return;
+    closeCalendar(); onApply?.(result.value); // Exactly one domain target commit; no scene mutation here.
+  };
   if (!presence.present) return null;
   return <section ref={bar} className="historical-time-bar" aria-label="Historical UTC"
     data-state={presence.state} aria-hidden={!presence.interactive || undefined} inert={!presence.interactive}>
-    <button type="button" className="historical-calendar-trigger" disabled aria-label="Calendar selection unavailable">
+    <button ref={trigger} type="button" className="historical-calendar-trigger" onClick={toggleCalendar}
+      aria-label="Open Historical calendar" aria-haspopup="dialog" aria-expanded={calendarOpen && open} aria-controls="historical-calendar">
       <img src={calendarTrigger} alt="" width={36} height={36} />
     </button>
-    <button type="button" className="historical-date" disabled aria-label="Historical UTC date" aria-busy={pending}
+    <button type="button" className="historical-date" onClick={toggleCalendar} aria-label="Historical UTC date" aria-busy={pending}
+      aria-haspopup="dialog" aria-expanded={calendarOpen && open} aria-controls="historical-calendar"
       title={pending ? `Requested UTC. Scene remains at ${presentedAt ?? 'its last coherent instant'} until this target is resolved.` : 'Requested Historical UTC'}>
       <time dateTime={at}>{new Date(at).toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC')}</time>
     </button>
@@ -22,5 +66,7 @@ export function HistoricalTimeBar({ open, at, onStep, pending = false, presented
       <ContextButton aria-label="Historical back 10 minutes" onClick={() => onStep(-600)}>-10 min</ContextButton>
       <ContextButton aria-label="Historical forward 10 minutes" disabled={Date.parse(at) + 600_000 > Date.now()} onClick={() => onStep(600)}>+10 min</ContextButton>
     </div>
+    <HistoricalCalendar open={calendarOpen && open} draft={calendarDraft} coverage={coverage} bar={bar} trigger={trigger}
+      onDraft={setCalendarDraft} onCancel={closeCalendar} onApply={applyCalendar} />
   </section>;
 }

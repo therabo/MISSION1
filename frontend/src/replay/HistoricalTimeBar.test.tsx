@@ -21,7 +21,8 @@ it('is absent in Current and exposes only approved temporal controls when Histor
   await render(true); expect(node.querySelector('section')?.dataset.state).toBe('open');
   expect(node.querySelector('time')?.dateTime).toBe('2026-10-03T12:00:00Z');
   expect(node.querySelectorAll('button')).toHaveLength(4);
-  expect(node.querySelector('.historical-calendar-trigger')?.hasAttribute('disabled')).toBe(true);
+  expect(node.querySelector('.historical-calendar-trigger')?.hasAttribute('disabled')).toBe(false);
+  expect(node.querySelector('.historical-calendar-trigger')?.getAttribute('aria-haspopup')).toBe('dialog');
   expect(node.querySelector('input')).toBeNull(); expect(node.textContent).not.toContain('SET UTC');
 });
 it('requests precisely ±600 seconds without any local committed-time state', async () => {

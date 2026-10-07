@@ -209,6 +209,7 @@ export default function App() {
             onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
         </div>
         <HistoricalTimeBar open={replaying} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
+          coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}
           presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
         {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} /> : orbitalStatus}
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}

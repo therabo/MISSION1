@@ -1,0 +1,61 @@
+.historical-calendar { position: fixed; z-index: 6; display: flex; flex-direction: column; gap: 8px; width: 280px; min-height: 334px; max-height: calc(100dvh - 24px); padding: 11px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid rgb(42 53 66 / .90); border-radius: var(--radius-surface); background: var(--surface-calendar); color: var(--color-text-primary); pointer-events: auto; text-align: left; }
+.calendar-month-row { display: flex; align-items: center; gap: 8px; flex: none; height: 28px; }
+.calendar-month-row h2 { flex: 1; margin: 0; color: var(--color-text-primary); font: 700 13px/18px var(--font-interface); }
+.calendar-date-grid { display: flex; flex-direction: column; flex: none; gap: 8px; }
+.historical-calendar .calendar-close { flex: none; width: 34px; height: 28px; padding: 0; border: 0; background: transparent; font: 400 14px/normal var(--font-interface); }
+.calendar-weekdays, .calendar-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; padding: 0 4px; flex: none; }
+.calendar-weekdays { height: 14px; color: var(--color-text-secondary); font: 400 10px/14px var(--font-interface); text-align: center; }
+.calendar-grid { display: flex; flex-direction: column; flex: none; gap: 4px; min-height: 156px; }
+.calendar-week { height: 28px; }
+.historical-calendar .calendar-day { display: flex; align-items: center; justify-content: center; width: 100%; height: 28px; padding: 0; border: 1px solid transparent; border-radius: var(--radius-control); background: transparent; color: var(--color-text-primary); font: 400 12px/16px var(--font-interface); cursor: pointer; }
+.historical-calendar [aria-selected="true"] .calendar-day { border-color: var(--color-interaction); background: var(--control-selected); }
+.historical-calendar .calendar-day[aria-current="date"] { text-decoration: underline; text-underline-offset: 3px; }
+.historical-calendar .calendar-day[aria-disabled="true"] { color: var(--color-text-secondary); opacity: .45; cursor: not-allowed; text-decoration: line-through; }
+.historical-calendar .calendar-day.adjacent { text-decoration: none; }
+.historical-calendar .calendar-day:hover:not([aria-disabled="true"]), .historical-calendar .calendar-close:hover { background: var(--control-hover); }
+.calendar-divider { height: 1px; flex: none; background: rgb(42 53 66 / .55); }
+.calendar-time-fields { display: flex; gap: 6px; height: 42px; flex: none; }
+.calendar-time-part { display: flex; align-items: center; gap: 6px; min-width: 0; flex: 1; }
+.calendar-time-part:first-child { flex: 0 0 calc((100% - 40px) / 3); }
+.calendar-time-part label { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px; }
+.calendar-time-part label > span { color: var(--color-text-secondary); font: 400 10px/12px var(--font-interface); }
+.calendar-time-separator { flex: none; width: 8px; color: var(--color-text-secondary); font: 400 14px/20px var(--font-numeric); }
+.calendar-time-control { position: relative; height: 28px; }
+.calendar-time-control select { appearance: none; width: 100%; height: 28px; padding: 0 22px 0 10px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); color: var(--color-text-primary); font: 400 14px/20px var(--font-numeric); color-scheme: dark; cursor: pointer; }
+.calendar-time-control img { position: absolute; width: 9.5px; height: 5.5px; right: 9.25px; top: 11.25px; pointer-events: none; }
+.calendar-actions { display: flex; gap: 8px; flex: none; }
+.historical-calendar .calendar-actions .context-button { height: 28px; padding: 0 16px; font: 400 12px/16px var(--font-interface); }
+.historical-calendar .calendar-actions .context-button:first-child { width: 96px; }
+.historical-calendar .calendar-actions .context-button:last-child { flex: 1; min-width: 0; }
+.calendar-error { margin: 0; color: var(--color-warning); font: 400 11px/15px var(--font-interface); }
+.historical-calendar[data-state="open"] { animation: historical-calendar-enter var(--motion-compact) var(--ease-enter); }
+.historical-calendar[data-state="exiting"] { animation: historical-calendar-exit var(--motion-fast) var(--ease-exit) both; pointer-events: none; }
+@keyframes historical-calendar-enter { from { opacity: var(--calendar-enter-opacity, 0); transform: translateY(var(--calendar-enter-y, -6px)); } to { opacity: 1; transform: translateY(0); } }
+@keyframes historical-calendar-exit { from { opacity: var(--calendar-exit-opacity, 1); transform: translateY(var(--calendar-exit-y, 0px)); } to { opacity: 0; transform: translateY(-6px); } }
+@media (max-width: 600px) {
+  .historical-calendar { width: min(320px, calc(100vw - 24px)); }
+  .historical-calendar .calendar-day, .calendar-week { height: 32px; }
+  .calendar-grid { min-height: 176px; }
+  .calendar-month-row, .historical-calendar .calendar-close { height: 32px; }
+  .calendar-time-control, .calendar-time-control select { height: 36px; }
+  .calendar-time-control img { top: 15.25px; }
+  .calendar-time-fields { height: 50px; }
+  .historical-calendar .calendar-actions .context-button { height: 44px; }
+}
+/* A short portrait viewport cannot fit the full grid alongside the bar/tools.
+   Scroll weeks inside the popover; UTC and actions remain in view. */
+@media (max-width: 379px) and (max-height: 650px) {
+  .historical-calendar { min-height: 0; gap: 4px; }
+  .calendar-date-grid { gap: 4px; }
+  .calendar-grid { height: 28px; min-height: 0; overflow-y: auto; scrollbar-width: none; touch-action: pan-y; }
+  .historical-calendar .calendar-day, .calendar-week, .calendar-month-row, .historical-calendar .calendar-close { height: 28px; }
+  .calendar-time-fields { height: 42px; }
+  .calendar-time-control, .calendar-time-control select, .historical-calendar .calendar-actions .context-button { height: 28px; }
+  .calendar-time-control img { top: 11.25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .historical-calendar[data-state="open"] { animation: calendar-opacity-enter var(--motion-fast) linear; }
+  .historical-calendar[data-state="exiting"] { animation: calendar-opacity-exit var(--motion-fast) linear both; }
+  @keyframes calendar-opacity-enter { from { opacity: var(--calendar-enter-opacity, 0); } to { opacity: 1; } }
+  @keyframes calendar-opacity-exit { from { opacity: var(--calendar-exit-opacity, 1); } to { opacity: 0; } }
+}
