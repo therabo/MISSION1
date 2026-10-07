@@ -104,8 +104,8 @@ describe('Phase 2 App presentation wiring without a WebGL test double for domain
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE');
     await click('ISS Inspection'); expect(harness.props.inspectionRequest).toBe(1);
     await act(async () => (harness.props.onViewModeChange as (mode: ViewMode) => void)('ENTERING_INSPECTION'));
-    const options = container.querySelectorAll<HTMLButtonElement>('.source-options button');
-    expect([...options].every(option => option.disabled)).toBe(true);
+    expect(container.querySelector<HTMLSelectElement>('select[aria-label="Orbital source"]')?.disabled).toBe(true);
+    expect(container.querySelector('select[aria-label="Orbital source"]')?.getAttribute('aria-describedby')).toBeTruthy();
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
   it('uses the existing source selection and the shared Earth shell for the approved OEM state', async () => {

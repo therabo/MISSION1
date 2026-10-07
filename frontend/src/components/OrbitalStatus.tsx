@@ -21,6 +21,7 @@ interface OrbitalStatusProps {
   selectedSource: TrajectorySource;
   position: PositionSnapshot | null;
   compact?: boolean;
+  detailOnly?: boolean;
   sourceNotice?: string | null;
 }
 
@@ -45,7 +46,7 @@ function line(label: string, value: string, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ crewOpen, onCrewOpen, delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, returning, selectedSource, position, compact = false, sourceNotice = null }: OrbitalStatusProps) {
+export function OrbitalStatus({ crewOpen, onCrewOpen, delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, approaching, returning, selectedSource, position, compact = false, detailOnly = false, sourceNotice = null }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -149,13 +150,13 @@ export function OrbitalStatus({ crewOpen, onCrewOpen, delivery, comparison, buff
       sceneError ?? delivery.message ?? (buffer === 'expired' ? 'Orbital buffer expired · Position unavailable' :
         buffer === 'waiting' ? 'Waiting for orbital samples · Position unavailable' : null)].filter(Boolean).join(' · ');
     return <>
-      <OperationalSummary position={position} selectedSource={selectedSource} sceneTimeMs={sceneTimeMs} buffer={buffer}
+      {!detailOnly && <OperationalSummary position={position} selectedSource={selectedSource} sceneTimeMs={sceneTimeMs} buffer={buffer}
         sourceStatus={<details className="orbital-status-disclosure source-state-slot">
           <summary aria-controls="orbital-status-evidence" title={nasaSelected ? `OEM availability: ${availability ?? 'UNKNOWN'} · ${oemReason ?? 'Scene instant covered'} · Position buffer: ${buffer}` : quality ? `GP quality at ${utc(snapshot?.generatedAt)} · ${quality.reason}` : 'GP orbital quality unavailable'}>
             <span>{nasaSelected ? 'NASA OEM status' : 'General Perturbations quality'}</span>
             <strong className={`summary-quality ${tone}`}>{statusText}</strong>
           </summary>
-        </details>} />
+        </details>} />}
       <div id="orbital-status-evidence" className="orbital-status-evidence" role="region" aria-label="ISS orbital status">{detailBody}</div>
       {warning && <p className="earth-current-notice" role={sceneError ? 'alert' : 'status'}>{warning}</p>}
     </>;
