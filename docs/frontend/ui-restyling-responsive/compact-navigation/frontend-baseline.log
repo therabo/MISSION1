@@ -1,0 +1,7 @@
+Command: PATH=/opt/homebrew/opt/node@24/bin:$PATH npm test (before editing)
+Runtime: Node 24.21.0
+
+Test Files  58 passed (58)
+Tests  698 passed (698)
+Start at  16:42:42
+Duration  22.19s (import 54%, tests 27%, environment 14%, transform 5%)

@@ -32,6 +32,18 @@ it('requests precisely ±600 seconds without any local committed-time state', as
   expect(step.mock.calls).toEqual([[-600],[600]]);
   expect(node.querySelector('time')?.dateTime).toBe('2026-10-03T12:00:00Z');
 });
+it('keeps the exact UTC date and seconds visible in the compact temporal group', async () => {
+  await render(true, '2026-10-03T00:04:59.123Z');
+  expect(node.querySelector('.historical-timestamp-full')?.textContent).toBe('2026-10-03 00:04:59 UTC');
+  expect([...node.querySelectorAll('.historical-timestamp-compact > span')].map(e => e.textContent))
+    .toEqual(['2026-10-03', '00:04:59 UTC']);
+  expect(node.querySelector('time')?.dateTime).toBe('2026-10-03T00:04:59.123Z');
+  for (const label of ['Historical back 10 minutes', 'Historical forward 10 minutes']) {
+    const control = node.querySelector<HTMLButtonElement>(`[aria-label="${label}"]`)!;
+    expect(control.title).toBe(label);
+    expect(control.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
+  }
+});
 it('retains an inert exit for exactly 160ms, with domain selection already closed', async () => {
   await render(true); await render(false);
   expect(node.querySelector('section')?.dataset.state).toBe('exiting');

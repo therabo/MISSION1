@@ -1,5 +1,9 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Follow-up: compact top controls
+
+The focused [compact-navigation milestone](compact-navigation/README.md) starts at the accepted `83e95780fd186f1d4c8f1802752e2ab69fa1541a` baseline. It preserves desktop text/geometry, adds local SVG action variants at the existing compact breakpoints and makes the Historical date/time/step surface one coherent row on phones. The selected UTC date stays visible. Its evidence is limited to ten representative screenshots and concise browser/test reports; the earlier full responsive corpus below is not duplicated.
+
 The accepted **1440 × 900** desktop composition is the visual reference. This milestone audits the entire redesign against `main`, retains its desktop presentation, and corrects compact calendar and native attribution defects. The scene remains full-screen behind independently sized overlays.
 
 ## Baseline and scope

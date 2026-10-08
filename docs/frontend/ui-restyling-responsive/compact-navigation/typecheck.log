@@ -1,0 +1,5 @@
+Command: npm run typecheck (Node 24)
+Runtime: Node 24.21.0
+
+> mission1-earth-view@0.1.0 typecheck
+> tsc --noEmit

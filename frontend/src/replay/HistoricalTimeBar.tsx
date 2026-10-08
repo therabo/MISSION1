@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ContextButton } from '../components/ContextButton';
+import { ControlIcon } from '../components/ControlIcon';
 import { useOverlayPresence } from '../layout/useOverlayPresence';
 import calendarTrigger from '../assets/interface/calendar-trigger.svg';
 import { HistoricalCalendar } from './HistoricalCalendar';
@@ -51,20 +52,26 @@ export function HistoricalTimeBar({ open, at, onStep, pending = false, presented
     closeCalendar(); onApply?.(result.value); // Exactly one domain target commit; no scene mutation here.
   };
   if (!presence.present) return null;
+  // Preserve the project's ISO / UTC convention; compact text never uses local time.
+  const utc = new Date(at).toISOString();
+  const timestamp = utc.replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
   return <section ref={bar} className="historical-time-bar" aria-label="Historical UTC"
     data-state={presence.state} aria-hidden={!presence.interactive || undefined} inert={!presence.interactive}>
     <button ref={trigger} type="button" className="historical-calendar-trigger" onClick={toggleCalendar}
       aria-label="Open Historical calendar" aria-haspopup="dialog" aria-expanded={calendarOpen && open} aria-controls="historical-calendar">
       <img src={calendarTrigger} alt="" width={36} height={36} />
     </button>
-    <button type="button" className="historical-date" onClick={toggleCalendar} aria-label="Historical UTC date" aria-busy={pending}
+    <button type="button" className="historical-date" onClick={toggleCalendar} aria-label={`Historical UTC date: ${timestamp}`} aria-busy={pending}
       aria-haspopup="dialog" aria-expanded={calendarOpen && open} aria-controls="historical-calendar"
       title={pending ? `Requested UTC. Scene remains at ${presentedAt ?? 'its last coherent instant'} until this target is resolved.` : 'Requested Historical UTC'}>
-      <time dateTime={at}>{new Date(at).toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC')}</time>
+      <time dateTime={at}>
+        <span className="historical-timestamp-full">{timestamp}</span>
+        <span className="historical-timestamp-compact"><span>{utc.slice(0, 10)}</span><span>{utc.slice(11, 19)} UTC</span></span>
+      </time>
     </button>
     <div className="historical-steps">
-      <ContextButton aria-label="Historical back 10 minutes" onClick={() => onStep(-600)}>-10 min</ContextButton>
-      <ContextButton aria-label="Historical forward 10 minutes" disabled={Date.parse(at) + 600_000 > Date.now()} onClick={() => onStep(600)}>+10 min</ContextButton>
+      <ContextButton icon={<ControlIcon name="previous" />} aria-label="Historical back 10 minutes" onClick={() => onStep(-600)}>-10 min</ContextButton>
+      <ContextButton icon={<ControlIcon name="next" />} aria-label="Historical forward 10 minutes" disabled={Date.parse(at) + 600_000 > Date.now()} onClick={() => onStep(600)}>+10 min</ContextButton>
     </div>
     <HistoricalCalendar open={calendarOpen && open} draft={calendarDraft} coverage={coverage} bar={bar} trigger={trigger}
       onDraft={setCalendarDraft} onCancel={closeCalendar} onApply={applyCalendar} />
