@@ -6,7 +6,7 @@ import { memberGroups, permittedPortrait, PRESENCE, QUALITY, utc } from './prese
 import profileChevron from '../assets/interface/crew-chevron.svg';
 
 /** S7 presentation of the existing assessment. Assignment never implies presence. */
-export function CurrentCrewRoster({ crew, onMember }: { crew: CurrentCrew; onMember: (id: string) => void }) {
+export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null }: { crew: CurrentCrew; onMember: (id: string) => void; selectedMemberId?: string | null }) {
   const quality = QUALITY[crew.reconciliation.status];
   const datedPresence = crew.members.some(member => member.presence.state === 'STALE');
   const members = memberGroups(crew.members).flatMap(group => group.members);
@@ -41,12 +41,12 @@ export function CurrentCrewRoster({ crew, onMember }: { crew: CurrentCrew; onMem
     <div className="crew-roster-columns" aria-hidden="true"><span>PERSON / ROLE</span><span>MISSION</span><span>AGENCY</span><span>PRESENCE EVIDENCE</span></div>
     {members.length ? <ul className="crew-roster-rows" aria-label="Crew identities and presence evidence"
       style={{ '--crew-row-count': members.length } as CSSProperties}>
-      {members.map(member => <li key={member.id}><CrewRosterRow member={member} crew={crew} onMember={onMember} /></li>)}
+      {members.map(member => <li key={member.id}><CrewRosterRow member={member} crew={crew} selected={member.id === selectedMemberId} onMember={onMember} /></li>)}
     </ul> : <p className="crew-roster-empty" role="status">No resolved crew members are available.</p>}
   </>;
 }
 
-function CrewRosterRow({ member, crew, onMember }: { member: CrewMember; crew: CurrentCrew; onMember: (id: string) => void }) {
+function CrewRosterRow({ member, crew, onMember, selected }: { member: CrewMember; crew: CurrentCrew; onMember: (id: string) => void; selected: boolean }) {
   const role = member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment');
   const mission = member.assignment && member.assignment.expeditionId === crew.expedition?.id ? crew.expedition.name : 'Unavailable';
   const presence = member.presence;
@@ -55,7 +55,7 @@ function CrewRosterRow({ member, crew, onMember }: { member: CrewMember; crew: C
     : presence.state === 'CONFIRMED_ABOARD' ? 'Identity confirmed in assessment'
       : presence.state === 'CONFIRMED_NOT_ABOARD' ? 'Confirmed absence in assessment'
         : presence.state === 'AMBIGUOUS' ? 'Conflicting or unresolved evidence' : 'Current confirmation unavailable';
-  return <button type="button" className="crew-member crew-roster-row" data-member-id={member.id}
+  return <button type="button" className="crew-member crew-roster-row" data-member-id={member.id} aria-pressed={selected}
     onClick={() => onMember(member.id)} aria-label={`${member.name ?? 'Name unavailable'} — open profile`}
     aria-describedby={`crew-context-${member.id} crew-presence-${member.id}`}>
     <CrewPortrait name={member.name} media={member.image} />

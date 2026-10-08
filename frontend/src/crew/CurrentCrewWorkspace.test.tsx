@@ -59,17 +59,17 @@ it('uses <=120ms opacity-only under reduced motion with identical data behavior'
   vi.stubGlobal('matchMedia',()=>({matches:true,addEventListener(){},removeEventListener(){}}));await show();expect(motions[0].options).toEqual({duration:120,easing:'linear'});
   await show(false);await act(async()=>vi.advanceTimersByTimeAsync(120));expect(node.querySelector('.crew-panel')).toBeNull();expect(fetchMock).toHaveBeenCalledTimes(1);
 });
-it('preserves the legacy lazy astronaut detail, back focus and roster scroll',async()=>{
+it('keeps the roster mounted with real lazy dock, close focus and roster scroll',async()=>{
   const crew=crewFixture(),member=crew.members.find(m=>m.assignment?.roleCode==='COMMANDER')!, person=personFixture();person.id=member.id;person.name=member.name;
   fetchMock.mockResolvedValueOnce(Response.json(crew)).mockResolvedValueOnce(Response.json(person));await show();
   node.querySelector('.crew-panel-content')!.scrollTop=345;
   const row=node.querySelector<HTMLButtonElement>(`[data-member-id="${member.id}"]`)!;await act(async()=>row.click());
-  expect(node.querySelector('.crew-workspace')).toBeNull();expect(node.querySelectorAll('.crew-panel')).toHaveLength(1);
-  expect(node.querySelector('.crew-profile')).not.toBeNull();expect(node.querySelector('.context-dock')).toBeNull();
-  expect(fetchMock.mock.calls[1][0]).toBe(`/api/iss/crew/${member.id}`);await click('← Back to crew');
+  expect(node.querySelector('.crew-workspace')).not.toBeNull();expect(node.querySelectorAll('.crew-panel')).toHaveLength(1);
+  expect(node.querySelector('.astronaut-profile-body')).not.toBeNull();expect(node.querySelectorAll('.context-dock')).toHaveLength(1);
+  expect(fetchMock.mock.calls[1][0]).toBe(`/api/iss/crew/${member.id}`);await click('Close astronaut detail');
   expect(document.activeElement?.getAttribute('data-member-id')).toBe(member.id);expect(node.querySelector('.crew-panel-content')!.scrollTop).toBe(345);
 });
-it('Escape dismisses legacy detail first, then base Crew even from outside the panel',async()=>{
+it('Escape dismisses Current detail first, then base Crew even from outside the panel',async()=>{
   fetchMock.mockResolvedValueOnce(Response.json(crewFixture())).mockResolvedValueOnce(Response.json(personFixture()));await show();
   await act(async()=>node.querySelector<HTMLButtonElement>('[data-member-id]')!.click());
   const escape=()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));

@@ -14,10 +14,11 @@ interface Props {
   onRestoreFocus?: () => void;
   sceneEscape?: boolean;
   entityId?: string;
+  motion?: 'css' | 'interruptible';
 }
 
 /** Non-modal foundation only. Live module/Crew surfaces adopt it in later phases. */
-export function ContextDock({ open, title, children, onClose, className = '', context, footer, closeLabel, onRestoreFocus, sceneEscape = false, entityId }: Props) {
+export function ContextDock({ open, title, children, onClose, className = '', context, footer, closeLabel, onRestoreFocus, sceneEscape = false, entityId, motion = 'css' }: Props) {
   const dock = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const origin = useRef<HTMLElement | null>(null);
@@ -25,6 +26,25 @@ export function ContextDock({ open, title, children, onClose, className = '', co
   const restoreFocus = useRef(onRestoreFocus);
   restoreFocus.current = onRestoreFocus;
   const presence = useOverlayPresence(open, dock);
+  const animation = useRef<Animation | null>(null);
+  useLayoutEffect(() => {
+    if (motion !== 'interruptible') return;
+    const node = dock.current;
+    if (!node) { animation.current?.cancel(); animation.current = null; return; }
+    const style = getComputedStyle(node);
+    const opacity = animation.current ? Number(style.opacity) : open ? 0 : 1;
+    const transform = animation.current ? style.transform : open ? 'translateX(16px)' : 'translateX(0px)';
+    animation.current?.cancel();
+    const raw = style.getPropertyValue(presence.reducedMotion ? '--motion-fast' : open ? '--motion-dock' : '--motion-ui').trim();
+    const duration = parseFloat(raw) * (raw.endsWith('ms') ? 1 : 1000);
+    const target = open ? 'translateX(0px)' : 'translateX(16px)';
+    node.style.opacity = open ? '1' : '0'; node.style.transform = presence.reducedMotion ? 'none' : target;
+    animation.current = node.animate?.(presence.reducedMotion ? { opacity: [opacity, open ? 1 : 0] } : { opacity: [opacity, open ? 1 : 0], transform: [transform, target] }, {
+      duration: presence.reducedMotion ? Math.min(120, Number.isFinite(duration) ? duration : 120) : Number.isFinite(duration) ? duration : open ? 240 : 200,
+      easing: presence.reducedMotion ? 'linear' : style.getPropertyValue(open ? '--ease-enter' : '--ease-exit').trim() || (open ? 'cubic-bezier(0,0,.58,1)' : 'cubic-bezier(.42,0,1,1)'),
+    }) ?? null;
+  }, [motion, open, presence.present, presence.reducedMotion]);
+  useLayoutEffect(() => () => animation.current?.cancel(), []);
   useLayoutEffect(() => {
     if (open) {
       origin.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -51,7 +71,7 @@ export function ContextDock({ open, title, children, onClose, className = '', co
   if (!presence.present) return null;
   return <aside ref={dock} role="region" aria-labelledby={titleId}
     aria-hidden={!presence.interactive || undefined} inert={!presence.interactive}
-    className={`context-dock ${className}`} data-state={presence.state} data-entity-id={entityId}
+    className={`context-dock ${className}${motion === 'interruptible' ? ' interruptible-motion' : ''}`} data-state={presence.state} data-entity-id={entityId}
     onKeyDown={event => {
       if (!sceneEscape && presence.interactive && event.key === 'Escape' && !event.defaultPrevented) {
         event.preventDefault(); event.stopPropagation(); onClose();

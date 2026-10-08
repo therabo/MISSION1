@@ -9,12 +9,13 @@ import { historicalPayload } from './test/historicalFixture';
 import { ISS_MODEL } from './cesium/modelPresentation';
 import { nextViewMode, type ViewMode } from './cesium/inspectionMode';
 import type { SemanticMapping } from './cesium/modelPresentation';
-import { crewFixture } from './test/crewFixture';
+import { crewFixture, personFixture } from './test/crewFixture';
 
 // Synthetic TEST data only. Camera/astronomy are validated separately in real Cesium QA.
 const scene = vi.hoisted(() => ({ props: {} as any, mounts: 0, unmounts: 0,
   delivery: {} as any, replay: vi.fn(), animations: [] as { element: HTMLElement; keys: unknown; options: unknown; cancel: ReturnType<typeof vi.fn> }[] }));
-vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: null, refresh: vi.fn() }) }));
+vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: null, refresh: vi.fn() }),
+  useCrewMember: (id: string) => ({ data: { ...personFixture(), id }, loading: false, error: null, refresh: vi.fn() }) }));
 vi.mock('./layout/useEarthWorkspace', () => ({ useEarthWorkspace: () => null }));
 vi.mock('./api/useOrbitalDelivery', () => ({ useOrbitalDelivery: () => scene.delivery }));
 vi.mock('./api/useComparisonDelivery', () => ({ useComparisonDelivery: () => ({ response: null, status: 'unavailable' }) }));
@@ -296,4 +297,19 @@ it('native ISS entry closes the active Crew workspace without replacing the exis
   expect(scene.props.inspectionRequest).toBe(0); expect(scene.props.overviewRequest).toBe(0);
   await act(async () => vi.advanceTimersByTimeAsync(240)); expect(node.querySelector('.crew-panel')).toBeNull();
   expect(scene.mounts).toBe(1);
+});
+
+it('Current astronaut selection is cleared before Historical and cannot reappear as historical presence', async () => {
+  await click('Crew'); await act(async () => node.querySelector<HTMLButtonElement>('.crew-roster-row')!.click());
+  expect(node.querySelector('.astronaut-dock')).not.toBeNull(); const canvas = node.querySelector('canvas');
+  await click('Historical'); expect(node.querySelector('.astronaut-dock')).toBeNull(); expect(node.querySelector('#replay-crew-title')).not.toBeNull();
+  await click('Current'); expect(node.querySelector('.crew-workspace')).not.toBeNull(); expect(node.querySelector('.astronaut-dock')).toBeNull();
+  expect(node.querySelector('.crew-current-layout')?.getAttribute('data-selected-member-id')).toBeNull(); expect(node.querySelector('canvas')).toBe(canvas); expect(scene.mounts).toBe(1);
+});
+
+it('astronaut open/switch/close preserves exact scene props, source, epoch and Viewer mount', async () => {
+  await click('Crew'); const at = shown(), orbital = scene.props.window, canvas = node.querySelector('canvas'), overview = scene.props.overviewRequest;
+  const rows = [...node.querySelectorAll<HTMLButtonElement>('.crew-roster-row')]; await act(async () => rows[0].click()); await act(async () => rows[1].click()); await click('Close astronaut detail');
+  expect(shown()).toBe(at); expect(scene.props.window).toBe(orbital); expect(scene.props.overviewRequest).toBe(overview); expect(scene.props.selectedSource).toBe('PRIMARY_GP_TLE');
+  expect(scene.props.replay).toBeNull(); expect(node.querySelector('canvas')).toBe(canvas); expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0); expect(node.querySelector('.crew-workspace')).not.toBeNull();
 });

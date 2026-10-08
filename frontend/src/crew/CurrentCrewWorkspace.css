@@ -1,6 +1,5 @@
 .crew-workspace-host { grid-area: 2 / 1 / 4 / -1; position: relative; min-width: 0; min-height: 0; margin: 24px; z-index: 6; pointer-events: none; }
 .crew-workspace-host[data-state="exiting"], .crew-workspace-host[data-state="exiting"] .crew-panel { pointer-events: none; }
-.crew-workspace-host .crew-panel:not(.crew-workspace) { position: fixed; pointer-events: auto; }
 .crew-panel.crew-workspace { position: relative; inset: auto; width: 100%; height: 100%; max-height: none; display: flex; padding: 20px 24px; border: 0; border-radius: var(--radius-surface); background: var(--surface-crew); box-shadow: none; backdrop-filter: none; color: var(--color-text-primary); font: 400 13px/19px var(--font-interface); pointer-events: auto; }
 .crew-workspace::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
 .crew-workspace .crew-panel-header { flex: none; min-height: 51px; gap: 16px; padding: 0; }
