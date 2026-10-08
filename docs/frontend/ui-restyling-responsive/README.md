@@ -1,5 +1,11 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Latest refinement: secondary control density — 2026-10-09
+
+The [secondary-control milestone](secondary-controls.md) starts at `b4c0cd4098411b1fa75ca29c68f31a88dd82a049`. It retains every accepted desktop dimension and changes only compact faces and density at the existing 1243/740/379px thresholds. Zoom faces use 38/34/32px boxes inside 44/44/40px targets; all reachable close faces use 38/32/30px boxes inside the same target policy, with one local X asset shared by React and native attribution. Reset, legend and calendar action/UTC chrome follow the same hierarchy. Day targets, navigation/disclosure and scene/replay behavior remain accepted.
+
+The pre-edit close inventory, exact face/target measurements, desktop fidelity, browser/interaction results and limited representative evidence are recorded in the linked milestone. The navigation/disclosure section below remains the current policy for primary controls and Historical presentation state; earlier sections remain historical records.
+
 ## Latest refinement: navigation and mobile Historical disclosure
 
 The [navigation/disclosure milestone](navigation-disclosure/README.md) starts at `370054725eb197f48842774b5aa72612fae2a349` and supersedes the preceding compact-navigation representation policy. **Desktop ≥1244px uses icon + text; tablet/compact 741–1243px uses text only; mobile ≤740px uses icons only.** Existing 1399/1243/740/600/379px breakpoints retain their layout ownership. Desktop button dimensions and surface tokens stay intact; tablet buttons lose both icons and their spacing; phone actions remain 44×44px with the accepted 22px local SVG family. GP/TLE and NASA OEM remain textual.

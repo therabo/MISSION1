@@ -1,0 +1,80 @@
+[
+  {
+    "file": "before-1440-current.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "593c03d7158d085fd20c8691d984914fa00017b4bbee634c0236d32020d04160",
+    "bytes": 693614
+  },
+  {
+    "file": "before-1440-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "9bf175519994b27378dbdabb5f14541ab8d83ab3ef414883c2079e6f10daaa58",
+    "bytes": 500666
+  },
+  {
+    "file": "after-1440-current.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "965dfed9e08b1abc6a1fd3ed4ce888d236cc2dbfd8b08d20bf46d473b31a4330",
+    "bytes": 573948
+  },
+  {
+    "file": "after-1440-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "f4d4ed91563bc8767ca7f1c8cef360272aa3274a9601efa4b44c9a8369bbdbc6",
+    "bytes": 638692
+  },
+  {
+    "file": "after-768-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "123226c5276cc3dc5951bbb4702571a8eb7e2f7f6a4e0639301aaf2f4baef4fb",
+    "bytes": 385264
+  },
+  {
+    "file": "after-390-current.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "881d964928ca451c8ba59e5686ff4c9a9f12e4109e9242ccbfdcd80565ec4508",
+    "bytes": 159314
+  },
+  {
+    "file": "after-390-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "8bef02230d76c24f3cd06fa576c6a7717f5e92f601bc1be232cda0dacbbbe95d",
+    "bytes": 127410
+  },
+  {
+    "file": "after-390-crew.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "da236ea26cdbc1d6a266882ec68c5a65eb7e413f3dd2f4d59039fca0d4621644",
+    "bytes": 168624
+  },
+  {
+    "file": "after-390-astronaut.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "dfa7451b4731537198f7bc5d46574492e7e46eb47d56277c085fcc6ba08824c7",
+    "bytes": 157634
+  },
+  {
+    "file": "after-320-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "9e143a27e6c73fb22990bcd7617bdf67be4ff030c79044900320fcb53f48b93f",
+    "bytes": 69772
+  },
+  {
+    "file": "after-320-module.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "f0cc59795b5e816b8a6cd5f29514112d01b258c91aaea70a83fbd00ee121239c",
+    "bytes": 77584
+  },
+  {
+    "file": "after-844-calendar.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "451ccee3dea0a329acc5e17e4e88df39eb6a4e3aca29850a810512cbef14173a",
+    "bytes": 139584
+  },
+  {
+    "file": "after-390-attribution.webp",
+    "decodedRGBAEqual": true,
+    "sha256": "a7ac23dc3eeb41adbb015ba6002352c8f7e02685f9ad9b07ce69ee31e76b1864",
+    "bytes": 92654
+  }
+]

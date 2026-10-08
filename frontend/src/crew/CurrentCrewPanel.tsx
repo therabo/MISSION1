@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import { useIssCrew, type CrewResource } from '../api/useCrewResource';
 import type { CurrentCrew } from './types';
 import { ContextButton } from '../components/ContextButton';
+import { CloseButton } from '../components/CloseButton';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewAstronautDock } from './CrewAstronautDock';
 
@@ -71,7 +72,7 @@ export function CurrentCrewPanelView({ resource, onClose, interactive, notice }:
         </div>
         <div className="crew-header-actions">
           <ContextButton disabled={resource.loading} onClick={resource.refresh}>{resource.loading && resource.data ? 'Refreshing…' : 'Refresh'}</ContextButton>
-          <ContextButton aria-label="Close crew panel" onClick={onClose}>×</ContextButton>
+          <CloseButton aria-label="Close crew panel" onClick={onClose} />
         </div>
       </header>
       <div className="crew-panel-content">

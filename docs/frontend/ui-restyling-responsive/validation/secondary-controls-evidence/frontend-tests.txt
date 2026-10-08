@@ -1,0 +1,15 @@
+
+> mission1-earth-view@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /Users/daniel/Desktop/MISSION1/frontend
+
+
+ Test Files  61 passed (61)
+      Tests  733 passed (733)
+   Start at  00:19:49
+   Duration  75.21s (tests 40%, import 36%, environment 20%, transform 4%)
+
+    Isolate  61 workers spawned · ~2.08s startup each (spawn + environment, per file)
+             at least ~16.06s faster with isolate: false — reuses workers across files instead of one per file

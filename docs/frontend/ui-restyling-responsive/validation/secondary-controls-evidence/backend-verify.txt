@@ -1,0 +1,16 @@
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 382, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ mission1-backend ---
+[INFO]
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ mission1-backend ---
+[INFO] Replacing main artifact /Users/daniel/Desktop/MISSION1/backend/target/mission1-backend-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/daniel/Desktop/MISSION1/backend/target/mission1-backend-0.1.0-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:38 min
+[INFO] Finished at: 2026-10-09T00:19:02+02:00
+[INFO] ------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, type RefObject, type KeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { ContextButton } from '../components/ContextButton';
+import { CloseButton } from '../components/CloseButton';
 import { useOverlayPresence } from '../layout/useOverlayPresence';
 import sourceChevron from '../assets/interface/source-chevron.svg';
 import { calendarDays, calendarDayAvailable, calendarDateLabel, calendarDraftUtc, editCalendarDraft, moveCalendarDate, twoDigits, validateCalendarDraft, type CalendarDraft } from './calendarDraft';
@@ -104,7 +105,7 @@ export function HistoricalCalendar({ open, draft, coverage, bar, trigger, onDraf
     aria-hidden={!presence.interactive || undefined}>
     <div className="calendar-month-row">
       <h2 id="calendar-month" aria-live="polite">{monthFormatter.format(new Date(calendarDraftUtc({ ...visibleDraft, day: 1, hour: '00', minute: '00', second: '00' })!))}</h2>
-      <ContextButton className="calendar-close" aria-label="Close Historical calendar" onClick={onCancel}>×</ContextButton>
+      <CloseButton className="calendar-close" aria-label="Close Historical calendar" onClick={onCancel} />
     </div>
     <div className="calendar-body">
     <div className="calendar-date-grid" role="grid" aria-label="UTC date" aria-colcount={7} onKeyDown={navigation}>
@@ -138,8 +139,8 @@ export function HistoricalCalendar({ open, draft, coverage, bar, trigger, onDraf
     {validation.error && <p className="calendar-error" role="status">{validation.error}</p>}
     </div>
     <div className="calendar-actions">
-      <ContextButton onClick={onCancel}>Cancel</ContextButton>
-      <ContextButton onClick={onApply} disabled={!validation.value}>Apply</ContextButton>
+      <ContextButton className="secondary-face" onClick={onCancel}>Cancel</ContextButton>
+      <ContextButton className="secondary-face" onClick={onApply} disabled={!validation.value}>Apply</ContextButton>
     </div>
     <p id="calendar-help" className="sr-only">UTC only. Arrow keys select a day; Home and End move within the week. Page Up and Page Down change month. Scroll calendar content to reach dates and UTC time on compact screens. Changes remain a draft until Apply. Escape discards the draft.</p>
   </section>, document.body);

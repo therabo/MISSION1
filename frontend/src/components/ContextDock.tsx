@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { useOverlayPresence } from '../layout/useOverlayPresence';
-import { ContextButton } from './ContextButton';
+import { CloseButton } from './CloseButton';
 
 interface Props {
   open: boolean;
@@ -79,7 +79,7 @@ export function ContextDock({ open, title, children, onClose, className = '', co
     }}>
     <header className="context-dock-header">
       <div className="context-dock-identity"><h2 id={titleId} ref={heading} tabIndex={-1}>{title}</h2>{context && <p>{context}</p>}</div>
-      <ContextButton aria-label={closeLabel ?? `Close ${title}`} onClick={onClose}>×</ContextButton>
+      <CloseButton aria-label={closeLabel ?? `Close ${title}`} onClick={onClose} />
     </header>
     <div className="context-dock-content">{children}</div>
     {footer && <footer className="context-dock-footer">{footer}</footer>}

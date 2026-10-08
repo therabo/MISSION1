@@ -58,6 +58,31 @@
 @media (max-height: 620px) {
   .historical-calendar { min-height: 0; }
 }
+@media (max-width: 1243px) {
+  .historical-calendar, .calendar-body { gap: 6px; }
+  .calendar-month-row { gap: 6px; }
+  .calendar-month-row h2 { min-width: 0; }
+  .historical-calendar .calendar-actions { gap: 6px; }
+  .historical-calendar .calendar-actions .context-button.secondary-face { --secondary-hit-height: 40px; --secondary-face: calc(100% - 8px); --secondary-face-height: var(--calendar-action-face); }
+  .historical-calendar .calendar-actions .context-button:first-child { width: 88px; }
+  .calendar-time-fields { height: 54px; gap: 4px; }
+  .calendar-time-part { gap: 4px; }
+  .calendar-time-control { height: 40px; isolation: isolate; }
+  .calendar-time-control::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 50%; height: var(--calendar-action-face); margin-top: calc(var(--calendar-action-face) / -2); box-sizing: border-box; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); pointer-events: none; }
+  .calendar-time-control select { height: 40px; padding: 0 22px 0 8px; border-color: transparent; background: transparent; font-size: 13px; }
+  .calendar-time-control img { top: 17.25px; right: 8px; }
+}
+@media (max-width: 740px) {
+  .historical-calendar, .calendar-body { gap: 4px; }
+  .historical-calendar .calendar-actions { gap: 4px; }
+  .historical-calendar .calendar-actions .context-button:first-child { width: 80px; }
+  .calendar-time-fields, .calendar-time-part { gap: 3px; }
+  .calendar-month-row { gap: 4px; }
+}
+@media (max-width: 379px) {
+  .calendar-month-row { height: 40px; }
+  .historical-calendar .calendar-actions .context-button:first-child { width: 72px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .historical-calendar[data-state="open"] { animation: calendar-opacity-enter var(--motion-fast) linear; }
   .historical-calendar[data-state="exiting"] { animation: calendar-opacity-exit var(--motion-fast) linear both; }

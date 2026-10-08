@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import type { ReplayResult } from './replayApi';
 import { CurrentCrewRoster } from '../crew/CurrentCrewRoster';
 import { CrewProfile } from '../crew/CrewMemberDetail';
-import { ContextButton } from '../components/ContextButton';
+import { CloseButton } from '../components/CloseButton';
 import { CrewTemporalNotice, type CrewTemporalRequest } from '../crew/CrewTemporalNotice';
 import { utc } from '../crew/presentation';
 
@@ -65,7 +65,7 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
       <div><h2 id="replay-crew-title" ref={heading} tabIndex={-1}>Crew<span className="sr-only"> · ISS Crew history</span></h2>
         <p className="crew-mission-context" aria-label="Historical expedition at accepted UTC">{crew?.expedition?.name ?? 'Expedition unavailable'}</p>
       </div>
-      <div className="crew-header-actions"><ContextButton aria-label="Close crew panel" onClick={onClose}>×</ContextButton></div>
+      <div className="crew-header-actions"><CloseButton aria-label="Close crew panel" onClick={onClose} /></div>
     </header>
     <div className="crew-panel-content">
       <p className="sr-only">Effective at {at}. Historical roster and assignments; profile metadata is latest-retained.</p>
