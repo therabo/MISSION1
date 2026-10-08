@@ -1,0 +1,1314 @@
+{
+  "url": "http://127.0.0.1:4175/",
+  "build": "production",
+  "result": "PASS",
+  "errors": [],
+  "console": [],
+  "actionOrder": [
+    "Earth",
+    "ISS Inspection",
+    "Current",
+    "Historical",
+    "Crew"
+  ],
+  "actionColumns": [
+    "icon",
+    "text",
+    "width",
+    "height",
+    "gap",
+    "padding",
+    "selected"
+  ],
+  "variants": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "actions": [
+        [
+          true,
+          true,
+          78,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          142,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          116,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px 16px 0px 0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 1600,
+      "height": 900,
+      "actions": [
+        [
+          true,
+          true,
+          78,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          142,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          116,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px 16px 0px 0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "actions": [
+        [
+          true,
+          true,
+          78,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          142,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          116,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px 16px 0px 0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ],
+      "accessibleTree": "- navigation \"Spatial view\":\n  - button \"Earth\" [pressed]\n  - button \"ISS Inspection\"\n- text: SOURCE\n- combobox \"Orbital source\":\n  - option \"GP/TLE\" [selected]\n  - option \"NASA OEM\"\n- text: MISSION1 GP/TLE propagated state. NASA OEM is source-provided predicted ephemeris. CURRENT DATE\n- time: 2026-10-08 16:04:37 UTC\n- navigation \"Temporal context\":\n  - button \"Current\" [pressed]\n  - button \"Historical\"\n- button \"Crew\""
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "actions": [
+        [
+          true,
+          true,
+          78,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          142,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          true,
+          116,
+          36,
+          "6px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          true,
+          96,
+          36,
+          "6px",
+          "0px 16px 0px 0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ],
+      "accessibleTree": "- navigation \"Spatial view\":\n  - button \"Earth\" [pressed]\n  - button \"ISS Inspection\"\n- text: SOURCE\n- combobox \"Orbital source\":\n  - option \"GP/TLE\" [selected]\n  - option \"NASA OEM\"\n- text: MISSION1 GP/TLE propagated state. NASA OEM is source-provided predicted ephemeris. CURRENT DATE\n- time: 2026-10-08 16:04:39 UTC\n- navigation \"Temporal context\":\n  - button \"Current\" [pressed]\n  - button \"Historical\"\n- button \"Crew\""
+    },
+    {
+      "width": 900,
+      "height": 700,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 834,
+      "height": 1194,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ],
+      "accessibleTree": "- navigation \"Spatial view\":\n  - button \"Earth\" [pressed]\n  - button \"ISS Inspection\"\n- text: SOURCE\n- combobox \"Orbital source\":\n  - option \"GP/TLE\" [selected]\n  - option \"NASA OEM\"\n- text: MISSION1 GP/TLE propagated state. NASA OEM is source-provided predicted ephemeris.\n- time: 2026-10-08 16:05:17 UTC\n- navigation \"Temporal context\":\n  - button \"Current\" [pressed]\n  - button \"Historical\"\n- button \"Crew\""
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "actions": [
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          true,
+          false,
+          44,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    },
+    {
+      "width": 932,
+      "height": 430,
+      "actions": [
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          116,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          80,
+          44,
+          "0px",
+          "0px",
+          "true"
+        ],
+        [
+          false,
+          true,
+          96,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ],
+        [
+          false,
+          true,
+          64,
+          44,
+          "0px",
+          "0px",
+          "false"
+        ]
+      ],
+      "focusOrder": [
+        "Earth",
+        "ISS Inspection",
+        "Orbital source",
+        "Current",
+        "Historical",
+        "Crew"
+      ]
+    }
+  ],
+  "mobile": [
+    {
+      "width": 430,
+      "height": 932,
+      "choice": "2026-10-01 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "choice": "2026-10-02 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "choice": "2026-10-01 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "choice": "2026-10-02 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "choice": "2026-10-01 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "choice": "2026-10-02 UTC",
+      "states": [
+        "COLLAPSED",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "EXPANDED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "EXPANDED",
+        "COLLAPSED",
+        "EXPANDED",
+        "CALENDAR_OPEN",
+        "COLLAPSED"
+      ],
+      "barHiddenDuringCalendar": true,
+      "exactSteps": true,
+      "cancelFocus": "historical-date",
+      "applyFocus": "Open Historical controls",
+      "result": "PASS"
+    }
+  ],
+  "keyboard": [
+    {
+      "keyboardHold": true,
+      "rovingDate": true,
+      "EscapeFocus": true,
+      "exactSteps": true,
+      "ApplyFocus": true,
+      "result": "PASS"
+    }
+  ],
+  "reduced": [
+    {
+      "motion": {
+        "animation": "historical-disclosure-enter",
+        "duration": "0.12s"
+      },
+      "idleMs": 4000,
+      "closeReturnsExpanded": true,
+      "result": "PASS"
+    }
+  ],
+  "resize": {
+    "observations": 469,
+    "passed": 469,
+    "widths": [
+      320,
+      336,
+      352,
+      368,
+      378,
+      379,
+      380,
+      384,
+      400,
+      416,
+      432,
+      448,
+      464,
+      480,
+      496,
+      512,
+      528,
+      544,
+      560,
+      576,
+      592,
+      599,
+      600,
+      601,
+      608,
+      624,
+      640,
+      656,
+      672,
+      688,
+      704,
+      720,
+      736,
+      739,
+      740,
+      741,
+      752,
+      768,
+      784,
+      800,
+      816,
+      832,
+      848,
+      864,
+      880,
+      896,
+      912,
+      928,
+      944,
+      960,
+      976,
+      992,
+      1008,
+      1024,
+      1040,
+      1056,
+      1072,
+      1088,
+      1104,
+      1120,
+      1136,
+      1152,
+      1168,
+      1184,
+      1200,
+      1216,
+      1232,
+      1242,
+      1243,
+      1244,
+      1248,
+      1264,
+      1280,
+      1296,
+      1312,
+      1328,
+      1344,
+      1360,
+      1376,
+      1392,
+      1398,
+      1399,
+      1400,
+      1408,
+      1424,
+      1440,
+      1456,
+      1472,
+      1488,
+      1504,
+      1520,
+      1536,
+      1552,
+      1568,
+      1584,
+      1600,
+      1616,
+      1632,
+      1648,
+      1664,
+      1680,
+      1696,
+      1712,
+      1728,
+      1744,
+      1760,
+      1776,
+      1792,
+      1808,
+      1824,
+      1840,
+      1856,
+      1872,
+      1888,
+      1904,
+      1920
+    ],
+    "moments": [
+      "immediate",
+      "next-frame"
+    ],
+    "directions": [
+      "ascending",
+      "descending"
+    ],
+    "calendarPreservation": [
+      {
+        "width": 741,
+        "height": 800,
+        "calendarPreserved": true,
+        "barVisible": true,
+        "result": "PASS"
+      },
+      {
+        "width": 1243,
+        "height": 800,
+        "calendarPreserved": true,
+        "barVisible": true,
+        "result": "PASS"
+      },
+      {
+        "width": 1244,
+        "height": 800,
+        "calendarPreserved": true,
+        "barVisible": true,
+        "result": "PASS"
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "calendarPreserved": true,
+        "barVisible": false,
+        "result": "PASS"
+      },
+      {
+        "width": 740,
+        "height": 800,
+        "calendarPreserved": true,
+        "barVisible": false,
+        "result": "PASS"
+      }
+    ]
+  },
+  "regressions": {
+    "Crew": true,
+    "GP": true,
+    "OEM": true,
+    "domainInstantPreserved": true,
+    "ViewerRetained": true
+  },
+  "revalidation": "Resize/reduced-motion segment: await matchMedia delivery when CALENDAR_OPEN itself remains unchanged; application source unchanged."
+}

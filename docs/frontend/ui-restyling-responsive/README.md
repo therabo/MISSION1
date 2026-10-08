@@ -1,5 +1,17 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Latest refinement: navigation and mobile Historical disclosure
+
+The [navigation/disclosure milestone](navigation-disclosure/README.md) starts at `370054725eb197f48842774b5aa72612fae2a349` and supersedes the preceding compact-navigation representation policy. **Desktop ≥1244px uses icon + text; tablet/compact 741–1243px uses text only; mobile ≤740px uses icons only.** Existing 1399/1243/740/600/379px breakpoints retain their layout ownership. Desktop button dimensions and surface tokens stay intact; tablet buttons lose both icons and their spacing; phone actions remain 44×44px with the accepted 22px local SVG family. GP/TLE and NASA OEM remain textual.
+
+The sections below record earlier milestones; this section and its linked dossier describe the current policy.
+
+Mobile Historical has one explicit local presentation state: `COLLAPSED`, `EXPANDED`, or `CALENDAR_OPEN`. Entering Historical shows only the 44px calendar disclosure. Activation expands the existing date/time and ±10-minute bar; **4,000ms of inactivity** collapses it. Pointer movement, activation and steps reset one timeout; a held pointer or keyboard focus in the bar pauses it until release/focus departure. Calendar opening, leaving Historical, unmounting and leaving mobile cancel the timeout. There is no polling.
+
+Opening the expanded date/calendar hides the detached bar with `visibility: hidden`, `inert` and `aria-hidden`; its rectangle remains available to the existing calendar placement. The portal/calendar stays visible and the header remains available. **Apply commits the existing UTC target exactly once and returns directly to the collapsed icon. Close, Cancel, Escape and outside cancellation restore the expanded bar and its idle window.** Calendar cancellation restores the date/calendar opener after it becomes visible; Apply and automatic collapse restore the compact disclosure when needed. Keyboard focus remains protected until it leaves the bar. The collapsed control is named “Open Historical controls”, has `aria-expanded="false"` and references the control surface; calendar triggers retain their dialog semantics.
+
+Outside mobile the Historical bar remains persistent. Resizing into mobile starts collapsed; a legitimately open calendar persists and hides the mobile bar. Resizing out of mobile restores the persistent bar in all three states. Requested/presented UTC ownership, ±600-second requests, calendar drafts/validation, seven columns, keyboard navigation and reduced-motion behavior remain accepted. Disclosure uses the existing 120ms opacity token; the four-second interaction delay is unchanged under reduced motion. Backend, App replay ownership, calendar implementation, Cesium, camera, picking and assets are unchanged. This local presentation change follows ADR-0011 and needs no new structural ADR.
+
 ## Follow-up: compact top controls
 
 The focused [compact-navigation milestone](compact-navigation/README.md) starts at the accepted `83e95780fd186f1d4c8f1802752e2ab69fa1541a` baseline. It preserves desktop text/geometry, adds local SVG action variants at the existing compact breakpoints and makes the Historical date/time/step surface one coherent row on phones. The selected UTC date stays visible. Its evidence is limited to ten representative screenshots and concise browser/test reports; the earlier full responsive corpus below is not duplicated.

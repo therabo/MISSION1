@@ -294,6 +294,9 @@ dl { margin: 8px 0 0; }
 .context-button:focus-visible, .context-source select:focus-visible, .orbital-status-disclosure > summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
 .context-button:disabled { opacity: .5; cursor: not-allowed; }
 .context-action-icon, .historical-timestamp-compact { display: none; }
+.top-context-bar .context-action { gap: 6px; padding: 0; }
+.top-context-bar .context-action-icon { display: inline-flex; }
+.top-context-bar .context-crew { padding-right: 16px; }
 .control-icon { display: block; width: 22px; height: 22px; flex: none; }
 .context-dock { position: absolute; z-index: 6; top: 88px; right: 24px; bottom: 104px; width: 336px; display: flex; flex-direction: column; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-module); color: var(--color-text-primary); font-family: var(--font-interface); overflow: hidden; }
 .context-dock-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-divider); }
@@ -395,6 +398,8 @@ dl { margin: 8px 0 0; }
 .historical-calendar-trigger img { flex: none; width: 36px; height: 36px; }
 .historical-date { flex: 1; min-width: 0; text-align: left; font: 400 14px/20px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .historical-steps { flex: none; display: flex; gap: 16px; }
+.historical-date[hidden], .historical-steps[hidden] { display: none; }
+@keyframes historical-disclosure-enter { from { opacity: 0; } to { opacity: 1; } }
 .historical-steps .context-button { width: 96px; padding: 0; }
 .historical-steps .context-button:active:not(:disabled) { animation: historical-step-press var(--motion-fast) var(--ease-state); }
 .historical-time-bar[data-state="open"] { animation: historical-bar-enter var(--motion-ui) var(--ease-enter); }
@@ -435,10 +440,14 @@ dl { margin: 8px 0 0; }
   .historical-time-bar { height: 60px; margin-top: 16px; }
   .historical-time-bar button { height: 44px; }
   .historical-calendar-trigger { width: 44px; }
-  .top-context-bar .context-action { gap: 8px; padding: 0; }
+  .top-context-bar .context-action { gap: 0; padding: 0; }
   .top-context-bar { column-gap: 8px; }
-  .context-crew { width: 88px; }
-  .top-context-bar .context-action-icon { display: inline-flex; }
+  .top-context-bar .context-spatial .context-button:where(:first-child) { width: 64px; }
+  .top-context-bar .context-spatial .context-button:where(:last-child) { width: 116px; }
+  .top-context-bar .context-temporal .context-button:where(:first-child) { width: 80px; }
+  .top-context-bar .context-temporal .context-button:where(:last-child) { width: 96px; }
+  .top-context-bar .context-crew { width: 64px; }
+  .top-context-bar .context-action-icon { display: none; }
   .top-context-bar .crew-entry-chevron { display: none; }
   .context-source { width: 116px; gap: 0; }
   .context-source > label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
@@ -455,10 +464,20 @@ dl { margin: 8px 0 0; }
   .historical-steps .context-action-label { display: none; }
 }
 @media (max-width: 740px) {
+  .top-context-bar .context-action-icon { display: inline-flex; }
   .top-context-bar .context-action-label { display: none; }
   .top-context-bar .context-spatial .context-button, .top-context-bar .context-temporal .context-button, .top-context-bar .context-crew { width: 44px; padding: 0; }
   .historical-timestamp-full { display: none; }
   .historical-timestamp-compact { display: flex; flex-direction: column; font-size: 14px; line-height: 18px; }
+  .historical-time-bar[data-disclosure="COLLAPSED"] { justify-self: end; width: 44px; height: 44px; margin-right: 12px; padding: 0; gap: 0; border: 0; background: transparent; }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger { border: 1px solid var(--color-border); background: var(--control-normal); border-radius: var(--radius-control); }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger:hover { background: var(--control-hover); }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger,
+  .historical-time-bar[data-disclosure="EXPANDED"] .historical-date,
+  .historical-time-bar[data-disclosure="EXPANDED"] .historical-steps { animation: historical-disclosure-enter var(--motion-fast) linear; }
+  /* Visibility retains the anchor rectangle; the calendar portal stays visible.
+     Inert/aria-hidden also remove the detached bar from interaction and speech. */
+  .historical-time-bar[data-disclosure="CALENDAR_OPEN"] { visibility: hidden; pointer-events: none; }
   .earth-current { --operational-height: 120px; }
   .operational-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "identity status status" "latitude longitude altitude"; gap: 8px 4px; padding: 12px; }
   .summary-identity { grid-area: identity; height: 50px; }

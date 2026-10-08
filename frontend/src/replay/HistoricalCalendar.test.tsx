@@ -7,7 +7,7 @@ import type { Coverage } from './replayApi';
 const at='2026-10-05T11:38:41.123Z';
 const coverage:Coverage={status:'AVAILABLE',start:'2026-09-01T00:00:00Z',end:'2026-10-07T12:00:00Z',intervals:[{start:'2026-09-01T00:00:00Z',end:'2026-10-07T12:00:00Z'}],limitations:[]};
 let node:HTMLDivElement,root:Root,reduced=false;const apply=vi.fn(),step=vi.fn();
-beforeEach(()=>{Object.defineProperty(globalThis,'IS_REACT_ACT_ENVIRONMENT',{value:true,configurable:true});vi.useFakeTimers();vi.setSystemTime(new Date(coverage.end!));reduced=false;apply.mockClear();step.mockClear();vi.stubGlobal('matchMedia',()=>({matches:reduced,addEventListener(){},removeEventListener(){}}));node=document.createElement('div');document.body.append(node);root=createRoot(node);});
+beforeEach(()=>{Object.defineProperty(globalThis,'IS_REACT_ACT_ENVIRONMENT',{value:true,configurable:true});vi.useFakeTimers();vi.setSystemTime(new Date(coverage.end!));reduced=false;apply.mockClear();step.mockClear();vi.stubGlobal('matchMedia',(query:string)=>({matches:query.includes('prefers-reduced-motion')&&reduced,addEventListener(){},removeEventListener(){}}));node=document.createElement('div');document.body.append(node);root=createRoot(node);});
 afterEach(async()=>{await act(async()=>root.unmount());node.remove();vi.unstubAllGlobals();vi.useRealTimers();});
 async function render(open=true,time=at){await act(async()=>root.render(<HistoricalTimeBar open={open} at={time} onStep={step} onApply={apply} coverage={coverage}/>));}
 const trigger=()=>node.querySelector<HTMLButtonElement>('.historical-calendar-trigger')!;

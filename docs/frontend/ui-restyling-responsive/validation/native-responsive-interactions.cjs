@@ -9,7 +9,7 @@ const root=path.resolve(__dirname,'../../../..');
 const mappings=JSON.parse(fs.readFileSync(path.join(root,'frontend/src/cesium/issModelManifest.json'))).semanticMappings;
 const nodes=JSON.parse(fs.readFileSync(path.join(root,'docs/frontend/inspection-orientation-review/asset-axes.json'))).nodes;
 const [url='http://127.0.0.1:5175/',build='development']=process.argv.slice(2);
-const out=path.join(__dirname,'native',build);fs.mkdirSync(out,{recursive:true});
+const out=path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(__dirname,'native',build));fs.mkdirSync(out,{recursive:true});
 const report={url,build,viewports:[],errors:[],console:[]};
 const save=()=>fs.writeFileSync(path.join(out,'interactions.json'),JSON.stringify(report,null,2)+'\n');
 async function run(){
