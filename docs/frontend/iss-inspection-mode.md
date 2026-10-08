@@ -1,5 +1,9 @@
 # ISS Inspection Mode
 
+## Restyled responsive validation — 2026-10-08
+
+The existing strip and module overlays were audited across desktop, tablet, phone and short landscape sizes without changing their accepted composition. Compact module content remains internally scrollable; exposed canvas pixels around the dock still accept native picks and orbit/zoom input. Native browser QA checks 90m desktop range, 42.5° elevation, 100° FOV, the existing portrait widening, hover clearing during camera motion, selection/color restoration and Earth return. Camera and Cesium code remain byte-identical to the initial restyling branch. [Complete layout and interaction dossier](ui-restyling-responsive/README.md).
+
 ## Semantic module hover — 2026-10-05
 
 In stable Inspection, recognized ISS modules provide a transient hover affordance. Hover feedback is suspended during camera manipulation and transitions and resumes only after the scene becomes stable.

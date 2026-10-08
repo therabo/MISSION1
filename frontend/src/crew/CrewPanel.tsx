@@ -1,13 +1,17 @@
-import { memo, useEffect, useRef, useState } from 'react';
-import { useIssCrew } from '../api/useCrewResource';
-import type { CrewMember } from './types';
+import { memo, useEffect, useRef, useState, type ReactNode } from 'react';
+import { useIssCrew, type CrewResource } from '../api/useCrewResource';
+import type { CrewMember, CurrentCrew } from './types';
 import { CrewSummary } from './CrewSummary';
 import { CrewMemberDetail } from './CrewMemberDetail';
-import { CurrentCrewPanel } from './CurrentCrewPanel';
+import { CurrentCrewPanel, CurrentCrewPanelView } from './CurrentCrewPanel';
 
 /** Pure DOM operational context; no Cesium, camera, orbital clock, provider or scheduler dependency. */
-export const CrewPanel = memo(function CrewPanel({ onClose, workspace = false, interactive = true }: { onClose: () => void; workspace?: boolean; interactive?: boolean }) {
-  return workspace ? <CurrentCrewPanel onClose={onClose} interactive={interactive} /> : <LegacyCrewPanel onClose={onClose} />;
+export const CrewPanel = memo(function CrewPanel({ onClose, workspace = false, interactive = true, resource, notice }: {
+  onClose: () => void; workspace?: boolean; interactive?: boolean; resource?: CrewResource<CurrentCrew>; notice?: ReactNode;
+}) {
+  return workspace ? resource
+    ? <CurrentCrewPanelView resource={resource} notice={notice} onClose={onClose} interactive={interactive} />
+    : <CurrentCrewPanel onClose={onClose} interactive={interactive} /> : <LegacyCrewPanel onClose={onClose} />;
 });
 
 /** Retained standalone presentation; Historical continues to use ReplayCrewPanel. */

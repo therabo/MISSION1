@@ -1,0 +1,126 @@
+{
+  "reference": "golden development before edits, compared to production final at 1440x900",
+  "method": "Surface rectangles, computed styles and canvas; evolving real data and scroll contents compared visually",
+  "states": [
+    {
+      "state": "earth-gp",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "earth-gp-provenance",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "earth-oem",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "earth-oem-provenance",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "crew",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "crew-evidence",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "crew-detail",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "crew-detail-evidence",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-calendar",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-crew",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-crew-evidence",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-crew-detail",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-inspection",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-inspection-provenance",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "historical-module",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "inspection",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "inspection-provenance",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "module",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    },
+    {
+      "state": "attribution",
+      "areaGeometryIdentical": true,
+      "surfaceStylesIdentical": true,
+      "canvasIdentical": true
+    }
+  ]
+}

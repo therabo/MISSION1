@@ -282,10 +282,10 @@ it('base Crew Escape works from the exposed scene and restores the stable trigge
   await act(async () => vi.advanceTimersByTimeAsync(240)); expect(node.querySelector('.crew-panel')).toBeNull();
   expect(document.activeElement?.id).toBe('crew-launcher');
 });
-it('Historical Crew keeps its existing real component and accepted temporal/source context', async () => {
+it('Historical Crew shares the S9 workspace and preserves accepted temporal/source context', async () => {
   await click('Historical'); const time = shown(), state = scene.props.replay.state, at = scene.props.replay.atMs, context = node.querySelector('.top-context-bar');
-  await click('Crew'); expect(node.querySelector('#replay-crew-title')?.textContent).toBe('ISS Crew history');
-  expect(node.querySelector('.crew-workspace')).toBeNull(); expect(node.querySelector('.top-context-bar')).toBe(context);
+  await click('Crew'); expect(node.querySelector('#replay-crew-title')?.textContent).toContain('ISS Crew history');
+  expect(node.querySelectorAll('.crew-workspace.crew-historical')).toHaveLength(1); expect(node.querySelector('.top-context-bar')).toBe(context);
   expect(scene.props.replay.state).toBe(state); expect(scene.props.replay.atMs).toBe(at); expect(shown()).toBe(time);
   await click('Close crew panel'); expect(node.querySelector('.historical-time-bar')).not.toBeNull(); expect(shown()).toBe(time);
 });

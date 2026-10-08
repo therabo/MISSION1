@@ -27,11 +27,14 @@ const scenario=String.raw`
    fields:[...e.querySelectorAll('.calendar-time-control select')].map(box),actions:[...e.querySelectorAll('.calendar-actions button')].map(box),
    month:{...box(e.querySelector('h2')),font:getComputedStyle(e.querySelector('h2')).fontSize,weight:getComputedStyle(e.querySelector('h2')).fontWeight},
    weekday:{...box(e.querySelector('.calendar-weekdays')),font:getComputedStyle(e.querySelector('.calendar-weekdays')).fontSize},
-   grid:box(e.querySelector('.calendar-grid')),divider:box(e.querySelector('.calendar-divider')),actionsRow:box(e.querySelector('.calendar-actions')),
+   grid:box(e.querySelector('.calendar-grid')),body:box(e.querySelector('.calendar-body')),bodyScroll:getComputedStyle(e.querySelector('.calendar-body')).overflowY,divider:box(e.querySelector('.calendar-divider')),actionsRow:box(e.querySelector('.calendar-actions')),
    active:document.activeElement.getAttribute('aria-label'),bodyOverflow:document.documentElement.scrollHeight>innerHeight||document.documentElement.scrollWidth>innerWidth};});}
  function bounds(cal,state){assert.equal(cal.background,'rgba(21, 29, 39, 0.94)');assert.equal(cal.border,'rgba(42, 53, 66, 0.9)');assert.equal(cal.radius,'6px');assert.equal(cal.shadow,'none');assert.equal(cal.blur,'none');assert(!cal.bodyOverflow);
   assert(cal.x>=11.5&&cal.y>=11.5&&cal.x+cal.width<=state.width-11.5&&cal.y+cal.height<=state.height-11.5,'Calendar outside viewport');
-  for(const box of [...cal.cells.filter(c=>c.y>=cal.grid.y-.5&&c.y+c.height<=cal.grid.y+cal.grid.height+.5),...cal.fields,...cal.actions])assert(box.x>=cal.x&&box.y>=cal.y&&box.x+box.width<=cal.x+cal.width+.5&&box.y+box.height<=cal.y+cal.height+.5);
+  // Compact date/time content intentionally scrolls in one body. Off-screen
+  // content is valid; pinned actions and actual focused controls must fit.
+  for(const box of [...cal.cells,...cal.fields]){assert(box.x>=cal.x&&box.x+box.width<=cal.x+cal.width+.5);if(cal.bodyScroll!=='auto')assert(box.y>=cal.y&&box.y+box.height<=cal.y+cal.height+.5);}
+  for(const box of cal.actions)assert(box.x>=cal.x&&box.y>=cal.y&&box.x+box.width<=cal.x+cal.width+.5&&box.y+box.height<=cal.y+cal.height+.5);
   assert(cal.cells.filter(x=>x.selected==='true').length===1);assert(cal.cells.every(x=>x.width>=24&&x.height>=24));}
  await historical.click();await ready();
  for(const [width,height] of matrix){await p.setViewportSize({width,height});await p.waitForTimeout(180);const before=await layout(p);checkLayout(before);

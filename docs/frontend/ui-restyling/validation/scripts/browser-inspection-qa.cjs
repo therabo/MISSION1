@@ -140,8 +140,11 @@ const scenario=`
  await touch('touchStart',[[140,420,1],[250,420,2]]);await touch('touchMove',[[110,420,1],[280,420,2]]);await p.waitForTimeout(80);await touch('touchEnd',[]);await p.waitForTimeout(350);const afterPinch=await p.evaluate(observe);assert(Math.abs(afterPinch.range-Math.hypot(...afterOrbit.camera.position))>1);assert.equal(afterPinch.canvas.width,390);await spatial('Earth');report.touch={orbitChanged:true,pinchChanged:true,result:'PASS'};
  // Normal / reduced UI animation uses only opacity; physical camera still completes.
  report.motion=[];await p.setViewportSize({width:1440,height:900});
- for(const reduced of ['no-preference','reduce']){await p.emulateMedia({reducedMotion:reduced});await p.waitForTimeout(40);report.earthSnapshot=await metrics();await inspect.click();
-  const motion=await p.locator('.inspection-strip').evaluate(e=>e.getAnimations().map(a=>({timing:a.effect.getTiming(),frames:a.effect.getKeyframes()})));
+ for(const reduced of ['no-preference','reduce']){await p.emulateMedia({reducedMotion:reduced});await p.waitForTimeout(40);report.earthSnapshot=await metrics();
+  // Observe insertion synchronously: a separate automation round trip can miss
+  // the entire 120ms animation on a busy native WebGL host.
+  await p.evaluate(()=>{delete window.__inspectionMotion;const observer=new MutationObserver(()=>{const e=document.querySelector('.inspection-strip');if(!e)return;const motion=e.getAnimations().map(a=>({timing:a.effect.getTiming(),frames:a.effect.getKeyframes()}));if(motion.length){window.__inspectionMotion=motion;observer.disconnect();}});observer.observe(document.querySelector('main'),{childList:true,subtree:true});});await inspect.click();
+  await p.waitForFunction(()=>window.__inspectionMotion?.length);const motion=await p.evaluate(()=>window.__inspectionMotion);
   assert(motion.length);assert.equal(motion[0].timing.duration,reduced==='reduce'?120:280);assert(motion[0].frames.every(k=>!k.transform));
   await readyMode('ISS_INSPECTION');const active=await metrics();assert(active.animate);await earth.click();await readyMode('EARTH_OVERVIEW');restored(report.earthSnapshot,await metrics());report.motion.push({reduced,motion,result:'PASS'});
  }

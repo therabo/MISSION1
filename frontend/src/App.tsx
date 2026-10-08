@@ -1,5 +1,4 @@
 import { useMissionReplay } from "./replay/useMissionReplay";
-import { ReplayCrewPanel } from "./replay/ReplayCrewPanel";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useOrbitalDelivery } from "./api/useOrbitalDelivery";
 import { useComparisonDelivery } from "./api/useComparisonDelivery";
@@ -40,7 +39,9 @@ export default function App() {
   const [replayAt, setReplayAt] = useState(
     new Date(Date.now() - 60000).toISOString(),
   );
-  const replay = useMissionReplay(replaying, replayAt);
+  const [replayRetry, setReplayRetry] = useState(0);
+  const retryReplay = useCallback(() => setReplayRetry(value => value + 1), []);
+  const replay = useMissionReplay(replaying, replayAt, replayRetry);
   const delivery = useOrbitalDelivery(!replaying);
   const [sceneTimeMs, setSceneTimeMs] = useState<number | null>(null);
   const comparison = useComparisonDelivery(sceneTimeMs, !replaying);
@@ -267,10 +268,10 @@ export default function App() {
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
         {crewPending && <p className="sr-only" role="status">Returning to Earth View before opening Crew. Activate Crew again or press Escape to cancel.</p>}
-        {!replaying && <CurrentCrewWorkspace open={crewOpen} onClose={closeCrew} />}
+        <CurrentCrewWorkspace open={crewOpen} onClose={closeCrew}
+          historical={presentationHistorical ? { at: presentedAt, data: presentedData! } : null}
+          request={{ historical: replaying, at: replayAt, pending: temporal.holding, error: replaying ? replay.error : null, onRetry: retryReplay }} />
       </div>
-      {crewOpen && replaying && <ReplayCrewPanel data={replay.data} loading={replay.loading}
-        error={replay.error} at={replayAt} onClose={closeCrew} />}
     </main>
   );
 }

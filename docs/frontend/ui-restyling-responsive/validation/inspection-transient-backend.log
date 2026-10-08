@@ -1,0 +1,43 @@
+1920x1080: Earth / entry / Inspection / exit PASS
+1440x900: Earth / entry / Inspection / exit PASS
+1280x800: Earth / entry / Inspection / exit PASS
+1024x768: Earth / entry / Inspection / exit PASS
+768x1024: Earth / entry / Inspection / exit PASS
+430x932: Earth / entry / Inspection / exit PASS
+390x844: Earth / entry / Inspection / exit PASS
+360x800: Earth / entry / Inspection / exit PASS
+320x568: Earth / entry / Inspection / exit PASS
+844x390: Earth / entry / Inspection / exit PASS
+321x900: Earth / entry / Inspection / exit PASS
+379x900: Earth / entry / Inspection / exit PASS
+380x900: Earth / entry / Inspection / exit PASS
+599x900: Earth / entry / Inspection / exit PASS
+600x900: Earth / entry / Inspection / exit PASS
+601x900: Earth / entry / Inspection / exit PASS
+739x900: Earth / entry / Inspection / exit PASS
+740x900: Earth / entry / Inspection / exit PASS
+741x900: Earth / entry / Inspection / exit PASS
+767x900: Earth / entry / Inspection / exit PASS
+1023x900: Earth / entry / Inspection / exit PASS
+1243x900: Earth / entry / Inspection / exit PASS
+1244x900: Earth / entry / Inspection / exit PASS
+1399x900: Earth / entry / Inspection / exit PASS
+1400x900: Earth / entry / Inspection / exit PASS
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'Orbital API returned HTTP 500.'
++ ]
+- []
+
+    at stableScene (eval at <anonymous> (/Users/daniel/Desktop/MISSION1/docs/frontend/ui-restyling/validation/scripts/browser-inspection-qa.cjs:153:1), <anonymous>:158:212)
+    at spatial (eval at <anonymous> (/Users/daniel/Desktop/MISSION1/docs/frontend/ui-restyling/validation/scripts/browser-inspection-qa.cjs:153:1), <anonymous>:176:54)
+    at async eval (eval at <anonymous> (/Users/daniel/Desktop/MISSION1/docs/frontend/ui-restyling/validation/scripts/browser-inspection-qa.cjs:153:1), <anonymous>:220:102) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

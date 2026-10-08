@@ -1,0 +1,40 @@
+* 36c36bd (HEAD -> ui/restyling) feat(ui): implement responsive astronaut detail dock
+* 53ade66 feat(ui): implement responsive crew workspace
+* f0c27f7 feat(ui): implement responsive ISS module detail dock
+* 8398d8b feat(ui): implement responsive ISS inspection workspace
+* a909a8f feat(ui): add historical UTC calendar
+* e72ac4e feat(ui): implement coherent responsive historical Earth mode
+* ded3c32 feat(ui): implement responsive orbital source states
+* 92808d4 feat(ui): implement restyled Earth workspace foundation
+* 12be75a (origin/ui/restyling, origin/main, origin/HEAD, main) feat: highlight ISS modules on inspection hover
+* d2ebd5f fix: restore rendering antialiasing and night brightness
+* b190e8b perf: optimize high-fidelity mission rendering
+* 6fbb52d fix: restore full-screen occlusion-aware Earth framing
+* 47b2956 fix: center Earth within available workspace
+* f8ca08b refactor: simplify MISSION1 viewport branding
+* 7fa39af fix: decouple app wordmark from repository root
+* 9ca553b feat: integrate MISSION1 wordmark into app
+* 3c3ec87 docs: restore original logo with transparent background
+* 46e1544 docs: update and center MISSION1 logo
+* 00bd014 docs: add main README with MISSION1 logo
+* 053054d feat: add synchronized ISS crew and orbit replay
+* 0d75499 feat: add ISS crew event-aware refresh
+* 4c7959e feat: add ISS crew Earth View panel
+* 6d2d45b feat: expose ISS crew REST API
+* 46c09d6 fix: preserve NASA source state on storage failure
+* 4a751f6 feat: add NASA crew verification and reconciliation
+* c2ada2b feat: add ISS crew ingestion and persistence
+* 1f46df2 feat: establish ISS crew source and domain contract
+* 8b3f660 fix: correct trajectory masking and oblique joins
+* 824f3e6 fix: stabilize ISS trajectory rendering
+* fa5ed63 fix: preserve trajectory clearance during inspection exit
+* 8af1496 fix: smooth trajectory visibility across inspection transitions
+* c3d24ae fix: perfect Earth and ISS focus transitions
+* b5aa2a8 fix: smooth perceptual ISS camera transitions
+* 538bb06 perf: optimize ISS inspection rendering and transitions
+* 4d39029 fix: align ISS orientation and improve inspection navigation
+* 3834026 fix: refine ISS trajectory and Earth view presentation
+* 389736f fix: correct selectable trajectory presentation
+* 8146055 feat: add selectable ISS trajectory visualization
+* 054e825 fix: refine orbital trajectory rendering
+* 0150d9f feat: compare propagated ISS orbit with NASA OEM

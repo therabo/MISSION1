@@ -1,0 +1,412 @@
+[
+  {
+    "Component": "Shell / full-screen scene",
+    "Source (frontend/src/)": "App.tsx + styles.css",
+    "Vs main": "Modified",
+    "Parent / visible states": "All",
+    "Desktop geometry": "1440\u00d7900; canvas inset 0",
+    "Sizing / positioning": "3-row overlay grid; pointer pass-through",
+    "Existing breakpoints": "1243/740/600; short-height 500",
+    "Audit risks before implementation": "Inspect short landscapes, preserve full-screen canvas"
+  },
+  {
+    "Component": "Brand wordmark",
+    "Source (frontend/src/)": "App.tsx + styles.css",
+    "Vs main": "Modified",
+    "Parent / visible states": "All",
+    "Desktop geometry": "120\u00d728 at 24,18",
+    "Sizing / positioning": "Absolute decorative logo",
+    "Existing breakpoints": "1243/600 offsets",
+    "Audit risks before implementation": "Accepted desktop rendering frozen; verify compact aspect"
+  },
+  {
+    "Component": "TopContextBar / spatial navigation",
+    "Source (frontend/src/)": "components/TopContextBar.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Earth/Inspection/Crew",
+    "Desktop geometry": "64px high; fixed desktop groups",
+    "Sizing / positioning": "Flex then wrap then grid",
+    "Existing breakpoints": "1399/1243/600",
+    "Audit risks before implementation": "Intermediate widths and top group overlaps"
+  },
+  {
+    "Component": "ContextButton / selected-disabled-focus states",
+    "Source (frontend/src/)": "components/ContextButton.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "All controls",
+    "Desktop geometry": "36px high",
+    "Sizing / positioning": "Fixed height, intrinsic/fixed width",
+    "Existing breakpoints": "44px at 1243",
+    "Audit risks before implementation": "Touch width and multiline fit"
+  },
+  {
+    "Component": "Orbital source select / label / chevron",
+    "Source (frontend/src/)": "components/TrajectorySelector.tsx",
+    "Vs main": "Modified",
+    "Parent / visible states": "Current GP/OEM; Historical automatic; unavailable",
+    "Desktop geometry": "128\u00d736; x506,y14",
+    "Sizing / positioning": "Native select + decorative overlay",
+    "Existing breakpoints": "1243/600",
+    "Audit risks before implementation": "Long unavailable label, icon fit"
+  },
+  {
+    "Component": "Scene UTC / Current-Historical navigation / Crew entry",
+    "Source (frontend/src/)": "components/TopContextBar.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "All",
+    "Desktop geometry": "220\u00d736 UTC; 96/116 temporal buttons",
+    "Sizing / positioning": "Flex none + margins; compact row/grid",
+    "Existing breakpoints": "1243/600",
+    "Audit risks before implementation": "UTC clipping; transitions without state reset"
+  },
+  {
+    "Component": "OperationalSummary identity / position cells",
+    "Source (frontend/src/)": "components/OperationalSummary.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current Earth",
+    "Desktop geometry": "5 equal columns; 80px high",
+    "Sizing / positioning": "Grid minmax(0,1fr)",
+    "Existing breakpoints": "740 two-row 120px",
+    "Audit risks before implementation": "Long unavailable values and low-height layouts"
+  },
+  {
+    "Component": "Source quality disclosure and evidence panel",
+    "Source (frontend/src/)": "components/OrbitalStatus.tsx",
+    "Vs main": "Modified",
+    "Parent / visible states": "GP/OEM loading/error/stale/quality; expanded provenance",
+    "Desktop geometry": "Summary 38px; evidence max420px",
+    "Sizing / positioning": "Grid-scene align end; bounded internal scroll",
+    "Existing breakpoints": "1243/600",
+    "Audit risks before implementation": "Evidence collides with tools/Historical bar"
+  },
+  {
+    "Component": "DataLine / provenance / source notices / model note",
+    "Source (frontend/src/)": "components/OrbitalStatus.tsx + styles.css",
+    "Vs main": "Modified by parent",
+    "Parent / visible states": "Source evidence",
+    "Desktop geometry": "105px key + remaining value",
+    "Sizing / positioning": "Flex; wrapping values",
+    "Existing breakpoints": "Inherited compact evidence",
+    "Audit risks before implementation": "Long timestamps/errors within scroll owner"
+  },
+  {
+    "Component": "TrajectoryLegend / GP and OEM swatches",
+    "Source (frontend/src/)": "components/TrajectoryLegend.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Earth Current/Historical",
+    "Desktop geometry": "x24 bottom28; 24\u00d72 swatch",
+    "Sizing / positioning": "Absolute scene overlay",
+    "Existing breakpoints": "1243/600/379; coarse pointer",
+    "Audit risks before implementation": "Tool collisions in narrow width/height"
+  },
+  {
+    "Component": "SceneControls zoom / reset",
+    "Source (frontend/src/)": "components/SceneControls.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Earth Current/Historical",
+    "Desktop geometry": "228\u00d736 at 1188,760",
+    "Sizing / positioning": "Absolute flex",
+    "Existing breakpoints": "1243/379/coarse",
+    "Audit risks before implementation": "44px targets, exposed scene pointers"
+  },
+  {
+    "Component": "HistoricalTimeBar / UTC and step controls",
+    "Source (frontend/src/)": "replay/HistoricalTimeBar.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Historical Earth pending/accepted",
+    "Desktop geometry": "760\u00d752 at 340,88",
+    "Sizing / positioning": "Scene grid alignment, flex then two rows",
+    "Existing breakpoints": "1243/600/379",
+    "Audit risks before implementation": "320px timestamp fit; limited scene height"
+  },
+  {
+    "Component": "HistoricalOrbitalSummary / evidence / no-data",
+    "Source (frontend/src/)": "replay/HistoricalOrbitalSummary.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Historical Earth/Inspection",
+    "Desktop geometry": "Same 80px bottom summary",
+    "Sizing / positioning": "Shared grid/status disclosure",
+    "Existing breakpoints": "Inherited 740/600",
+    "Audit risks before implementation": "Pending/error/no-data must retain controls"
+  },
+  {
+    "Component": "HistoricalCalendar popover / month / close",
+    "Source (frontend/src/)": "replay/HistoricalCalendar.tsx + HistoricalCalendar.css",
+    "Vs main": "Added",
+    "Parent / visible states": "Historical UTC editor",
+    "Desktop geometry": "280\u00d7334 below date bar",
+    "Sizing / positioning": "Portal; clamped inline placement",
+    "Existing breakpoints": "600; 379 + height650",
+    "Audit risks before implementation": "Resize while open; header overlap on short landscape"
+  },
+  {
+    "Component": "Calendar weekday / date grid / selected-disabled states",
+    "Source (frontend/src/)": "replay/HistoricalCalendar.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Calendar",
+    "Desktop geometry": "7 columns; day28px",
+    "Sizing / positioning": "Grid within flex weeks",
+    "Existing breakpoints": "600 day32; tiny stress day28",
+    "Audit risks before implementation": "Touch targets and scrollable weeks"
+  },
+  {
+    "Component": "Calendar UTC selects / chevrons / validation / actions",
+    "Source (frontend/src/)": "replay/HistoricalCalendar.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Calendar draft/invalid",
+    "Desktop geometry": "3 fields28px; actions28px",
+    "Sizing / positioning": "Flex min-width0",
+    "Existing breakpoints": "600 fields36/actions44; stress28",
+    "Audit risks before implementation": "Tiny stress touch controls; no semantic change"
+  },
+  {
+    "Component": "InspectionStrip / identity / selected module / model status",
+    "Source (frontend/src/)": "components/InspectionStrip.tsx + .css",
+    "Vs main": "Added",
+    "Parent / visible states": "Entering/stable/exiting Inspection",
+    "Desktop geometry": "5 columns;80px at y820",
+    "Sizing / positioning": "Bottom overlay grid",
+    "Existing breakpoints": "1243/740; selected132px",
+    "Audit risks before implementation": "Selected long module and 320px buttons"
+  },
+  {
+    "Component": "Inspection Modules / Orbital detail toggle",
+    "Source (frontend/src/)": "components/InspectionStrip.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Inspection",
+    "Desktop geometry": "136/148\u00d736",
+    "Sizing / positioning": "Grid cell controls; disclosure",
+    "Existing breakpoints": "1243/740",
+    "Audit risks before implementation": "Multiline labels and collapsed evidence"
+  },
+  {
+    "Component": "ContextDock foundation / header-close / scroll / footer",
+    "Source (frontend/src/)": "components/ContextDock.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Module/astronaut detail",
+    "Desktop geometry": "336px; 89px header",
+    "Sizing / positioning": "Column flex; bounded content",
+    "Existing breakpoints": "720 foundation; feature rules",
+    "Audit risks before implementation": "Header/footer consume small available height"
+  },
+  {
+    "Component": "ModuleInfo dock / identity and technical content",
+    "Source (frontend/src/)": "components/ModuleInfo.tsx + .css",
+    "Vs main": "Modified + added CSS",
+    "Parent / visible states": "Mapped module Current/Historical",
+    "Desktop geometry": "336\u00d7708 at1080,88",
+    "Sizing / positioning": "Scene overlay; flex content scroll",
+    "Existing breakpoints": "1243/740 width45vw; height620",
+    "Audit risks before implementation": "45vw unusable on320; preserving center/picking"
+  },
+  {
+    "Component": "Module evidence/provenance footer",
+    "Source (frontend/src/)": "components/ModuleInfo.tsx",
+    "Vs main": "Modified",
+    "Parent / visible states": "Module dock",
+    "Desktop geometry": "100px footer",
+    "Sizing / positioning": "Flex footer; links",
+    "Existing breakpoints": "1243/740",
+    "Audit risks before implementation": "Long label wrap and reachable footer"
+  },
+  {
+    "Component": "Crew workspace host / temporal group",
+    "Source (frontend/src/)": "crew/CurrentCrewWorkspace.tsx + .css",
+    "Vs main": "Added",
+    "Parent / visible states": "Current/Historical Crew",
+    "Desktop geometry": "1392\u00d7788 at24,88",
+    "Sizing / positioning": "Grid spans scene+operations; margins; opacity only",
+    "Existing breakpoints": "1243/740/coarse",
+    "Audit risks before implementation": "Short-height header and content scroll"
+  },
+  {
+    "Component": "CurrentCrewPanel / header / refresh-close / loading-error",
+    "Source (frontend/src/)": "crew/CurrentCrewPanel.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Crew",
+    "Desktop geometry": "Header min51px",
+    "Sizing / positioning": "Column flex; header fixed; content scroll",
+    "Existing breakpoints": "1243/740",
+    "Audit risks before implementation": "Long mission/name header plus two actions"
+  },
+  {
+    "Component": "Crew roster summary / counts / assessment",
+    "Source (frontend/src/)": "crew/CurrentCrewRoster.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current/Historical Crew",
+    "Desktop geometry": "280/280/300/remainder tracks",
+    "Sizing / positioning": "Desktop fixed columns; compact equal grids",
+    "Existing breakpoints": "1399/1243/740; containers983/700",
+    "Audit risks before implementation": "Assessment intrinsic width, partial/unavailable counts"
+  },
+  {
+    "Component": "Crew roster columns / rows / role-mission-agency-presence",
+    "Source (frontend/src/)": "crew/CurrentCrewRoster.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current/Historical Crew",
+    "Desktop geometry": "40px portrait;62.56/65.56px min rows",
+    "Sizing / positioning": "6-track grid; variable row count",
+    "Existing breakpoints": "1243/740; container700",
+    "Audit risks before implementation": "Long names, many rows, container reflow"
+  },
+  {
+    "Component": "Crew quality / reports / source evidence",
+    "Source (frontend/src/)": "crew/CrewSummary.tsx",
+    "Vs main": "Modified",
+    "Parent / visible states": "Expanded Crew provenance",
+    "Desktop geometry": "Inline summary + disclosures",
+    "Sizing / positioning": "Flow content inside roster scroll",
+    "Existing breakpoints": "1243/740",
+    "Audit risks before implementation": "Expanded evidence and timestamps"
+  },
+  {
+    "Component": "CrewPortrait / initials / loading-broken image",
+    "Source (frontend/src/)": "crew/CrewPortrait.tsx",
+    "Vs main": "Parent restyled",
+    "Parent / visible states": "Roster/Current-Historical profile",
+    "Desktop geometry": "40px roster /54px dock",
+    "Sizing / positioning": "Fixed square object-fit cover",
+    "Existing breakpoints": "Feature local",
+    "Audit risks before implementation": "No distortion; rights and missing fallback"
+  },
+  {
+    "Component": "Crew astronaut split layout / selection state",
+    "Source (frontend/src/)": "crew/CurrentCrewPanel.tsx + CrewAstronautDock.css",
+    "Vs main": "Added",
+    "Parent / visible states": "Current profile selected",
+    "Desktop geometry": "1032px roster +24gap+336 dock",
+    "Sizing / positioning": "Width calc; roster container query",
+    "Existing breakpoints": "1399/1243/740; container983/700",
+    "Audit risks before implementation": "Resize selection/scroll ownership; no remount"
+  },
+  {
+    "Component": "CrewAstronautDock / heading / member selector",
+    "Source (frontend/src/)": "crew/CrewAstronautDock.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current detail",
+    "Desktop geometry": "336\u00d7788 at1080,88",
+    "Sizing / positioning": "Absolute dock in crew host",
+    "Existing breakpoints": "1243/740/height620",
+    "Audit risks before implementation": "Long heading/header consumes body on short view"
+  },
+  {
+    "Component": "Astronaut presence / assignment / mission / technical fields",
+    "Source (frontend/src/)": "crew/CrewAstronautDock.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current profile",
+    "Desktop geometry": "124px key + remaining value",
+    "Sizing / positioning": "Grid; internal profile-body scroll",
+    "Existing breakpoints": "740 padding12",
+    "Audit risks before implementation": "Long career timestamps; supporting data wrapping"
+  },
+  {
+    "Component": "Astronaut biography / profile errors / unavailable state",
+    "Source (frontend/src/)": "crew/CrewAstronautDock.tsx",
+    "Vs main": "Added",
+    "Parent / visible states": "Current profile loaded/error",
+    "Desktop geometry": "Flow sections gap16",
+    "Sizing / positioning": "Internal body scroll; biography details",
+    "Existing breakpoints": "740/height620",
+    "Audit risks before implementation": "Long biographies and Retry hit target"
+  },
+  {
+    "Component": "Astronaut source footer / rights / evidence",
+    "Source (frontend/src/)": "crew/CrewAstronautDock.tsx + CrewMemberDetail.tsx",
+    "Vs main": "Added / modified shared helpers",
+    "Parent / visible states": "Current profile",
+    "Desktop geometry": "Footer min100px; disclosures",
+    "Sizing / positioning": "Flex footer; body evidence scroll",
+    "Existing breakpoints": "1243/740/height620",
+    "Audit risks before implementation": "Footer reachable, no nested scroll trap"
+  },
+  {
+    "Component": "Historical CrewPanel / header / detail navigation",
+    "Source (frontend/src/)": "crew/CrewPanel.tsx + replay/ReplayCrewPanel.tsx",
+    "Vs main": "Modified baseline working edits",
+    "Parent / visible states": "Historical Crew / detail",
+    "Desktop geometry": "Same crew workspace frame",
+    "Sizing / positioning": "Shared roster; detail within scroll",
+    "Existing breakpoints": "Shared crew breakpoints",
+    "Audit risks before implementation": "Back/close accessible; historical metadata retained"
+  },
+  {
+    "Component": "Historical CrewProfile / biography / career / sources",
+    "Source (frontend/src/)": "crew/CrewMemberDetail.tsx",
+    "Vs main": "Modified",
+    "Parent / visible states": "Historical person detail",
+    "Desktop geometry": "Flow profile within roster",
+    "Sizing / positioning": "Inherited bounded crew content",
+    "Existing breakpoints": "Shared crew compact rules",
+    "Audit risks before implementation": "Long content, latest-metadata label distinct"
+  },
+  {
+    "Component": "CrewTemporalNotice / pending/error/retry",
+    "Source (frontend/src/)": "crew/CrewTemporalNotice.tsx",
+    "Vs main": "Pre-existing untracked",
+    "Parent / visible states": "Crew pending handoff/seek failure",
+    "Desktop geometry": "Flow in shared panel",
+    "Sizing / positioning": "Wrapping flow content",
+    "Existing breakpoints": "Inherited compact layout",
+    "Audit risks before implementation": "Retry reachable; accepted context preserved"
+  },
+  {
+    "Component": "ReplayControls compatibility component",
+    "Source (frontend/src/)": "replay/ReplayControls.tsx",
+    "Vs main": "Modified; not reachable from App",
+    "Parent / visible states": "Isolated compatibility tests only",
+    "Desktop geometry": "Legacy UTC control",
+    "Sizing / positioning": "Legacy flex-wrap",
+    "Existing breakpoints": "700",
+    "Audit risks before implementation": "Document unreachable; actual controls HistoricalTimeBar"
+  },
+  {
+    "Component": "Overlay presence / reduced motion / workspace dissolve",
+    "Source (frontend/src/)": "layout/useOverlayPresence.ts + useReducedMotion.ts + useWorkspaceDissolve.ts",
+    "Vs main": "Added",
+    "Parent / visible states": "Opening/closing/handoff",
+    "Desktop geometry": "120\u2013280ms native UI opacity/translation",
+    "Sizing / positioning": "Hooks; no responsive state machine",
+    "Existing breakpoints": "reduced-motion",
+    "Audit risks before implementation": "Resizing must not reset semantic state"
+  },
+  {
+    "Component": "Module feature selection/hover presentation",
+    "Source (frontend/src/)": "cesium/inspectionFeatureState.ts + EarthView.tsx",
+    "Vs main": "Added / modified",
+    "Parent / visible states": "Stable Inspection valid module",
+    "Desktop geometry": "Accepted native model + feature colors",
+    "Sizing / positioning": "Existing pick/hover and scene refs",
+    "Existing breakpoints": "Existing viewport lens",
+    "Audit risks before implementation": "No CSS input blocker / no camera change"
+  },
+  {
+    "Component": "Star time presentation helper",
+    "Source (frontend/src/)": "cesium/starBackground.ts + EarthView.tsx",
+    "Vs main": "Added / modified",
+    "Parent / visible states": "All scene contexts",
+    "Desktop geometry": "Existing native SkyBox",
+    "Sizing / positioning": "Coherent scene time",
+    "Existing breakpoints": "None",
+    "Audit risks before implementation": "Graphics freeze: no milestone edits"
+  },
+  {
+    "Component": "Fonts and interface assets",
+    "Source (frontend/src/)": "assets/fonts/* + assets/interface/*.svg",
+    "Vs main": "Added",
+    "Parent / visible states": "All",
+    "Desktop geometry": "Inter / Roboto Mono; calendar/source/crew glyphs",
+    "Sizing / positioning": "Local assets, intrinsic optical sizes",
+    "Existing breakpoints": "Control containers",
+    "Audit risks before implementation": "Freeze asset bytes; no stretched icons"
+  },
+  {
+    "Component": "Native attribution dialog / close / links",
+    "Source (frontend/src/)": "main.tsx + Cesium Widgets CSS",
+    "Vs main": "Existing reached by restyled chrome",
+    "Parent / visible states": "Data attribution",
+    "Desktop geometry": "Native fixed centered overlay",
+    "Sizing / positioning": "Native bounded lightbox",
+    "Existing breakpoints": "Native narrow styles",
+    "Audit risks before implementation": "Verify 320/landscape scroll and close accessibility"
+  }
+]

@@ -1,5 +1,9 @@
 # Crew effective-time reconstruction
 
+## Restyled responsive presentation — 2026-10-08
+
+Historical Crew shares the restyled workspace and roster layout with Current. Pending/failed requests keep the accepted temporal context and show an explicit notice with real retry; no Current fallback is presented as historical data. Member detail stays within the bounded Crew content owner, with Back/Close reachable on compact and short-height screens. The single global Historical UTC editor bounds its date/time scroll body to the scene row and leaves Close/Cancel/Apply outside that scroll owner. Its draft, coverage validation and accepted-UTC semantics are unchanged. [Responsive inventory and real-data/TEST-ONLY QA distinction](../frontend/ui-restyling-responsive/README.md).
+
 Structured LL2 snapshots establish assignments and Expedition context only from a retained successful capture onwards. Expedition start dates do not establish prior presence or prior observations. Select the latest retained SUCCESS/NO_ACTIVE observation captured at or before T, within the configured primary applicability window (default six hours). A new failure does not create a historical operational fact. Repeated successful capture of an unchanged body can support a new observation interval. A→B→A selection follows capture order; profile enrichment follows the latest successful capture, including reused bodies.
 
 Filter each selected assignment by supplied validity: validFrom inclusive, validUntil exclusive. Unknown personal validity stays unknown; Expedition dates are not substituted. Explicit NO_ACTIVE clears older assignment context; absence of structured support leaves Expedition/assignment fields unavailable.

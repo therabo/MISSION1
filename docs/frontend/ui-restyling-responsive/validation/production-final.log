@@ -1,0 +1,32 @@
+earth-gp: 20/20 geometry PASS
+earth-gp: continuity 113/113
+earth-gp-provenance: 20/20 geometry PASS
+earth-gp-provenance: continuity 113/113
+earth-oem: 20/20 geometry PASS
+earth-oem-provenance: 20/20 geometry PASS
+crew: 20/20 geometry PASS
+crew: continuity 113/113
+crew-evidence: 20/20 geometry PASS
+crew-detail: 20/20 geometry PASS
+crew-detail: continuity 113/113
+crew-detail-evidence: 20/20 geometry PASS
+historical: 20/20 geometry PASS
+historical: continuity 113/113
+historical-calendar: 20/20 geometry PASS
+historical-calendar: continuity 113/113
+historical-crew: 20/20 geometry PASS
+historical-crew: continuity 113/113
+historical-crew-evidence: 20/20 geometry PASS
+historical-crew-detail: 20/20 geometry PASS
+historical-crew-detail: continuity 113/113
+historical-inspection: 20/20 geometry PASS
+historical-inspection-provenance: 20/20 geometry PASS
+historical-module: 20/20 geometry PASS
+historical-module: continuity 113/113
+inspection: 20/20 geometry PASS
+inspection: continuity 113/113
+inspection-provenance: 20/20 geometry PASS
+module: 20/20 geometry PASS
+module: continuity 113/113
+attribution: 20/20 geometry PASS
+{"states":20,"captures":400,"failed":0,"continuityFailed":0,"errors":0}

@@ -1,5 +1,9 @@
 # Earth illumination and imagery
 
+## Restyled responsive overlays — 2026-10-08
+
+The redesigned shell uses `100dvh`; the Cesium canvas still fills the entire shell. Context, summary, evidence, Crew and Historical controls are overlays with their own bounded content. The calendar now derives its vertical space from the actual scene row, preserving navigation/summary on short screens. Compact native attribution is above chrome and has a bounded scrolling lightbox and 44px close target. No imagery, lighting, trajectory, resolution or physical camera change is involved. [Inventory and development/production responsive evidence](ui-restyling-responsive/README.md).
+
 ## Night brightness restoration — 2026-10-05
 
 Both historical Black Marble layers now use brightness **1.8**, gamma 1 and contrast 1 again. The NASA source, tile levels, dayAlpha=0/nightAlpha=1, scene-time terminator, independent progressive loading and retry/fallback improvements are unchanged. Browser WebGL antialiasing is also restored through the existing graphics policy. [Fixed night/terminator and trajectory comparisons](rendering-quality-restoration/README.md). The 1.15 presentation recorded in the dated section below is superseded.

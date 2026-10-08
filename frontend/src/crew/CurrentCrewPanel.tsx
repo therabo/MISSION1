@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useIssCrew } from '../api/useCrewResource';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useIssCrew, type CrewResource } from '../api/useCrewResource';
+import type { CurrentCrew } from './types';
 import { ContextButton } from '../components/ContextButton';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewAstronautDock } from './CrewAstronautDock';
@@ -8,6 +9,14 @@ import { CrewAstronautDock } from './CrewAstronautDock';
  * The roster resource and its scroll container survive every selection change. */
 export function CurrentCrewPanel({ onClose, interactive }: { onClose: () => void; interactive: boolean }) {
   const resource = useIssCrew();
+  return <CurrentCrewPanelView resource={resource} onClose={onClose} interactive={interactive} />;
+}
+
+/** A Crew session may retain its real Current resource during a temporal handoff.
+ * Historical never reads this resource. Selection belongs to this Current view. */
+export function CurrentCrewPanelView({ resource, onClose, interactive, notice }: {
+  resource: CrewResource<CurrentCrew>; onClose: () => void; interactive: boolean; notice?: ReactNode;
+}) {
   const [selectedCrewMemberId, setSelectedCrewMemberId] = useState<string | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const roster = useRef<HTMLElement>(null);
@@ -28,7 +37,7 @@ export function CurrentCrewPanel({ onClose, interactive }: { onClose: () => void
     }
   }, [selectedCrewMemberId, restoreRow]);
   useLayoutEffect(() => {
-    if (interactive) heading.current?.focus({ preventScroll: true });
+    if (interactive && !document.activeElement?.closest('.context-temporal')) heading.current?.focus({ preventScroll: true });
   }, [interactive]);
   useLayoutEffect(() => {
     if (selectedCrewMemberId && (!selectedMember || !interactive)) {
@@ -66,6 +75,7 @@ export function CurrentCrewPanel({ onClose, interactive }: { onClose: () => void
         </div>
       </header>
       <div className="crew-panel-content">
+        {notice}
         {resource.loading && !resource.data && <div className="crew-loading" role="status"><p>Loading crew information…</p><span /><span /><span /></div>}
         {resource.error && <div className="crew-error" role="alert"><p>{resource.error}</p>
           {resource.data && <p>Showing the previous response. Refresh failed; the displayed assessment has not been updated.</p>}

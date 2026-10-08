@@ -104,7 +104,7 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
 }
 
 /** Shared, unchanged source reports for Current and legacy Historical/detail presentation. */
-export function CrewReports({ crew }: { crew: CurrentCrew }) {
+export function CrewReports({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
   return <>
     {crew.unresolvedSubjects.length > 0 && (
         <section className="crew-unresolved" aria-label="Unresolved source reports">
@@ -124,7 +124,7 @@ export function CrewReports({ crew }: { crew: CurrentCrew }) {
                 <span>
                   {subject.applicable
                     ? 'Applicable source assertion'
-                    : 'Retained assertion · not currently applicable'}{' '}
+                    : historicalAt ? 'Retained assertion · not applicable at Historical UTC' : 'Retained assertion · not currently applicable'}{' '}
                   · {utc(subject.evidence.asOf)}
                 </span>
               </li>
@@ -135,13 +135,12 @@ export function CrewReports({ crew }: { crew: CurrentCrew }) {
   </>;
 }
 
-export function CrewSources({ crew }: { crew: CurrentCrew }) {
+export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
   return (
     <details className="crew-sources">
         <summary>Data sources &amp; freshness</summary>
         <p>
-          Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time.
-          Refresh to reassess.
+          {historicalAt ? <>Historical assessment at {utc(historicalAt)}. Source fetch times describe retained collection history.</> : <>Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time. Refresh to reassess.</>}
         </p>
         <p>
           {crew.counts.structuredAssignments ?? 'Unavailable'} structured assignments · {crew.members.length}{' '}

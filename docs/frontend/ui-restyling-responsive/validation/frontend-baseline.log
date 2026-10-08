@@ -1,0 +1,423 @@
+
+> mission1-earth-view@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /Users/daniel/Desktop/MISSION1/frontend
+
+node:internal/modules/esm/get_format:189
+  throw new ERR_UNKNOWN_FILE_EXTENSION(ext, filepath);
+        ^
+
+TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /Users/daniel/Desktop/MISSION1/frontend/src/replay/calendarDraft.ts
+    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:189:9)
+    at defaultGetFormat (node:internal/modules/esm/get_format:232:36)
+    at defaultLoad (node:internal/modules/esm/load:145:22)
+    at async ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:543:45) {
+  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+}
+
+Node.js v20.20.2
+ ❯ src/replay/calendarDraft.test.ts (32 tests | 1 failed) 63ms
+   ❯ UTC-only calendar draft validation (32)
+     × produces identical UTC values in multiple client timezones 53ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/replay/calendarDraft.test.ts > UTC-only calendar draft validation > produces identical UTC values in multiple client timezones
+Error: Command failed: /opt/homebrew/Cellar/node@20/20.20.2/bin/node --input-type=module -e import {calendarDraftFromUtc,calendarDraftUtc,editCalendarDraft} from './src/replay/calendarDraft.ts'; console.log(calendarDraftUtc(editCalendarDraft(calendarDraftFromUtc('2026-10-05T11:38:41.123Z'),{day:4,hour:'03',minute:'07',second:'09'})));
+node:internal/modules/esm/get_format:189
+  throw new ERR_UNKNOWN_FILE_EXTENSION(ext, filepath);
+        ^
+
+TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /Users/daniel/Desktop/MISSION1/frontend/src/replay/calendarDraft.ts
+    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:189:9)
+    at defaultGetFormat (node:internal/modules/esm/get_format:232:36)
+    at defaultLoad (node:internal/modules/esm/load:145:22)
+    at async ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:543:45) {
+  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+}
+
+Node.js v20.20.2
+
+ ❯ src/replay/calendarDraft.test.ts:43:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 19 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/crew/CurrentAstronautSelection.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/AppInspection.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/AppCrewHistorical.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/HistoricalCalendar.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/AppHistorical.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/AppCalendar.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/HistoricalCrew.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/crew/CurrentCrewWorkspace.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/AppUi.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/crew/CrewPanel.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/components/ModuleDock.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/AppReplay.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/layout/useEarthWorkspace.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/components/ContextDock.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/HistoricalTimeBar.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/components/TrajectorySelectorInteraction.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/ReplayUi.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/useMissionReplay.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Failed to start forks worker for test files /Users/daniel/Desktop/MISSION1/frontend/src/replay/useTemporalPresentation.test.tsx.
+ ❯ node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:94
+ ❯ processTicksAndRejections node:internal/process/task_queues:95:5
+ ❯ Pool.schedule node_modules/vitest/dist/chunks/index.C-uw7tH9.js:11466:5
+
+Caused by: TypeError: webidl.util.markAsUncloneable is not a function
+ ❯ new CacheStorage node_modules/undici/lib/web/cache/cachestorage.js:20:17
+ ❯ Object.<anonymous> node_modules/undici/index.js:179:25
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+ ❯ Module._extensions..js node:internal/modules/cjs/loader:1623:10
+ ❯ Module.load node:internal/modules/cjs/loader:1266:32
+ ❯ Module._load node:internal/modules/cjs/loader:1091:12
+ ❯ Module.require node:internal/modules/cjs/loader:1289:19
+ ❯ require node:internal/modules/helpers:182:18
+ ❯ Object.<anonymous> node_modules/jsdom/lib/api.js:12:33
+ ❯ Module._compile node:internal/modules/cjs/loader:1521:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 38 passed (39)
+      Tests  1 failed | 447 passed (448)
+     Errors  19 errors
+   Start at  13:43:40
+   Duration  7.41s (import 72%, tests 22%, transform 6%, worker 1%)
+
+    Isolate  39 workers spawned · ~130ms startup each (spawn + environment, per file)
+             at least ~595ms faster with isolate: false — reuses workers across files instead of one per file

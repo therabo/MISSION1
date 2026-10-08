@@ -1,4 +1,5 @@
 .crew-workspace-host { grid-area: 2 / 1 / 4 / -1; position: relative; min-width: 0; min-height: 0; margin: 24px; z-index: 6; pointer-events: none; }
+.crew-workspace-group { width: 100%; height: 100%; min-width: 0; min-height: 0; }
 .crew-workspace-host[data-state="exiting"], .crew-workspace-host[data-state="exiting"] .crew-panel { pointer-events: none; }
 .crew-panel.crew-workspace { position: relative; inset: auto; width: 100%; height: 100%; max-height: none; display: flex; padding: 20px 24px; border: 0; border-radius: var(--radius-surface); background: var(--surface-crew); box-shadow: none; backdrop-filter: none; color: var(--color-text-primary); font: 400 13px/19px var(--font-interface); pointer-events: auto; }
 .crew-workspace::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
@@ -46,6 +47,15 @@
 .crew-roster-chevron img { position: absolute; left: -.75px; top: -.75px; max-width: none; }
 .crew-roster-empty { padding: 16px 12px; }
 .crew-workspace .crew-loading, .crew-workspace .crew-error { flex: none; margin: 12px 0; }
+.crew-temporal-pending, .crew-historical-unavailable { flex: none; margin: 12px 0; overflow-wrap: anywhere; }
+.crew-workspace.crew-historical .crew-historical-evidence > summary { min-height: 16px; font: 400 11px/16px var(--font-interface); }
+.crew-historical-evidence { overflow-wrap: anywhere; }
+.crew-workspace.crew-historical .crew-roster-columns { height: 36px; padding-top: 12px; }
+.crew-panel.crew-workspace.crew-historical .crew-roster-rows { min-height: calc(var(--crew-row-count) * 65.55556px); }
+.crew-historical .crew-roster-rows > li, .crew-panel.crew-workspace.crew-historical .crew-roster-row { min-height: 65.55556px; }
+.crew-historical-detail { flex: none; overflow-wrap: anywhere; padding-top: 12px; }
+.crew-historical-detail > h3 { margin: 12px 0; }
+.crew-historical-detail .crew-profile { padding-bottom: 16px; }
 .earth-current.has-crew-panel .earth-scene-ui, .earth-current.has-crew-panel .operational-summary, .earth-current.has-crew-panel .historical-time-bar, .earth-current.has-crew-panel .orbital-status-evidence { visibility: hidden; pointer-events: none; }
 .earth-current.has-crew-panel .cesium-viewer-bottom { bottom: 2px !important; }
 @media (max-width: 1399px) {
@@ -57,6 +67,7 @@
   .crew-panel.crew-workspace .crew-header-actions button { height: 44px; min-height: 44px; }
   .crew-panel.crew-workspace .crew-header-actions button:last-child { width: 44px; }
   .crew-workspace .crew-assessment-evidence > summary { min-height: 44px; display: flex; flex-wrap: wrap; align-items: center; }
+  .crew-workspace.crew-historical .crew-historical-evidence > summary { min-height: 44px; font-size: 12px; line-height: 17px; }
   .crew-workspace .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
   .crew-workspace .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
   .crew-panel.crew-workspace .crew-roster-row { grid-template-columns: 40px minmax(0, 1fr) 110px 64px 180px 4px; gap: 12px; }
@@ -67,10 +78,12 @@
   .crew-workspace .crew-panel-header { gap: 8px; }
   .crew-workspace .crew-roster-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-bottom: 12px; }
   .crew-workspace .crew-assessment { grid-column: auto; }
+  .crew-workspace .crew-assessment:has(.crew-historical-evidence[open]) { grid-column: 1 / -1; }
   .crew-workspace .crew-roster-summary dt { font-size: 12px; }
   .crew-workspace .crew-assessment dd { font-size: 12px; line-height: 18px; }
   .crew-workspace .crew-roster-columns { display: none; }
   .crew-panel.crew-workspace .crew-roster-rows { flex: none; min-height: 0; }
+  .crew-panel.crew-workspace.crew-historical .crew-roster-rows { min-height: 0; }
   .crew-roster-rows > li { flex: none; min-height: 0; }
   .crew-panel.crew-workspace .crew-roster-row { grid-template-columns: 40px minmax(0, 1fr) 4px; grid-template-areas: "portrait identity chevron" ". mission ." ". agency ." ". presence ."; gap: 6px 12px; padding: 12px 4px; }
   .crew-roster-row > .crew-portrait { grid-area: portrait; align-self: start; }

@@ -308,7 +308,7 @@ dl { margin: 8px 0 0; }
 }
 
 /* S1, 1440 × 900: full scene with independent context and operational surfaces. */
-.earth-current { min-height: 0; background: var(--color-background); color: var(--color-text-primary); font-family: var(--font-interface); font-optical-sizing: none; }
+.earth-current { height: 100dvh; min-height: 0; background: var(--color-background); color: var(--color-text-primary); font-family: var(--font-interface); font-optical-sizing: none; }
 .earth-current-ui { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-areas: "context" "scene" "operations"; grid-template-rows: auto minmax(0, 1fr) var(--operational-height); pointer-events: none; }
 .earth-current-ui > .top-context-bar { grid-area: context; pointer-events: auto; }
 .earth-current-ui > .operational-summary { grid-area: operations; pointer-events: auto; }
@@ -490,6 +490,15 @@ dl { margin: 8px 0 0; }
   .earth-current .cesium-credit-expand-link { display: inline-flex !important; align-items: center; min-height: 44px; padding: 0 8px; font-size: 12px; }
   .trajectory-legend { bottom: 68px; }
   .earth-scene-controls { bottom: 64px; }
+}
+/* Cesium's native mobile attribution used z-index:1 under our chrome. This
+   modal alone owns the foreground; its source links and close action remain
+   reachable without moving the full-screen scene or changing desktop styling. */
+@media (max-width: 1243px), (max-height: 620px) {
+  .earth-current .cesium-credit-lightbox-overlay { z-index: 10; }
+  .earth-current .cesium-credit-lightbox:is(.cesium-credit-lightbox-mobile, .cesium-credit-lightbox-expanded) { width: min(470px, calc(100% - 24px)); height: auto; min-height: 0; max-height: calc(100dvh - 24px); margin: 12px auto !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .earth-current .cesium-credit-lightbox-title { padding-right: 64px; min-height: 52px; }
+  .earth-current .cesium-credit-lightbox-close { top: 4px; right: 4px; width: 44px; height: 44px; display: grid; place-items: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .context-button, .context-source select { transition-duration: var(--motion-fast); transition-timing-function: linear; }

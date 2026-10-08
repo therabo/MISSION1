@@ -6,8 +6,8 @@ import { useMissionReplay } from "./useMissionReplay";
 import { replayFixture } from "../test/replayFixture";
 let root: Root, node: HTMLDivElement, fetchMock: ReturnType<typeof vi.fn>;
 const at = "2026-10-03T12:00:00Z";
-function Harness({ enabled, time }: { enabled: boolean; time: string }) {
-  const r = useMissionReplay(enabled, time);
+function Harness({ enabled, time, retry = 0 }: { enabled: boolean; time: string; retry?: number }) {
+  const r = useMissionReplay(enabled, time, retry);
   return (
     <div>
       {r.loading ? "loading" : (r.error ?? r.data?.requestedAt ?? "empty")}
@@ -106,4 +106,24 @@ it("exposes request failures without retaining a historical answer at a differen
   await render(true, "2026-10-03T10:00:00Z");
   await tick();
   expect(node.textContent).toBe("Replay unavailable");
+});
+
+it('explicit retry reads the same UTC through the existing abort/debounce path without polling', async () => {
+  await render(); await tick();
+  await act(async () => root.render(<Harness enabled time={at} retry={1} />));
+  expect(node.textContent).toBe('loading'); await tick(); expect(node.textContent).toBe(at);
+  expect(fetchMock.mock.calls.filter(([url]) => url.includes('?at='))).toHaveLength(2);
+  await tick(600000); expect(fetchMock).toHaveBeenCalledTimes(4);
+});
+
+it('retry aborts an older in-flight read and prevents its late answer from winning', async () => {
+  const pending: { resolve: (r: Response) => void; signal: AbortSignal }[] = [];
+  fetchMock.mockImplementation((url: string, options: { signal: AbortSignal }) => url.endsWith('/coverage')
+    ? Promise.resolve(Response.json({ crew: replayFixture().crew.coverage, orbit: replayFixture().orbit.coverage, joint: replayFixture().crew.coverage, orbitGate: 'BOUNDED' }))
+    : new Promise<Response>(resolve => pending.push({ resolve, signal: options.signal })));
+  await render(); await tick();
+  await act(async () => root.render(<Harness enabled time={at} retry={1} />));
+  expect(pending[0].signal.aborted).toBe(true); await tick();
+  await act(async () => pending[0].resolve(Response.json(replayFixture()))); expect(node.textContent).toBe('loading');
+  await act(async () => pending[1].resolve(Response.json(replayFixture()))); expect(node.textContent).toBe(at);
 });
