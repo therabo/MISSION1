@@ -1,0 +1,89 @@
+.crew-workspace-host { grid-area: 2 / 1 / 4 / -1; position: relative; min-width: 0; min-height: 0; margin: 24px; z-index: 6; pointer-events: none; }
+.crew-workspace-host[data-state="exiting"], .crew-workspace-host[data-state="exiting"] .crew-panel { pointer-events: none; }
+.crew-workspace-host .crew-panel:not(.crew-workspace) { position: fixed; pointer-events: auto; }
+.crew-panel.crew-workspace { position: relative; inset: auto; width: 100%; height: 100%; max-height: none; display: flex; padding: 20px 24px; border: 0; border-radius: var(--radius-surface); background: var(--surface-crew); box-shadow: none; backdrop-filter: none; color: var(--color-text-primary); font: 400 13px/19px var(--font-interface); pointer-events: auto; }
+.crew-workspace::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
+.crew-workspace .crew-panel-header { flex: none; min-height: 51px; gap: 16px; padding: 0; }
+.crew-workspace .crew-panel-header > div:first-child { min-width: 0; }
+.crew-workspace .crew-panel-header h2 { margin: 0; font: 700 20px/29px var(--font-interface); letter-spacing: normal; }
+.crew-workspace .crew-mission-context { margin: 3px 0 0; font-size: 13px; line-height: 19px; color: var(--color-text-secondary); overflow-wrap: anywhere; }
+.crew-workspace .crew-header-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.crew-panel.crew-workspace .crew-header-actions button { min-height: 36px; height: 36px; width: auto; padding: 0 12px; font: 400 13px/19px var(--font-interface); border-radius: var(--radius-control); border-color: var(--color-border); background: var(--control-normal); }
+.crew-panel.crew-workspace .crew-header-actions button:last-child { width: 36px; padding: 0; font-size: 22px; }
+.crew-workspace .crew-panel-content { display: flex; flex-direction: column; flex: 1; gap: 0; padding: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; color: var(--color-text-primary); scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
+.crew-workspace :is(button, summary, a, [tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
+.crew-workspace .crew-roster-summary { flex: none; display: grid; grid-template-columns: 280px 280px 300px minmax(0, 1fr); gap: 24px; padding-top: 12px; margin: 0; border-bottom: 1px solid rgb(42 53 66 / .55); }
+.crew-workspace .crew-roster-summary > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; min-height: 58px; margin: 0; }
+.crew-workspace .crew-roster-summary dt { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
+.crew-workspace .crew-roster-summary dd { margin: 0; font: 700 22px/27px var(--font-interface); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.crew-workspace .crew-roster-summary .crew-count-unavailable { font-size: 18px; }
+.crew-workspace .crew-roster-summary small { font: 400 11px/16px var(--font-interface); color: var(--color-text-secondary); }
+.crew-workspace .crew-assessment dt { font-weight: 700; }
+.crew-workspace .crew-assessment dd { font: 400 14px/20px var(--font-numeric); }
+.crew-roster-evidence { flex: none; padding-top: 12px; padding-bottom: 8px; }
+.crew-workspace .crew-assessment-evidence > summary { min-height: 19px; padding: 0; color: var(--color-warning); font: 400 13px/19px var(--font-interface); }
+.crew-workspace .crew-assessment-evidence.is-aligned > summary { color: var(--color-success); }
+.crew-assessment-evidence > p { margin: 8px 0; }
+.crew-assessment-warning { margin: 8px 0 0; color: var(--color-warning); }
+.crew-assessment-evidence .crew-unresolved, .crew-assessment-evidence .crew-sources { margin: 12px 0; }
+.crew-workspace .crew-roster-columns { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) 140px 80px 232px; gap: 16px; padding: 0 32px 0 12px; height: 24px; color: var(--color-text-secondary); font: 700 11px/16px var(--font-interface); }
+.crew-panel.crew-workspace .crew-roster-rows { flex: 1 0 auto; min-height: calc(var(--crew-row-count) * 62.55556px); margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+.crew-roster-rows > li { display: flex; flex: 1 0 auto; min-height: 62.55556px; }
+.crew-panel.crew-workspace .crew-roster-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 140px 80px 232px 4px; gap: 16px; align-items: center; width: 100%; min-height: 62.55556px; height: auto; padding: 8px 12px; margin: 0; border: 0; border-bottom: 1px solid rgb(42 53 66 / .50); border-radius: 0; background: transparent; color: var(--color-text-primary); font-family: var(--font-interface); text-align: left; }
+.crew-panel.crew-workspace .crew-roster-row:hover { background: rgb(29 40 52 / .35); }
+.crew-panel.crew-workspace .crew-roster-row:active { background: rgb(36 61 76 / .45); }
+.crew-workspace .crew-portrait { width: 40px; height: 40px; border: 0; border-radius: 4px; background: rgb(29 40 52 / .70); color: var(--color-text-secondary); font: 700 14px/20px var(--font-interface); }
+.crew-roster-identity, .crew-roster-mission, .crew-roster-presence { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.crew-roster-identity strong { font: 700 16px/23px var(--font-interface); }
+.crew-roster-row > span { min-width: 0; overflow-wrap: anywhere; }
+.crew-roster-identity > span, .crew-roster-mission { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
+.crew-roster-agency, .crew-roster-presence { color: var(--color-text-secondary); font: 400 13px/19px var(--font-interface); }
+.crew-workspace .crew-roster-presence small { color: inherit; font: 400 11px/16px var(--font-interface); }
+.crew-roster-presence.state-confirmed_aboard { color: var(--color-success); }
+.crew-roster-presence:is(.state-stale, .state-ambiguous) { color: var(--color-warning); }
+.crew-roster-presence.state-confirmed_aboard small { color: var(--color-text-secondary); }
+.crew-roster-field-label { display: none; }
+.crew-roster-chevron { position: relative; width: 4px; height: 8px; }
+.crew-roster-chevron img { position: absolute; left: -.75px; top: -.75px; max-width: none; }
+.crew-roster-empty { padding: 16px 12px; }
+.crew-workspace .crew-loading, .crew-workspace .crew-error { flex: none; margin: 12px 0; }
+.earth-current.has-crew-panel .earth-scene-ui, .earth-current.has-crew-panel .operational-summary, .earth-current.has-crew-panel .historical-time-bar, .earth-current.has-crew-panel .orbital-status-evidence { visibility: hidden; pointer-events: none; }
+.earth-current.has-crew-panel .cesium-viewer-bottom { bottom: 2px !important; }
+@media (max-width: 1399px) {
+  .crew-workspace .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(240px, 1.5fr); gap: 16px; }
+}
+@media (max-width: 1243px) {
+  .crew-workspace-host { margin: 12px 12px 32px; }
+  .crew-panel.crew-workspace { padding: 16px; }
+  .crew-panel.crew-workspace .crew-header-actions button { height: 44px; min-height: 44px; }
+  .crew-panel.crew-workspace .crew-header-actions button:last-child { width: 44px; }
+  .crew-workspace .crew-assessment-evidence > summary { min-height: 44px; display: flex; flex-wrap: wrap; align-items: center; }
+  .crew-workspace .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
+  .crew-workspace .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
+  .crew-panel.crew-workspace .crew-roster-row { grid-template-columns: 40px minmax(0, 1fr) 110px 64px 180px 4px; gap: 12px; }
+  .crew-workspace .crew-roster-columns { grid-template-columns: minmax(0, 1fr) 110px 64px 180px; gap: 12px; padding-right: 28px; }
+}
+@media (max-width: 740px) {
+  .crew-panel.crew-workspace { padding: 12px; }
+  .crew-workspace .crew-panel-header { gap: 8px; }
+  .crew-workspace .crew-roster-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-bottom: 12px; }
+  .crew-workspace .crew-assessment { grid-column: auto; }
+  .crew-workspace .crew-roster-summary dt { font-size: 12px; }
+  .crew-workspace .crew-assessment dd { font-size: 12px; line-height: 18px; }
+  .crew-workspace .crew-roster-columns { display: none; }
+  .crew-panel.crew-workspace .crew-roster-rows { flex: none; min-height: 0; }
+  .crew-roster-rows > li { flex: none; min-height: 0; }
+  .crew-panel.crew-workspace .crew-roster-row { grid-template-columns: 40px minmax(0, 1fr) 4px; grid-template-areas: "portrait identity chevron" ". mission ." ". agency ." ". presence ."; gap: 6px 12px; padding: 12px 4px; }
+  .crew-roster-row > .crew-portrait { grid-area: portrait; align-self: start; }
+  .crew-roster-identity { grid-area: identity; }
+  .crew-roster-mission { grid-area: mission; }
+  .crew-roster-agency { grid-area: agency; }
+  .crew-roster-presence { grid-area: presence; }
+  .crew-roster-chevron { grid-area: chevron; }
+  .crew-roster-field-label { display: inline; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; }
+  .crew-roster-mission, .crew-roster-agency { display: block; }
+  .crew-roster-mission .crew-roster-field-label, .crew-roster-agency .crew-roster-field-label { margin-right: 8px; }
+  .crew-workspace .crew-mission-context { font-size: 12px; line-height: 17px; }
+  .crew-panel.crew-workspace .crew-header-actions button:first-child { padding: 0 8px; }
+}
+@media (pointer: coarse) and (max-width: 1243px) { .crew-workspace-host { margin-bottom: 56px; } }

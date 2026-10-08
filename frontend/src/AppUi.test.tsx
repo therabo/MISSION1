@@ -86,7 +86,10 @@ describe('Phase 2 App presentation wiring without a WebGL test double for domain
     const originalWindow = harness.props.window;
     await act(async () => container.querySelector('summary')!.click());
     await click('Crew');
-    expect(container.querySelector('.operational-summary')).toBeNull();
+    expect(container.querySelector('.operational-summary')).not.toBeNull();
+    expect(container.querySelector('main')?.classList.contains('has-crew-panel')).toBe(true);
+    expect(container.querySelectorAll('.top-context-bar')).toHaveLength(1);
+    expect(container.querySelector('.crew-workspace-host')).not.toBeNull();
     expect(container.textContent).toContain('Close legacy Crew');
     await click('Close legacy Crew');
     expect(container.querySelector('.operational-summary')).not.toBeNull();
@@ -171,7 +174,7 @@ describe('Phase 3 source guards and persistent application context', () => {
     expect(container.querySelector('.summary-quality')?.textContent).toBe('Good');
     expect(harness.mounts).toBe(1);
   });
-  it('keeps OEM selected through the existing Crew surface without implementing Crew changes', async () => {
+  it('keeps OEM selected through the shared Crew workspace and its return', async () => {
     harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
     await act(async () => root.render(<App />)); await choose('NASA_OEM');
     await click('Crew'); expect(harness.props.selectedSource).toBe('NASA_OEM');

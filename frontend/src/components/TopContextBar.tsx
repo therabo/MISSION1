@@ -15,17 +15,19 @@ interface Props {
   onCurrent?: () => void;
   viewMode?: ViewMode;
   onEarth?: () => void;
+  crewOpen?: boolean;
+  crewPending?: boolean;
 }
 
-export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew, historical = false, presentedHistorical = historical, onCurrent, viewMode = 'EARTH_OVERVIEW', onEarth }: Props) {
+export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew, historical = false, presentedHistorical = historical, onCurrent, viewMode = 'EARTH_OVERVIEW', onEarth, crewOpen = false, crewPending = false }: Props) {
   const date = sceneTimeMs === null ? null : new Date(sceneTimeMs).toISOString();
   const stationFocused = viewMode !== 'EARTH_OVERVIEW';
   const inspectionActive = viewMode === 'ENTERING_INSPECTION' || viewMode === 'ISS_INSPECTION';
-  const guard = stationFocused ? 'Return to Earth View to change temporal context or open Crew.' : undefined;
+  const guard = stationFocused ? 'Return to Earth View to change temporal context.' : undefined;
   return <header className="top-context-bar" aria-label="Mission context">
     <div className="context-identity" aria-hidden="true" />
     <nav className="context-spatial" aria-label="Spatial view">
-      <ContextButton selected={!inspectionActive} disabled={viewMode === 'EXITING_INSPECTION'} onClick={onEarth}
+      <ContextButton selected={!inspectionActive && !crewOpen} disabled={viewMode === 'EXITING_INSPECTION'} onClick={onEarth}
         title={viewMode === 'EXITING_INSPECTION' ? 'Returning to Earth View' : undefined}>Earth</ContextButton>
       <ContextButton selected={inspectionActive} disabled={inspectionDisabled || stationFocused} onClick={onInspect}>ISS Inspection</ContextButton>
     </nav>
@@ -40,7 +42,9 @@ export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspe
       <ContextButton selected={historical} disabled={stationFocused} title={guard} aria-describedby={guard ? 'inspection-navigation-guard' : undefined} onClick={onHistorical}>Historical</ContextButton>
     </nav>
     <span className="context-divider context-divider-crew" aria-hidden="true" />
-    <ContextButton id="crew-launcher" className="context-crew" disabled={stationFocused} title={guard} aria-describedby={guard ? 'inspection-navigation-guard' : undefined} aria-controls="crew-panel" aria-expanded={false} onClick={onCrew}>
+    <ContextButton id="crew-launcher" className="context-crew" selected={crewOpen} aria-busy={crewPending || undefined}
+      title={crewPending ? 'Returning to Earth before opening Crew. Activate again to cancel.' : stationFocused ? 'Return to Earth View and open Crew' : undefined}
+      aria-controls="crew-panel" aria-expanded={crewOpen} onClick={onCrew}>
       Crew<img className="crew-entry-chevron" src={crewChevron} alt="" />
     </ContextButton>
     {guard && <span id="inspection-navigation-guard" className="sr-only">{guard}</span>}

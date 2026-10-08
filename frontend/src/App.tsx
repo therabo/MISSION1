@@ -1,14 +1,13 @@
 import { useMissionReplay } from "./replay/useMissionReplay";
-import { ReplayControls } from "./replay/ReplayControls";
 import { ReplayCrewPanel } from "./replay/ReplayCrewPanel";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useOrbitalDelivery } from "./api/useOrbitalDelivery";
 import { useComparisonDelivery } from "./api/useComparisonDelivery";
 import { EarthView } from "./cesium/EarthView";
 import { OrbitalStatus } from "./components/OrbitalStatus";
 import { TrajectorySelector } from "./components/TrajectorySelector";
 import { ModuleInfo } from "./components/ModuleInfo";
-import { CrewPanel } from "./crew/CrewPanel";
+import { CurrentCrewWorkspace } from "./crew/CurrentCrewWorkspace";
 import { bufferStatus } from "./orbital/bufferState";
 import type {
   ModelLoadStatus,
@@ -52,17 +51,53 @@ export default function App() {
     status: ModelLoadStatus;
     loadMs: number | null;
   }>({ status: "loading", loadMs: null });
+  const [viewMode, setViewMode] = useState<ViewMode>("EARTH_OVERVIEW");
+  const viewModeRef = useRef<ViewMode>("EARTH_OVERVIEW");
   const [crewOpen, setCrewOpen] = useState(false);
-  const openCrew = useCallback(() => {
-    setSelectedModule(null);
-    setCrewOpen(true);
-  }, []);
+  const crewOpenRef = useRef(false);
+  const [crewPending, setCrewPending] = useState(false);
+  const crewPendingRef = useRef(false);
   const closeCrew = useCallback(() => {
+    crewOpenRef.current = false;
     setCrewOpen(false);
-    requestAnimationFrame(() =>
-      document.getElementById("crew-launcher")?.focus(),
-    );
+    requestAnimationFrame(() => {
+      if (!crewOpenRef.current && !crewPendingRef.current)
+        document.getElementById("crew-launcher")?.focus({ preventScroll: true });
+    });
   }, []);
+  const openCrew = useCallback(() => {
+    if (crewOpenRef.current) { closeCrew(); return; }
+    if (crewPendingRef.current) { crewPendingRef.current = false; setCrewPending(false); return; }
+    setSelectedModule(null);
+    if (viewModeRef.current !== 'EARTH_OVERVIEW') {
+      crewPendingRef.current = true; setCrewPending(true);
+      if (viewModeRef.current !== 'EXITING_INSPECTION') setOverviewRequest(value => value + 1);
+    } else {
+      crewOpenRef.current = true; setCrewOpen(true);
+    }
+  }, [closeCrew]);
+  // Only the renderer's existing completed return can consume this UI intent.
+  const onViewModeChange = useCallback((next: ViewMode) => {
+    viewModeRef.current = next; setViewMode(next);
+    // Native scene picking can enter Inspection without using the top button.
+    if (next !== 'EARTH_OVERVIEW' && crewOpenRef.current) {
+      crewOpenRef.current = false; setCrewOpen(false);
+    }
+    if (next === 'EARTH_OVERVIEW' && crewPendingRef.current) {
+      crewPendingRef.current = false; setCrewPending(false);
+      crewOpenRef.current = true; setCrewOpen(true);
+    }
+  }, []);
+  useEffect(() => {
+    if (!crewPending) return;
+    const cancel = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape' || event.defaultPrevented || event.target instanceof Element && event.target.closest('[role="dialog"],dialog')) return;
+      crewPendingRef.current = false; setCrewPending(false);
+      event.preventDefault(); event.stopPropagation();
+    };
+    document.addEventListener('keydown', cancel);
+    return () => document.removeEventListener('keydown', cancel);
+  }, [crewPending]);
   const [selectedModule, setSelectedModule] = useState<SemanticMapping | null>(
     null,
   );
@@ -75,7 +110,6 @@ export default function App() {
     setSelectedSource("PRIMARY_GP_TLE");
     setSourceNotice(reason);
   }, []);
-  const [viewMode, setViewMode] = useState<ViewMode>("EARTH_OVERVIEW");
   const temporal = useTemporalPresentation({ historical: replaying, at: replayAt, data: replay.data,
     delivery, comparison, source: selectedSource });
   const presentationHistorical = temporal.presented.kind === 'historical';
@@ -103,7 +137,7 @@ export default function App() {
   );
   const onModuleSelection = useCallback((module: SemanticMapping | null) => {
     setSelectedModule(module);
-    if (module) setCrewOpen(false);
+    if (module) { crewOpenRef.current = false; setCrewOpen(false); }
   }, []);
   const buffer = bufferStatus(currentDelivery.window, sceneTimeMs);
 
@@ -114,7 +148,6 @@ export default function App() {
   const stationFocused = inspecting || returning;
   // Earth and Inspection share anchored chrome; camera state remains authoritative.
   const earthWorkspace = !stationFocused && !crewOpen;
-  const sceneWorkspace = !crewOpen;
   const replayState = coherentHistoricalState(presentedData, presentedAt);
   const effectiveHistoricalSource = historicalSource(replayState);
   const earthSource = presentationHistorical ? effectiveHistoricalSource : currentSource;
@@ -154,7 +187,7 @@ export default function App() {
     position={position}
     crewOpen={crewOpen}
     onCrewOpen={openCrew}
-    compact={sceneWorkspace && !presentationHistorical}
+    compact={!presentationHistorical}
     detailOnly={stationFocused}
     sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null}
   />;
@@ -164,7 +197,7 @@ export default function App() {
       ref={shell}
       aria-busy={temporal.holding}
       data-view-mode={viewMode}
-      className={`app-shell ${sceneWorkspace ? "earth-current" : ""} ${replaying && earthWorkspace ? "is-historical" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
+      className={`app-shell earth-current ${replaying && earthWorkspace ? "is-historical" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
     >
       <EarthView
         workspace={workspace}
@@ -190,22 +223,30 @@ export default function App() {
         onSceneError={onSceneError}
         onModelStatus={onModelStatus}
         onModuleSelection={onModuleSelection}
-        onViewModeChange={setViewMode}
+        onViewModeChange={onViewModeChange}
         onControlsReady={onControlsReady}
       />
       <div className="top-brand">
         <img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
           width={2172} height={724} draggable={false} />
       </div>
-      {sceneWorkspace ? <div className={`earth-current-ui${stationFocused ? ' inspection-ui' : ''}`}>
+      <div className={`earth-current-ui${stationFocused ? ' inspection-ui' : ''}`}>
         <TopContextBar sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs} historical={replaying}
           presentedHistorical={presentationHistorical}
           onCurrent={() => changeTemporalMode(false)}
-          viewMode={viewMode} onEarth={stationFocused ? () => setOverviewRequest(value => value + 1) : undefined}
+          viewMode={viewMode} onEarth={() => {
+            crewPendingRef.current = false; setCrewPending(false);
+            if (crewOpenRef.current) closeCrew();
+            else if (stationFocused) setOverviewRequest(value => value + 1);
+          }}
           inspectionDisabled={temporal.holding || (presentationHistorical ? !replayState : !currentDelivery.window || buffer !== "active") || modelState.status !== "ready"}
-          onInspect={() => setInspectionRequest(value => value + 1)}
+          onInspect={() => {
+            crewPendingRef.current = false; setCrewPending(false);
+            crewOpenRef.current = false; setCrewOpen(false);
+            setInspectionRequest(value => value + 1);
+          }}
           onHistorical={() => changeTemporalMode(true)}
-          onCrew={openCrew}
+          onCrew={openCrew} crewOpen={crewOpen} crewPending={crewPending}
           source={<TrajectorySelector presentation="context" selectedSource={earthSource} viewMode={viewMode}
             automatic={replaying || presentationHistorical} emptyLabel={historicalWaiting ? 'Waiting' : 'Unavailable'}
             oemReason={presentationHistorical ? null : oemReason} sourceNotice={presentationHistorical ? null : sourceNotice} onSelect={chooseSource} />} />
@@ -216,7 +257,7 @@ export default function App() {
             onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
           </>}
         </div>
-        <HistoricalTimeBar open={replaying && !stationFocused} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
+        <HistoricalTimeBar open={replaying && !stationFocused && !crewOpen} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
           coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}
           presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
         {stationFocused && <InspectionStrip module={selectedModule} viewMode={viewMode}
@@ -225,135 +266,11 @@ export default function App() {
         <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} historical={presentationHistorical} acceptedAt={presentedAt} />
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
-      </div> : <>
-      <ReplayControls
-        enabled={replaying}
-        at={replayAt}
-        onTime={setReplayAt}
-        disabled={viewMode !== "EARTH_OVERVIEW"}
-        coverage={replay.coverage}
-        onMode={changeTemporalMode}
-      />
-      <div className="top-actions">
-        <span className="scene-chip">
-          <span className={`dot ${buffer === "active" ? "is-on" : ""}`} />
-          {replaying
-            ? "HISTORICAL EPOCH"
-            : buffer === "active"
-              ? "ORBITAL BUFFER ACTIVE"
-              : buffer === "expired"
-                ? "BUFFER EXPIRED"
-                : "AWAITING DATA"}
-        </span>
-        {returning ? (
-          <button type="button" disabled>
-            Returning to Earth View
-          </button>
-        ) : inspecting ? (
-          <button
-            type="button"
-            className="back-button"
-            onClick={() => setOverviewRequest((value) => value + 1)}
-          >
-            Back to Earth View
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setInspectionRequest((value) => value + 1)}
-            disabled={
-              viewMode !== "EARTH_OVERVIEW" ||
-              (replaying
-                ? !replay.data?.orbit.primary
-                : !delivery.window || buffer !== "active") ||
-              modelState.status !== "ready"
-            }
-          >
-            Inspect ISS
-          </button>
-        )}
+        {crewPending && <p className="sr-only" role="status">Returning to Earth View before opening Crew. Activate Crew again or press Escape to cancel.</p>}
+        {!replaying && <CurrentCrewWorkspace open={crewOpen} onClose={closeCrew} />}
       </div>
-      </>}
-      {!replaying && !sceneWorkspace && orbitalStatus}
-      {replaying && !sceneWorkspace && (
-        <aside
-          className="orbital-panel replay-orbit"
-          aria-label="Historical orbital state"
-        >
-          <span className="eyebrow">REPLAY / {replayAt}</span>
-          <h2>ISS historical state</h2>
-          {replay.loading && <p role="status">Loading historical state…</p>}
-          {replay.error && <p role="alert">{replay.error}</p>}
-          {replay.data &&
-            (replay.data.orbit.primary ? (
-              <>
-                <p>
-                  {replay.data.orbit.primary.source.kind} ·{" "}
-                  {replay.data.orbit.primary.source.classification
-                    .replaceAll("_", " ")
-                    .toLowerCase()}
-                </p>
-                <p>
-                  {replay.data.orbit.primary.latitudeDegrees.toFixed(3)}° /{" "}
-                  {replay.data.orbit.primary.longitudeDegrees.toFixed(3)}° ·{" "}
-                  {(replay.data.orbit.primary.altitudeMeters / 1000).toFixed(1)}{" "}
-                  km WGS84
-                </p>
-                <small>
-                  Source epoch:{" "}
-                  {replay.data.orbit.primary.source.epoch ??
-                    replay.data.orbit.primary.source.creationAt}{" "}
-                  · accuracy unknown
-                </small>
-              </>
-            ) : (
-              <p role="status">Orbit history unavailable at this instant.</p>
-            ))}
-          <p className="crew-note">
-            Scene paused at UTC epoch. Current orbit paths hidden.
-          </p>
-          <button
-            id="crew-launcher"
-            aria-expanded={crewOpen}
-            onClick={openCrew}
-          >
-            Crew history
-          </button>
-        </aside>
-      )}
-      {crewOpen &&
-        (replaying ? (
-          <ReplayCrewPanel
-            data={replay.data}
-            loading={replay.loading}
-            error={replay.error}
-            at={replayAt}
-            onClose={closeCrew}
-          />
-        ) : (
-          <CrewPanel onClose={closeCrew} />
-        ))}
-      {stationFocused && !sceneWorkspace && (
-        <div className="inspection-hint">
-          <strong>
-            {approaching
-              ? "Approaching moving ISS target"
-              : returning
-                ? "Returning to Earth View"
-                : "Drag to orbit the ISS · Scroll to zoom"}
-          </strong>
-          <span>Model not to scale · Attitude unavailable</span>
-        </div>
-      )}
-      {!replaying && !sceneWorkspace && (
-        <TrajectorySelector
-          selectedSource={selectedSource}
-          viewMode={viewMode}
-          oemReason={oemReason}
-          sourceNotice={sourceNotice}
-          onSelect={chooseSource}
-        />
-      )}
+      {crewOpen && replaying && <ReplayCrewPanel data={replay.data} loading={replay.loading}
+        error={replay.error} at={replayAt} onClose={closeCrew} />}
     </main>
   );
 }

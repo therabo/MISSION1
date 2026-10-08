@@ -97,7 +97,16 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
         </section>
       ))}
       {crew.members.length === 0 && <p className="crew-note">No resolved crew members are available.</p>}
-      {crew.unresolvedSubjects.length > 0 && (
+      <CrewReports crew={crew} />
+      <CrewSources crew={crew} />
+    </>
+  );
+}
+
+/** Shared, unchanged source reports for Current and legacy Historical/detail presentation. */
+export function CrewReports({ crew }: { crew: CurrentCrew }) {
+  return <>
+    {crew.unresolvedSubjects.length > 0 && (
         <section className="crew-unresolved" aria-label="Unresolved source reports">
           <h3>Additional NASA-reported crew</h3>
           <p>
@@ -123,7 +132,12 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
           </ul>
         </section>
       )}
-      <details className="crew-sources">
+  </>;
+}
+
+export function CrewSources({ crew }: { crew: CurrentCrew }) {
+  return (
+    <details className="crew-sources">
         <summary>Data sources &amp; freshness</summary>
         <p>
           Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time.
@@ -206,6 +220,5 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
           </details>
         )}
       </details>
-    </>
   );
 }
