@@ -120,6 +120,23 @@ it.each([1, 3, 24])('supports %i historical members with long names/missions, nu
 it('does not add an internal Calendar/time bar or Earth controls to S9', async () => {
   await show(); expect(node.querySelector('.historical-time-bar,.historical-calendar,.earth-scene-controls')).toBeNull();
   expect(node.querySelectorAll('.crew-workspace.crew-historical')).toHaveLength(1);
+  expect([...node.querySelectorAll('.crew-header-actions button')].map(b => b.getAttribute('aria-label'))).toEqual(['Close crew panel']);
+  expect([...node.querySelectorAll('button')].some(b => /^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
+});
+it('automatically refreshes on return to Current, retains a failed assessment and recovers through Retry', async () => {
+  const fetchMock = vi.mocked(fetch); fetchMock.mockResolvedValueOnce(Response.json(crewFixture()))
+    .mockResolvedValueOnce(new Response('', { status: 503 })).mockResolvedValueOnce(Response.json(crewFixture()));
+  await act(async () => root.render(<CurrentCrewWorkspace open onClose={close} />));
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+  await act(async () => root.render(<CurrentCrewWorkspace open onClose={close} historical={{ at: t1, data: data() }} />));
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+  await act(async () => root.render(<CurrentCrewWorkspace open onClose={close} />));
+  expect(fetchMock).toHaveBeenCalledTimes(2); expect(rows()).toHaveLength(crewFixture().members.length);
+  expect(node.textContent).toContain('displayed assessment has not been updated');
+  const retryCrew = [...node.querySelectorAll<HTMLButtonElement>('button')].find(b => b.textContent === 'Retry crew')!;
+  await act(async () => retryCrew.click());
+  expect(fetchMock).toHaveBeenCalledTimes(3); expect(node.querySelector('[role="alert"]')).toBeNull();
+  expect(document.activeElement?.id).toBe('crew-title'); expect(rows()).toHaveLength(crewFixture().members.length);
 });
 it.each([false, true])('uses one coherent 200ms state-opacity group (reduced motion %s) and clears Current selection', async reduced => {
   vi.stubGlobal('matchMedia', () => ({ matches: reduced, addEventListener() {}, removeEventListener() {} }));

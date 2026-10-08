@@ -1,0 +1,13 @@
+
+
+ RUN  v5.0.2 /Users/daniel/Desktop/MISSION1/frontend
+
+
+ Test Files  61 passed (61)
+      Tests  735 passed (735)
+   Start at  01:18:22
+   Duration  21.67s (import 46%, tests 30%, environment 20%, transform 3%)
+
+     Import  170 modules were evaluated 376 times · 17.76s total, 46% of tracked time
+             ~3.05s faster with isolate: false — shared modules are evaluated once per worker instead of once per file
+             learn more: https://vitest.dev/guide/improving-performance#test-isolation

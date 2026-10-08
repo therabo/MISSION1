@@ -8,7 +8,7 @@ const at='2026-10-05T11:38:41.123Z';
 const coverage:Coverage={status:'AVAILABLE',start:'2026-09-01T00:00:00Z',end:'2026-10-07T12:00:00Z',intervals:[{start:'2026-09-01T00:00:00Z',end:'2026-10-07T12:00:00Z'}],limitations:[]};
 let node:HTMLDivElement,root:Root,reduced=false;const apply=vi.fn(),step=vi.fn();
 beforeEach(()=>{Object.defineProperty(globalThis,'IS_REACT_ACT_ENVIRONMENT',{value:true,configurable:true});vi.useFakeTimers();vi.setSystemTime(new Date(coverage.end!));reduced=false;apply.mockClear();step.mockClear();vi.stubGlobal('matchMedia',(query:string)=>({matches:query.includes('prefers-reduced-motion')&&reduced,addEventListener(){},removeEventListener(){}}));node=document.createElement('div');document.body.append(node);root=createRoot(node);});
-afterEach(async()=>{await act(async()=>root.unmount());node.remove();vi.unstubAllGlobals();vi.useRealTimers();});
+afterEach(async()=>{await act(async()=>root.unmount());node.remove();vi.restoreAllMocks();vi.unstubAllGlobals();vi.useRealTimers();});
 async function render(open=true,time=at){await act(async()=>root.render(<HistoricalTimeBar open={open} at={time} onStep={step} onApply={apply} coverage={coverage}/>));}
 const trigger=()=>node.querySelector<HTMLButtonElement>('.historical-calendar-trigger')!;
 const panel=()=>document.querySelector<HTMLElement>('#historical-calendar')!;
@@ -18,6 +18,17 @@ async function open(){await click('.historical-calendar-trigger');}
 async function change(field:string,value:string){await act(async()=>{const e=panel().querySelector<HTMLSelectElement>(`select[aria-label="UTC ${field}"]`)!;e.value=value;e.dispatchEvent(new Event('change',{bubbles:true}));});}
 async function key(value:string,target:HTMLElement=selected()){await act(async()=>target.dispatchEvent(new KeyboardEvent('keydown',{key:value,bubbles:true,cancelable:true})));}
 async function delay(ms:number){await act(async()=>vi.advanceTimersByTimeAsync(ms));}
+
+it('centers the compact portal against the viewport while its Historical anchor is hidden',async()=>{
+  vi.stubGlobal('matchMedia',(query:string)=>({matches:query.includes('max-width: 740px'),addEventListener(){},removeEventListener(){}}));
+  vi.spyOn(document.documentElement,'clientWidth','get').mockReturnValue(430);
+  vi.spyOn(HTMLElement.prototype,'offsetWidth','get').mockImplementation(function(this:HTMLElement){return this.id==='historical-calendar'?320:0;});
+  vi.spyOn(HTMLElement.prototype,'offsetHeight','get').mockImplementation(function(this:HTMLElement){return this.id==='historical-calendar'?400:0;});
+  await render(); await open(); await click('.historical-date');
+  expect(parseFloat(panel().style.left)+panel().offsetWidth/2).toBe(430/2);
+  expect(node.querySelector('.historical-time-bar')?.getAttribute('aria-hidden')).toBe('true');
+  expect(node.querySelector('.historical-time-bar')?.hasAttribute('inert')).toBe(true);
+});
 
 it('opens only in Historical and initializes the exact target draft',async()=>{await render(false);expect(document.querySelector('#historical-calendar')).toBeNull();await render();await open();expect(trigger().getAttribute('aria-expanded')).toBe('true');expect(selected().textContent).toBe('5');expect(panel().querySelector('h2')?.textContent).toBe('October 2026');expect(panel().querySelector('select')?.value).toBe('11');expect(apply).not.toHaveBeenCalled();});
 it('opens from the existing date trigger as well as the calendar icon',async()=>{await render();await click('.historical-date');expect(panel().getAttribute('role')).toBe('dialog');expect(panel().getAttribute('aria-modal')).toBe('false');});

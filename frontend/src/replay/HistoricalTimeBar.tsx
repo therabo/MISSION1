@@ -96,7 +96,7 @@ export function HistoricalTimeBar({ open, at, onStep, pending = false, presented
       <ContextButton icon={<ControlIcon name="previous" />} aria-label="Historical back 10 minutes" onClick={() => onStep(-600)}>-10 min</ContextButton>
       <ContextButton icon={<ControlIcon name="next" />} aria-label="Historical forward 10 minutes" disabled={Date.parse(at) + 600_000 > Date.now()} onClick={() => onStep(600)}>+10 min</ContextButton>
     </div>
-    <HistoricalCalendar open={calendarOpen} draft={calendarDraft} coverage={coverage} bar={bar} trigger={trigger}
+    <HistoricalCalendar open={calendarOpen} compact={mobile} draft={calendarDraft} coverage={coverage} bar={bar} trigger={trigger}
       onDraft={setCalendarDraft} onCancel={cancelCalendar} onApply={applyCalendar} />
   </section>;
 }

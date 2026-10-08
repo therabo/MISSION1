@@ -1,0 +1,50 @@
+{
+  "url": "http://127.0.0.1:5175/",
+  "build": "development",
+  "errors": [],
+  "console": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "requests": [
+    {
+      "attempt": 1,
+      "url": "http://127.0.0.1:5175/api/iss/crew",
+      "injectedStatus": 503
+    },
+    {
+      "attempt": 2,
+      "url": "http://127.0.0.1:5175/api/iss/crew",
+      "injectedStatus": null
+    },
+    {
+      "attempt": 3,
+      "url": "http://127.0.0.1:5175/api/iss/crew",
+      "injectedStatus": 503
+    },
+    {
+      "attempt": 4,
+      "url": "http://127.0.0.1:5175/api/iss/crew",
+      "injectedStatus": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "Initial HTTP 503 \u2192 Retry \u2192 real roster; same workspace and heading focus",
+      "result": "PASS"
+    },
+    {
+      "name": "Historical uses accepted replay data without a new Current read or Refresh action",
+      "result": "PASS"
+    },
+    {
+      "name": "Historical \u2192 Current automatic API read; failed request retains the previous dated roster",
+      "result": "PASS"
+    },
+    {
+      "name": "Explicit Retry recovers the automatic-refresh failure without remounting",
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS"
+}

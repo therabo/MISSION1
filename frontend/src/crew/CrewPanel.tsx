@@ -71,11 +71,6 @@ function LegacyCrewPanel({ onClose }: { onClose: () => void }) {
         ) : (
           <span>Crew</span>
         )}
-        {!selected && (
-          <button type="button" disabled={resource.loading} onClick={resource.refresh}>
-            {resource.loading && resource.data ? 'Refreshing…' : 'Refresh'}
-          </button>
-        )}
       </div>
       <div className="crew-panel-content" key={selected?.id ?? 'list'}>
         {selected ? (

@@ -32,9 +32,9 @@ it('reports real HTTP error and retry immediately without remounting the workspa
   expect(node.querySelector('[role="alert"]')).not.toBeNull();await click('Retry crew');expect(node.querySelector('.crew-workspace')).toBe(surface);
   expect(node.querySelectorAll('[data-member-id]')).toHaveLength(9);expect(fetchMock).toHaveBeenCalledTimes(2);
 });
-it('manual refresh retains the previous assessment when the request fails',async()=>{
-  fetchMock.mockResolvedValueOnce(Response.json(crewFixture())).mockResolvedValueOnce(new Response('',{status:503}));await show();await click('Refresh');
-  expect(node.textContent).toContain('displayed assessment has not been updated');expect(node.querySelectorAll('[data-member-id]')).toHaveLength(9);
+it('offers only Close in the Crew header and no routine Refresh action',async()=>{
+  await show();expect([...node.querySelectorAll('.crew-header-actions button')].map(b=>b.getAttribute('aria-label'))).toEqual(['Close crew panel']);
+  expect([...node.querySelectorAll('button')].some(b=>/^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
 });
 it('does not add polling while Current Crew remains open',async()=>{
   await show();await act(async()=>vi.advanceTimersByTimeAsync(300000));expect(fetchMock).toHaveBeenCalledTimes(1);

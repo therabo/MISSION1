@@ -1,0 +1,15 @@
+[vite-plugin-static-copy] Copied 389 items.
+computing gzip size...
+dist/index.html                                   0.45 kB │ gzip:     0.29 kB
+dist/assets/RobotoMono-variable-DIJlMvBn.ttf    183.70 kB
+dist/assets/Inter-variable-VF2RPR_K.ttf         876.57 kB
+dist/assets/MISSION1-logo-Cobk_ZMu.png        1,067.44 kB
+dist/assets/index-CUnuutdc.css                   99.26 kB │ gzip:    18.67 kB
+dist/assets/index-CgASSUnf.js                 4,591.06 kB │ gzip: 1,254.53 kB
+
+✓ built in 43.06s
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

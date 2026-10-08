@@ -196,7 +196,7 @@ dl { margin: 8px 0 0; }
 .crew-panel-header .eyebrow { font-size: 10px; letter-spacing: .1em; }
 .crew-panel-header h2 { margin: 6px 0 0; font-size: 17px; line-height: 1.3; font-weight: 650; letter-spacing: -.025em; }
 .crew-panel-header button { flex: none; width: 44px; padding: 0; font-size: 23px; }
-.crew-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0 16px 10px; border-bottom: 1px solid var(--border); font-weight: 650; }
+.crew-toolbar { display: flex; align-items: center; padding: 0 16px 10px; border-bottom: 1px solid var(--border); font-weight: 650; }
 .crew-toolbar > button { font-size: 12px; }
 .crew-panel-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #49636c transparent; padding: 16px; }
 .crew-summary p { margin: 0; }
@@ -419,17 +419,16 @@ dl { margin: 8px 0 0; }
   .context-divider-crew { margin-right: 24px; }
 }
 @media (max-width: 1243px) {
-  .top-context-bar { height: auto; min-height: 64px; flex-wrap: wrap; gap: 8px 12px; padding: 12px 16px; }
+  /* Whole control groups share a row in DOM focus order. The independent date
+     row spans the viewport's symmetric gutters, including its visible text. */
+  .top-context-bar { height: auto; min-height: 64px; display: grid; grid-template-columns: repeat(5, auto); grid-template-areas: "identity spatial source temporal crew" "date date date date date"; justify-content: space-between; gap: 8px; padding: 12px 16px; }
   .context-identity, .context-spatial, .context-source, .context-temporal { margin: 0; }
-  .context-identity { order: 1; }
-  .context-spatial { order: 2; }
-  .context-source { order: 3; height: 44px; }
-  .context-temporal { order: 4; }
-  .context-crew { order: 5; }
-  .context-date { order: 6; width: auto; height: auto; flex-direction: row; align-items: center; gap: 8px; flex-wrap: wrap; }
-  /* Reserve the longest temporal label's intrinsic width in both modes, so
-     Current cannot briefly collapse a date row while Historical exits. */
-  .context-date > span::after { content: 'HISTORICAL DATE'; display: block; height: 0; visibility: hidden; }
+  .context-identity { grid-area: identity; }
+  .context-spatial { grid-area: spatial; }
+  .context-source { grid-area: source; height: 44px; }
+  .context-temporal { grid-area: temporal; }
+  .context-crew { grid-area: crew; }
+  .context-date { grid-area: date; width: auto; height: auto; flex-direction: row; align-items: center; justify-content: center; gap: 8px; }
   .context-divider { display: none; }
   .top-context-bar .context-button, .earth-scene-controls .context-button, .context-source-control, .context-source select { height: 44px; }
   .context-source-value { top: 13.5px; }
@@ -443,7 +442,6 @@ dl { margin: 8px 0 0; }
   .historical-time-bar button { height: 44px; }
   .historical-calendar-trigger { width: 44px; }
   .top-context-bar .context-action { gap: 0; padding: 0; }
-  .top-context-bar { column-gap: 8px; }
   .top-context-bar .context-spatial .context-button:where(:first-child) { width: 64px; }
   .top-context-bar .context-spatial .context-button:where(:last-child) { width: 116px; }
   .top-context-bar .context-temporal .context-button:where(:first-child) { width: 80px; }
@@ -490,13 +488,10 @@ dl { margin: 8px 0 0; }
   .summary-identity span { white-space: normal; }
 }
 @media (max-width: 600px) {
-  .top-context-bar { display: grid; grid-template-columns: 116px minmax(96px, 1fr) 44px; grid-template-areas: "identity spatial spatial" "source temporal crew" "date date date"; gap: 8px 12px; padding: 12px; }
-  .context-identity { grid-area: identity; }
-  .context-crew { grid-area: crew; justify-self: end; }
-  .context-spatial { grid-area: spatial; justify-self: end; }
-  .context-source { grid-area: source; }
-  .context-temporal { grid-area: temporal; justify-self: end; }
-  .context-date { grid-area: date; gap: 6px; }
+  .top-context-bar { grid-template-columns: 116px minmax(96px, 1fr) 44px; grid-template-areas: "identity spatial spatial" "source temporal crew" "date date date"; gap: 8px 12px; padding: 12px; }
+  .context-crew, .context-spatial { justify-self: end; }
+  .context-temporal { justify-self: center; }
+  .context-date { gap: 6px; }
   .context-date > span { display: none; }
   .earth-current .top-brand { top: 20px; left: 12px; }
   .trajectory-legend { left: 20px; }

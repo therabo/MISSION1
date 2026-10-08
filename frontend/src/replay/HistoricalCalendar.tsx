@@ -9,7 +9,7 @@ import type { Coverage } from './replayApi';
 import './HistoricalCalendar.css';
 
 interface Props {
-  open: boolean; draft: CalendarDraft | null; coverage: Coverage | null;
+  open: boolean; compact: boolean; draft: CalendarDraft | null; coverage: Coverage | null;
   bar: RefObject<HTMLElement | null>; trigger: RefObject<HTMLButtonElement | null>;
   onDraft: (draft: CalendarDraft) => void; onCancel: () => void; onApply: () => void;
 }
@@ -26,7 +26,7 @@ function revealCalendarControl(surface: HTMLElement, control: HTMLElement | null
   }
 }
 
-export function HistoricalCalendar({ open, draft, coverage, bar, trigger, onDraft, onCancel, onApply }: Props) {
+export function HistoricalCalendar({ open, compact, draft, coverage, bar, trigger, onDraft, onCancel, onApply }: Props) {
   const panel = useRef<HTMLElement>(null), lastDraft = useRef(draft), focusDate = useRef(false);
   if (draft) lastDraft.current = draft; // Exit pixels only; semantic draft is discarded on close.
   const visibleDraft = draft ?? lastDraft.current;
@@ -42,14 +42,19 @@ export function HistoricalCalendar({ open, draft, coverage, bar, trigger, onDraf
       // scene row, so a short viewport never pushes it over navigation/summary.
       surface.style.setProperty('--calendar-available-height', `${Math.max(0, maxY - minY)}px`);
       const width = surface.offsetWidth, height = surface.offsetHeight;
-      let x = Math.max(margin, Math.min(anchor.x, window.innerWidth - margin - width));
+      // The disclosure owner supplies the actual compact state. Portal geometry
+      // uses the viewport, never the hidden bar's retained anchor rectangle.
+      let x = compact ? (document.documentElement.clientWidth - width) / 2
+        : Math.max(margin, Math.min(anchor.x, window.innerWidth - margin - width));
       const below = bounds.bottom + 8, above = bounds.top - height - 8;
-      let y = below + height <= maxY ? below : above >= minY ? above : Math.max(minY, maxY - height);
+      let y = compact ? Math.max(minY, (minY + maxY - height) / 2)
+        : below + height <= maxY ? below : above >= minY ? above : Math.max(minY, maxY - height);
       const tools = [...document.querySelectorAll('.trajectory-legend,.earth-scene-controls')].map(e => e.getBoundingClientRect());
       const intersects = (r: DOMRect) => x < r.right && x + width > r.x && y < r.bottom && y + height > r.y;
       if (tools.some(intersects)) {
         const right = Math.max(...tools.filter(intersects).map(r => r.right)) + 8;
-        if (right + width <= window.innerWidth - margin && tools.every(r => right >= r.right || right + width <= r.x)) x = right;
+        if (compact) y = Math.max(minY, Math.min(y, ...tools.filter(intersects).map(r => r.y - height - 8)));
+        else if (right + width <= window.innerWidth - margin && tools.every(r => right >= r.right || right + width <= r.x)) x = right;
         else y = above >= minY ? above : Math.max(minY, Math.min(y, ...tools.filter(intersects).map(r => r.y - height - 8)));
       }
       surface.style.left = `${x}px`; surface.style.top = `${y}px`;
@@ -61,7 +66,7 @@ export function HistoricalCalendar({ open, draft, coverage, bar, trigger, onDraf
     const anchorBar = bar.current;
     position(); window.addEventListener('resize', resizePosition); anchorBar.addEventListener('animationend', position);
     return () => { window.removeEventListener('resize', resizePosition); anchorBar.removeEventListener('animationend', position); };
-  }, [presence.present, visibleDraft, coverage, bar, trigger]);
+  }, [presence.present, compact, visibleDraft, coverage, bar, trigger]);
   useLayoutEffect(() => {
     if (open && panel.current) {
       const day = panel.current.querySelector<HTMLButtonElement>('[tabindex="0"]');

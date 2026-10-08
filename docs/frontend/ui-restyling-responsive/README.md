@@ -1,6 +1,12 @@
 # ui/restyling responsive hardening — 2026-10-08
 
-## Latest refinement: secondary control density — 2026-10-09
+## Latest refinement: Crew actions and compact navigation balance — 2026-10-09
+
+The [Crew/calendar/navigation balance milestone](navigation-balance.md) starts at `c35416396a49aecd1b69506a83714f04976ca113`. Routine Crew Refresh is removed from both owners, with automatic API reads and genuine Retry retained. Compact Historical calendars use viewport centering from the existing disclosure state. Tablet/mobile navigation distributes whole semantic groups with CSS grid and centers visible date text on a separate full-width row. Primary representation, secondary-control density, desktop navigation, scene behavior and backend semantics remain accepted.
+
+The linked milestone records geometry, representative visual review, recovery and regression evidence. Its layout policy supersedes earlier wrapped compact navigation; the earlier milestones below remain historical records.
+
+## Secondary control density — 2026-10-09
 
 The [secondary-control milestone](secondary-controls.md) starts at `b4c0cd4098411b1fa75ca29c68f31a88dd82a049`. It retains every accepted desktop dimension and changes only compact faces and density at the existing 1243/740/379px thresholds. Zoom faces use 38/34/32px boxes inside 44/44/40px targets; all reachable close faces use 38/32/30px boxes inside the same target policy, with one local X asset shared by React and native attribution. Reset, legend and calendar action/UTC chrome follow the same hierarchy. Day targets, navigation/disclosure and scene/replay behavior remain accepted.
 

@@ -140,7 +140,7 @@ export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; histori
     <details className="crew-sources">
         <summary>Data sources &amp; freshness</summary>
         <p>
-          {historicalAt ? <>Historical assessment at {utc(historicalAt)}. Source fetch times describe retained collection history.</> : <>Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time. Refresh to reassess.</>}
+          {historicalAt ? <>Historical assessment at {utc(historicalAt)}. Source fetch times describe retained collection history.</> : <>Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time.</>}
         </p>
         <p>
           {crew.counts.structuredAssignments ?? 'Unavailable'} structured assignments · {crew.members.length}{' '}

@@ -3,8 +3,9 @@ import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { CurrentCrewWorkspace } from './CurrentCrewWorkspace';
+import { CurrentCrewPanelView } from './CurrentCrewPanel';
 import { crewFixture, personFixture } from '../test/crewFixture';
-import type { CrewMember, CrewPerson } from './types';
+import type { CrewMember, CrewPerson, CurrentCrew } from './types';
 
 let root: Root, node: HTMLDivElement, fetchMock: ReturnType<typeof vi.fn>;
 const close = vi.fn();
@@ -23,6 +24,8 @@ beforeEach(() => {
 });
 afterEach(async () => { await act(async () => root.unmount()); node.remove(); vi.useRealTimers(); vi.unstubAllGlobals(); delete (HTMLElement.prototype as any).animate; });
 const show = async (open = true) => act(async () => root.render(<CurrentCrewWorkspace open={open} onClose={close} />));
+const showPanel = async (data: CurrentCrew = crew()) => act(async () => root.render(<CurrentCrewPanelView
+  resource={{ data, loading: false, error: null, refresh: vi.fn() }} onClose={close} interactive />));
 const rows = () => [...node.querySelectorAll<HTMLButtonElement>('.crew-roster-row')];
 const dock = () => node.querySelector<HTMLElement>('.astronaut-dock')!;
 const press = async (name: string) => act(async () => [...node.querySelectorAll<HTMLButtonElement>('button')].find(b => b.getAttribute('aria-label') === name || b.textContent === name)!.click());
@@ -115,11 +118,12 @@ it('aborts A→B→C and ignores every late A/B response and error', async () =>
   await act(async () => requests[0].resolve(Response.json({ ...profile(requests[0].member), biography:'TEST ONLY — obsolete A' }))); await act(async () => requests[1].reject(new Error('TEST ONLY — obsolete error')));
   expect(dock()).toBe(same); expect(dock().textContent).toContain(c.biography); expect(dock().textContent).not.toContain('obsolete'); expect(dock().textContent).not.toContain('Loading astronaut profile'); expect(selected()).toEqual([requests[2].member.id]);
 });
-it('retains a valid UUID across roster refresh without a new profile request', async () => {
-  await show(); await select(); const id = dock().dataset.entityId, same = dock(); await press('Refresh'); expect(selected()).toEqual([id]); expect(dock()).toBe(same); expect(fetchMock.mock.calls.filter(c => c[0] === `/api/iss/crew/${id}`)).toHaveLength(1);
+it('retains a valid UUID when the supplied roster updates without a new profile request', async () => {
+  await showPanel(); await select(); const id = dock().dataset.entityId, same = dock(); const changed = crew(); changed.members.pop();
+  await showPanel(changed); expect(rows()).toHaveLength(changed.members.length); expect(selected()).toEqual([id]); expect(dock()).toBe(same); expect(fetchMock.mock.calls.filter(c => c[0] === `/api/iss/crew/${id}`)).toHaveLength(1);
 });
-it('clears a disappeared UUID on refreshed roster and restores stable Crew focus', async () => {
-  await show(); await select(); const id = dock().dataset.entityId; const changed = crew(); changed.members = changed.members.filter(m => m.id !== id); fetchMock.mockResolvedValueOnce(Response.json(changed)); await press('Refresh');
+it('clears a disappeared UUID when the supplied roster updates and restores stable Crew focus', async () => {
+  await showPanel(); await select(); const id = dock().dataset.entityId; const changed = crew(); changed.members = changed.members.filter(m => m.id !== id); await showPanel(changed);
   expect(selected()).toEqual([]); expect(dock().hasAttribute('inert')).toBe(true); expect(document.activeElement?.id).toBe('crew-title'); await settleExit(); expect(dock()).toBeNull();
 });
 it('Escape consumes one level per event, from detail or exposed scene', async () => {

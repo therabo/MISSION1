@@ -39,6 +39,25 @@ function geometry() {
   for(const [s,b] of Object.entries(areas)) if(!inside(b,screen)) failures.push('Surface outside viewport: '+s);
   const groups=[...document.querySelectorAll('.context-identity,.context-spatial,.context-source,.context-date,.context-temporal,.context-crew')].filter(visible).map(box);
   for(let i=0;i<groups.length;i++) for(let j=i+1;j<groups.length;j++) if(overlap(groups[i],groups[j])) failures.push('Navigation group overlap '+i+'/'+j);
+  // Measure the union of visible text ranges, not the spanning date wrapper.
+  const dateRects=[];
+  const dateWalker=document.createTreeWalker(document.querySelector('.context-date'),NodeFilter.SHOW_TEXT); let dateText;
+  while((dateText=dateWalker.nextNode())) if(dateText.textContent.trim() && visible(dateText.parentElement)) {
+    const range=document.createRange();range.selectNodeContents(dateText);dateRects.push(...range.getClientRects());
+  }
+  const dateCenterX=(Math.min(...dateRects.map(r=>r.left))+Math.max(...dateRects.map(r=>r.right)))/2;
+  const dateDelta=Math.abs(dateCenterX-innerWidth/2);
+  if(innerWidth<=1243 && dateDelta>2) failures.push('Visible date is not viewport-centered: '+dateDelta);
+  const navigation={dateCenterX,viewportCenterX:innerWidth/2,dateDelta,
+    groups:[...document.querySelectorAll('.context-identity,.context-spatial,.context-source,.context-temporal,.context-crew')].map(e=>({name:e.className,...box(e)}))};
+  const calendar=document.querySelector('#historical-calendar');
+  const calendarPosition=calendar && visible(calendar) ? {mode:document.querySelector('.historical-time-bar').dataset.mobile==='true'?'compact':'persistent',
+    centerX:box(calendar).x+box(calendar).width/2,viewportCenterX:innerWidth/2,
+    delta:Math.abs(box(calendar).x+box(calendar).width/2-innerWidth/2),top:box(calendar).y,bottom:box(calendar).y+box(calendar).height} : null;
+  if(calendarPosition?.mode==='compact' && calendarPosition.delta>2) failures.push('Compact calendar is not viewport-centered: '+calendarPosition.delta);
+  if(calendarPosition?.mode==='compact' && visible(document.querySelector('.historical-time-bar'))) failures.push('Compact calendar leaves its bar visible');
+  const crewHeader=document.querySelector('.crew-workspace .crew-panel-header');
+  if(crewHeader && visible(crewHeader) && [...crewHeader.querySelectorAll('button')].some(b=>/^(Refresh|Refreshing…)$/.test(b.textContent.trim()))) failures.push('Routine Crew Refresh remains');
   const tools=['.trajectory-legend','.earth-scene-controls','.historical-time-bar'];
   for(let i=0;i<tools.length;i++) for(let j=i+1;j<tools.length;j++) if(areas[tools[i]]&&areas[tools[j]]&&overlap(areas[tools[i]],areas[tools[j]])) failures.push('Scene tool overlap '+tools[i]+'/'+tools[j]);
   for(const s of ['.module-dock','.orbital-status-evidence','.historical-time-bar','#historical-calendar']) if(areas[s]) {
@@ -70,7 +89,7 @@ function geometry() {
   const selection={source:document.querySelector('[aria-label="Orbital source"]')?.value,utc:document.querySelector('.context-date time')?.dateTime,
     requested:document.querySelector('.historical-date time')?.dateTime,module:document.querySelector('.module-dock')?.dataset.entityId,member:document.querySelector('.astronaut-dock')?.dataset.entityId,
     mode:document.querySelector('main').dataset.viewMode,crew:!!document.querySelector('.crew-workspace'),historical:document.querySelector('.context-date > span')?.textContent};
-  return {width:innerWidth,height:innerHeight,areas,canvas:box(canvas),styles,controls,scrolls,clipping,failures:[...new Set(failures)],selection,
+  return {width:innerWidth,height:innerHeight,areas,canvas:box(canvas),styles,controls,scrolls,clipping,navigation,calendarPosition,failures:[...new Set(failures)],selection,
     exposedScene:document.elementFromPoint(innerWidth/2,(areas['.top-context-bar'].height+innerHeight-(areas['.operational-summary']?.height||areas['.inspection-strip']?.height||0))/2)===canvas};
 }
 

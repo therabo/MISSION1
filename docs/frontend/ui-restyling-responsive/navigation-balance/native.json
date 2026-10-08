@@ -1,0 +1,420 @@
+{
+  "builds": [
+    {
+      "build": "development",
+      "result": "PASS",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 900,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 90.00000000104407,
+            "elevation": 42.49999999926227,
+            "nativeFovDegrees": 100,
+            "error": 2.1941559680271894e-11
+          }
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999738245,
+            "elevation": 42.49999999978996,
+            "nativeFovDegrees": 100,
+            "error": 1.475655153626576e-10
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999320721,
+            "elevation": 42.499999995792216,
+            "nativeFovDegrees": 100,
+            "error": 4.0019660268120977e-10
+          }
+        },
+        {
+          "width": 900,
+          "height": 700,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999812653,
+            "elevation": 42.499999998551715,
+            "nativeFovDegrees": 100,
+            "error": 3.5505590236443e-10
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 143.99999999151194,
+            "elevation": 42.49999999482381,
+            "nativeFovDegrees": 100,
+            "error": 9.532641342957504e-11
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 233.72307692671032,
+            "elevation": 42.50000000121995,
+            "nativeFovDegrees": 100,
+            "error": 2.6432189770275727e-11
+          }
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 191.69999999878493,
+            "elevation": 42.50000000206919,
+            "nativeFovDegrees": 100,
+            "error": 4.7691628424217924e-11
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 90.0000000031033,
+            "elevation": 42.50000000047353,
+            "nativeFovDegrees": 100,
+            "error": 3.312815736620037e-10
+          }
+        }
+      ],
+      "errors": [],
+      "console": []
+    },
+    {
+      "build": "production",
+      "result": "PASS",
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 900,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999475214,
+            "elevation": 42.49999999489096,
+            "nativeFovDegrees": 100,
+            "error": 5.626361598842777e-10
+          }
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 90.00000001414222,
+            "elevation": 42.50000001011739,
+            "nativeFovDegrees": 100,
+            "error": 3.512923285597935e-11
+          }
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999326396,
+            "elevation": 42.499999997367446,
+            "nativeFovDegrees": 100,
+            "error": 4.491541794674977e-10
+          }
+        },
+        {
+          "width": 900,
+          "height": 700,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 89.99999999738382,
+            "elevation": 42.49999999496412,
+            "nativeFovDegrees": 100,
+            "error": 3.530421053243254e-10
+          }
+        },
+        {
+          "width": 768,
+          "height": 1024,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 144.00000000695587,
+            "elevation": 42.50000000125559,
+            "nativeFovDegrees": 100,
+            "error": 1.6643753042444587e-10
+          }
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 233.72307692224854,
+            "elevation": 42.50000000036423,
+            "nativeFovDegrees": 100,
+            "error": 3.298552492475152e-10
+          }
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 191.7000000068516,
+            "elevation": 42.500000002125205,
+            "nativeFovDegrees": 100,
+            "error": 2.2301562606762017e-10
+          }
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "drag": true,
+          "wheel": true,
+          "reset": true,
+          "orbit": true,
+          "hover": true,
+          "hoverClearsDuringMotion": true,
+          "nativePicking": true,
+          "boundary": {
+            "inside": true,
+            "outside": true
+          },
+          "AtoB": true,
+          "colorsRestored": true,
+          "back": true,
+          "result": "PASS",
+          "inspectionFraming": {
+            "range": 90.00000001156661,
+            "elevation": 42.500000014032395,
+            "nativeFovDegrees": 100,
+            "error": 6.673614580241997e-10
+          }
+        }
+      ],
+      "errors": [],
+      "console": []
+    }
+  ]
+}
