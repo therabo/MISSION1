@@ -1,11 +1,21 @@
-import { memo, useEffect, useRef, useState } from 'react';
-import { useIssCrew } from '../api/useCrewResource';
-import type { CrewMember } from './types';
+import { memo, useEffect, useRef, useState, type ReactNode } from 'react';
+import { useIssCrew, type CrewResource } from '../api/useCrewResource';
+import type { CrewMember, CurrentCrew } from './types';
 import { CrewSummary } from './CrewSummary';
 import { CrewMemberDetail } from './CrewMemberDetail';
+import { CurrentCrewPanel, CurrentCrewPanelView } from './CurrentCrewPanel';
 
 /** Pure DOM operational context; no Cesium, camera, orbital clock, provider or scheduler dependency. */
-export const CrewPanel = memo(function CrewPanel({ onClose }: { onClose: () => void }) {
+export const CrewPanel = memo(function CrewPanel({ onClose, workspace = false, interactive = true, resource, notice }: {
+  onClose: () => void; workspace?: boolean; interactive?: boolean; resource?: CrewResource<CurrentCrew>; notice?: ReactNode;
+}) {
+  return workspace ? resource
+    ? <CurrentCrewPanelView resource={resource} notice={notice} onClose={onClose} interactive={interactive} />
+    : <CurrentCrewPanel onClose={onClose} interactive={interactive} /> : <LegacyCrewPanel onClose={onClose} />;
+});
+
+/** Retained standalone presentation; Historical continues to use ReplayCrewPanel. */
+function LegacyCrewPanel({ onClose }: { onClose: () => void }) {
   const resource = useIssCrew();
   const [selected, setSelected] = useState<CrewMember | null>(null);
   const panel = useRef<HTMLElement>(null);
@@ -61,11 +71,6 @@ export const CrewPanel = memo(function CrewPanel({ onClose }: { onClose: () => v
         ) : (
           <span>Crew</span>
         )}
-        {!selected && (
-          <button type="button" disabled={resource.loading} onClick={resource.refresh}>
-            {resource.loading && resource.data ? 'Refreshing…' : 'Refresh'}
-          </button>
-        )}
       </div>
       <div className="crew-panel-content" key={selected?.id ?? 'list'}>
         {selected ? (
@@ -114,4 +119,4 @@ export const CrewPanel = memo(function CrewPanel({ onClose }: { onClose: () => v
       </div>
     </aside>
   );
-});
+}

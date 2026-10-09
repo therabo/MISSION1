@@ -107,14 +107,12 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     expect(document.activeElement?.id).toBe('crew-title');
     expect(fetchMock.mock.calls.map((call) => call[0])).toEqual(['/api/iss/crew', '/api/iss/crew']);
   });
-  it('retains the old dated response when a manual refresh fails', async () => {
-    fetchMock
-      .mockResolvedValueOnce(Response.json(crewFixture()))
-      .mockResolvedValueOnce(new Response('', { status: 503 }));
+  it('does not expose routine Refresh in the legacy Crew toolbar', async () => {
+    fetchMock.mockResolvedValueOnce(Response.json(crewFixture()));
     await mount();
-    await click('Refresh');
     expect(container.textContent).toContain('11 aboard');
-    expect(container.textContent).toContain('displayed assessment has not been updated');
+    expect(container.querySelector('.crew-toolbar')?.textContent).toBe('Crew');
+    expect([...container.querySelectorAll('button')].some(b => /^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
   });
   it('does not poll during five minutes of panel lifetime', async () => {
     vi.useFakeTimers();

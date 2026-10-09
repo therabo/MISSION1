@@ -1,5 +1,9 @@
 # MISSION1 Earth View
 
+## Responsive restyling — 2026-10-08
+
+The accepted 1440×900 desktop layout remains the visual reference. Current/Historical navigation, summary, Crew and detail surfaces use the existing content-driven flex/grid and roster container queries. Compact controls retain 44px heights; long content scrolls inside its information surface while the `100dvh` shell and Cesium canvas remain full-screen. The Historical calendar is bounded to the actual scene row with one compact date/time scroll owner and reachable Close/Apply actions. Native compact attribution owns the foreground above chrome. Resizing retains source, member/module selection and accepted UTC; camera, graphics and data contracts are unchanged. See the [complete responsive inventory, golden comparison and browser dossier](../docs/frontend/ui-restyling-responsive/README.md).
+
 ## Rendering quality restoration — 2026-10-05
 
 The current policy explicitly enables browser WebGL antialiasing (`contextOptions.webgl.antialias=true`) alongside Cesium MSAA 4 and the existing FXAA behavior. Both tiled and local Black Marble night layers use brightness **1.8**, gamma 1 and contrast 1. Native DPR/resolutionScale, 4K Tycho stars, ISS PNG/PBR, trajectory geometry, camera, full-screen occlusion-aware framing and progressive loading/retries remain unchanged. Visual quality takes priority over the measured extra GPU cost. [Matched comparisons, performance and validation](../docs/frontend/rendering-quality-restoration/README.md).

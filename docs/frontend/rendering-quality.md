@@ -1,5 +1,7 @@
 # Desktop rendering quality and asset reproducibility
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 ## Browser antialiasing and night brightness restored — 2026-10-05
 
 Browser WebGL antialiasing is explicitly **true** again; Cesium MSAA 4, mode-aware FXAA and the native DPR/resolutionScale policy are unchanged. Historical Black Marble imagery brightness is **1.8**, gamma/contrast 1, for both tiled and local fallback layers. The independent loading, layer order and bounded per-tile retries remain. No HDR, bloom, sharpening, atmosphere, exposure, asset, geometry or camera change compensates for the restored quality cost. [Same-camera/epoch GP, OEM, oblique joins/halo and ISS comparisons, with measured cost](rendering-quality-restoration/README.md).
@@ -104,7 +106,7 @@ OEM uses uniform orange 5.5 px `PolylineDash`, alpha 0.92, 64 px cycle, `0x000f`
 
 See the linked record for development/production browser cases, outage/loading evidence, and matched local FPS observations. The existing Cesium bundle-size warning remains; this pass introduces no additional rendering dependency.
 
-Matched local DPR-2 comparison (2560×1440, 4× MSAA, one additional production view open) measured median Overview **17.8 FPS before / 17.5 FPS after** across five steady five-second windows: about −1.7%, without a material regression detected. A separate refined single-view 1600×900 observation was 44.9–48.2 FPS and is not directly comparable to the DPR-2 baseline. [Raw observations](trajectory-review/performance.json) retain capability and timestamp evidence.
+Matched local DPR-2 comparison (2560×1440, 4× MSAA, one additional production view open) measured median Overview **17.8 FPS before / 17.5 FPS after** across five steady five-second windows: about −1.7%, without a material regression detected. A separate refined single-view 1600×900 observation was 44.9–48.2 FPS and is not directly comparable to the DPR-2 baseline. Raw observations retain capability and timestamp evidence.
 
 ## Prior selectable forward presentation — verified fix, 2026-09-30
 
@@ -114,7 +116,7 @@ Public Fabric applies inverse smoothstep between the future gap and the 0.85T ho
 
 The [current review](orbital-trajectory-rendering.md) and [measurement record](trajectory-fix-review/README.md) include controlled size/lift/gap trials, exact source switching, both-build Inspection handoffs, loading/outage and mobile QA. At the fixed canonical UTC, source separation was 2.980 km / 0.199 CSS pixel: physical switching is correct despite subpixel movement. Final full-halo clearance was about 5 CSS pixels; projected lift adds about 3 CSS pixels at the tested global limb. These are camera-dependent observations, not all-angle visibility guarantees.
 
-Matched sequential **2560×1440** comparison against untouched `8146055`, same frozen UTC/camera, one active view, DPR 2 and 4× MSAA: baseline median **24.905 FPS**, final **24.171 FPS**, five five-second windows after warmup. The −2.95% difference did not show a material local regression; observed windows overlap and imagery/cache/warmup variability remains. The earlier ~19 FPS and ~17.5 FPS references used different scene/workload conditions. GPU memory is not instrumented. No silhouette pass was added; primitive count is unchanged by this fix. [Baseline raw record](trajectory-fix-review/performance-baseline.json), [final raw record](trajectory-fix-review/performance-final.json).
+Matched sequential **2560×1440** comparison against untouched `8146055`, same frozen UTC/camera, one active view, DPR 2 and 4× MSAA: baseline median **24.905 FPS**, final **24.171 FPS**, five five-second windows after warmup. The −2.95% difference did not show a material local regression; observed windows overlap and imagery/cache/warmup variability remains. The earlier ~19 FPS and ~17.5 FPS references used different scene/workload conditions. GPU memory is not instrumented. No silhouette pass was added; primitive count is unchanged by this fix. Baseline raw record, final raw record.
 
 ## Current adaptive presentation — 2026-09-30
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { utcInput, type ReplayCoverage } from "./replayApi";
+import { stepHistoricalUtc } from './historicalPresentation';
 export function ReplayControls({
   enabled,
   at,
@@ -54,22 +55,22 @@ export function ReplayControls({
           </label>
           <button
             type="button"
-            aria-label="Replay back one hour"
+            aria-label="Replay back 10 minutes"
             onClick={() =>
-              onTime(new Date(Date.parse(at) - 3600000).toISOString())
+              onTime(stepHistoricalUtc(at, -600))
             }
           >
-            −1h
+            -10 min
           </button>
           <button
             type="button"
-            aria-label="Replay forward one hour"
-            disabled={Date.parse(at) + 3600000 > Date.now()}
+            aria-label="Replay forward 10 minutes"
+            disabled={Date.parse(at) + 600000 > Date.now()}
             onClick={() =>
-              onTime(new Date(Date.parse(at) + 3600000).toISOString())
+              onTime(stepHistoricalUtc(at, 600))
             }
           >
-            +1h
+            +10 min
           </button>
           {invalid && <span role="alert">Enter a valid past UTC instant.</span>}
           {coverage && (

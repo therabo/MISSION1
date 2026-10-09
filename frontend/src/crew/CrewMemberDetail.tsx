@@ -108,6 +108,15 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
           </a>
         </p>
       )}
+      <CrewPortraitRights person={person} />
+      <CrewProfileEvidence person={person} />
+    </div>
+  );
+}
+
+/** Shared existing disclosure content; no new evidence destination. */
+export function CrewPortraitRights({ person }: { person: CrewPerson }) {
+  return <>
       {person.image && (
         <details className="crew-sources">
           <summary>Portrait credit &amp; rights</summary>
@@ -129,7 +138,12 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
           )}
         </details>
       )}
-      <details className="crew-sources">
+    </>;
+}
+
+export function CrewProfileEvidence({ person, detailsRef }: { person: CrewPerson; detailsRef?: React.RefObject<HTMLDetailsElement | null> }) {
+  return (
+      <details className="crew-sources" ref={detailsRef}>
         <summary>Profile source &amp; presence evidence</summary>
         <p>Profile last successful fetch: {utc(person.profileLastSuccessfulFetchAt)}</p>
         <p>Original profile observation: {utc(person.profileProvenance?.observedAt ?? null)}</p>
@@ -158,9 +172,9 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
           </p>
         ))}
       </details>
-    </div>
   );
 }
+
 export function CrewMemberDetail({ member }: { member: CrewMember }) {
   const resource = useCrewMember(member.id);
   const title = useRef<HTMLHeadingElement>(null);

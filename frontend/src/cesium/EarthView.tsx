@@ -1,5 +1,5 @@
 import type { ReplayState } from '../replay/replayApi';
-import { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useLayoutEffect, useRef } from 'react';
 import {
   Cartesian2,
   Cartesian3,
@@ -22,7 +22,6 @@ import {
   Math as CesiumMath,
   ScreenSpaceEventType,
   SceneTransforms,
-  SkyBox,
   Viewer,
   type Entity,
 } from 'cesium';
@@ -36,6 +35,7 @@ import type { VisualWindow } from './visualWindow';
 import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 import { InspectionTransition, poseQuaternion, initialTangent, transitionDuration } from './inspectionTransition';
 import { warmSkyRendering } from './skyRenderingWarmup';
+import { starBackgroundFactory, updateStarBackground } from './starBackground';
 import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting } from './earthLighting';
@@ -58,14 +58,18 @@ import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, i
 import type { SampledProperty } from 'cesium';
 import { desiredGapCssPixels, displayedModelNearDepth, projectedModelFootprint } from './trajectoryClearance';
 import { TRAJECTORY_VISIBILITY, trajectoryVisibilityForView } from './trajectoryVisibility';
-import { InspectionCameraMotion, InspectionHover, paintInspectionHover, resolveInspectionHoverPick } from './inspectionHover';
+import { InspectionCameraMotion, InspectionHover, resolveInspectionHoverPick } from './inspectionHover';
+import { InspectionFeatureState } from './inspectionFeatureState';
 
 import type { WorkspaceGeometry } from './workspaceGeometry';
+import type { EarthSceneControls } from '../components/SceneControls';
 import { applyWorkspaceProjection, createWorkspaceGlobeProjection, installWorkspacePicking, WorkspacePerspectiveFrustum } from './workspaceProjection';
 
 interface EarthViewProps {
   workspace?: WorkspaceGeometry | null;
   replay?: { atMs: number; state: ReplayState | null } | null;
+  holding?: boolean;
+  currentAtMs?: number;
   window: OrbitalWindow | null;
   comparison: ComparisonResponse | null;
   selectedSource: TrajectorySource;
@@ -77,14 +81,16 @@ interface EarthViewProps {
   onSceneError: (message: string) => void;
   onModelStatus: (status: ModelLoadStatus, loadMs?: number) => void;
   onModuleSelection: (module: SemanticMapping | null) => void;
+  moduleSelection?: SemanticMapping | null;
   onViewModeChange: (mode: ViewMode) => void;
+  onControlsReady?: (controls: EarthSceneControls | null) => void;
 }
 
 export const APPROACH_DURATION_SECONDS = 6;
 export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ workspace = null, replay = null, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, onViewModeChange }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, moduleSelection = null, onViewModeChange, onControlsReady }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef(workspace);
   workspaceRef.current = workspace;
@@ -100,11 +106,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   const selectedSourceRef = useRef<TrajectorySource>(selectedSource);
   const sourceUnavailableCallback = useRef(onSourceUnavailable);
   const positionCallback = useRef(onPosition);
-  selectedSourceRef.current = selectedSource;
   sourceUnavailableCallback.current = onSourceUnavailable;
   positionCallback.current = onPosition;
   const replayRef = useRef(replay);
-  replayRef.current = replay;
+  const presentFrame = useRef<(() => void) | null>(null);
+  const held = useRef(false);
   const positionAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
     replayRef.current ? (replayRef.current.state ? Cartesian3.fromElements(replayRef.current.state.position.x,replayRef.current.state.position.y,replayRef.current.state.position.z,result) : undefined) : selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
   const velocityAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
@@ -127,13 +133,16 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   const moduleCallback = useRef(onModuleSelection);
   const modeCallback = useRef(onViewModeChange);
   const selectedModule = useRef<SemanticMapping | null>(null);
+  const selectionPresentation = useRef<((module: SemanticMapping | null) => void) | null>(null);
+  const controlsCallback = useRef(onControlsReady);
+  controlsCallback.current = onControlsReady;
   timeCallback.current = onSceneTime;
   errorCallback.current = onSceneError;
   modelCallback.current = onModelStatus;
   moduleCallback.current = onModuleSelection;
   modeCallback.current = onViewModeChange;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!container.current) return;
     let destroyed = false;
     let instance: Viewer;
@@ -220,6 +229,9 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     const removePicking = installWorkspacePicking(instance.scene,
       () => ({ width: viewportWidth, height: viewportHeight }), () => model.current);
     const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
+    const features = new InspectionFeatureState(() => model.current, () => reducedMotion.matches);
+    const featureMotionChanged = () => features.reducedMotionChanged();
+    reducedMotion.addEventListener('change', featureMotionChanged);
     const visualFrame = new TrajectoryVisualFrame();
     const sceneVelocity = new Cartesian3();
     const modelDisplayFrame = new Matrix4();
@@ -304,7 +316,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       instance.scene.sun.show = true;
       instance.scene.sun.glowFactor = GRAPHICS_QUALITY.sunGlowFactor;
     }
-    if (instance.scene.skyBox) instance.scene.skyBox.show = true;
+    const makeStarBackground = starBackgroundFactory(() => instance.clock.currentTime);
+    if (instance.scene.skyBox) {
+      const bundledSkyBox = instance.scene.skyBox;
+      instance.scene.skyBox = makeStarBackground(bundledSkyBox.sources);
+      bundledSkyBox.destroy();
+    }
+    const removeStarTime = instance.scene.preRender.addEventListener((_scene, time) => {
+      if (instance.scene.skyBox) updateStarBackground(instance.scene.skyBox, time);
+    });
     instance.camera.setView({ destination: Cartesian3.fromDegrees(20, 12, 22_000_000) });
     instance.clock.clockRange = ClockRange.UNBOUNDED;
     instance.clock.clockStep = ClockStep.SYSTEM_CLOCK_MULTIPLIER;
@@ -316,7 +336,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     // Give the non-streaming ISS textures, feature tables and first-use shaders
     // first use of the decoder/upload queue. Refine stars after Inspection is
     // available; the bundled skybox remains visible during this loading phase.
-    // Cesium uses TEME axes; this NASA map is a historical visualization.
+    // Both maps follow coherent scene time; the texture is a historical NASA
+    // visualization, not a live observation of the stars.
     let highQualitySkyboxStarted = false;
     const loadHighQualitySkybox = (): void => {
       if (destroyed || highQualitySkyboxStarted || instance.scene.maximumCubeMapSize < skyboxManifest.faceSize) return;
@@ -331,10 +352,10 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       }))).then((images) => {
         if (destroyed) return;
         const oldSkyBox = instance.scene.skyBox;
-        instance.scene.skyBox = new SkyBox({ sources: Object.fromEntries(keys.map((key, index) => [key, images[index]])) as {
+        instance.scene.skyBox = makeStarBackground(Object.fromEntries(keys.map((key, index) => [key, images[index]])) as {
           positiveX: HTMLImageElement; negativeX: HTMLImageElement; positiveY: HTMLImageElement;
           negativeY: HTMLImageElement; positiveZ: HTMLImageElement; negativeZ: HTMLImageElement;
-        } });
+        });
         instance.creditDisplay.addStaticCredit(new Credit('<a href="https://svs.gsfc.nasa.gov/3572" target="_blank" rel="noopener noreferrer">Star map: NASA GSFC SVS Tycho II</a>'));
         if (diagnostics) console.info('[graphics] skybox decoded', Math.round(performance.now() - skyboxStarted), 'ms');
         if (oldSkyBox) instance.scene.postRender.addEventListener(function releaseOldSkyBox() {
@@ -454,6 +475,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       if (viewMode.current === next) return;
       viewMode.current = next;
       hover.setMode(next);
+      features.clearHover();
       applyControls(next);
       modeCallback.current(next);
     };
@@ -660,8 +682,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       const rect = canvas.getBoundingClientRect();
       if (document.elementFromPoint(rect.left + point.x, rect.top + point.y) !== canvas) return null;
       return resolveInspectionHoverPick(instance.scene.pick(point));
-    }, target => paintInspectionHover(model.current!, target),
+    }, target => features.paintHover(target),
     interactive => { canvas.style.cursor = interactive ? 'pointer' : normalCursor; });
+    // React owns selection. This ref only mirrors committed selection for native
+    // eligibility checks; close/Escape reconcile the feature and ref together.
+    selectionPresentation.current = selection => {
+      selectedModule.current = selection;
+      if (!selection) hover.pointerLeave();
+      features.select(selection);
+    };
     const hoverMotion = new InspectionCameraMotion();
     const hoverPose = new Float64Array(17);
     const checkHoverMotion = (): boolean => {
@@ -674,7 +703,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       hoverPose[12] = f.fov ?? 0; hoverPose[13] = f.aspectRatio ?? 0;
       hoverPose[14] = f.xOffset ?? 0; hoverPose[15] = f.yOffset ?? 0; hoverPose[16] = f.near;
       const changed = hoverMotion.changed(hoverPose);
-      if (changed) hover.motion();
+      if (changed) { hover.motion(); features.clearHover(); }
       return changed;
     };
     // Camera events include the continuously moving tracking transform. Local
@@ -687,11 +716,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       mousePointer = event.pointerType === 'mouse';
       if (!mousePointer) hover.pointerLeave();
     };
-    const pointerDown = (event: PointerEvent): void => { pointerMove(event); hover.pointerDown(); };
-    const pointerUp = (): void => hover.pointerUp();
+    const pointerDown = (event: PointerEvent): void => { pointerMove(event); hover.pointerDown(); features.clearHover(); };
+    const pointerUp = (): void => { hover.pointerUp(); features.clearHover(); };
     const pointerLeave = (): void => hover.pointerLeave();
     const blur = (): void => { hover.pointerLeave(); hover.pointerUp(); };
-    const wheelStart = (): void => hover.motion();
+    const wheelStart = (): void => { hover.motion(); features.clearHover(); };
     canvas.addEventListener('pointermove', pointerMove, true);
     canvas.addEventListener('pointerdown', pointerDown, true);
     canvas.addEventListener('pointerleave', pointerLeave);
@@ -730,7 +759,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       }
       const action = pickAction(viewMode.current, pick, modelStatus.current === 'ready');
       if (action === 'enter-inspection') startInspection();
-      else if (action === 'select-module') selectModule(distance !== null && modulePickingAvailable(modelStatus.current, distance) && pick.kind === 'iss-feature' ? pick.module : null);
+      else if (action === 'select-module') {
+        const selection = distance !== null && modulePickingAvailable(modelStatus.current, distance) && pick.kind === 'iss-feature' ? pick.module : null;
+        if (selection && hit instanceof ModelFeature) features.remember({ feature: hit, module: selection });
+        selectModule(selection);
+      }
       else if (action === 'clear-module') selectModule(null);
     }, ScreenSpaceEventType.LEFT_CLICK);
 
@@ -942,13 +975,31 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       }
     };
     instance.clock.onTick.addEventListener(tick);
+    presentFrame.current = tick;
+    // Presentation-only toolbar bridge. Reuse the native camera operations and
+    // the accepted initial Earth pose; never enter the Inspection pipeline here.
+    controlsCallback.current?.({
+      zoomIn: () => {
+        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomIn(instance.camera.positionCartographic.height * 0.2);
+      },
+      zoomOut: () => {
+        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomOut(instance.camera.positionCartographic.height * 0.2);
+      },
+      resetView: () => {
+        const geo = active.current?.orbital.response.currentGeodetic;
+        if (viewMode.current === 'EARTH_OVERVIEW' && geo)
+          instance.camera.setView({ destination: Cartesian3.fromDegrees(geo.longitudeDegrees, geo.latitudeDegrees, 17_000_000) });
+      },
+    });
     return () => {
+      controlsCallback.current?.(null);
       destroyed = true;
       disposeImagery();
       viewportObserver.disconnect();
       removeComposition();
       removePicking();
       reducedMotion.removeEventListener('change', motionChanged);
+      reducedMotion.removeEventListener('change', featureMotionChanged);
       resizeWorkspace.current = null;
       cancelSkyWarmup();
       cancelGraphicsWarmup?.();
@@ -956,6 +1007,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       removeApproachDiagnostics?.();
       removeReadyListener();
       removeTrajectoryRender();
+      removeStarTime();
+      presentFrame.current = null;
       instance.clock.onTick.removeEventListener(tick);
       removeHoverStart(); removeHoverEnd(); removeHoverMotion();
       canvas.removeEventListener('pointermove', pointerMove, true);
@@ -966,6 +1019,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       globalThis.window.removeEventListener('pointercancel', pointerUp);
       globalThis.window.removeEventListener('blur', blur);
       hover.dispose();
+      features.dispose(); selectionPresentation.current = null;
       if (model.current) instance.scene.primitives.remove(model.current);
       model.current = null;
       materialShader.destroy();
@@ -988,55 +1042,58 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     };
   }, []);
 
+  useLayoutEffect(() => { selectionPresentation.current?.(moduleSelection); }, [moduleSelection]);
+
   useEffect(() => { resizeWorkspace.current?.(); }, [workspace]);
 
-  useEffect(() => {
-    if (!window || !viewer.current || !iss.current) return;
+  useLayoutEffect(() => {
+    if (!viewer.current || !iss.current) return;
     const instance = viewer.current;
-    // Construct off scene and adopt one coherent source snapshot in one turn.
-    const visualWindow = createVisualWindow(window);
-
-    active.current = visualWindow;
-
-    const estimatedNow = JulianDate.addSeconds(
-      JulianDate.fromIso8601(window.response.generatedAt), window.requestDurationMs / 2000, new JulianDate());
-    if (!replayRef.current && (!initializedClock.current || Math.abs(JulianDate.secondsDifference(estimatedNow, instance.clock.currentTime)) > 3)) {
-      // A refreshed backend window may realign scene time. Preserve the elapsed
-      // camera animation while both camera and model use the new scene instant.
-      instance.clock.currentTime = estimatedNow;
-      initializedClock.current = true;
+    const returning = (!!replayRef.current || held.current) && !replay && !holding;
+    const enteringHold = holding && !held.current;
+    held.current = holding;
+    // Never install a requested time independently of its accepted data. The
+    // App latch keeps the outgoing references during pending handoffs/seeks.
+    if (enteringHold) instance.clock.currentTime = JulianDate.clone(instance.scene.lastRenderTime ?? instance.clock.currentTime);
+    if (!holding) {
+      replayRef.current = replay;
+      selectedSourceRef.current = selectedSource;
+      if (active.current?.orbital !== window) active.current = window ? createVisualWindow(window) : null;
+      if (comparisonRef.current !== comparison) {
+        comparisonRef.current = comparison;
+        oemPosition.current = comparison && comparison.oem.samples.length >= 2 ? oemPositionProperty(comparison) : null;
+        oemVelocity.current = comparison && comparison.oem.samples.length >= 2 ? makeVelocityProperty(comparison.oem.samples) : null;
+      }
+      if (replay) instance.clock.currentTime = JulianDate.fromDate(new Date(replay.atMs));
+      else if (returning) instance.clock.currentTime = JulianDate.fromDate(new Date(currentAtMs ?? Date.now()));
+      else if (window) {
+        const estimatedNow = JulianDate.fromDate(new Date(currentAtMs ?? window.generatedMs + window.requestDurationMs / 2));
+        if (!initializedClock.current || Math.abs(JulianDate.secondsDifference(estimatedNow, instance.clock.currentTime)) > 3) {
+          instance.clock.currentTime = estimatedNow;
+          initializedClock.current = true;
+        }
+      }
     }
-    const sceneMs = JulianDate.toDate(instance.clock.currentTime).getTime();
-    iss.current.show = sceneMs >= window.startMs && sceneMs <= window.endMs;
-    if (!replayRef.current && !initializedCamera.current) {
+    instance.clock.clockStep = ClockStep.SYSTEM_CLOCK_MULTIPLIER;
+    instance.clock.multiplier = 1;
+    instance.clock.shouldAnimate = !holding && !replay;
+    // If Historical is the first usable context, its existing Earth pose is
+    // already the user's view. A later Current response must not reinitialize it.
+    if (replay && !holding) initializedCamera.current = true;
+    if (!replay && !holding && window && !initializedCamera.current) {
       initializedCamera.current = true;
       const geo = window.response.currentGeodetic;
       instance.camera.setView({ destination: Cartesian3.fromDegrees(geo.longitudeDegrees, geo.latitudeDegrees, 17_000_000) });
     }
-  }, [window]);
-
-  const previousReplay = useRef(false);
-  useEffect(() => {
-    const instance=viewer.current;if(!instance)return;
-    if(!replay && !previousReplay.current)return;
-    previousReplay.current=!!replay;
-    if(replay) { instance.clock.currentTime=JulianDate.fromDate(new Date(replay.atMs));instance.clock.shouldAnimate=false; }
-    else { instance.clock.currentTime=JulianDate.fromDate(new Date());instance.clock.clockStep=ClockStep.SYSTEM_CLOCK_MULTIPLIER;instance.clock.multiplier=1;instance.clock.shouldAnimate=true; }
-    lastReportedSecond.current=null;
-    updateTrajectory.current?.(JulianDate.toDate(instance.clock.currentTime).getTime());
-  },[replay?.atMs,replay?.state,!!replay]);
-
-  useEffect(() => {
-    comparisonRef.current = comparison;
-    oemPosition.current = comparison && comparison.oem.samples.length >= 2 ? oemPositionProperty(comparison) : null;
-    oemVelocity.current = comparison && comparison.oem.samples.length >= 2 ? makeVelocityProperty(comparison.oem.samples) : null;
-    if (viewer.current) updateTrajectory.current?.(JulianDate.toDate(viewer.current.clock.currentTime).getTime());
-  }, [comparison]);
-
-  useEffect(() => {
-    // Emit new physical coordinates on the next frame after an immediate source change.
     lastReportedSecond.current = null;
-  }, [selectedSource]);
+    // Update marker/model and report the physical sample before the next paint.
+    // Astronomy then uses that exact clock time in the native render pipeline.
+    presentFrame.current?.();
+    updateTrajectory.current?.(JulianDate.toDate(instance.clock.currentTime).getTime());
+    // Complete the astronomical draw in this same layout commit; a browser
+    // paint must not expose new UTC labels over the previous WebGL frame.
+    instance.render();
+  }, [window, comparison, selectedSource, replay?.atMs, replay?.state, !!replay, holding]);
 
   useEffect(() => {
     if (inspectionRequest > 0) enterInspection.current?.();

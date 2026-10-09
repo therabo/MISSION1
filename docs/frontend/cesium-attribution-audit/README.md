@@ -1,5 +1,7 @@
 # MISSION1 header and Cesium attribution audit
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Verified on **2026-10-04 (Europe/Rome)** against clean synchronized baseline
 `7fa39af0733b83a04336ab2b151edb2105edd004`. Only the adjacent header label and
 unnecessary ion branding change. Previous branding evidence remains intact.
@@ -118,10 +120,10 @@ changed source and rebuilt production artifact. No network interception, fake
 orbital state, clock injection or service substitution was used.
 
 All four request logs are preserved with state/credit measurements:
-[before development](evidence/before-development.json),
-[before production](evidence/before-production.json),
-[after development](evidence/after-development.json),
-[after production](evidence/after-production.json).
+before development,
+before production,
+after development,
+after production.
 Token/key query fields are redacted by the harness. No application token exists.
 
 | Run | 1440×900 request hosts (counts) | 390×844 request hosts (counts) | Cesium/ion service requests |
@@ -175,10 +177,10 @@ between captures; no pixel equality of the physical scene is claimed.
 
 | State | Development before → after | Production before → after |
 | --- | --- | --- |
-| 1440×900 Overview | [Before](before/development/1440x900-overview.png) → [After](after/development/1440x900-overview.png) | [Before](before/production/1440x900-overview.png) → [After](after/production/1440x900-overview.png) |
-| 1440×900 Inspection | [Before](before/development/1440x900-inspection.png) → [After](after/development/1440x900-inspection.png) | [Before](before/production/1440x900-inspection.png) → [After](after/production/1440x900-inspection.png) |
-| 390×844 Overview | [Before](before/development/390x844-overview.png) → [After](after/development/390x844-overview.png) | [Before](before/production/390x844-overview.png) → [After](after/production/390x844-overview.png) |
-| Attribution popup, 1440×900 | Actual lists recorded in JSON | [Before](before/production/1440x900-credits-open.png) → [After](after/production/1440x900-credits-open.png) |
+| 1440×900 Overview | Before → After | Before → After |
+| 1440×900 Inspection | Before → After | Before → After |
+| 390×844 Overview | Before → After | Before → After |
+| Attribution popup, 1440×900 | Actual lists recorded in JSON | Before → After |
 
 The original mobile stylesheet already hid the adjacent label; the node is now
 absent at every viewport. No image alignment correction or CSS edit was needed.
@@ -188,19 +190,19 @@ Measured image rectangles match the accepted ownership milestone exactly:
 
 | Viewport | Unchanged image rectangle, CSS px | Production after screenshot |
 | --- | --- | --- |
-| 1440×900 | x26/y8, 180×60 | [Overview](after/production/1440x900-overview.png) |
-| 1280×720 | x26/y8, 180×60 | [Overview](after/production/1280x720-overview.png) |
-| 900×700 | x26/y8, 144×48 | [Overview](after/production/900x700-overview.png) |
-| 768×1024 | x26/y8, 144×48 | [Overview](after/production/768x1024-overview.png) |
-| 390×844 | x12/y7, 132.59375×44.1875 | [Overview](after/production/390x844-overview.png) |
+| 1440×900 | x26/y8, 180×60 | Overview |
+| 1280×720 | x26/y8, 180×60 | Overview |
+| 900×700 | x26/y8, 144×48 | Overview |
+| 768×1024 | x26/y8, 144×48 | Overview |
+| 390×844 | x12/y7, 132.59375×44.1875 | Overview |
 
 The image remains transparent RGBA, 2172×724, 3:1, SHA-256
 `6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb`.
 The frontend copy, root copy and production-emitted PNG have identical bytes;
 alt `MISSION1`, responsive fit and pointer-through behavior are unchanged.
 
-[Development](evidence/functional-development.json) and
-[production](evidence/functional-production.json) regression records cover 12
+Development and
+production regression records cover 12
 states each at desktop/mobile: LIVE, Crew/detail, paused historical REPLAY,
 historical Crew/detail, GP and OEM approach/Inspection/return. One retained
 Viewer, unchanged Earth camera across Replay, restored LIVE animation and one
@@ -209,7 +211,7 @@ One production desktop Replay request was aborted during seek replacement
 (`net::ERR_ABORTED`), consistent with the existing cancellable request path;
 the historical response and all checks completed successfully.
 
-[Camera/input smoke](evidence/input-smoke.json) passes in all four build/size
+Camera/input smoke passes in all four build/size
 combinations: Earth drag, wheel zoom through the logo, Inspection orbit and zoom,
 Crew detail in Inspection, focus restoration and Back. Inspection checks use
 camera position in its local frame to avoid confusing orbital motion with user
@@ -228,7 +230,7 @@ and `mvn verify` (Java 21); **284 frontend tests / 34 files**, typecheck and
 production build pass (Node 24.21.0). The existing wordmark test gains only a
 no-adjacent-text assertion. `git diff --check` passes.
 
-[Verification summary](evidence/verification.json) records measurements,
+Verification summary records measurements,
 request totals, screenshot hashes, regression results, tests and the freeze
 comparison. Of 5,174 baseline tracked files, 5,169 are byte-identical. The five
 existing edits are App presentation, app bootstrap credit configuration, the

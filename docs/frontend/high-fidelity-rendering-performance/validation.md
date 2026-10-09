@@ -1,6 +1,8 @@
 # Final gates and practical limits
 
-This record refers to the production build `index-BmpYcoTR.js`, SHA-256 `0317c34f8b975521d7a744c6ff9039f138ab62c725159685ce57a2abd83a7361`, and the unchanged accepted baseline parent `6fbb52d7999cc189b9240a7cad5e6136c36f8164`. [Raw build identity](evidence/build-identity.json), [functional summary](evidence/regression-summary.json), [complete performance/loading/memory tables](metrics.md), [source/assets and decisions](README.md).
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
+This record refers to the production build `index-BmpYcoTR.js`, SHA-256 `0317c34f8b975521d7a744c6ff9039f138ab62c725159685ce57a2abd83a7361`, and the unchanged accepted baseline parent `6fbb52d7999cc189b9240a7cad5e6136c36f8164`. Raw build identity, functional summary, [complete performance/loading/memory tables](metrics.md), [source/assets and decisions](README.md).
 
 The primary 60 FPS gate **fails** on the reference hardware. The user explicitly permits a measured, disclosed hardware-blocked result; that conditional outcome is applied, not relabelled PASS. Loading improves first use while fully refined settlement has the bounded extra cost detailed below. Source/native API limits are explicit. The six final actual-LIVE/Replay windows are complete: Overview GP 40.49 FPS, Overview OEM 43.86, Inspection OEM 42.19, Inspection GP 40.65, Crew visibly open 41.67, and persisted Replay 53.48. Their different real epochs are not used to infer a baseline speedup. The unconfirmed Crew click window is rejected and preserved separately; the final report links both valid source sessions.
 
@@ -61,7 +63,7 @@ The primary 60 FPS gate **fails** on the reference hardware. The user explicitly
 
 ## Frozen boundary and evidence
 
-[Frozen file audit](evidence/frozen-files.json): 5,529 starting tracked files, 5,511 unchanged, all 210 backend files and all prior evidence byte-identical. The 18 changed old tracked paths comprise six source/generator/manifests, six docs and six deleted old skybox PNGs. Six new runtime WebPs and this new dossier are intentional. No `dist/`, downloaded source TIFF/GLB, unused high-resolution asset, external context or new dependency enters Git.
+Frozen file audit: 5,529 starting tracked files, 5,511 unchanged, all 210 backend files and all prior evidence byte-identical. The 18 changed old tracked paths comprise six source/generator/manifests, six docs and six deleted old skybox PNGs. Six new runtime WebPs and this new dossier are intentional. No `dist/`, downloaded source TIFF/GLB, unused high-resolution asset, external context or new dependency enters Git.
 
 `evidence/validation/` contains final frontend/backend/typecheck/build/generation/loading/GPU text logs. Saved text-log copies normalize runner-emitted trailing whitespace and extra EOF blank lines for the diff gate; result lines and measured values are unchanged, and the evidence manifest records each pre-normalization hash. Browser traces/JSON/PNG and logs are in `evidence/regression/`. `evidence/evidence-manifest.json` records exact sizes/SHA-256 for the saved evidence; it excludes itself to avoid a circular hash. Original/diagnostic runs remain labelled and are not mixed into final numerical acceptance tables. [Full context/read inventory](context-reviewed.md) and [six new runtime assets](assets.md) are separate.
 

@@ -1,5 +1,0 @@
-Browser tab: 4, Title: "MISSION1 · Earth View", URL: "http://127.0.0.1:4175/".
-The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
-~		8 button (disabled) Returning to Earth View
-~		362 text Returning to Earth View
-The focused UI element is 1 AXWebArea MISSION1 · Earth View, URL: 127.0.0.1:4175/

@@ -1,5 +1,7 @@
 # Approved MISSION1 wordmark integration
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Original integration validated on 2026-10-04 (Europe/Rome), with its visual
 evidence preserved below. Subsequent follow-ups are recorded first.
 
@@ -82,11 +84,11 @@ are unchanged. Scene UTC, orbital motion and imagery loading can differ.
 
 | Viewport | Unchanged image rectangle, CSS pixels | Current isolated artifact |
 | --- | --- | --- |
-| 1440×900 | x=26, y=8, 180×60 | [Screenshot](asset-ownership/1440x900.png) |
-| 1280×720 | x=26, y=8, 180×60 | [Screenshot](asset-ownership/1280x720.png) |
-| 900×700 | x=26, y=8, 144×48 | [Screenshot](asset-ownership/900x700.png) |
-| 768×1024 | x=26, y=8, 144×48 | [Screenshot](asset-ownership/768x1024.png) |
-| 390×844 | x=12, y=7, 132.59375×44.1875 | [Screenshot](asset-ownership/390x844.png) |
+| 1440×900 | x=26, y=8, 180×60 | Screenshot |
+| 1280×720 | x=26, y=8, 180×60 | Screenshot |
+| 900×700 | x=26, y=8, 144×48 | Screenshot |
+| 768×1024 | x=26, y=8, 144×48 | Screenshot |
+| 390×844 | x=12, y=7, 132.59375×44.1875 | Screenshot |
 
 Final gates: **382 backend tests** with zero failures/errors/skips in both
 `mvn test` and `mvn verify` (Java 21); **284 frontend tests / 34 files**,
@@ -99,7 +101,7 @@ intentional status-panel overflow findings remain. Its capture records four
 GPU-driver `ReadPixels` warnings and no failed requests. The accepted Cesium
 large-chunk build warning remains. `git diff --check` passes.
 
-[Machine-readable verification](asset-ownership/verification.json) records asset
+Machine-readable verification records asset
 integrity, standalone deployment, all five layout comparisons, browser smoke,
 test gates and the freeze audit against `9ca553b`. All previous evidence below
 is preserved: 5,163 of 5,167 existing tracked files are unchanged, including all
@@ -176,21 +178,21 @@ captures; these are layout checks, not pixel-identical orbital comparisons.
 
 | Viewport | Rendered image, CSS pixels | Overview before | Overview after | Replay after |
 | --- | --- | --- | --- | --- |
-| 1440×900 | 180×60 | [Before](screenshots/before-5175-1440x900-overview.png) | [After](screenshots/after-5175-1440x900-overview.png) | [Replay](screenshots/after-5175-1440x900-replay.png) |
-| 1280×720 | 180×60 | [Before](screenshots/before-5175-1280x720-overview.png) | [After](screenshots/after-5175-1280x720-overview.png) | [Replay](screenshots/after-5175-1280x720-replay.png) |
-| 900×700 | 144×48 | [Before](screenshots/before-5175-900x700-overview.png) | [After](screenshots/after-5175-900x700-overview.png) | [Replay](screenshots/after-5175-900x700-replay.png) |
-| 768×1024 | 144×48 | [Before](screenshots/before-5175-768x1024-overview.png) | [After](screenshots/after-5175-768x1024-overview.png) | [Replay](screenshots/after-5175-768x1024-replay.png) |
-| 390×844 | 132.59375×44.1875 | [Before](screenshots/before-5175-390x844-overview.png) | [After](screenshots/after-5175-390x844-overview.png) | [Replay](screenshots/after-5175-390x844-replay.png) |
+| 1440×900 | 180×60 | Before | After | Replay |
+| 1280×720 | 180×60 | Before | After | Replay |
+| 900×700 | 144×48 | Before | After | Replay |
+| 768×1024 | 144×48 | Before | After | Replay |
+| 390×844 | 132.59375×44.1875 | Before | After | Replay |
 
-[Desktop Inspection](screenshots/after-5175-1440x900-inspection-gp.png),
-[desktop OEM Inspection](screenshots/after-5175-1440x900-inspection-oem.png),
-[mobile Inspection](screenshots/after-5175-390x844-inspection-gp.png),
-[mobile Crew detail](screenshots/after-5175-390x844-crew-detail.png), and
-[historical Crew detail](screenshots/after-5175-390x844-replay-crew-detail.png).
+Desktop Inspection,
+desktop OEM Inspection,
+mobile Inspection,
+mobile Crew detail, and
+historical Crew detail.
 
 All twelve original before screenshots were captured before implementation and
 copied byte-for-byte into this dossier. They were not recreated afterward.
-[Screenshot hashes](screenshots-manifest.json) preserve their integrity.
+Screenshot hashes preserve their integrity.
 
 ## Accessibility and ongoing cost
 
@@ -208,7 +210,7 @@ code. Viewer, clock, model, shaders and camera code remain unchanged.
 
 ## Regression and scope
 
-[Development report](after-5175-report.json) records all five viewports through
+Development report records all five viewports through
 LIVE Overview, Crew/detail, Replay, historical Crew/detail and GP/OEM approach,
 Inspection and Back. It checks natural dimensions, ratio, pointer style, zero
 brand overlaps, document width, one image request, unchanged Viewer identity,
@@ -250,21 +252,21 @@ backend or Cesium redesign was performed. **No new ADR required.**
   byte-identical to the accepted baseline.
 - **284 frontend tests / 34 files**, typecheck and production build pass under
   Node 24.21.0. The existing Cesium large-chunk warning remains.
-- [Production browser report](after-4175-report.json): all five viewports,
+- Production browser report: all five viewports,
   the same twelve states per viewport as development, zero page/console errors,
   one image request per page, no brand overlap or horizontal overflow.
-  [Production desktop](screenshots/after-4175-1440x900-overview.png),
-  [Inspection](screenshots/after-4175-1440x900-inspection-gp.png),
-  [mobile](screenshots/after-4175-390x844-overview.png) and
-  [mobile Replay](screenshots/after-4175-390x844-replay.png).
-- [Input/accessibility smoke](input-smoke.json): desktop/mobile × dev/production
+  Production desktop,
+  Inspection,
+  mobile and
+  mobile Replay.
+- Input/accessibility smoke: desktop/mobile × dev/production
   expose exactly `img "MISSION1"`; hit-testing the logo center reaches the
   canvas, wheel input through the logo zooms Earth, native Earth drag works,
   Crew detail opens in Inspection, Close restores focus and Back succeeds.
-- Shared visual runtime [capture](shared-capture-mobile/manifest.json),
-  [console](shared-capture-mobile/console-events.json) and
-  [request failures](shared-capture-mobile/request-failures.json) are retained.
-  [Desktop lint](visual-lint-1440.json) / [mobile lint](visual-lint-390.json)
+- Shared visual runtime capture,
+  console and
+  request failures are retained.
+  Desktop lint / mobile lint
   contain no brand findings, broken wordmark, low-contrast or console error.
   Each shared-runtime page emits four GPU-driver `ReadPixels` stall warnings;
   these are retained alongside the main Metal browser QA, which reports zero
@@ -273,13 +275,13 @@ backend or Cesium redesign was performed. **No new ADR required.**
   `text_overflow` finding is the intentional scrolling status panel, whose
   layout and overflow behavior are frozen and unchanged; it is not a new
   branding defect.
-- [Served asset hashes](production-assets.json) match the production build;
+- Served asset hashes match the production build;
   the served logo hash also matches the original approved PNG.
-- [Freeze audit](freeze-audit.json): **5,110 existing tracked files unchanged**,
+- Freeze audit: **5,110 existing tracked files unchanged**,
   including all **210 backend files** and **51 Cesium files**. The only existing
   changed files are App.tsx, branding CSS, AppReplay.test.tsx and frontend README.
   New files belong only to this dossier. Architecture/ADRs, root README, source
   logo, other frontend logic and assets are unchanged. `git diff --check` passes.
 
-[Machine-readable gate results](test-results.json). No other dashboard
+Machine-readable gate results. No other dashboard
 restyling was started.

@@ -6,7 +6,7 @@ import {
   type ReplayCoverage,
 } from "./replayApi";
 /** User-driven reads only; debounce, abort and request identity prevent stale acceptance. */
-export function useMissionReplay(enabled: boolean, at: string) {
+export function useMissionReplay(enabled: boolean, at: string, retryRequest = 0) {
   const [data, setData] = useState<ReplayResult | null>(null),
     [coverage, setCoverage] = useState<ReplayCoverage | null>(null),
     [error, setError] = useState<string | null>(null),
@@ -21,7 +21,7 @@ export function useMissionReplay(enabled: boolean, at: string) {
         if (!controller.signal.aborted) setError(e.message);
       });
     return () => controller.abort();
-  }, [enabled]);
+  }, [enabled, retryRequest]);
   useEffect(() => {
     const id = ++generation.current;
     setData(null);
@@ -48,7 +48,7 @@ export function useMissionReplay(enabled: boolean, at: string) {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [enabled, at]);
+  }, [enabled, at, retryRequest]);
   return {
     data: data && Date.parse(data.requestedAt) === Date.parse(at) ? data : null,
     coverage,

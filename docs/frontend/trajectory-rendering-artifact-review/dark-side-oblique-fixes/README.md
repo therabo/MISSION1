@@ -1,5 +1,7 @@
 # Dark-side and oblique trajectory artifact review — 2026-10-03
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Status: accepted after real raster and final regression validation. This dossier records the acceptance gates; the published revision is reported with delivery.
 
 Accepted baseline: `824f3e67f97a9df1034d4a6a453ee4d172a803e3`, initially clean and synchronized on main. The supplied screenshots were taken after reload at this commit, as confirmed by the user.
@@ -154,4 +156,4 @@ Documentation changes are limited to `frontend/README.md`, `docs/frontend/orbita
 
 No next milestone implementation is included. The single next milestone after this acceptance is **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**.
 
-![Native before/after comparison: night interruption and oblique join](contacts/before-after-native.png)
+*Archived visual: Native before/after comparison: night interruption and oblique join*

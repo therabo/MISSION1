@@ -1,6 +1,8 @@
 # Perceptual ISS camera transition review — 2026-10-01
 
-This review evolves the inspected uncommitted strict-speed candidate above accepted baseline `538bb0642205be7f326aa3ae08ec2dc46134a212`. The [original rejection](../strict-speed-review.md), raw traces and reconstructions remain. The [starting source snapshot](../strict-speed-source/manifest.json) preserves the seven inspected candidate files and SHA-256 hashes for reproduction above the committed baseline. Acceptance requires both direct scene-image review and numerical gates. [Final measured results, visual acceptance and browser audit](results.md) document the accepted implementation, with raw data and reproduction below.
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
+This review evolves the inspected uncommitted strict-speed candidate above accepted baseline `538bb0642205be7f326aa3ae08ec2dc46134a212`. The [original rejection](../strict-speed-review.md), raw traces and reconstructions remain. The starting source snapshot preserves the seven inspected candidate files and SHA-256 hashes for reproduction above the committed baseline. Acceptance requires both direct scene-image review and numerical gates. [Final measured results, visual acceptance and browser audit](results.md) document the accepted implementation, with raw data and reproduction below.
 
 ## Context and retained work
 
@@ -73,4 +75,4 @@ node ../scripts/clean-live-smoke.cjs
 
 The actual viewport variables are `MISSION1_QA_WIDTH` / `MISSION1_QA_HEIGHT`. Clean smoke uses uninstrumented development 5175 and served production 4175 against the actual local Java backend, without route interceptions. Source availability is reported honestly.
 
-Evidence CSVs retain their recorded CRLF terminators. Directory-scoped [Git attributes](../.gitattributes) recognize that format and preserve exact source-snapshot bytes, including the original cameraPose EOF blank line; current runtime source uses normal whitespace checks. Attribute behavior was checked against [Git gitattributes documentation](https://git-scm.com/docs/gitattributes#_checking_whitespace_errors).
+Evidence CSVs retain their recorded CRLF terminators. Directory-scoped Git attributes recognize that format and preserve exact source-snapshot bytes, including the original cameraPose EOF blank line; current runtime source uses normal whitespace checks. Attribute behavior was checked against [Git gitattributes documentation](https://git-scm.com/docs/gitattributes#_checking_whitespace_errors).

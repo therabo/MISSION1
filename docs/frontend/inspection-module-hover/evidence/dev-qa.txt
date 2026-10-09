@@ -1,4 +1,0 @@
-{"label":"development","width":1440,"height":900,"modules":28,"picks":125,"frames":3024,"consoleErrors":[],"pass":true}
-{"label":"development","width":1280,"height":720,"modules":0,"picks":2,"frames":1684,"consoleErrors":[],"pass":true}
-{"label":"development","width":900,"height":700,"modules":0,"picks":2,"frames":1708,"consoleErrors":[],"pass":true}
-{"label":"development","width":390,"height":844,"modules":0,"picks":0,"frames":1742,"consoleErrors":[],"pass":true}

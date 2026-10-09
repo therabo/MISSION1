@@ -1,0 +1,67 @@
+{
+  "encoding": "lossless WebP; decoded RGBA equals original native PNG; no rescaling or retouch",
+  "files": [
+    {
+      "file": "desktop-earth.webp",
+      "width": 1440,
+      "height": 900,
+      "bytes": 505154,
+      "source": "final-production/1440x900-earth-gp.png",
+      "sourcePngSha256": "807a8f2165ed3e73fc03aae11db1369b2fbbc3ff1352e46e8839745882bafa06",
+      "decodedRgbaSha256": "16c93d67a3740a986d99c7cfeb7e0b81996e48645f813493b631c023d193c360",
+      "decodedEqualsSource": true
+    },
+    {
+      "file": "tablet-earth.webp",
+      "width": 1024,
+      "height": 768,
+      "bytes": 325900,
+      "source": "final-production/1024x768-earth-gp.png",
+      "sourcePngSha256": "7b6b7eebb40dab2bcc4901bbb3cb7c6a6f83a41bffd8b96c605b363aab7ac48b",
+      "decodedRgbaSha256": "0f6028c718edbbc0ee9a5038c1b63509991625c7fcd555fd56c2caa1caf84bab",
+      "decodedEqualsSource": true
+    },
+    {
+      "file": "phone-earth.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 148116,
+      "source": "final-production/390x844-earth-gp.png",
+      "sourcePngSha256": "1514b742b581771cd5287b2306e63f35d104577dc6d96734caf5dd77f5b3244a",
+      "decodedRgbaSha256": "90112b69288b52285ad5a7db661d5a731cc71a28c003339964defa2963786c2f",
+      "decodedEqualsSource": true
+    },
+    {
+      "file": "narrow-calendar.webp",
+      "width": 320,
+      "height": 568,
+      "bytes": 45658,
+      "source": "final-production/320x568-historical-calendar.png",
+      "sourcePngSha256": "a6760872b872b00514688585800e1be9ad3e220482f3fc010485bda5341d1a82",
+      "decodedRgbaSha256": "891bfecd3dcf68fc522b9f20889e627cde9688667e86459503a8887ba6be810e",
+      "decodedEqualsSource": true
+    },
+    {
+      "file": "phone-astronaut.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 162698,
+      "source": "final-production/390x844-crew-detail.png",
+      "sourcePngSha256": "e4dafcaa3d393e733b1db691432cae96bb91a2e656ebd77b0845bfcc0727c795",
+      "decodedRgbaSha256": "13ed017125681759704c5221c747ce18a8029f99065279fa00ce567e95fb9e72",
+      "decodedEqualsSource": true
+    },
+    {
+      "file": "narrow-module.webp",
+      "width": 320,
+      "height": 568,
+      "bytes": 76118,
+      "source": "final-production/320x568-module.png",
+      "sourcePngSha256": "a9c8604ff68ef58a3be67a77531267d3158fa821d3469bcd1790115e094f038f",
+      "decodedRgbaSha256": "8ff65249e617b858369bfc16d92a6b5787755a1036d2e4c462c898e195fae9fa",
+      "decodedEqualsSource": true
+    }
+  ],
+  "count": 6,
+  "bytes": 1263644
+}

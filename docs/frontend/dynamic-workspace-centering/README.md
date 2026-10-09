@@ -1,5 +1,7 @@
 # Dynamic Earth centering in the free workspace
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 ## Current status — rectangular viewport model superseded
 
 The right-side rectangular viewport model introduced by this milestone was later
@@ -33,7 +35,7 @@ bottom card at its existing 700px rule. The wordmark, Replay launcher/time
 controls, source selector, module card, attribution popup, hints and tooltips do
 not define a left workspace allocation.
 
-[Original baseline geometry](evidence/before-layout.json) records real runtime
+Original baseline geometry records real runtime
 LIVE, REPLAY, Inspection, Crew and person-detail states at desktop/tablet/mobile.
 All prior repository screenshots remain untouched.
 
@@ -106,7 +108,7 @@ Left inset adaptation uses a bounded **650ms CSS ease**, with no transition when
 translate a fixed canvas. Each size change is delivered by the container observer,
 without a requestAnimationFrame/layout polling loop. A 250ms candidate was rejected
 because native buffer resizing produced 24.67px entry /27.96px exit composition
-steps in the observed frames. [Rejected trace](evidence/rejected-250ms-transition.txt)
+steps in the observed frames. Rejected trace
 is retained. The final easing preserves existing physical 6s/5s camera paths and
 smooths the independent layout adjustment; it does not add a camera recenter.
 The layout can finish settling for up to 650ms after a mode changes.
@@ -140,8 +142,8 @@ pose, pause/restore the existing clock and retain existing historical semantics.
 The primary predeclared QA tolerance is **2 CSS pixels** for projection of Earth's
 physical center/principal ray (and the centered station in Inspection). Browser
 projection uses the current public camera basis and symmetric native frustum;
-[development](evidence/development-browser.json) and
-[production](evidence/production-browser.json) preserve unrounded values. Numerical
+development and
+production preserve unrounded values. Numerical
 results are not claims of pixel-exact raster limb estimation.
 
 | Viewport | Actual LIVE layout | Dashboard left /width /right | Expected Earth X | Observed projection X, dev /prod |
@@ -170,7 +172,7 @@ This runs in both builds without editing a camera constant or refreshing the pag
 World camera position and native pixel-lens scale are unchanged. The temporary
 style is browser-only and absent from source/build/commit.
 
-Supplementary [native raster limb fits](evidence/raster-measurements.json) estimate
+Supplementary native raster limb fits estimate
 visual centers from radial gradients with a trimmed circle fit. The globe is an
 ellipsoid with atmosphere and partially occluded/cropped contours, so that method
 has a coarser approximately **4px interpretation band**. It is a separate visual
@@ -187,7 +189,7 @@ the existing Viewer through React references; all checked-in scripts stay outsid
 frontend imports/builds. Resize/orientation-equivalent sequence 900×700→390×844→
 1024×768→768×1024→900×700 recomputes correctly without refresh.
 
-[Input regression](evidence/input-regression.json) covers development/production ×
+Input regression covers development/production ×
 1440px/390px: principal-ray Earth picking at the actual canvas center, Earth drag,
 wheel zoom, visible ISS clicks entering Inspection, Inspection native orbit and
 wheel zoom, **14 verified module picks in each of four combinations**, and Back.
@@ -195,7 +197,7 @@ Picking converts local canvas coordinates to global browser coordinates with the
 actual canvas bounds; a visual ISS/module click opens the correct visible action.
 The passive observer globals exist only in those disposable browser pages.
 
-[Transition traces](evidence/transitions.json) cover GP/TLE, NASA OEM and historical
+Transition traces cover GP/TLE, NASA OEM and historical
 REPLAY, desktop/mobile, development/production, in both directions. Canonical
 range/FOV, finite composition steps, exact saved Earth world-pose restoration and
 frame counts are retained: **8,515 frames**, maximum viewport-center step
@@ -205,7 +207,7 @@ Automatic physical basis and path implementation remain
 unchanged. No final camera correction, target takeover or second camera animation
 is added; actual viewport adaptation follows layout state once.
 
-[Additional panel-state checks](evidence/panel-states.json) cover 48 Inspection
+Additional panel-state checks cover 48 Inspection
 and Replay Crew closed/open/detail/reclosed states in both builds at 1440, 768
 and 390px. Detail changes no allocation; closing restores the measured side
 edge. Physical camera position/basis stay identical while these panels change.
@@ -213,7 +215,7 @@ Only in the disposable live Inspection QA page, the existing clock is paused
 to separate composition from natural station motion. Reduced-motion viewport
 adaptation is also checked in both builds.
 
-[Equivalent visual lint](evidence/visual-lint.json) checks eight desktop/mobile
+Equivalent visual lint checks eight desktop/mobile
 Overview/Inspection states for horizontal overflow, unnamed controls, clipped
 controls and unnamed images. No blockers. Existing small-text findings are retained;
 no unrelated dashboard restyling is started. The requested shared
@@ -222,7 +224,7 @@ Playwright screenshots, console/error capture and local lint are used.
 
 ## Performance, tests and freeze
 
-[Idle/lifecycle probes](evidence/idle-lifecycle.json) measure 10s in each build:
+Idle/lifecycle probes measure 10s in each build:
 **zero dashboard/root geometry reads, zero observer callbacks** at idle; two active
 observers and one added window resize listener. Four Crew open/close cycles retain
 two active observers with their predecessors disconnected. No ResizeObserver loop,
@@ -238,11 +240,11 @@ observer cleanup and eight full/cropped lens pixel-scale cases. Final gates:
 **298 frontend tests /36 files**, typecheck and production build; **382 backend
 tests** in both `mvn test` and `mvn verify`, zero failures/errors/skips. Node
 24.21.0 and Java 21.0.3. Existing large Cesium bundle warning remains.
-`git diff --check` and a [baseline byte inventory](evidence/freeze-audit.json)
+`git diff --check` and a baseline byte inventory
 validate the final diff: **5,197 of 5,205 existing files unchanged**, including
 all **210 backend files**, **9 assets** and **4,182 prior frontend evidence files**.
 Of 51 existing Cesium files, only EarthView's local viewport adapter changes.
-[Machine-readable validation](evidence/verification.json) records exact checks,
+Machine-readable validation records exact checks,
 freeze counts, measured maxima and screenshot hashes.
 
 Backend runtime changes: **zero**. Source/provider adapters, CelesTrak/TLE history,

@@ -97,7 +97,16 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
         </section>
       ))}
       {crew.members.length === 0 && <p className="crew-note">No resolved crew members are available.</p>}
-      {crew.unresolvedSubjects.length > 0 && (
+      <CrewReports crew={crew} />
+      <CrewSources crew={crew} />
+    </>
+  );
+}
+
+/** Shared, unchanged source reports for Current and legacy Historical/detail presentation. */
+export function CrewReports({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
+  return <>
+    {crew.unresolvedSubjects.length > 0 && (
         <section className="crew-unresolved" aria-label="Unresolved source reports">
           <h3>Additional NASA-reported crew</h3>
           <p>
@@ -115,7 +124,7 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
                 <span>
                   {subject.applicable
                     ? 'Applicable source assertion'
-                    : 'Retained assertion · not currently applicable'}{' '}
+                    : historicalAt ? 'Retained assertion · not applicable at Historical UTC' : 'Retained assertion · not currently applicable'}{' '}
                   · {utc(subject.evidence.asOf)}
                 </span>
               </li>
@@ -123,11 +132,15 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
           </ul>
         </section>
       )}
-      <details className="crew-sources">
+  </>;
+}
+
+export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
+  return (
+    <details className="crew-sources">
         <summary>Data sources &amp; freshness</summary>
         <p>
-          Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time.
-          Refresh to reassess.
+          {historicalAt ? <>Historical assessment at {utc(historicalAt)}. Source fetch times describe retained collection history.</> : <>Evaluated {utc(crew.freshness.evaluatedAt)}. This panel shows the backend assessment at that time.</>}
         </p>
         <p>
           {crew.counts.structuredAssignments ?? 'Unavailable'} structured assignments · {crew.members.length}{' '}
@@ -206,6 +219,5 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
           </details>
         )}
       </details>
-    </>
   );
 }

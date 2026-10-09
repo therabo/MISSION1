@@ -13,8 +13,8 @@ describe('verified static module information', () => {
         expect(html).toContain(module.componentId);
         expect(html).toContain(module.componentType);
         expect(html).toContain(module.nodeName);
-        expect(html).toContain('Configuration:');
-        expect(html).toContain('Live module telemetry:');
+        expect(html).toContain('Configuration context');
+        expect(html).toContain('Live module telemetry');
         expect(html).toContain('unavailable');
         expect(html).toContain('NOT TO SCALE');
         expect(html).toContain(ISS_MODEL.sourcePage);
@@ -35,6 +35,6 @@ describe('verified static module information', () => {
     const current = renderToStaticMarkup(<ModuleInfo module={{ ...destiny, agency: undefined, role: undefined }} onClose={() => {}} />);
     expect(current).toContain('Current station component confirmed');
     expect(current).not.toContain('Historical NASA VTAD asset representation');
-    expect(current).toContain('Live module telemetry:');
+    expect(current).toContain('Live module telemetry');
   });
 });

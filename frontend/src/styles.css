@@ -1,4 +1,46 @@
+@font-face { font-family: Inter; src: url('./assets/fonts/Inter-variable.ttf') format('truetype'); font-style: normal; font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Roboto Mono'; src: url('./assets/fonts/RobotoMono-variable.ttf') format('truetype'); font-style: normal; font-weight: 100 700; font-display: swap; }
+
 :root {
+  /* Approved Figma foundations. Legacy aliases below remain until later phases. */
+  --color-background: #10151c;
+  --color-graphite: #151d27;
+  --surface-context: rgb(21 29 39 / .88);
+  --surface-operational: rgb(21 29 39 / .90);
+  --surface-historical: rgb(21 29 39 / .50);
+  --surface-module: rgb(21 29 39 / .50);
+  --surface-crew: rgb(21 29 39 / .60);
+  --surface-calendar: rgb(21 29 39 / .94);
+  --control-normal: rgb(29 40 52 / .92);
+  --control-selected: rgb(36 61 76 / .92);
+  --control-source: rgb(21 29 39 / .92);
+  --control-hover: rgb(33 44 56 / .92);
+  --color-text-primary: #e9eff6;
+  --color-text-secondary: #a8b5c4;
+  --color-interaction: #8cc8e6;
+  --color-trajectory-gp: #53d9cd;
+  --color-trajectory-oem: #edb86a;
+  --color-success: #8dd5b0;
+  --color-warning: #edb86a;
+  --color-border: #2a3542;
+  --border-context: rgb(42 53 66 / .60);
+  --border-divider: rgb(42 53 66 / .45);
+  --border-overlay: rgb(42 53 66 / .75);
+  --radius-control: 4px;
+  --radius-surface: 6px;
+  --font-interface: Inter, ui-sans-serif, sans-serif;
+  --font-numeric: 'Roboto Mono', ui-monospace, monospace;
+  --motion-fast: 120ms;
+  --motion-compact: 160ms;
+  --motion-ui: 200ms;
+  --motion-dock: 240ms;
+  --motion-workspace: 280ms;
+  --ease-enter: cubic-bezier(0, 0, .58, 1);
+  --ease-exit: cubic-bezier(.42, 0, 1, 1);
+  --ease-state: cubic-bezier(.42, 0, .58, 1);
+  --space-primary: 24px;
+  --context-height: 64px;
+  --operational-height: 80px;
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #e9f4f5;
   background: #07111d;
@@ -19,9 +61,7 @@ button { font: inherit; }
 .earth-view { position: absolute; inset: 0; }
 .earth-view .cesium-viewer, .earth-view .cesium-widget { width: 100%; height: 100%; }
 .earth-view .cesium-widget-credits { right: 12px; left: auto; bottom: 8px; font-size: 10px; }
-.top-brand { position: absolute; top: 8px; left: 26px; z-index: 2; display: flex; align-items: center; gap: 12px; color: #e9f4f5; font-size: 12px; font-weight: 800; letter-spacing: .19em; text-shadow: 0 1px 10px #001; pointer-events: none; }
-.top-brand em { color: #a6c7ce; font-style: normal; font-weight: 500; }
-.brand-wordmark { display: block; flex: none; width: clamp(144px, 16vw, 180px); height: auto; object-fit: contain; }
+.brand-wordmark { display: block; flex: none; }
 .top-actions { position: absolute; z-index: 2; top: 23px; right: 24px; display: flex; align-items: center; gap: 10px; }
 .scene-chip, .top-actions button { min-height: 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: #d9edef; font-size: 10px; font-weight: 700; letter-spacing: .09em; }
 .scene-chip { display: flex; align-items: center; gap: 8px; padding: 0 13px; }
@@ -101,9 +141,6 @@ dl { margin: 8px 0 0; }
 .inspection-hint span { color: var(--muted); font-size: 10px; }
 .is-inspecting .status-panel .panel-section:first-of-type { display: none; }
 @media (max-width: 720px) {
-  .top-brand { top: 7px; left: 12px; gap: 8px; font-size: 10px; }
-  .brand-wordmark { width: clamp(120px, 34vw, 144px); }
-  .top-brand em { display: none; }
   .top-actions { top: 12px; right: 12px; }
   .scene-chip { display: none; }
   .top-actions button { min-height: 34px; padding: 0 10px; }
@@ -154,7 +191,7 @@ dl { margin: 8px 0 0; }
 .crew-panel-header .eyebrow { font-size: 10px; letter-spacing: .1em; }
 .crew-panel-header h2 { margin: 6px 0 0; font-size: 17px; line-height: 1.3; font-weight: 650; letter-spacing: -.025em; }
 .crew-panel-header button { flex: none; width: 44px; padding: 0; font-size: 23px; }
-.crew-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0 16px 10px; border-bottom: 1px solid var(--border); font-weight: 650; }
+.crew-toolbar { display: flex; align-items: center; padding: 0 16px 10px; border-bottom: 1px solid var(--border); font-weight: 650; }
 .crew-toolbar > button { font-size: 12px; }
 .crew-panel-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #49636c transparent; padding: 16px; }
 .crew-summary p { margin: 0; }
@@ -242,3 +279,314 @@ dl { margin: 8px 0 0; }
 .replay-controls button:focus-visible, .replay-orbit button:focus-visible, .replay-controls input:focus-visible { outline:2px solid #edb86a; outline-offset:2px; }
 .replay-controls .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 @media(min-width:701px) { .has-crew-panel .replay-controls { max-width:calc(100vw - 420px); } }
+
+/* Phase 1 foundations. No blur, elevation, scale, or scene animation. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.context-button { display: inline-flex; align-items: center; justify-content: center; flex: none; height: 36px; padding: 0 16px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); color: var(--color-text-primary); font: 400 14px/normal var(--font-interface); cursor: pointer; transition: background-color var(--motion-fast) var(--ease-state), border-color var(--motion-fast) var(--ease-state), opacity var(--motion-fast) linear; }
+.context-button:hover:not(:disabled) { background: var(--control-hover); }
+.context-button:active:not(:disabled) { opacity: .94; }
+.context-button[aria-pressed="true"] { background: var(--control-selected); border-color: var(--color-interaction); color: var(--color-interaction); font-weight: 700; transition: none; }
+.context-button:focus-visible, .context-source select:focus-visible, .orbital-status-disclosure > summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
+.context-button:disabled { opacity: .5; cursor: not-allowed; }
+.context-action-icon, .historical-timestamp-compact { display: none; }
+.top-context-bar .context-action { gap: 6px; padding: 0; }
+.top-context-bar .context-action-icon { display: inline-flex; }
+.top-context-bar .context-crew { padding-right: 16px; }
+.control-icon { display: block; width: 22px; height: 22px; flex: none; }
+.secondary-icon { display: none; pointer-events: none; }
+.secondary-desktop-glyph { pointer-events: none; }
+.context-dock { position: absolute; z-index: 6; top: 88px; right: 24px; bottom: 104px; width: 336px; display: flex; flex-direction: column; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-module); color: var(--color-text-primary); font-family: var(--font-interface); overflow: hidden; }
+.context-dock-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-divider); }
+.context-dock-header h2 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 700; }
+.context-dock-header h2:focus { outline: none; }
+.context-dock-header .context-button { width: 36px; padding: 0; }
+.context-dock-content { min-height: 0; overflow-y: auto; padding: 24px; overscroll-behavior: contain; }
+.context-dock[data-state="open"] { animation: context-dock-enter var(--motion-dock) var(--ease-enter); }
+.context-dock[data-state="exiting"] { animation: context-dock-exit var(--motion-ui) var(--ease-exit) both; pointer-events: none; }
+@keyframes context-dock-enter { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes context-dock-exit { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(16px); } }
+@media (max-width: 720px) {
+  .context-dock { right: 12px; width: min(336px, calc(100vw - 24px)); }
+}
+
+/* S1, 1440 × 900: full scene with independent context and operational surfaces. */
+.earth-current { height: 100dvh; min-height: 0; background: var(--color-background); color: var(--color-text-primary); font-family: var(--font-interface); font-optical-sizing: none; }
+.earth-current-ui { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-areas: "context" "scene" "operations"; grid-template-rows: auto minmax(0, 1fr) minmax(var(--operational-height), max-content); pointer-events: none; }
+.earth-current-ui > .top-context-bar { grid-area: context; pointer-events: auto; }
+.earth-current-ui > .operational-summary { grid-area: operations; pointer-events: auto; }
+.earth-scene-ui { grid-area: scene; position: relative; min-height: 0; pointer-events: none; }
+.earth-scene-ui > * { pointer-events: auto; }
+.top-context-bar { position: relative; z-index: 4; height: var(--context-height); display: flex; align-items: center; padding: 14px var(--space-primary); background: var(--surface-context); }
+.top-context-bar::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border-context); pointer-events: none; }
+.context-identity { width: 120px; height: 28px; flex: none; margin-right: 24px; }
+.top-context-bar .top-brand { position: static; gap: 0; text-shadow: none; }
+.earth-current .brand-wordmark { width: 120px; height: 28px; object-fit: fill; }
+.context-spatial, .context-temporal { display: flex; flex: none; gap: 8px; }
+.context-spatial { margin-right: 18px; }
+.context-spatial .context-button:first-child { width: 78px; }
+.context-spatial .context-button:last-child { width: 142px; padding: 0; }
+.context-divider { height: 32px; width: 0; border-left: 1px solid var(--border-divider); flex: none; }
+.context-divider-spatial { margin-right: 25px; }
+.context-source { display: flex; align-items: center; gap: 14px; width: 194px; height: 36px; flex: none; margin-right: 46px; }
+.context-source > label { width: 52px; flex: none; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; font-weight: 700; }
+.context-source-control { position: relative; display: grid; align-items: center; width: 128px; height: 36px; }
+.context-source-control > * { grid-area: 1 / 1; min-width: 0; }
+.context-source select { appearance: none; width: 128px; height: 36px; padding: 0 32px 0 16px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-source); color: transparent; font: 700 14px/17px var(--font-interface); color-scheme: dark; cursor: pointer; transition: background-color var(--motion-fast) var(--ease-state); }
+.context-source select option { color: var(--color-text-primary); background: var(--color-graphite); }
+.context-source-value { justify-self: start; margin-left: 16px; color: var(--color-text-primary); font: 700 14px/17px var(--font-interface); white-space: nowrap; pointer-events: none; }
+.context-source-control:has(select:disabled) .context-source-value { opacity: .5; }
+.context-source.is-automatic select:disabled, .context-source.is-automatic .context-source-control .context-source-value { opacity: 1; cursor: default; }
+.context-source select:hover:not(:disabled) { background: var(--control-normal); }
+.context-source select:disabled { opacity: .5; cursor: not-allowed; }
+.source-select-chevron { justify-self: end; margin-right: 11.25px; pointer-events: none; }
+.context-date { width: 220px; height: 36px; flex: none; display: flex; flex-direction: column; gap: 3px; white-space: nowrap; }
+.context-date > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; font-weight: 700; }
+.context-date > time { font: 400 14px/18px var(--font-numeric); font-variant-numeric: tabular-nums; }
+.context-temporal { margin-left: auto; margin-right: 24px; }
+.context-temporal .context-button:first-child { width: 96px; }
+.context-temporal .context-button:last-child { width: 116px; }
+.context-divider-crew { margin-right: 55px; }
+.context-crew { position: relative; width: 96px; padding: 0 24px 0 16px; }
+.crew-entry-chevron { position: absolute; right: 13.25px; top: 50%; transform: translateY(-50%); }
+.operational-summary { position: relative; z-index: 3; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; }
+.summary-identity { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
+.summary-identity strong { font-size: 14px; line-height: 17px; font-weight: 700; }
+.summary-identity span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.summary-position { display: contents; margin: 0; }
+.summary-position > div { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
+.summary-position dt { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.summary-position dd.measurement-unavailable { font-family: var(--font-interface); font-size: 14px; }
+.source-state-slot { min-width: 0; min-height: 38px; }
+.summary-position dd { margin: 0; font: 400 16px/21px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.orbital-status-disclosure > summary { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; list-style: none; cursor: pointer; }
+.orbital-status-disclosure > summary::-webkit-details-marker { display: none; }
+.orbital-status-disclosure > summary > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.orbital-status-disclosure > summary:hover > span { text-decoration: underline; text-underline-offset: 3px; }
+.summary-quality { font-size: 14px; line-height: 17px; font-weight: 400; }
+.summary-quality.good { color: var(--color-success); }
+.summary-quality.warning { color: var(--color-warning); }
+.summary-quality.unknown { color: var(--color-text-secondary); }
+.summary-identity, .source-state-content, .orbital-status-disclosure > summary { overflow-wrap: anywhere; }
+.source-state-content { min-height: 38px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.source-state-content > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
+.orbital-status-evidence { grid-area: scene; align-self: end; justify-self: end; position: relative; z-index: 5; display: none; width: min(420px, calc(100% - 48px)); max-height: calc(100% - 24px); margin: 12px 24px; overflow-y: auto; pointer-events: auto; padding: 24px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); text-align: left; }
+.earth-current-ui:has(.source-state-slot[open]) > .orbital-status-evidence { display: block; }
+.orbital-status-evidence .time-card { background: transparent; }
+.orbital-status-evidence .panel-head h1 { font-size: 18px; }
+.earth-current-notice { grid-area: scene; align-self: start; justify-self: start; position: relative; z-index: 4; max-width: calc(100% - 48px); max-height: max(48px, calc(100% - 112px)); overflow-y: auto; margin: 12px 24px; padding: 10px 14px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); color: var(--color-warning); font-size: 13px; line-height: 19px; overflow-wrap: anywhere; }
+.trajectory-legend { position: absolute; bottom: 28px; left: 24px; z-index: 2; height: 28px; display: flex; align-items: center; gap: 28px; color: var(--color-text-secondary); font-size: 13px; line-height: 16px; }
+/* Local contrast protection: measured bare legend fell to 3:1 over Earth.
+   The .84 graphite backing guarantees >4.5:1 even over a white background. */
+.trajectory-legend::before { content: ""; position: absolute; inset: 0 -8px; z-index: -1; border-radius: var(--radius-control); background: rgb(21 29 39 / .84); }
+.trajectory-legend > span { display: flex; align-items: center; gap: 8px; height: 28px; }
+.trajectory-swatch { display: block; width: 24px; height: 2px; flex: none; }
+.trajectory-swatch.gp { background: var(--color-trajectory-gp); }
+.trajectory-swatch.oem { background: var(--color-trajectory-oem); }
+.earth-scene-controls { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: flex; gap: 8px; }
+.earth-scene-controls .context-button { width: 44px; padding: 0; }
+.earth-scene-controls .context-button:last-child { width: 124px; }
+.earth-current .cesium-viewer-bottom { bottom: calc(var(--operational-height) + 2px) !important; left: 24px !important; }
+/* Keep Cesium's credit dialog reachable by keyboard, without adding its default
+   attribution label to the approved scene. Source links also remain in evidence. */
+.earth-current .cesium-credit-expand-link:not(:focus-visible) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* S2: one detached, transparent temporal surface; the scene itself never moves. */
+.historical-time-bar { grid-area: scene; align-self: start; justify-self: center; position: relative; z-index: 4; display: flex; align-items: center; gap: 16px; width: min(760px, calc(100% - 48px)); height: 52px; margin-top: 24px; padding: 7px 19px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-historical); pointer-events: auto; }
+.historical-calendar-trigger, .historical-date { flex: none; height: 36px; padding: 0; border: 0; background: transparent; color: var(--color-text-primary); opacity: 1; }
+.historical-calendar-trigger { width: 36px; display: flex; align-items: center; justify-content: center; }
+.historical-calendar-trigger img { flex: none; width: 36px; height: 36px; }
+.historical-date { flex: 1; min-width: 0; text-align: left; font: 400 14px/20px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.historical-steps { flex: none; display: flex; gap: 16px; }
+.historical-date[hidden], .historical-steps[hidden] { display: none; }
+@keyframes historical-disclosure-enter { from { opacity: 0; } to { opacity: 1; } }
+.historical-steps .context-button { width: 96px; padding: 0; }
+.historical-steps .context-button:active:not(:disabled) { animation: historical-step-press var(--motion-fast) var(--ease-state); }
+.historical-time-bar[data-state="open"] { animation: historical-bar-enter var(--motion-ui) var(--ease-enter); }
+.historical-time-bar[data-state="exiting"] { animation: historical-bar-exit var(--motion-compact) var(--ease-exit) both; pointer-events: none; }
+@keyframes historical-bar-enter { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes historical-bar-exit { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-8px); } }
+@keyframes historical-step-press { 0%, 100% { opacity: 1; } 50% { opacity: .94; } }
+
+/* Content-driven responsive composition; never scale the scene or UI canvas. */
+@media (max-width: 1399px) and (min-width: 1244px) {
+  .context-identity { margin-right: 16px; }
+  .context-spatial { margin-right: 12px; }
+  .context-divider-spatial { margin-right: 16px; }
+  .context-source { margin-right: 24px; }
+  .context-divider-crew { margin-right: 24px; }
+}
+@media (max-width: 1243px) {
+  /* Whole control groups share a row in DOM focus order. The independent date
+     row spans the viewport's symmetric gutters, including its visible text. */
+  .top-context-bar { height: auto; min-height: 64px; display: grid; grid-template-columns: repeat(5, auto); grid-template-areas: "identity spatial source temporal crew" "date date date date date"; justify-content: space-between; gap: 8px; padding: 12px 16px; }
+  .context-identity, .context-spatial, .context-source, .context-temporal { margin: 0; }
+  .context-identity { grid-area: identity; }
+  .context-spatial { grid-area: spatial; }
+  .context-source { grid-area: source; height: 44px; }
+  .context-temporal { grid-area: temporal; }
+  .context-crew { grid-area: crew; }
+  .context-date { grid-area: date; width: auto; height: auto; flex-direction: row; align-items: center; justify-content: center; gap: 8px; }
+  .context-divider { display: none; }
+  .top-context-bar .context-button, .earth-scene-controls .context-button, .context-source-control, .context-source select { height: 44px; }
+  .earth-scene-controls { right: 16px; }
+  .source-state-slot, .source-state-content, .orbital-status-disclosure > summary { min-height: 50px; }
+  .historical-time-bar { height: 60px; margin-top: 16px; }
+  .historical-time-bar button { height: 44px; }
+  .historical-calendar-trigger { width: 44px; }
+  .top-context-bar .context-action { gap: 0; padding: 0; }
+  .top-context-bar .context-spatial .context-button:where(:first-child) { width: 64px; }
+  .top-context-bar .context-spatial .context-button:where(:last-child) { width: 116px; }
+  .top-context-bar .context-temporal .context-button:where(:first-child) { width: 80px; }
+  .top-context-bar .context-temporal .context-button:where(:last-child) { width: 96px; }
+  .top-context-bar .context-crew { width: 64px; }
+  .top-context-bar .context-action-icon { display: none; }
+  .top-context-bar .crew-entry-chevron { display: none; }
+  .context-source { width: 116px; gap: 0; }
+  .context-source > label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .context-source-control, .context-source select { width: 116px; }
+  .context-source select { padding-left: 12px; padding-right: 28px; }
+  .context-source-value { margin-left: 12px; }
+  .source-select-chevron { margin-right: 9.25px; }
+  .historical-time-bar { width: min(520px, calc(100% - 32px)); gap: 8px; padding: 7px 8px; }
+  .historical-calendar-trigger, .historical-date { cursor: pointer; border-radius: var(--radius-control); }
+  .historical-calendar-trigger:focus-visible, .historical-date:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
+  .historical-steps { gap: 4px; }
+  .historical-steps .context-action { width: 44px; }
+  .historical-steps .context-action-icon { display: inline-flex; }
+  .historical-steps .context-action-label { display: none; }
+}
+@media (max-width: 740px) {
+  .top-context-bar .context-action-icon { display: inline-flex; }
+  .top-context-bar .context-action-label { display: none; }
+  .top-context-bar .context-spatial .context-button, .top-context-bar .context-temporal .context-button, .top-context-bar .context-crew { width: 44px; padding: 0; }
+  .historical-timestamp-full { display: none; }
+  .historical-timestamp-compact { display: flex; flex-direction: column; font-size: 14px; line-height: 18px; }
+  .historical-time-bar[data-disclosure="COLLAPSED"] { justify-self: end; width: 44px; height: 44px; margin-right: 12px; padding: 0; gap: 0; border: 0; background: transparent; }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger { border: 1px solid var(--color-border); background: var(--control-normal); border-radius: var(--radius-control); }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger:hover { background: var(--control-hover); }
+  .historical-time-bar[data-disclosure="COLLAPSED"] .historical-calendar-trigger,
+  .historical-time-bar[data-disclosure="EXPANDED"] .historical-date,
+  .historical-time-bar[data-disclosure="EXPANDED"] .historical-steps { animation: historical-disclosure-enter var(--motion-fast) linear; }
+  /* Visibility retains the anchor rectangle; the calendar portal stays visible.
+     Inert/aria-hidden also remove the detached bar from interaction and speech. */
+  .historical-time-bar[data-disclosure="CALENDAR_OPEN"] { visibility: hidden; pointer-events: none; }
+  .earth-current { --operational-height: 120px; }
+  .operational-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "identity status status" "latitude longitude altitude"; gap: 8px 4px; padding: 12px; }
+  .summary-identity { grid-area: identity; min-height: 50px; }
+  .source-state-slot { grid-area: status; }
+  .summary-latitude { grid-area: latitude; }
+  .summary-longitude { grid-area: longitude; }
+  .summary-altitude { grid-area: altitude; }
+  .summary-identity span { white-space: normal; }
+}
+@media (max-width: 600px) {
+  .top-context-bar { grid-template-columns: 116px minmax(96px, 1fr) 44px; grid-template-areas: "identity spatial spatial" "source temporal crew" "date date date"; gap: 8px 12px; padding: 12px; }
+  .context-crew, .context-spatial { justify-self: end; }
+  .context-temporal { justify-self: center; }
+  .context-date { gap: 6px; }
+  .context-date > span { display: none; }
+  .trajectory-legend { left: 20px; }
+  .earth-scene-controls { right: 12px; }
+  .earth-current .cesium-viewer-bottom { left: 12px !important; }
+  .earth-current-notice { margin: 8px 12px; max-width: calc(100% - 24px); }
+  .orbital-status-evidence { width: calc(100% - 24px); margin: 12px; }
+  .historical-time-bar { width: calc(100% - 24px); margin-top: 12px; }
+}
+@media (max-width: 379px) {
+  .historical-time-bar { margin-top: 8px; padding-top: 6px; padding-bottom: 6px; }
+  .trajectory-legend { left: 12px; }
+}
+@media (max-height: 500px) and (min-width: 601px) {
+  .top-context-bar { padding-top: 8px; padding-bottom: 8px; }
+}
+/* Touch users must also be able to open native attribution. Reserve a separate
+   credit row rather than leaving the link available only through keyboard focus. */
+@media (pointer: coarse) and (max-width: 1243px) {
+  .earth-current .cesium-credit-expand-link:not(:focus-visible) { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .earth-current .cesium-credit-expand-link { display: inline-flex !important; align-items: center; min-height: 44px; padding: 0 8px; font-size: 12px; }
+  .earth-scene-controls { bottom: 64px; }
+}
+/* Cesium's native mobile attribution used z-index:1 under our chrome. This
+   modal alone owns the foreground; its source links and close action remain
+   reachable without moving the full-screen scene or changing desktop styling. */
+@media (max-width: 1243px), (max-height: 620px) {
+  .earth-current .cesium-credit-lightbox-overlay { z-index: 10; }
+  .earth-current .cesium-credit-lightbox:is(.cesium-credit-lightbox-mobile, .cesium-credit-lightbox-expanded) { width: min(470px, calc(100% - 24px)); height: auto; min-height: 0; max-height: calc(100dvh - 24px); margin: 12px auto !important; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .earth-current .cesium-credit-lightbox-title { padding-right: 64px; min-height: 52px; }
+  .earth-current .cesium-credit-lightbox-close { top: 4px; right: 4px; width: 44px; height: 44px; display: grid; place-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .context-button, .context-source select { transition-duration: var(--motion-fast); transition-timing-function: linear; }
+  .context-dock[data-state="open"] { animation: context-opacity-enter var(--motion-fast) linear; }
+  .context-dock[data-state="exiting"] { animation: context-opacity-exit var(--motion-fast) linear both; }
+  .historical-time-bar[data-state="open"] { animation: context-opacity-enter var(--motion-fast) linear; }
+  .historical-time-bar[data-state="exiting"] { animation: context-opacity-exit var(--motion-fast) linear both; }
+  @keyframes context-opacity-enter { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes context-opacity-exit { from { opacity: 1; } to { opacity: 0; } }
+}
+
+/* Secondary density uses real faces inside practical outer targets. All rules
+   are width-scoped: accepted desktop glyphs, borders and geometry stay intact. */
+@media (max-width: 1243px) {
+  :root { --secondary-target: 44px; --secondary-face: 38px; --secondary-icon: 18px; --calendar-action-face: 36px; }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face,
+  .earth-current .cesium-credit-lightbox-close {
+    isolation: isolate; border: 0; background: transparent; color: var(--color-text-primary);
+    padding: 0; height: var(--secondary-hit-height, var(--secondary-target)); min-height: var(--secondary-hit-height, var(--secondary-target));
+  }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face { position: relative; }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face::before,
+  .earth-current .cesium-credit-lightbox-close::before {
+    content: ''; position: absolute; z-index: -1; left: 50%; top: 50%;
+    width: var(--secondary-face); height: var(--secondary-face-height, var(--secondary-face)); box-sizing: border-box;
+    margin-left: calc(var(--secondary-face) / -2); margin-top: calc(var(--secondary-face-height, var(--secondary-face)) / -2);
+    border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); pointer-events: none;
+  }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:hover:not(:disabled)::before,
+  .earth-current .cesium-credit-lightbox-close:hover::before { background: var(--control-hover); }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:focus-visible,
+  .earth-current .cesium-credit-lightbox-close:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
+  :is(.historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-close,
+  .earth-scene-controls .context-button.secondary-zoom { width: var(--secondary-target); }
+  .secondary-face .secondary-desktop-glyph { display: none; }
+  .secondary-face .secondary-icon { display: block; width: var(--secondary-icon); height: var(--secondary-icon); flex: none; }
+  .secondary-icon .control-icon { width: 100%; height: 100%; }
+  .secondary-icon > svg { display: block; width: 100%; height: 100%; }
+  .earth-scene-controls { gap: 4px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 112px; font-size: 13px; --secondary-face: 106px; --secondary-face-height: 38px; }
+  .trajectory-legend, .trajectory-legend > span { height: 24px; }
+  .trajectory-legend { font-size: 12px; line-height: 16px; gap: 16px; bottom: 34px; }
+  .trajectory-legend > span { gap: 6px; }
+  .trajectory-legend::before { inset: 0 -6px; }
+  .trajectory-swatch { width: 20px; }
+  .context-dock-header .context-dock-identity { min-width: 0; }
+  .earth-current .cesium-credit-lightbox-close { font-size: 0; width: var(--secondary-target); }
+  .earth-current .cesium-credit-lightbox-close::after {
+    content: ''; position: absolute; width: var(--secondary-icon); height: var(--secondary-icon);
+    background: var(--color-text-primary); mask: url('./assets/interface/close.svg') center / contain no-repeat; pointer-events: none;
+  }
+}
+@media (max-width: 740px) {
+  :root { --secondary-face: 32px; --secondary-icon: 16px; --calendar-action-face: 32px; }
+  .earth-scene-controls { gap: 2px; }
+  .earth-scene-controls .secondary-zoom { --secondary-face: 34px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 102px; --secondary-face: 92px; --secondary-face-height: 34px; }
+  .trajectory-legend, .trajectory-legend > span { height: 22px; }
+  .trajectory-legend { font-size: 11px; line-height: 15px; gap: 12px; bottom: 35px; }
+  .trajectory-legend > span { gap: 5px; }
+  .trajectory-legend::before { inset: 0 -5px; }
+  .trajectory-swatch { width: 16px; }
+}
+@media (max-width: 379px) {
+  :root { --secondary-target: 40px; --secondary-face: 30px; --secondary-icon: 14px; --calendar-action-face: 30px; }
+  .earth-scene-controls .secondary-zoom { --secondary-face: 32px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 92px; --secondary-face: 84px; --secondary-face-height: 32px; font-size: 12px; }
+  .trajectory-legend, .trajectory-legend > span { height: 20px; }
+  .trajectory-legend { bottom: 34px; }
+  .trajectory-legend::before { inset: 0 -4px; }
+  .trajectory-legend > span { gap: 4px; }
+  .trajectory-swatch { width: 14px; }
+}
+@media (pointer: coarse) and (max-width: 1243px) {
+  .trajectory-legend { bottom: 74px; }
+}

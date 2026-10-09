@@ -1,5 +1,7 @@
 # ISS geometry reference-frame and interface evidence
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 Checked **2026-09-30**. Research only. This record supplements the [registration gate](iss-geometry-registration.md); it does not supply a production IGOAL-to-VTAD transform. `PRIMARY_AUTHORITATIVE` identifies the publisher's own asset record, `AUTHORITATIVE_SUPPORTING` a primary technical or operations source, and `ASSET_INTERNAL_EVIDENCE` facts reproducible from the downloaded asset. `DISCOVERY_ONLY` cannot upgrade a production transform. An engineering frame definition and a visualization asset node are different things until a source explicitly relates them.
 
 ## Source ledger
