@@ -1,5 +1,7 @@
 # Responsive navigation and mobile Historical disclosure — 2026-10-08
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Starting branch: `ui/restyling`, `370054725eb197f48842774b5aa72612fae2a349`. Main remains `12be75af376c0a18e510395ae59c58ee252f3800`, without modification or merge. This focused milestone supersedes the prior text / icon+text / icon navigation policy.
 
 ## Representation
@@ -55,8 +57,8 @@ Use Node 24, the existing Playwright module, Java 21 backend8080 and real local 
 
 Baseline: frontend **702 tests / 59 files**, backend **382 tests**. Final: **726 frontend tests / 60 files**, typecheck and build PASS; Java 21 `mvn test` and `mvn verify` each **382 tests**, no failures/errors/skips. Both browser builds pass all **16 viewports**, **6 complete mobile sequences**, keyboard/reduced motion, **469 resize observations** (116 widths in both directions, immediate + next frame, plus 5 calendar-preservation sizes), and **8 native scene sizes**, with zero application/console errors. Crew, GP/OEM, requested UTC, original Viewer/canvas and input regressions pass. `git diff --check` passes. All 210 backend and 77 scene/public/asset files, App replay ownership and calendar/draft/API implementations have zero changes.
 
-Final gate results, image hashes and scope evidence are in [verification.json](verification.json). Ten retained lossless images (two before / eight after) have decoded RGBA equality verified; native contact sheets and intermediate captures stay outside Git. The existing Cesium build chunk warning remains. A CSS specificity defect caught in early mobile target QA was fixed before final checks. Harness corrections inject the standalone geometry function into the browser, settle screenshots after entry fades, and wait for matchMedia delivery when an open calendar retains its state across resizing; the corrected resize segment was rerun in both builds without application changes.
+Final gate results, image hashes and scope evidence are in verification.json. Ten retained lossless images (two before / eight after) have decoded RGBA equality verified; native contact sheets and intermediate captures stay outside Git. The existing Cesium build chunk warning remains. A CSS specificity defect caught in early mobile target QA was fixed before final checks. Harness corrections inject the standalone geometry function into the browser, settle screenshots after entry fades, and wait for matchMedia delivery when an open calendar retains its state across resizing; the corrected resize segment was rerun in both builds without application changes.
 
-Representative [desktop icon + text](screenshots/development-1440-current.webp), [tablet text](screenshots/development-1024-current.webp), [mobile collapsed](screenshots/development-390-collapsed.webp), [expanded](screenshots/development-390-expanded.webp), and [calendar with hidden bar](screenshots/development-390-calendar.webp) show the final composition.
+Representative desktop icon + text, tablet text, mobile collapsed, expanded, and calendar with hidden bar show the final composition.
 
 No significant architecture change: existing local React ownership and replay boundary (ADR-0011) remain intact. Applied frontend-design-codex, software-architect, devops-local-platform and mission-replay, with quality/provenance guidance reviewed. Shared visual runtime is absent; native Playwright geometry, accessibility, screenshots and visual inspection provide the equivalent checks. External project context stays in `/Users/daniel/Desktop/mission1-project.md`, outside Git.

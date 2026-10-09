@@ -1,5 +1,7 @@
 # IGOAL-to-VTAD registration evidence gate
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 Checked **2026-09-30**. This is a research-only extension of the [current geometry assessment](iss-current-geometry-assessment.md). NASA VTAD remains the MISSION1 production base model. No geometry was integrated, no temporary composite was made, and no runtime or semantic mapping changed. Numerical coordinates below are **model-derived estimates**, not NASA engineering attachment frames or live ISS telemetry.
 
 ## Source and reproduction boundary

@@ -1,5 +1,7 @@
 # Browser antialiasing and night brightness restoration
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 2026-10-05, Europe/Rome. Accepted parent: `b190e8b7df435251d6db46bf6d6357d3fdf7e868` (`perf: optimize high-fidelity mission rendering`). Implementation checkout: `/Users/daniel/Desktop/MISSION1`.
 
 ## Exact correction
@@ -24,16 +26,16 @@ The public scene clock is paused and native camera input is disabled only in the
 
 | Subject | Before | After | Review |
 | --- | --- | --- | --- |
-| GP trajectory | [canonical](evidence/before-dpr1/gp-canonical.png) | [canonical](evidence/after-dpr1/gp-canonical.png) | Cyan trajectory retains its thin core, continuity and halo. |
-| OEM trajectory | [canonical](evidence/before-dpr1/oem-canonical.png) | [canonical](evidence/after-dpr1/oem-canonical.png) | Gold trajectory retains its thin core, continuity and curved return. |
-| GP oblique segments / joins / halo | [oblique](evidence/before-dpr1/gp-oblique.png) | [oblique](evidence/after-dpr1/gp-oblique.png) | Arc and joins remain continuous; no new seam, gap or halo expansion. |
-| OEM oblique segments / joins / halo | [oblique](evidence/before-dpr1/oem-oblique.png) | [oblique](evidence/after-dpr1/oem-oblique.png) | Same check against the dark space background. |
-| ISS silhouette / thin geometry | [90 m](evidence/before-dpr1/iss-thin-geometry.png), [oblique](evidence/before-dpr1/iss-oblique.png) | [90 m](evidence/after-dpr1/iss-thin-geometry.png), [oblique](evidence/after-dpr1/iss-oblique.png) | Solar-array edges, truss, antenna and radiator geometry remain intact. |
-| Historical night cities | [1.15](evidence/before-dpr1/night-cities.png) | [1.8](evidence/after-dpr1/night-cities.png) | Stronger city cores and light clusters, with the same imagery and camera. |
-| Terminator / twilight, 17:00 UTC | [before](evidence/before-dpr1-twilight/terminator.png) | [after](evidence/after-dpr1-twilight/terminator.png) | Same twilight position and blend; stronger night-side cities. |
-| Evening night side, 18:00 UTC | [before](evidence/before-dpr1/terminator.png) | [after](evidence/after-dpr1/terminator.png) | This legacy-named capture is a night-side view, distinct from the visible-twilight pair above. |
+| GP trajectory | canonical | canonical | Cyan trajectory retains its thin core, continuity and halo. |
+| OEM trajectory | canonical | canonical | Gold trajectory retains its thin core, continuity and curved return. |
+| GP oblique segments / joins / halo | oblique | oblique | Arc and joins remain continuous; no new seam, gap or halo expansion. |
+| OEM oblique segments / joins / halo | oblique | oblique | Same check against the dark space background. |
+| ISS silhouette / thin geometry | 90 m, oblique | 90 m, oblique | Solar-array edges, truss, antenna and radiator geometry remain intact. |
+| Historical night cities | 1.15 | 1.8 | Stronger city cores and light clusters, with the same imagery and camera. |
+| Terminator / twilight, 17:00 UTC | before | after | Same twilight position and blend; stronger night-side cities. |
+| Evening night side, 18:00 UTC | before | after | This legacy-named capture is a night-side view, distinct from the visible-twilight pair above. |
 
-The browser-AA request and actual multisampling are restored. On this Cesium/ANGLE pipeline the inspected trajectory and ISS edges do not show a clearly distinguishable sharpening gain in the fixed screenshots; no universal improvement is claimed. The stronger city-light presentation is visible. [Matched audit](evidence/matched-audit.json) passes all 17 camera/source/quality pairs. The oblique line/halo color masks report gp-oblique DPR 1: 4347 selected pixels, 0 changed; oem-oblique DPR 1: 4465 selected pixels, 0 changed; gp-oblique DPR 2: 17290 selected pixels, 1 changed; oem-oblique DPR 2: 17858 selected pixels, 0 changed. Color-selected line/halo ROI measurements are diagnostic pixel heuristics, not object-ID masks; whole-ROI differences also include the intentional night brightness change.
+The browser-AA request and actual multisampling are restored. On this Cesium/ANGLE pipeline the inspected trajectory and ISS edges do not show a clearly distinguishable sharpening gain in the fixed screenshots; no universal improvement is claimed. The stronger city-light presentation is visible. Matched audit passes all 17 camera/source/quality pairs. The oblique line/halo color masks report gp-oblique DPR 1: 4347 selected pixels, 0 changed; oem-oblique DPR 1: 4465 selected pixels, 0 changed; gp-oblique DPR 2: 17290 selected pixels, 1 changed; oem-oblique DPR 2: 17858 selected pixels, 0 changed. Color-selected line/halo ROI measurements are diagnostic pixel heuristics, not object-ID masks; whole-ROI differences also include the intentional night brightness change.
 
 ## Measured frame cost
 
@@ -51,7 +53,7 @@ Desktop DPR 1 costs **+2.5–4.4 ms/frame (+9.9–17.1%)** in the four sampled v
 
 Raw intervals, P99, true 1% low, slow-frame counts and long tasks are retained in the per-build `comparison.json` files. Session times are recorded; final comparisons were repeated after the usage-limit pause with the same final input-lock harness. Early probes, interrupted runs and the rejected moving-Inspection window are excluded from these results and kept only under `/tmp/mission1-rendering-restore-diagnostics/`. GPU scheduling/thermal and system-load variation remain possible; the numbers do not establish a universal FPS guarantee.
 
-Production visual QA includes **34 captures / 17 matched pairs** at desktop DPR 1, native DPR 2 and 390×844 CSS mobile. Development on 5175 passes the same 10 primary capture states. All seven final browser sessions report zero page errors, console errors and failed requests, with loaded imagery and 4K stars; canvas remains full-screen and focus error stays below 2 px. All final captures audit antialiasing, MSAA, retained FXAA stage, night brightness, gamma/contrast, DPR/scale and visible-control names. [Development evidence](evidence/development-dpr1/comparison.json).
+Production visual QA includes **34 captures / 17 matched pairs** at desktop DPR 1, native DPR 2 and 390×844 CSS mobile. Development on 5175 passes the same 10 primary capture states. All seven final browser sessions report zero page errors, console errors and failed requests, with loaded imagery and 4K stars; canvas remains full-screen and focus error stays below 2 px. All final captures audit antialiasing, MSAA, retained FXAA stage, night brightness, gamma/contrast, DPR/scale and visible-control names. Development evidence.
 
 ## Validation and scope
 
@@ -64,7 +66,7 @@ Production visual QA includes **34 captures / 17 matched pairs** at desktop DPR 
 | Backend `mvn verify` | PASS: 382 tests, zero failures/errors/skips |
 | `git diff --check`, working and staged | Verified before the ordinary commit |
 
-[Runner logs](evidence/validation/) retain the results; only trailing whitespace and terminal blank lines are normalized, with original/normalized hashes recorded. [Build identity](evidence/build-identity.json) pins the served JS/CSS and relevant source files. [Scope audit](evidence/scope-audit.json) shows nine changed existing paths: two policy sources, one existing assertion and six current-document notes. All 210 backend files, App/CSS and camera/trajectory code and runtime assets remain byte-identical to the accepted parent. New files are confined to this dossier. The external context is updated at `/Users/daniel/Desktop/mission1-project.md` and remains outside Git.
+[Runner logs](evidence/validation/) retain the results; only trailing whitespace and terminal blank lines are normalized, with original/normalized hashes recorded. Build identity pins the served JS/CSS and relevant source files. Scope audit shows nine changed existing paths: two policy sources, one existing assertion and six current-document notes. All 210 backend files, App/CSS and camera/trajectory code and runtime assets remain byte-identical to the accepted parent. New files are confined to this dossier. The external context is updated at `/Users/daniel/Desktop/mission1-project.md` and remains outside Git.
 
 No architecture, contract or infrastructure decision changes, so no new ADR is needed. Native two-finger pinch is not verified by this fixed-camera visual QA.
 

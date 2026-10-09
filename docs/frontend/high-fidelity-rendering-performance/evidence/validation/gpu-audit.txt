@@ -1,3 +1,0 @@
-{"mode":"overview","defaultSamples":0,"sceneMsaa":4,"textures":278,"liveTextures":232,"liveRenderbuffers":4,"timerSamples":208,"contextLoss":0}
-{"mode":"inspection","defaultSamples":0,"sceneMsaa":4,"textures":501,"liveTextures":339,"liveRenderbuffers":4,"timerSamples":201,"contextLoss":0}
-{"mode":"returned","defaultSamples":0,"sceneMsaa":4,"textures":589,"liveTextures":300,"liveRenderbuffers":4,"timerSamples":200,"contextLoss":0}

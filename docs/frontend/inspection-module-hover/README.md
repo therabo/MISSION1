@@ -1,5 +1,7 @@
 # Inspection module hover
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 2026-10-05 · Europe/Rome · one isolated frontend milestone.
 
 ## Goal and baseline
@@ -24,11 +26,11 @@ The authored NASA PNG/PBR remains recognizable. Fixed real-time-source scenes at
 
 | View | Normal | Hover | Restored |
 | --- | --- | --- | --- |
-| Canonical Zvezda | [PNG](evidence/visual-canonical-zvezda-normal.png) | [PNG](evidence/visual-canonical-zvezda-hover.png) | [PNG](evidence/visual-canonical-zvezda-restored.png) |
-| Oblique Zarya | [PNG](evidence/visual-oblique-zarya-normal.png) | [PNG](evidence/visual-oblique-zarya-hover.png) | [PNG](evidence/visual-oblique-zarya-restored.png) |
-| Shadow-facing Zvezda | [PNG](evidence/visual-shadow-zvezda-normal.png) | [PNG](evidence/visual-shadow-zvezda-hover.png) | [PNG](evidence/visual-shadow-zvezda-restored.png) |
+| Canonical Zvezda | PNG | PNG | PNG |
+| Oblique Zarya | PNG | PNG | PNG |
+| Shadow-facing Zvezda | PNG | PNG | PNG |
 
-[Raster measurements](evidence/visual-raster.json), [frozen scene time and poses](evidence/visual.json). Additional development/production normal, two different hovered modules and non-module screenshots are in `evidence/`.
+Raster measurements, frozen scene time and poses. Additional development/production normal, two different hovered modules and non-module screenshots are in `evidence/`.
 
 ## State machine and motion suppression
 
@@ -57,7 +59,7 @@ Development 5175 and built production 4175 use the unchanged backend 8080 and re
 
 Required sequence exercised: enter → stable → A → B → empty → A → pointer-down/orbit → inertia → settlement re-pick → wheel clear → settlement re-pick → exit. Boundary checks include background and untagged structure. Synchronous post-input checks and frame traces verify no tint while a gesture is held, during actual transitions, or on frames with view displacement; never two tinted features. Static wheel input re-picks the same coordinates within browser subpixel rounding. Canonical range/elevation/FOV, focal composition, full-screen canvas and captured Earth restoration pass. Existing module clicks, orbit, zoom, Back, GP/TLE, OEM, LIVE, Replay Inspection, Crew list/detail and Return to LIVE pass.
 
-Four required viewport sizes: **1440×900, 1280×720, 900×700, 390×844**, both builds. Desktop hover is tested at the first three sizes; 390×844 checks layout, Inspection, Back, Crew and Replay, without a touch-hover claim. A final clean browser smoke also passes both builds and both sources for hover, drag, wheel and Back, with no QA globals, scene hooks, clock override or request interception. [Clean smoke](evidence/clean-smoke.json). Page/console errors: zero in accepted interaction runs. Visual lint: zero horizontal overflow or visible unnamed controls; existing small typography/credit presentation is unchanged.
+Four required viewport sizes: **1440×900, 1280×720, 900×700, 390×844**, both builds. Desktop hover is tested at the first three sizes; 390×844 checks layout, Inspection, Back, Crew and Replay, without a touch-hover claim. A final clean browser smoke also passes both builds and both sources for hover, drag, wheel and Back, with no QA globals, scene hooks, clock override or request interception. Clean smoke. Page/console errors: zero in accepted interaction runs. Visual lint: zero horizontal overflow or visible unnamed controls; existing small typography/credit presentation is unchanged.
 
 ### All 14 identities
 
@@ -94,11 +96,11 @@ Matched sequential headless Chromium/ANGLE Metal Apple M1, 1440×900 CSS, DPR 1 
 | Candidate / normal | 563 | 26.0 | 31.1 | 35.4 | 0 |
 | Candidate / hovered | 610 | 24.3 | 26.7 | 28.8 | 0 |
 
-No material local steady-frame regression is observed. The faster hovered window is within timing/cache/thermal variability and is **not evidence of a hover speedup**. [Raw intervals, poses and input](evidence/performance.json), [summary](evidence/performance-summary.json), [served artifact hashes](evidence/build-artifacts.json). These headless comparative results are distinct from prior headed/display FPS measurements.
+No material local steady-frame regression is observed. The faster hovered window is within timing/cache/thermal variability and is **not evidence of a hover speedup**. Raw intervals, poses and input, summary, served artifact hashes. These headless comparative results are distinct from prior headed/display FPS measurements.
 
-The motion guard samples 17 reused numbers, without new arrays, pick calls or React work per render. Native GPU picking remains a synchronous operation. Instrumented input traces include native pick timing; production median/P95 were 24.6/68.8 ms for the 31 empty/module-movement-phase calls (including one pose-settlement pick). Development's 89.8/146.8 ms window ran with overlapping browser QA workload; neither is an isolated latency benchmark. The explicit event count, zero stationary/moving work and unchanged draw/asset architecture are the acceptance basis. Browser frame traces also record orbit, wheel, empty and repeated-module movement, with no hovered displacement frames. [Interaction summary](evidence/interaction-summary.json).
+The motion guard samples 17 reused numbers, without new arrays, pick calls or React work per render. Native GPU picking remains a synchronous operation. Instrumented input traces include native pick timing; production median/P95 were 24.6/68.8 ms for the 31 empty/module-movement-phase calls (including one pose-settlement pick). Development's 89.8/146.8 ms window ran with overlapping browser QA workload; neither is an isolated latency benchmark. The explicit event count, zero stationary/moving work and unchanged draw/asset architecture are the acceptance basis. Browser frame traces also record orbit, wheel, empty and repeated-module movement, with no hovered displacement frames. Interaction summary.
 
-Final gates: **344 frontend tests / 38 files** (320 baseline + 24 focused cases); typecheck and production build pass. Java 21 **mvn test: 382**, **mvn verify: 382**, zero failures/errors/skips. Large Cesium chunk warning remains pre-existing. Dev and production QA pass at all four sizes, with 16,126 rendered interaction frames and 56 module/source/build cases. Working/staged diff checks pass. Scope audit: only four existing tracked files changed (EarthView wiring plus three docs); **5,955 baseline files unchanged**, including **210 backend files**, all assets, camera/control/projection/trajectory helpers, App/CSS, graphics/lighting/DPR policies and previous evidence. [Audit](evidence/scope-audit.json). No backend/data/API change.
+Final gates: **344 frontend tests / 38 files** (320 baseline + 24 focused cases); typecheck and production build pass. Java 21 **mvn test: 382**, **mvn verify: 382**, zero failures/errors/skips. Large Cesium chunk warning remains pre-existing. Dev and production QA pass at all four sizes, with 16,126 rendered interaction frames and 56 module/source/build cases. Working/staged diff checks pass. Scope audit: only four existing tracked files changed (EarthView wiring plus three docs); **5,955 baseline files unchanged**, including **210 backend files**, all assets, camera/control/projection/trajectory helpers, App/CSS, graphics/lighting/DPR policies and previous evidence. Audit. No backend/data/API change.
 
 ## Reproduce
 

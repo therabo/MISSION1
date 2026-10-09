@@ -1,5 +1,7 @@
 # Secondary control density — 2026-10-09
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Starting `ui/restyling`: `b4c0cd4098411b1fa75ca29c68f31a88dd82a049`. Main: `12be75af376c0a18e510395ae59c58ee252f3800`. Actual pre-edit baseline: 726 frontend tests / 60 files; 382 backend tests.
 
 ## Close inventory recorded before implementation
@@ -74,7 +76,7 @@ Desktop before/after captures at all4 desktop sizes have **168 identical region 
 
 Reviewed actual desktop1440, tablet768 and short844 screenshots, plus zoom/legend/calendar/footer/UTC/Close/Crew/astronaut/module images at390,360,320. Final faces are proportionate, titles clear and seven-column dates usable. Native credit close uses the same X and reachable outer focus target. QA is Chromium/Metal with emulated touch; physical Safari/iOS/Android devices are not certified.
 
-Representative retained images are limited to **13 lossless WebP captures (~3.8MB)**: desktop before/after Current/calendar, tablet768 calendar, phone390 Current/calendar/Crew/astronaut/attribution,320 calendar/module,844 calendar. [Image hashes](validation/secondary-controls-evidence/images.json) verify decodedRGBA equality with original PNGs. Full680 after captures,120 before captures, contact sheets, resize corpus and raw logs remain outside Git under `/tmp/mission1-secondary-*`. Final concise gates are recorded in [verification.json](validation/secondary-controls-evidence/verification.json). External project context `/Users/daniel/Desktop/mission1-project.md` stays outside Git.
+Representative retained images are limited to **13 lossless WebP captures (~3.8MB)**: desktop before/after Current/calendar, tablet768 calendar, phone390 Current/calendar/Crew/astronaut/attribution,320 calendar/module,844 calendar. Image hashes verify decodedRGBA equality with original PNGs. Full680 after captures,120 before captures, contact sheets, resize corpus and raw logs remain outside Git under `/tmp/mission1-secondary-*`. Final concise gates are recorded in verification.json. External project context `/Users/daniel/Desktop/mission1-project.md` stays outside Git.
 
 ```sh
 # Node24; real backend8080/local PostgreSQL; no ISS fixtures.

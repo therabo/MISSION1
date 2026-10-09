@@ -1,5 +1,7 @@
 # Trajectory transition visibility — 2026-10-01–02
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 The accepted camera milestone `c3d24aed576b368bb2343abcb65d9067f5eaa7f2` is frozen. This correction keeps both real trajectories invisible during close departure, progressively restores their accepted opacity as Earth context returns, and uses the same curve on approach. RTN and Replay are not started.
 
 ## Context and cause
@@ -10,7 +12,7 @@ Actual skills consulted: `iss-3d-earth-view` (scene lifecycle/coordinate contrac
 
 Documentation reviewed: `frontend/README.md`; `docs/frontend/{orbital-trajectory-rendering,iss-inspection-mode,rendering-quality,iss-model}.md`; `camera-transition-perfecting-review/README.md`, `perceptual/results.md`, `focus-optimization/results.md`; architecture `03-repository-and-roadmap.md` and `04-earth-view-orbital-delivery.md`; ADR-0006 and the ADR index. Only the existing ADR-0006 receives a clarification.
 
-`inspectionPresentation()` marks `pathVisible` true for **EXITING_INSPECTION**. `EarthView.setMode()` immediately copied that boolean into every retained primitive's `show`, still at about 90 m. `updateTrail()` supplied full selected/inactive alpha with no visual transition factor. Entry likewise hid paths immediately at mode assignment. The projected clearance mask was updated only in Overview, leaving its far-view values during exit. [Baseline OEM exit at 0%](baseline-dev-NASA_OEM-exit-0.jpg) shows the premature amber trail.
+`inspectionPresentation()` marks `pathVisible` true for **EXITING_INSPECTION**. `EarthView.setMode()` immediately copied that boolean into every retained primitive's `show`, still at about 90 m. `updateTrail()` supplied full selected/inactive alpha with no visual transition factor. Entry likewise hid paths immediately at mode assignment. The projected clearance mask was updated only in Overview, leaving its far-view values during exit. Baseline OEM exit at 0% shows the premature amber trail.
 
 ## Policy and measured alternatives
 
@@ -26,7 +28,7 @@ final maximumAlpha = existing maximumAlpha × trajectoryTransitionVisibility
 
 Stable Inspection forces **0**, stable Overview **1**. For the canonical Earth start, trails stay completely hidden through **100 km**, fade over **100–10,000 km**, and reach full opacity at **10,000 km**. The captured cap prevents a mode-boundary step for nearer regional Overview starts. This is a range policy, not an elapsed-progress threshold. The C2 scalar has zero first/second derivatives at its range boundaries; the accepted camera/physical interpolation continuity is unchanged.
 
-[Window trials](windows.jpg), with every actual range/factor in [windows.json](windows.json):
+Window trials, with every actual range/factor in windows.json:
 
 | Tested range window | Exit at 65% | Exit at 70% | Exit at 75% | Decision |
 | --- | ---: | ---: | ---: | --- |
@@ -38,9 +40,9 @@ At 72.5% the chosen factor is 0.183, at 80% 0.859 and at 90% 0.999. The three wi
 
 ## Frame evidence
 
-Native 2560×1440 captures at DPR2, CSS viewport 1280×720. [Compact frame CSV](frame-samples.csv) and full `*-samples.json.gz` reports contain 0/10/20/30/40/50/60/65/70/75/80/90/100% for both directions and both sources. Percentages label diagnostic frame locations; they are not runtime thresholds. Entry starts at fixed archived UTC `2026-09-30T15:45:59.975908Z`; exit captures the current UTC after a short 1× run to preserve the accepted incoming derivative. Small exit-range differences between runs follow that captured UTC.
+Native 2560×1440 captures at DPR2, CSS viewport 1280×720. Compact frame CSV and full `*-samples.json.gz` reports contain 0/10/20/30/40/50/60/65/70/75/80/90/100% for both directions and both sources. Percentages label diagnostic frame locations; they are not runtime thresholds. Entry starts at fixed archived UTC `2026-09-30T15:45:59.975908Z`; exit captures the current UTC after a short 1× run to preserve the accepted incoming derivative. Small exit-range differences between runs follow that captured UTC.
 
-Representative final **GP selected, exit** ([contact sheet](candidate-prod-PRIMARY_GP_TLE-exit.jpg), [OEM equivalent](candidate-prod-NASA_OEM-exit.jpg)):
+Representative final **GP selected, exit** (contact sheet, OEM equivalent):
 
 | Exit | Display range, m | Approx. raster extent, CSS px | Visibility | Active body alpha | Inactive body alpha |
 | --- | ---: | --- | ---: | ---: | ---: |
@@ -51,9 +53,9 @@ Representative final **GP selected, exit** ([contact sheet](candidate-prod-PRIMA
 | 80% | 2,734,812.442 | 61.5×44.5 | 0.860473 | 0.731402 | 0.068838 |
 | 100% | 16,499,369.858 | 63.5×54 | 1 | 0.85 | 0.08 |
 
-At 70% (114,090 m) the factor is only about 0.000225; at 75% (1,032,408 m) it is about 0.513. Full-size [OEM close departure](candidate-prod-NASA_OEM-exit-0.jpg) and [GP reveal at 80%](candidate-prod-PRIMARY_GP_TLE-exit-80.jpg) preserve the close view and later trail separation. Halo alpha always remains body alpha ×0.26: at 80%, selected 0.190164 / inactive 0.017898; at 100%,0.221 /0.0208. Both products receive the same scalar and retain their accepted selected/inactive contrast.
+At 70% (114,090 m) the factor is only about 0.000225; at 75% (1,032,408 m) it is about 0.513. Full-size OEM close departure and GP reveal at 80% preserve the close view and later trail separation. Halo alpha always remains body alpha ×0.26: at 80%, selected 0.190164 / inactive 0.017898; at 100%,0.221 /0.0208. Both products receive the same scalar and retain their accepted selected/inactive contrast.
 
-Representative **entry** ([GP](candidate-prod-PRIMARY_GP_TLE-entry.jpg), [OEM](candidate-prod-NASA_OEM-entry.jpg)):
+Representative **entry** (GP, OEM):
 
 | Entry | Display range, m | Approx. raster extent, CSS px | Visibility | Active body alpha |
 | --- | ---: | --- | ---: | ---: |
@@ -70,7 +72,7 @@ Raster extent is diagnostic model-on minus model-off pixel difference within the
 
 ## Performance
 
-One Chromium 1234/ANGLE Metal browser at a time, Apple M1, identical viewport/DPR, real archived API products, controlled identical local imagery fallback, clock 1×. Each source/build has a first transition plus a warm repeat, both directions. Disposable archives contain identical diagnostic timers; the application has none. [Summary](performance.json) and eight `*-trace.json.gz` preserve every frame, startup metadata, resources and handoffs. The summary keeps only renderer/readiness metadata; full startup records remain in each compressed trace.
+One Chromium 1234/ANGLE Metal browser at a time, Apple M1, identical viewport/DPR, real archived API products, controlled identical local imagery fallback, clock 1×. Each source/build has a first transition plus a warm repeat, both directions. Disposable archives contain identical diagnostic timers; the application has none. Summary and eight `*-trace.json.gz` preserve every frame, startup metadata, resources and handoffs. The summary keeps only renderer/readiness metadata; full startup records remain in each compressed trace.
 
 | Build/source | Trajectory CPU mean, ms, before→after | Frame median, ms, before→after | Frame P95, ms, before→after |
 | --- | --- | --- | --- |
@@ -83,15 +85,15 @@ The trajectory timer includes the existing clearance/mask update, now running du
 
 ## Regression and gates
 
-Final audit is recorded in [validation.json](validation.json). All required browser gates pass in development and served production:
+Final audit is recorded in validation.json. All required browser gates pass in development and served production:
 
 - 28 exit sweeps of101 rendered steps: both sources, canonical90m, close-module58.5m, maximum2km and90°/180° orbit poses; additional canonical checks at900×700 and390×844. Stable/close-range alpha0, final1; primitive and vertex identity retained, saved Earth position/FOV error0.
 - 28 actual-time partial Backs:10/20/35/50/65/80/95% for each source/build. Observed incoming alpha versus the exit policy at the same captured range has maximum difference0; dispatch retains existing uniforms. The accepted camera/focus derivative gates also pass.
 - Semantic picking14 modules per source/build, native wheel/orbit/pinch, source switches, refresh, delayed GLB, and OEM loss during entry, stable Inspection and exit pass. Source fallback recapture position/direction/up/FOV errors0, focus error≤1.2e-9m; model remains onscreen.
-- Equivalent visual lint:12 viewport/mode cases,0 blockers/errors/low-contrast findings. Existing9/10px metadata and native Cesium credit title-without-alt remain accepted warnings. [Mobile](production-mobile-surface.jpg), [narrow](production-narrow-surface.jpg).
-- Clean live backend smoke on5175/4175: GP and OEM available, entry/return successful, no page errors or QA globals. [Actual-backend Inspection screenshot](clean-production-inspection.jpg). Served bundle equals the clean build ([hash](production-bundle.json)); native in-app production GP entry/return also verified.
+- Equivalent visual lint:12 viewport/mode cases,0 blockers/errors/low-contrast findings. Existing9/10px metadata and native Cesium credit title-without-alt remain accepted warnings. Mobile, narrow.
+- Clean live backend smoke on5175/4175: GP and OEM available, entry/return successful, no page errors or QA globals. Actual-backend Inspection screenshot. Served bundle equals the clean build (hash); native in-app production GP entry/return also verified.
 
-The source/asset hashes in [frozen-source-manifest.json](frozen-source-manifest.json) preserve 142 tracked files, including 71 backend files and all 8 public asset files. `trajectoryRendering.ts` equals baseline after removing only its new argument and alpha multiplier; its geometry creation, shader, 85% future coverage, endpoint fade, rounded cap, widths, colors and layer ratio are identical. Existing clearance algorithm/constants and10Hz bound remain. Primitives, vertices, model, imagery providers, atmosphere and rendering resources remain retained across transitions. New products still use the existing complete-ready-group replacement.
+The source/asset hashes in frozen-source-manifest.json preserve 142 tracked files, including 71 backend files and all 8 public asset files. `trajectoryRendering.ts` equals baseline after removing only its new argument and alpha multiplier; its geometry creation, shader, 85% future coverage, endpoint fade, rounded cap, widths, colors and layer ratio are identical. Existing clearance algorithm/constants and10Hz bound remain. Primitives, vertices, model, imagery providers, atmosphere and rendering resources remain retained across transitions. New products still use the existing complete-ready-group replacement.
 
 Canonical 90m /42.5° /100°, portrait widening, 75km model-only lift, white Overview silhouette, focus/path/hybrid clock/pacing/durations/prewarming, native Inspection controls, physical/source interpolation and semantic picking remain unchanged. MSAA 4, native DPR/resolutionScale, FXAA, source PNG GLB/PBR, textures and imagery policy are preserved. No new orbital request, source evaluation for the reveal, geometry regeneration, React per-frame state, dependency, API or infrastructure is introduced.
 

@@ -1,5 +1,7 @@
 # Adaptive forward ISS trajectory presentation — 2026-09-30
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 ## Night-side protection and rounded trajectory joins — 2026-10-03
 
 The current-frame curved station mask now checks fragment-ray WGS84 visibility against the nearest possible displayed-model depth. A station fully hidden by Earth cannot mask unrelated foreground trail pixels; partial limb visibility is handled per fragment. The first temporal exit and local re-entry region remain separate from the camera-independent future window. Retained native source vertices and indices gain constant adjacent-endpoint presentation attributes. GPU extrusion draws non-folding capsule quads; globe-visible adjacent coverage takes priority, then nearest coverage has a single owner, eliminating folded-join halo overdraw inside the capsule. Genuine source times remain perspective-correct after near-plane clipping. Widths, glow, alpha, colors, reveal, endpoint fade, native depth/OIT, camera, assets and render quality are unchanged. Geometry is prepared once on response replacement, never on camera motion. [Screenshot reproductions, isolation, native raster, GPU property tests and matched regression evidence](trajectory-rendering-artifact-review/dark-side-oblique-fixes/README.md). Earlier dated sections preserve the accepted rendering history.
@@ -91,9 +93,9 @@ The renderer at commit `389736f` followed [ADR-0006](../adr/0006-selectable-forw
 | ISS still too large | Controlled 92/88/84/80 trials selected **80**, about 13.4% less visible height and 23% less footprint area than 92 in that view. Physical asset scale 1 and maximumScale 20000 remain. |
 | Station appears on Earth | Tested 0/2/5/8/10 km, then 25/50/75/100 km. **75 km model-only normal lift** was the smallest tested lift giving several pixels of extra limb clearance. Physical state/readout/trajectory/Inspection pivot are unchanged. |
 
-![PRIMARY selected, cyan](trajectory-fix-review/production-primary.jpg)
+*Archived visual: PRIMARY selected, cyan*
 
-![NASA OEM selected, amber](trajectory-fix-review/production-oem.jpg)
+*Archived visual: NASA OEM selected, amber*
 
 The selected bounded physical point remains shared by the readout, loading locator, approach target and moving ENU Inspection pivot. The model receives a separate display point: selected physical point plus WGS84-normal lift in Overview. Lift smoothly reaches zero within the first 1.75 seconds of entry, is zero in Inspection, and returns over 1.2 seconds on Back. Model minimum footprint grows 80→158 and returns to 80. Both source approaches measured **0 m camera-position handoff discontinuity** in both builds; final pivot error was 0 m. No silhouette is enabled because smaller-plus-lift satisfied reviewed contrast. Ready model picking, feature readiness and loading/error locator behavior remain intact.
 
@@ -117,7 +119,7 @@ No past/rear line, fade-in, periodic wrap, copied endpoint, bridge or closure ex
 
 ## Acceptance evidence and limits
 
-[Controlled size/gap crops](trajectory-fix-review/controlled-trials.jpg) and [lift trials](trajectory-fix-review/lift-trials.json) explain the selected values. The crop grid's gap row combines the measured isolated model/trail layers for controlled review; full-page screenshots show the actual browser render. The [complete browser matrix](trajectory-fix-review/README.md#f--inspection-and-browser-matrix) covers both sources, repeated switches, gap/fade/rotation, day/night/terminator, medium/global views, direct picking, both Inspection entries, Back, unavailable OEM, OEM loss during Inspection, delayed GLB and 390-pixel mobile layouts in both builds. No application/WebGL errors were observed. QA availability/latency stubs left real coordinates unchanged; no temporary diagnostics entered production source.
+Controlled size/gap crops and lift trials explain the selected values. The crop grid's gap row combines the measured isolated model/trail layers for controlled review; full-page screenshots show the actual browser render. The [complete browser matrix](trajectory-fix-review/README.md#f--inspection-and-browser-matrix) covers both sources, repeated switches, gap/fade/rotation, day/night/terminator, medium/global views, direct picking, both Inspection entries, Back, unavailable OEM, OEM loss during Inspection, delayed GLB and 390-pixel mobile layouts in both builds. No application/WebGL errors were observed. QA availability/latency stubs left real coordinates unchanged; no temporary diagnostics entered production source.
 
 Frontend **66 tests / 14 files**, typecheck and production build passed. Backend **82 tests**, Java 21 Maven test/verify passed, no failures/errors/skips. The existing Cesium bundle warning remains. Identical frozen UTC/camera at **2560×1440**, DPR 2, 4× MSAA and one active view measured median **24.905 FPS untouched `8146055` / 24.171 FPS final**, five steady windows each after warmup: −2.95%, no material local regression detected. GPU memory is uninstrumented; cache/imagery/warmup variability limits inference. The older ~19 FPS reference used different workload conditions.
 
@@ -139,7 +141,7 @@ Before editing, development and served production showed the sharp cyan 4 px pri
 
 ### Recorded real-source window
 
-The [captured comparison response](trajectory-review/diagnostic-comparison.json) is an observation used for this diagnosis, not a runtime fallback. Current state remained honestly labeled `STALE / ELEMENT_TOO_OLD` for this stored set.
+The captured comparison response is an observation used for this diagnosis, not a runtime fallback. Current state remained honestly labeled `STALE / ELEMENT_TOO_OLD` for this stored set.
 
 ```text
 TLE line 1: 1 25544U 98067A   26272.11005302  .00004557  00000+0  91790-4 0  9991
@@ -244,18 +246,18 @@ The pinned Cesium 1.145 implementation was also checked for normalized per-index
 
 | Case | Development | Served production |
 | --- | --- | --- |
-| Global daytime Overview / bright Blue Marble | Pass | Pass; [day](trajectory-review/production-day.jpg) |
-| Global nighttime / historical city-light regions | Pass; [night](trajectory-review/development-night.jpg) | Pass; [night/endpoints](trajectory-review/production-night-endpoints.jpg) |
-| Terminator | Pass | Pass; [terminator](trajectory-review/production-terminator.jpg) |
+| Global daytime Overview / bright Blue Marble | Pass | Pass; day |
+| Global nighttime / historical city-light regions | Pass; night | Pass; night/endpoints |
+| Terminator | Pass | Pass; terminator |
 | Opposite orbital phase and actual distinct endpoints | Faint trail retained when not occulted | Faint trail retained when not occulted; no bridge |
 | Globe rotation / Earth depth | Native drags; correct occultation | Native drags; correct occultation |
 | Zoom in and out / intermediate dash readability | Pass | Pass |
 | Ready model without point or label | Pass | Pass |
 | Direct model click → approach → Inspection | Pass; solar-array surface click | Pass; visible model click |
-| Inspection → Overview / moving target / uncluttered paths | Pass; [inspection](trajectory-review/development-inspection.jpg) | Pass |
+| Inspection → Overview / moving target / uncluttered paths | Pass; inspection | Pass |
 | Real 120 s comparison/window refreshes | Several refreshes; ready replacement retained, no observed popping | Repeated refreshes; same group-readiness behavior |
-| OEM unavailable | Controlled localhost response; [primary/model remain](trajectory-review/development-oem-unavailable.jpg) | Controlled localhost response; [primary/model remain](trajectory-review/production-oem-unavailable.jpg) |
-| Delayed GLB → ready | Temporary locator observed, hidden at readiness | Temporary locator observed; [early loading](trajectory-review/production-loading-fallback.jpg), hidden at readiness |
+| OEM unavailable | Controlled localhost response; primary/model remain | Controlled localhost response; primary/model remain |
+| Delayed GLB → ready | Temporary locator observed, hidden at readiness | Temporary locator observed; early loading, hidden at readiness |
 | Semantic picking | Existing routing tests pass | Actual Poisk click opens the matching module panel |
 
 The early loading screenshot includes the locator before globe imagery finishes. The QA proxy delayed the GLB by 12 s; readiness was about 13.1 s in production and 13.7 s in development. It changed only optional OEM availability/empty samples and asset delivery delay, leaving the real primary coordinates intact. Development HMR WebSocket forwarding was outside this temporary HTTP proxy; normal development and served-production renderer logs were checked separately.
@@ -272,7 +274,7 @@ No shimmer, crawling texture, alpha flicker, or segment popping was observed dur
 
 ### Local performance
 
-The [raw five-second observations](trajectory-review/performance.json) compare parent `0150d9f` against the refined source sequentially. Both use DPR 2, a 1280×720 viewport, a 2560×1440 drawing buffer, 4× MSAA, no FXAA, HDR off, and an initially centered daytime Overview. The same additional production Earth View tab remained open in both measurements; each measured view was opened separately. The NASA imagery/cache and real scene epoch may vary, so this is a local regression observation, not an isolated GPU benchmark.
+The raw five-second observations compare parent `0150d9f` against the refined source sequentially. Both use DPR 2, a 1280×720 viewport, a 2560×1440 drawing buffer, 4× MSAA, no FXAA, HDR off, and an initially centered daytime Overview. The same additional production Earth View tab remained open in both measurements; each measured view was opened separately. The NASA imagery/cache and real scene epoch may vary, so this is a local regression observation, not an isolated GPU benchmark.
 
 | Five steady windows | Min FPS | Median FPS | Max FPS |
 | --- | ---: | ---: | ---: |

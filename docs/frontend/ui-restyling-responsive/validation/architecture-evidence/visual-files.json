@@ -2,16 +2,6 @@
   "encoding": "lossless WebP; decoded RGBA equals original native PNG; no rescaling or retouch",
   "files": [
     {
-      "file": "before-desktop-earth.webp",
-      "width": 1440,
-      "height": 900,
-      "bytes": 748104,
-      "source": "before-development/1440x900-earth-gp.png",
-      "sourcePngSha256": "440a3d64eee215035cd4a96fc606d24fed90271f641211db53581b8c0aecdcc5",
-      "decodedRgbaSha256": "11197856fbb34e3b8f04fbd2c55b850ce34fbabf955ffef75523dd69aadff8f6",
-      "decodedEqualsSource": true
-    },
-    {
       "file": "desktop-earth.webp",
       "width": 1440,
       "height": 900,
@@ -52,16 +42,6 @@
       "decodedEqualsSource": true
     },
     {
-      "file": "landscape-calendar.webp",
-      "width": 844,
-      "height": 390,
-      "bytes": 115752,
-      "source": "final-production/844x390-historical-calendar.png",
-      "sourcePngSha256": "7b7f933e930aa22a798625b340cf25cb1501f54db78a7ac404e0d179fae29e6a",
-      "decodedRgbaSha256": "a14d7bec1cb025ca8a279c8e7376666db9be1826aefa7303192f4d3ef26408fd",
-      "decodedEqualsSource": true
-    },
-    {
       "file": "phone-astronaut.webp",
       "width": 390,
       "height": 844,
@@ -80,18 +60,8 @@
       "sourcePngSha256": "a9c8604ff68ef58a3be67a77531267d3158fa821d3469bcd1790115e094f038f",
       "decodedRgbaSha256": "8ff65249e617b858369bfc16d92a6b5787755a1036d2e4c462c898e195fae9fa",
       "decodedEqualsSource": true
-    },
-    {
-      "file": "narrow-module-stress.webp",
-      "width": 320,
-      "height": 568,
-      "bytes": 70194,
-      "source": "stress-production/320x568-module-stress.png",
-      "sourcePngSha256": "1309a89b519b7caeb7cdf95d48fd44752269bea8e2a7f9fd60ce7f7f4b66fb31",
-      "decodedRgbaSha256": "5315d6dda35a91f4fb055cabce98d05b0378485e718df3d362959be7910cd812",
-      "decodedEqualsSource": true
     }
   ],
-  "count": 9,
-  "bytes": 2197694
+  "count": 6,
+  "bytes": 1263644
 }

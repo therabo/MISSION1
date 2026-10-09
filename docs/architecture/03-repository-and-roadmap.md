@@ -1,5 +1,7 @@
 # Repository structure and incremental roadmap
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../frontend/qa-artifact-policy.md) for archive recovery and current evidence.
+
 **Current Crew milestone (2026-10-03):** [Event-aware refresh](../crew/event-aware-refresh.md) adds a Clock-driven coordinator and five PostgreSQL table groups via V5, retaining the modular monolith and source/reconciliation boundaries. [ADR-0010](../adr/0010-crew-event-aware-refresh.md) records the choice. Orbit and frontend runtime remain frozen. Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started; earlier roadmap entries below are historical where they name an earlier next step.
 
 ## Explicit camera focus refinement — 2026-10-01

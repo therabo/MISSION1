@@ -1,5 +1,7 @@
 # ISS VTAD semantic map
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 Reviewed 2026-09-29. The [132-node review matrix](iss-semantic-review.json) is the complete per-node audit: exact asset name, node index, mesh index, investigation class, mapping outcome, evidence links and date, configuration status, and reason for leaving a node unmapped. The [runtime manifest](../../frontend/src/cesium/issModelManifest.json) is the application source of verified identities; this document does not drive runtime behavior.
 
 ## Evidence rules

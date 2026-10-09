@@ -1,5 +1,7 @@
 # Earth ↔ ISS focus acceptance — 2026-10-01
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Accepted scope: explicit focus transfer, arbitrary actual camera starts, first-use graphics readiness, and frame pacing with full rendering quality. Starting clean synchronized revision: `b5aa2a82128547f9958f28bcd4bc83341230184c`. The new normal commit and verified SSH publication identity are in Git history and the task's final report. RTN analysis and Replay have not begun.
 
 ## Context actually reviewed
@@ -12,11 +14,11 @@ Read [frontend README](../../../../frontend/README.md), [backend README](../../.
 
 The baseline names the displayed ISS as its nominal aim for the entire flight, then overlays an interpolated residual orientation. It has no explicit Earth-to-ISS world focal trajectory. A smooth position spline therefore does not imply a smooth, intelligible subject transfer. The first far steering and corresponding return remain concentrated; baseline focal coordinates/velocity are intentionally **unavailable**, rather than invented from that nominal aim.
 
-Native `Camera.setView` introduces a second, independent defect: Direction/Up becomes local ENU heading/pitch/roll. Within `EPSILON3` of vertical, heading uses Up and roll becomes zero. Browser probes reproduced ~1.43° requested/applied direction error and ~501 km focal recapture error on a 10% Back. This happened with already orthonormal input. Direct public position/direction/up/right application under identity transform removes the conversion. The native frame is adopted only at the exact Inspection endpoint. [Camera public API](https://cesium.com/learn/cesiumjs/ref-doc/Camera.html), pinned `@cesium/engine/Source/Scene/Camera.js`: `setView3D`, `directionUpToHeadingPitchRoll`, `getHeading`, `getRoll`. [Rejected native-application reversal](rejected-setview-reversal.txt).
+Native `Camera.setView` introduces a second, independent defect: Direction/Up becomes local ENU heading/pitch/roll. Within `EPSILON3` of vertical, heading uses Up and roll becomes zero. Browser probes reproduced ~1.43° requested/applied direction error and ~501 km focal recapture error on a 10% Back. This happened with already orthonormal input. Direct public position/direction/up/right application under identity transform removes the conversion. The native frame is adopted only at the exact Inspection endpoint. [Camera public API](https://cesium.com/learn/cesiumjs/ref-doc/Camera.html), pinned `@cesium/engine/Source/Scene/Camera.js`: `setView3D`, `directionUpToHeadingPitchRoll`, `getHeading`, `getRoll`. Rejected native-application reversal.
 
-A plain unconstrained spherical focus rail lost the station in rotated/limb/pitch views and was rejected. [Trial geometry](trial-development-arbitrary.json.gz) remains evidence. The accepted rail adds smooth angular containment with endpoint envelopes; it never hard-switches its target.
+A plain unconstrained spherical focus rail lost the station in rotated/limb/pitch views and was rejected. Trial geometry remains evidence. The accepted rail adds smooth angular containment with endpoint envelopes; it never hard-switches its target.
 
-An initially incomplete prewarm was also rejected after an actual 72.5 ms shader-status wait at **11% rotated entry**. A dense follow-up measured 171.6 ms and captured the linked native Moon ellipsoid shader (`ONLY_SUN_LIGHTING`, `WRITE_DEPTH`, `LOG_DEPTH`); this was first visibility of the Moon. [Original wait](rejected-incomplete-warmup.json), [dense shader diagnosis](rejected-lazy-moon.json), [after sky warmup](after-sky-warm-arbitrary.json.gz). This was a shader/resource hitch, separate from focus mathematics. The accepted startup task submits the retained Moon/Sun draws and then repaints the exact captured Earth view in the same task.
+An initially incomplete prewarm was also rejected after an actual 72.5 ms shader-status wait at **11% rotated entry**. A dense follow-up measured 171.6 ms and captured the linked native Moon ellipsoid shader (`ONLY_SUN_LIGHTING`, `WRITE_DEPTH`, `LOG_DEPTH`); this was first visibility of the Moon. Original wait, dense shader diagnosis, after sky warmup. This was a shader/resource hitch, separate from focus mathematics. The accepted startup task submits the retained Moon/Sun draws and then repaints the exact captured Earth view in the same task.
 
 Exact baseline rendered frames follow. Indices are local to each recorded direction; progress is elapsed transition fraction. “Basis” is requested/applied direction error, independently measured from angular motion. These are diagnostics of the reproduced problem, not evidence of a hidden discrete target assignment.
 
@@ -78,7 +80,7 @@ Every rendered frame records actual world basis, physical/displayed ISS, Earth, 
 | final-prod-oem | 1 | exit | 43.24 | 47.68 | 18.42 | 7609.97 | 96980.05 | 56.29 | 30.80 | 5.04e-12 |
 
 
-Near-plane projections of Earth centre can become enormous while Earth centre is off screen. The table uses **both endpoints visible** for meaningful screen steps; maximum finite projection steps are retained in [full analysis](focus-analysis.json). There are zero accidental displayed-ISS off-screen frames in the final live canonical/cycle traces and 101-pose arbitrary sweeps. Final requested/applied world basis agrees to floating-point precision, without a final orientation correction.
+Near-plane projections of Earth centre can become enormous while Earth centre is off screen. The table uses **both endpoints visible** for meaningful screen steps; maximum finite projection steps are retained in full analysis. There are zero accidental displayed-ISS off-screen frames in the final live canonical/cycle traces and 101-pose arbitrary sweeps. Final requested/applied world basis agrees to floating-point precision, without a final orientation correction.
 
 ### First 5 /10 /20 /30% of entry
 
@@ -118,7 +120,7 @@ The station stays dominant during close departure; the final fraction of the hyb
 
 Both builds and sources cover canonical/far/close/90° rotated/limb/alternate-pitch Earth entry and the matching returns, plus close-module, 2 km maximum zoom-out, orbit90° and orbit180° Inspection return. Every path has 2001 numerical clearance samples and 101 actual retained-scene rendered poses. The numerical lift target follows actual presentation progress. Camera never intersects WGS84 ellipsoid; terrain is the existing ellipsoid, not downloaded topography. Every tested rendered station centre remains within the viewport. Saved position/direction/Up, FOV, near/far, transform and all 11 controller fields restore. Geometry sampling is distinct from real-time frame-pacing measurements.
 
-Visual review compares contact sequences, native endpoint images, paired actual-raster foreground measurements, lighting and responsive surfaces. [Reviewed views and exact final rate-change frames](visual-acceptance.json) record the direct acceptance; the clean in-app production view also completes a live GP entry/return with zero error/warning logs. The station stays composed during far steering and receding departure; no discrete roll correction or close-up takeover appears in the reviewed sequences. Arbitrary alternate-pitch paths naturally have larger continuous angular rates than canonical paths; this is not hidden by an FPS claim or a universal °/s limit. See all exact values in the arbitrary matrices.
+Visual review compares contact sequences, native endpoint images, paired actual-raster foreground measurements, lighting and responsive surfaces. Reviewed views and exact final rate-change frames record the direct acceptance; the clean in-app production view also completes a live GP entry/return with zero error/warning logs. The station stays composed during far steering and receding departure; no discrete roll correction or close-up takeover appears in the reviewed sequences. Arbitrary alternate-pitch paths naturally have larger continuous angular rates than canonical paths; this is not hidden by an FPS claim or a universal °/s limit. See all exact values in the arbitrary matrices.
 
 
 | Build | Earth poses/source | Inspection poses/source | Min height km | Max restore position m | Unexpected errors |
@@ -143,7 +145,7 @@ Visual review compares contact sequences, native endpoint images, paired actual-
 | production | pitch | 6.4 | 5.4 | 111.39 | 132.02 |
 
 
-The dense step/dt figures above use uniform 1/2000 progress increments; they are geometry-rate diagnostics, not measured render FPS. All four additional Inspection return poses pass for each build/source. [Development matrix](final-development-arbitrary.json.gz), [production matrix](final-production-arbitrary.json.gz).
+The dense step/dt figures above use uniform 1/2000 progress increments; they are geometry-rate diagnostics, not measured render FPS. All four additional Inspection return poses pass for each build/source. Development matrix, production matrix.
 
 ## Startup, resources and first/warm pacing
 
@@ -207,7 +209,7 @@ Cycle0 is first use, cycle1 warmed. Frame cadence is postRender wall-time; angul
 
 ### CPU, GPU and network interpretation
 
-Per-frame transition/composition work is measured directly, including any nested focal evaluation once in transition total. Construction is separately measured above. [CDP CPU sampling](cpu-analysis.json) preserves first/warm entry and exit profiles, native idle/GC samples and top self-sampled functions. Minified profiles do not permit perfect React/render preparation attribution; no fabricated per-pass timings are reported. Camera state lives in retained Cesium vectors, with no per-frame React camera update. Existing meaningful mode changes and throttled time/readout UI callbacks persist. No LUT/material/provider/primitive allocation hotspot is added in the transition loop.
+Per-frame transition/composition work is measured directly, including any nested focal evaluation once in transition total. Construction is separately measured above. CDP CPU sampling preserves first/warm entry and exit profiles, native idle/GC samples and top self-sampled functions. Minified profiles do not permit perfect React/render preparation attribution; no fabricated per-pass timings are reported. Camera state lives in retained Cesium vectors, with no per-frame React camera update. Existing meaningful mode changes and throttled time/readout UI callbacks persist. No LUT/material/provider/primitive allocation hotspot is added in the transition loop.
 
 The browser supports `EXT_disjoint_timer_query_webgl2`. Asynchronous elapsed queries are consumed only after availability, with disjoint checks; raw nanosecond-derived durations bracket scene draw submission, including queue scheduling, rather than identifying individual passes. [Timer query semantics](https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query). Native GL wrappers separately identify shader-status stalls. GPU elapsed time and wall cadence can differ under shared pipeline scheduling. Full-resolution model/atmosphere/silhouette/FXAA cost remains significant; no 60FPS guarantee is claimed. Controlled local-image runs isolate network failure; live smoke verifies ordinary backend delivery separately.
 
@@ -287,7 +289,7 @@ Twenty real-time round trips per build alternate sources: ten GP and ten OEM. Te
 
 ## Quality, pacing and regression proof
 
-The unchanged NASA VTAD `/models/iss-vtad-source-png.glb` is 32,735,516 bytes, SHA256 `ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f`: 19 source PNG images (15×1024²,4×512²),27 materials,132 nodes,131 meshes, mipmap minFilter9987. No image/model simplification or replacement. [Full asset/source hash audit](quality-preservation.json).
+The unchanged NASA VTAD `/models/iss-vtad-source-png.glb` is 32,735,516 bytes, SHA256 `ce23515c6bf4a77d3bac6b7c2554e3c92e137c11c8db3ee1ffc1f3ef2030a16f`: 19 source PNG images (15×1024²,4×512²),27 materials,132 nodes,131 meshes, mipmap minFilter9987. No image/model simplification or replacement. Full asset/source hash audit.
 
 MSAA4, retained native FXAA (Overview bypass/active close modes), resolutionScale1, browser recommended resolution disabled, DPR2 and 2560×1440 buffer remain. Same PBR custom shader, environment maps, silhouette policy, imagery/provider quality, native Earth depth, full trajectory geometry and adaptive gap/rounded start. Source hashes of graphicsQuality, issMaterialQuality, inspectionAntialiasing, earthImagery, trajectoryRendering, trajectoryClearance, earthViewPresentation, inspectionControls, perceptualPath and arcLengthPath equal baseline. The six retained primitives/two layers and quality flags are checked in browser resources, not solely inferred from hashes.
 
@@ -306,13 +308,13 @@ Desktop endpoint remains 90 m /42.5° /100°, rear/elevated with zero lateral of
 | mobile | NASA_OEM | 55.0 | 73.0 | 1.0 | 5.56 |
 
 
-The complete development/production matrix passes day/night/terminator and city-light/local-image fallback, both sources, 900px desktop and390px mobile, native wheel/orbit/pinch, refresh,14 semantic picks per source, delayed5s GLB, OEM loss during entry/stable Inspection/exit, atomic focus-preserving GP retarget, silhouettes/lift/trajectories and endpoint/restore. No unexpected page/application/WebGL errors remain; expected intentionally aborted GIBS/503 resource diagnostics are identified separately. [Full matrix](production-full.json), [regressions](production-extra.json), [reversals](production-reversals.json), [clean live smoke](clean-live-smoke.json).
+The complete development/production matrix passes day/night/terminator and city-light/local-image fallback, both sources, 900px desktop and390px mobile, native wheel/orbit/pinch, refresh,14 semantic picks per source, delayed5s GLB, OEM loss during entry/stable Inspection/exit, atomic focus-preserving GP retarget, silhouettes/lift/trajectories and endpoint/restore. No unexpected page/application/WebGL errors remain; expected intentionally aborted GIBS/503 resource diagnostics are identified separately. Full matrix, regressions, reversals, clean live smoke.
 
 Equivalent visual lint has no unnamed controls, unnamed images, clipped controls or overflow blockers. An initial lint flagged the unchanged Cesium ion credit for absent alt. Its native `title="Cesium ion"` gives the image an accessible name in both baseline and final; the corrected gate checks that name and retains absent-alt as a warning. The initial report and failed attempt remain preserved. Tiny-credit/approximate-contrast warnings are reported in raw lint evidence; this transition-only change does not redesign existing typography or treat a WebGL background contrast estimate as an accessibility certification.
 
 ## Validation, documentation and acceptance
 
-Frontend **130 tests /24 files**, complete suite, typecheck and production build pass on Node24. Backend **82 tests**, zero failures/errors/skips, `mvn test` and `mvn verify` pass on Java21; backend sources are unchanged. Existing large Cesium bundle warning remains. The final source is free from QA globals; served clean production bundle identity equals local dist. [Validation/source manifest](validation.json), [numerical/browser acceptance](focus-validation.json), [full serial matrix execution](qa-run.json), [final source profiles/resource/raster/startup/lint execution](qa-evidence-run.json).
+Frontend **130 tests /24 files**, complete suite, typecheck and production build pass on Node24. Backend **82 tests**, zero failures/errors/skips, `mvn test` and `mvn verify` pass on Java21; backend sources are unchanged. Existing large Cesium bundle warning remains. The final source is free from QA globals; served clean production bundle identity equals local dist. Validation/source manifest, numerical/browser acceptance, full serial matrix execution, final source profiles/resource/raster/startup/lint execution.
 
 The complete geometry/reversal/20-cycle matrix was captured immediately before the final startup ordering guard. That guard only excludes temporary celestial renders from the eight-frame counter: all complete-matrix captures had sky ready before model ready, so it was inactive for their paths and timings. Exact final source then passed fresh/warm dev/prod×GP/OEM profiles, both forced startup races, final resource sweeps, raster/lint and clean live smoke. This distinction preserves honest source lineage without attributing changed motion to an inert startup predicate.
 

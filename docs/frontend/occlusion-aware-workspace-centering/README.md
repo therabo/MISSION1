@@ -1,5 +1,7 @@
 # Occlusion-aware full-screen Earth centering
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 Corrective milestone, 2026-10-04. Accepted starting commit:
 `47b295601da2ba6a90112e4b4212985c48d4be79`, parent
 `f8ca08b3134773327cf18549402b8acc8bb0d99e`. Before editing, clean local `main`,
@@ -32,8 +34,8 @@ centroid is `(861.942669,443.560516)`. Those are distinct quantities. Inspection
 cropped the canvas at 302px and the 100° canonical lens to 86.567463° native FOV.
 Replay cropped at 390px despite its panel occupying only the lower-left area.
 
-[Before geometry/physical camera captures](evidence/before.json) and
-[1440×900 before Overview](evidence/before-1440x900-overview.png) were captured
+Before geometry/physical camera captures and
+1440×900 before Overview were captured
 from the accepted baseline before runtime edits. Before screenshots also cover
 1280×720,900×700,768×1024,390×844, desktop Inspection and Replay. The old
 [dynamic-workspace dossier](../dynamic-workspace-centering/README.md) remains
@@ -208,10 +210,10 @@ Camera position difference is0m. The few raster outliers, including trajectory
 and overlay pixels, are retained rather than hidden. No colour/lighting setting
 was changed to satisfy the test. These supplementary pixel checks catch the
 circular surface cut missed by principal-point arithmetic; the primary centering
-gate below remains geometric. [Raw results](evidence/globe-projection.json),
-[symmetric native](evidence/globe-4175-symmetric-native.png),
-[neutral symmetric adapter](evidence/globe-4175-symmetric-adapter.png),
-[correct off-center globe](evidence/globe-4175-off-center-adapter.png).
+gate below remains geometric. Raw results,
+symmetric native,
+neutral symmetric adapter,
+correct off-center globe.
 
 ## Numeric/browser validation
 
@@ -276,19 +278,19 @@ Inspection centroid is `(732.334707,457.031004)` and Replay centroid is
 
 Full raw viewport/panel/intersection/area/centroid/projected Earth/ISS/focus,
 physical pose, lens, native ray and error rows:
-[development](evidence/development-browser.json),
-[production](evidence/production-browser.json).
+development,
+production.
 
 ## Space below the dashboard
 
-[Annotated Overview proof](evidence/space-below-dashboard-overview-5175.png)
+Annotated Overview proof
 uses browser-only panel height 633px and ordinary native wheel zoom. Its dashed
 rectangle identifies the lower-left area; a native Earth surface pick there
 confirms that those visible canvas pixels render Earth. The separate
-[normal Inspection proof](evidence/space-below-dashboard-inspection-5175.png)
+normal Inspection proof
 shows Earth terrain beneath the actual short dashboard on the full-screen scene.
 Both have production counterparts at 4175; raw bounds, poses and world pick are
-in [full-scene-edge.json](evidence/full-scene-edge.json). Annotation is DOM-only
+in full-scene-edge.json. Annotation is DOM-only
 QA content and no altered width/height or zoom constants are committed to product
 CSS/camera logic. At the normal Overview zoom the Earth limb need not physically
 reach every free corner; those corners remain rendered scene and contribute to
@@ -311,17 +313,17 @@ Inspection orbit/zoom, all 14 semantic module IDs with actual UI selection and B
 pass (56 module clicks). The real scene clock is paused only for the overview
 surface scan/click/entry, then resumed for orbit/zoom/module interactions. A first
 scan selected a moving edge and the click missed before dispatch; its timeout
-is retained in [input-moving-edge-attempt.txt](evidence/input-moving-edge-attempt.txt).
+is retained in input-moving-edge-attempt.txt.
 No product/data code or input handler was changed to satisfy the probe. Principal native ray dot-direction differs from 1 by
 less than 1e−10. GP/OEM selectors and historical Replay are exercised by the
-separate transition/source matrix. [Input rows](evidence/input-regression.json).
+separate transition/source matrix. Input rows.
 
 Two extra real GPU edge probes (one per build) pick an **unmapped solar-array
 model surface** at visible pixel `(1390,120)`, equivalent symmetric x 1750px,
 outside the original 1440px lens. The render frustum/offset and accepted minimum
 footprint restore exactly. These probes do not invent a semantic module identity
 for that surface; all 14 mapped module identities are verified separately.
-[Surface/edge proofs](evidence/full-scene-edge.json).
+Surface/edge proofs.
 
 Transitions: 12 source/build/viewport cases, 7,651 post-render samples.
 LIVE GP and OEM observe 6s entry/5s exit; Replay observes6.1–6.2s entry/5.1–5.2s exit under the
@@ -331,7 +333,7 @@ and15.056823px exit (predefined 40px sampling gate; mobile 0px).
 Seven successful cases were recorded with the normal live scene clock (Replay
 was naturally paused). A host clock/scheduling leap subsequently expired the
 real buffer and correctly disabled Inspection; that timeout is retained in
-[transitions-clock-attempt.txt](evidence/transitions-clock-attempt.txt). The five
+transitions-clock-attempt.txt. The five
 remaining cases use a fresh real-data page per source and pause only scene time;
 flight timing still uses performance.now. No synthetic state, mocked delivery or
 runtime clock/policy change is introduced. The reproducible script supports an
@@ -343,7 +345,7 @@ All samples retain full canvas width/height, final native FOV 100°, accepted
 range, and exact restored world position (error 0m). There is no transient old
 rectangular viewport, CSS translation or double offset. Large frame intervals
 are retained in raw traces, not hidden or called zero-cost; local capture includes
-startup/flight work. [Traces/durations](evidence/transitions.json).
+startup/flight work. Traces/durations.
 
 Physical freeze compares real Replay at2026-10-02T23:00:00Z against retained
 baseline before captures,1440 and390 in both builds. After the runtime restart,
@@ -356,7 +358,7 @@ the final physically meaningful tolerance and actual nonzero values are explicit
 All original before/after vectors are retained. Width/height/combined layout
 probes preserve Overview position/basis/target/HPR and pixel scale exactly.
 FOV change from the native crop to canonical100° is the intentional projection
-correction. [12 camera comparisons](evidence/camera-freeze.json).
+correction. 12 camera comparisons.
 
 Two settled 10-second idle probes and four Crew open/close cycles per build:
 
@@ -370,7 +372,7 @@ MutationObserver total is 3: one scoped application layout observer and two
 existing library observers on unrelated detached targets. The first QA attempt
 incorrectly treated that global total as the layout count; the corrected probe
 identifies app-shell targets and also verifies stable global totals after cycles.
-All raw rows/counters remain in [idle-lifecycle.json](evidence/idle-lifecycle.json).
+All raw rows/counters remain in idle-lifecycle.json.
 
 The pixel helper's measured **inclusive** native+adapter CPU totals are
 8.0ms development/5.5ms production over10 seconds, about
@@ -378,14 +380,14 @@ The pixel helper's measured **inclusive** native+adapter CPU totals are
 introduced during idle. This is a local headless Chromium/ANGLE Metal observation,
 not a matched before/after FPS claim or universal budget; timing resolution and
 normal rendering work remain. No extra data/provider API code paths or geometry-triggered HTTP calls exist.
-[Unintercepted network inventory](evidence/network-audit.json) contains only
+Unintercepted network inventory contains only
 existing loopback, NASA GIBS and Crew portrait domains. Natural imagery tile
 selection can change with the mandated full-screen projection.
 
 Visual lint: 8 dev/prod desktop/mobile Overview/Inspection states, no horizontal
 overflow, unnamed controls, clipped controls, unnamed DOM images or JS blockers.
 Inherited small text remains in the raw findings per state (same frozen styles),
-not suppressed. [Lint rows](evidence/visual-lint.json).
+not suppressed. Lint rows.
 
 ## Automated gates and reproducibility
 
@@ -399,8 +401,8 @@ bottom produces a different 2D result. Hidden/bottom/responsive/clipped/degenera
 cases, native rays, scratch clone identity/depth-near rescaling, pixel scale,
 GPU-lens cleanup and expanded-edge behavior are covered.
 
-[Gate log](evidence/validation-log.txt), [runtime/bundle hashes](evidence/validated-source.json)
-and [freeze audit](evidence/freeze-audit.json) retain validation provenance.
+Gate log, runtime/bundle hashes
+and freeze audit retain validation provenance.
 An inherited large-bundle build warning remains; no dependency/build or graphics
 change is made to suppress it. A lint invocation initially omitted the external Playwright module path; rerunning with the documented environment resolved it without a product/dependency change. One full test run concurrent with GPU QA exceeded
 the inherited 5s GLB test timeout; the isolated final full run passed without a

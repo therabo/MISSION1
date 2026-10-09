@@ -1,5 +1,7 @@
 # Trajectory rendering artifact investigation — 2026-10-02
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 **Status: incomplete, unaccepted, uncommitted. Do not treat this directory as a successful milestone.**
 
 The baseline is `fa5ed6379bf919419973ee1eb3d45f7ddaebdd58`, `fix: preserve trajectory clearance during inspection exit`. Local `main`, `origin/main` and GitHub `main` were identical and the tree was clean before implementation. They still name that commit. The experimental working tree has not been committed or pushed.
@@ -55,13 +57,13 @@ Additional ahead-axis, slightly off-axis and reverse traces have worst gap-induc
 
 **The crossing trace fails.** Theta 30°→−30°, phi 0°, range 500→8000 km changes selected projected branches at frame 24. GP moves 51.124 CSS px and OEM 51.127 CSS px from gap selection alone; total movement is approximately 52.55 CSS px. Both have one gap/epoch reversal. This is not normal camera motion and is not an accepted fix.
 
-Full raw traces and [machine-readable origin metrics](data/origin-summary.json) are retained under `data/` as gzip JSON. They include camera vectors, displayed position/range, source, reveal, first-interval direction/length/angle, gap time/path metres, first/second epochs and positions, clearance, alphas, and change flags.
+Full raw traces and machine-readable origin metrics are retained under `data/` as gzip JSON. They include camera vectors, displayed position/range, source, reveal, first-interval direction/length/angle, gap time/path metres, first/second epochs and positions, clearance, alphas, and change flags.
 
 **Measurement limit:** `temporalStart*` records the shader boundary; `analyticalPerceptibleOnset` evaluates centerline alpha ≥0.005 using the source interpolation and current uniforms. `firstVisible*` aliases that analytical onset, not the literal first GPU pixel. Matched raster on/off captures independently show baseline axis disappearance and candidate visibility. A full raster-origin trace remains a final-acceptance requirement; these analytical traces must not be relabeled as GPU pixel measurements.
 
 | Axis baseline GP | Unaccepted candidate GP |
 |---|---|
-| ![Axis baseline](screenshots/baseline-PRIMARY_GP_TLE-axis-detail.png) | ![Axis candidate](screenshots/unaccepted-candidate-PRIMARY_GP_TLE-axis-detail.png) |
+| *Archived visual: Axis baseline* | *Archived visual: Axis candidate* |
 
 ## Defect 2: rectangular clearance cut
 
@@ -75,7 +77,7 @@ Diagnostic controls were enforced in `preRender`; early exploratory toggles over
 
 | Baseline masked | Same baseline, mask disabled | Same baseline, depth disabled |
 |---|---|---|
-| ![Masked baseline](screenshots/baseline-rectangle-isolation-normal.png) | ![Mask disabled](screenshots/baseline-rectangle-isolation-no-mask.png) | ![Depth disabled](screenshots/baseline-rectangle-isolation-no-depth.png) |
+| *Archived visual: Masked baseline* | *Archived visual: Mask disabled* | *Archived visual: Depth disabled* |
 
 ### Rejected correction
 
@@ -85,7 +87,7 @@ This approach is **not acceptable as the final correction**. Counting every retu
 
 | Rectangle baseline GP | Unaccepted candidate GP |
 |---|---|
-| ![Baseline cut](screenshots/baseline-PRIMARY_GP_TLE-rectangle-detail.png) | ![Candidate cut removal](screenshots/unaccepted-candidate-PRIMARY_GP_TLE-rectangle-detail.png) |
+| *Archived visual: Baseline cut* | *Archived visual: Candidate cut removal* |
 
 The controlled isolation proves the subsystem. A complete accepted before/first/worst/last affected-frame sequence and its corrected equivalents remains pending; static samples must not be claimed as that sequence.
 
@@ -99,7 +101,7 @@ Matched source-colored on/off raster differences at the 30° fold have **203 GP 
 
 | Oblique baseline GP | Unaccepted candidate GP |
 |---|---|
-| ![Baseline miter](screenshots/baseline-PRIMARY_GP_TLE-oblique-detail.png) | ![Candidate capsule](screenshots/unaccepted-candidate-PRIMARY_GP_TLE-oblique-detail.png) |
+| *Archived visual: Baseline miter* | *Archived visual: Candidate capsule* |
 
 The supplied angle evidence includes 30°, 45°, 60°, 75° and tangent 0° for **both sources**, at 6000 km, plus development/production planar and phi 45° sweeps at multiple ranges. The prominent baseline fold filament occurs at the specified planar 30° pose. The shader correction removes it there; the combined candidate remains unaccepted because its start logic and CPU cost fail. Angle overview JPEGs are half-size; matching `*-detail.png` files preserve native crop pixels.
 
@@ -111,7 +113,7 @@ The Fabric trail retains the rounded temporal width gate, soft start ramp and en
 
 Range reveal remains hidden ≤100 km, logarithmic smootherstep 100→10,000 km, full ≥10,000 km. Horizon remains 0.85 revolution. Same-frame source/model/camera, clearance, reveal and material ordering is retained. The experimental Overview selector and shader are the only rendering strategy changes; automatic transitions retain the previously accepted support criterion.
 
-The [physical invariant comparison](data/physical-invariants.json) confirms identical **181 positions per source**, epochs, source windows and period:
+The physical invariant comparison confirms identical **181 positions per source**, epochs, source windows and period:
 
 | Value | Identical baseline/candidate SHA-256 |
 |---|---|
@@ -134,7 +136,7 @@ Baseline and the current candidate were measured sequentially on the same host, 
 | OEM axis crossing | 0.214 → 1.383 | 1.000 → 2.300 | 33.4 → 33.4 | 50.1 → 50.1 | 83.2 → 66.7 |
 | OEM oblique | 0.146 → 1.640 | 0.300 → 2.700 | 50.0 → 50.0 | 50.1 → 66.6 | 83.3 → 100.0 |
 
-The CPU increase is 1.17–1.94 ms/update. The full-horizon projected-return search evaluates both bounded sources each moving frame and is not a near-zero-cost correction. Frame medians alone cannot be used to accept it. The GPU timer extension is available, but GPU timer queries were not collected; frame intervals include browser/CPU/GPU scheduling. This is one matched pair, not a repeated statistical GPU benchmark. [Raw measurements](data/performance-summary.json) and gzip frame rows are supplied. These are provisional failed-candidate measurements, not final performance acceptance.
+The CPU increase is 1.17–1.94 ms/update. The full-horizon projected-return search evaluates both bounded sources each moving frame and is not a near-zero-cost correction. Frame medians alone cannot be used to accept it. The GPU timer extension is available, but GPU timer queries were not collected; frame intervals include browser/CPU/GPU scheduling. This is one matched pair, not a repeated statistical GPU benchmark. Raw measurements and gzip frame rows are supplied. These are provisional failed-candidate measurements, not final performance acceptance.
 
 ## Validation actually run
 

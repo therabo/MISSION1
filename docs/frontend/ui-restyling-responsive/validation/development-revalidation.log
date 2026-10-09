@@ -1,5 +1,0 @@
-historical-module: 20/20 geometry PASS
-historical-module: continuity 113/113
-module: 20/20 geometry PASS
-module: continuity 113/113
-{"states":20,"captures":400,"failed":0,"continuityFailed":0,"errors":0}

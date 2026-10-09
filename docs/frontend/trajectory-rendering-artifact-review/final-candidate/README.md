@@ -1,5 +1,7 @@
 # ISS trajectory rendering correction — 2026-10-02
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
 The reference product was `fa5ed6379bf919419973ee1eb3d45f7ddaebdd58`. The original failed experiment is preserved in the parent directory and external archives; its old README remains a FAILED investigation. This record applies only to the source hashes in `runtime-source-hashes.json` and the final validated runs below.
 
 ## Preservation, context and scope
@@ -65,7 +67,7 @@ Chromium 151.0.7922.34, ANGLE Metal Apple M1, 1280×720 CSS at DPR 2 / 2560×144
 
 The temporal root can change components at camera/mask tangency; these seconds and metres are retained explicitly. They are analytical visibility thresholds, not physical deletions or native pixel jumps. The independent native controls below test whether the changing query releases/masks real fragments. The physical body interval is 99.999979% in every tested pose.
 
-Native Float64 xyz source hashes remain GP `1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3`, OEM `c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985`; epoch hash `6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311`. Each has 181 positions. Physical length remains **34,879,973.54123991 m GP /34,879,731.894290455 m OEM**. Last epoch remains `1790787902060.658` ms; full endpoints are recorded in [physical proof](physical-invariance.json). Camera motion retains the same primitive and geometry identifiers and does not rerun the builder.
+Native Float64 xyz source hashes remain GP `1e117f13590cb804293c37d7d4bf85ee9136537945a4fbfc36c65b70db7ffcc3`, OEM `c9faee0458d8ae4490090d86a1d93be5f0e8b99e1d75e030fc6a1bb60389f985`; epoch hash `6be1128037b05fc277346d1ba63e92e18ffd5e15aa57e828066759b6e2bf6311`. Each has 181 positions. Physical length remains **34,879,973.54123991 m GP /34,879,731.894290455 m OEM**. Last epoch remains `1790787902060.658` ms; full endpoints are recorded in physical proof. Camera motion retains the same primitive and geometry identifiers and does not rerun the builder.
 
 ### Dedicated origin comparison
 
@@ -134,7 +136,7 @@ The rectangle boundary sequence is 13° (before), 14.5° (first affected sampled
 
 The final **3000 consecutive native frames** cover dev/prod ×GP/OEM ×axis/crossing/repeated extreme pass. Neither passing tests nor process exit was used in place of raster review. Native detail/difference crops and current/previous/off controls were inspected; full PNG originals are externally preserved with byte verification. A prior temporal handoff candidate failed the same repeated near-plane control (~1981 affected pixels, channel delta >200); it was rejected and preserved before this final run.
 
-The maximum raw repeated-path RGB delta is 125 at one background pixel. Its current RGB equals off-before exactly, and its previous-gap RGB equals off-after exactly; the off-background delta is also 125. [The four control values](gpu-memory/background-delta-control.json) retain this observation. Zero changed trajectory pixels means zero changes above the per-pixel measured background noise plus 8 levels, rather than absolute equality of every screen pixel. Full representative native controls remain in `gpu-origin/controls` and `gpu-memory/controls`.
+The maximum raw repeated-path RGB delta is 125 at one background pixel. Its current RGB equals off-before exactly, and its previous-gap RGB equals off-after exactly; the off-background delta is also 125. The four control values retain this observation. Zero changed trajectory pixels means zero changes above the per-pixel measured background noise plus 8 levels, rather than absolute equality of every screen pixel. Full representative native controls remain in `gpu-origin/controls` and `gpu-memory/controls`.
 
 
 ## Performance and regression limits
@@ -154,7 +156,7 @@ Frontend **162 tests /25 files**, typecheck and native production build pass. Ba
 
 Only four product documentation files are updated: frontend README, orbital-trajectory rendering, rendering quality and architecture/04. The final evidence README/scripts/trace and preservation manifests are added here. No ADR or Inspection semantics file changes. External `/Users/daniel/Desktop/mission1-project.md` is updated only after acceptance and remains outside Git.
 
-[Full frozen-source audit](full-graphics-source-freeze.json) compares 105 backend/camera/controls/model/quality/source/orbital/asset files byte-for-byte with the accepted commit; all are unchanged. The additional graphics audit checks assets, camera warmup, antialiasing, selection, visibility and physical/display helpers. EarthView's diff is confined to trajectory preparation. The accepted desktop endpoint is 90 m /42.5° /100° /zero lateral; responsive framing, C2 clock, focus, durations/pacing, arbitrary starts, Partial Back, prewarm, orientation, NASA PNG/PBR, picking, native DPR/MSAA/FXAA, silhouette and 75 km model-only lift remain. The 100→10,000 km logarithmic smootherstep reveal and active/inactive colors/alpha/widths/endpoint fade remain.
+Full frozen-source audit compares 105 backend/camera/controls/model/quality/source/orbital/asset files byte-for-byte with the accepted commit; all are unchanged. The additional graphics audit checks assets, camera warmup, antialiasing, selection, visibility and physical/display helpers. EarthView's diff is confined to trajectory preparation. The accepted desktop endpoint is 90 m /42.5° /100° /zero lateral; responsive framing, C2 clock, focus, durations/pacing, arbitrary starts, Partial Back, prewarm, orientation, NASA PNG/PBR, picking, native DPR/MSAA/FXAA, silhouette and 75 km model-only lift remain. The 100→10,000 km logarithmic smootherstep reveal and active/inactive colors/alpha/widths/endpoint fade remain.
 
 The review establishes the specified recorded paths on this hardware. Natural globe occultation, offscreen geometry and source-coverage expiry remain valid visibility limits. No new positional accuracy or onboard telemetry claim follows from these rendering checks.
 

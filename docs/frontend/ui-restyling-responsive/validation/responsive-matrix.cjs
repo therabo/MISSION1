@@ -12,7 +12,7 @@ const root = path.resolve(__dirname, '../../../..');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'frontend/src/cesium/issModelManifest.json')));
 const nodes = JSON.parse(fs.readFileSync(path.join(root, 'docs/frontend/inspection-orientation-review/asset-axes.json'))).nodes;
 const [url = 'http://127.0.0.1:5175/', build = 'development', phase = 'audit'] = process.argv.slice(2);
-const out = path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(__dirname, phase, build));
+const out = path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(require('node:os').tmpdir(), 'mission1-responsive-qa', phase, build));
 fs.mkdirSync(out, { recursive: true });
 const matrix = [[1920,1080],[1600,900],[1440,900],[1366,768],[1280,720],[1024,768],[900,700],
   [834,1194],[820,1180],[768,1024],[430,932],[412,915],[390,844],[375,812],[360,800],[320,568],

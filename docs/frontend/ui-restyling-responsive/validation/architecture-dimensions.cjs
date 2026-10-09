@@ -5,7 +5,7 @@
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
 const root=path.resolve(__dirname,'../../../..');
 const postcss=require(path.join(root,'frontend/node_modules/postcss'));
-const out=path.resolve(process.argv[2]||path.join(__dirname,'architecture-evidence'));
+const out=path.resolve(process.argv[2]||path.join(require('node:os').tmpdir(),'mission1-architecture-dimensions'));
 const baseline=process.argv[3]||'e0780705580bf23c841f0a415ed56ce9601a52d0';
 const files=['styles.css','components/InspectionStrip.css','components/ModuleInfo.css','crew/CurrentCrewWorkspace.css','crew/CrewAstronautDock.css','replay/HistoricalCalendar.css'].map(f=>'frontend/src/'+f);
 const meaningful=/^(--(space-primary|context-height|operational-height|radius-.+|secondary-.+|calendar-action-face|crew-.+)|display|position|inset.*|top|right|bottom|left|width|height|min-.+|max-.+|margin.*|padding.*|gap|row-gap|column-gap|font|font-size|line-height|letter-spacing|border|border-(width|radius|left|right|top|bottom)|outline|outline-offset|grid-.+|flex.*|align-.+|justify-.+|overflow.*|overscroll-behavior|white-space|word-break|overflow-wrap|text-overflow|transform|clip.*|object-fit|container)$/;

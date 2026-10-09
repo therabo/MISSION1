@@ -1,5 +1,12 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Final repository hygiene and integration
+
+The accepted feature baseline is `b3036793614280f0842acb21c3145dd7b3f0097a`. The final hygiene milestone preserves the product tree and tests, removes redundant generated evidence (including older QA corpora), and integrates the clean snapshot into main with `git merge --squash ui/restyling`. See the [artifact policy](../qa-artifact-policy.md), [final validation](validation-summary.md), and [six representative screenshots](screenshots.md). Earlier sections below describe completed historical milestones and their original evidence counts.
+
+
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 ## Responsive architecture audit — 2026-10-09
 
 The [complete architecture audit](architecture-audit.md) starts at accepted `e0780705580bf23c841f0a415ed56ce9601a52d0`. It reviews 48 visual families and every meaningful declaration in the six stylesheets, with an explicit inventory, unit decisions and breakpoint/height/scroll rationale. The real brand now occupies its navigation cell; content heights may grow; nested module/evidence widths follow their scene parent; actual Crew rows own their extent. Redundant offsets and superseded patches are removed. Oversized module metadata scrolls within a bounded header while Close and the body remain reachable.
@@ -54,7 +61,7 @@ Read project instructions and the external project context before implementation
 
 ## Complete inventory and main comparison
 
-[Pre-implementation component inventory](audit/component-inventory-before.md) was created before editing frontend code. [Final inventory](component-inventory.md) accounts for all **41 visual families**, including shared children changed through their parents, loading/error/evidence states, motion helpers, scene helpers, fonts/icons and attribution. [File-level branch diff](audit/branch-name-status.txt), [statistics](audit/branch-stat.txt), [full frontend diff](audit/branch-frontend.diff.gz), [history](audit/branch-history.txt), and [initial working tree](audit/initial-working-tree.diff.gz) preserve the comparison.
+Pre-implementation component inventory was created before editing frontend code. [Final inventory](component-inventory.md) accounts for all **41 visual families**, including shared children changed through their parents, loading/error/evidence states, motion helpers, scene helpers, fonts/icons and attribution. File-level branch diff, statistics, full frontend diff, history, and initial working tree preserve the comparison.
 
 Main supplies the accepted behavioral contracts: source preference/availability guards; propagated GP versus source-provided OEM distinctions; timestamp, units, quality and evidence; native Inspection entry, orbit, zoom and Earth restoration; semantic module picking; lazy Crew profiles, presence versus assignment; historical reconstruction and explicit unavailable states. The redesign intentionally replaced LIVE/Replay labels and the legacy datetime/one-hour controls with Current/Historical and the approved calendar/10-minute controls. `ReplayControls` remains an isolated compatibility component, **unreachable from App**. Its tests remain part of the full suite; it is not misrepresented as a browser state.
 
@@ -62,7 +69,7 @@ The pre-existing Crew changes unify Current/Historical presentation in one works
 
 ## Desktop golden reference
 
-Twenty desktop states were captured **before** runtime edits in [golden/development](validation/golden/development/matrix.json). The final matrix captures the same states, source preferences, native scene and real retained historical target `2026-10-03T12:04:00Z`. Current UTC, orbit and source freshness naturally advance; they are not frozen or replaced with synthetic data.
+Twenty desktop states were captured **before** runtime edits in golden/development. The final matrix captures the same states, source preferences, native scene and real retained historical target `2026-10-03T12:04:00Z`. Current UTC, orbit and source freshness naturally advance; they are not frozen or replaced with synthetic data.
 
 DOM geometry and computed surface styles are compared separately from changing Cesium pixels. The calendar wrapper uses `display: contents` on ordinary desktop, preserving the accepted flex arrangement. The new compact rules do not apply at 1440 × 900. Typography, control dimensions, borders, fills, glass/opacity, radii, fonts, icons and accepted spacing retain the original desktop rules. QA reports store rectangles and computed styles alongside each screenshot.
 
@@ -102,7 +109,7 @@ Existing contrast backing, focus indicators, disabled/selected states, local ico
 
 ## Cesium and data freeze
 
-[Freeze verification](audit/freeze-verification.json) checks all 210 tracked backend files and 77 tracked Cesium/asset/public files against the initial restyling checkout: **zero changed files**. Rendering-quality policy, imagery/night brightness, stars, GLB/PBR assets, antialiasing/MSAA/FXAA, atmosphere/lighting, trajectory generation, resolution policy, camera helpers and interaction adapter are untouched.
+Freeze verification checks all 210 tracked backend files and 77 tracked Cesium/asset/public files against the initial restyling checkout: **zero changed files**. Rendering-quality policy, imagery/night brightness, stars, GLB/PBR assets, antialiasing/MSAA/FXAA, atmosphere/lighting, trajectory generation, resolution policy, camera helpers and interaction adapter are untouched.
 
 The existing workspace infrastructure continues observing actual overlay geometry. No full-height excluded column is added; the entire canvas, including space below/around panels, stays in the scene. Public focal/projection observations, persistent Viewer/canvas checks, native GPU picks and exposed-edge hit tests accompany layout assertions. Current values remain computed orbital states, not live onboard telemetry. Evidence retains units, source classification, timestamps, quality and historical/latest metadata distinctions.
 

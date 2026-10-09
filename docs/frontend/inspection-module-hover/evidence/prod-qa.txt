@@ -1,4 +1,0 @@
-{"label":"production","width":1440,"height":900,"modules":28,"picks":127,"frames":2531,"consoleErrors":[],"pass":true}
-{"label":"production","width":1280,"height":720,"modules":0,"picks":2,"frames":1685,"consoleErrors":[],"pass":true}
-{"label":"production","width":900,"height":700,"modules":0,"picks":2,"frames":1773,"consoleErrors":[],"pass":true}
-{"label":"production","width":390,"height":844,"modules":0,"picks":0,"frames":2061,"consoleErrors":[],"pass":true}

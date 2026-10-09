@@ -1,5 +1,7 @@
 # ISS Crew Earth View panel review
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 **Backend follow-up (2026-10-03):** [Event-aware refresh](../../crew/event-aware-refresh.md) adds background source scheduling and PostgreSQL operational audit. The accepted panel, API contract, Cesium/orbital runtime, assets and this dossier’s historical measurements remain frozen. New browser/API regression evidence belongs to the [event refresh dossier](../../crew/event-aware-refresh-validation/README.md). Native pinch remains UNVERIFIED; this scheduling milestone does not change that status.
 
 Implemented on 2026-10-03 from accepted, synchronized `main` commit
@@ -46,7 +48,7 @@ endpoint, migration, scheduler or backend source change. `jsdom` 30.1.1 is the
 only added dependency and is used for mounted React tests, not production.
 The dependency audit reports the same three high advisories in
 `braces`/`chokidar`/`vite-plugin-static-copy` as the accepted baseline; no new
-advisory package is introduced. See [validation-summary.json](validation-summary.json).
+advisory package is introduced. See validation-summary.json.
 
 No new ADR was needed. ADRs 0007–0009 already define source authority, UUIDs,
 immutable history and reconciled interpretation. This consumer implements the
@@ -73,8 +75,8 @@ five quantities or derives an authoritative count from an array length.
 These are a dated persisted response, not permanent constants or a claim about
 live onboard telemetry. Expedition was **Expedition 75** and reconciliation was
 **PARTIAL_MATCH**. Full public DTOs and request receipt times are in
-[real-api-smoke.json](real-api-smoke.json) and
-[real-crew-response.json](real-crew-response.json).
+real-api-smoke.json and
+real-crew-response.json.
 
 Groups use backend `roleCode`: Commander, Flight engineers, other assignments,
 other confirmed crew and other presence context. Jessica Meir is Commander with
@@ -150,9 +152,9 @@ Meir's unknown/single-use image is withheld. URLs must be credential-free HTTPS.
 | Mobile 390×844 | Bottom sheet about 372×490px, 9px side margins, 28px bottom plus safe area; map and source selector remain usable above |
 
 Measured final tablet/mobile geometry is saved in
-[responsive-tablet-final.json](responsive-tablet-final.json) and
-[responsive-mobile-final.json](responsive-mobile-final.json). Earlier
-[responsive.json](responsive.json) records the narrow viewport and the initial
+responsive-tablet-final.json and
+responsive-mobile-final.json. Earlier
+responsive.json records the narrow viewport and the initial
 tablet side-panel measurement; the final compact tablet drawer supersedes that
 tablet measurement. Browser DPR was 1.1 in the final native run, so physical
 override dimensions were adjusted and CSS `innerWidth/innerHeight` checked.
@@ -170,7 +172,7 @@ replacing the error control. Loading uses `role=status`; errors use `role=alert`
 Focus outlines were inspected with native keyboard navigation. Text is always
 present alongside status color. Calculated text contrast on the opaque panel is
 8.4:1 or greater for the checked normal/muted/status/accent colors; see
-[contrast.json](contrast.json). Semantic/alt/error/focus behavior is tested; no
+contrast.json. Semantic/alt/error/focus behavior is tested; no
 screen-reader hardware session was available.
 
 ## REST request and lifecycle evidence
@@ -185,7 +187,7 @@ permitted image requests and user-invoked source links are distinct from data
 ingestion.
 
 The native slow-response fixture also recorded an `AbortError` after closing,
-with no residual panel; see [browser-abort.json](browser-abort.json) and
+with no residual panel; see browser-abort.json and
 `fixture-loading.png`. Shift+Tab from the Crew heading reached the existing
 NASA GIBS reference outside Crew, confirming non-modal keyboard navigation.
 
@@ -195,7 +197,7 @@ detail retries, and no N+1 detail fetch. Hooks use both AbortController and an
 active-request guard; no polling, frame-loop fetch, fabricated cache freshness
 or event-aware refresh was added.
 
-[lifecycle-summary.json](lifecycle-summary.json) records ten native
+lifecycle-summary.json records ten native
 open/detail/close cycles: exactly 20 requests, one Viewer throughout, one canvas,
 zero residual panels/details/portrait elements and 162 DOM nodes after closing.
 Cesium listeners remained preRender 3 / postRender 3 / clock 4, including the
@@ -205,7 +207,7 @@ not a universal memory-leak proof.
 
 ## Graphics and browser QA
 
-[frozen-files.json](frozen-files.json) compares 245 frozen files to the accepted
+frozen-files.json compares 245 frozen files to the accepted
 baseline, including 174 backend source/test/resource files. Existing Cesium,
 orbital processing/control, model, texture and data files remain byte-identical.
 Backend code, API contracts, ingestion, verification, identity resolution,
@@ -232,7 +234,7 @@ retained control tests pass. This limitation is not recorded as a gesture pass.
 
 All eight reconciliation wordings and isolated 503/retry/detail-error states were
 also inspected in the browser using explicit **QA FIXTURE** pages. See
-[browser-state-matrix.json](browser-state-matrix.json). These are presentation
+browser-state-matrix.json. These are presentation
 fixtures with a visible label, not claims that the historical partial roster is
 a valid backend MATCH/NASA_AHEAD/etc. reconciliation. Domain reconciliation is
 tested in the unchanged backend. Six presence states and null/partial/error/media/
@@ -243,8 +245,8 @@ fixtures through a disposable Vite config; the application does not import them.
 No camera/clock writes, gesture simulation, production globals or observer nodes
 were added. Production had zero observer/fixture nodes and no captured console
 errors or warnings; see
-[production-browser-checks.json](production-browser-checks.json). Served JS/CSS
-match the built files by SHA-256 in [production-assets.json](production-assets.json).
+production-browser-checks.json. Served JS/CSS
+match the built files by SHA-256 in production-assets.json.
 
 ## Local performance
 
@@ -268,7 +270,7 @@ with 5.9/6.0ms CPU render medians. Sixteen alternating native wheel actions yiel
 251 scrolling samples: interval median 19ms / p95 69ms and CPU render median
 4.9ms / p95 5.9ms. Transient frame jitter occurred during input/automation; no
 claim of perfectly stable scrolling or 60 FPS is made. See
-[performance-scrolling.json](performance-scrolling.json). Earlier multi-tab
+performance-scrolling.json. Earlier multi-tab
 `performance-list/detail.json` captures slower shared-renderer conditions
 (about 66ms frame intervals); the primary single-tab comparison supersedes it
 for the idle closed/open comparison.
@@ -313,9 +315,9 @@ PATH=/opt/homebrew/opt/node@24/bin:$PATH npm exec vite -- --config ../docs/front
 
 Real screenshots were inspected, including the revised tablet composition:
 
-![Production Crew list](production-desktop-list.png)
-![Production mobile sheet](production-mobile-list.png)
-![Final tablet compact drawer](tablet.png)
+*Archived visual: Production Crew list*
+*Archived visual: Production mobile sheet*
+*Archived visual: Final tablet compact drawer*
 
 Additional evidence:
 

@@ -1,5 +1,7 @@
 # Adaptive trajectory and Earth View presentation review — 2026-09-30
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 This review refines synchronized baseline `389736fb7a90721357a331284dd2c5478c81b2b0`. It changes frontend presentation only. GP/TLE remains computed orbital state; NASA OEM remains independently sourced predicted ephemeris. Neither is onboard telemetry or ground truth. RTN analysis and Mission Replay have not begun.
 
 ## Phase 0: synchronization before source changes
@@ -18,7 +20,7 @@ Read frontend/backend README; orbital-trajectory-rendering, rendering-quality, i
 
 Stopped old Vite, preview and backend instances; preserved the healthy PostgreSQL 16 data volume. Used fresh Node 24 Vite dev on 5173, current dist preview on 4173 and Java 21 Spring on 8080. CelesTrak acquisition was disabled for controlled review; stored source quality remained honestly STALE / ELEMENT_TOO_OLD and acquisition UNKNOWN. The isolated baseline archive on 4174 was stopped after performance comparison. Production code has no temporary QA globals, lift overrides or silhouette overrides.
 
-The final live-API browser pass in both builds had zero console/application errors and successfully inspected/returned with both sources. `globalThis.__qa` was absent. The served `index-ByTq9vfF.js` hash matched local dist: `f7c9f71baf5c569a3e7300c5a07d5c11e0057f0889e95e75f9b90c5de49babe5`. [Raw final live verification](final-live-qa.json), [development](final-live-5173-overview.jpg), [production](final-live-4173-overview.jpg).
+The final live-API browser pass in both builds had zero console/application errors and successfully inspected/returned with both sources. `globalThis.__qa` was absent. The served `index-ByTq9vfF.js` hash matched local dist: `f7c9f71baf5c569a3e7300c5a07d5c11e0057f0889e95e75f9b90c5de49babe5`. Raw final live verification, development, production.
 
 ## Rounded start and adaptive clearance
 
@@ -48,9 +50,9 @@ The full-halo-radius threshold and taper-only estimate were evaluated but gave e
 
 Both development and production agree: **far > medium > close > 0**, no contact in these views. Path distance is the approximate sum along the own delivered ITRF polyline, not inertial traveled distance or a speed estimate. Raw records also distinguish endpoint chord displacement. Targets are lower bounds relative to a conservative footprint; visible clearance also includes taper, glow, silhouette and raster anti-aliasing.
 
-[Production geometry](production-gap-geometry.json), [development geometry](development-gap-geometry.json), [pixel observations](clearance-measurements.json). The manual photometric estimate isolates background, model and trail at frozen UTC/camera, measures nearest RGB-difference pixels in original DPR-2 crops, then divides raster distance by 2. Thresholds 4/8/16 all produce the same results. Reproduce with `python measure-clearance.py` using Pillow/NumPy. These are evidence measurements, not brittle screenshot assertions.
+Production geometry, development geometry, pixel observations. The manual photometric estimate isolates background, model and trail at frozen UTC/camera, measures nearest RGB-difference pixels in original DPR-2 crops, then divides raster distance by 2. Thresholds 4/8/16 all produce the same results. Reproduce with `python measure-clearance.py` using Pillow/NumPy. These are evidence measurements, not brittle screenshot assertions.
 
-![Rounded starts in both selections and all three ranges](rounded-starts.jpg)
+*Archived visual: Rounded starts in both selections and all three ranges*
 
 ## Subtle white silhouette
 
@@ -58,7 +60,7 @@ Public Model silhouette uses white RGB, alpha **0.12**, size **0.5**. Compared a
 
 It remains throughout ready Overview, including source switches, refresh, native camera movement and zoom. Size and alpha follow smoothstep to zero within the first 1.75 seconds of entry. Inspection uses size/alpha 0 and natural NASA PBR. Back restores both over 1.2 seconds from captured current values, including partial Back. No duplicate model or extra bloom. Fallback locator is visible while loading/failure with valid data and hidden once ready.
 
-![Restrained silhouette trials](silhouette-trials.jpg)
+*Archived visual: Restrained silhouette trials*
 
 ## Display-only lift proof
 
@@ -72,9 +74,9 @@ Fixed UTC: **2026-09-30T15:45:59.875908Z**. Browser selected coordinates are phy
 | Physical WGS84 altitude m | 426508.254368 | 426456.375435 |
 | Lift off | Display anchor equals physical XYZ; offset 0 | Display anchor equals physical XYZ; offset 0 |
 
-With lift off/on, canonical XYZ, physical altitude, scene UTC and all source vertex/timestamp hashes are identical. The combined vertices hash is `03bf23d1c57b026214ff86e5c4b77738c2108f8427e47d89177cb83621b6b6ba`. Model origin additionally includes the existing small asset-centering translation; the anchor above removes that translation. [Raw browser on/off record](production-display-isolation.json).
+With lift off/on, canonical XYZ, physical altitude, scene UTC and all source vertex/timestamp hashes are identical. The combined vertices hash is `03bf23d1c57b026214ff86e5c4b77738c2108f8427e47d89177cb83621b6b6ba`. Model origin additionally includes the existing small asset-centering translation; the anchor above removes that translation. Raw browser on/off record.
 
-The unchanged production Orekit propagator, same real element hash `c1278ac312d701dc21def7fbdefa271c7629648e65365277c17962c2d09086ea`, at exactly that UTC gives physical **TEME velocity (-4102.317157, -2605.289614, 5913.472896) m/s**, speed **7654.129717 m/s**. ITRF velocity is (3603.913262,-2481.402054,5913.466594) m/s. Exact propagated ITRF position/altitude differ from the browser's short bounded linear interpolation by approximately 0.039 m; this interpolation difference is independent of lift and is not a positional accuracy claim. [Physical propagator record](physical-velocity.txt).
+The unchanged production Orekit propagator, same real element hash `c1278ac312d701dc21def7fbdefa271c7629648e65365277c17962c2d09086ea`, at exactly that UTC gives physical **TEME velocity (-4102.317157, -2605.289614, 5913.472896) m/s**, speed **7654.129717 m/s**. ITRF velocity is (3603.913262,-2481.402054,5913.466594) m/s. Exact propagated ITRF position/altitude differ from the browser's short bounded linear interpolation by approximately 0.039 m; this interpolation difference is independent of lift and is not a positional accuracy claim. Physical propagator record.
 
 Velocity in `/iss/state` is physical backend propagation. The frontend has no velocity readout or differentiation of display positions; comparison is position-only and does not expose a fabricated OEM velocity. Tests retain the actual physical velocity/epoch record across lift toggles. `modelDisplayPosition` rejects output/input aliasing. For both source properties, the two fixed physical samples remain unchanged and their travel interval is exactly 10 s with lift off/on. Propagation/source epoch, scene advancement and horizon duration have no display-lift dependency. Inspection ENU pivot uses the canonical physical point.
 
@@ -99,7 +101,7 @@ Does lift alter physical velocity? **NO.** Scene/source time? **NO.** Orbital tr
 | 390×844 CSS mobile, Overview and Inspection | No horizontal overflow | Same |
 | Console / application errors in final matrix | 0 | 0 |
 
-[Development handoffs](development-inspection.json), [production handoffs](production-inspection.json), [development regression](development-regression.json), [production regression](production-regression.json), [development surfaces](development-surfaces.json), [production surfaces](production-surfaces.json), [development native motion](development-native-motion.json), [production native motion](production-native-motion.json).
+Development handoffs, production handoffs, development regression, production regression, development surfaces, production surfaces, development native motion, production native motion.
 
 The source-failure test changes only availability and removes unusable OEM samples; it leaves real GP coordinates intact. An additional HTTP 503 experiment also returned safely to GP; its expected browser resource error is not counted as an unexpected application failure. Refresh/night inputs are recorded real backend responses, not application fallbacks. Final native live QA uses actual backend delivery without mocks. One ready PNG model persists through transitions; no texture reload, white flash, persistent locator or duplicate start marker was seen. NASA authored colors/PBR and existing source colors remain.
 
@@ -115,7 +117,7 @@ Same frozen UTC/camera, one fresh active test page per run, Chromium with Metal,
 
 Matched decrease is **6.9%**. Removing the silhouette recovers most of it; the mandatory outline adds model passes, while adaptive search/taper/mask is near baseline in this local observation. This is a measurable presentation cost, accepted with the requested minimal public silhouette and no primitive churn. The previous milestone's 24.171 FPS reference had different session conditions; do not claim a speedup from cross-session numbers. Earlier unsettled runs and a diagnostic that toggled silhouette at preRender each frame were discarded: the latter caused draw-command churn and was not a valid cost measurement. No override enters final code. GPU memory is uninstrumented; thermal/cache/imagery/GPU variability limits inference.
 
-[Baseline](baseline-performance.json), [final](production-performance.json), [silhouette-off diagnostic](production-performance-without-silhouette.json).
+Baseline, final, silhouette-off diagnostic.
 
 Final frontend: **77 tests / 16 files**, typecheck and production build pass. Backend: **82 tests**, 0 failures/errors/skips, full `mvn test` and `mvn verify` pass on Java 21. `git diff --check` passes. Existing Cesium bundle-size warning remains. No backend source, API semantics or new dependency changed. Tests cover bounded own-source searches, monotonic target/bounds, soft start configuration, silhouette transitions, source switching/fallback and physical/display isolation; no screenshot assertion was introduced.
 

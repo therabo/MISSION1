@@ -1,6 +1,8 @@
 # Final perceptual camera acceptance — 2026-10-01
 
-Both visual and quantitative gates passed in development and served production before the new commit. The committed baseline is `538bb0642205be7f326aa3ae08ec2dc46134a212`; the inspected uncommitted strict-speed source and its original evidence remain in the parent directory. This review accepts perceptual progression, deliberately allowing variable Cartesian speed. [Method and implementation](README.md), [complete analysis](perceptual-analysis.json), [browser gate summary](perceptual-validation.json). Publication hash and SSH synchronization are recorded in the Git history, final chat report and external project context, after the precommit gates.
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
+Both visual and quantitative gates passed in development and served production before the new commit. The committed baseline is `538bb0642205be7f326aa3ae08ec2dc46134a212`; the inspected uncommitted strict-speed source and its original evidence remain in the parent directory. This review accepts perceptual progression, deliberately allowing variable Cartesian speed. [Method and implementation](README.md), complete analysis, browser gate summary. Publication hash and SSH synchronization are recorded in the Git history, final chat report and external project context, after the precommit gates.
 
 ## Comparison and visual decision
 
@@ -65,7 +67,7 @@ Primary q is 20% normalized log lens distance + 60% normalized inverse lens dist
 | NASA OEM entry | 6 | 17226.581 | 7320.419–18901124.152 | 0.031–18906165.454 | 59.270 | 65.854 | 2.135 | 1.794 |
 | NASA OEM exit | 5 | 17214.604 | 4915.018–22516009.658 | 3.568–22511329.983 | 66.326 | 78.412 | 2.910 | 2.488 |
 
-These are camera presentation speeds, not ISS velocities. The moving source contributes orbital translation to world speed; finite samples near clock setup and C1 return correction also affect minima. Relative near-field speed approaches zero while far travel is fast. Physical velocity follows a C1 inverse/continuous clock; endpoint clock ramps are C2. Bounded incoming tangents permit a short forward excursion (up to about 3% of current range) instead of an instantaneous reversal. Log range itself is deliberately nonuniform because it shares the metric budget with apparent scale and steering; its rates and sampled acceleration norms are retained in the analysis. Maximum center-motion and FOV rates are also retained; final FOV/handoff jumps are zero. Entry direction rates around 59°/s replace the baseline ~162°/s and rejected log/scale trial 155°/s entry / 183°/s exit. [Rejected trial](rejected-log-scale-summary.json).
+These are camera presentation speeds, not ISS velocities. The moving source contributes orbital translation to world speed; finite samples near clock setup and C1 return correction also affect minima. Relative near-field speed approaches zero while far travel is fast. Physical velocity follows a C1 inverse/continuous clock; endpoint clock ramps are C2. Bounded incoming tangents permit a short forward excursion (up to about 3% of current range) instead of an instantaneous reversal. Log range itself is deliberately nonuniform because it shares the metric budget with apparent scale and steering; its rates and sampled acceleration norms are retained in the analysis. Maximum center-motion and FOV rates are also retained; final FOV/handoff jumps are zero. Entry direction rates around 59°/s replace the baseline ~162°/s and rejected log/scale trial 155°/s entry / 183°/s exit. Rejected trial.
 
 ## Frame audit, endpoints and drift
 
@@ -83,7 +85,7 @@ These are camera presentation speeds, not ISS velocities. The moving source cont
 | NASA OEM entry | 351.959 | 0 |
 | NASA OEM exit | 349.198 | 0 |
 
-The matched committed baseline loses the model center in 7/8 entry and 68/66 return frames for GP/OEM respectively. All final traces and source-loss return traces have zero accidental offscreen frames. Recorded frame count includes active poses and first completion boundary; raw capture includes surrounding setup frames too. [Raw production trace](perceptual-warmed-trace.json), [development trace](perceptual-development-warmed-trace.json), [mobile trace](perceptual-mobile-warmed-trace.json), [900-pixel trace](perceptual-narrow-warmed-trace.json).
+The matched committed baseline loses the model center in 7/8 entry and 68/66 return frames for GP/OEM respectively. All final traces and source-loss return traces have zero accidental offscreen frames. Recorded frame count includes active poses and first completion boundary; raw capture includes surrounding setup frames too. Raw production trace, development trace, mobile trace, 900-pixel trace.
 
 Development: Inspection handoff position 0 m, direction 2.39e-10°, Up 2.33e-10°. Inspection endpoint 90 m / 42.5° / 100° (F/L/U −66.354960, 0, +60.803119 m). Earth position error 0 m, direction 5.2e-13 rad, Up 5.21e-13 rad, FOV 0 rad; transform and near/far errors zero, all 11 captured controller fields restored. Ten complete cycles for each source have the same effectively zero drift limits. Exact transition endpoints and zero FOV handoff errors are separately checked in deterministic tests and live traces.
 
@@ -101,9 +103,9 @@ Production: Inspection handoff position 0 m, direction 2.87e-10°, Up 2.85e-10°
 | 80% | 4 | 0.000002216 | 0.000001379 | 0.000210709 | 6.65677e-07 | 0 |
 | 95% | 4 | 0.000001520 | 0.000001581 | 2.88674e-06 | 1.83772e-06 | 0 |
 
-At every checkpoint, atomic Back pose/direction/Up/FOV discontinuity is zero in the browser; actual incoming and outgoing world velocity vectors are archived in [reversal-vectors.csv](reversal-vectors.csv) and both full JSON records. Finite forward differences confirm direction and speed continuity. Raw quaternion derivative error includes finite backward-difference radial error removed by quaternion normalization; the orientation tangent is aligned with its actual quaternion sign throughout the correction interval. Deterministic tests also cover both signs and 400 correction-interval samples. [Development](development-reversals.json), [production](production-reversals.json), [rejected sign audit](rejected-quaternion-sign.json).
+At every checkpoint, atomic Back pose/direction/Up/FOV discontinuity is zero in the browser; actual incoming and outgoing world velocity vectors are archived in reversal-vectors.csv and both full JSON records. Finite forward differences confirm direction and speed continuity. Raw quaternion derivative error includes finite backward-difference radial error removed by quaternion normalization; the orientation tangent is aligned with its actual quaternion sign throughout the correction interval. Deterministic tests also cover both signs and 400 correction-interval samples. Development, production, rejected sign audit.
 
-OEM loss is tested during entry, stable Inspection and exit in each build. Selected physical state, geographic readout, velocity and provenance switch to GP immediately. A shared C2 display translation over 0.8 seconds keeps model and camera together while returning; it is not an interpolated orbital sample. Retarget position/direction/Up/FOV errors are zero; source-loss traces remain inside the viewport. Lift and silhouette follow displayed-target range, including captured partial values; they never alter physical source position. Stable Inspection uses the physical pivot. [Failed pre-bridge record](rejected-fallback-before-bridge.json), final development/production extra reports.
+OEM loss is tested during entry, stable Inspection and exit in each build. Selected physical state, geographic readout, velocity and provenance switch to GP immediately. A shared C2 display translation over 0.8 seconds keeps model and camera together while returning; it is not an interpolated orbital sample. Retarget position/direction/Up/FOV errors are zero; source-loss traces remain inside the viewport. Lift and silhouette follow displayed-target range, including captured partial values; they never alter physical source position. Stable Inspection uses the physical pivot. Failed pre-bridge record, final development/production extra reports.
 
 ## Responsive and visual regression
 
@@ -133,11 +135,11 @@ Portrait net height change is only 18 px (55→73); its last-20% height fraction
 
 Sequential same-host/DPR-2/1280×720 comparisons use the same Chromium ANGLE Metal, initial camera, fixture UTC, imagery fallback and graphics quality. Entry duration differs by design, so total slow-frame counts have unequal observation windows. Median rendering remains about 25–27 FPS on this desktop workload; camera mathematics cannot provide a universal frame budget. GPU scene workload also changes as composition changes. Final warm traces contain zero transition long tasks. Mapping cost is at most 0.3 ms per captured frame (browser timer resolution ~0.1 ms), with no per-frame inverse-table construction.
 
-The repeated first-GP-return pause was isolated to a 160.9 ms native globe shader compile, not camera lookup work. [Before GL diagnostic](exit-gl-profile-slow-gl.json), [after startup warmup](perceptual-warmed-slow-gl.json). Zero-texture and textured close-atmosphere variants now warm while the model is loading; original public alpha/fade fields are restored before readiness. Final slow GL calls occur only in startup. The earlier mobile trace also retains a single 563.2 ms frame gap; its cause was not proven by the later globe diagnostic. The mobile repeat and final warmed run have zero frames above 33.3/50 ms and zero long tasks, roughly 59–60 FPS, worst final frame 27 ms. This outlier is disclosed, not removed from history. Existing subpixel material/geometry shimmer limits remain.
+The repeated first-GP-return pause was isolated to a 160.9 ms native globe shader compile, not camera lookup work. Before GL diagnostic, after startup warmup. Zero-texture and textured close-atmosphere variants now warm while the model is loading; original public alpha/fade fields are restored before readiness. Final slow GL calls occur only in startup. The earlier mobile trace also retains a single 563.2 ms frame gap; its cause was not proven by the later globe diagnostic. The mobile repeat and final warmed run have zero frames above 33.3/50 ms and zero long tasks, roughly 59–60 FPS, worst final frame 27 ms. This outlier is disclosed, not removed from history. Existing subpixel material/geometry shimmer limits remain.
 
 ## Validation and documentation
 
-Final managed checkout: **112 frontend tests / 22 files**, typecheck and production build passed under Node 24. **82 backend tests**, zero failures/errors/skips, Maven test and verify passed under Java 21. Both full browser matrices passed: 6 source/epoch cases, 14 partial Back cases, 20 complete cycles (10/source), responsive and navigation cases per build; both extra suites and 14 reversal audits per build passed. Clean development/production smoke against the actual local backend has no QA hooks, no page errors, and completes GP and available OEM entry/return without API interception. [Frontend log](frontend-validation.txt), [backend report](backend-validation.json), [clean live smoke](clean-live-smoke.json). `git diff --check` passes. The existing Cesium bundle-size warning remains.
+Final managed checkout: **112 frontend tests / 22 files**, typecheck and production build passed under Node 24. **82 backend tests**, zero failures/errors/skips, Maven test and verify passed under Java 21. Both full browser matrices passed: 6 source/epoch cases, 14 partial Back cases, 20 complete cycles (10/source), responsive and navigation cases per build; both extra suites and 14 reversal audits per build passed. Clean development/production smoke against the actual local backend has no QA hooks, no page errors, and completes GP and available OEM entry/return without API interception. Frontend log, backend report, clean live smoke. `git diff --check` passes. The existing Cesium bundle-size warning remains.
 
 Updated frontend README, model/Inspection/rendering records, architecture 03/04 and ADR-0006/index. The evidence root points here while preserving the original strict review and starting source manifest. Existing ADR-0006 receives a dated presentation clarification; no new ADR or infrastructure is needed. `/Users/daniel/Desktop/mission1-project.md` is updated separately and remains outside Git. Full final diff, including original candidate additions, is reviewed before a new ordinary commit; accepted baseline history is preserved. SSH identity is the requested ED25519 key. Publication uses a normal main push, then fetch and direct GitHub-ref equality verification.
 
@@ -156,22 +158,22 @@ The precommit audit covers requested checks 1–36. Checks 37–39 (new commit, 
 
 ## Visual evidence
 
-![Final GP/TLE entry](production-PRIMARY_GP_TLE-entry-contact.jpg)
+*Archived visual: Final GP/TLE entry*
 
-![Final GP/TLE exit](production-PRIMARY_GP_TLE-exit-contact.jpg)
+*Archived visual: Final GP/TLE exit*
 
-![Final NASA OEM entry](production-NASA_OEM-entry-contact.jpg)
+*Archived visual: Final NASA OEM entry*
 
-![Final NASA OEM exit](production-NASA_OEM-exit-contact.jpg)
+*Archived visual: Final NASA OEM exit*
 
-![Strict-speed rejected entry](strict-PRIMARY_GP_TLE-entry-contact.jpg)
+*Archived visual: Strict-speed rejected entry*
 
-![Final portrait entry](mobile-PRIMARY_GP_TLE-entry-contact.jpg)
+*Archived visual: Final portrait entry*
 
-![GP/TLE entry plots](PRIMARY_GP_TLE-entry-progression.png)
+*Archived visual: GP/TLE entry plots*
 
-![GP/TLE exit plots](PRIMARY_GP_TLE-exit-progression.png)
+*Archived visual: GP/TLE exit plots*
 
-![NASA OEM entry plots](NASA_OEM-entry-progression.png)
+*Archived visual: NASA OEM entry plots*
 
-![NASA OEM exit plots](NASA_OEM-exit-progression.png)
+*Archived visual: NASA OEM exit plots*

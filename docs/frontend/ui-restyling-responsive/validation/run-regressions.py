@@ -1,9 +1,10 @@
 """Run native regression suites serially to bound host WebGL resource usage."""
 from pathlib import Path
-import json, os, subprocess, time
+import json, os, subprocess, time, tempfile
 
 root = Path(__file__).resolve().parents[4]
-base = Path(__file__).resolve().parent
+base = Path(os.environ.get('MISSION1_QA_OUTPUT', Path(tempfile.gettempdir()) / 'mission1-responsive-regressions'))
+base.mkdir(parents=True, exist_ok=True)
 scripts = root / 'docs/frontend/ui-restyling/validation/scripts'
 node = '/opt/homebrew/opt/node@24/bin/node'
 jobs = [('development', 'inspection'), ('development', 'crew'),

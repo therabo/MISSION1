@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {chromium}=require('../../occlusion-aware-workspace-centering/scripts/browser-utils.cjs');
 const {geometry,matrix}=require('./responsive-matrix.cjs');
 const [url='http://127.0.0.1:5175/',build='development']=process.argv.slice(2);
-const out=path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(__dirname,'edge-states',build));fs.mkdirSync(out,{recursive:true});
+const out=path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(require('node:os').tmpdir(),'mission1-responsive-qa','edge-states',build));fs.mkdirSync(out,{recursive:true});
 async function run(){
  const browser=await chromium.launch({headless:true,args:['--use-angle=metal']});
  const p=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});

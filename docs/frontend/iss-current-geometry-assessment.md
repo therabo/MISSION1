@@ -1,5 +1,7 @@
 # Current ISS geometry assessment
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](qa-artifact-policy.md) for archive recovery and current evidence.
+
 Research checked **2026-09-30**. This record assesses authoritative ways to update the established NASA VTAD production model. It changes no station asset, runtime mapping, model URI, or frontend/backend source. [Candidate metadata](iss-geometry-candidates.json) is research data and is not loaded by the application.
 
 ## Decision and evidence boundary

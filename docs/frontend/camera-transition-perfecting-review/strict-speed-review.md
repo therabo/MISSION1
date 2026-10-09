@@ -1,5 +1,7 @@
 # Camera transition review — working candidate, 2026-10-01
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 **Not accepted. No commit or push.** The starting repository was clean and synchronized at `538bb0642205be7f326aa3ae08ec2dc46134a212` on local `main`, `origin/main` and GitHub `main`. This review records an uncommitted strict physical-speed candidate. Endpoint math and exit targeting pass the measured checks; gradual apparent station growth does not. The current 5 s duration remains a comparison policy, rather than a newly accepted duration/speed policy.
 
 ## Acceptance decision still required
@@ -38,7 +40,7 @@ At GP frame 7, camera range is 91.216 m and lift is 83.057 m; physical ISS proje
 
 Baseline entry also loses the station: GP frame 62 at 51.186%, OEM frame 62 at 51.484%; 8 and 7 off-screen frames respectively. The pose-reconstruction images reproduce recorded geometry and UTC; their UI and trail rendering remain Overview and they are explicitly **reconstructions**, not original transition screenshots. Frames 6/7/8 and 76/77 bracket the exact exit failure/recovery.
 
-[Previous good GP pose](baseline-PRIMARY_GP_TLE-exit-reconstruction-6.jpg) · [First bad GP pose](baseline-PRIMARY_GP_TLE-exit-reconstruction-7.jpg) · [Recovery](baseline-PRIMARY_GP_TLE-exit-reconstruction-77.jpg)
+Previous good GP pose · First bad GP pose · Recovery
 
 ## Candidate spatial and orientation model
 
@@ -147,7 +149,7 @@ Development and served-production matrices cover GP/OEM at day, night and termin
 
 Desktop final geometry remains 90 m / 42.5° / zero lateral offset. Mobile uses the existing aspect-based wider range (233.723 m at 390×844) with the same elevation. No horizontal overflow. Each build finds all 14 semantic modules for each source, exercises pinch (90→64.286→90 m), buffer refresh and delayed GLB gating. OEM loss during both entry and exit explicitly falls back to GP and captures a new return from the unchanged actual world pose; position/direction/up/FOV retarget errors are all 0. Expected deliberately failed imagery requests are excluded from unexpected console-error counts; application/page errors are zero.
 
-[Development matrix](development-full.json) · [Production matrix](production-full.json) · [Regression/drift summary](verification-summary.json) · [Development extra checks](development-extra.json) · [Production extra checks](production-extra.json)
+Development matrix · Production matrix · Regression/drift summary · Development extra checks · Production extra checks
 
 ## Frame pacing comparison
 
@@ -166,7 +168,7 @@ Median FPS = 1000 / median postRender interval. Percentiles/counts use N−1 int
 
 There are no observed transition long tasks in either run. Median frame pacing is slower on the candidate in several routes; p95/worst comparisons are shown without claiming an overall FPS improvement. No per-frame spline construction, geometry/material recreation, JSON logging, diagnostic arrays or React state changes are added to production. This audit supports absence of a new large CPU stall; the broader performance gate is not used to excuse the visual failure.
 
-![Speed comparison](speed-comparison.png)
+*Archived visual: Speed comparison*
 
 ## Validation and scope
 
@@ -175,7 +177,7 @@ There are no observed transition long tasks in either run. Median frame pacing i
 - Java 21 `mvn test`: **82 tests**, no failures/errors/skips. `mvn verify`: **82 tests**, build success.
 - Development and instrumented served-production functional QA: passed the recorded cases; **visual acceptance failed** as described above.
 - `git diff --check`: passed at final audit.
-- Clean production build contains no `__qa` hook. The diagnostic archive/copy alone exposes camera state. The clean build also passed a real Java 21 backend entry/return smoke on port 4175: no QA hook, enabled Overview after return, zero page errors. [Smoke record](clean-production-live-smoke.json). This does not turn archival fixture traces into live onboard telemetry.
+- Clean production build contains no `__qa` hook. The diagnostic archive/copy alone exposes camera state. The clean build also passed a real Java 21 backend entry/return smoke on port 4175: no QA hook, enabled Overview after return, zero page errors. Smoke record. This does not turn archival fixture traces into live onboard telemetry.
 
 Changed runtime files: `EarthView.tsx`, `inspectionTransition.ts`, new `arcLengthPath.ts`, `cameraPose.ts`, `transitionComposition.ts`; tests `inspectionTransition.test.ts`, new `arcLengthPath.test.ts`. Documentation notes in `frontend/README.md` and `iss-inspection-mode.md` explicitly mark this candidate unaccepted. Rendering/model/architecture/ADR documents are not rewritten as though an accepted milestone occurred. External context remains outside Git and unchanged.
 

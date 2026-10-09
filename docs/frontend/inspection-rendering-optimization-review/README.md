@@ -1,5 +1,7 @@
 # ISS Inspection camera and rendering optimization — 2026-10-01
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
+
 This milestone changes camera and rendering presentation only. The synchronized, clean starting revision was `4d3902989e64f0372eacea15f4efeca795f05a0e` on local `main`, `origin/main` and GitHub `main`; SSH fetch/remote verification preceded source edits. No history was rewritten. The backend, orbital products, provenance, UTC, units and source quality contracts remain unchanged. GP/TLE is computed; NASA OEM is predicted ephemeris. `TRAJECTORY_ALIGNED_VISUAL_ORIENTATION` is a visualization, with actual attitude unavailable.
 
 ## Context reviewed
@@ -22,9 +24,9 @@ Visible station raster, same frozen UTC and camera elevation; native model-minus
 | 90 m | 1011.5 × 346.5 | 79.0% / 48.1% |
 | 85 m | 1104.5 × 374.5 | 86.3% / 52.0% |
 
-![Canonical 90 m rear/elevated view](production-0-PRIMARY_GP_TLE-rear.jpg)
+*Archived visual: Canonical 90 m rear/elevated view*
 
-[95 m](occupancy-95-model.jpg) · [90 m](occupancy-90-model.jpg) · [85 m](occupancy-85-model.jpg). Full trial matrix and both-source measurements: `production-full.json`.
+95 m · 90 m · 85 m. Full trial matrix and both-source measurements: `production-full.json`.
 
 Narrow 900×700 retains 90 m. Mobile 390×844 widens to 233.723077 m through the existing `max(1, 1.2/aspect)` factor, retaining 42.5° and no lateral offset. Both have no horizontal page overflow.
 
@@ -110,7 +112,7 @@ All six controls were captured in one scene, with identical paused UTC and one u
 | fxaa | 349 | 61 | 3398 |
 | final | 193 | 69 | 3415 |
 
-![Material diagnostic crops](material-contact.png)
+*Archived visual: Material diagnostic crops*
 
 Frozen-camera pairs (two real lighting epochs × both sources) have RGB differences: 0-PRIMARY_GP_TLE: max 0, mean 0.000000, 0-NASA_OEM: max 0, mean 0.000000, 1-PRIMARY_GP_TLE: max 7, mean 0.000003, 1-NASA_OEM: max 3, mean 0.000002. Any nonzero full-image difference also includes UI/credit changes; this is not a claim that all such pixels are materials.
 

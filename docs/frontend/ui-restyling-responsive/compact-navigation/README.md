@@ -1,5 +1,7 @@
 # Compact top controls — 2026-10-08
 
+> Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../../qa-artifact-policy.md) for archive recovery and current evidence.
+
 One presentation milestone on `ui/restyling`, starting at `83e95780fd186f1d4c8f1802752e2ab69fa1541a`. `main` remains `12be75af376c0a18e510395ae59c58ee252f3800`. No backend, API, replay, Crew, source-selection or Cesium implementation changes; no dependency or architecture decision. The final ordinary commit is identified by the branch tip and recorded in the delivery report and outside-Git project context.
 
 ## Audit and responsive variants
@@ -34,12 +36,12 @@ Every top icon has an explicit name: Earth, ISS Inspection, Current, Historical,
 
 Node **24.21.0** baseline: **698 tests / 58 files**. Final: **702 / 59**. Four targeted cases cover preserved desktop text, accessible glyph names, independent selection/guards, native order/action dispatch and compact UTC context. Existing calendar, application and replay tests retain exact behavior. Typecheck and production build pass; the pre-existing Cesium chunk warning remains. Java **21.0.3** baseline, `mvn test` and `mvn verify`: **382 tests**, zero failures/errors/skips. Test logs retain concise command results; backend source is unchanged.
 
-- [Development matrix](development-matrix.json) and [production matrix](production-matrix.json): **20 states × 15 viewports** each; no page overflow, clipping, collisions, unreachable calendar controls or application errors.
-- [Desktop fidelity](desktop-fidelity.json): **160** identical top/calendar geometry and surface-style comparisons; **8** header pixel comparisons in real Historical Inspection at 1920×1080, 1600×900, 1440×900 and 1280×720. Development has zero changed header pixels; production differs by at most one 8-bit channel value from GPU compositing of the unchanged translucent surfaces. Current UTC and translucent scene pixels naturally advance, so whole live screenshots are not asserted byte-identical.
-- [Development controls](development-controls.json) and [production controls](production-controls.json): generated accessible trees, keyboard order/visible focus, actual responsive text/icon visibility, touch geometry, both calendar openers/focus restoration and exact ±600-second requests. **151 widths from 320 to 1440**, including breakpoint neighbors, are checked immediately and on the next animation frame.
-- [Native interaction summary](native-interactions.json): both builds verify Earth drag/wheel/reset, native Inspection orbit/wheel, module hover and its suppression during movement, GPU module picks, dock-edge pass-through, color restoration and Earth return across eight desktop/tablet/mobile/landscape sizes.
+- Development matrix and production matrix: **20 states × 15 viewports** each; no page overflow, clipping, collisions, unreachable calendar controls or application errors.
+- Desktop fidelity: **160** identical top/calendar geometry and surface-style comparisons; **8** header pixel comparisons in real Historical Inspection at 1920×1080, 1600×900, 1440×900 and 1280×720. Development has zero changed header pixels; production differs by at most one 8-bit channel value from GPU compositing of the unchanged translucent surfaces. Current UTC and translucent scene pixels naturally advance, so whole live screenshots are not asserted byte-identical.
+- Development controls and production controls: generated accessible trees, keyboard order/visible focus, actual responsive text/icon visibility, touch geometry, both calendar openers/focus restoration and exact ±600-second requests. **151 widths from 320 to 1440**, including breakpoint neighbors, are checked immediately and on the next animation frame.
+- Native interaction summary: both builds verify Earth drag/wheel/reset, native Inspection orbit/wheel, module hover and its suppression during movement, GPU module picks, dock-edge pass-through, color restoration and Earth return across eight desktop/tablet/mobile/landscape sizes.
 - Each full matrix also checks **113 widths in 11 open states** without reload, retaining source, selected member/module, requested UTC and Viewer/canvas identity.
-- [Freeze and visual review](review.json): backend/API/Cesium/assets and UI review findings. [Screenshot manifest](screenshots.json) records ten representative captures and verified pixel-identical lossless WebP conversions.
+- Freeze and visual review: backend/API/Cesium/assets and UI review findings. Screenshot manifest records ten representative captures and verified pixel-identical lossless WebP conversions.
 
 The viewport matrix is 1920×1080, 1600×900, 1440×900, 1280×720, 1024×768, 834×1194, 768×1024, 430×932, 412×915, 390×844, 375×812, 360×800, 320×568, 844×390 and 932×430. States include Current Earth GP/OEM, provenance, Crew/evidence/detail, Current Inspection/module, Historical Earth/calendar/Crew/evidence/detail/Inspection/module and native attribution. All use real local backend responses and the actual controls; no invented station data or shipped QA seams.
 
@@ -49,13 +51,13 @@ The pre-existing servers stopped during one intermediate run and were restarted 
 
 | Evidence | Purpose |
 | --- | --- |
-| [Before desktop Current](before-desktop-current.webp), [after](after-desktop-current.webp) | Original text, geometry, surfaces and hierarchy |
-| [Before desktop Historical](before-desktop-historical.webp), [after](after-desktop-historical.webp) | Full desktop date/steps retained |
-| [Before 320px Historical](before-mobile-historical.webp), [after](after-mobile-historical.webp) | Reduced height, coherent icon/date group |
-| [320px calendar](after-mobile-calendar.webp) | Seven columns, Close/Cancel/Apply, bounded scroll |
-| [430px Current](after-mobile-current.webp) | Action proportions and group balance |
-| [1024px Historical](after-tablet-historical.webp) | Intermediate icon + text presentation |
-| [844×390 Historical](after-landscape-historical.webp) | Short landscape reachability |
+| Before desktop Current, after | Original text, geometry, surfaces and hierarchy |
+| Before desktop Historical, after | Full desktop date/steps retained |
+| Before 320px Historical, after | Reduced height, coherent icon/date group |
+| 320px calendar | Seven columns, Close/Cancel/Apply, bounded scroll |
+| 430px Current | Action proportions and group balance |
+| 1024px Historical | Intermediate icon + text presentation |
+| 844×390 Historical | Short landscape reachability |
 
 Only these **ten screenshots** are retained. No new contact sheets, full capture corpus or duplicate production screenshots are committed. Scratch captures stay outside Git under `/tmp/mission1-compact-*`. The outside-Git context is `/Users/daniel/Desktop/mission1-project.md`.
 

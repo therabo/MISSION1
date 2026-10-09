@@ -1,6 +1,0 @@
-# Evidence CSVs retain their recorded CRLF terminators, without checkout conversion.
-**/*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Source snapshots must retain the original bytes recorded in their manifest.
-strict-speed-source/* -text
-# The inspected original file includes one extra blank line at EOF.
-strict-speed-source/cameraPose.ts whitespace=blank-at-eol,space-before-tab,-blank-at-eof
