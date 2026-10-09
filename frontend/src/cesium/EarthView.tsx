@@ -617,7 +617,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       featureIdLabel: ISS_MODEL.semanticFeatureSet,
       id: ISS_MODEL.id,
       credit: ISS_MODEL.credit,
-      showCreditsOnScreen: true,
+      showCreditsOnScreen: false,
       incrementallyLoadTextures: false,
       customShader: materialShader,
     }).then((loaded) => {

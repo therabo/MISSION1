@@ -1,7 +1,7 @@
 import type { CurrentCrew, CrewMember } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewReports, CrewSources } from './CrewSummary';
-import { memberGroups, permittedPortrait, PRESENCE, QUALITY, utc } from './presentation';
+import { latestCrewSourceUpdate, memberGroups, permittedPortrait, PRESENCE, QUALITY, utc } from './presentation';
 import profileChevron from '../assets/interface/crew-chevron.svg';
 import type { Coverage } from '../replay/replayApi';
 
@@ -17,17 +17,18 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
   const assertionTimes = crew.provenance.contributingAssertions.map(assertion => assertion.asOf)
     .filter((at): at is string => at !== null && Number.isFinite(Date.parse(at)));
   const latestAssertion = assertionTimes.reduce<string | null>((latest, at) => latest === null || Date.parse(at) > Date.parse(latest) ? at : latest, null);
+  const lastUpdate = historical ? null : latestCrewSourceUpdate(crew);
   return <>
-    <dl className="crew-roster-summary" aria-label={historical ? 'Historical Crew assessment' : 'Crew assessment'}>
+    <dl className={`crew-roster-summary${historical ? '' : ' is-current'}`} aria-label={historical ? 'Historical Crew assessment' : 'Crew assessment'}>
       <div><dt>Reported aboard</dt><dd className={crew.counts.officialAboard === null ? 'crew-count-unavailable' : undefined}>{crew.counts.officialAboard ?? 'Unavailable'}</dd>
-        {crew.counts.officialAboard === null && crew.counts.lastKnownOfficialAboard !== null && <small>Last reported: {crew.counts.lastKnownOfficialAboard} · {historical ? 'count unverified at Historical UTC' : 'current count unverified'}</small>}
+        {historical && crew.counts.officialAboard === null && crew.counts.lastKnownOfficialAboard !== null && <small>Last reported: {crew.counts.lastKnownOfficialAboard} · count unverified at Historical UTC</small>}
       </div>
       <div><dt>Confirmed identities</dt><dd>{crew.counts.resolvedAboard}</dd></div>
       <div><dt>Without confirmed identity</dt><dd>{crew.counts.unidentifiedAboard}</dd>
-        {crew.counts.officialAboard === null && <small>{crew.counts.lastKnownOfficialAboard === null ? historical ? 'Historical reported count unavailable' : 'Current reported count unavailable' : 'In the retained count'}</small>}
+        {historical && crew.counts.officialAboard === null && <small>{crew.counts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
       </div>
-      <div className="crew-assessment"><dt>ASSESSMENT UTC</dt><dd><time dateTime={historical?.at ?? crew.freshness.evaluatedAt}>{utc(historical?.at ?? crew.freshness.evaluatedAt)}</time></dd>
-        {historical ? <details className={`crew-assessment-evidence crew-historical-evidence${historical.availability === 'AVAILABLE' && historical.coverage.status === 'AVAILABLE' && crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
+      {historical && <div className="crew-assessment"><dt>ASSESSMENT UTC</dt><dd><time dateTime={historical.at}>{utc(historical.at)}</time></dd>
+        <details className={`crew-assessment-evidence crew-historical-evidence${historical.availability === 'AVAILABLE' && historical.coverage.status === 'AVAILABLE' && crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
           <summary>{historical.coverage.status === 'UNAVAILABLE' ? 'Historical coverage unavailable' : historical.availability === 'PARTIAL' || historical.coverage.status === 'PARTIAL' ? 'Historical coverage partial' : quality.label} · Evidence</summary>
           <p>Best reconstruction from evidence stored today. Presence and assignments are effective at {utc(historical.at)}; coverage and roster may be partial. Assignment alone does not confirm presence.</p>
           <p>Profile names, portraits, biographies and career totals are latest-retained metadata, not historical snapshots.</p>
@@ -39,10 +40,13 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
           <p>Latest retained assertion: {utc(latestAssertion)}</p>
           <CrewReports crew={crew} historicalAt={historical.at} />
           <CrewSources crew={crew} historicalAt={historical.at} />
-        </details> : <small>Latest retained assertion: {utc(latestAssertion)}</small>}
-      </div>
+        </details>
+      </div>}
     </dl>
     {!historical && <div className="crew-roster-evidence">
+      <p className="crew-last-update" title="Latest successful Crew source fetch. Presence assertions retain their own dates.">
+        <span>Last update</span>{lastUpdate ? <time dateTime={lastUpdate}>{utc(lastUpdate)}</time> : <span>Unavailable</span>}
+      </p>
       <details className={`crew-assessment-evidence${crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
         <summary>{datedPresence ? 'Presence evidence is dated · last-known confirmation is not current confirmation.' : quality.label}
           {crew.counts.unresolvedSubjects > 0 && <span> · {crew.counts.unresolvedSubjects} unresolved source reports</span>}

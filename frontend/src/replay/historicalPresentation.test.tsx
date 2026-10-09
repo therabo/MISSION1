@@ -42,7 +42,7 @@ describe('Historical source and five-slot semantics', () => {
   it('uses OEM retained-state availability rather than its accuracy UNKNOWN or today’s expiry guard', () => {
     const data = decodeReplay(historicalPayload(at, 'NASA_OEM'), at);
     const html = renderToStaticMarkup(<HistoricalOrbitalSummary data={data} at={at} loading={false} error={null} sceneError={null} />);
-    expect(html).toContain('NASA OEM status'); expect(html).toContain('>Available<'); expect(html).toContain('Predicted ephemeris');
+    expect(html).toContain('NASA OEM status'); expect(html).toContain('>Available<'); expect(html).not.toContain('Predicted ephemeris');
     expect(html).not.toContain('General Perturbations quality'); expect(html).not.toContain('>Good<'); expect(html).not.toContain('>Expired<');
     expect(html).toContain('source-state-slot'); expect(html).not.toContain('is-oem');
   });

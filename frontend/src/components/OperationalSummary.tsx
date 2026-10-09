@@ -19,9 +19,8 @@ export function OperationalSummary({ position, selectedSource, sceneTimeMs, buff
   // a previous source, or a last-known sample after its bounded buffer has expired.
   const physical = buffer === 'active' && position?.source === selectedSource && position.timeMs === sceneTimeMs &&
     [position.latitudeDegrees, position.longitudeDegrees, position.altitudeMeters].every(Number.isFinite) ? position : null;
-  const nasaSelected = selectedSource === 'NASA_OEM';
   return <section className="operational-summary" aria-label="ISS operational summary">
-    <div className="summary-identity"><strong>ISS / WGS84</strong><span>{nasaSelected ? 'Predicted ephemeris' : selectedSource ? 'Computed position' : 'Historical position'}</span></div>
+    <div className="summary-identity"><strong>ISS / WGS84</strong></div>
     <dl className="summary-position">
       <div className="summary-latitude"><dt>Latitude</dt><dd className={!physical ? 'measurement-unavailable' : undefined}>{physical ? coordinate(physical.latitudeDegrees, 'N', 'S') : 'Unavailable'}</dd></div>
       <div className="summary-longitude"><dt>Longitude</dt><dd className={!physical ? 'measurement-unavailable' : undefined}>{physical ? coordinate(physical.longitudeDegrees, 'E', 'W') : 'Unavailable'}</dd></div>

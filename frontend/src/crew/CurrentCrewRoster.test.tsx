@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { crewFixture } from '../test/crewFixture';
-import { PRESENCE, QUALITY } from './presentation';
+import { PRESENCE, QUALITY, utc } from './presentation';
 import type { PresenceState, ReconciliationStatus } from './types';
 
 const render = (crew = crewFixture()) => renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} />);
@@ -15,8 +15,8 @@ describe('S7 assessment and roster presentation', () => {
   });
   it('does not present retained count or roster length as a current reported count', () => {
     const crew = crewFixture(); crew.counts.officialAboard = null;
-    const html = render(crew); expect(html).toContain('Unavailable</dd>'); expect(html).toContain('Last reported: 11');
-    expect(html).toContain('current count unverified'); expect(html).toContain('In the retained count');
+    const html = render(crew); expect(html).toContain('Unavailable</dd>'); expect(html).not.toContain('Last reported: 11');
+    expect(html).not.toContain('current count unverified'); expect(html).not.toContain('In the retained count');
     expect(html).not.toContain('Reported aboard</dt><dd>9'); expect(html).not.toContain('Reported aboard</dt><dd>11');
   });
   it('supports missing current and retained counts without inventing zero', () => {
@@ -58,7 +58,7 @@ describe('S7 assessment and roster presentation', () => {
   });
   it('preserves assessment UTC, source observation UTC, refresh failures and stale warnings', () => {
     const crew = crewFixture(); crew.freshness.stale = true; crew.freshness.verification.lastRefreshFailed = true;
-    const html = render(crew); expect(html).toMatch(new RegExp(`date[Tt]ime="${crew.freshness.evaluatedAt.replaceAll('.','\\.')}"`));
+    const html = render(crew); expect(html).not.toContain('ASSESSMENT UTC'); expect(html).toContain(`Evaluated ${utc(crew.freshness.evaluatedAt)}`);
     expect(html).toContain('Original observation'); expect(html).toContain('Last successful fetch');
     expect(html).toContain('source refresh failed'); expect(html).toContain('Crew data may be outdated');
   });
@@ -72,5 +72,50 @@ describe('S7 assessment and roster presentation', () => {
     expect(html).toContain('type="button"'); expect(html).toContain(`data-member-id="${crew.members[0].id}"`);
     expect(html).toContain(`aria-describedby="crew-context-${crew.members[0].id} crew-presence-${crew.members[0].id}"`);
     expect(html).not.toContain('tabindex="-1"');
+  });
+});
+describe('compact Current metadata and successful source update time', () => {
+  it.each(['structuredSource', 'verification'] as const)('uses the newest successful %s fetch, independent of assertion, observation or evaluation times', source => {
+    const crew = crewFixture();
+    crew.freshness.structuredSource.lastSuccessfulFetchAt = '2026-10-02T08:00:00Z';
+    crew.freshness.verification.lastSuccessfulFetchAt = '2026-10-02T08:00:00Z';
+    crew.freshness[source].lastSuccessfulFetchAt = '2026-10-04T11:22:33.123456Z';
+    crew.freshness.evaluatedAt = '2026-10-09T12:00:00Z';
+    crew.reconciliation.reconciledAt = '2026-10-08T12:00:00Z';
+    const html = render(crew), update = html.slice(html.indexOf('class="crew-last-update"'), html.indexOf('</p>', html.indexOf('class="crew-last-update"')));
+    expect(update).toContain('Last update'); expect(update).toContain('2026-10-04T11:22:33.123456Z');
+    expect(update).not.toContain('2026-10-09'); expect(update).not.toContain('2026-10-08');
+    expect(html).not.toContain('Latest retained assertion'); expect(html).not.toContain('ASSESSMENT UTC');
+  });
+  it('a newer failed attempt leaves the last successful update intact and keeps the source warning', () => {
+    const crew = crewFixture();
+    crew.freshness.structuredSource.lastSuccessfulFetchAt = '2026-10-04T11:22:33Z';
+    crew.freshness.verification.lastSuccessfulFetchAt = null;
+    crew.freshness.structuredSource.lastAttemptAt = '2026-10-09T12:00:00Z';
+    crew.freshness.structuredSource.lastAttemptResult = 'SOURCE_RESULT';
+    crew.freshness.structuredSource.lastRefreshFailed = true;
+    const html = render(crew);
+    expect(html).toContain('<time dateTime="2026-10-04T11:22:33Z">');
+    expect(html).toContain('A source refresh failed; available information is retained.');
+  });
+  it('shows unavailable without a successful fetch rather than borrowing a valid assertion or assessment time', () => {
+    const crew = crewFixture();
+    crew.freshness.structuredSource.lastSuccessfulFetchAt = null; crew.freshness.verification.lastSuccessfulFetchAt = null;
+    const html = render(crew);
+    expect(html).toContain('<span>Last update</span><span>Unavailable</span>');
+    expect(html).toContain('Supporting source assertions'); expect(html).toContain('Original observation');
+  });
+  it('ignores malformed update times without inventing a replacement date', () => {
+    const crew = crewFixture();
+    crew.freshness.structuredSource.lastSuccessfulFetchAt = 'TEST invalid'; crew.freshness.verification.lastSuccessfulFetchAt = null;
+    expect(render(crew)).toContain('<span>Last update</span><span>Unavailable</span>');
+  });
+  it('keeps Historical assessment, retained count and assertion dates explicit without a Current update label', () => {
+    const crew = crewFixture(); crew.counts.officialAboard = null;
+    const at = '2026-10-02T12:00:00Z';
+    const html = renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} historical={{at,availability:'PARTIAL',coverage:{status:'PARTIAL',start:null,end:null,intervals:[],limitations:[]}}} />);
+    expect(html).toContain('ASSESSMENT UTC'); expect(html).toContain(`dateTime="${at}"`);
+    expect(html).toContain('count unverified at Historical UTC'); expect(html).toContain('Latest retained assertion');
+    expect(html).not.toContain('crew-last-update');
   });
 });

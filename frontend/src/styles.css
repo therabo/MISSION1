@@ -351,7 +351,6 @@ dl { margin: 8px 0 0; }
 .operational-summary { position: relative; z-index: 3; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; }
 .summary-identity { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
 .summary-identity strong { font-size: 14px; line-height: 17px; font-weight: 700; }
-.summary-identity span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
 .summary-position { display: contents; margin: 0; }
 .summary-position > div { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
 .summary-position dt { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
@@ -472,12 +471,11 @@ dl { margin: 8px 0 0; }
   .historical-time-bar[data-disclosure="CALENDAR_OPEN"] { visibility: hidden; pointer-events: none; }
   .earth-current { --operational-height: 120px; }
   .operational-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "identity status status" "latitude longitude altitude"; gap: 8px 4px; padding: 12px; }
-  .summary-identity { grid-area: identity; min-height: 50px; }
+  .summary-identity { grid-area: identity; }
   .source-state-slot { grid-area: status; }
   .summary-latitude { grid-area: latitude; }
   .summary-longitude { grid-area: longitude; }
   .summary-altitude { grid-area: altitude; }
-  .summary-identity span { white-space: normal; }
 }
 @media (max-width: 600px) {
   .top-context-bar { grid-template-columns: 116px minmax(96px, 1fr) 44px; grid-template-areas: "identity spatial spatial" "source temporal crew" "date date date"; gap: 8px 12px; padding: 12px; }

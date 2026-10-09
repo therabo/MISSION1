@@ -1,5 +1,9 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Mission and Crew metadata cleanup — 2026-10-09
+
+The [focused metadata cleanup](interface-metadata-cleanup.md) starts on `main` at `30c0cd4828fe46c9e6283c9e8d6eeaaf2c1938e0`. Earth keeps a single ISS/WGS84 identity line and routes model attribution to the existing provenance/native attribution surfaces. Current Crew removes redundant retained-count/assessment captions and shows the latest successful source collection update. Historical temporal interpretation and the responsive detail-navigation model below remain accepted.
+
 ## Crew responsive detail navigation — 2026-10-09
 
 The [Crew navigation correction](crew-detail-navigation.md) is implemented directly on `main` from `b39f692d304ea9887d528eb5fa855b359804e2bc`. Current and Historical now share a container-driven split layout on tablet/desktop and a dedicated mobile detail view with icon-only Back and Close above the astronaut name. The mobile selector is removed. This supersedes the older Crew navigation/geometry descriptions below; their other UI and data policies remain accepted.

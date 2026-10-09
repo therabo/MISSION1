@@ -15,10 +15,10 @@ const position = { source: 'PRIMARY_GP_TLE' as const, timeMs: window.generatedMs
 const props = { position, selectedSource: position.source, sceneTimeMs: position.timeMs, buffer: 'active' as const, sourceStatus: <span>Unknown</span> };
 
 describe('physical operational summary', () => {
-  it('uses the supplied real physical coordinates, units and source classification', () => {
+  it('uses supplied physical coordinates and units with a single-line WGS84 identity', () => {
     const html = renderToStaticMarkup(<OperationalSummary {...props} />);
     expect(html).toContain('4.691° N'); expect(html).toContain('92.065° E'); expect(html).toContain('416.4 km');
-    expect(html).toContain('ISS / WGS84'); expect(html).toContain('Computed position'); expect(html).not.toContain('434.6');
+    expect(html).toContain('ISS / WGS84'); expect(html).not.toContain('Computed position'); expect(html).not.toContain('434.6');
   });
   it.each(['waiting', 'expired'] as const)('does not show a retained physical sample when the buffer is %s', buffer => {
     const html = renderToStaticMarkup(<OperationalSummary {...props} buffer={buffer} />);
@@ -33,7 +33,7 @@ describe('physical operational summary', () => {
   it('shows OEM physical values with predicted classification and retains the source-specific fifth slot', () => {
     const html = renderToStaticMarkup(<OperationalSummary {...props} selectedSource="NASA_OEM"
       position={{ ...position, source: 'NASA_OEM' }} sourceStatus={<details className="source-state-slot"><summary>NASA OEM status · Available</summary></details>} />);
-    expect(html).toContain('Predicted ephemeris'); expect(html).toContain('4.691° N'); expect(html).toContain('416.4 km');
+    expect(html).not.toContain('Predicted ephemeris'); expect(html).toContain('4.691° N'); expect(html).toContain('416.4 km');
     expect(html).not.toContain('General Perturbations quality'); expect(html).not.toContain('Good');
     expect(html).toContain('NASA OEM status · Available');
     expect(html).toContain('source-state-slot'); expect(html).not.toContain('is-oem');

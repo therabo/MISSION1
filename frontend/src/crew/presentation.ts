@@ -1,4 +1,13 @@
-import type { Assertion, CrewMedia, CrewMember, PresenceState, ReconciliationStatus } from './types';
+import type { Assertion, CrewMedia, CrewMember, CurrentCrew, PresenceState, ReconciliationStatus } from './types';
+
+/** Latest successful source collection update, not assertion/event time or
+ * read-time evaluation. Return an existing API value unchanged; failures and
+ * unchanged fetches keep their distinct meaning in Data sources & freshness. */
+export function latestCrewSourceUpdate(crew: CurrentCrew): string | null {
+  return [crew.freshness.structuredSource.lastSuccessfulFetchAt, crew.freshness.verification.lastSuccessfulFetchAt]
+    .filter((at): at is string => at !== null && Number.isFinite(Date.parse(at)))
+    .reduce<string | null>((latest, at) => latest === null || Date.parse(at) > Date.parse(latest) ? at : latest, null);
+}
 
 export const QUALITY: Record<ReconciliationStatus, { label: string; note: string }> = {
   MATCH: { label: 'Sources aligned', note: 'The available sources agree on the current crew.' },

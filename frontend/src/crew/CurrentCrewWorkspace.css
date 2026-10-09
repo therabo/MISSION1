@@ -12,14 +12,21 @@
 .crew-workspace .crew-panel-content { display: flex; flex-direction: column; flex: 1; gap: 0; padding: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; color: var(--color-text-primary); scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
 .crew-workspace :is(button, summary, a, [tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
 .crew-workspace .crew-roster-summary { flex: none; display: grid; grid-template-columns: 280px 280px 300px minmax(0, 1fr); gap: 24px; padding-top: 12px; margin: 0; border-bottom: 1px solid rgb(42 53 66 / .55); }
+.crew-workspace .crew-roster-summary.is-current { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .crew-workspace .crew-roster-summary > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; min-height: 58px; margin: 0; }
+.crew-workspace .crew-roster-summary.is-current > div { min-height: 0; }
 .crew-workspace .crew-roster-summary dt { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .crew-workspace .crew-roster-summary dd { margin: 0; font: 700 22px/27px var(--font-interface); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .crew-workspace .crew-roster-summary .crew-count-unavailable { font-size: 18px; }
 .crew-workspace .crew-roster-summary small { font: 400 11px/16px var(--font-interface); color: var(--color-text-secondary); }
 .crew-workspace .crew-assessment dt { font-weight: 700; }
 .crew-workspace .crew-assessment dd { font: 400 14px/20px var(--font-numeric); }
-.crew-roster-evidence { flex: none; padding-top: 12px; padding-bottom: 8px; }
+.crew-roster-evidence { flex: none; display: flex; flex-wrap: wrap; align-items: start; gap: 8px 12px; padding-top: 12px; padding-bottom: 8px; }
+.crew-roster-evidence > details { flex: 1 1 auto; }
+.crew-roster-evidence > details[open] { flex-basis: 100%; }
+.crew-roster-evidence > .crew-assessment-warning { order: 2; flex-basis: 100%; margin: 0; }
+.crew-last-update { order: 1; display: flex; flex-wrap: wrap; gap: 2px 8px; max-width: 100%; margin: 0; color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
+.crew-last-update time { font-family: var(--font-numeric); font-variant-numeric: tabular-nums; }
 .crew-workspace .crew-assessment-evidence > summary { min-height: 19px; padding: 0; color: var(--color-warning); font: 400 13px/19px var(--font-interface); }
 .crew-workspace .crew-assessment-evidence.is-aligned > summary { color: var(--color-success); }
 .crew-assessment-evidence > p { margin: 8px 0; }
@@ -97,7 +104,7 @@
 .crew-detail-layout { --crew-detail-width: 336px; --crew-detail-gap: var(--space-primary); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--crew-detail-gap); width: 100%; height: 100%; min-width: 0; min-height: 0; }
 .crew-detail-layout > .crew-workspace { container: crew-roster / inline-size; grid-area: 1 / 1; }
 .crew-detail-layout.has-astronaut { grid-template-columns: minmax(0, 1fr) minmax(0, min(42%, var(--crew-detail-width))); }
-.crew-detail-layout.has-astronaut .crew-roster-summary { grid-template-columns: 224px 224px 244px minmax(0, 1fr); }
+.crew-detail-layout.has-astronaut .crew-roster-summary:not(.is-current) { grid-template-columns: 224px 224px 244px minmax(0, 1fr); }
 .crew-detail-layout > .crew-detail-surface { position: relative; inset: auto; width: 100%; height: 100%; min-width: 0; min-height: 0; pointer-events: auto; }
 .crew-detail-layout.has-astronaut > .crew-detail-surface { grid-area: 1 / 2; }
 /* The retained Current exit snapshot overlays the expanding roster without
@@ -123,6 +130,7 @@
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
 }
 @container crew-roster (max-width: 700px) {
+  .crew-workspace .crew-roster-summary.is-current > div:last-child { grid-column: 1 / -1; }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-roster-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: auto; }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment dd { font-size: 12px; line-height: 18px; }
@@ -141,6 +149,7 @@
 }
 
 @container crew-workspace (max-width: 716px) {
+  .crew-workspace .crew-roster-summary.is-current { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .crew-detail-layout.has-astronaut { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .crew-detail-layout.has-astronaut > .crew-workspace { visibility: hidden; }
   .crew-detail-layout.has-astronaut > :is(.crew-workspace, .crew-detail-surface) { grid-area: 1 / 1; }
