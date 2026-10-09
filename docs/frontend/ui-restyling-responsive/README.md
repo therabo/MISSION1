@@ -1,5 +1,11 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Responsive architecture audit — 2026-10-09
+
+The [complete architecture audit](architecture-audit.md) starts at accepted `e0780705580bf23c841f0a415ed56ce9601a52d0`. It reviews 48 visual families and every meaningful declaration in the six stylesheets, with an explicit inventory, unit decisions and breakpoint/height/scroll rationale. The real brand now occupies its navigation cell; content heights may grow; nested module/evidence widths follow their scene parent; actual Crew rows own their extent. Redundant offsets and superseded patches are removed. Oversized module metadata scrolls within a bounded header while Close and the body remain reachable.
+
+Accepted desktop/tablet/mobile presentation, bounded control faces/targets, Historical disclosure, native Cesium lifetime and measured workspace occlusion remain the reference. The linked dossier records development/production matrices, resize, font/content stress, native interactions, source freeze and limited representative evidence. Earlier milestones below remain historical records.
+
 ## Latest refinement: Crew actions and compact navigation balance — 2026-10-09
 
 The [Crew/calendar/navigation balance milestone](navigation-balance.md) starts at `c35416396a49aecd1b69506a83714f04976ca113`. Routine Crew Refresh is removed from both owners, with automatic API reads and genuine Retry retained. Compact Historical calendars use viewport centering from the existing disclosure state. Tablet/mobile navigation distributes whole semantic groups with CSS grid and centers visible date text on a separate full-width row. Primary representation, secondary-control density, desktop navigation, scene behavior and backend semantics remain accepted.

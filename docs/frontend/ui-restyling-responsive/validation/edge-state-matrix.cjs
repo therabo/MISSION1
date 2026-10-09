@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {chromium}=require('../../occlusion-aware-workspace-centering/scripts/browser-utils.cjs');
 const {geometry,matrix}=require('./responsive-matrix.cjs');
 const [url='http://127.0.0.1:5175/',build='development']=process.argv.slice(2);
-const out=path.join(__dirname,'edge-states',build);fs.mkdirSync(out,{recursive:true});
+const out=path.resolve(process.env.MISSION1_QA_OUTPUT || path.join(__dirname,'edge-states',build));fs.mkdirSync(out,{recursive:true});
 async function run(){
  const browser=await chromium.launch({headless:true,args:['--use-angle=metal']});
  const p=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});
@@ -67,6 +67,19 @@ async function run(){
   await p.unroute('**/api/iss/replay?*');await p.getByRole('button',{name:'Retry historical crew',exact:true}).click();await ready();await close();
   await p.route('**/api/iss/replay?*',async r=>{const response=await r.fetch(),d=await response.json();d.crew.state=null;d.crew.availability='UNAVAILABLE';d.crew.coverage.limitations=['TEST ONLY unavailable historical crew'];await r.fulfill({json:d});});
   await p.getByRole('button',{name:'Historical forward 10 minutes',exact:true}).click();await ready();await open();await p.locator('.crew-historical-unavailable').waitFor();await cap('historical-crew-unavailable',true);
+  await p.unroute('**/api/iss/replay?*');
+  // Enter the actual Current orbital-request failure path. Inspection remains
+  // disabled without usable position; the test respects that domain guard.
+  await p.route('**/api/iss/orbit/samples',r=>r.fulfill({status:503,body:''}));await p.reload();await p.evaluate(()=>document.fonts.ready);
+  const issue=p.locator('.earth-current-notice');await issue.waitFor();
+  await p.waitForFunction(()=>document.querySelector('.earth-current-notice')?.textContent.includes('Orbital data unavailable'));
+  const errorText=await issue.textContent();
+  // Marked presentation text only; no API values or scene facts are invented.
+  await issue.evaluate(e=>e.textContent='TEST ONLY long error '+ 'UnbrokenDiagnosticLabel'.repeat(20));
+  await cap('scene-long-error',true);await issue.evaluate((e,text)=>e.textContent=text,errorText);
+  await p.unroute('**/api/iss/orbit/samples');await p.reload();
+  await p.waitForFunction(()=>!document.querySelector('.context-spatial button:last-child').disabled,null,{timeout:120000});
+  report.orbitalRecovery=true;
   report.summary={captures:report.states.reduce((n,s)=>n+s.entries.length,0),failures:report.states.flatMap(s=>s.entries.filter(e=>e.failures.length).map(e=>({state:s.state,width:e.width,height:e.height,failures:e.failures})))};
   assert.deepEqual(report.summary.failures,[]);assert.deepEqual(report.errors,[]);assert(!report.console.some(s=>/ResizeObserver|React|Uncaught/.test(s)));report.result='PASS';save();
  }finally{save();await browser.close();}

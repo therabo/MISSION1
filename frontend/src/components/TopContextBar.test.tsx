@@ -51,3 +51,10 @@ it('keeps native focus order and dispatches each original action exactly once', 
   for (const name of ['Earth', 'ISS Inspection', 'Current', 'Historical', 'Crew']) await act(async () => button(name).click());
   for (const action of [onEarth, onInspect, onCurrent, onHistorical, onCrew]) expect(action).toHaveBeenCalledTimes(1);
 });
+it('places the real accessible brand in the navigation identity cell', async () => {
+  await render({ brand: <img src="/test-wordmark.png" alt="MISSION1" /> });
+  const brand = node.querySelector('.context-identity img');
+  expect(brand?.getAttribute('alt')).toBe('MISSION1');
+  expect(brand?.closest('[aria-hidden="true"]')).toBeNull();
+  expect(brand?.closest('.top-context-bar')).not.toBeNull();
+});

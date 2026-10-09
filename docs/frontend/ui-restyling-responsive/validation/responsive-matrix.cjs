@@ -30,7 +30,7 @@ function geometry() {
   const canvas = document.querySelector('.earth-view canvas');
   const areas = {};
   for (const s of ['.top-context-bar','.earth-scene-ui','.operational-summary','.inspection-strip','.trajectory-legend','.earth-scene-controls',
-    '.historical-time-bar','#historical-calendar','.orbital-status-evidence','.crew-workspace-host','.crew-workspace','.astronaut-dock','.module-dock','.cesium-credit-lightbox']) {
+    '.historical-time-bar','#historical-calendar','.orbital-status-evidence','.earth-current-notice','.crew-workspace-host','.crew-workspace','.astronaut-dock','.module-dock','.cesium-credit-lightbox']) {
     const e=document.querySelector(s); if(e && visible(e)) areas[s]=box(e);
   }
   if(document.documentElement.scrollWidth>document.documentElement.clientWidth || document.body.scrollWidth>innerWidth) failures.push('Horizontal page overflow');
@@ -64,12 +64,16 @@ function geometry() {
     for(const chrome of ['.top-context-bar','.operational-summary','.inspection-strip']) if(areas[chrome]&&overlap(areas[s],areas[chrome])) failures.push('Surface overlaps chrome: '+s+'/'+chrome);
   }
   const clipping=[];
-  for(const e of document.querySelectorAll('.top-context-bar button,.context-source-value,.context-date time,.summary-identity strong,.summary-identity span,.summary-position dt,.summary-position dd,.summary-quality,.historical-date,.inspection-strip strong,.inspection-strip span,.inspection-strip button,.inspection-strip summary,.crew-roster-row strong,.crew-roster-identity,.crew-roster-mission,.crew-roster-agency,.crew-roster-presence,.crew-roster-summary dt,.crew-roster-summary dd,.context-dock h2,.context-dock h3,.context-dock p,.context-dock dt,.context-dock dd,.context-dock-footer .context-button,.crew-mission-context,.crew-panel-header h2,.calendar-error')) {
+  for(const e of document.querySelectorAll('.top-context-bar button,.context-source-value,.context-date time,.summary-identity strong,.summary-identity span,.summary-position dt,.summary-position dd,.summary-quality,.historical-date,.inspection-strip strong,.inspection-strip span,.inspection-strip button,.inspection-strip summary,.crew-roster-row strong,.crew-roster-identity,.crew-roster-mission,.crew-roster-agency,.crew-roster-presence,.crew-roster-summary dt,.crew-roster-summary dd,.context-dock h2,.context-dock h3,.context-dock p,.context-dock dt,.context-dock dd,.context-dock-footer .context-button,.crew-mission-context,.crew-panel-header h2,.calendar-error,.earth-current-notice')) {
     if(!visible(e)) continue;
     const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT),rects=[];let text;
     while((text=walker.nextNode())) {if(!text.textContent.trim()||text.parentElement.closest('.sr-only')||!visible(text.parentElement))continue;const r=document.createRange();r.selectNodeContents(text);rects.push(...r.getClientRects());}
     const eb=e.getBoundingClientRect();
-    for(const t of rects) if(t.width>0&&(t.left<eb.left-1.5||t.right>eb.right+1.5||t.top<eb.top-1.5||t.bottom>eb.bottom+1.5)) {clipping.push({selector:e.className||e.tagName,text:e.textContent.trim().slice(0,160),box:box(e)});break;}
+    // A bounded text scroller intentionally contains off-screen vertical
+    // ranges. Horizontal clipping remains a failure; the stress suite checks
+    // that the final text and adjacent controls can actually be reached.
+    const ownsVerticalScroll=/auto|scroll/.test(getComputedStyle(e).overflowY)&&e.scrollHeight>e.clientHeight+1;
+    for(const t of rects) if(t.width>0&&(t.left<eb.left-1.5||t.right>eb.right+1.5||(!ownsVerticalScroll&&(t.top<eb.top-1.5||t.bottom>eb.bottom+1.5)))) {clipping.push({selector:e.className||e.tagName,text:e.textContent.trim().slice(0,160),box:box(e)});break;}
   }
   if(clipping.length) failures.push('Text clipping: '+clipping.map(c=>c.text).join(' / '));
   const controls=[];
@@ -82,7 +86,7 @@ function geometry() {
     if(e.matches('.cesium-credit-lightbox-close,.calendar-close') && document.elementFromPoint(b.x+b.width/2,b.y+b.height/2)!==e) failures.push('Close control occluded: '+name);
     controls.push({name,...b,scrollOwner:scrollOwner?.className||null,disabled:!!e.disabled});
   }
-  const scrolls=[...document.querySelectorAll('.crew-panel-content,.astronaut-profile-body,.context-dock,.context-dock-content,.orbital-status-evidence,#historical-calendar,.calendar-body,.calendar-grid')]
+  const scrolls=[...document.querySelectorAll('.crew-panel-content,.astronaut-profile-body,.context-dock,.context-dock-content,.module-dock .context-dock-identity,.module-dock header h2,.module-dock .context-dock-identity p,.earth-current-notice,.orbital-status-evidence,#historical-calendar,.calendar-body,.calendar-grid')]
     .filter(visible).map(e=>({selector:e.className||e.id,...box(e),clientHeight:e.clientHeight,scrollHeight:e.scrollHeight,clientWidth:e.clientWidth,scrollWidth:e.scrollWidth,overflowY:getComputedStyle(e).overflowY}));
   for(const s of scrolls) if(s.scrollWidth>s.clientWidth+1) failures.push('Panel horizontal overflow: '+s.selector);
   const styles=Object.fromEntries(Object.keys(areas).map(s=>{const e=document.querySelector(s),c=getComputedStyle(e);return [s,{fill:c.backgroundColor,border:c.borderColor,radius:c.borderRadius,blur:c.backdropFilter,shadow:c.boxShadow,font:c.fontFamily,fontSize:c.fontSize}];}));

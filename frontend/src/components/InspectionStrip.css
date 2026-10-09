@@ -1,5 +1,5 @@
-.inspection-strip { grid-area: operations; position: relative; height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; pointer-events: auto; }
-.inspection-strip > div { min-width: 0; height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
+.inspection-strip { grid-area: operations; position: relative; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; pointer-events: auto; }
+.inspection-strip > div { min-width: 0; min-height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
 .inspection-strip strong { color: var(--color-text-primary); font: 400 14px/20px var(--font-interface); }
 .inspection-strip .inspection-identity strong { font-weight: 700; }
 .inspection-strip span { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
@@ -15,7 +15,7 @@
 .inspection-selection strong { max-width: 100%; overflow-wrap: anywhere; }
 @media (max-width: 1243px) {
   .inspection-strip .context-button { height: 44px; }
-  .inspection-strip > div { height: 44px; }
+  .inspection-strip > div { min-height: 44px; }
   .inspection-strip { gap: 12px; padding-inline: 16px; }
   .inspection-strip .inspection-modules, .inspection-orbital-toggle > summary { width: 100%; min-width: 0; padding-inline: 12px; }
   .inspection-orbital-toggle { width: 100%; }
@@ -32,9 +32,9 @@
   /* Long verified names must fit without abbreviating their identity. This
      changes chrome alone; the native scene stays full viewport. */
   .earth-current:has(.inspection-modules.has-selection) { --operational-height: 132px; }
-  .inspection-strip:has(.has-selection) { grid-template-rows: 40px 68px; row-gap: 4px; align-content: center; }
+  .inspection-strip:has(.has-selection) { grid-template-rows: minmax(40px, auto) minmax(68px, auto); row-gap: 4px; align-content: center; }
   .inspection-strip:has(.has-selection) .inspection-identity,
-  .inspection-strip:has(.has-selection) .inspection-model { height: 40px; }
-  .inspection-strip:has(.has-selection) .inspection-selection { height: 68px; }
+  .inspection-strip:has(.has-selection) .inspection-model { min-height: 40px; }
+  .inspection-strip:has(.has-selection) .inspection-selection { min-height: 68px; }
   .inspection-strip:has(.has-selection) .inspection-selection strong { font-size: 12px; line-height: 16px; }
 }

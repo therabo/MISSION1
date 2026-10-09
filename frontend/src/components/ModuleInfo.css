@@ -1,7 +1,8 @@
 .context-dock.module-dock { grid-area: scene; align-self: stretch; justify-self: end; position: relative; top: auto; right: auto; bottom: auto; width: 336px; margin: 24px; border: 0; pointer-events: auto; box-shadow: none; backdrop-filter: none; }
 .module-dock::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
-.module-dock .context-dock-header { height: 89px; flex: none; padding: 16px 24px; border-color: rgb(42 53 66 / .55); }
-.module-dock .context-dock-identity { width: 236px; min-width: 0; height: 56px; display: flex; flex-direction: column; gap: 4px; }
+.module-dock .context-dock-header { min-height: 89px; max-height: 50%; flex: none; padding: 16px 24px; border-color: rgb(42 53 66 / .55); }
+/* Leave room for the body when exceptional metadata enlarges the header. */
+.module-dock .context-dock-identity { flex: 1; min-width: 0; min-height: 56px; align-self: stretch; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; overflow-wrap: anywhere; }
 .module-dock .context-dock-identity p { margin: 0; color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .module-dock .context-dock-header h2:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
 .module-dock .context-dock-content { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px; scrollbar-width: thin; overflow-wrap: anywhere; }
@@ -19,7 +20,7 @@
 .module-dock dt { color: var(--color-text-secondary); font-size: 13px; line-height: 19px; }
 .module-dock dd { min-width: 0; margin: 0; font-size: 14px; line-height: 20px; }
 .module-dock .module-code { font-family: var(--font-numeric); }
-.module-dock .context-dock-footer { flex: none; height: 100px; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 8px; }
+.module-dock .context-dock-footer { flex: none; min-height: 100px; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 8px; }
 .module-dock .module-evidence { width: 100%; text-decoration: none; }
 .module-dock .context-dock-footer p { color: var(--color-text-secondary); font-size: 11px; line-height: 16px; }
 .module-dock a { color: inherit; }
@@ -36,12 +37,12 @@
   .module-dock .context-dock-content { overflow: visible; }
 }
 @media (max-width: 740px) {
-  .context-dock.module-dock { width: 45vw; display: block; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
+  .context-dock.module-dock { width: 45%; display: block; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
   .module-dock::after { display: none; }
-  .module-dock .context-dock-header { position: sticky; top: 0; z-index: 1; height: auto; display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 6px 8px; padding: 12px; background: var(--surface-context); }
+  .module-dock .context-dock-header { position: sticky; top: 0; z-index: 1; height: auto; max-height: none; display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 6px 8px; padding: 12px; background: var(--surface-context); }
   .module-dock .context-dock-identity { display: contents; height: auto; width: auto; }
-  .module-dock .context-dock-header h2 { grid-column: 1 / -1; grid-row: 1; align-self: center; overflow-wrap: anywhere; font-size: 14px; line-height: 20px; }
-  .module-dock .context-dock-identity p { grid-column: 1; grid-row: 2; align-self: center; overflow-wrap: anywhere; }
+  .module-dock .context-dock-header h2 { grid-column: 1 / -1; grid-row: 1; max-height: 3lh; align-self: center; overflow-y: auto; overflow-wrap: anywhere; font-size: 14px; line-height: 20px; }
+  .module-dock .context-dock-identity p { grid-column: 1; grid-row: 2; max-height: 2lh; align-self: center; overflow-y: auto; overflow-wrap: anywhere; }
   .module-dock .context-dock-identity .module-type { display: none; }
   .module-dock .context-dock-header .context-button { grid-column: 2; grid-row: 2; align-self: start; }
   .module-dock .context-dock-content { overflow: visible; padding: 12px; gap: 12px; }

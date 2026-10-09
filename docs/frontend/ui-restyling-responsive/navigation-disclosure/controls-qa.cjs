@@ -16,7 +16,7 @@ const report = resumeResize ? JSON.parse(fs.readFileSync(path.join(output,'contr
 if(resumeResize) {
   assert.equal(report.url,url); assert.equal(report.build,build); assert.equal(report.variants.length,16); assert.equal(report.mobile.length,6);
   delete report.result;
-  report.revalidation = 'Resize/reduced-motion segment: await matchMedia delivery when CALENDAR_OPEN itself remains unchanged; application source unchanged.';
+  report.revalidation = 'Resize/reduced-motion segment: wait one native animation frame for calendar resize delivery when CALENDAR_OPEN remains unchanged; immediate CSS checks retained; application source unchanged.';
 }
 const save = () => fs.writeFileSync(path.join(output, 'controls.json'), JSON.stringify(report, null, 2) + '\n');
 function snapshot() {
@@ -172,7 +172,12 @@ async function run() {
     // A legitimately open calendar persists across mobile/tablet/desktop resizing.
     await p.setViewportSize({width:390,height:844}); await expand(); await calendar();
     for(const [width,height] of [[741,800],[1243,800],[1244,800],[320,568],[740,800]]) {
-      await p.setViewportSize({width,height}); await phase('CALENDAR_OPEN');
+      await p.setViewportSize({width,height});
+      // The portal recalculates its anchor in the native resize event. The
+      // disclosure state can remain CALENDAR_OPEN across this boundary, so it
+      // cannot serve as a signal that resize delivery has completed.
+      await p.evaluate(() => new Promise(r=>requestAnimationFrame(r)));
+      await phase('CALENDAR_OPEN');
       report.resize.push({width,height,calendarPreserved:true,barVisible:width > 740,result:'PASS'});
     }
     await action('Cancel').click(); await phase('EXPANDED');

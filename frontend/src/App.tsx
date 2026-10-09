@@ -227,12 +227,10 @@ export default function App() {
         onViewModeChange={onViewModeChange}
         onControlsReady={onControlsReady}
       />
-      <div className="top-brand">
-        <img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
-          width={2172} height={724} draggable={false} />
-      </div>
       <div className={`earth-current-ui${stationFocused ? ' inspection-ui' : ''}`}>
-        <TopContextBar sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs} historical={replaying}
+        <TopContextBar brand={<img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
+          width={2172} height={724} draggable={false} />}
+          sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs} historical={replaying}
           presentedHistorical={presentationHistorical}
           onCurrent={() => changeTemporalMode(false)}
           viewMode={viewMode} onEarth={() => {

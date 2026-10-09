@@ -1,0 +1,293 @@
+{
+  "baseline": "e0780705580bf23c841f0a415ed56ce9601a52d0",
+  "method": "Six actual pre-edit viewports / twenty states; exact surface rectangles and computed chrome styles; native screenshots visually reviewed. Separate read-only archived baseline check after retained 240ms Crew transition. Independent scene pixels and UTC are expected to differ.",
+  "builds": [
+    {
+      "build": "development",
+      "states": 20,
+      "viewports": 6,
+      "surfaceComparisons": 510,
+      "identicalSurfaceRectangles": 508,
+      "transientCrewSamples": [
+        {
+          "state": "crew-detail",
+          "width": 844,
+          "surface": ".crew-workspace",
+          "difference": {
+            "width": -145.609375
+          }
+        },
+        {
+          "state": "crew-detail-evidence",
+          "width": 844,
+          "surface": ".crew-workspace",
+          "difference": {
+            "width": -69.75
+          }
+        }
+      ],
+      "identicalStyleComparisons": 510,
+      "exactFixedControlRectangles": 1336,
+      "rosterSubpixelDifferences": 90,
+      "rosterMaximumDifferencePx": 0.078125,
+      "informationalScrollPositionDifferences": [
+        {
+          "state": "crew-detail-evidence",
+          "width": 1440,
+          "control": "Portrait credit & rights",
+          "difference": {
+            "y": -20
+          }
+        }
+      ],
+      "controlDifferences": [],
+      "compactDateMaxDeltaPx": 0.0078125,
+      "compactCalendarMaxDeltaPx": 0
+    },
+    {
+      "build": "production",
+      "states": 20,
+      "viewports": 6,
+      "surfaceComparisons": 510,
+      "identicalSurfaceRectangles": 508,
+      "transientCrewSamples": [
+        {
+          "state": "crew-detail",
+          "width": 844,
+          "surface": ".crew-workspace",
+          "difference": {
+            "width": -145.609375
+          }
+        },
+        {
+          "state": "crew-detail-evidence",
+          "width": 844,
+          "surface": ".crew-workspace",
+          "difference": {
+            "width": -69.75
+          }
+        }
+      ],
+      "identicalStyleComparisons": 510,
+      "exactFixedControlRectangles": 1336,
+      "rosterSubpixelDifferences": 90,
+      "rosterMaximumDifferencePx": 0.078125,
+      "informationalScrollPositionDifferences": [
+        {
+          "state": "crew-detail-evidence",
+          "width": 1440,
+          "control": "Portrait credit & rights",
+          "difference": {
+            "y": -20
+          }
+        }
+      ],
+      "controlDifferences": [],
+      "compactDateMaxDeltaPx": 0.0078125,
+      "compactCalendarMaxDeltaPx": 0
+    }
+  ],
+  "settledCrew": {
+    "method": "Read-only git archive of accepted baseline; same real backend; capture after 350ms exceeds existing 240ms Crew width transition.",
+    "comparisons": [
+      {
+        "build": "development",
+        "width": 1440,
+        "height": 900,
+        "changes": []
+      },
+      {
+        "build": "development",
+        "width": 1024,
+        "height": 768,
+        "changes": []
+      },
+      {
+        "build": "development",
+        "width": 768,
+        "height": 1024,
+        "changes": []
+      },
+      {
+        "build": "development",
+        "width": 390,
+        "height": 844,
+        "changes": []
+      },
+      {
+        "build": "development",
+        "width": 320,
+        "height": 568,
+        "changes": []
+      },
+      {
+        "build": "development",
+        "width": 844,
+        "height": 390,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 1440,
+        "height": 900,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 1024,
+        "height": 768,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 768,
+        "height": 1024,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 390,
+        "height": 844,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 320,
+        "height": 568,
+        "changes": []
+      },
+      {
+        "build": "production",
+        "width": 844,
+        "height": 390,
+        "changes": []
+      }
+    ],
+    "controlChecks": [
+      {
+        "build": "development",
+        "width": 1440,
+        "height": 900,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "development",
+        "width": 1024,
+        "height": 768,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "development",
+        "width": 768,
+        "height": 1024,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "development",
+        "width": 390,
+        "height": 844,
+        "sharedControlRectanglesWithinOpticalTolerance": 10,
+        "differences": []
+      },
+      {
+        "build": "development",
+        "width": 320,
+        "height": 568,
+        "sharedControlRectanglesWithinOpticalTolerance": 10,
+        "differences": []
+      },
+      {
+        "build": "development",
+        "width": 844,
+        "height": 390,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 1440,
+        "height": 900,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 1024,
+        "height": 768,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 768,
+        "height": 1024,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 390,
+        "height": 844,
+        "sharedControlRectanglesWithinOpticalTolerance": 10,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 320,
+        "height": 568,
+        "sharedControlRectanglesWithinOpticalTolerance": 10,
+        "differences": []
+      },
+      {
+        "build": "production",
+        "width": 844,
+        "height": 390,
+        "sharedControlRectanglesWithinOpticalTolerance": 19,
+        "differences": []
+      }
+    ],
+    "result": "PASS"
+  },
+  "desktopInk": [
+    {
+      "build": "development",
+      "method": "Exact rectangles; luma >150 foreground masks; independent scene RGBA differences reported separately.",
+      "regions": 42,
+      "identicalForegroundMasks": 41,
+      "nonidentical": [
+        {
+          "state": "historical-calendar",
+          "width": 1440,
+          "region": "#historical-calendar",
+          "geometryEqual": true,
+          "foregroundMaskChangedPixels": 19,
+          "maximumRGBDifference": 159,
+          "meanRGBDifference": 2.3032470772740234
+        }
+      ]
+    },
+    {
+      "build": "production",
+      "method": "Exact rectangles; luma >150 foreground masks; independent scene RGBA differences reported separately.",
+      "regions": 42,
+      "identicalForegroundMasks": 41,
+      "nonidentical": [
+        {
+          "state": "historical-calendar",
+          "width": 1440,
+          "region": "#historical-calendar",
+          "geometryEqual": true,
+          "foregroundMaskChangedPixels": 19,
+          "maximumRGBDifference": 160,
+          "meanRGBDifference": 3.087147134302823
+        }
+      ]
+    }
+  ],
+  "limits": "Crew row removal of duplicated total-height arithmetic changes browser fractional rounding by at most 0.078125px. One profile-rights disclosure is 20px higher inside an independently scrolled body with identical viewport/content extent; scroll offsets were not frozen. These are recorded separately from fixed-control equivalence. Whole-scene RGBA equality is not asserted.",
+  "result": "PASS",
+  "calendarMaskNote": "19 differing bright-ink threshold pixels in the full calendar crop: 15 coincide with the three UTC chevron edges after midpoint alignment. Optical boxes and SVG assets are unchanged. Whole-panel raster equality is not asserted."
+}

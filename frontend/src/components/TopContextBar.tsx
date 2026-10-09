@@ -5,6 +5,7 @@ import { ControlIcon } from './ControlIcon';
 import type { ViewMode } from '../cesium/inspectionMode';
 
 interface Props {
+  brand?: ReactNode;
   source: ReactNode;
   sceneTimeMs: number | null;
   inspectionDisabled: boolean;
@@ -20,13 +21,13 @@ interface Props {
   crewPending?: boolean;
 }
 
-export function TopContextBar({ source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew, historical = false, presentedHistorical = historical, onCurrent, viewMode = 'EARTH_OVERVIEW', onEarth, crewOpen = false, crewPending = false }: Props) {
+export function TopContextBar({ brand, source, sceneTimeMs, inspectionDisabled, onInspect, onHistorical, onCrew, historical = false, presentedHistorical = historical, onCurrent, viewMode = 'EARTH_OVERVIEW', onEarth, crewOpen = false, crewPending = false }: Props) {
   const date = sceneTimeMs === null ? null : new Date(sceneTimeMs).toISOString();
   const stationFocused = viewMode !== 'EARTH_OVERVIEW';
   const inspectionActive = viewMode === 'ENTERING_INSPECTION' || viewMode === 'ISS_INSPECTION';
   const guard = stationFocused ? 'Return to Earth View to change temporal context.' : undefined;
   return <header className="top-context-bar" aria-label="Mission context">
-    <div className="context-identity" aria-hidden="true" />
+    <div className="context-identity top-brand">{brand}</div>
     <nav className="context-spatial" aria-label="Spatial view">
       <ContextButton aria-label="Earth" icon={<ControlIcon name="earth" />} selected={!inspectionActive && !crewOpen} disabled={viewMode === 'EXITING_INSPECTION'} onClick={onEarth}
         title={viewMode === 'EXITING_INSPECTION' ? 'Returning to Earth View' : undefined}>Earth</ContextButton>

@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 import type { CurrentCrew, CrewMember } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewReports, CrewSources } from './CrewSummary';
@@ -56,8 +55,7 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
       {(crew.freshness.structuredSource.lastRefreshFailed || crew.freshness.verification.lastRefreshFailed) && <p className="crew-assessment-warning">A source refresh failed; available information is retained.</p>}
     </div>}
     <div className="crew-roster-columns" aria-hidden="true"><span>PERSON / ROLE</span><span>MISSION</span><span>AGENCY</span><span>PRESENCE EVIDENCE</span></div>
-    {members.length ? <ul className="crew-roster-rows" aria-label="Crew identities and presence evidence"
-      style={{ '--crew-row-count': members.length } as CSSProperties}>
+    {members.length ? <ul className="crew-roster-rows" aria-label="Crew identities and presence evidence">
       {members.map(member => <li key={member.id}><CrewRosterRow member={member} crew={crew} historical={historical} selected={member.id === selectedMemberId} onMember={onMember} /></li>)}
     </ul> : <p className="crew-roster-empty" role="status">{historical ? 'No resolved crew members at this Historical UTC.' : 'No resolved crew members are available.'}</p>}
   </>;

@@ -23,7 +23,7 @@
 .calendar-time-separator { flex: none; width: 8px; color: var(--color-text-secondary); font: 400 14px/20px var(--font-numeric); }
 .calendar-time-control { position: relative; height: 28px; }
 .calendar-time-control select { appearance: none; width: 100%; height: 28px; padding: 0 22px 0 10px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); color: var(--color-text-primary); font: 400 14px/20px var(--font-numeric); color-scheme: dark; cursor: pointer; }
-.calendar-time-control img { position: absolute; width: 9.5px; height: 5.5px; right: 9.25px; top: 11.25px; pointer-events: none; }
+.calendar-time-control img { position: absolute; width: 9.5px; height: 5.5px; right: 9.25px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 .calendar-actions { display: flex; gap: 8px; flex: none; }
 .historical-calendar .calendar-actions .context-button { height: 28px; padding: 0 16px; font: 400 12px/16px var(--font-interface); }
 .historical-calendar .calendar-actions .context-button:first-child { width: 96px; }
@@ -35,13 +35,6 @@
 @keyframes historical-calendar-exit { from { opacity: var(--calendar-exit-opacity, 1); transform: translateY(var(--calendar-exit-y, 0px)); } to { opacity: 0; transform: translateY(-6px); } }
 @media (max-width: 600px) {
   .historical-calendar { width: min(320px, calc(100vw - 24px)); }
-  .historical-calendar .calendar-day, .calendar-week { height: 32px; }
-  .calendar-grid { min-height: 176px; }
-  .calendar-month-row, .historical-calendar .calendar-close { height: 32px; }
-  .calendar-time-control, .calendar-time-control select { height: 36px; }
-  .calendar-time-control img { top: 15.25px; }
-  .calendar-time-fields { height: 50px; }
-  .historical-calendar .calendar-actions .context-button { height: 44px; }
 }
 /* One bounded content owner. Close and Apply stay visible while dates/time
    scroll together, including 320px portrait and short landscape viewports. */
@@ -51,7 +44,6 @@
   .historical-calendar .calendar-close { width: 44px; height: 44px; }
   .historical-calendar .calendar-day, .calendar-week { height: 44px; }
   .calendar-time-control, .calendar-time-control select { height: 44px; }
-  .calendar-time-control img { top: 19.25px; }
   .calendar-time-fields { height: 58px; }
   .historical-calendar .calendar-actions .context-button { height: 44px; }
 }
@@ -70,7 +62,7 @@
   .calendar-time-control { height: 40px; isolation: isolate; }
   .calendar-time-control::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 50%; height: var(--calendar-action-face); margin-top: calc(var(--calendar-action-face) / -2); box-sizing: border-box; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); pointer-events: none; }
   .calendar-time-control select { height: 40px; padding: 0 22px 0 8px; border-color: transparent; background: transparent; font-size: 13px; }
-  .calendar-time-control img { top: 17.25px; right: 8px; }
+  .calendar-time-control img { right: 8px; }
 }
 @media (max-width: 740px) {
   .historical-calendar, .calendar-body { gap: 4px; }

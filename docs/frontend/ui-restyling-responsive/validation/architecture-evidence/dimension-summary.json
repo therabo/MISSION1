@@ -1,0 +1,641 @@
+{
+  "baseline": "e0780705580bf23c841f0a415ed56ce9601a52d0",
+  "files": [
+    "frontend/src/styles.css",
+    "frontend/src/components/InspectionStrip.css",
+    "frontend/src/components/ModuleInfo.css",
+    "frontend/src/crew/CurrentCrewWorkspace.css",
+    "frontend/src/crew/CrewAstronautDock.css",
+    "frontend/src/replay/HistoricalCalendar.css"
+  ],
+  "method": "PostCSS: layout/typography declarations, excluding colors and animation keyframe percentages; includes shared and compatibility styles.",
+  "before": {
+    "rules": 802,
+    "declarations": 1795,
+    "unitTokens": {
+      "px": 1143,
+      "rem": 0,
+      "em": 14,
+      "lh": 0,
+      "%": 54,
+      "vw": 20,
+      "vh": 3,
+      "dvh": 8,
+      "svh": 0,
+      "lvh": 0,
+      "fr": 27
+    },
+    "functions": {
+      "min": 20,
+      "max": 1,
+      "clamp": 2,
+      "minmax": 26
+    },
+    "absolute": 31,
+    "fixed": 1,
+    "thresholds": [
+      {
+        "file": "frontend/src/styles.css",
+        "line": 145,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 180,
+        "type": "media",
+        "query": "(max-width:720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 251,
+        "type": "media",
+        "query": "(max-width: 1100px) and (min-width: 721px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 252,
+        "type": "media",
+        "query": "(min-width: 721px) and (max-width: 820px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 257,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 267,
+        "type": "media",
+        "query": "(max-height: 620px) and (min-width: 721px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 279,
+        "type": "media",
+        "query": "(max-width:700px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 286,
+        "type": "media",
+        "query": "(min-width:701px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 313,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 414,
+        "type": "media",
+        "query": "(max-width: 1399px) and (min-width: 1244px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 421,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 466,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 490,
+        "type": "media",
+        "query": "(max-width: 600px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 504,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 510,
+        "type": "media",
+        "query": "(max-height: 500px) and (min-width: 601px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 516,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 525,
+        "type": "media",
+        "query": "(max-width: 1243px), (max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 531,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 543,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 582,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 593,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 603,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/InspectionStrip.css",
+        "line": 16,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/InspectionStrip.css",
+        "line": 23,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 27,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 32,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 38,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 55,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 60,
+        "type": "media",
+        "query": "(max-width: 1399px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 63,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 74,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 98,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 43,
+        "type": "media",
+        "query": "(min-width: 741px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 44,
+        "type": "container",
+        "query": "crew-roster (max-width: 983px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 48,
+        "type": "container",
+        "query": "crew-roster (max-width: 700px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 66,
+        "type": "media",
+        "query": "(min-width: 741px) and (max-width: 1399px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 70,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 74,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 83,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 89,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 36,
+        "type": "media",
+        "query": "(max-width: 600px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 48,
+        "type": "media",
+        "query": "(max-width: 1243px), (max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 58,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 61,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 75,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 82,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 86,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      }
+    ],
+    "classifications": {
+      "INTENTIONAL_FIXED": 312,
+      "BOUNDED_FIXED": 642,
+      "CONTAINER_RELATIVE": 452,
+      "CONTENT_DRIVEN": 123,
+      "VIEWPORT_RELATIVE": 31,
+      "BREAKPOINT_VARIANT": 235
+    }
+  },
+  "final": {
+    "rules": 777,
+    "declarations": 1768,
+    "unitTokens": {
+      "px": 1094,
+      "rem": 0,
+      "em": 13,
+      "lh": 2,
+      "%": 62,
+      "vw": 15,
+      "vh": 3,
+      "dvh": 8,
+      "svh": 0,
+      "lvh": 0,
+      "fr": 26
+    },
+    "functions": {
+      "min": 20,
+      "max": 1,
+      "clamp": 0,
+      "minmax": 28
+    },
+    "absolute": 28,
+    "fixed": 1,
+    "thresholds": [
+      {
+        "file": "frontend/src/styles.css",
+        "line": 143,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 175,
+        "type": "media",
+        "query": "(max-width:720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 246,
+        "type": "media",
+        "query": "(max-width: 1100px) and (min-width: 721px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 247,
+        "type": "media",
+        "query": "(min-width: 721px) and (max-width: 820px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 252,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 262,
+        "type": "media",
+        "query": "(max-height: 620px) and (min-width: 721px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 274,
+        "type": "media",
+        "query": "(max-width:700px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 281,
+        "type": "media",
+        "query": "(min-width:701px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 308,
+        "type": "media",
+        "query": "(max-width: 720px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 411,
+        "type": "media",
+        "query": "(max-width: 1399px) and (min-width: 1244px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 418,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 458,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 482,
+        "type": "media",
+        "query": "(max-width: 600px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 495,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 499,
+        "type": "media",
+        "query": "(max-height: 500px) and (min-width: 601px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 504,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 512,
+        "type": "media",
+        "query": "(max-width: 1243px), (max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 518,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 530,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 569,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 580,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/styles.css",
+        "line": 590,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/InspectionStrip.css",
+        "line": 16,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/InspectionStrip.css",
+        "line": 23,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 28,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 33,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 39,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/components/ModuleInfo.css",
+        "line": 56,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 59,
+        "type": "media",
+        "query": "(max-width: 1399px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 62,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 73,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/crew/CurrentCrewWorkspace.css",
+        "line": 96,
+        "type": "media",
+        "query": "(pointer: coarse) and (max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 43,
+        "type": "media",
+        "query": "(min-width: 741px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 44,
+        "type": "container",
+        "query": "crew-roster (max-width: 983px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 48,
+        "type": "container",
+        "query": "crew-roster (max-width: 700px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 66,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 70,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 79,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/crew/CrewAstronautDock.css",
+        "line": 85,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 36,
+        "type": "media",
+        "query": "(max-width: 600px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 41,
+        "type": "media",
+        "query": "(max-width: 1243px), (max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 50,
+        "type": "media",
+        "query": "(max-height: 620px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 53,
+        "type": "media",
+        "query": "(max-width: 1243px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 67,
+        "type": "media",
+        "query": "(max-width: 740px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 74,
+        "type": "media",
+        "query": "(max-width: 379px)"
+      },
+      {
+        "file": "frontend/src/replay/HistoricalCalendar.css",
+        "line": 78,
+        "type": "media",
+        "query": "(prefers-reduced-motion: reduce)"
+      }
+    ],
+    "classifications": {
+      "INTENTIONAL_FIXED": 282,
+      "BOUNDED_FIXED": 649,
+      "CONTAINER_RELATIVE": 462,
+      "CONTENT_DRIVEN": 128,
+      "VIEWPORT_RELATIVE": 26,
+      "BREAKPOINT_VARIANT": 221
+    }
+  },
+  "ledgerRows": 1843
+}

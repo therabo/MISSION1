@@ -1,10 +1,10 @@
-.crew-current-layout { position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0; }
+.crew-current-layout { --crew-detail-width: 336px; --crew-detail-gap: var(--space-primary); position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0; }
 .crew-current-layout > .crew-workspace { container: crew-roster / inline-size; transition: width var(--motion-dock) var(--ease-state); }
 .crew-current-layout .crew-panel-content { overflow-anchor: none; }
-.crew-current-layout.has-astronaut > .crew-workspace { width: calc(100% - 360px); }
+.crew-current-layout.has-astronaut > .crew-workspace { width: calc(100% - var(--crew-detail-width) - var(--crew-detail-gap)); }
 .crew-workspace .crew-roster-row[aria-pressed="true"] { background: rgb(36 61 76 / .55); box-shadow: inset 2px 0 var(--color-interaction); border-bottom-color: var(--color-interaction); }
 .crew-current-layout.has-astronaut .crew-roster-summary { grid-template-columns: 224px 224px 244px minmax(0, 1fr); }
-.context-dock.astronaut-dock { top: 0; right: 0; bottom: 0; width: 336px; border: 0; background: var(--surface-crew); box-shadow: none; backdrop-filter: none; pointer-events: auto; }
+.context-dock.astronaut-dock { top: 0; right: 0; bottom: 0; width: var(--crew-detail-width); border: 0; background: var(--surface-crew); box-shadow: none; backdrop-filter: none; pointer-events: auto; }
 .context-dock.interruptible-motion[data-state] { animation: none; }
 .astronaut-dock::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
 .astronaut-dock .context-dock-header { flex: none; min-height: 89px; padding: 16px 24px; border-bottom-color: rgb(42 53 66 / .55); }
@@ -62,10 +62,6 @@
   .crew-current-layout.has-astronaut .crew-roster-field-label { display: inline; }
   .crew-current-layout.has-astronaut :is(.crew-roster-mission,.crew-roster-agency) .crew-roster-field-label { margin-right: 8px; }
 }
-}
-@media (min-width: 741px) and (max-width: 1399px) {
-  .crew-current-layout.has-astronaut .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
-  .has-astronaut .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
 }
 @media (max-width: 1243px) {
   .astronaut-dock .context-dock-header .context-button { flex: none; width: 44px; height: 44px; }
