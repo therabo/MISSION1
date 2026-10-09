@@ -1,5 +1,9 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Crew responsive detail navigation — 2026-10-09
+
+The [Crew navigation correction](crew-detail-navigation.md) is implemented directly on `main` from `b39f692d304ea9887d528eb5fa855b359804e2bc`. Current and Historical now share a container-driven split layout on tablet/desktop and a dedicated mobile detail view with icon-only Back and Close above the astronaut name. The mobile selector is removed. This supersedes the older Crew navigation/geometry descriptions below; their other UI and data policies remain accepted.
+
 ## Final repository hygiene and integration
 
 The accepted feature baseline is `b3036793614280f0842acb21c3145dd7b3f0097a`. The final hygiene milestone preserves the product tree and tests, removes redundant generated evidence (including older QA corpora), and integrates the clean snapshot into main with `git merge --squash ui/restyling`. See the [artifact policy](../qa-artifact-policy.md), [final validation](validation-summary.md), and [six representative screenshots](screenshots.md). Earlier sections below describe completed historical milestones and their original evidence counts.

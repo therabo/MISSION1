@@ -15,10 +15,11 @@ interface Props {
   sceneEscape?: boolean;
   entityId?: string;
   motion?: 'css' | 'interruptible';
+  headerActions?: ReactNode;
 }
 
 /** Non-modal foundation only. Live module/Crew surfaces adopt it in later phases. */
-export function ContextDock({ open, title, children, onClose, className = '', context, footer, closeLabel, onRestoreFocus, sceneEscape = false, entityId, motion = 'css' }: Props) {
+export function ContextDock({ open, title, children, onClose, className = '', context, footer, closeLabel, onRestoreFocus, sceneEscape = false, entityId, motion = 'css', headerActions }: Props) {
   const dock = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const origin = useRef<HTMLElement | null>(null);
@@ -79,7 +80,7 @@ export function ContextDock({ open, title, children, onClose, className = '', co
     }}>
     <header className="context-dock-header">
       <div className="context-dock-identity"><h2 id={titleId} ref={heading} tabIndex={-1}>{title}</h2>{context && <p>{context}</p>}</div>
-      <CloseButton aria-label={closeLabel ?? `Close ${title}`} onClick={onClose} />
+      {headerActions ?? <CloseButton aria-label={closeLabel ?? `Close ${title}`} onClick={onClose} />}
     </header>
     <div className="context-dock-content">{children}</div>
     {footer && <footer className="context-dock-footer">{footer}</footer>}

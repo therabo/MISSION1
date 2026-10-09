@@ -7,10 +7,11 @@ import { CrewPortraitRights, CrewProfileEvidence } from './CrewMemberDetail';
 import { formatDuration, permittedPortrait, PRESENCE, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
+import { CrewDetailActions } from './CrewDetailActions';
 
 /** The retained member is an inert exit snapshot, not selected-state ownership.
  * Key only the existing lazy resource, so A→B aborts A without rebuilding the dock. */
-export function CrewAstronautDock({ member, crew, onClose, onSelect }: { member: CrewMember | null; crew: CurrentCrew | null; onClose: () => void; onSelect: (id: string) => void }) {
+export function CrewAstronautDock({ member, crew, onClose }: { member: CrewMember | null; crew: CurrentCrew | null; onClose: () => void }) {
   const last = useRef<{ member: CrewMember; crew: CurrentCrew } | null>(null);
   if (member && crew) last.current = { member, crew };
   const shown = member && crew ? { member, crew } : last.current;
@@ -19,10 +20,8 @@ export function CrewAstronautDock({ member, crew, onClose, onSelect }: { member:
   const mission = assignment?.expeditionId === shown.crew.expedition?.id ? shown.crew.expedition?.name : null;
   return <ContextDock open={!!member} title={shown.member.name ?? 'Name unavailable'}
     context={`${mission ?? 'Expedition unavailable'} · ${assignment?.role ?? (assignment ? 'Role unavailable' : 'No structured assignment')}`}
-    className="astronaut-dock" entityId={shown.member.id} closeLabel="Close astronaut detail" onClose={onClose} motion="interruptible">
-    <label className="astronaut-roster-access">Crew member<select aria-label="Select crew member" value={shown.member.id} onChange={event => onSelect(event.target.value)}>
-      {shown.crew.members.map(person => <option key={person.id} value={person.id}>{person.name ?? 'Name unavailable'}</option>)}
-    </select></label>
+    className="astronaut-dock crew-detail-surface" entityId={shown.member.id} closeLabel="Close astronaut detail" onClose={onClose} motion="interruptible"
+    headerActions={<CrewDetailActions onBack={onClose} onClose={onClose} />}>
     <AstronautProfileResource key={shown.member.id} member={shown.member} crew={shown.crew} />
   </ContextDock>;
 }

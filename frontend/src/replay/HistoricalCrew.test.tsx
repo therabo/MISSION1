@@ -158,3 +158,38 @@ it('cancels replaced accepted-time animations and keeps only the latest historic
   expect(fades[0].cancel).toHaveBeenCalledOnce(); expect(node.querySelector('.crew-assessment time')?.getAttribute('datetime')).toBe(t2);
   expect(node.querySelectorAll('.crew-workspace')).toHaveLength(1);
 });
+it('retains the Historical roster alongside one detail surface and updates selection in place', async () => {
+  await show(); const roster = node.querySelector('.crew-roster-rows'), first = rows()[0]; await clickRow();
+  const detail = node.querySelector('.crew-historical-detail');
+  expect(rows()).toHaveLength(data().crew.state!.members.length); expect(node.querySelector('.crew-roster-rows')).toBe(roster);
+  expect(first.getAttribute('aria-pressed')).toBe('true');
+  await act(async () => rows()[1].click());
+  expect(node.querySelector('.crew-historical-detail')).toBe(detail);
+  expect(detail?.getAttribute('data-entity-id')).toBe(rows()[1].dataset.memberId); expect(first.getAttribute('aria-pressed')).toBe('false');
+  expect(fetch).not.toHaveBeenCalled();
+});
+it('shares icon-only Back and labeled Close in a structural header, with no astronaut select', async () => {
+  await show(); await clickRow();
+  const detail = node.querySelector('.crew-historical-detail')!, actions = detail.querySelector('.crew-detail-actions')!;
+  const back = actions.querySelector<HTMLButtonElement>('[aria-label="Back to Crew"]')!;
+  expect(back.textContent).toBe(''); expect(back.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
+  expect(actions.querySelector('[aria-label="Close astronaut detail"]')).not.toBeNull();
+  expect(actions.parentElement).toBe(detail.querySelector('header')); expect(detail.querySelector('select')).toBeNull();
+  expect(document.activeElement?.id).toBe('historical-astronaut-title');
+});
+it.each(['Back to Crew', 'Close astronaut detail'])('%s restores the Historical selected row without dismissing Crew', async label => {
+  await show(); const first = rows()[0], roster = node.querySelector('.crew-roster-rows'); await clickRow();
+  await act(async () => node.querySelector<HTMLButtonElement>(`.crew-historical-detail [aria-label="${label}"]`)!.click());
+  expect(node.querySelector('.crew-historical-detail')).toBeNull(); expect(document.activeElement).toBe(first);
+  expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(close).not.toHaveBeenCalled();
+});
+it('preserves Historical profile and selected identity across resize without fetching Current data', async () => {
+  await show(); await clickProfile();
+  const detail = node.querySelector('.crew-historical-detail'), profile = node.querySelector('.crew-profile'), id = detail?.getAttribute('data-entity-id');
+  for (const width of [390, 768, 820, 1024, 740, 320, 1440]) {
+    await act(async () => { Object.defineProperty(window, 'innerWidth', { value: width, configurable: true }); window.dispatchEvent(new Event('resize')); });
+    expect(node.querySelector('.crew-historical-detail')).toBe(detail); expect(node.querySelector('.crew-profile')).toBe(profile);
+    expect(node.querySelector('.crew-roster-row[aria-pressed="true"]')?.getAttribute('data-member-id')).toBe(id);
+  }
+  expect(fetch).not.toHaveBeenCalled();
+});

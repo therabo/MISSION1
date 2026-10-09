@@ -1,10 +1,5 @@
-.crew-current-layout { --crew-detail-width: 336px; --crew-detail-gap: var(--space-primary); position: relative; width: 100%; height: 100%; min-width: 0; min-height: 0; }
-.crew-current-layout > .crew-workspace { container: crew-roster / inline-size; transition: width var(--motion-dock) var(--ease-state); }
-.crew-current-layout .crew-panel-content { overflow-anchor: none; }
-.crew-current-layout.has-astronaut > .crew-workspace { width: calc(100% - var(--crew-detail-width) - var(--crew-detail-gap)); }
 .crew-workspace .crew-roster-row[aria-pressed="true"] { background: rgb(36 61 76 / .55); box-shadow: inset 2px 0 var(--color-interaction); border-bottom-color: var(--color-interaction); }
-.crew-current-layout.has-astronaut .crew-roster-summary { grid-template-columns: 224px 224px 244px minmax(0, 1fr); }
-.context-dock.astronaut-dock { top: 0; right: 0; bottom: 0; width: var(--crew-detail-width); border: 0; background: var(--surface-crew); box-shadow: none; backdrop-filter: none; pointer-events: auto; }
+.context-dock.astronaut-dock { border: 0; background: var(--surface-crew); box-shadow: none; backdrop-filter: none; pointer-events: auto; }
 .context-dock.interruptible-motion[data-state] { animation: none; }
 .astronaut-dock::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
 .astronaut-dock .context-dock-header { flex: none; min-height: 89px; padding: 16px 24px; border-bottom-color: rgb(42 53 66 / .55); }
@@ -35,46 +30,12 @@
 .astronaut-dock summary { min-height: 36px; font: 400 13px/19px var(--font-interface); cursor: pointer; }
 .astronaut-dock .crew-sources p { margin-top: 8px; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; }
 .astronaut-dock a { color: var(--color-interaction); }
-.astronaut-dock :is(button,select,summary,a,[tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
+.astronaut-dock :is(button,summary,a,[tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
 .astronaut-dock .context-dock-footer { flex: none; min-height: 100px; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 8px; }
 .astronaut-dock .context-dock-footer .context-button { width: 100%; font-size: 12px; padding-inline: 8px; white-space: normal; }
-.astronaut-roster-access { display: none; }
-/* A phone covers the unchanged roster; only the visible split needs reflow. */
-@media (min-width: 741px) {
-@container crew-roster (max-width: 983px) {
-  .crew-current-layout.has-astronaut .crew-workspace .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
-  .crew-current-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
-}
-@container crew-roster (max-width: 700px) {
-  .crew-current-layout.has-astronaut .crew-workspace .crew-roster-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .crew-current-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: auto; }
-  .crew-current-layout.has-astronaut .crew-workspace .crew-assessment dd { font-size: 12px; line-height: 18px; }
-  .crew-current-layout.has-astronaut .crew-workspace .crew-roster-columns { display: none; }
-  .crew-current-layout.has-astronaut .crew-panel.crew-workspace .crew-roster-rows { flex: none; min-height: 0; }
-  .crew-current-layout.has-astronaut .crew-roster-rows > li { flex: none; min-height: 0; }
-  .crew-current-layout.has-astronaut .crew-panel.crew-workspace .crew-roster-row { grid-template-columns: 40px minmax(0, 1fr) 4px; grid-template-areas: 'portrait identity chevron' '. mission .' '. agency .' '. presence .'; gap: 6px 12px; padding: 12px 4px; }
-  .crew-current-layout.has-astronaut .crew-roster-row > .crew-portrait { grid-area: portrait; align-self: start; }
-  .crew-current-layout.has-astronaut .crew-roster-identity { grid-area: identity; }
-  .crew-current-layout.has-astronaut .crew-roster-mission { grid-area: mission; }
-  .crew-current-layout.has-astronaut .crew-roster-agency { grid-area: agency; }
-  .crew-current-layout.has-astronaut .crew-roster-presence { grid-area: presence; }
-  .crew-current-layout.has-astronaut .crew-roster-chevron { grid-area: chevron; }
-  .crew-current-layout.has-astronaut .crew-roster-field-label { display: inline; }
-  .crew-current-layout.has-astronaut :is(.crew-roster-mission,.crew-roster-agency) .crew-roster-field-label { margin-right: 8px; }
-}
-}
 @media (max-width: 1243px) {
   .astronaut-dock .context-dock-header .context-button { flex: none; width: 44px; height: 44px; }
   .astronaut-dock :is(summary,.context-dock-footer .context-button) { min-height: 44px; }
-}
-@media (max-width: 740px) {
-  .crew-current-layout.has-astronaut > .crew-workspace { width: 100%; visibility: hidden; }
-  .context-dock.astronaut-dock { width: 100%; }
-  .astronaut-dock .context-dock-header { padding: 12px; min-height: 76px; }
-  .astronaut-profile-body { padding: 12px; }
-  .astronaut-dock .context-dock-footer { min-height: 0; padding: 12px; }
-  .astronaut-roster-access { display: flex; align-items: center; gap: 12px; padding: 8px 12px; color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
-  .astronaut-roster-access select { min-width: 0; width: 100%; flex: 1; height: 44px; padding: 0 8px; color: var(--color-text-primary); background: var(--control-normal); border: 1px solid var(--color-border); border-radius: var(--radius-control); font: 400 13px/19px var(--font-interface); }
 }
 @media (max-height: 620px) {
   .context-dock.astronaut-dock { display: block; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
@@ -82,4 +43,3 @@
   .astronaut-dock .context-dock-header { position: sticky; top: 0; z-index: 1; background: var(--surface-context); }
   .astronaut-profile-body { overflow: visible; }
 }
-@media (prefers-reduced-motion: reduce) { .crew-current-layout > .crew-workspace { transition: none; } }

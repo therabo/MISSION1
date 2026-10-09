@@ -58,7 +58,7 @@ export function CurrentCrewPanelView({ resource, onClose, interactive, notice }:
     document.addEventListener('keydown', escape);
     return () => document.removeEventListener('keydown', escape);
   }, [interactive, selectedCrewMemberId, closeDetail, onClose]);
-  return <div className={`crew-current-layout${selectedMember ? ' has-astronaut' : ''}`} data-selected-member-id={selectedMember?.id}
+  return <div className={`crew-current-layout crew-detail-layout${selectedMember ? ' has-astronaut' : ''}`} data-selected-member-id={selectedMember?.id}
     onKeyDown={event => {
       if (!interactive || event.key !== 'Escape' || event.defaultPrevented || event.target instanceof Element && event.target.closest('[role="dialog"],dialog')) return;
       event.preventDefault(); event.stopPropagation();
@@ -85,6 +85,6 @@ export function CurrentCrewPanelView({ resource, onClose, interactive, notice }:
         }} />}
       </div>
     </aside>
-    <CrewAstronautDock member={selectedMember} crew={resource.data} onClose={closeDetail} onSelect={setSelectedCrewMemberId} />
+    <CrewAstronautDock member={selectedMember} crew={resource.data} onClose={closeDetail} />
   </div>;
 }

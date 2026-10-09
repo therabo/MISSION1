@@ -147,9 +147,38 @@ it('uses the approved 240ms enter and 200ms exit with only opacity/x', async () 
 it('uses <=120ms opacity only under reduced motion with the same selection lifecycle', async () => {
   vi.stubGlobal('matchMedia', () => ({ matches:true,addEventListener(){},removeEventListener(){} })); await show(); await select(); const motion = motions.filter(m => m.element.classList.contains('astronaut-dock')).at(-1)!; expect(motion.keys).toEqual({opacity:[0,1]}); expect(motion.options).toEqual({duration:120,easing:'linear'}); expect(dock().style.transform).toBe('none'); await press('Close astronaut detail'); await act(async () => vi.advanceTimersByTimeAsync(120)); expect(dock()).toBeNull();
 });
-it('responsive member selector uses the same authoritative UUID and same dock', async () => {
-  await show(); await select(); const same = dock(), selector = dock().querySelector('select')!; const id = rows()[3].dataset.memberId!; await act(async () => { selector.value=id; selector.dispatchEvent(new Event('change',{bubbles:true})); }); expect(dock()).toBe(same); expect(selected()).toEqual([id]); expect(dock().dataset.entityId).toBe(id);
-});
 it('unmounting Current cancels its profile and a later Current workspace starts with no selection', async () => {
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise(() => {})); await show(); await select(); const signal = fetchMock.mock.calls[1][1].signal; await act(async () => root.render(<div>Historical legacy</div>)); expect(signal.aborted).toBe(true); await show(); expect(dock()).toBeNull(); expect(selected()).toEqual([]);
+});
+it('removes the astronaut selector entirely, including its focusable control', async () => {
+  await show(); await select();
+  expect(dock().querySelector('select')).toBeNull();
+  expect(node.querySelector('[aria-label="Select crew member"]')).toBeNull();
+});
+it('uses an accessible icon-only Back in the same action row as Close, before the title visually', async () => {
+  await show(); await select();
+  const actions = dock().querySelector('.crew-detail-actions')!;
+  const back = actions.querySelector<HTMLButtonElement>('[aria-label="Back to Crew"]')!;
+  expect(back.textContent).toBe('');
+  expect(back.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
+  expect(back.querySelector('svg')?.getAttribute('focusable')).toBe('false');
+  expect(actions.querySelector('[aria-label="Close astronaut detail"]')).not.toBeNull();
+  expect(actions.parentElement).toBe(dock().querySelector('header'));
+});
+it('Back clears detail and restores the selected roster row without closing Crew', async () => {
+  await show(); await select(1); const row = rows()[1], roster = node.querySelector('.crew-roster-rows');
+  await press('Back to Crew'); await settleExit();
+  expect(dock()).toBeNull(); expect(document.activeElement).toBe(row);
+  expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(close).not.toHaveBeenCalled();
+});
+it('keeps roster, selected UUID, profile DOM, scroll and lazy request across resize events', async () => {
+  await show(); await select(1);
+  const same = dock(), body = same.querySelector('.astronaut-profile-body')!, roster = node.querySelector('.crew-roster-rows'), id = same.dataset.entityId;
+  body.scrollTop = 160; const requests = fetchMock.mock.calls.length;
+  for (const width of [390, 768, 820, 1024, 740, 320, 1440]) {
+    await act(async () => { Object.defineProperty(window, 'innerWidth', { value: width, configurable: true }); window.dispatchEvent(new Event('resize')); });
+    expect(dock()).toBe(same); expect(dock().querySelector('.astronaut-profile-body')).toBe(body);
+    expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(selected()).toEqual([id]); expect(body.scrollTop).toBe(160);
+  }
+  expect(fetchMock).toHaveBeenCalledTimes(requests);
 });

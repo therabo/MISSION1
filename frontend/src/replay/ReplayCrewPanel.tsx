@@ -5,9 +5,10 @@ import { CrewProfile } from '../crew/CrewMemberDetail';
 import { CloseButton } from '../components/CloseButton';
 import { CrewTemporalNotice, type CrewTemporalRequest } from '../crew/CrewTemporalNotice';
 import { utc } from '../crew/presentation';
+import { CrewDetailActions } from '../crew/CrewDetailActions';
 
 /** S9 receives ONLY the accepted replay envelope. Latest-retained profile
- * metadata retains its existing legacy detail presentation and explicit meaning. */
+ * metadata keeps its existing profile content and explicit meaning. */
 export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive = true, request }: {
   data: ReplayResult | null; loading: boolean; error: string | null; at: string;
   onClose: () => void; interactive?: boolean; request?: CrewTemporalRequest;
@@ -54,7 +55,8 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
     document.addEventListener('keydown', escape);
     return () => document.removeEventListener('keydown', escape);
   }, [interactive, selected, back, onClose]);
-  return <aside id="crew-panel" className="crew-panel crew-workspace crew-historical" ref={panel}
+  return <div className={`crew-detail-layout${member ? ' has-astronaut' : ''}`} data-selected-member-id={member?.id}>
+    <aside id="crew-panel" className="crew-panel crew-workspace crew-historical" ref={panel}
     aria-labelledby="replay-crew-title" data-accepted-at={at}
     onKeyDown={event => {
       if (!interactive || event.key !== 'Escape' || event.defaultPrevented || event.target instanceof Element && event.target.closest('[role="dialog"],dialog')) return;
@@ -76,12 +78,20 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
         <p>Crew history unavailable at {utc(at)}. No current roster is substituted.</p>
         {accepted?.crew.coverage.limitations.map((limitation, i) => <p key={i}>{limitation}</p>)}
       </div>}
-      {selected && member ? <div className="crew-historical-detail">
-        <button type="button" onClick={back}>← Back to crew</button>
-        <h3 tabIndex={-1} ref={detailHeading}>{member.name ?? 'Name unavailable'}</h3>
-        {person ? <CrewProfile person={person} replayAt={at} /> : <p role="status">Historical profile unavailable for this identity. No Current profile is substituted.</p>}
-      </div> : crew && <CurrentCrewRoster crew={crew} historical={{ at, availability: accepted!.crew.availability, coverage: accepted!.crew.coverage }}
+      {crew && <CurrentCrewRoster crew={crew} selectedMemberId={selected}
+        historical={{ at, availability: accepted!.crew.availability, coverage: accepted!.crew.coverage }}
         onMember={id => { if (crew.members.some(m => m.id === id)) setSelected(id); }} />}
     </div>
-  </aside>;
+    </aside>
+    {member && <aside className="context-dock crew-historical-detail crew-detail-surface" role="region" aria-labelledby="historical-astronaut-title"
+      data-entity-id={member.id}>
+      <header className="context-dock-header">
+        <div className="context-dock-identity"><h3 id="historical-astronaut-title" tabIndex={-1} ref={detailHeading}>{member.name ?? 'Name unavailable'}</h3></div>
+        <CrewDetailActions onBack={back} onClose={back} />
+      </header>
+      <div className="crew-historical-profile-body">
+        {person ? <CrewProfile person={person} replayAt={at} /> : <p role="status">Historical profile unavailable for this identity. No Current profile is substituted.</p>}
+      </div>
+    </aside>}
+  </div>;
 }
