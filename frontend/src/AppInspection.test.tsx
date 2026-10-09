@@ -13,9 +13,11 @@ import { crewFixture, personFixture } from './test/crewFixture';
 
 // Synthetic TEST data only. Camera/astronomy are validated separately in real Cesium QA.
 const scene = vi.hoisted(() => ({ props: {} as any, mounts: 0, unmounts: 0,
-  delivery: {} as any, replay: vi.fn(), animations: [] as { element: HTMLElement; keys: unknown; options: unknown; cancel: ReturnType<typeof vi.fn> }[] }));
-vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: null, refresh: vi.fn() }),
-  useCrewMember: (id: string) => ({ data: { ...personFixture(), id }, loading: false, error: null, refresh: vi.fn() }) }));
+  delivery: {} as any, replay: vi.fn(), crewError: null as string | null, profileError: null as string | null,
+  retryCrew: vi.fn(), retryProfile: vi.fn(),
+  animations: [] as { element: HTMLElement; keys: unknown; options: unknown; cancel: ReturnType<typeof vi.fn> }[] }));
+vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: scene.crewError, refresh: scene.retryCrew }),
+  useCrewMember: (id: string) => ({ data: { ...personFixture(), id }, loading: false, error: scene.profileError, refresh: scene.retryProfile }) }));
 vi.mock('./layout/useEarthWorkspace', () => ({ useEarthWorkspace: () => null }));
 vi.mock('./api/useOrbitalDelivery', () => ({ useOrbitalDelivery: () => scene.delivery }));
 vi.mock('./api/useComparisonDelivery', () => ({ useComparisonDelivery: () => ({ response: null, status: 'unavailable' }) }));
@@ -42,6 +44,7 @@ beforeEach(async () => {
   Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', { value: true, configurable: true });
   vi.useFakeTimers(); vi.setSystemTime(new Date('2026-09-28T15:00:00Z'));
   scene.mounts = scene.unmounts = 0; scene.animations = [];
+  scene.crewError = scene.profileError = null; scene.retryCrew.mockClear(); scene.retryProfile.mockClear();
   scene.delivery = { window: parseOrbitalWindow(orbitalPayload(), 0), status: 'ready', message: null };
   const histories = new Map<string, ReturnType<typeof historicalPayload>>();
   scene.replay.mockImplementation((enabled: boolean, at: string) => {
@@ -95,7 +98,7 @@ it('removes Earth controls and trajectory legend throughout entry, Inspection an
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.earth-scene-controls')).not.toBeNull();
   expect(node.querySelector('.trajectory-legend')).not.toBeNull();
 });
-it('keeps source/temporal guards while Crew requests a cancellable Earth return from station-focused states', async () => {
+it('keeps source/temporal guards while Crew opens immediately from station-focused states', async () => {
   const target = scene.replay.mock.calls.at(-1)?.[1];
   for (const state of ['ENTERING_INSPECTION', 'ISS_INSPECTION', 'EXITING_INSPECTION'] as const) {
     await mode(state);
@@ -104,8 +107,10 @@ it('keeps source/temporal guards while Crew requests a cancellable Earth return 
     expect(button('Historical').getAttribute('aria-describedby')).toBe('inspection-navigation-guard');
     expect(button('Crew').disabled).toBe(false);
     await click('Historical'); await click('Crew');
-    expect(button('Crew').getAttribute('aria-busy')).toBe('true');
-    await click('Crew'); // Cancel the pending intent; the renderer still owns the return.
+    expect(button('Crew').hasAttribute('aria-busy')).toBe(false);
+    expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(false);
+    await click('Crew'); // Close the surface; the renderer still owns the return.
+    await act(async () => vi.advanceTimersByTimeAsync(240));
     expect(scene.replay.mock.calls.at(-1)?.[1]).toBe(target); expect(scene.props.replay).toBeNull();
     expect(node.querySelector('.crew-panel')).toBeNull();
   }
@@ -238,36 +243,43 @@ it('Crew close returns to Earth with an inert exit and stable focus', async () =
   expect(node.querySelector('.crew-panel')).toBeNull(); expect(document.activeElement?.id).toBe('crew-launcher');
   expect(shown()).toBe(at); expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);
 });
-it('Inspection → Crew waits for the existing renderer return completion', async () => {
+it.each([false, true])('opens Crew in the request interaction, independently of renderer completion (historical=%s)', async historical => {
+  if (historical) await click('Historical');
   await enter(); const time = shown(); await click('Crew');
-  expect(scene.props.overviewRequest).toBe(1); expect(node.querySelector('.crew-panel')).toBeNull();
-  await mode('EXITING_INSPECTION'); expect(node.querySelector('.crew-panel')).toBeNull();
-  await mode('EARTH_OVERVIEW'); expect(node.querySelector('.crew-workspace')).not.toBeNull(); expect(shown()).toBe(time);
+  const surface = node.querySelector('.crew-workspace');
+  expect(scene.props.overviewRequest).toBe(1); expect(surface).not.toBeNull();
+  expect(node.querySelector('main')?.dataset.viewMode).toBe('ISS_INSPECTION');
+  expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(false);
+  await mode('EXITING_INSPECTION'); expect(node.querySelector('.crew-workspace')).toBe(surface);
+  await mode('EARTH_OVERVIEW'); expect(node.querySelector('.crew-workspace')).toBe(surface); expect(shown()).toBe(time);
   expect(scene.mounts).toBe(1); expect(scene.props.inspectionRequest).toBe(1);
 });
 it('Module Selected → Crew clears the authoritative selection before Earth return and stays cleared on re-entry', async () => {
   await enter(); await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[0])); await click('Crew');
   expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.module-dock')?.hasAttribute('inert')).toBe(true);
-  expect(node.querySelector('.crew-panel')).toBeNull();
+  expect(node.querySelector('.crew-workspace')).not.toBeNull();
   await mode('EXITING_INSPECTION'); await mode('EARTH_OVERVIEW'); await click('Close crew panel');
   await act(async () => vi.advanceTimersByTimeAsync(240)); await enter();
   expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.inspection-selection strong')?.textContent).toBe('None');
 });
 it('Crew can interrupt approach through the same return bridge', async () => {
   await click('ISS Inspection'); await mode('ENTERING_INSPECTION'); await click('Crew');
-  expect(scene.props.overviewRequest).toBe(1); expect(node.querySelector('.crew-panel')).toBeNull();
+  expect(scene.props.overviewRequest).toBe(1); expect(node.querySelector('.crew-workspace')).not.toBeNull();
   await mode('EXITING_INSPECTION'); await mode('EARTH_OVERVIEW');
   expect(node.querySelectorAll('.crew-panel')).toHaveLength(1); expect(scene.props.inspectionRequest).toBe(1);
 });
 it('Crew requested during an existing exit does not issue another return', async () => {
   await enter(); await click('Earth'); await mode('EXITING_INSPECTION'); await click('Crew');
-  expect(scene.props.overviewRequest).toBe(1); expect(node.querySelector('.crew-panel')).toBeNull();
+  expect(scene.props.overviewRequest).toBe(1); expect(node.querySelector('.crew-workspace')).not.toBeNull();
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.crew-workspace')).not.toBeNull();
 });
-it.each(['Crew', 'Escape'])('cancels queued Crew using %s without changing the renderer flight', async action => {
+it.each(['Crew', 'Escape', 'Close crew panel'])('closes Crew during exit using %s without restarting or reopening after the renderer flight', async action => {
   await enter(); await click('Crew'); await mode('EXITING_INSPECTION');
-  if (action === 'Crew') await click('Crew');
+  if (action !== 'Escape') await click(action);
   else await act(async () => document.dispatchEvent(new KeyboardEvent('keydown', {key:'Escape',bubbles:true,cancelable:true})));
+  expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(true);
+  await act(async () => vi.advanceTimersByTimeAsync(240));
+  expect(node.querySelector('.crew-panel')).toBeNull();
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.crew-panel')).toBeNull(); expect(scene.props.overviewRequest).toBe(1);
 });
 it('rapid Crew close/reopen cancels stale presence and focus restoration', async () => {
@@ -275,6 +287,53 @@ it('rapid Crew close/reopen cancels stale presence and focus restoration', async
   await act(async () => vi.advanceTimersByTimeAsync(300));
   expect(node.querySelectorAll('.crew-panel')).toHaveLength(1); expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(false);
   expect(document.activeElement?.id).toBe('crew-title'); expect(scene.mounts).toBe(1);
+});
+it.each([false, true])('keeps selected astronaut, profile DOM, disclosure and scroll through background exit completion (historical=%s)', async historical => {
+  if (historical) await click('Historical');
+  await enter(); await click('Crew'); await mode('EXITING_INSPECTION');
+  const roster = node.querySelector<HTMLElement>('.crew-panel-content')!;
+  roster.scrollTop = 140;
+  const row = node.querySelector<HTMLButtonElement>(`[data-member-id="${personFixture().id}"]`)!;
+  expect(row.disabled).toBe(false); await act(async () => row.click());
+  const detail = node.querySelector<HTMLElement>('.crew-detail-surface')!;
+  const profile = detail.querySelector<HTMLElement>('.astronaut-profile-body,.crew-historical-profile-body')!;
+  profile.scrollTop = 120;
+  const evidence = [...detail.querySelectorAll('details')].find(d => d.querySelector('summary')?.textContent === 'Profile source & presence evidence')!;
+  await act(async () => evidence.querySelector('summary')!.click()); expect(evidence.open).toBe(true);
+  await mode('EARTH_OVERVIEW');
+  expect(node.querySelector('.crew-detail-surface')).toBe(detail); expect(detail.querySelector('.astronaut-profile-body,.crew-historical-profile-body')).toBe(profile);
+  expect(profile.scrollTop).toBe(120); expect(roster.scrollTop).toBe(140); expect(evidence.open).toBe(true);
+  expect(detail.dataset.entityId).toBe(row.dataset.memberId); expect(row.getAttribute('aria-pressed')).toBe('true');
+  expect(scene.props.overviewRequest).toBe(1); expect(scene.mounts).toBe(1);
+});
+it.each([false, true])('allows Back and Close astronaut detail while the renderer is still exiting (historical=%s)', async historical => {
+  if (historical) await click('Historical');
+  await enter(); await click('Crew'); await mode('EXITING_INSPECTION');
+  const row = node.querySelector<HTMLButtonElement>('.crew-roster-row')!;
+  for (const action of ['Back to Crew', 'Close astronaut detail']) {
+    await act(async () => row.click()); await click(action);
+    await act(async () => vi.advanceTimersByTimeAsync(240));
+    expect(node.querySelector('.crew-detail-surface')).toBeNull(); expect(document.activeElement).toBe(row);
+    expect(node.querySelector('main')?.dataset.viewMode).toBe('EXITING_INSPECTION');
+    expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(false);
+  }
+  await mode('EARTH_OVERVIEW'); expect(node.querySelector('.crew-detail-surface')).toBeNull();
+});
+it('reopens Crew during the same exit without another camera request or stale close focus', async () => {
+  await enter(); await click('Crew'); await mode('EXITING_INSPECTION');
+  await click('Close crew panel'); await click('Crew');
+  await act(async () => vi.advanceTimersByTimeAsync(300));
+  expect(scene.props.overviewRequest).toBe(1); expect(document.activeElement?.id).toBe('crew-title');
+  const roster = node.querySelector('.crew-workspace'); await mode('EARTH_OVERVIEW');
+  expect(node.querySelector('.crew-workspace')).toBe(roster);
+});
+it('retains functional roster and profile Retry while the background renderer is exiting', async () => {
+  scene.crewError = 'TEST ONLY failed Crew refresh'; scene.profileError = 'TEST ONLY failed profile refresh';
+  await enter(); await click('Crew'); await mode('EXITING_INSPECTION');
+  await click('Retry crew'); expect(scene.retryCrew).toHaveBeenCalledOnce();
+  await act(async () => node.querySelector<HTMLButtonElement>('.crew-roster-row')!.click());
+  await click('Retry profile'); expect(scene.retryProfile).toHaveBeenCalledOnce();
+  expect(node.querySelector('main')?.dataset.viewMode).toBe('EXITING_INSPECTION');
 });
 it('base Crew Escape works from the exposed scene and restores the stable trigger', async () => {
   await click('Crew'); const canvas = node.querySelector('canvas')!; canvas.focus();

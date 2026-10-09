@@ -29,7 +29,6 @@ export function CrewAstronautDock({ member, crew, onClose }: { member: CrewMembe
 function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: CurrentCrew }) {
   const resource = useCrewMember(member.id);
   const person = resource.data?.id === member.id ? resource.data : null;
-  const evidence = useRef<HTMLDetailsElement>(null);
   const [portraitResult, setPortraitResult] = useState<{ url: string | undefined; state: 'ready' | 'failed' } | null>(null);
   const media = person ? person.image : member.image;
   const permitted = permittedPortrait(media);
@@ -87,13 +86,10 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
           {profileUrl && <p><a href={profileUrl} target="_blank" rel="noopener noreferrer">Official profile ↗</a></p>}
         </section>
         <CrewPortraitRights person={person} />
-        <CrewProfileEvidence person={person} detailsRef={evidence} />
+        <CrewProfileEvidence person={person} />
       </>}
     </div>
     <footer className="context-dock-footer">
-      <ContextButton disabled={!person} onClick={() => {
-        if (evidence.current) { evidence.current.open = true; evidence.current.querySelector('summary')?.focus({ preventScroll: true }); evidence.current.scrollIntoView?.({ block: 'nearest' }); }
-      }}>Profile source &amp; presence evidence</ContextButton>
       <p className="astronaut-small">Profile observation: <time dateTime={person?.profileProvenance?.observedAt}>{utc(person?.profileProvenance?.observedAt ?? null)}</time></p>
     </footer>
   </>;

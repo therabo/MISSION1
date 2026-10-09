@@ -38,10 +38,11 @@ it('preserves independent spatial, temporal and Crew selection and inspection gu
   expect(button('Current').disabled).toBe(true);
   expect(button('Historical').getAttribute('aria-describedby')).toBe('inspection-navigation-guard');
   expect(button('Historical').title).toBe('Return to Earth View to change temporal context.');
-  await render({ crewOpen: true, crewPending: true });
+  await render({ crewOpen: true, viewMode: 'EXITING_INSPECTION' });
   expect(button('Crew').getAttribute('aria-pressed')).toBe('true');
   expect(button('Crew').getAttribute('aria-expanded')).toBe('true');
-  expect(button('Crew').getAttribute('aria-busy')).toBe('true');
+  expect(button('Crew').hasAttribute('aria-busy')).toBe(false);
+  expect(button('Crew').disabled).toBe(false);
   expect(button('Earth').getAttribute('aria-pressed')).toBe('false');
 });
 it('keeps native focus order and dispatches each original action exactly once', async () => {

@@ -1,5 +1,7 @@
 # Crew responsive detail navigation — 2026-10-09
 
+The subsequent [Crew spacing and transition timing correction](crew-transition-timing.md) preserves this 716px container model, removes the evidence shortcut, and opens Crew during the existing Inspection return. Its measurements supersede earlier completion-gated Crew navigation.
+
 Implemented directly on `main`, starting from clean, synchronized `b39f692d304ea9887d528eb5fa855b359804e2bc`. This is a presentation/navigation correction within the accepted responsive architecture. Resource, selected-UUID and temporal-context ownership stay in their existing components; no new dependency, measurement loop, service or architectural decision is introduced.
 
 ## Navigation and available space

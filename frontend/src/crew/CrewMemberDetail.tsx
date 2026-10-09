@@ -141,9 +141,9 @@ export function CrewPortraitRights({ person }: { person: CrewPerson }) {
     </>;
 }
 
-export function CrewProfileEvidence({ person, detailsRef }: { person: CrewPerson; detailsRef?: React.RefObject<HTMLDetailsElement | null> }) {
+export function CrewProfileEvidence({ person }: { person: CrewPerson }) {
   return (
-      <details className="crew-sources" ref={detailsRef}>
+      <details className="crew-sources">
         <summary>Profile source &amp; presence evidence</summary>
         <p>Profile last successful fetch: {utc(person.profileLastSuccessfulFetchAt)}</p>
         <p>Original profile observation: {utc(person.profileProvenance?.observedAt ?? null)}</p>

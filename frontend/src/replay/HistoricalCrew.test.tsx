@@ -58,6 +58,15 @@ it('keeps a valid zero roster distinct from unavailable and transport error', as
   await show(result); expect(rows()).toHaveLength(0); expect(node.querySelector('.crew-roster-empty')?.textContent).toContain('Historical UTC');
   expect(node.querySelector('.crew-roster-summary dd')?.textContent).toBe('0'); expect(node.querySelector('[role="alert"]')).toBeNull(); expect(node.querySelector('.crew-historical-unavailable')).toBeNull();
 });
+it('preserves the bottom profile evidence disclosure without an internal navigation shortcut', async () => {
+  await show(); await clickProfile();
+  const profile = node.querySelector('.crew-profile')!;
+  const evidence = profile.lastElementChild as HTMLDetailsElement;
+  expect(evidence.querySelector('summary')?.textContent).toBe('Profile source & presence evidence');
+  expect([...profile.querySelectorAll('button,a')].some(e => e.textContent === 'Profile source & presence evidence')).toBe(false);
+  await act(async () => evidence.querySelector('summary')!.click());
+  expect(evidence.open).toBe(true); expect(evidence.textContent).toContain('Original profile observation');
+});
 it('retains partial/unresolved evidence separately from confirmed identities', async () => {
   const result = data(); result.crew.coverage.limitations = ['TEST ONLY assignment evidence incomplete']; await show(result);
   expect(node.textContent).toContain('Historical coverage partial'); expect(node.textContent).toContain('unresolved source reports');

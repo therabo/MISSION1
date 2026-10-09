@@ -1,5 +1,9 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+## Crew spacing and immediate Inspection navigation — 2026-10-09
+
+The [focused Crew interaction milestone](crew-transition-timing.md) starts on `main` at `98114d2d23afb611df38c973f0c078cf84369f66`. Crew opens immediately while the accepted Inspection-to-Earth transition continues behind it. Current/Historical retain interactive responsive details and bottom profile evidence; the redundant shortcut is removed, and both summaries share a deliberate 12px divider gap. Camera and data contracts stay unchanged.
+
 ## Mission and Crew metadata cleanup — 2026-10-09
 
 The [focused metadata cleanup](interface-metadata-cleanup.md) starts on `main` at `30c0cd4828fe46c9e6283c9e8d6eeaaf2c1938e0`. Earth keeps a single ISS/WGS84 identity line and routes model attribution to the existing provenance/native attribution surfaces. Current Crew removes redundant retained-count/assessment captions and shows the latest successful source collection update. Historical temporal interpretation and the responsive detail-navigation model below remain accepted.

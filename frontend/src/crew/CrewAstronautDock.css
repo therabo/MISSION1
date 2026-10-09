@@ -31,11 +31,10 @@
 .astronaut-dock .crew-sources p { margin-top: 8px; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; }
 .astronaut-dock a { color: var(--color-interaction); }
 .astronaut-dock :is(button,summary,a,[tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
-.astronaut-dock .context-dock-footer { flex: none; min-height: 100px; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 8px; }
-.astronaut-dock .context-dock-footer .context-button { width: 100%; font-size: 12px; padding-inline: 8px; white-space: normal; }
+.astronaut-dock .context-dock-footer { flex: none; padding: 16px 24px 12px; }
 @media (max-width: 1243px) {
   .astronaut-dock .context-dock-header .context-button { flex: none; width: 44px; height: 44px; }
-  .astronaut-dock :is(summary,.context-dock-footer .context-button) { min-height: 44px; }
+  .astronaut-dock summary { min-height: 44px; }
 }
 @media (max-height: 620px) {
   .context-dock.astronaut-dock { display: block; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }

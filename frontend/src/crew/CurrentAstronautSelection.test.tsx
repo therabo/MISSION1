@@ -102,9 +102,16 @@ it.each([
 it('preserves assignment vs presence, source observation vs fetch, and cumulative duration semantics', async () => {
   await show(); await select(); const text = dock().textContent!; expect(text).toContain('Structured assignment does not confirm presence'); expect(text).toContain('not elapsed time on this expedition'); expect(text).toContain('Profile last successful fetch'); expect(text).toContain('Original profile observation'); expect(text).toContain('Profile assessment');
 });
-it('uses only the existing evidence disclosure and no new Career History destination', async () => {
+it('keeps the bottom evidence disclosure usable without a redundant shortcut or reserved footer button', async () => {
   await show(); await select(); const evidence = [...dock().querySelectorAll('details')].find(d => d.querySelector('summary')?.textContent === 'Profile source & presence evidence')!;
-  await press('Profile source & presence evidence'); expect(evidence.open).toBe(true); expect(document.activeElement).toBe(evidence.querySelector('summary'));
+  expect([...dock().querySelectorAll('button,a')].some(e => e.textContent === 'Profile source & presence evidence')).toBe(false);
+  expect(evidence.parentElement?.lastElementChild).toBe(evidence);
+  await act(async () => evidence.querySelector('summary')!.click()); expect(evidence.open).toBe(true);
+  expect(evidence.textContent).toContain('Profile last successful fetch');
+  expect(evidence.textContent).toContain('Original profile observation');
+  expect(evidence.querySelector('a')?.textContent).toContain('Profile source');
+  expect(dock().querySelector('footer button')).toBeNull();
+  expect(dock().querySelector('footer')?.textContent).toContain('Profile observation');
   expect([...dock().querySelectorAll('button,a,summary')].some(e => e.textContent === 'Career history & evidence')).toBe(false);
 });
 it('switches A→B without recreating dock or roster, and moves one selected row', async () => {

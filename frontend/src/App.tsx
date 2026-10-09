@@ -1,5 +1,5 @@
 import { useMissionReplay } from "./replay/useMissionReplay";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useOrbitalDelivery } from "./api/useOrbitalDelivery";
 import { useComparisonDelivery } from "./api/useComparisonDelivery";
 import { EarthView } from "./cesium/EarthView";
@@ -56,49 +56,29 @@ export default function App() {
   const viewModeRef = useRef<ViewMode>("EARTH_OVERVIEW");
   const [crewOpen, setCrewOpen] = useState(false);
   const crewOpenRef = useRef(false);
-  const [crewPending, setCrewPending] = useState(false);
-  const crewPendingRef = useRef(false);
   const closeCrew = useCallback(() => {
     crewOpenRef.current = false;
     setCrewOpen(false);
     requestAnimationFrame(() => {
-      if (!crewOpenRef.current && !crewPendingRef.current)
+      if (!crewOpenRef.current)
         document.getElementById("crew-launcher")?.focus({ preventScroll: true });
     });
   }, []);
   const openCrew = useCallback(() => {
     if (crewOpenRef.current) { closeCrew(); return; }
-    if (crewPendingRef.current) { crewPendingRef.current = false; setCrewPending(false); return; }
     setSelectedModule(null);
-    if (viewModeRef.current !== 'EARTH_OVERVIEW') {
-      crewPendingRef.current = true; setCrewPending(true);
-      if (viewModeRef.current !== 'EXITING_INSPECTION') setOverviewRequest(value => value + 1);
-    } else {
-      crewOpenRef.current = true; setCrewOpen(true);
-    }
+    // Surface visibility and the renderer's return flight can coexist.
+    crewOpenRef.current = true; setCrewOpen(true);
+    if (viewModeRef.current !== 'EARTH_OVERVIEW' && viewModeRef.current !== 'EXITING_INSPECTION')
+      setOverviewRequest(value => value + 1);
   }, [closeCrew]);
-  // Only the renderer's existing completed return can consume this UI intent.
   const onViewModeChange = useCallback((next: ViewMode) => {
     viewModeRef.current = next; setViewMode(next);
     // Native scene picking can enter Inspection without using the top button.
-    if (next !== 'EARTH_OVERVIEW' && crewOpenRef.current) {
+    if ((next === 'ENTERING_INSPECTION' || next === 'ISS_INSPECTION') && crewOpenRef.current) {
       crewOpenRef.current = false; setCrewOpen(false);
     }
-    if (next === 'EARTH_OVERVIEW' && crewPendingRef.current) {
-      crewPendingRef.current = false; setCrewPending(false);
-      crewOpenRef.current = true; setCrewOpen(true);
-    }
   }, []);
-  useEffect(() => {
-    if (!crewPending) return;
-    const cancel = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape' || event.defaultPrevented || event.target instanceof Element && event.target.closest('[role="dialog"],dialog')) return;
-      crewPendingRef.current = false; setCrewPending(false);
-      event.preventDefault(); event.stopPropagation();
-    };
-    document.addEventListener('keydown', cancel);
-    return () => document.removeEventListener('keydown', cancel);
-  }, [crewPending]);
   const [selectedModule, setSelectedModule] = useState<SemanticMapping | null>(
     null,
   );
@@ -234,18 +214,16 @@ export default function App() {
           presentedHistorical={presentationHistorical}
           onCurrent={() => changeTemporalMode(false)}
           viewMode={viewMode} onEarth={() => {
-            crewPendingRef.current = false; setCrewPending(false);
             if (crewOpenRef.current) closeCrew();
             else if (stationFocused) setOverviewRequest(value => value + 1);
           }}
           inspectionDisabled={temporal.holding || (presentationHistorical ? !replayState : !currentDelivery.window || buffer !== "active") || modelState.status !== "ready"}
           onInspect={() => {
-            crewPendingRef.current = false; setCrewPending(false);
             crewOpenRef.current = false; setCrewOpen(false);
             setInspectionRequest(value => value + 1);
           }}
           onHistorical={() => changeTemporalMode(true)}
-          onCrew={openCrew} crewOpen={crewOpen} crewPending={crewPending}
+          onCrew={openCrew} crewOpen={crewOpen}
           source={<TrajectorySelector presentation="context" selectedSource={earthSource} viewMode={viewMode}
             automatic={replaying || presentationHistorical} emptyLabel={historicalWaiting ? 'Waiting' : 'Unavailable'}
             oemReason={presentationHistorical ? null : oemReason} sourceNotice={presentationHistorical ? null : sourceNotice} onSelect={chooseSource} />} />
@@ -265,7 +243,6 @@ export default function App() {
         <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} historical={presentationHistorical} acceptedAt={presentedAt} />
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
-        {crewPending && <p className="sr-only" role="status">Returning to Earth View before opening Crew. Activate Crew again or press Escape to cancel.</p>}
         <CurrentCrewWorkspace open={crewOpen} onClose={closeCrew}
           historical={presentationHistorical ? { at: presentedAt, data: presentedData! } : null}
           request={{ historical: replaying, at: replayAt, pending: temporal.holding, error: replaying ? replay.error : null, onRetry: retryReplay }} />

@@ -1,0 +1,1110 @@
+{
+  "baseline": "98114d2d23afb611df38c973f0c078cf84369f66",
+  "frontend": {
+    "baselineTests": 750,
+    "finalTests": 759,
+    "files": 61,
+    "command": "npm test -- --maxWorkers=2",
+    "result": "PASS"
+  },
+  "backend": {
+    "java": 21,
+    "test": 382,
+    "verify": 382,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "result": "PASS"
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "diffCheck": "PASS",
+  "baselineBrowser": [
+    {
+      "mode": "current",
+      "interactive": 5219.700000047684,
+      "complete": 5219.799999952316
+    },
+    {
+      "mode": "historical",
+      "interactive": 5339.5,
+      "complete": 5339.5
+    }
+  ],
+  "development": {
+    "build": "development",
+    "result": "PASS",
+    "errors": [],
+    "boundaryCases": [
+      {
+        "context": "current",
+        "width": 716,
+        "rosterVisible": false,
+        "backVisible": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 717,
+        "rosterVisible": true,
+        "backVisible": false,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 716,
+        "rosterVisible": false,
+        "backVisible": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 717,
+        "rosterVisible": true,
+        "backVisible": false,
+        "result": "PASS"
+      }
+    ],
+    "touch": [
+      {
+        "context": "current",
+        "width": 390,
+        "height": 844,
+        "backDuringExit": true,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 390,
+        "height": 844,
+        "backDuringExit": true,
+        "closeDuringExit": true,
+        "result": "PASS"
+      }
+    ],
+    "flows": [
+      {
+        "context": "current",
+        "width": 1440,
+        "height": 900,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1392,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 1080,
+            "y": 88,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 788
+          },
+          "footer": {
+            "x": 1080,
+            "y": 832,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 36.3,
+          "visible": 57.8,
+          "interactive": 36.3,
+          "exitStarted": 36.3,
+          "firstAstronautSelection": 588.6,
+          "complete": 5070.8
+        },
+        "cameraFrames": 254,
+        "framingError": 2.322735781490337e-9,
+        "scrollTop": 215,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 1024,
+        "height": 768,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1000,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 676,
+            "y": 106,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 630
+          },
+          "footer": {
+            "x": 676,
+            "y": 692,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 72.6,
+          "visible": 95.8,
+          "interactive": 72.6,
+          "exitStarted": 72.6,
+          "firstAstronautSelection": 1490.9,
+          "complete": 5101.1
+        },
+        "cameraFrames": 282,
+        "framingError": 1.6517560652573593e-9,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 768,
+        "height": 1024,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 744,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 443.53125,
+            "y": 106,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 886
+          },
+          "footer": {
+            "x": 443.53125,
+            "y": 948,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 45.4,
+          "visible": 87.7,
+          "interactive": 45.4,
+          "exitStarted": 45.4,
+          "firstAstronautSelection": 1090.3,
+          "complete": 5099.1
+        },
+        "cameraFrames": 190,
+        "framingError": 1.6517560652573593e-9,
+        "scrollTop": 134,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 366,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 654
+          },
+          "footer": {
+            "x": 12,
+            "y": 772,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 40
+          }
+        },
+        "timing": {
+          "dom": 31.6,
+          "visible": 49,
+          "interactive": 31.6,
+          "exitStarted": 31.6,
+          "firstAstronautSelection": 437.9,
+          "complete": 5048.8
+        },
+        "cameraFrames": 304,
+        "framingError": 1.3627925454784418e-9,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 296,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 308,
+            "bottom": 536,
+            "width": 296,
+            "height": 378
+          },
+          "footer": {
+            "x": 12,
+            "y": 679,
+            "right": 308,
+            "bottom": 719,
+            "width": 296,
+            "height": 40
+          }
+        },
+        "timing": {
+          "dom": 30.4,
+          "visible": 46.7,
+          "interactive": 30.4,
+          "exitStarted": 30.4,
+          "firstAstronautSelection": 413.9,
+          "complete": 5049.2
+        },
+        "cameraFrames": 304,
+        "framingError": 9.162022251985036e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 820,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 496,
+            "y": 98,
+            "right": 832,
+            "bottom": 358,
+            "width": 336,
+            "height": 260
+          },
+          "footer": {
+            "x": 496,
+            "y": 497,
+            "right": 832,
+            "bottom": 541,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 30.7,
+          "visible": 47.7,
+          "interactive": 30.7,
+          "exitStarted": 30.7,
+          "firstAstronautSelection": 370.5,
+          "complete": 5047.3
+        },
+        "cameraFrames": 304,
+        "framingError": 1.361399881716352e-9,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 1440,
+        "height": 900,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1392,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 1080,
+            "y": 88,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 788
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 49.1,
+          "visible": 85.8,
+          "interactive": 49.1,
+          "exitStarted": 49.1,
+          "firstAstronautSelection": 501,
+          "complete": 5083.5
+        },
+        "cameraFrames": 210,
+        "framingError": 1.1617657946771942e-9,
+        "scrollTop": 215,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 1024,
+        "height": 768,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1000,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 676,
+            "y": 106,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 630
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 42.9,
+          "visible": 65,
+          "interactive": 42.9,
+          "exitStarted": 42.9,
+          "firstAstronautSelection": 387.8,
+          "complete": 5066.6
+        },
+        "cameraFrames": 301,
+        "framingError": 8.261622497229837e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 768,
+        "height": 1024,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 744,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 443.53125,
+            "y": 106,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 886
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 136.2,
+          "visible": 166.3,
+          "interactive": 136.2,
+          "exitStarted": 136.2,
+          "firstAstronautSelection": 645.9,
+          "complete": 5134
+        },
+        "cameraFrames": 286,
+        "framingError": 8.261622497229837e-10,
+        "scrollTop": 252,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 366,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 654
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 39.7,
+          "visible": 63.5,
+          "interactive": 39.7,
+          "exitStarted": 39.7,
+          "firstAstronautSelection": 353.5,
+          "complete": 5062.9
+        },
+        "cameraFrames": 304,
+        "framingError": 6.816094355599489e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 296,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 308,
+            "bottom": 536,
+            "width": 296,
+            "height": 378
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 37.8,
+          "visible": 48.6,
+          "interactive": 37.8,
+          "exitStarted": 37.8,
+          "firstAstronautSelection": 350.5,
+          "complete": 5048.2
+        },
+        "cameraFrames": 304,
+        "framingError": 4.582147994369734e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 820,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 496,
+            "y": 98,
+            "right": 832,
+            "bottom": 358,
+            "width": 336,
+            "height": 260
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 41.1,
+          "visible": 63.1,
+          "interactive": 41.1,
+          "exitStarted": 41.1,
+          "firstAstronautSelection": 350.1,
+          "complete": 5062.4
+        },
+        "cameraFrames": 304,
+        "framingError": 6.809273145336192e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      }
+    ]
+  },
+  "production": {
+    "build": "production",
+    "result": "PASS",
+    "errors": [],
+    "boundaryCases": [
+      {
+        "context": "current",
+        "width": 716,
+        "rosterVisible": false,
+        "backVisible": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 717,
+        "rosterVisible": true,
+        "backVisible": false,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 716,
+        "rosterVisible": false,
+        "backVisible": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 717,
+        "rosterVisible": true,
+        "backVisible": false,
+        "result": "PASS"
+      }
+    ],
+    "touch": [
+      {
+        "context": "current",
+        "width": 390,
+        "height": 844,
+        "backDuringExit": true,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 390,
+        "height": 844,
+        "backDuringExit": true,
+        "closeDuringExit": true,
+        "result": "PASS"
+      }
+    ],
+    "flows": [
+      {
+        "context": "current",
+        "width": 1440,
+        "height": 900,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1392,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 1080,
+            "y": 88,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 788
+          },
+          "footer": {
+            "x": 1080,
+            "y": 832,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 27.3,
+          "visible": 68.3,
+          "interactive": 27.3,
+          "exitStarted": 27.3,
+          "firstAstronautSelection": 489,
+          "complete": 5054.7
+        },
+        "cameraFrames": 222,
+        "framingError": 1.1611973604885861e-9,
+        "scrollTop": 215,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 1024,
+        "height": 768,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1000,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 676,
+            "y": 106,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 630
+          },
+          "footer": {
+            "x": 676,
+            "y": 692,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 22.9,
+          "visible": 46.6,
+          "interactive": 22.9,
+          "exitStarted": 22.9,
+          "firstAstronautSelection": 382.4,
+          "complete": 5043.3
+        },
+        "cameraFrames": 302,
+        "framingError": 8.257075023720972e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 768,
+        "height": 1024,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 744,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 443.53125,
+            "y": 106,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 886
+          },
+          "footer": {
+            "x": 443.53125,
+            "y": 948,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 23,
+          "visible": 46.7,
+          "interactive": 23,
+          "exitStarted": 23,
+          "firstAstronautSelection": 382.1,
+          "complete": 5047.8
+        },
+        "cameraFrames": 301,
+        "framingError": 8.256506589532364e-10,
+        "scrollTop": 134,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 366,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 654
+          },
+          "footer": {
+            "x": 12,
+            "y": 772,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 40
+          }
+        },
+        "timing": {
+          "dom": 24.5,
+          "visible": 48.3,
+          "interactive": 24.5,
+          "exitStarted": 24.5,
+          "firstAstronautSelection": 359.2,
+          "complete": 5048.9
+        },
+        "cameraFrames": 304,
+        "framingError": 6.812399533373537e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 296,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 308,
+            "bottom": 536,
+            "width": 296,
+            "height": 378
+          },
+          "footer": {
+            "x": 12,
+            "y": 679,
+            "right": 308,
+            "bottom": 719,
+            "width": 296,
+            "height": 40
+          }
+        },
+        "timing": {
+          "dom": 22,
+          "visible": 31.8,
+          "interactive": 22,
+          "exitStarted": 22,
+          "firstAstronautSelection": 408.1,
+          "complete": 5048.7
+        },
+        "cameraFrames": 304,
+        "framingError": 4.579874257615302e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "current",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 820,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 496,
+            "y": 98,
+            "right": 832,
+            "bottom": 358,
+            "width": 336,
+            "height": 260
+          },
+          "footer": {
+            "x": 496,
+            "y": 497,
+            "right": 832,
+            "bottom": 541,
+            "width": 336,
+            "height": 44
+          }
+        },
+        "timing": {
+          "dom": 24.4,
+          "visible": 46.2,
+          "interactive": 24.4,
+          "exitStarted": 24.4,
+          "firstAstronautSelection": 364.3,
+          "complete": 5047.2
+        },
+        "cameraFrames": 304,
+        "framingError": 6.805862540204544e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 1440,
+        "height": 900,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1392,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 1080,
+            "y": 88,
+            "right": 1416,
+            "bottom": 876,
+            "width": 336,
+            "height": 788
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 28.3,
+          "visible": 74.8,
+          "interactive": 28.3,
+          "exitStarted": 28.3,
+          "firstAstronautSelection": 460.1,
+          "complete": 5079.1
+        },
+        "cameraFrames": 208,
+        "framingError": 1.1611973604885861e-9,
+        "scrollTop": 215,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 1024,
+        "height": 768,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 1000,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 676,
+            "y": 106,
+            "right": 1012,
+            "bottom": 736,
+            "width": 336,
+            "height": 630
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 25.5,
+          "visible": 45.5,
+          "interactive": 25.5,
+          "exitStarted": 25.5,
+          "firstAstronautSelection": 348,
+          "complete": 5050.2
+        },
+        "cameraFrames": 302,
+        "framingError": 8.257075023720972e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 768,
+        "height": 1024,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 744,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 443.53125,
+            "y": 106,
+            "right": 756,
+            "bottom": 992,
+            "width": 312.46875,
+            "height": 886
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 24.6,
+          "visible": 43.8,
+          "interactive": 24.6,
+          "exitStarted": 24.6,
+          "firstAstronautSelection": 340.1,
+          "complete": 5045.2
+        },
+        "cameraFrames": 299,
+        "framingError": 8.256506589532364e-10,
+        "scrollTop": 252,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 390,
+        "height": 844,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 366,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 378,
+            "bottom": 812,
+            "width": 366,
+            "height": 654
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 27.6,
+          "visible": 46.1,
+          "interactive": 27.6,
+          "exitStarted": 27.6,
+          "firstAstronautSelection": 322.8,
+          "complete": 5045.3
+        },
+        "cameraFrames": 304,
+        "framingError": 6.812399533373537e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 320,
+        "height": 568,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 296,
+          "rosterVisible": false,
+          "backVisible": true,
+          "detail": {
+            "x": 12,
+            "y": 158,
+            "right": 308,
+            "bottom": 536,
+            "width": 296,
+            "height": 378
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 27.1,
+          "visible": 45.8,
+          "interactive": 27.1,
+          "exitStarted": 27.1,
+          "firstAstronautSelection": 322.9,
+          "complete": 5048.8
+        },
+        "cameraFrames": 304,
+        "framingError": 4.579874257615302e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      },
+      {
+        "context": "historical",
+        "width": 844,
+        "height": 390,
+        "geometry": {
+          "documentOverflow": false,
+          "overflow": [],
+          "padding": 12,
+          "dividerGap": 12,
+          "groupWidth": 820,
+          "rosterVisible": true,
+          "backVisible": false,
+          "detail": {
+            "x": 496,
+            "y": 98,
+            "right": 832,
+            "bottom": 358,
+            "width": 336,
+            "height": 260
+          },
+          "footer": null
+        },
+        "timing": {
+          "dom": 27.8,
+          "visible": 46.7,
+          "interactive": 27.8,
+          "exitStarted": 27.8,
+          "firstAstronautSelection": 323.5,
+          "complete": 5047.2
+        },
+        "cameraFrames": 304,
+        "framingError": 6.805862540204544e-10,
+        "scrollTop": 350,
+        "closeDuringExit": true,
+        "result": "PASS"
+      }
+    ]
+  },
+  "protectedOwnersUnchanged": [
+    "backend",
+    "frontend/src/cesium",
+    "frontend/src/layout",
+    "frontend/src/api"
+  ],
+  "validatedSourceHashes": {
+    "frontend/src/App.tsx": "2530689ddb1fb54ba90432f7a29b1651533254ff30a1fc4d47861b27a58ba11a",
+    "frontend/src/AppInspection.test.tsx": "97375651ebabae81a7d7a6e325705ea48534519e97a27330cbbb454e3455b47a",
+    "frontend/src/components/TopContextBar.tsx": "de5f8c277d8718ce5f094f4573ec114fbb6c7706de01a1fea7d5ed39c383b116",
+    "frontend/src/components/TopContextBar.test.tsx": "832abb9801782745a7b88d19bd1774c1b3404032822394a2a132a1b8e265c173",
+    "frontend/src/crew/CrewAstronautDock.tsx": "c9dc18a3b47aecd777421bb5e790b606aef3bb87c903b244f76822f5d4620c3f",
+    "frontend/src/crew/CrewAstronautDock.css": "7f6d8536c45519e9a2d674308b9ba0e58f1f82725b7d3323f185a9430cea0583",
+    "frontend/src/crew/CrewMemberDetail.tsx": "205b62a8798df2ebbea9adc1a39efa91da0c2a71527119cbdbb17d11901409f6",
+    "frontend/src/crew/CurrentCrewWorkspace.css": "75b6e8b8963d6f347d60cf10f4cbfa62aa6dceb5e360b75a149c92bcffe1fc27",
+    "frontend/src/crew/CurrentAstronautSelection.test.tsx": "cea89db8de9acbbfe4baac2bac5732a64ed93e31e18a00aa8966ac46a54f6ef2",
+    "frontend/src/replay/HistoricalCrew.test.tsx": "314744e43b5fc35d1c5e7c2d89a761dfc4dde6aa160f2e7747d1aa7dca67b891"
+  }
+}
