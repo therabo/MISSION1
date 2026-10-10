@@ -20,11 +20,17 @@ public final class CrewHttpReader {
     private final HttpClient client;
     private final Clock clock;
     private final Duration timeout;
+    private final org.mission1.source.crew.nasa.NasaRequestGate nasaGate;
 
     public CrewHttpReader(HttpClient client, Clock clock, Duration timeout) {
+        this(client,clock,timeout,null);
+    }
+
+    public CrewHttpReader(HttpClient client, Clock clock, Duration timeout,org.mission1.source.crew.nasa.NasaRequestGate nasaGate) {
         this.client = Objects.requireNonNull(client); this.clock = Objects.requireNonNull(clock);
         if (timeout == null || timeout.isZero() || timeout.isNegative()) throw new IllegalArgumentException("Positive timeout required");
         this.timeout = timeout;
+        this.nasaGate=nasaGate;
     }
 
     public CrewSourceResult<byte[]> fetch(URI url, CrewSource source, String accept,
@@ -32,14 +38,18 @@ public final class CrewHttpReader {
         var request = HttpRequest.newBuilder(url).timeout(timeout).header("Accept", accept)
                 .header("User-Agent", "MISSION1-crew/1").GET().build();
         final HttpResponse<byte[]> response;
-        try {
+        try (AutoCloseable permit=source==CrewSource.NASA_OFFICIAL && nasaGate!=null?nasaGate.acquire():()->{}) {
             response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
+            if(source==CrewSource.NASA_OFFICIAL && nasaGate!=null && response.statusCode()==429)
+                nasaGate.cooldown(org.mission1.source.crew.nasa.NasaRequestGate.retryAfter(response.headers().firstValue("Retry-After").orElse(null),clock.instant()));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return failed(CrewSourceState.SOURCE_UNAVAILABLE, CrewSourceResult.FailureCode.INTERRUPTED, null, null, null);
         } catch (HttpTimeoutException e) {
             return failed(CrewSourceState.SOURCE_UNAVAILABLE, CrewSourceResult.FailureCode.TIMEOUT, null, null, null);
         } catch (IOException e) {
+            return failed(CrewSourceState.SOURCE_UNAVAILABLE, CrewSourceResult.FailureCode.NETWORK_ERROR, null, null, null);
+        } catch (Exception e) {
             return failed(CrewSourceState.SOURCE_UNAVAILABLE, CrewSourceResult.FailureCode.NETWORK_ERROR, null, null, null);
         }
         byte[] bytes = response.body();

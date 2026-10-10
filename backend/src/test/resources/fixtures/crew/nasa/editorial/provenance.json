@@ -1,0 +1,67 @@
+{
+  "sourceInvestigation": "2026-10-10 authoritative NASA capture, outside Git",
+  "historicalSemantics": "current representations, parser fixtures only; not historical-at-T membership",
+  "derivedCorpus": "75 exact heading-scoped roster sections; current dual-section page retained; unrelated historical content removed",
+  "files": [
+    {
+      "file": "active-taxonomy-slug.json.gz",
+      "bytes": 319,
+      "sha256": "fd0f909aa86f963071a8858d494d2b88caf649dafd91b3ad81ee1290534de1be"
+    },
+    {
+      "file": "expedition-roster-sections.json.gz",
+      "bytes": 18157,
+      "sha256": "e154011a897a620d975cf3cf2ae49c8a589a1790d757200e1d63ba4d5a462721"
+    },
+    {
+      "file": "iss-topic.json.gz",
+      "bytes": 18788,
+      "sha256": "0df9564b6fa5885c511211c594bb801c0a5c6c7df1bd528f9233ed6e1d12fcf1"
+    },
+    {
+      "file": "people-hathaway.json.gz",
+      "bytes": 4392,
+      "sha256": "b74536a9775bf9790d6e31c72bf8876b65bf3a2cad5ef4b84a98cf78df266b4b"
+    },
+    {
+      "file": "people-luke.json.gz",
+      "bytes": 4885,
+      "sha256": "1e0a31896962a5d6d0eb0b8eef8f3e7f0a437468d17e4980a1ae8c849f0403a3"
+    },
+    {
+      "file": "people-menon.json.gz",
+      "bytes": 5453,
+      "sha256": "9a362e8a5ce1c44ba2d470d76918722427a7990d16077052d3232e9ab43d2601"
+    },
+    {
+      "file": "people-watkins.json.gz",
+      "bytes": 5225,
+      "sha256": "164913ad7c7343d39fa529af64838d1ce4831ed638015fce78c6fe3d91929c15"
+    },
+    {
+      "file": "target-slug.json.gz",
+      "bytes": 328,
+      "sha256": "db0ee665f528d77f14c181228cbee02243d30b49b020fd792c3843de7963bb46"
+    },
+    {
+      "file": "topic-derived-active-slug.json.gz",
+      "bytes": 15049,
+      "sha256": "67706067f59824a8d0541e78f223ef430121078518f3ecdb39facd79eb88bdc0"
+    },
+    {
+      "file": "topic-luke.json.gz",
+      "bytes": 7983,
+      "sha256": "6242fde8cc114820d42258c8eee059c07810a8a800e7cc35050f9ce13ae60a9d"
+    },
+    {
+      "file": "topic-menon.json.gz",
+      "bytes": 8704,
+      "sha256": "3d973fb534927074134558401d092361329ff0b72b5c6e2eae871a9fa7c2a25e"
+    },
+    {
+      "file": "topic-watkins.json.gz",
+      "bytes": 9520,
+      "sha256": "9a49393a15d4cbe0c4974965c24678f3f03b0e76d7dea0de76e5ae3453b0f790"
+    }
+  ]
+}

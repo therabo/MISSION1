@@ -131,3 +131,7 @@ Unselected evidence and subject metadata revisions remain available in immutable
 ## Canonical identity compatibility — ADR-0013
 
 Members and person details add `canonicalProfile`: canonical/requested IDs, aliases, identity/profile policy markers, availability, profile observation/fetch time, typed NASA profile resources and field authority/provenance. Existing UUID URLs remain HTTP 200; alias requests return canonical `id` and retain the requested alias in metadata. The collection projects assignments and assertions to canonical humans before reconciliation. Latest retained LL2 profile metadata is independent of current assignment membership; nulls/removals and media rights remain authoritative. [Contract and maintenance](../crew/canonical-identity.md), [validation](../crew/canonical-identity-validation/README.md).
+
+## NASA editorial shadow ingestion — 2026-10-10
+
+[Independent editorial retention](../crew/nasa-editorial-roster-validation/README.md) adds no public route/DTO field and does not enter Current member/count/presence selection, UUID detail metadata or Replay. All accepted GETs remain read-only and provider-network-free. Internal diagnostics distinguish editorial roster/count/context/profile health from the existing NASA operational feed.

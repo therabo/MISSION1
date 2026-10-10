@@ -113,3 +113,7 @@ PostgreSQL → CrewQueryService/CrewReconciliationQueryService and CrewReadQuery
 ## Replay integration — 2026-10-03
 
 Replay reads existing immutable snapshots, observations, evidence and identity resolutions without ingestion, identity writes, reconciliation persistence or trigger discovery. No schema/retention change. [Replay contract](../api/replay-api.md).
+
+## Independent NASA editorial acquisition — 2026-10-10
+
+[V8 and ADR-0014](nasa-editorial-roster-validation/README.md) retain topic facts, typed resources, semantic roster/member versions, relations and each acquisition in isolated shadow tables, reusing generic body/documents. No editorial writes target legacy sync runs, identity mappings/decisions, operational evidence or reconciliation. Capture ordering preserves A→B→A, source-local failure and restart/cache lineage. Mutable lease/budget rows govern scheduled eligibility and shared NASA pacing only. Public GETs do not call these writers or read new observations.

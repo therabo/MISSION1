@@ -29,3 +29,7 @@ Distinct arrival, aboard, departure, event-time, article and assertion scopes re
 ## Reviewed canonical identity — ADR-0013
 
 Current and Replay share the reviewed identity projection before temporal evaluation. Latest knowledge can join old Luke/Watkins UUID anchors without altering retained assertions or assignments effective at T. Latest retained LL2 metadata is available for historical people even when no assignment applies. Meir remains independent; Andrey Fedyaev remains unresolved. [Detailed policy](../crew/canonical-identity.md).
+
+## NASA editorial retention non-use — 2026-10-10
+
+[ADR-0014](../adr/0014-nasa-editorial-roster-shadow-observations.md) begins collecting independent NASA editorial captures. This Replay query does not consume them. Future editorial membership/count must begin at a retained successful capture and select capture≤T, including recurring A→B→A lineage; CMS publication/modified time and mission start cannot populate an uncaptured past roster. Historical mission-page fixtures captured today are not historical-at-T observations. Existing operational effective-time and latest canonical-metadata semantics remain unchanged.

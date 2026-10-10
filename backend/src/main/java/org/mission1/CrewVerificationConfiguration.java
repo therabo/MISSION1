@@ -31,6 +31,7 @@ class CrewVerificationConfiguration {
             CrewRepository runs,
             CrewVerificationRepository repository,
             NasaOperationalFeedParser parser,
+            org.springframework.beans.factory.ObjectProvider<NasaRequestGate> gates,
             Clock utcClock,
             @Value("${mission1.crew.request-timeout:PT20S}") Duration timeout,
             @Value("${mission1.crew.verification.fixed-delay:PT2H}") Duration delay,
@@ -45,7 +46,7 @@ class CrewVerificationConfiguration {
                                 .followRedirects(HttpClient.Redirect.NEVER)
                                 .build(),
                         utcClock,
-                        timeout);
+                        timeout,gates.getIfAvailable());
         return new NasaCrewVerificationIngestionService(
                 source,
                 parser,

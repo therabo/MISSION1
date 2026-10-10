@@ -24,3 +24,5 @@ Its 2026-10-01 perceptual pacing clarification rejects strict constant Cartesian
 - [ADR-0012: Versioned Crew source occurrences and compatible-version selection](0012-versioned-crew-source-occurrences.md) — Accepted.
 
 - [ADR-0013: Canonical Crew identity and field-level profile projection](0013-canonical-crew-identity-and-profile-projection.md) — Accepted; reviewed reversible bindings, preserved UUID aliases and shared Current/Replay projection.
+
+- [ADR-0014: NASA WordPress Expedition editorial roster source and immutable shadow observations](0014-nasa-editorial-roster-shadow-observations.md) — Accepted; generic source-directed discovery, immutable typed observations and independent health; Current/Replay unchanged.

@@ -59,3 +59,7 @@ This is implementation within the accepted REST/domain architecture, not a new d
 ## Replay integration — 2026-10-03
 
 Crew milestone 7 (Replay integration) is DONE. Effective-time historical state remains independent of orbital availability and current acquisition health. [Cross-domain composition](06-mission-replay.md).
+
+## NASA editorial source, shadow only — 2026-10-10
+
+[ADR-0014](../adr/0014-nasa-editorial-roster-shadow-observations.md) extends the existing Crew module with source-directed WordPress topic/taxonomy/mission discovery, bounded semantic parsing, explicit personal-resource verification and immutable JDBC observations. The separate acquisition table scopes topic/Expedition/profile health without altering legacy source-wide operational selectors. Existing raw-body/document infrastructure is reused; no service, broker, new database or generic event platform is introduced. Internal persisted-input health/comparison services remain outside public Current/Replay composition. [Detailed boundary and validation](../crew/nasa-editorial-roster-validation/README.md).

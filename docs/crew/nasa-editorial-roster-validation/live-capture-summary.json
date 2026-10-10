@@ -1,0 +1,897 @@
+{
+  "result": "PASS",
+  "date": "2026-10-10",
+  "initialCold": {
+    "rosterId": 1,
+    "expedition": 75,
+    "websiteCount": 7,
+    "members": 7,
+    "requests": 18,
+    "outcome": "DEGRADED"
+  },
+  "initialWarm": {
+    "rosterId": 1,
+    "expedition": 75,
+    "websiteCount": 7,
+    "members": 7,
+    "requests": 2,
+    "outcome": "DEGRADED"
+  },
+  "freshProcess": {
+    "rosterId": 1,
+    "expedition": 75,
+    "websiteCount": 7,
+    "members": 7,
+    "requests": 2,
+    "outcome": "DEGRADED"
+  },
+  "finalValidation": {
+    "rosterId": 1,
+    "expedition": 75,
+    "websiteCount": 7,
+    "members": 7,
+    "requests": 2,
+    "outcome": "DEGRADED"
+  },
+  "lastValidation": {
+    "rosterId": 1,
+    "expedition": 75,
+    "websiteCount": 7,
+    "members": 7,
+    "requests": 2,
+    "outcome": "DEGRADED"
+  },
+  "resource": {
+    "kind": "NASA_MISSION",
+    "wpId": 748853,
+    "slug": "expedition-75",
+    "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/",
+    "title": "Expedition 75",
+    "publishedAt": "2026-07-23T21:28:58Z",
+    "modifiedAt": "2026-10-09T17:29:05Z"
+  },
+  "members": [
+    "Pyotr Dubrov",
+    "Anil Menon",
+    "Anna Kikina",
+    "Jessica Watkins",
+    "Luke Delaney",
+    "Joshua Kutryk",
+    "Sergey Teteryatnikov"
+  ],
+  "sourceConflicts": [
+    "Pyotr Dubrov:ROLE_BETWEEN_SECTIONS",
+    "Joshua Kutryk:AGENCY_CARD_CAPTION"
+  ],
+  "shadow": {
+    "rosterId": 1,
+    "capturedAt": "2026-10-10T20:22:38.062531Z",
+    "nasaSlots": 7,
+    "ll2Assignments": 7,
+    "exactNameAgreements": 7,
+    "slots": [
+      {
+        "name": "Pyotr Dubrov",
+        "canonicalId": null,
+        "classification": "UNRESOLVED_SLOT",
+        "basis": "UNIQUE_NAME_CANDIDATE_ONLY",
+        "conflicts": [
+          "ROLE_BETWEEN_SECTIONS"
+        ],
+        "nameCandidate": "6e32c904-e487-40ef-b9fc-089cf33eb216"
+      },
+      {
+        "name": "Anil Menon",
+        "canonicalId": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+        "classification": "MATCHED_EXISTING_CANONICAL",
+        "basis": "EXISTING_RESOURCE_OWNER",
+        "conflicts": [],
+        "nameCandidate": "0aa26f8e-38e0-495d-b9a2-ced538c9e726"
+      },
+      {
+        "name": "Anna Kikina",
+        "canonicalId": null,
+        "classification": "UNRESOLVED_SLOT",
+        "basis": "UNIQUE_NAME_CANDIDATE_ONLY",
+        "conflicts": [],
+        "nameCandidate": "8036ce99-4648-40d8-9aa7-2956ddefaa91"
+      },
+      {
+        "name": "Jessica Watkins",
+        "canonicalId": "6e700f29-14ab-415a-87e4-6567860c1796",
+        "classification": "MATCHED_EXISTING_CANONICAL",
+        "basis": "EXISTING_RESOURCE_OWNER",
+        "conflicts": [],
+        "nameCandidate": "6e700f29-14ab-415a-87e4-6567860c1796"
+      },
+      {
+        "name": "Luke Delaney",
+        "canonicalId": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+        "classification": "MATCHED_EXISTING_CANONICAL",
+        "basis": "EXISTING_RESOURCE_OWNER",
+        "conflicts": [],
+        "nameCandidate": "09dea926-7480-4fc5-a340-01d44a6e5dae"
+      },
+      {
+        "name": "Joshua Kutryk",
+        "canonicalId": null,
+        "classification": "UNRESOLVED_SLOT",
+        "basis": "UNIQUE_NAME_CANDIDATE_ONLY",
+        "conflicts": [
+          "AGENCY_CARD_CAPTION",
+          "NASA_LL2_AGENCY"
+        ],
+        "nameCandidate": "345d3c45-c57a-4bcf-b3d6-ea811ba55416"
+      },
+      {
+        "name": "Sergey Teteryatnikov",
+        "canonicalId": null,
+        "classification": "UNRESOLVED_SLOT",
+        "basis": "UNIQUE_NAME_CANDIDATE_ONLY",
+        "conflicts": [],
+        "nameCandidate": "3e128b74-27e9-4cd5-acf2-bb76910dbe30"
+      }
+    ]
+  },
+  "operationalFailure": "MALFORMED_RESPONSE",
+  "typedPersonalRelations": [
+    {
+      "rosterId": 1,
+      "memberIndex": 1,
+      "subjectName": "Anil Menon",
+      "observedUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+      "locator": "Crew Members/br[1]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_TOPIC",
+        "wpId": 620006,
+        "slug": "nasa-astronaut-anil-menon",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+        "title": "NASA Astronaut: Anil Menon",
+        "publishedAt": "2024-02-29T22:02:32Z",
+        "modifiedAt": "2026-07-14T16:28:29Z"
+      },
+      "acquisitionId": 8,
+      "reason": "EXPLICIT_LINK_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 1,
+      "subjectName": "Anil Menon",
+      "observedUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+      "locator": "Crew Members/br[1]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 40775,
+        "slug": "nasa-astronaut-anil-menon",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+        "title": "Anil Menon",
+        "publishedAt": "2021-12-04T01:59:45Z",
+        "modifiedAt": "2026-10-01T17:36:15Z"
+      },
+      "acquisitionId": 10,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 3,
+      "subjectName": "Jessica Watkins",
+      "observedUrl": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+      "locator": "Crew Members/br[3]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_TOPIC",
+        "wpId": 255064,
+        "slug": "jessica-watkins",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+        "title": "NASA Astronaut: Jessica Watkins",
+        "publishedAt": "2023-06-12T17:16:21Z",
+        "modifiedAt": "2026-10-01T15:42:42Z"
+      },
+      "acquisitionId": 12,
+      "reason": "EXPLICIT_LINK_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 3,
+      "subjectName": "Jessica Watkins",
+      "observedUrl": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+      "locator": "Crew Members/br[3]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 88101,
+        "slug": "jessica-watkins",
+        "canonicalUrl": "https://www.nasa.gov/people/jessica-watkins/",
+        "title": "Jessica Watkins",
+        "publishedAt": "2020-06-04T23:06:04Z",
+        "modifiedAt": "2026-10-01T17:41:05Z"
+      },
+      "acquisitionId": 14,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 4,
+      "subjectName": "Luke Delaney",
+      "observedUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+      "locator": "Crew Members/br[4]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_TOPIC",
+        "wpId": 619970,
+        "slug": "nasa-astronaut-luke-delaney",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+        "title": "NASA Astronaut: Luke Delaney",
+        "publishedAt": "2024-02-29T21:58:20Z",
+        "modifiedAt": "2026-10-01T15:49:33Z"
+      },
+      "acquisitionId": 16,
+      "reason": "EXPLICIT_LINK_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 4,
+      "subjectName": "Luke Delaney",
+      "observedUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+      "locator": "Crew Members/br[4]",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 129838,
+        "slug": "nasa-astronaut-luke-delaney",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+        "title": "Luke Delaney",
+        "publishedAt": "2021-12-04T01:37:12Z",
+        "modifiedAt": "2026-10-01T16:55:32Z"
+      },
+      "acquisitionId": 18,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 1,
+      "subjectName": "Anil Menon",
+      "observedUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+      "locator": "NASA_TOPIC:620006@acquisition:8/content/rendered:Biography",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 40775,
+        "slug": "nasa-astronaut-anil-menon",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+        "title": "Anil Menon",
+        "publishedAt": "2021-12-04T01:59:45Z",
+        "modifiedAt": "2026-10-01T17:36:15Z"
+      },
+      "acquisitionId": 10,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 3,
+      "subjectName": "Jessica Watkins",
+      "observedUrl": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+      "locator": "NASA_TOPIC:255064@acquisition:12/content/rendered:Biography",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 88101,
+        "slug": "jessica-watkins",
+        "canonicalUrl": "https://www.nasa.gov/people/jessica-watkins/",
+        "title": "Jessica Watkins",
+        "publishedAt": "2020-06-04T23:06:04Z",
+        "modifiedAt": "2026-10-01T17:41:05Z"
+      },
+      "acquisitionId": 14,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    },
+    {
+      "rosterId": 1,
+      "memberIndex": 4,
+      "subjectName": "Luke Delaney",
+      "observedUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+      "locator": "NASA_TOPIC:619970@acquisition:16/content/rendered:Biography",
+      "status": "VERIFIED_ABOUT_PERSON_RELATION",
+      "target": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "wpId": 129838,
+        "slug": "nasa-astronaut-luke-delaney",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+        "title": "Luke Delaney",
+        "publishedAt": "2021-12-04T01:37:12Z",
+        "modifiedAt": "2026-10-01T16:55:32Z"
+      },
+      "acquisitionId": 18,
+      "reason": "TOPIC_BIOGRAPHY_ABOUT_NAMED_SUBJECT"
+    }
+  ],
+  "captures": [
+    {
+      "id": 1,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/",
+      "final_url": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:16.575910Z",
+      "completed_at": "2026-10-10T20:05:16.938418Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VERIFIED_CANONICAL_TOPIC_HTML",
+      "resource_metadata": null,
+      "content_hash": "f1adbeeb248858868b9f45e248017bb6650b94d881ab5bdfaf6c589d04d8855f",
+      "roster_id": null
+    },
+    {
+      "id": 2,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:17.070931Z",
+      "completed_at": "2026-10-10T20:05:18.349958Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 3,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission-status?slug=active&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission-status?slug=active&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:18.408098Z",
+      "completed_at": "2026-10-10T20:05:19.186791Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALIDATED_TAXONOMY",
+      "resource_metadata": {
+        "kind": "NASA_MISSION_STATUS",
+        "slug": "active",
+        "wpId": 10828,
+        "title": "Active",
+        "modifiedAt": null,
+        "publishedAt": null,
+        "canonicalUrl": "https://www.nasa.gov/mission-status/active/"
+      },
+      "content_hash": "d69ae4a17750883e2487e5a31502153ea4698385836b6779c63c0a4cd69d6986",
+      "roster_id": null
+    },
+    {
+      "id": 4,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission-target?slug=international-space-station&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission-target?slug=international-space-station&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:19.197003Z",
+      "completed_at": "2026-10-10T20:05:20.310596Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALIDATED_TAXONOMY",
+      "resource_metadata": {
+        "kind": "NASA_MISSION_TARGET",
+        "slug": "international-space-station",
+        "wpId": 11040,
+        "title": "International Space Station",
+        "modifiedAt": null,
+        "publishedAt": null,
+        "canonicalUrl": "https://www.nasa.gov/mission-target/international-space-station/"
+      },
+      "content_hash": "ae8daa29ff19a1bb1c49a6fe24822eed9383f4ef38533de9e35dceb6a8a31483",
+      "roster_id": null
+    },
+    {
+      "id": 5,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?mission-status=10828&mission-target=11040&search=Expedition&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?mission-status=10828&mission-target=11040&search=Expedition&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:20.320402Z",
+      "completed_at": "2026-10-10T20:05:21.545914Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "DISCOVERY_COVERAGE_UNKNOWN",
+      "resource_metadata": null,
+      "content_hash": "b2500c3f5de1dd519de6709c0eda888e1889254a23c6c91a808a39ec7788d772",
+      "roster_id": null
+    },
+    {
+      "id": 6,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:21.576032Z",
+      "completed_at": "2026-10-10T20:05:22.305602Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    },
+    {
+      "id": 7,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+      "final_url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:22.388680Z",
+      "completed_at": "2026-10-10T20:05:22.676387Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "235a8fb4b9fffe09039a2fee0c72c7ef829af6b19aad08e1296ff9a9fc6dd431",
+      "roster_id": null
+    },
+    {
+      "id": 8,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/620006",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/620006",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:22.705511Z",
+      "completed_at": "2026-10-10T20:05:24.410947Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "nasa-astronaut-anil-menon",
+        "wpId": 620006,
+        "title": "NASA Astronaut: Anil Menon",
+        "modifiedAt": "2026-07-14T16:28:29Z",
+        "publishedAt": "2024-02-29T22:02:32Z",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/"
+      },
+      "content_hash": "803e69b844e9a96c7f254ef0057891ab7f5ef19b492251dc3ceb0d97dfb4cf72",
+      "roster_id": null
+    },
+    {
+      "id": 9,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+      "final_url": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:24.427990Z",
+      "completed_at": "2026-10-10T20:05:24.665117Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "45513b81879d98059f528bb6fbcb8aadf9d128e3a5fae7b6d76223d81fe7d80e",
+      "roster_id": null
+    },
+    {
+      "id": 10,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/people/40775",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/people/40775",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:24.692817Z",
+      "completed_at": "2026-10-10T20:05:26.255491Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "slug": "nasa-astronaut-anil-menon",
+        "wpId": 40775,
+        "title": "Anil Menon",
+        "modifiedAt": "2026-10-01T17:36:15Z",
+        "publishedAt": "2021-12-04T01:59:45Z",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/"
+      },
+      "content_hash": "06f524cad0b1d84f0a0244e0e075d5228aad9a47b9d90d55a159414aacf74978",
+      "roster_id": null
+    },
+    {
+      "id": 11,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+      "final_url": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:26.279078Z",
+      "completed_at": "2026-10-10T20:05:26.676316Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "c14d75ad058e09d8a1065f83258854bea750fbe8b9667447ca76c20b4a7cbd18",
+      "roster_id": null
+    },
+    {
+      "id": 12,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/255064",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/255064",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:26.698578Z",
+      "completed_at": "2026-10-10T20:05:28.422000Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "jessica-watkins",
+        "wpId": 255064,
+        "title": "NASA Astronaut: Jessica Watkins",
+        "modifiedAt": "2026-10-01T15:42:42Z",
+        "publishedAt": "2023-06-12T17:16:21Z",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/"
+      },
+      "content_hash": "ba8a6d93161a1fcdf01342b369803c391f2ca5950c419cd1fd9e02217e5bc349",
+      "roster_id": null
+    },
+    {
+      "id": 13,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+      "final_url": "https://www.nasa.gov/people/jessica-watkins/",
+      "redirects": [
+        "https://www.nasa.gov/people/jessica-watkins",
+        "https://www.nasa.gov/people/jessica-watkins/"
+      ],
+      "started_at": "2026-10-10T20:05:28.442112Z",
+      "completed_at": "2026-10-10T20:05:30.671844Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "471cc4b248af23015431697101bfe2524ec091cfafb153484335e8adc875020b",
+      "roster_id": null
+    },
+    {
+      "id": 14,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/people/88101",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/people/88101",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:30.702302Z",
+      "completed_at": "2026-10-10T20:05:32.310925Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "slug": "jessica-watkins",
+        "wpId": 88101,
+        "title": "Jessica Watkins",
+        "modifiedAt": "2026-10-01T17:41:05Z",
+        "publishedAt": "2020-06-04T23:06:04Z",
+        "canonicalUrl": "https://www.nasa.gov/people/jessica-watkins/"
+      },
+      "content_hash": "52ed66988e9be4b6e6348c471f208e13c433fce69edd48cd325570bf5b4e445b",
+      "roster_id": null
+    },
+    {
+      "id": 15,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+      "final_url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:32.338410Z",
+      "completed_at": "2026-10-10T20:05:32.686177Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "c1fd2a8681a218d6109a6bf23870df454b40d9b0449e6abc51a204f4bb8e9c3a",
+      "roster_id": null
+    },
+    {
+      "id": 16,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/619970",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/619970",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:32.720288Z",
+      "completed_at": "2026-10-10T20:05:34.260690Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "nasa-astronaut-luke-delaney",
+        "wpId": 619970,
+        "title": "NASA Astronaut: Luke Delaney",
+        "modifiedAt": "2026-10-01T15:49:33Z",
+        "publishedAt": "2024-02-29T21:58:20Z",
+        "canonicalUrl": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/"
+      },
+      "content_hash": "c520cc208026a5f885c79f30f4ba146d7ac025ebec32766a82ac135c20d57945",
+      "roster_id": null
+    },
+    {
+      "id": 17,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+      "final_url": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:34.299540Z",
+      "completed_at": "2026-10-10T20:05:34.666226Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "PERSON_RESOURCE_HTML",
+      "resource_metadata": null,
+      "content_hash": "70845b1da82288e4dd6a6fe683203e52b42beeae8624f6b999ee95f5b1e56f99",
+      "roster_id": null
+    },
+    {
+      "id": 18,
+      "stream": "NASA_PERSON_RESOURCE",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/people/129838",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/people/129838",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:34.692564Z",
+      "completed_at": "2026-10-10T20:05:36.466741Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TYPED_PERSON_RESOURCE",
+      "resource_metadata": {
+        "kind": "NASA_PEOPLE_RESOURCE",
+        "slug": "nasa-astronaut-luke-delaney",
+        "wpId": 129838,
+        "title": "Luke Delaney",
+        "modifiedAt": "2026-10-01T16:55:32Z",
+        "publishedAt": "2021-12-04T01:37:12Z",
+        "canonicalUrl": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/"
+      },
+      "content_hash": "c6a8ebb6c4627692d565340d8085995062822a135bb0a77b891e8fec0caf6e16",
+      "roster_id": null
+    },
+    {
+      "id": 19,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:36.536155Z",
+      "completed_at": "2026-10-10T20:05:36.660673Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 20,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:05:36.713904Z",
+      "completed_at": "2026-10-10T20:05:37.670809Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    },
+    {
+      "id": 21,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:14:21.951064Z",
+      "completed_at": "2026-10-10T20:14:23.287500Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 22,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:14:23.441282Z",
+      "completed_at": "2026-10-10T20:14:24.461862Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    },
+    {
+      "id": 23,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:14:24.823821Z",
+      "completed_at": "2026-10-10T20:14:24.882762Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 24,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:14:24.922412Z",
+      "completed_at": "2026-10-10T20:14:25.876451Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    },
+    {
+      "id": 25,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:22:34.914752Z",
+      "completed_at": "2026-10-10T20:22:35.926632Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 26,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:22:36.013575Z",
+      "completed_at": "2026-10-10T20:22:36.669617Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    },
+    {
+      "id": 27,
+      "stream": "NASA_EDITORIAL_TOPIC",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+      "redirects": [],
+      "started_at": "2026-10-10T20:22:36.902877Z",
+      "completed_at": "2026-10-10T20:22:37.070154Z",
+      "http_status": 200,
+      "outcome": "SUCCESS",
+      "reason": "VALID_TOPIC_FACTS",
+      "resource_metadata": {
+        "kind": "NASA_TOPIC",
+        "slug": "latest-news-from-space-station-research",
+        "wpId": 196922,
+        "title": "Latest News from Space Station Research",
+        "modifiedAt": "2026-10-08T16:08:20Z",
+        "publishedAt": "2023-03-09T15:42:54Z",
+        "canonicalUrl": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/"
+      },
+      "content_hash": "de0d5b8edf2d7679c7a0b28c9188a40e93c6409c25614dda50247401be4da41f",
+      "roster_id": null
+    },
+    {
+      "id": 28,
+      "stream": "NASA_EDITORIAL_EXPEDITION",
+      "requested_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "final_url": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+      "redirects": [],
+      "started_at": "2026-10-10T20:22:37.114942Z",
+      "completed_at": "2026-10-10T20:22:38.062531Z",
+      "http_status": 200,
+      "outcome": "DEGRADED",
+      "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+      "resource_metadata": {
+        "kind": "NASA_MISSION",
+        "slug": "expedition-75",
+        "wpId": 748853,
+        "title": "Expedition 75",
+        "modifiedAt": "2026-10-09T17:29:05Z",
+        "publishedAt": "2026-07-23T21:28:58Z",
+        "canonicalUrl": "https://www.nasa.gov/mission/expedition-75/"
+      },
+      "content_hash": "18ebb974f4bf088f391189b7f5200fafec2c236212b21ca0323d1af64d0dfecc",
+      "roster_id": 1
+    }
+  ],
+  "logicalGetCount": 28,
+  "redirectHopCount": 2
+}

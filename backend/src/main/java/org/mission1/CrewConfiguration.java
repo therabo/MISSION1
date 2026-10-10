@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Configuration;
 /** Registers source capabilities; ingestion scheduling is composed separately. */
 @Configuration
 class CrewConfiguration {
-    @Bean CrewHttpReader crewHttpReader(Clock utcClock,
+    @Bean CrewHttpReader crewHttpReader(Clock utcClock,org.springframework.beans.factory.ObjectProvider<org.mission1.source.crew.nasa.NasaRequestGate> gates,
             @Value("${mission1.crew.request-timeout:PT20S}") Duration timeout) {
         return new CrewHttpReader(HttpClient.newBuilder().connectTimeout(timeout)
-                .followRedirects(HttpClient.Redirect.NEVER).build(), utcClock, timeout);
+                .followRedirects(HttpClient.Redirect.NEVER).build(), utcClock, timeout,gates.getIfAvailable());
     }
     @Bean LaunchLibrary2CrewSource launchLibrary2CrewSource(CrewHttpReader http,
             @Value("${mission1.crew.ll2.base-url:https://ll.thespacedevs.com/2.3.0/}") URI baseUrl,

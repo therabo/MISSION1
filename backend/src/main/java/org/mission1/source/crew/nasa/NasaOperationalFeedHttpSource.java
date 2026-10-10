@@ -15,11 +15,17 @@ public final class NasaOperationalFeedHttpSource implements CrewVerificationHttp
     private final HttpClient client;
     private final Clock clock;
     private final Duration timeout;
+    private final NasaRequestGate gate;
 
     public NasaOperationalFeedHttpSource(HttpClient client, Clock clock, Duration timeout) {
+        this(client,clock,timeout,null);
+    }
+
+    public NasaOperationalFeedHttpSource(HttpClient client, Clock clock, Duration timeout,NasaRequestGate gate) {
         this.client = client;
         this.clock = clock;
         this.timeout = timeout;
+        this.gate = gate;
     }
 
     @Override
@@ -34,9 +40,10 @@ public final class NasaOperationalFeedHttpSource implements CrewVerificationHttp
                         .GET();
         if (etag != null) builder.header("If-None-Match", etag);
         if (lastModified != null) builder.header("If-Modified-Since", lastModified);
-        try {
+        try (AutoCloseable permit=gate==null?()->{}:gate.acquire()) {
             var r = client.send(builder.build(), HttpResponse.BodyHandlers.ofByteArray());
             int status = r.statusCode();
+            if(status==429 && gate!=null) gate.cooldown(NasaRequestGate.retryAfter(r.headers().firstValue("Retry-After").orElse(null),clock.instant()));
             var failure =
                     status == 200 || status == 304
                             ? null
@@ -63,6 +70,8 @@ public final class NasaOperationalFeedHttpSource implements CrewVerificationHttp
         } catch (HttpTimeoutException e) {
             return failed(CrewSourceResult.FailureCode.TIMEOUT);
         } catch (IOException e) {
+            return failed(CrewSourceResult.FailureCode.NETWORK_ERROR);
+        } catch (Exception e) {
             return failed(CrewSourceResult.FailureCode.NETWORK_ERROR);
         }
     }

@@ -38,3 +38,7 @@ Event time takes precedence within person-presence scope when explicit; publicat
 ## Replay integration — 2026-10-03
 
 Field authority and the assignment/presence distinction also apply at historical effective time. Replay uses the same pure reconciliation rules with explicit event-time applicability and latest canonical profile enrichment. [Crew Replay semantics](../replay/crew-replay.md) distinguish operational history from newer profile metadata and acquisition-time health.
+
+## NASA editorial shadow source — 2026-10-10
+
+[ADR-0014](../adr/0014-nasa-editorial-roster-shadow-observations.md) adds an independent editorial source. Research-topic Expedition/website count are secondary context; mission roster/roles are secondary editorial membership context; personal topic/people resources are identity evidence only. LL2 remains structured assignment/role authority and NASA operational evidence remains presence/completed transfer/official count authority. No editorial observation enters the accepted public Current or Replay projections. Count is reported in persons, never onboard telemetry; omission is never completed departure; CMS modified is never crew-event time. [Source/discovery/provenance and validation](nasa-editorial-roster-validation/README.md).

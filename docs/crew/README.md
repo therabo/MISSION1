@@ -1,5 +1,7 @@
 # ISS Crew operational context
 
+**2026-10-10 — independent editorial shadow source:** [NASA editorial roster](nasa-editorial-roster-validation/README.md) adds verified topic/mission discovery, immutable roster/member/count observations, explicit typed personal-resource relations and source-specific health. It does not change public Current, Replay, LL2 assignment authority, operational RSS semantics or reviewed V7 identities. [ADR-0014](../adr/0014-nasa-editorial-roster-shadow-observations.md).
+
 ## Source occurrence versioning — 2026-10-10
 
 [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) adds stable NASA article identity, conservative assertion/subject occurrences and immutable evidence/metadata membership. A shared pure selector supplies one latest successfully observed compatible source interpretation before Current and Replay reconciliation. Canonical identity, freshness and authority remain independent. No frontend change or additional provider request is required. See the [implementation and real-data validation dossier](source-occurrence-versioning-validation/README.md) for V6, backfill, counts, known-case lineage and regression evidence.
