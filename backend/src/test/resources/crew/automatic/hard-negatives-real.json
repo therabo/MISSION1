@@ -1,0 +1,117 @@
+[
+  {
+    "left": "ll2:488",
+    "right": "nasa:twins-mention:489",
+    "label": 0,
+    "basis": "NASA explicitly calls Mark and Scott distinct twins",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.3333333333333333,
+      "characterSimilarity": 0.5714285714285714,
+      "givenNameSimilarity": 0.2222222222222222,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.11048146671752969,
+      "typedBridge": 0.0
+    },
+    "probability": 0.005383453065191641,
+    "hybridMatch": false
+  },
+  {
+    "left": "ll2:489",
+    "right": "nasa:twins-mention:488",
+    "label": 0,
+    "basis": "NASA explicitly calls Scott and Mark distinct twins",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.3333333333333333,
+      "characterSimilarity": 0.5714285714285714,
+      "givenNameSimilarity": 0.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.08430160576900475,
+      "typedBridge": 0.0
+    },
+    "probability": 0.0019528534385524676,
+    "hybridMatch": false
+  },
+  {
+    "left": "ll2:446",
+    "right": "nasa:people:275656",
+    "label": 0,
+    "basis": "Charles Brady is not Charles Bolden; distinct biographies",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.3333333333333333,
+      "characterSimilarity": 0.7567567567567568,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.09730124794138272,
+      "typedBridge": 0.0
+    },
+    "probability": 0.24559384238209045,
+    "hybridMatch": false
+  },
+  {
+    "left": "ll2:8",
+    "right": "nasa:people:129815",
+    "label": 0,
+    "basis": "Andrew Morgan is not Andrew Feustel; distinct careers",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.2,
+      "characterSimilarity": 0.5161290322580645,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 0.3333333333333333,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.19704718166556207,
+      "typedBridge": 0.0
+    },
+    "probability": 0.002195102891879146,
+    "hybridMatch": false
+  },
+  {
+    "left": "ll2:582",
+    "right": "nasa:people:129831",
+    "label": 0,
+    "basis": "Jessica Watkins is not Jessica Meir; distinct official biographies",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.25,
+      "characterSimilarity": 0.5517241379310345,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 0.14285714285714285,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.05471844484149503,
+      "typedBridge": 0.0
+    },
+    "probability": 0.0011335211464917423,
+    "hybridMatch": false
+  }
+]

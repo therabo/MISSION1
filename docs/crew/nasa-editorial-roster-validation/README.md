@@ -109,3 +109,6 @@ java -cp "backend/target/classes:$editorial_dependencies" \
 ```
 
 Add `--read-only` to emit retained diagnostics without acquisition. The runner disables schedulers and legacy startup writers; it registers no production endpoint/runner. `EditorialCorpusValidation.java` takes the external full fixture directory and output path and makes no network/database calls. Browser wrapper accepts `MISSION1_QA_BACKEND` and `MISSION1_QA_OUTPUT`, with the same URL/build arguments as the accepted navigation script.
+## Subsequent identity integration
+
+V9 now consumes these immutable source slots, personal captions and verified topic/Biography/people relations through the [automatic shadow resolver](../automatic-identity-shadow-validation/README.md). Source observations retain their original meaning. No editorial count, physical presence, active Current selection or public identity behavior is activated. Rejected about-person relations remain retrieval failures and never become positive human evidence.

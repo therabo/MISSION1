@@ -131,7 +131,7 @@ class JdbcCrewVerificationRepositoryTest {
 
     @Test
     void emptySchemaAndV3UpgradePreserveCrewAndOrbitHistory() {
-        assertEquals(8, count("flyway_schema_history"));
+        assertEquals(9, count("flyway_schema_history"));
         var v3 =
                 Flyway.configure()
                         .dataSource(
@@ -160,7 +160,7 @@ class JdbcCrewVerificationRepositoryTest {
                                 POSTGRES.getPassword())
                         .schemas("verification_upgrade")
                         .load();
-        assertEquals(5, latest.migrate().migrationsExecuted);
+        assertEquals(6, latest.migrate().migrationsExecuted);
         latest.validate();
         assertEquals(
                 1,

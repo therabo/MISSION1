@@ -37,3 +37,6 @@ Crew Replay integration is complete. Effective-time reconstruction uses retained
 ## Canonical identity — 2026-10-10
 
 [ADR-0013 projection and maintenance](canonical-identity.md) joins only the reviewed Luke Delaney and Jessica Watkins identities, preserves every UUID/history, and shares field authority between Current and Replay. Meir remains distinct and Fedyaev remains unresolved. [Validation](canonical-identity-validation/README.md).
+## Automatic identity shadow — ADR-0015 / V9
+
+The [automatic resolver dossier](automatic-identity-shadow-validation/README.md) describes the retained-evidence Java model, independent typed shadow graph, durable jobs and append-only correction. Production V7, Current/detail/Replay and source-authority semantics remain unchanged. Source facts, personal corroboration and candidate generation precede scoring; reviewed identities are available only to a separate diagnostic comparison.

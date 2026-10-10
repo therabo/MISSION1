@@ -61,7 +61,7 @@ class JdbcOrbitalElementSetRepositoryTest {
 
     @Test
     void flywayMigratesAnEmptyPostgresDatabase() {
-        assertEquals(8, jdbc.queryForObject(
+        assertEquals(9, jdbc.queryForObject(
                 "SELECT count(*) FROM flyway_schema_history WHERE success = true", Integer.class));
         assertNotNull(jdbc.queryForObject("SELECT count(*) FROM orbital_element_sets", Integer.class));
         assertNotNull(jdbc.queryForObject("SELECT count(*) FROM orbital_element_observations", Integer.class));

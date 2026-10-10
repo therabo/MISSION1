@@ -1,0 +1,70 @@
+{
+  "features": [
+    "exactName",
+    "nameTokenContainment",
+    "tokenJaccard",
+    "characterSimilarity",
+    "givenNameSimilarity",
+    "surnameSimilarity",
+    "sameAgency",
+    "dobEqual",
+    "dobConflict",
+    "sharedSelection",
+    "sharedMission",
+    "biographyLexicalCosine",
+    "typedBridge"
+  ],
+  "logisticCoefficient": [
+    1.1271086109377864,
+    3.4945602650245493,
+    3.9673043533420493,
+    2.175524888833218,
+    3.444723624279871,
+    4.061259308678784,
+    0.77792202684816,
+    4.179842355253786,
+    -1.4713444651379968,
+    0.8312459942922726,
+    2.7340214006677055,
+    0.0020186145359737725,
+    0.0
+  ],
+  "intercept": -11.991408131730541,
+  "C": 10,
+  "sigmoidValidationCalibration": {
+    "coefficient": 1.3290910282167627,
+    "intercept": -0.14067974770788946
+  },
+  "FS": {
+    "m": [
+      0.5,
+      0.9142857142857143,
+      0.8142857142857143,
+      0.9428571428571428,
+      0.38571428571428573,
+      0.014285714285714285,
+      0.18571428571428572,
+      0.21428571428571427,
+      0.21428571428571427
+    ],
+    "u": [
+      0.00021939447125932427,
+      0.00021939447125932427,
+      0.00021939447125932427,
+      0.32689776217639316,
+      0.00021939447125932427,
+      0.33677051338306274,
+      0.01075032909170689,
+      0.0035103115401491883,
+      0.00043878894251864854
+    ],
+    "prior": 0.014915693904020753,
+    "conditionalIndependenceUnverified": true
+  },
+  "chosenValidationThreshold": 0.95,
+  "holdoutNeverUsedForThreshold": true,
+  "brierHoldoutRaw": 0.000537712156473317,
+  "brierHoldoutCalibrated": 0.0005496803531803862,
+  "modelVersion": "research-logistic-v1",
+  "probabilityNotProductionCertified": true
+}

@@ -1,0 +1,955 @@
+{
+  "baseline": "e2b036496c631e1db93b122f5aa022c4510ec5de",
+  "modelVersion": "crew-auto-identity-v1-shadow",
+  "featureSchema": "research-13-v1-scoped-extractor-1",
+  "policy": "balanced-0.991-margin-0.20-scoped-1",
+  "modelSha": "469c31402cdd89ae1bc956cdcabdc57e00088b967806d322bdfbfca8d9896792",
+  "lexicalSha": "5c7df0376b9b8e9b64f6f9d18204f152a148baaac439fdaf4cc70b488e774c10",
+  "sources": [
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+      "name": "Pyotr Dubrov",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:650",
+      "probability": 0.9999028064415475,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9999028064415475,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [
+        "ROLE_BETWEEN_SECTIONS"
+      ],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 1
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:1",
+      "name": "Anil Menon",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:713",
+      "probability": 0.9999029177024155,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9999029177024155,
+      "witnesses": [
+        "VALIDATED_BIOGRAPHY_LEXICAL"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "TYPED_PEOPLE_RELATION",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 2
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+      "name": "Anna Kikina",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:649",
+      "probability": 0.9999028064415475,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9999028064415475,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 3
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:3",
+      "name": "Jessica Watkins",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 2,
+      "best": "LL2:PERSON:582",
+      "probability": 0.9999678084046353,
+      "runner": "LL2:PERSON:573",
+      "runnerProbability": 0.00244028259437866,
+      "margin": 0.9975275258102566,
+      "witnesses": [
+        "BIOGRAPHICAL_SELECTION"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "TYPED_PEOPLE_RELATION",
+        "PERSONAL_FLIGHT_CAPTION",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 4
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:4",
+      "name": "Luke Delaney",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:710",
+      "probability": 0.9999029133715437,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9999029133715437,
+      "witnesses": [
+        "VALIDATED_BIOGRAPHY_LEXICAL"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "TYPED_PEOPLE_RELATION",
+        "PERSONAL_FLIGHT_CAPTION",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 5
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+      "name": "Joshua Kutryk",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:642",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [
+        "PERSONAL_FLIGHT_CAPTION"
+      ],
+      "sourceConflicts": [
+        "AGENCY_CARD_CAPTION"
+      ],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 6
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+      "name": "Sergey Teteryatnikov",
+      "kind": "EDITORIAL_SLOT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:915",
+      "probability": 0.9999028064415475,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9999028064415475,
+      "witnesses": [],
+      "sourceQualifications": [
+        "PERSONAL_FLIGHT_CAPTION"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 7
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:0d77ecdb1da9cb0eb299f95111e8c9ab93227db2a20a246111e3a54a9280feae",
+      "name": "Luke Delaney",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:710",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 8
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:136a0b2f7dcea4f66d66961d0be5f333fd873f172ef7e6585afbed532cf18c4e",
+      "name": "Jack Hathaway",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:712",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 9
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:161d22a7c05ea1cf610880c4265ab8df1c7ccc805475526d95a838fc597a837f",
+      "name": "Jessica Watkins",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 2,
+      "best": "LL2:PERSON:582",
+      "probability": 0.9997267307654227,
+      "runner": "LL2:PERSON:573",
+      "runnerProbability": 0.0008688368096983099,
+      "margin": 0.9988578939557244,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 10
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:1bb18700544ebdd161d70f3050226ff5a1be493f87a1ce8da328d23baad6aa8f",
+      "name": "Anna Kikina",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:649",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 11
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:29cb54f905cfab01d4caa067402399c68a2c50ff875268902626789cce7787f8",
+      "name": "Joshua Kutryk",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:642",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 12
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:56f696d04706359c73d7eb03da29e2387f3448ae6829d508a7f2f107f8809619",
+      "name": "Pyotr Dubrov",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:650",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 13
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:8bac65da3da0c6f76d44179fe44f72261238a49d7c0dff85fea47470b3481cb3",
+      "name": "Anil Menon",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:713",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 14
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e",
+      "name": "Andrey Fedyaev",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:732",
+      "probability": 0.9842272118722014,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9842272118722014,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "BELOW_THRESHOLD",
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 15
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:daaf52d2f412a4322c54611ab4cd69d2b6417a86995b849e5aa7f5545ad0ebf8",
+      "name": "Sergey Teteryatnikov",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:915",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 16
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:de59f2c36d8a5d9d16196f274dfa8b6bfba7d35ff1183517a12c28388fdaaafc",
+      "name": "Sophie Adenot",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:747",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 17
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:fc1f6666f6d180eaf68bee5c74560b6c38010df25cd82e86bfa6b5b216e3a77e",
+      "name": "Jessica Meir",
+      "kind": "OPERATIONAL_SUBJECT",
+      "candidateCount": 2,
+      "best": "LL2:PERSON:573",
+      "probability": 0.9997267307654227,
+      "runner": "LL2:PERSON:582",
+      "runnerProbability": 0.0007041679333133657,
+      "margin": 0.9990225628321093,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 18
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:129838",
+      "name": "Luke Delaney",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:710",
+      "probability": 0.9997270313567254,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997270313567254,
+      "witnesses": [
+        "VALIDATED_BIOGRAPHY_LEXICAL"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 19
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:40775",
+      "name": "Anil Menon",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:713",
+      "probability": 0.9997270435312574,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997270435312574,
+      "witnesses": [
+        "VALIDATED_BIOGRAPHY_LEXICAL"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 20
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:88101",
+      "name": "Jessica Watkins",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 2,
+      "best": "LL2:PERSON:582",
+      "probability": 0.9999094795077279,
+      "runner": "LL2:PERSON:573",
+      "runnerProbability": 0.0008691482257436072,
+      "margin": 0.9990403312819843,
+      "witnesses": [
+        "BIOGRAPHICAL_SELECTION"
+      ],
+      "sourceQualifications": [
+        "VALIDATED_BIOGRAPHY",
+        "PERSON_SCOPED_HISTORY"
+      ],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_MATCH",
+      "reasons": [],
+      "revision": 21
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:255064",
+      "name": "Jessica Watkins",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 2,
+      "best": "LL2:PERSON:582",
+      "probability": 0.9997267307654227,
+      "runner": "LL2:PERSON:573",
+      "runnerProbability": 0.0008688368096983099,
+      "margin": 0.9988578939557244,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 22
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:619970",
+      "name": "Luke Delaney",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:710",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 23
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:620006",
+      "name": "Anil Menon",
+      "kind": "PERSONAL_RESOURCE",
+      "candidateCount": 1,
+      "best": "LL2:PERSON:713",
+      "probability": 0.9997267307654227,
+      "runner": null,
+      "runnerProbability": 0.0,
+      "margin": 0.9997267307654227,
+      "witnesses": [],
+      "sourceQualifications": [],
+      "sourceConflicts": [],
+      "blockingConflicts": [],
+      "decision": "AUTO_DEFER",
+      "reasons": [
+        "MISSING_QUALIFIED_PERSONAL_CORROBORATION"
+      ],
+      "revision": 24
+    }
+  ],
+  "comparison": [
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+      "name": "Pyotr Dubrov",
+      "shadowCandidate": "LL2:PERSON:650",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "NO_PRODUCTION_REFERENCE",
+      "productionReference": null
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:1",
+      "name": "Anil Menon",
+      "shadowCandidate": "LL2:PERSON:713",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "0aa26f8e-38e0-495d-b9a2-ced538c9e726"
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+      "name": "Anna Kikina",
+      "shadowCandidate": "LL2:PERSON:649",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "NO_PRODUCTION_REFERENCE",
+      "productionReference": null
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:3",
+      "name": "Jessica Watkins",
+      "shadowCandidate": "LL2:PERSON:582",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "6e700f29-14ab-415a-87e4-6567860c1796"
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:4",
+      "name": "Luke Delaney",
+      "shadowCandidate": "LL2:PERSON:710",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "09dea926-7480-4fc5-a340-01d44a6e5dae"
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+      "name": "Joshua Kutryk",
+      "shadowCandidate": "LL2:PERSON:642",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "NO_PRODUCTION_REFERENCE",
+      "productionReference": null
+    },
+    {
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+      "name": "Sergey Teteryatnikov",
+      "shadowCandidate": "LL2:PERSON:915",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "NO_PRODUCTION_REFERENCE",
+      "productionReference": null
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:0d77ecdb1da9cb0eb299f95111e8c9ab93227db2a20a246111e3a54a9280feae",
+      "name": "Luke Delaney",
+      "shadowCandidate": "LL2:PERSON:710",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "09dea926-7480-4fc5-a340-01d44a6e5dae"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:136a0b2f7dcea4f66d66961d0be5f333fd873f172ef7e6585afbed532cf18c4e",
+      "name": "Jack Hathaway",
+      "shadowCandidate": "LL2:PERSON:712",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:161d22a7c05ea1cf610880c4265ab8df1c7ccc805475526d95a838fc597a837f",
+      "name": "Jessica Watkins",
+      "shadowCandidate": "LL2:PERSON:582",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "6e700f29-14ab-415a-87e4-6567860c1796"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:1bb18700544ebdd161d70f3050226ff5a1be493f87a1ce8da328d23baad6aa8f",
+      "name": "Anna Kikina",
+      "shadowCandidate": "LL2:PERSON:649",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "8036ce99-4648-40d8-9aa7-2956ddefaa91"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:29cb54f905cfab01d4caa067402399c68a2c50ff875268902626789cce7787f8",
+      "name": "Joshua Kutryk",
+      "shadowCandidate": "LL2:PERSON:642",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "345d3c45-c57a-4bcf-b3d6-ea811ba55416"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:56f696d04706359c73d7eb03da29e2387f3448ae6829d508a7f2f107f8809619",
+      "name": "Pyotr Dubrov",
+      "shadowCandidate": "LL2:PERSON:650",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "6e32c904-e487-40ef-b9fc-089cf33eb216"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:8bac65da3da0c6f76d44179fe44f72261238a49d7c0dff85fea47470b3481cb3",
+      "name": "Anil Menon",
+      "shadowCandidate": "LL2:PERSON:713",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "0aa26f8e-38e0-495d-b9a2-ced538c9e726"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e",
+      "name": "Andrey Fedyaev",
+      "shadowCandidate": "LL2:PERSON:732",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "AGREES",
+      "productionReference": null
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:daaf52d2f412a4322c54611ab4cd69d2b6417a86995b849e5aa7f5545ad0ebf8",
+      "name": "Sergey Teteryatnikov",
+      "shadowCandidate": "LL2:PERSON:915",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "3e128b74-27e9-4cd5-acf2-bb76910dbe30"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:de59f2c36d8a5d9d16196f274dfa8b6bfba7d35ff1183517a12c28388fdaaafc",
+      "name": "Sophie Adenot",
+      "shadowCandidate": "LL2:PERSON:747",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "9735513f-4ad9-44ba-863d-4f05978fca61"
+    },
+    {
+      "source": "NASA:OPERATIONAL_SUBJECT:fc1f6666f6d180eaf68bee5c74560b6c38010df25cd82e86bfa6b5b216e3a77e",
+      "name": "Jessica Meir",
+      "shadowCandidate": "LL2:PERSON:573",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:129838",
+      "name": "Luke Delaney",
+      "shadowCandidate": "LL2:PERSON:710",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "09dea926-7480-4fc5-a340-01d44a6e5dae"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:40775",
+      "name": "Anil Menon",
+      "shadowCandidate": "LL2:PERSON:713",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "0aa26f8e-38e0-495d-b9a2-ced538c9e726"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:88101",
+      "name": "Jessica Watkins",
+      "shadowCandidate": "LL2:PERSON:582",
+      "shadowOutcome": "AUTO_MATCH",
+      "classification": "AGREES",
+      "productionReference": "6e700f29-14ab-415a-87e4-6567860c1796"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:255064",
+      "name": "Jessica Watkins",
+      "shadowCandidate": "LL2:PERSON:582",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "6e700f29-14ab-415a-87e4-6567860c1796"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:619970",
+      "name": "Luke Delaney",
+      "shadowCandidate": "LL2:PERSON:710",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "09dea926-7480-4fc5-a340-01d44a6e5dae"
+    },
+    {
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:620006",
+      "name": "Anil Menon",
+      "shadowCandidate": "LL2:PERSON:713",
+      "shadowOutcome": "AUTO_DEFER",
+      "classification": "SHADOW_DEFER_PRODUCTION_MATCHED",
+      "productionReference": "0aa26f8e-38e0-495d-b9a2-ced538c9e726"
+    }
+  ],
+  "health": {
+    "auto_identity_conflict_total": 0,
+    "auto_identity_defer_total": 18,
+    "auto_identity_match_total": 6,
+    "auto_identity_queue_oldest_age": 0,
+    "auto_identity_queue_pending": 0,
+    "auto_identity_revision_total": 24,
+    "auto_identity_separate_total": 0,
+    "decisions": [
+      {
+        "outcome": "AUTO_DEFER",
+        "count": 18
+      },
+      {
+        "outcome": "AUTO_MATCH",
+        "count": 6
+      }
+    ],
+    "evaluatedAt": "2026-10-10T22:14:13.466822Z",
+    "high_risk_match_count": 0,
+    "modelError": "",
+    "modelLoaded": true,
+    "modelShaValid": true,
+    "provider_identities_unbound": 18,
+    "queue": {
+      "pending": 0,
+      "failed": 0,
+      "retries": 0,
+      "oldest_pending": null,
+      "latest_success": "2026-10-10T22:14:13.178+00:00"
+    },
+    "shadow_identity_components": 29
+  },
+  "timings": [
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Pyotr Dubrov",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+      "millis": 24.553916
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anil Menon",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:1",
+      "millis": 15.499416
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anna Kikina",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+      "millis": 9.55525
+    },
+    {
+      "candidates": 2,
+      "totalStatements": 8,
+      "name": "Jessica Watkins",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:3",
+      "millis": 15.391042
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Luke Delaney",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:4",
+      "millis": 12.935292
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Joshua Kutryk",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+      "millis": 8.672833
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Sergey Teteryatnikov",
+      "selectQueries": 5,
+      "source": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+      "millis": 8.323917
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Luke Delaney",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:0d77ecdb1da9cb0eb299f95111e8c9ab93227db2a20a246111e3a54a9280feae",
+      "millis": 7.568375
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Jack Hathaway",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:136a0b2f7dcea4f66d66961d0be5f333fd873f172ef7e6585afbed532cf18c4e",
+      "millis": 7.455167
+    },
+    {
+      "candidates": 2,
+      "totalStatements": 8,
+      "name": "Jessica Watkins",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:161d22a7c05ea1cf610880c4265ab8df1c7ccc805475526d95a838fc597a837f",
+      "millis": 7.708333
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anna Kikina",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:1bb18700544ebdd161d70f3050226ff5a1be493f87a1ce8da328d23baad6aa8f",
+      "millis": 6.829959
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Joshua Kutryk",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:29cb54f905cfab01d4caa067402399c68a2c50ff875268902626789cce7787f8",
+      "millis": 8.527959
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Pyotr Dubrov",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:56f696d04706359c73d7eb03da29e2387f3448ae6829d508a7f2f107f8809619",
+      "millis": 6.39725
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anil Menon",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:8bac65da3da0c6f76d44179fe44f72261238a49d7c0dff85fea47470b3481cb3",
+      "millis": 7.131625
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Andrey Fedyaev",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e",
+      "millis": 6.594333
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Sergey Teteryatnikov",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:daaf52d2f412a4322c54611ab4cd69d2b6417a86995b849e5aa7f5545ad0ebf8",
+      "millis": 7.256792
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Sophie Adenot",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:de59f2c36d8a5d9d16196f274dfa8b6bfba7d35ff1183517a12c28388fdaaafc",
+      "millis": 6.736416
+    },
+    {
+      "candidates": 2,
+      "totalStatements": 8,
+      "name": "Jessica Meir",
+      "selectQueries": 5,
+      "source": "NASA:OPERATIONAL_SUBJECT:fc1f6666f6d180eaf68bee5c74560b6c38010df25cd82e86bfa6b5b216e3a77e",
+      "millis": 7.575334
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Luke Delaney",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:129838",
+      "millis": 8.668167
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anil Menon",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:40775",
+      "millis": 9.144666
+    },
+    {
+      "candidates": 2,
+      "totalStatements": 8,
+      "name": "Jessica Watkins",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_PEOPLE_RESOURCE:88101",
+      "millis": 13.055917
+    },
+    {
+      "candidates": 2,
+      "totalStatements": 8,
+      "name": "Jessica Watkins",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:255064",
+      "millis": 9.06075
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Luke Delaney",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:619970",
+      "millis": 6.682417
+    },
+    {
+      "candidates": 1,
+      "totalStatements": 7,
+      "name": "Anil Menon",
+      "selectQueries": 5,
+      "source": "NASA:PERSONAL_RESOURCE:NASA_TOPIC:620006",
+      "millis": 7.492458
+    }
+  ],
+  "networkCallsDuringResolver": 0,
+  "productionActivationGateMet": false,
+  "performance": {
+    "importSelectQueries": 7,
+    "evaluationSelectQueries": [
+      5
+    ],
+    "maximumCandidates": 2,
+    "sevenSlotMillis": 94.931666,
+    "all24Millis": 228.817584,
+    "medianMillis": 8.323917
+  }
+}

@@ -36,3 +36,6 @@ The additive `canonicalProfile` object contains canonical/requested UUIDs, retai
 Replay uses canonical identity and latest retained metadata at `knownAt`, with operational assignment/presence at T. `EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION` and `LATEST_AVAILABLE_CANONICAL_METADATA` remain unchanged. New review knowledge may improve identity in old T without importing a future assignment. The engine marker is `crew-reconciliation-v3/crew-canonical-identity-v1`; stored older interpretations are preserved.
 
 See [validation](canonical-identity-validation/README.md) for retained-data and browser evidence.
+## Automatic shadow overlay
+
+[ADR-0015](../adr/0015-automatic-crew-identity-shadow.md) and [validation](automatic-identity-shadow-validation/README.md) introduce independent MACHINE decisions in V9. The reviewed policy below still governs production. Shadow extraction never uses canonical profiles, V7 bindings/equivalence or the approved manifest. Every automatic revision pins its exact source observations, vectors, model/calibration SHA, policy, runner-up and guards; contradictory evidence appends a correction and rebuilds only the shadow graph. No public UUID/detail/Current/Replay activation occurs.

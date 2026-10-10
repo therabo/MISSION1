@@ -1,0 +1,48 @@
+{
+  "nameOnly": {
+    "p": 0.9842272118722014,
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.6666666666666666,
+      "characterSimilarity": 0.717948717948718,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 0.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.0,
+      "typedBridge": 0.0
+    },
+    "decision": "AUTO_DEFER"
+  },
+  "NASAOfficialTwoMissionAndSelection": {
+    "p": 0.9999501311778145,
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.6666666666666666,
+      "characterSimilarity": 0.717948717948718,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 1.0,
+      "biographyLexicalCosine": 0.0,
+      "typedBridge": 0.0
+    },
+    "decision": "AUTO_MATCH",
+    "scopedInterviewExcerpt": "Host: And last but not least, we have Roscosmos cosmonaut Andrey Fedyaev, also a mission specialist for Crew-6, working with the commander and the pilot to monitor the spacecraft during all of those dynamic launch and re-entry phases of the flight. He\u2019s also going to become a flight engineer once they\u2019re onboard the space station. He was selected to become a cosmonaut in 2012 and has been patiently waiting for his first trip into space. He\u2019s about to become the second cosmonaut to fly aboard Dragon and fulfill what he talked about as a lifelong ambition to fly in space. So let\u2019s meet our fourth and final member of Crew-6, Andrey Fedyaev. Enjoy.",
+    "dobAttributedToNASA": false
+  },
+  "GCTCSeparate": {
+    "p": 0.9999987486167595
+  },
+  "probabilityNotCertified": true,
+  "modelOddsRatio": 321.3381817851524,
+  "probabilityPercentagePointIncrease": 1.5722919305613092
+}

@@ -1,0 +1,359 @@
+[
+  {
+    "case": "P:ll2:672|nasa:people:90428",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.6666666666666666,
+      "characterSimilarity": 0.9166666666666666,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 0.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.08627715249982075,
+      "typedBridge": 0.0
+    },
+    "linear": 3.6484099435586366,
+    "raw": 0.974628007111805,
+    "p": 0.9910613261435816
+  },
+  {
+    "case": "P:ll2:364|nasa:people:275656",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.5,
+      "characterSimilarity": 0.8484848484848485,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.16719422965082723,
+      "typedBridge": 0.0
+    },
+    "linear": 3.616946676150821,
+    "raw": 0.9738382468009893,
+    "p": 0.9906831634959804
+  },
+  {
+    "case": "P:ll2:770|nasa:people:90424",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.6666666666666666,
+      "characterSimilarity": 0.9285714285714286,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 0.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.01429491637916045,
+      "typedBridge": 0.0
+    },
+    "linear": 3.674163744989915,
+    "raw": 0.9752571288510749,
+    "p": 0.9913595131917182
+  },
+  {
+    "case": "P:ll2:418|nasa:people:445356",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.5,
+      "characterSimilarity": 0.8461538461538461,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.10733671221357438,
+      "typedBridge": 0.0
+    },
+    "linear": 3.6117546933090114,
+    "raw": 0.9737056430856614,
+    "p": 0.9906192544218088
+  },
+  {
+    "case": "P:ll2:36|nasa:people:90344",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.5,
+      "characterSimilarity": 0.8148148148148148,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.13046774120946483,
+      "typedBridge": 0.0
+    },
+    "linear": 3.543622543270388,
+    "raw": 0.9719038013866322,
+    "p": 0.989739266186045
+  },
+  {
+    "case": "P:ll2:650|gctc:directory-row:7",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.25,
+      "characterSimilarity": 0.6857142857142857,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 1.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.0,
+      "typedBridge": 0.0
+    },
+    "linear": 3.7871997611577655,
+    "raw": 0.9778430890334961,
+    "p": 0.9925558402684898
+  },
+  {
+    "case": "P:ll2:418|nasa:people:445356",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.5,
+      "characterSimilarity": 0.8461538461538461,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.10733671221357438,
+      "typedBridge": 0.0
+    },
+    "linear": 3.6117546933090114,
+    "raw": 0.9737056430856614,
+    "p": 0.9906192544218088
+  },
+  {
+    "case": "P:ll2:425|nasa:people:773360",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 0.6666666666666666,
+      "characterSimilarity": 0.9411764705882353,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.11005221355540899,
+      "typedBridge": 0.0
+    },
+    "linear": 4.479701651542431,
+    "raw": 0.9887902872496177,
+    "p": 0.9970212000824813
+  },
+  {
+    "case": "SYNTHETIC unobservable homonym with identical published facts",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 0.0
+    },
+    "linear": 7.889069242184977,
+    "raw": 0.9996253221583801,
+    "p": 0.9999678353832467
+  },
+  {
+    "case": "SYNTHETIC exact full name but two conflicting authoritative DOBs",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 1.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 0.0
+    },
+    "linear": 6.417724777046981,
+    "raw": 0.9983702942667264,
+    "p": 0.9997727109471434
+  },
+  {
+    "case": "SYNTHETIC copied bio linked to another verified official person",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 1.0
+    },
+    "linear": 7.889069242184977,
+    "raw": 0.9996253221583801,
+    "p": 0.9999678353832467
+  },
+  {
+    "case": "SYNTHETIC duplicate strong candidate tie",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 0.0
+    },
+    "linear": 7.889069242184977,
+    "raw": 0.9996253221583801,
+    "p": 0.9999678353832467
+  },
+  {
+    "case": "SYNTHETIC same surname agency nationality only",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.2,
+      "characterSimilarity": 0.45,
+      "givenNameSimilarity": 0.2,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.0,
+      "typedBridge": 0.0
+    },
+    "linear": -4.690835000704265,
+    "raw": 0.009095530426773624,
+    "p": 0.0017003379608718817
+  },
+  {
+    "case": "SYNTHETIC mission family and agency only",
+    "features": {
+      "exactName": 0.0,
+      "nameTokenContainment": 0.0,
+      "tokenJaccard": 0.0,
+      "characterSimilarity": 0.3,
+      "givenNameSimilarity": 0.2,
+      "surnameSimilarity": 0.2,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 1.0,
+      "biographyLexicalCosine": 0.1,
+      "typedBridge": 0.0
+    },
+    "linear": -6.325408789519382,
+    "raw": 0.0017870350605207806,
+    "p": 0.00019394852154122386
+  },
+  {
+    "case": "SYNTHETIC no biographical/mission corroboration",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 0.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.0,
+      "typedBridge": 0.0
+    },
+    "linear": 7.056994946213877,
+    "raw": 0.9991393786573235,
+    "p": 0.9999028064415475
+  },
+  {
+    "case": "SYNTHETIC simultaneous incompatible completed physical presence",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 0.0
+    },
+    "linear": 7.889069242184977,
+    "raw": 0.9996253221583801,
+    "p": 0.9999678353832467
+  },
+  {
+    "case": "SYNTHETIC withdrawn wrong profile redirect",
+    "features": {
+      "exactName": 1.0,
+      "nameTokenContainment": 1.0,
+      "tokenJaccard": 1.0,
+      "characterSimilarity": 1.0,
+      "givenNameSimilarity": 1.0,
+      "surnameSimilarity": 1.0,
+      "sameAgency": 1.0,
+      "dobEqual": 0.0,
+      "dobConflict": 0.0,
+      "sharedSelection": 1.0,
+      "sharedMission": 0.0,
+      "biographyLexicalCosine": 0.41033177165203505,
+      "typedBridge": 0.0
+    },
+    "linear": 7.889069242184977,
+    "raw": 0.9996253221583801,
+    "p": 0.9999678353832467
+  }
+]
