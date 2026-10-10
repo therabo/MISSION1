@@ -66,3 +66,7 @@ Crew milestone 7 (Replay integration) is DONE. Effective-time historical state r
 ## Independent automatic identity shadow
 
 [ADR-0015](../adr/0015-automatic-crew-identity-shadow.md) adds deterministic native Java resolution over retained unfused Crew evidence, with a frozen calibrated logistic model, source-scoped personal witnesses, component/ambiguity guards, PostgreSQL jobs and reversible shadow graph revisions. It consumes V8 resource/caption relations without new acquisition. Production identity/presence/Current/Replay still use V7; automatic decisions are diagnostic until independent accuracy and lifecycle rollout gates pass.
+
+## Shadow membership overlay — 2026-10-11
+
+[ADR-0016](../adr/0016-shadow-active-crew-membership.md) adds `crew.membership` within the existing Crew module. `RetainedMembershipInputs` obtains a batched repeatable-read cut; `ShadowMembershipIdentity` binds exact source versions through the pinned V9 graph; `ActiveMembershipPolicy` evaluates positive supports and operational episodes; `ActiveMembershipStore` atomically appends V10 revisions. The sole writer holds an advisory lock before loading the cut. Durable source/graph notifications and a bounded expiry schedule do not depend on GET traffic. `latest()` and `health()` are internal read-only queries. `LegacyMembershipComparison` consults V7 only after the independent shadow result exists. No new service, identity graph, network acquisition or public DTO is introduced. [Validation and rollout boundary](../crew/active-membership-shadow-validation/README.md).

@@ -1,0 +1,543 @@
+[
+  {
+    "scenario": "NASA7-LL2-7",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [],
+      "health": "GOOD",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "NASA7-LL2-6",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [
+        "ll2:915"
+      ],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "MEMBERSHIP_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "NASA6-LL2-7",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [
+        "ll2:915"
+      ],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 6,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "MEMBERSHIP_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "same-count-different-humans",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:573",
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 8,
+      "nasaOnly": [
+        "ll2:573"
+      ],
+      "ll2Only": [
+        "ll2:915"
+      ],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:573",
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "MEMBERSHIP_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "completed-departure-overrides-retained-roster",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:573",
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [
+        "ll2:573"
+      ],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 8,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "DEPARTURE_VS_RETAINED_MEMBERSHIP"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "NASA-removal-LL2-lag",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [
+        "ll2:915"
+      ],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 6,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "MEMBERSHIP_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "both-remove-without-departure",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713"
+      ],
+      "activeCount": 6,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 6,
+      "physicalCountDerived": null,
+      "conflicts": [],
+      "health": "GOOD",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "visitor-arrival-not-in-expedition",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915",
+        "visitor:source-person"
+      ],
+      "activeCount": 8,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915",
+        "visitor:source-person"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [
+        "visitor:source-person"
+      ],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [],
+      "health": "GOOD",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "NASA-updated-first-new-person",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915",
+        "new:provisional"
+      ],
+      "activeCount": 8,
+      "nasaOnly": [
+        "new:provisional"
+      ],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915",
+        "new:provisional"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 8,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "MEMBERSHIP_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "NASA-outage",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "NASA_ROSTER_STALE"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "LL2-outage",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "LL2_STALE"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "operational-malformed",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "OPERATIONAL_MALFORMED"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "count-roster-mismatch",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 8,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "WEBSITE_COUNT_ROSTER_DISAGREEMENT"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": true
+    }
+  },
+  {
+    "scenario": "unresolved-roster-identities",
+    "fixtureCategory": "SYNTHETIC_ASSUMED_CANONICAL_BINDINGS",
+    "result": {
+      "activeCanonicalRows": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "activeCount": 7,
+      "nasaOnly": [],
+      "ll2Only": [],
+      "retainedLastKnownNasa": [],
+      "retainedPeople": [
+        "ll2:582",
+        "ll2:642",
+        "ll2:649",
+        "ll2:650",
+        "ll2:710",
+        "ll2:713",
+        "ll2:915"
+      ],
+      "completedDepartures": [],
+      "confirmedAboard": [],
+      "websiteReportedAboard": 7,
+      "physicalCountDerived": null,
+      "conflicts": [
+        "NASA_ROSTER_UNBOUND_SUBJECTS"
+      ],
+      "health": "DEGRADED",
+      "identityBindingsAssumedForProjectionFixture": false
+    }
+  }
+]

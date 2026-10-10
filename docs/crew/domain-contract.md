@@ -74,3 +74,7 @@ Current states are CONFIRMED_ABOARD, CONFIRMED_NOT_ABOARD, UNVERIFIED, UNKNOWN, 
 ## Replay integration — 2026-10-03
 
 Replay retains assignment/presence and planned/completed distinctions. Operational fields are evaluated at T; profile metadata may be newer and is labeled. Knowledge-time reconstruction is separate. [Crew Replay](../replay/crew-replay.md).
+
+## Independent membership lifecycle — ADR-0016
+
+The internal shadow model distinguishes typed canonical human, provider/source slot, structured assignment, editorial membership, qualified operational positive, completed departure, attributed membership support, ACTIVE/RETAINED human, unresolved source slot, namespaced finding, source count, projection health and immutable revision. Membership is positive-support based and independent of identity and physical presence. Source omission retracts only one support; retained people keep the original UUID/profile/history. [Policy and persistence](active-membership-shadow-validation/README.md). Public Current/Replay domain projections remain unchanged.

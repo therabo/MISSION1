@@ -69,8 +69,8 @@ class JdbcCrewRepositoryTest {
     }
 
     @Test void cleanDatabaseMigratesV1V2V3AndHasNoPresenceTable() {
-        assertEquals(9, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
-        assertEquals(60, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
+        assertEquals(10, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
+        assertEquals(68, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
                             + " AND table_name LIKE 'crew_%'", Integer.class));
         assertTrue(query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).isEmpty());
         assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM information_schema.columns WHERE"
@@ -88,7 +88,7 @@ class JdbcCrewRepositoryTest {
         var before = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
         var upgrade = Flyway.configure().dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
                 .schemas("crew_upgrade_test").load();
-        assertEquals(7, upgrade.migrate().migrationsExecuted); upgrade.validate();
+        assertEquals(8, upgrade.migrate().migrationsExecuted); upgrade.validate();
         var after = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
         assertArrayEquals((byte[])before.getFirst().get("xml"), (byte[])after.getFirst().get("xml"));
         assertEquals(before.getFirst().get("creation_date"), after.getFirst().get("creation_date"));

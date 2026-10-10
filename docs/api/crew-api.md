@@ -135,3 +135,7 @@ Members and person details add `canonicalProfile`: canonical/requested IDs, alia
 ## NASA editorial shadow ingestion — 2026-10-10
 
 [Independent editorial retention](../crew/nasa-editorial-roster-validation/README.md) adds no public route/DTO field and does not enter Current member/count/presence selection, UUID detail metadata or Replay. All accepted GETs remain read-only and provider-network-free. Internal diagnostics distinguish editorial roster/count/context/profile health from the existing NASA operational feed.
+
+## Independent active membership shadow — 2026-10-11
+
+The public Current member array remains the accepted legacy retained union. V10's positive-support lifecycle is an internal [shadow projection](../crew/active-membership-shadow-validation/README.md), with no new endpoint or DTO field. RETAINED in shadow does not remove a public member or detail/profile resource. Public canonical UUID aliases, counts, assignment/presence quality and Replay reconstruction retain their existing behavior. Activation requires a separate milestone and contract review.

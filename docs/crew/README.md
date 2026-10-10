@@ -40,3 +40,7 @@ Crew Replay integration is complete. Effective-time reconstruction uses retained
 ## Automatic identity shadow — ADR-0015 / V9
 
 The [automatic resolver dossier](automatic-identity-shadow-validation/README.md) describes the retained-evidence Java model, independent typed shadow graph, durable jobs and append-only correction. Production V7, Current/detail/Replay and source-authority semantics remain unchanged. Source facts, personal corroboration and candidate generation precede scoring; reviewed identities are available only to a separate diagnostic comparison.
+
+## Shadow active membership — ADR-0016 / V10
+
+The [active membership dossier](active-membership-shadow-validation/README.md) describes an independent retained-data projection. Fresh LL2 assignments, V9-resolved editorial roster membership and qualified operational positives contribute separately. A completed named departure closes an episode until a later qualified operational positive. Successful omissions retract only their source support; failures preserve last-good context. Known unsupported humans are RETAINED with identity/profile/history preserved; unresolved NASA slots never create humans. Public Current, detail and Replay retain their accepted contracts.

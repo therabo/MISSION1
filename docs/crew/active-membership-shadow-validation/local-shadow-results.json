@@ -1,0 +1,1496 @@
+{
+  "evaluationTime": "2026-10-10T23:32:25.291697Z",
+  "projectionRevision": 1,
+  "semanticHash": "926aec8427a6153f2f3ed5b3a9538e4cd2d420b9365372a1492f548cf6f3d519",
+  "identityMode": "V9_AUTOMATIC_SHADOW",
+  "result": {
+    "cut": {
+      "ll2Run": 137,
+      "ll2Snapshot": 57,
+      "rosterAcquisition": 28,
+      "roster": 1,
+      "topicAcquisition": 27,
+      "topicCountFact": 2,
+      "graph": 8,
+      "operationalRun": 64,
+      "operationalAttempt": 138,
+      "evidence": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "occurrenceChoices": [
+        {
+          "ambiguousOrder": false,
+          "evidence": [
+            1
+          ],
+          "observation": {
+            "runId": 64,
+            "documentId": 25,
+            "retrievedAt": "2026-10-07T11:28:43.755959Z",
+            "startedAt": "2026-10-07T11:28:43.561517Z",
+            "completedAt": "2026-10-07T11:28:43.755972Z"
+          },
+          "occurrence": "0bd450c8527cc1a1a33b36ce872c91fd67676e7c0781239f535b66da496ed69b"
+        },
+        {
+          "ambiguousOrder": false,
+          "evidence": [
+            2
+          ],
+          "observation": {
+            "runId": 64,
+            "documentId": 25,
+            "retrievedAt": "2026-10-07T11:28:43.755959Z",
+            "startedAt": "2026-10-07T11:28:43.561517Z",
+            "completedAt": "2026-10-07T11:28:43.755972Z"
+          },
+          "occurrence": "29cd6994d744e3fff8e7427f74c3b7066470fc0380310417c032b555c0622b5f"
+        },
+        {
+          "ambiguousOrder": false,
+          "evidence": [
+            3
+          ],
+          "observation": {
+            "runId": 64,
+            "documentId": 25,
+            "retrievedAt": "2026-10-07T11:28:43.755959Z",
+            "startedAt": "2026-10-07T11:28:43.561517Z",
+            "completedAt": "2026-10-07T11:28:43.755972Z"
+          },
+          "occurrence": "907a38adbac63553d985ca171096e6ffca85e46bc4f7164d10de8b63a852119c"
+        },
+        {
+          "ambiguousOrder": false,
+          "evidence": [
+            12
+          ],
+          "observation": {
+            "runId": 64,
+            "documentId": 25,
+            "retrievedAt": "2026-10-07T11:28:43.755959Z",
+            "startedAt": "2026-10-07T11:28:43.561517Z",
+            "completedAt": "2026-10-07T11:28:43.755972Z"
+          },
+          "occurrence": "d1b2541cc18ae3a8bc41e9f10ba4b8925202e31ecdc8514ae57d76ccbcd0808b"
+        }
+      ],
+      "health": [
+        {
+          "stream": "LL2_STRUCTURED_CREW",
+          "resource": "https://ll.thespacedevs.com/2.3.0/expeditions/?space_station=4&is_active=true&mode=detailed&ordering=-start&limit=10",
+          "outcome": "SUCCESS",
+          "reason": "AVAILABLE",
+          "attemptId": 137,
+          "attemptedAt": "2026-10-10T19:20:04.716571Z",
+          "lastGoodAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/mission-status?slug=active&per_page=100",
+          "outcome": "SUCCESS",
+          "reason": "VALIDATED_TAXONOMY",
+          "attemptId": 3,
+          "attemptedAt": "2026-10-10T20:05:19.186791Z",
+          "lastGoodAt": "2026-10-10T20:05:19.186791Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/mission-target?slug=international-space-station&per_page=100",
+          "outcome": "SUCCESS",
+          "reason": "VALIDATED_TAXONOMY",
+          "attemptId": 4,
+          "attemptedAt": "2026-10-10T20:05:20.310596Z",
+          "lastGoodAt": "2026-10-10T20:05:20.310596Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/mission?mission-status=10828&mission-target=11040&search=Expedition&per_page=100",
+          "outcome": "DEGRADED",
+          "reason": "DISCOVERY_COVERAGE_UNKNOWN",
+          "attemptId": 5,
+          "attemptedAt": "2026-10-10T20:05:21.545914Z",
+          "lastGoodAt": "2026-10-10T20:05:21.545914Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+          "outcome": "DEGRADED",
+          "reason": "VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS",
+          "attemptId": 28,
+          "attemptedAt": "2026-10-10T20:22:38.062531Z",
+          "lastGoodAt": "2026-10-10T20:22:38.062531Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_TOPIC",
+          "resource": "https://www.nasa.gov/international-space-station/space-station-research-and-technology/latest-news-from-space-station-research/",
+          "outcome": "SUCCESS",
+          "reason": "VERIFIED_CANONICAL_TOPIC_HTML",
+          "attemptId": 1,
+          "attemptedAt": "2026-10-10T20:05:16.938418Z",
+          "lastGoodAt": "2026-10-10T20:05:16.938418Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_EDITORIAL_TOPIC",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/topic/196922",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TOPIC_FACTS",
+          "attemptId": 27,
+          "attemptedAt": "2026-10-10T20:22:37.070154Z",
+          "lastGoodAt": "2026-10-10T20:22:37.070154Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_OPERATIONAL_FEED",
+          "resource": "https://www.nasa.gov/blogs/spacestation/feed/",
+          "outcome": "FAILURE",
+          "reason": "MALFORMED_RESPONSE",
+          "attemptId": 138,
+          "attemptedAt": "2026-10-10T19:25:05.273997Z",
+          "lastGoodAt": "2026-10-07T11:28:43.755959Z",
+          "freshness": "STALE"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 11,
+          "attemptedAt": "2026-10-10T20:05:26.676316Z",
+          "lastGoodAt": "2026-10-10T20:05:26.676316Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 7,
+          "attemptedAt": "2026-10-10T20:05:22.676387Z",
+          "lastGoodAt": "2026-10-10T20:05:22.676387Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 15,
+          "attemptedAt": "2026-10-10T20:05:32.686177Z",
+          "lastGoodAt": "2026-10-10T20:05:32.686177Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 13,
+          "attemptedAt": "2026-10-10T20:05:30.671844Z",
+          "lastGoodAt": "2026-10-10T20:05:30.671844Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 9,
+          "attemptedAt": "2026-10-10T20:05:24.665117Z",
+          "lastGoodAt": "2026-10-10T20:05:24.665117Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+          "outcome": "SUCCESS",
+          "reason": "PERSON_RESOURCE_HTML",
+          "attemptId": 17,
+          "attemptedAt": "2026-10-10T20:05:34.666226Z",
+          "lastGoodAt": "2026-10-10T20:05:34.666226Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/people/129838",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 18,
+          "attemptedAt": "2026-10-10T20:05:36.466741Z",
+          "lastGoodAt": "2026-10-10T20:05:36.466741Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/people/40775",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 10,
+          "attemptedAt": "2026-10-10T20:05:26.255491Z",
+          "lastGoodAt": "2026-10-10T20:05:26.255491Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/people/88101",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 14,
+          "attemptedAt": "2026-10-10T20:05:32.310925Z",
+          "lastGoodAt": "2026-10-10T20:05:32.310925Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/topic/255064",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 12,
+          "attemptedAt": "2026-10-10T20:05:28.422Z",
+          "lastGoodAt": "2026-10-10T20:05:28.422Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/topic/619970",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 16,
+          "attemptedAt": "2026-10-10T20:05:34.260690Z",
+          "lastGoodAt": "2026-10-10T20:05:34.260690Z",
+          "freshness": "FRESH"
+        },
+        {
+          "stream": "NASA_PERSON_RESOURCE",
+          "resource": "https://www.nasa.gov/wp-json/wp/v2/topic/620006",
+          "outcome": "SUCCESS",
+          "reason": "VALID_TYPED_PERSON_RESOURCE",
+          "attemptId": 8,
+          "attemptedAt": "2026-10-10T20:05:24.410947Z",
+          "lastGoodAt": "2026-10-10T20:05:24.410947Z",
+          "freshness": "FRESH"
+        }
+      ],
+      "identityHealth": {
+        "degraded": false,
+        "failed_jobs": 0,
+        "pending_jobs": 0
+      }
+    },
+    "policy": "crew-active-shadow-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H/roster=PT6H/topic=PT6H/personal=PT168H",
+    "members": [
+      {
+        "human": {
+          "key": "LL2:PERSON:573",
+          "anchor": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+          "name": "Jessica Meir",
+          "profileSnapshot": 46
+        },
+        "state": "RETAINED",
+        "supports": [],
+        "assignment": null,
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:582",
+          "anchor": "b4932ff9-75e7-4eb4-b8c1-0362acb27356",
+          "name": "Jessica Watkins",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:3",
+            "type": "NASA_EDITORIAL_ROSTER",
+            "stream": "NASA_EDITORIAL_EXPEDITION",
+            "capturedAt": "2026-10-10T20:22:38.062531Z",
+            "effectiveAt": null,
+            "precision": "UNDATED_EDITORIAL_CAPTURE",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": null,
+            "expeditionId": null,
+            "acquisition": 28,
+            "roster": 1,
+            "memberIndex": 3,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": 4,
+            "observation": 15,
+            "supersededByDeparture": null
+          },
+          {
+            "key": "assignment:57:LL2:PERSON:582",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:582",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5314",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:642",
+          "anchor": "345d3c45-c57a-4bcf-b3d6-ea811ba55416",
+          "name": "Joshua Kutryk",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "assignment:57:LL2:PERSON:642",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:642",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5316",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:649",
+          "anchor": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+          "name": "Anna Kikina",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "assignment:57:LL2:PERSON:649",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:649",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5281",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:650",
+          "anchor": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+          "name": "Pyotr Dubrov",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "assignment:57:LL2:PERSON:650",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:650",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5313",
+          "expedition": "Expedition 75",
+          "role": "COMMANDER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:710",
+          "anchor": "9cd14c46-8b34-41b7-9fec-5ea736fa974b",
+          "name": "Luke Delaney",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:4",
+            "type": "NASA_EDITORIAL_ROSTER",
+            "stream": "NASA_EDITORIAL_EXPEDITION",
+            "capturedAt": "2026-10-10T20:22:38.062531Z",
+            "effectiveAt": null,
+            "precision": "UNDATED_EDITORIAL_CAPTURE",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": null,
+            "expeditionId": null,
+            "acquisition": 28,
+            "roster": 1,
+            "memberIndex": 4,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": 5,
+            "observation": 16,
+            "supersededByDeparture": null
+          },
+          {
+            "key": "assignment:57:LL2:PERSON:710",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:710",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5315",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:712",
+          "anchor": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+          "name": "Jack Hathaway",
+          "profileSnapshot": 46
+        },
+        "state": "RETAINED",
+        "supports": [],
+        "assignment": null,
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:713",
+          "anchor": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+          "name": "Anil Menon",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:1",
+            "type": "NASA_EDITORIAL_ROSTER",
+            "stream": "NASA_EDITORIAL_EXPEDITION",
+            "capturedAt": "2026-10-10T20:22:38.062531Z",
+            "effectiveAt": null,
+            "precision": "UNDATED_EDITORIAL_CAPTURE",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": null,
+            "expeditionId": null,
+            "acquisition": 28,
+            "roster": 1,
+            "memberIndex": 1,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": 2,
+            "observation": 13,
+            "supersededByDeparture": null
+          },
+          {
+            "key": "assignment:57:LL2:PERSON:713",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:713",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5282",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:732",
+          "anchor": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+          "name": "Andrei Fedyaev",
+          "profileSnapshot": 46
+        },
+        "state": "RETAINED",
+        "supports": [],
+        "assignment": null,
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:747",
+          "anchor": "9735513f-4ad9-44ba-863d-4f05978fca61",
+          "name": "Sophie Adenot",
+          "profileSnapshot": 46
+        },
+        "state": "RETAINED",
+        "supports": [],
+        "assignment": null,
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": {
+          "key": "LL2:PERSON:915",
+          "anchor": "3e128b74-27e9-4cd5-acf2-bb76910dbe30",
+          "name": "Sergey Teteryatnikov",
+          "profileSnapshot": 57
+        },
+        "state": "ACTIVE",
+        "supports": [
+          {
+            "key": "assignment:57:LL2:PERSON:915",
+            "type": "LL2_ASSIGNMENT",
+            "stream": "LL2_STRUCTURED_CREW",
+            "capturedAt": "2026-10-10T19:20:04.691539Z",
+            "effectiveAt": null,
+            "precision": "UNKNOWN_PERSONAL_VALIDITY",
+            "freshness": "FRESH",
+            "eligible": true,
+            "snapshot": 57,
+            "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+            "acquisition": null,
+            "roster": null,
+            "memberIndex": null,
+            "evidence": null,
+            "subjectIndex": null,
+            "decision": null,
+            "observation": null,
+            "supersededByDeparture": null
+          }
+        ],
+        "assignment": {
+          "human": "LL2:PERSON:915",
+          "snapshot": 57,
+          "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+          "assignmentId": "5317",
+          "expedition": "Expedition 75",
+          "role": "FLIGHT_ENGINEER",
+          "validFrom": null,
+          "validUntil": null,
+          "capturedAt": "2026-10-10T19:20:04.691539Z",
+          "freshness": "FRESH",
+          "eligible": true
+        },
+        "presence": "UNKNOWN",
+        "presenceEffectiveAt": null,
+        "presenceEvidence": [],
+        "departureVeto": null,
+        "departureAt": null,
+        "departurePrecision": null,
+        "reason": "FRESH_POSITIVE_SUPPORT"
+      }
+    ],
+    "unresolved": [
+      {
+        "slot": {
+          "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+          "name": "Pyotr Dubrov",
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "roster": 1,
+          "memberIndex": 0,
+          "acquisition": 28,
+          "evidence": null,
+          "subjectIndex": null,
+          "capturedAt": "2026-10-10T20:22:38.062531Z",
+          "effectiveAt": null,
+          "precision": "UNDATED_EDITORIAL_CAPTURE",
+          "expedition": 75,
+          "freshness": "FRESH",
+          "positive": true,
+          "human": null,
+          "decision": 1,
+          "observation": 12,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": [
+            "ROLE_BETWEEN_SECTIONS"
+          ]
+        },
+        "state": "UNRESOLVED_ACTIVE_SOURCE_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+          "name": "Anna Kikina",
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "roster": 1,
+          "memberIndex": 2,
+          "acquisition": 28,
+          "evidence": null,
+          "subjectIndex": null,
+          "capturedAt": "2026-10-10T20:22:38.062531Z",
+          "effectiveAt": null,
+          "precision": "UNDATED_EDITORIAL_CAPTURE",
+          "expedition": 75,
+          "freshness": "FRESH",
+          "positive": true,
+          "human": null,
+          "decision": 3,
+          "observation": 14,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "UNRESOLVED_ACTIVE_SOURCE_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+          "name": "Joshua Kutryk",
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "roster": 1,
+          "memberIndex": 5,
+          "acquisition": 28,
+          "evidence": null,
+          "subjectIndex": null,
+          "capturedAt": "2026-10-10T20:22:38.062531Z",
+          "effectiveAt": null,
+          "precision": "UNDATED_EDITORIAL_CAPTURE",
+          "expedition": 75,
+          "freshness": "FRESH",
+          "positive": true,
+          "human": null,
+          "decision": 6,
+          "observation": 17,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": [
+            "AGENCY_CARD_CAPTION"
+          ]
+        },
+        "state": "UNRESOLVED_ACTIVE_SOURCE_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+          "name": "Sergey Teteryatnikov",
+          "stream": "NASA_EDITORIAL_EXPEDITION",
+          "roster": 1,
+          "memberIndex": 6,
+          "acquisition": 28,
+          "evidence": null,
+          "subjectIndex": null,
+          "capturedAt": "2026-10-10T20:22:38.062531Z",
+          "effectiveAt": null,
+          "precision": "UNDATED_EDITORIAL_CAPTURE",
+          "expedition": 75,
+          "freshness": "FRESH",
+          "positive": true,
+          "human": null,
+          "decision": 7,
+          "observation": 18,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "UNRESOLVED_ACTIVE_SOURCE_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:0d77ecdb1da9cb0eb299f95111e8c9ab93227db2a20a246111e3a54a9280feae:evidence:2:1",
+          "name": "Luke Delaney",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 2,
+          "subjectIndex": 1,
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 8,
+          "observation": 19,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:136a0b2f7dcea4f66d66961d0be5f333fd873f172ef7e6585afbed532cf18c4e:evidence:12:1",
+          "name": "Jack Hathaway",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 1,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 9,
+          "observation": 20,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:161d22a7c05ea1cf610880c4265ab8df1c7ccc805475526d95a838fc597a837f:evidence:2:0",
+          "name": "Jessica Watkins",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 2,
+          "subjectIndex": 0,
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 10,
+          "observation": 21,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:1bb18700544ebdd161d70f3050226ff5a1be493f87a1ce8da328d23baad6aa8f:evidence:12:5",
+          "name": "Anna Kikina",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 5,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 11,
+          "observation": 22,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:29cb54f905cfab01d4caa067402399c68a2c50ff875268902626789cce7787f8:evidence:2:2",
+          "name": "Joshua Kutryk",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 2,
+          "subjectIndex": 2,
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 12,
+          "observation": 23,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:56f696d04706359c73d7eb03da29e2387f3448ae6829d508a7f2f107f8809619:evidence:12:4",
+          "name": "Pyotr Dubrov",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 4,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 13,
+          "observation": 24,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:8bac65da3da0c6f76d44179fe44f72261238a49d7c0dff85fea47470b3481cb3:evidence:12:2",
+          "name": "Anil Menon",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 2,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 14,
+          "observation": 25,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e:evidence:12:6",
+          "name": "Andrey Fedyaev",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 6,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 15,
+          "observation": 26,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:daaf52d2f412a4322c54611ab4cd69d2b6417a86995b849e5aa7f5545ad0ebf8:evidence:2:3",
+          "name": "Sergey Teteryatnikov",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 2,
+          "subjectIndex": 3,
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 16,
+          "observation": 27,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:de59f2c36d8a5d9d16196f274dfa8b6bfba7d35ff1183517a12c28388fdaaafc:evidence:12:3",
+          "name": "Sophie Adenot",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 3,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 17,
+          "observation": 28,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      },
+      {
+        "slot": {
+          "key": "NASA:OPERATIONAL_SUBJECT:fc1f6666f6d180eaf68bee5c74560b6c38010df25cd82e86bfa6b5b216e3a77e:evidence:12:0",
+          "name": "Jessica Meir",
+          "stream": "NASA_OPERATIONAL_FEED",
+          "roster": null,
+          "memberIndex": null,
+          "acquisition": null,
+          "evidence": 12,
+          "subjectIndex": 0,
+          "capturedAt": "2026-10-06T21:27:06.770331Z",
+          "effectiveAt": "2026-10-02T02:01:55Z",
+          "precision": "PUBLICATION_TIME_PROXY",
+          "expedition": null,
+          "freshness": "STALE",
+          "positive": true,
+          "human": null,
+          "decision": 18,
+          "observation": 29,
+          "identityState": "AUTO_DEFER",
+          "fieldConflicts": []
+        },
+        "state": "RETAINED_OPERATIONAL_SLOT"
+      }
+    ],
+    "findings": [
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:0d77ecdb1da9cb0eb299f95111e8c9ab93227db2a20a246111e3a54a9280feae:evidence:2:1",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:136a0b2f7dcea4f66d66961d0be5f333fd873f172ef7e6585afbed532cf18c4e:evidence:12:1",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:161d22a7c05ea1cf610880c4265ab8df1c7ccc805475526d95a838fc597a837f:evidence:2:0",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:1bb18700544ebdd161d70f3050226ff5a1be493f87a1ce8da328d23baad6aa8f:evidence:12:5",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:29cb54f905cfab01d4caa067402399c68a2c50ff875268902626789cce7787f8:evidence:2:2",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:56f696d04706359c73d7eb03da29e2387f3448ae6829d508a7f2f107f8809619:evidence:12:4",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:8bac65da3da0c6f76d44179fe44f72261238a49d7c0dff85fea47470b3481cb3:evidence:12:2",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e:evidence:12:6",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:daaf52d2f412a4322c54611ab4cd69d2b6417a86995b849e5aa7f5545ad0ebf8:evidence:2:3",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:de59f2c36d8a5d9d16196f274dfa8b6bfba7d35ff1183517a12c28388fdaaafc:evidence:12:3",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "IDENTITY",
+        "code": "IDENTITY_DEFERRED",
+        "subject": "NASA:OPERATIONAL_SUBJECT:fc1f6666f6d180eaf68bee5c74560b6c38010df25cd82e86bfa6b5b216e3a77e:evidence:12:0",
+        "detail": "AUTO_DEFER"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "NASA_MEMBERSHIP_UNVERIFIED",
+        "subject": "LL2:PERSON:642",
+        "detail": "Unresolved NASA slots prevent a claim of omission"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "NASA_MEMBERSHIP_UNVERIFIED",
+        "subject": "LL2:PERSON:649",
+        "detail": "Unresolved NASA slots prevent a claim of omission"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "NASA_MEMBERSHIP_UNVERIFIED",
+        "subject": "LL2:PERSON:650",
+        "detail": "Unresolved NASA slots prevent a claim of omission"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "NASA_MEMBERSHIP_UNVERIFIED",
+        "subject": "LL2:PERSON:915",
+        "detail": "Unresolved NASA slots prevent a claim of omission"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "UNRESOLVED_NASA_SLOT",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+        "detail": "No fabricated human; source slot retained separately"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "UNRESOLVED_NASA_SLOT",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:2",
+        "detail": "No fabricated human; source slot retained separately"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "UNRESOLVED_NASA_SLOT",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+        "detail": "No fabricated human; source slot retained separately"
+      },
+      {
+        "namespace": "MEMBERSHIP",
+        "code": "UNRESOLVED_NASA_SLOT",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:6",
+        "detail": "No fabricated human; source slot retained separately"
+      },
+      {
+        "namespace": "SOURCE_FIELD",
+        "code": "AGENCY_CARD_CAPTION",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:5",
+        "detail": "Retained source field conflict"
+      },
+      {
+        "namespace": "SOURCE_FIELD",
+        "code": "ROLE_BETWEEN_SECTIONS",
+        "subject": "NASA:EDITORIAL_SLOT:NASA_MISSION:748853:0",
+        "detail": "Retained source field conflict"
+      },
+      {
+        "namespace": "SOURCE_HEALTH",
+        "code": "SOURCE_UNAVAILABLE",
+        "subject": "NASA_EDITORIAL_EXPEDITION:https://www.nasa.gov/wp-json/wp/v2/mission?mission-status=10828&mission-target=11040&search=Expedition&per_page=100",
+        "detail": "DEGRADED:DISCOVERY_COVERAGE_UNKNOWN:FRESH"
+      },
+      {
+        "namespace": "SOURCE_HEALTH",
+        "code": "SOURCE_UNAVAILABLE",
+        "subject": "NASA_EDITORIAL_EXPEDITION:https://www.nasa.gov/wp-json/wp/v2/mission?slug=expedition-75&mission-status=10828&mission-target=11040&per_page=100",
+        "detail": "DEGRADED:VALID_ROSTER_WITH_ATTRIBUTED_CONFLICTS:FRESH"
+      },
+      {
+        "namespace": "SOURCE_HEALTH",
+        "code": "SOURCE_UNAVAILABLE",
+        "subject": "NASA_OPERATIONAL_FEED:https://www.nasa.gov/blogs/spacestation/feed/",
+        "detail": "FAILURE:MALFORMED_RESPONSE:STALE"
+      }
+    ],
+    "counts": {
+      "resolvedActiveHumans": 7,
+      "retainedHumans": 4,
+      "unresolvedActiveSlots": 4,
+      "unresolvedRetainedSlots": 11,
+      "ll2Assignments": 7,
+      "editorialSlots": 7,
+      "resolvedEditorialMemberships": 3,
+      "websiteReportedAboard": 7,
+      "operationalOfficialAboard": null,
+      "lastKnownOperationalAboard": 11
+    },
+    "health": "DEGRADED",
+    "consistency": {
+      "editorialInternal": "COHERENT",
+      "membershipSets": "INCOMPLETE_IDENTITY_COVERAGE",
+      "operationalCount": "UNAVAILABLE",
+      "structuredProjection": "COHERENT_CARDINALITY"
+    }
+  },
+  "legacyComparison": {
+    "projection": 1,
+    "people": [
+      {
+        "human": "LL2:PERSON:573",
+        "shadowAnchor": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+        "productionCanonical": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+        "name": "Jessica Meir",
+        "classification": "LEGACY_ONLY_RETAINED_IN_SHADOW",
+        "shadowReason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:582",
+        "shadowAnchor": "b4932ff9-75e7-4eb4-b8c1-0362acb27356",
+        "productionCanonical": "6e700f29-14ab-415a-87e4-6567860c1796",
+        "name": "Jessica Watkins",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:642",
+        "shadowAnchor": "345d3c45-c57a-4bcf-b3d6-ea811ba55416",
+        "productionCanonical": "345d3c45-c57a-4bcf-b3d6-ea811ba55416",
+        "name": "Joshua Kutryk",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:649",
+        "shadowAnchor": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+        "productionCanonical": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+        "name": "Anna Kikina",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:650",
+        "shadowAnchor": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+        "productionCanonical": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+        "name": "Pyotr Dubrov",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:710",
+        "shadowAnchor": "9cd14c46-8b34-41b7-9fec-5ea736fa974b",
+        "productionCanonical": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+        "name": "Luke Delaney",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:712",
+        "shadowAnchor": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+        "productionCanonical": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+        "name": "Jack Hathaway",
+        "classification": "LEGACY_ONLY_RETAINED_IN_SHADOW",
+        "shadowReason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:713",
+        "shadowAnchor": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+        "productionCanonical": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+        "name": "Anil Menon",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:732",
+        "shadowAnchor": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+        "productionCanonical": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+        "name": "Andrei Fedyaev",
+        "classification": "RETAINED_IN_SHADOW",
+        "shadowReason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:747",
+        "shadowAnchor": "9735513f-4ad9-44ba-863d-4f05978fca61",
+        "productionCanonical": "9735513f-4ad9-44ba-863d-4f05978fca61",
+        "name": "Sophie Adenot",
+        "classification": "LEGACY_ONLY_RETAINED_IN_SHADOW",
+        "shadowReason": "NO_FRESH_POSITIVE_SUPPORT"
+      },
+      {
+        "human": "LL2:PERSON:915",
+        "shadowAnchor": "3e128b74-27e9-4cd5-acf2-bb76910dbe30",
+        "productionCanonical": "3e128b74-27e9-4cd5-acf2-bb76910dbe30",
+        "name": "Sergey Teteryatnikov",
+        "classification": "ACTIVE_IN_BOTH",
+        "shadowReason": "FRESH_POSITIVE_SUPPORT"
+      }
+    ],
+    "legacyCount": 10,
+    "shadowActiveCount": 7
+  },
+  "metrics": {
+    "initialSelectQueries": 20,
+    "initialSqlStatements": 28,
+    "materializationMillis": 199.024375,
+    "repeatMillis": [
+      46.852917,
+      34.6755,
+      26.444584,
+      29.954833,
+      23.612375,
+      23.522958,
+      34.026417,
+      21.77725,
+      22.132917,
+      19.963458
+    ],
+    "repeatSelectQueries": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "sourceNetworkCalls": 0,
+    "identityEvaluations": 0,
+    "notificationToEvaluationMillis": 1054,
+    "supports": 10,
+    "acceptedCompletedDepartureEvidence": 0
+  },
+  "idempotentRestart": {
+    "inserted": false,
+    "revision": 1,
+    "sameHash": true
+  },
+  "findingNamespaces": {
+    "IDENTITY": 15,
+    "MEMBERSHIP": 8,
+    "SOURCE_FIELD": 2,
+    "SOURCE_HEALTH": 3
+  },
+  "healthMetrics": {
+    "completed_generation": 1,
+    "failures": 0,
+    "generation": 1,
+    "last_success_at": "2026-10-10T23:32:25.301+00:00",
+    "projectionHealth": "DEGRADED",
+    "shadow_active_members": 7,
+    "shadow_departure_vetoes": 0,
+    "shadow_membership_conflicts": 8,
+    "shadow_membership_ll2_assignment_supported": 7,
+    "shadow_membership_nasa_editorial_roster_supported": 3,
+    "shadow_membership_nasa_operational_positive_supported": 0,
+    "shadow_membership_qualified_reentry_supported": 0,
+    "shadow_projection_age_seconds": 0,
+    "shadow_projection_failures": 0,
+    "shadow_projection_revisions": 1,
+    "shadow_retained_people": 4,
+    "shadow_unresolved_active_slots": 4
+  }
+}
