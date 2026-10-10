@@ -79,7 +79,20 @@ public final class CrewResponses {
             Media image,
             Assignment assignment,
             Presence presence,
-            List<ExternalId> externalIds) {}
+            List<ExternalId> externalIds,
+            CrewCanonicalProfileMetadata.Metadata canonicalProfile) {
+        public Member(
+                UUID id,
+                String name,
+                Agency agency,
+                List<Nationality> nationalities,
+                Media image,
+                Assignment assignment,
+                Presence presence,
+                List<ExternalId> externalIds) {
+            this(id, name, agency, nationalities, image, assignment, presence, externalIds, null);
+        }
+    }
 
     public record UnresolvedSubject(
             String displayName, String resolution, Assertion evidence, boolean applicable) {}
@@ -166,5 +179,41 @@ public final class CrewResponses {
             Presence currentPresence,
             Reconciliation reconciliation,
             Observation profileProvenance,
-            Instant profileLastSuccessfulFetchAt) {}
+            Instant profileLastSuccessfulFetchAt,
+            CrewCanonicalProfileMetadata.Metadata canonicalProfile) {
+        public Person(
+                UUID id,
+                String name,
+                URI officialProfileUrl,
+                List<ExternalId> externalIds,
+                Agency agency,
+                List<Nationality> nationalities,
+                String biography,
+                Media image,
+                Career career,
+                String profileAvailability,
+                Assignment currentAssignment,
+                Presence currentPresence,
+                Reconciliation reconciliation,
+                Observation profileProvenance,
+                Instant profileLastSuccessfulFetchAt) {
+            this(
+                    id,
+                    name,
+                    officialProfileUrl,
+                    externalIds,
+                    agency,
+                    nationalities,
+                    biography,
+                    image,
+                    career,
+                    profileAvailability,
+                    currentAssignment,
+                    currentPresence,
+                    reconciliation,
+                    profileProvenance,
+                    profileLastSuccessfulFetchAt,
+                    null);
+        }
+    }
 }

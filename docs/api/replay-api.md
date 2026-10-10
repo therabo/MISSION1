@@ -23,3 +23,8 @@ Recorded real-history responses and supported/unsupported examples: [validation]
 ## Compatible Crew source versions — 2026-10-10
 
 Crew reconstruction and Crew coverage consume the same ADR-0012 compatible-version selection used by Current. Selection precedes effective-time evaluation and uses successful observations retained at query time, including observations after requested T. This preserves best-current reconstruction, without introducing knowledge-time replay or Current fallback. Unresolved counts describe selected source occurrences; separate events and claims remain distinct. The public DTO shape is unchanged, all alternative evidence versions remain internally auditable, and both GETs remain read-only and network-free. See [occurrence validation](../crew/source-occurrence-versioning-validation/README.md).
+
+
+## Canonical identity — ADR-0013
+
+Crew members/profiles include the same additive `canonicalProfile` metadata as Current. Identity decisions and retained profile metadata use `knownAt`; operational state remains at requested T. Reviewed aliases collapse before reconciliation, with no future assignment backfill or name deduplication. [Rules](../crew/canonical-identity.md), [validation](../crew/canonical-identity-validation/README.md).

@@ -151,6 +151,8 @@ class CrewPostgresApiTest {
     void populated() {
         ll2();
         nasa();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
     }
 
@@ -192,7 +194,7 @@ class CrewPostgresApiTest {
         assertEquals(personId().toString(), read("/api/iss/crew/" + personId()).get("id").asText());
         assertEquals(7, read("/api/iss/expedition/current").get("assignmentCount").asInt());
         assertEquals(
-                "6",
+                "7",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history ORDER BY installed_rank DESC"
                             + " LIMIT 1",
@@ -288,6 +290,8 @@ class CrewPostgresApiTest {
     @Test
     void nasaOnlyStateIsUsableWithoutPrimaryAndProfile() throws Exception {
         nasa();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
         var r = read("/api/iss/crew");
         assertEquals("PRIMARY_UNAVAILABLE", r.at("/reconciliation/status").asText());
@@ -468,5 +472,60 @@ class CrewPostgresApiTest {
                 throw e.getCause();
             }
         }
+    }
+@Test
+    void reviewedCanonicalIdentityJoinsRetainedProfilesAndKeepsBothUuidUrls() throws Exception {
+        populated();
+        var tree = json.readTree(fixture.body);
+        CanonicalCrewFixture.reviewedAssignments(tree);
+        fixture.body = tree.toString();
+        fixture.clock.time = Instant.parse("2026-10-10T12:00:00Z");
+        ll2();
+        var crew = read("/api/iss/crew");
+        assertEquals(9, crew.get("members").size());
+        for (var provider : List.of("710", "582")) {
+            var alias =
+                    jdbc.queryForObject(
+                            "SELECT person_id FROM crew_person_external_id WHERE"
+                                + " source='LAUNCH_LIBRARY_2' AND external_id=?",
+                            UUID.class,
+                            provider);
+            var root =
+                    jdbc.queryForObject(
+                            "SELECT representative_id FROM crew_active_equivalence WHERE"
+                                + " alias_id=?",
+                            UUID.class,
+                            alias);
+            var canonical = read("/api/iss/crew/" + root);
+            var compatible = read("/api/iss/crew/" + alias);
+            assertEquals(root.toString(), compatible.get("id").asText());
+            assertEquals(alias.toString(), compatible.at("/canonicalProfile/requestedId").asText());
+            assertEquals("AVAILABLE", compatible.get("profileAvailability").asText());
+            assertNotNull(compatible.get("biography"));
+            assertFalse(compatible.get("currentAssignment").isNull());
+            ((com.fasterxml.jackson.databind.node.ObjectNode) canonical.get("canonicalProfile"))
+                    .remove("requestedId");
+            ((com.fasterxml.jackson.databind.node.ObjectNode) compatible.get("canonicalProfile"))
+                    .remove("requestedId");
+            assertEquals(canonical, compatible);
+            assertEquals(
+                    1,
+                    crew.get("members").findValues("id").stream()
+                            .filter(n -> n.asText().equals(root.toString()))
+                            .count());
+        }
+var before = counts();
+        SqlInstrumentation.sql.clear();
+        SqlInstrumentation.enabled = true;
+        try {
+            read("/api/iss/crew");
+            read("/api/iss/expedition/current");
+            assertTrue(
+                    SqlInstrumentation.sql.stream()
+                            .noneMatch(x -> x.matches("(?is).*\\b(INSERT|UPDATE|DELETE)\\b.*")));
+        } finally {
+            SqlInstrumentation.enabled = false;
+        }
+        assertEquals(before, counts());
     }
 }

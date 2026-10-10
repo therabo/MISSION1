@@ -18,6 +18,8 @@ public final class CrewReconciliationService {
     private final CrewReconciliationPolicy policy;
     private final Clock clock;
 
+    private CrewIdentityRepository identities = CrewIdentityRepository.EMPTY;
+
     public CrewReconciliationService(
             CrewRepository primary,
             CrewQueryService query,
@@ -32,6 +34,22 @@ public final class CrewReconciliationService {
         this.policy = policy;
         this.engine = new CrewReconciliationEngine(policy);
         this.clock = clock;
+    }
+
+    public CrewReconciliationService(
+            CrewRepository primary,
+            CrewQueryService query,
+            CrewVerificationRepository verification,
+            CrewReconciliationRepository repository,
+            CrewReconciliationPolicy policy,
+            Clock clock,
+            CrewIdentityRepository identities) {
+        this(primary, query, verification, repository, policy, clock);
+        this.identities = identities;
+    }
+
+    public CrewCanonicalIdentity identityAt(Instant at) {
+        return identities.knowledge(at);
     }
 
     public synchronized CrewReconciliationRepository.Result reconcile() {
@@ -51,12 +69,19 @@ public final class CrewReconciliationService {
     }
 
     private CrewReconciliationSnapshot evaluate(Instant at, boolean resolve) {
-        var ll2 = query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null);
+        var identity = identityAt(at);
+        var ll2 = identity.project(
+                        query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null));
         var nasa = verification.latestSuccess().orElse(null);
         var evidence = new CrewCompatibleVersionSelector().select(
                 verification.evidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
         var resolved =
                 resolve ? verification.resolve(evidence, at) : verification.resolutionsAsOf(at);
+        if (resolve) {
+            // Resolution can materialize a pending reviewed pair in its own committed transaction.
+            identity = identityAt(at);
+            ll2 = identity.project(ll2);
+        }
         return engine.evaluate(
                 new CrewReconciliationEngine.Inputs(
                         ll2,
@@ -64,7 +89,7 @@ public final class CrewReconciliationService {
                         nasa,
                         healthy(CrewSource.NASA_OFFICIAL),
                         evidence,
-                        resolved,
+                        identity.project(resolved),
                         at));
     }
 

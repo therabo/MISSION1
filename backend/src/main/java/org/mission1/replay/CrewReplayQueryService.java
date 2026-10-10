@@ -30,6 +30,8 @@ public final class CrewReplayQueryService {
     private final CrewReconciliationPolicy policy;
     private final CrewReconciliationEngine engine;
 
+    private CrewIdentityRepository identities = CrewIdentityRepository.EMPTY;
+
     public CrewReplayQueryService(
             ReplayHistoryRepository history,
             CrewRepository runs,
@@ -42,6 +44,17 @@ public final class CrewReplayQueryService {
         this.people = people;
         this.policy = policy;
         this.engine = new CrewReconciliationEngine(policy);
+    }
+
+    public CrewReplayQueryService(
+            ReplayHistoryRepository h,
+            CrewRepository r,
+            CrewVerificationRepository v,
+            CrewReadRepository p,
+            CrewReconciliationPolicy policy,
+            CrewIdentityRepository identities) {
+        this(h, r, v, p, policy);
+        this.identities = identities;
     }
 
     public ReplayCoverage coverage(Instant knownAt) {
@@ -150,6 +163,8 @@ public final class CrewReplayQueryService {
                     new CrewQueryService.Latest(
                             new CrewRepository.StoredSnapshot(stored.id(), filtered), run);
         }
+        var identity = identities.knowledge(knownAt);
+        primary = identity.project(primary);
         var verified = verification.latestSuccess().orElse(null);
         var state =
                 engine.evaluateEffectiveTime(
@@ -159,7 +174,7 @@ public final class CrewReplayQueryService {
                                 verified,
                                 true,
                                 evidence,
-                                verification.resolutionsAsOf(knownAt),
+                                identity.project(verification.resolutionsAsOf(knownAt)),
                                 at));
         var used = evidence.stream().filter(e -> state.evidenceIds().contains(e.id())).toList();
         var persons =
@@ -227,7 +242,25 @@ public final class CrewReplayQueryService {
                             media,
                             assignment,
                             presence,
-                            externalIds(p.externalIds())));
+                            externalIds(p.externalIds()),
+                            org.mission1.api.crew.CrewCanonicalProfileMetadata.describe(
+                                    p,
+                                    p.id(),
+                                    identity,
+                                    snapshot == null
+                                            ? null
+                                            : snapshot.assignments().stream()
+                                                    .filter(
+                                                            a ->
+                                                                    a.person()
+                                                                            .mission1Id()
+                                                                            .equals(p.id()))
+                                                    .map(
+                                                            org.mission1.crew.domain.CrewAssignment
+                                                                    ::observation)
+                                                    .findFirst()
+                                                    .orElse(null),
+                                    assertions)));
             profiles.add(
                     new CrewResponses.Person(
                             p.id(),
@@ -244,7 +277,25 @@ public final class CrewReplayQueryService {
                             presence,
                             recon,
                             profile == null ? null : observation(profile.observation()),
-                            p.profileFetchedAt()));
+                            p.profileFetchedAt(),
+                            org.mission1.api.crew.CrewCanonicalProfileMetadata.describe(
+                                    p,
+                                    p.id(),
+                                    identity,
+                                    snapshot == null
+                                            ? null
+                                            : snapshot.assignments().stream()
+                                                    .filter(
+                                                            a ->
+                                                                    a.person()
+                                                                            .mission1Id()
+                                                                            .equals(p.id()))
+                                                    .map(
+                                                            org.mission1.crew.domain.CrewAssignment
+                                                                    ::observation)
+                                                    .findFirst()
+                                                    .orElse(null),
+                                    assertions)));
         }
         var byId = new HashMap<Long, CrewVerificationRepository.Evidence>();
         used.forEach(e -> byId.put(e.id(), e));

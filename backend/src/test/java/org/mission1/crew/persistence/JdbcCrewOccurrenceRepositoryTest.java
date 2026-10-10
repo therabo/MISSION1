@@ -2,10 +2,6 @@ package org.mission1.crew.persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.time.*;
-import java.util.*;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.mission1.crew.application.*;
@@ -18,6 +14,10 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.test.context.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.*;
+
+import java.nio.charset.StandardCharsets;
+import java.time.*;
+import java.util.*;
 
 @SpringBootTest
 @Testcontainers
@@ -35,7 +35,8 @@ class JdbcCrewOccurrenceRepositoryTest {
     static final List<String> NEW_TABLES = List.of("crew_source_article","crew_source_article_observation","crew_assertion_occurrence",
             "crew_assertion_version","crew_assertion_observation","crew_subject_occurrence","crew_subject_metadata_version","crew_subject_version_link");
     @BeforeEach void clear() {
-        jdbc.execute("TRUNCATE "+String.join(",",NEW_TABLES)+",crew_source_sync_run,crew_source_snapshot,crew_person,crew_expedition,crew_document_body RESTART IDENTITY CASCADE");
+        jdbc.execute("TRUNCATE "+String.join(",",NEW_TABLES)+",crew_source_sync_run,crew_source_snapshot,crew_person,crew_expedition,crew_document_body"
+                        + " RESTART IDENTITY CASCADE");
     }
     byte[] fixture(String file) throws Exception { return getClass().getResourceAsStream("/fixtures/crew/nasa/occurrences/"+file).readAllBytes(); }
     NasaCrewVerificationIngestionService.Result ingest(String file,Instant at) throws Exception {
@@ -67,8 +68,10 @@ class JdbcCrewOccurrenceRepositoryTest {
         assertEquals(before,history());
         assertEquals("b7c92446ed126b53d52b37dccdcf16ada88b89c16552caefb71a6fab6f7b77cf",jdbc.queryForObject("SELECT evidence_hash FROM crew_verification_evidence WHERE id=4",String.class));
         assertEquals("2e66ce03f3a9b2e00b0ed1b11086de2e633dad3cd696612c174f9af67026c4a8",jdbc.queryForObject("SELECT evidence_hash FROM crew_verification_evidence WHERE id=12",String.class));
-        assertEquals(1,jdbc.queryForObject("SELECT count(DISTINCT occurrence_key) FROM crew_assertion_version WHERE evidence_id IN (4,12)",Integer.class));
-        assertEquals(1,jdbc.queryForObject("SELECT count(DISTINCT subject_key) FROM crew_subject_version_link WHERE evidence_id IN (4,12) AND subject_index=6",Integer.class));
+        assertEquals(1,jdbc.queryForObject("SELECT count(DISTINCT occurrence_key) FROM crew_assertion_version WHERE"
+                            + " evidence_id IN (4,12)",Integer.class));
+        assertEquals(1,jdbc.queryForObject("SELECT count(DISTINCT subject_key) FROM crew_subject_version_link WHERE"
+                            + " evidence_id IN (4,12) AND subject_index=6",Integer.class));
     }
     @Test void duplicateIngestionAndBackfillAreIdempotent() throws Exception {
         populate();var before=history();var counts=new TreeMap<String,Integer>();NEW_TABLES.forEach(t->counts.put(t,count(t)));
@@ -100,14 +103,19 @@ class JdbcCrewOccurrenceRepositoryTest {
         String occurrence=jdbc.queryForObject("SELECT occurrence_key FROM crew_assertion_version WHERE evidence_id=4",String.class);
         String other=jdbc.queryForObject("SELECT occurrence_key FROM crew_assertion_version WHERE evidence_id=2",String.class);
         assertThrows(RuntimeException.class,()->jdbc.update("INSERT INTO crew_assertion_version VALUES (4,?)",other));
-        assertThrows(RuntimeException.class,()->jdbc.update("UPDATE crew_assertion_version SET occurrence_key=? WHERE evidence_id=4",other));
-        String subject=jdbc.queryForObject("SELECT subject_key FROM crew_subject_version_link WHERE evidence_id=2 AND subject_index=0",String.class);
-        String version=jdbc.queryForObject("SELECT version_key FROM crew_subject_version_link WHERE evidence_id=2 AND subject_index=0",String.class);
+        assertThrows(RuntimeException.class,()->jdbc.update("UPDATE crew_assertion_version SET occurrence_key=? WHERE"
+                                    + " evidence_id=4",other));
+        String subject=jdbc.queryForObject("SELECT subject_key FROM crew_subject_version_link WHERE evidence_id=2 AND"
+                            + " subject_index=0",String.class);
+        String version=jdbc.queryForObject("SELECT version_key FROM crew_subject_version_link WHERE evidence_id=2 AND"
+                            + " subject_index=0",String.class);
         assertThrows(RuntimeException.class,()->jdbc.update("INSERT INTO crew_subject_version_link VALUES (4,6,?,?,?)",occurrence,subject,version));
-        assertThrows(RuntimeException.class,()->jdbc.update("INSERT INTO crew_assertion_observation VALUES (4,1,?,'nasa.gov:wp:nasa-blog:1053190',0)",occurrence));
+        assertThrows(RuntimeException.class,()->jdbc.update("INSERT INTO crew_assertion_observation VALUES"
+                                    + " (4,1,?,'nasa.gov:wp:nasa-blog:1053190',0)",occurrence));
     }
     @Test void sourceArticleKeepsRawGuidUrlsAndRepresentationSeparately() throws Exception {
-        populate();var rows=jdbc.queryForList("SELECT * FROM crew_source_article_observation WHERE article_key='nasa.gov:wp:nasa-blog:1052022' ORDER BY document_id");
+        populate();var rows=jdbc.queryForList("SELECT * FROM crew_source_article_observation WHERE"
+                            + " article_key='nasa.gov:wp:nasa-blog:1052022' ORDER BY document_id");
         assertEquals(3,rows.size());assertEquals("https://www.nasa.gov/?post_type=nasa-blog&p=1052022",rows.getFirst().get("raw_guid"));
         assertEquals(rows.getFirst().get("raw_url"),rows.getFirst().get("observed_url"));
         assertNotEquals(rows.getFirst().get("representation_hash"),rows.getLast().get("representation_hash"));
@@ -125,7 +133,7 @@ class JdbcCrewOccurrenceRepositoryTest {
             var plan=repository.previewOccurrenceAssociations();assertEquals(4,plan.assertionOccurrences());assertEquals(11,plan.subjectOccurrences());
             assertFalse(local.queryForObject("SELECT to_regclass('crew_assertion_version') IS NOT NULL",Boolean.class));
             var latest=Flyway.configure().dataSource(POSTGRES.getJdbcUrl(),POSTGRES.getUsername(),POSTGRES.getPassword()).schemas("occurrence_legacy").load();
-            assertEquals(1,latest.migrate().migrationsExecuted);latest.validate();
+            assertEquals(2,latest.migrate().migrationsExecuted);latest.validate();
             var applied=repository.associateRetainedOccurrences();assertEquals(plan,applied);
             assertEquals(before,local.queryForList("SELECT * FROM crew_verification_evidence ORDER BY id"));
             assertEquals(5,local.queryForObject("SELECT count(*) FROM crew_assertion_version",Integer.class));
@@ -134,8 +142,10 @@ class JdbcCrewOccurrenceRepositoryTest {
     }
     @Test void failedAssociationInsertRollsBackEntireIngestAndLeavesPriorState() throws Exception {
         ingest("old.xml",OLD);var before=history();
-        jdbc.execute("CREATE FUNCTION test_occurrence_reject() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'TEST_ONLY'; END; $$");
-        jdbc.execute("CREATE TRIGGER test_reject_occurrence BEFORE INSERT ON crew_subject_version_link FOR EACH ROW EXECUTE FUNCTION test_occurrence_reject()");
+        jdbc.execute("CREATE FUNCTION test_occurrence_reject() RETURNS trigger LANGUAGE plpgsql AS $$"
+                    + " BEGIN RAISE EXCEPTION 'TEST_ONLY'; END; $$");
+        jdbc.execute("CREATE TRIGGER test_reject_occurrence BEFORE INSERT ON crew_subject_version_link"
+                    + " FOR EACH ROW EXECUTE FUNCTION test_occurrence_reject()");
         try { assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE,ingest("new.xml",NEW).outcome()); }
         finally { jdbc.execute("DROP TRIGGER test_reject_occurrence ON crew_subject_version_link");jdbc.execute("DROP FUNCTION test_occurrence_reject()"); }
         assertEquals(before,history());assertEquals(1,count("crew_source_document"));assertEquals(4,count("crew_assertion_version"));

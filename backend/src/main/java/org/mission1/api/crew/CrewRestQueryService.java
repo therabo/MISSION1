@@ -51,9 +51,10 @@ public class CrewRestQueryService {
                                 .map(CrewReconciliationSnapshot.PersonState::personId)
                                 .toList(),
                         state.reconciliationAsOf());
+        var identity = people.identityAt(state.reconciliationAsOf());
         var members =
                 state.people().stream()
-                        .map(p -> member(requirePerson(persons, p.personId()), p, current))
+                        .map(p -> member(requirePerson(persons, p.personId()), p, current, identity))
                         .toList();
         Map<Long, CrewVerificationRepository.Evidence> evidence = new HashMap<>();
         current.verificationEvidence().forEach(e -> evidence.put(e.id(), e));
@@ -144,7 +145,7 @@ public class CrewRestQueryService {
                     health(health, CrewSource.LAUNCH_LIBRARY_2, policy.primaryMaxAge(), at),
                     outcome.observation() == null ? null : observation(outcome.observation()));
         if (latest == null) throw new CrewReadException(PRIMARY_UNAVAILABLE);
-        var s = latest.snapshot().snapshot();
+        var s = people.identityAt(at).project(latest).snapshot().snapshot();
         var profiles = new HashMap<UUID, AstronautProfile>();
         s.profiles().forEach(p -> profiles.put(p.person().mission1Id(), p));
         var assignments =
@@ -178,12 +179,12 @@ public class CrewRestQueryService {
         if (p == null) throw new CrewReadException(PERSON_NOT_FOUND);
         var state =
                 current.interpretation().people().stream()
-                        .filter(x -> x.personId().equals(id))
+                        .filter(x -> x.personId().equals(p.id()))
                         .findFirst()
                         .orElse(null);
         var profile = p.profile();
         return new Person(
-                id,
+                p.id(),
                 p.name(),
                 p.officialProfileUrl(),
                 externalIds(p.externalIds()),
@@ -193,25 +194,20 @@ public class CrewRestQueryService {
                 profile == null ? null : media(profile.media()),
                 profile == null ? null : career(profile.career()),
                 profile == null ? "UNAVAILABLE" : "AVAILABLE",
-                assignment(id, current),
+                assignment(p.id(), current),
                 presence(state, current),
                 reconciliation(current),
                 profile == null ? null : observation(profile.observation()),
-                p.profileFetchedAt());
+                p.profileFetchedAt(),
+                metadata(p, id, current, people.identityAt(at)));
     }
 
     private Member member(
             CrewReadRepository.Person p,
             CrewReconciliationSnapshot.PersonState state,
-            CrewReconciliationQueryService.Current current) {
-        // Collection profiles belong to the exact structured input; historical enrichment is
-        // detail-only.
-        var profile =
-                current.structuredPrimary().stream()
-                        .flatMap(x -> x.snapshot().snapshot().profiles().stream())
-                        .filter(x -> x.person().mission1Id().equals(p.id()))
-                        .findFirst()
-                        .orElse(null);
+            CrewReconciliationQueryService.Current current,
+            CrewCanonicalIdentity identity) {
+        var profile = p.profile();
         return new Member(
                 p.id(),
                 profile == null ? p.name() : profile.person().displayName(),
@@ -220,7 +216,29 @@ public class CrewRestQueryService {
                 profile == null ? null : media(profile.media()),
                 assignment(p.id(), current),
                 presence(state, current),
-                externalIds(p.externalIds()));
+                externalIds(p.externalIds()),
+                metadata(p, p.id(), current, identity));
+    }
+
+    private CrewCanonicalProfileMetadata.Metadata metadata(
+            CrewReadRepository.Person p,
+            UUID requested,
+            CrewReconciliationQueryService.Current current,
+            CrewCanonicalIdentity identity) {
+        var assignmentObservation =
+                current.structuredPrimary().stream()
+                        .flatMap(l -> l.snapshot().snapshot().assignments().stream())
+                        .filter(a -> a.person().mission1Id().equals(p.id()))
+                        .map(CrewAssignment::observation)
+                        .findFirst()
+                        .orElse(null);
+        var state =
+                current.interpretation().people().stream()
+                        .filter(s -> s.personId().equals(p.id()))
+                        .findFirst()
+                        .orElse(null);
+        return CrewCanonicalProfileMetadata.describe(
+                p, requested, identity, assignmentObservation, presence(state, current).evidence());
     }
 
     private static CrewReadRepository.Person requirePerson(

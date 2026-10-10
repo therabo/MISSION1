@@ -48,7 +48,13 @@ ORDER BY completed_at DESC,id DESC LIMIT 1
     @Transactional(readOnly = true)
     public Map<UUID, Person> findPeople(Collection<UUID> ids, Instant asOf) {
         if (ids.isEmpty()) return Map.of();
-        var args = Map.of("ids", ids, "at", asOf.atOffset(ZoneOffset.UTC));
+        var identity =
+                new JdbcCrewIdentityRepository(
+                                new JdbcTemplate(jdbc.getJdbcTemplate().getDataSource()))
+                        .knowledge(asOf);
+        var anchors = new HashSet<UUID>();
+        ids.forEach(id -> anchors.addAll(identity.anchors(id)));
+        var args = Map.of("ids", anchors, "at", asOf.atOffset(ZoneOffset.UTC));
         Map<UUID, Person> result = new LinkedHashMap<>();
         jdbc.query(
                 "SELECT id FROM crew_person WHERE id IN (:ids) AND created_at <= :at ORDER BY id",
@@ -159,7 +165,7 @@ ORDER BY r.person_id, r.resolved_at DESC, r.id DESC
                                 p.profile(),
                                 p.profileFetchedAt(),
                                 p.identityObservation()));
-        return Collections.unmodifiableMap(result);
+        return CrewCanonicalProfile.project(result, ids, identity);
     }
 
     private CrewSourceObservation observation(ResultSet rs) throws SQLException {

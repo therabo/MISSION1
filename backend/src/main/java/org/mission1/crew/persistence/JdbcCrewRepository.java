@@ -1,11 +1,4 @@
 package org.mission1.crew.persistence;
-
-import java.net.URI;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.*;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -15,6 +8,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.net.URI;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 /** PostgreSQL/JDBC history adapter. See ADR-0008 for transaction and immutability decisions. */
 @Repository
@@ -38,9 +38,9 @@ public class JdbcCrewRepository implements CrewRepository {
     public long startTriggeredRun(CrewSource source, Station station, Instant at, URI url, long triggerId) {
         long id = startRun(source, station, at, url);
         if (jdbc.update("""
-                UPDATE crew_refresh_trigger SET source_sync_run_id=? WHERE id=? AND source_sync_run_id IS NULL
-                AND target=?
-                """, id, triggerId, source == CrewSource.LAUNCH_LIBRARY_2 ? "LL2_ROSTER" : "NASA_VERIFICATION") != 1)
+                        UPDATE crew_refresh_trigger SET source_sync_run_id=? WHERE id=? AND source_sync_run_id IS NULL
+                        AND target=?
+                        """, id, triggerId, source == CrewSource.LAUNCH_LIBRARY_2 ? "LL2_ROSTER" : "NASA_VERIFICATION") != 1)
             throw new IllegalStateException("Matching unclaimed source trigger required");
         return id;
     }
@@ -60,41 +60,44 @@ public class JdbcCrewRepository implements CrewRepository {
         if (completion.outcome() != CrewSyncRun.Outcome.SUCCESS || completion.sourceState() != CrewSourceState.AVAILABLE
                 || !snapshot.observation().equals(completion.observation()))
             throw new IllegalArgumentException("Matching successful observation required");
-        // Serialize identity allocation by database writers; this is not scheduler ownership across nodes.
+        // Serialize identity allocation by database writers; this is not scheduler ownership across
+        // nodes.
         jdbc.execute("SELECT pg_advisory_xact_lock(73491, 1)");
         var o = snapshot.observation();
         List<Long> ids = jdbc.query("""
-                INSERT INTO crew_source_snapshot
-                    (source, station, source_api_version, adapter_version, source_station_external_id,
-                     content_hash, first_observed_at, source_url, source_published_at, source_event_at,
-                     http_etag, http_last_modified, total_active_expeditions, candidates_complete)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT (source, station, source_station_external_id, source_api_version, adapter_version, content_hash)
-                DO NOTHING RETURNING id
-                """, (rs, n) -> rs.getLong(1), o.source().name(), snapshot.station().name(), o.sourceVersion(),
+                        INSERT INTO crew_source_snapshot
+                            (source, station, source_api_version, adapter_version, source_station_external_id,
+                             content_hash, first_observed_at, source_url, source_published_at, source_event_at,
+                             http_etag, http_last_modified, total_active_expeditions, candidates_complete)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        ON CONFLICT (source, station, source_station_external_id, source_api_version, adapter_version, content_hash)
+                        DO NOTHING RETURNING id
+                        """, (rs, n) -> rs.getLong(1), o.source().name(), snapshot.station().name(), o.sourceVersion(),
                 o.adapterVersion(), snapshot.sourceStationExternalId(), o.contentHash(), utc(o.retrievedAt()),
                 o.sourceUrl().toString(), utc(o.sourcePublishedAt()), utc(o.sourceEventAt()), o.httpEtag(),
                 o.httpLastModified(), snapshot.totalActiveExpeditions(), snapshot.candidatesComplete());
         boolean inserted = !ids.isEmpty();
         long id = inserted ? ids.getFirst() : jdbc.queryForObject("""
-                SELECT id FROM crew_source_snapshot WHERE source = ? AND station = ? AND source_station_external_id = ?
-                AND source_api_version = ? AND adapter_version = ? AND content_hash = ?
-                """, Long.class, o.source().name(), snapshot.station().name(), snapshot.sourceStationExternalId(),
+                                SELECT id FROM crew_source_snapshot WHERE source = ? AND station = ? AND source_station_external_id = ?
+                                AND source_api_version = ? AND adapter_version = ? AND content_hash = ?
+                                """, Long.class, o.source().name(), snapshot.station().name(), snapshot.sourceStationExternalId(),
                 o.sourceVersion(), o.adapterVersion(), o.contentHash());
         if (inserted) storeGraph(id, snapshot);
         complete(runId, completion, id);
+        new JdbcCrewIdentityRepository(jdbc)
+                .synchronize(ReviewedCrewIdentities.load(), completion.completedAt(), true);
         return new StoreResult(id, inserted);
     }
 
     private void complete(long id, Completion c, Long snapshotId) {
         var o = c.observation();
         int changed = jdbc.update("""
-                UPDATE crew_source_sync_run SET completed_at = ?, result_state = ?, source_state = ?,
-                    http_status = ?, retrieved_at = ?, source_published_at = ?, source_event_at = ?,
-                    http_etag = ?, http_last_modified = ?, source_api_version = ?, adapter_version = ?,
-                    content_hash = ?, retry_after = ?, retry_after_at = ?, error_code = ?, error_summary = ?, snapshot_id = ?
-                WHERE id = ? AND result_state = 'IN_PROGRESS'
-                """, utc(c.completedAt()), c.outcome().name(), name(c.sourceState()), c.httpStatus(),
+                        UPDATE crew_source_sync_run SET completed_at = ?, result_state = ?, source_state = ?,
+                            http_status = ?, retrieved_at = ?, source_published_at = ?, source_event_at = ?,
+                            http_etag = ?, http_last_modified = ?, source_api_version = ?, adapter_version = ?,
+                            content_hash = ?, retry_after = ?, retry_after_at = ?, error_code = ?, error_summary = ?, snapshot_id = ?
+                        WHERE id = ? AND result_state = 'IN_PROGRESS'
+                        """, utc(c.completedAt()), c.outcome().name(), name(c.sourceState()), c.httpStatus(),
                 o == null ? null : utc(o.retrievedAt()), o == null ? null : utc(o.sourcePublishedAt()),
                 o == null ? null : utc(o.sourceEventAt()), o == null ? null : o.httpEtag(),
                 o == null ? null : o.httpLastModified(), o == null ? null : o.sourceVersion(),
@@ -177,12 +180,14 @@ public class JdbcCrewRepository implements CrewRepository {
         }, id);
         if (headers.isEmpty()) return Optional.empty();
         var header = headers.getFirst(); var o = header.observation();
-        var expeditions = jdbc.query("SELECT * FROM crew_expedition_observation WHERE snapshot_id = ? ORDER BY external_id",
+        var expeditions = jdbc.query("SELECT * FROM crew_expedition_observation WHERE snapshot_id = ? ORDER BY"
+                            + " external_id",
                 (rs, n) -> new Expedition(rs.getObject("expedition_id", UUID.class),
                         new ExternalId(CrewSource.valueOf(rs.getString("source")), rs.getString("external_id")),
                         rs.getString("name"), instant(rs, "starts_at"), instant(rs, "ends_at"),
                         Station.valueOf(rs.getString("station")), o), id);
-        var profiles = jdbc.query("SELECT * FROM crew_person_observation WHERE snapshot_id = ? ORDER BY external_id",
+        var profiles = jdbc.query("SELECT * FROM crew_person_observation WHERE snapshot_id = ? ORDER BY"
+                            + " external_id",
                 (rs, n) -> new AstronautProfile(new PersonReference(rs.getObject("person_id", UUID.class),
                         rs.getString("display_name"), List.of(new ExternalId(CrewSource.valueOf(rs.getString("source")),
                         rs.getString("external_id"))), uri(rs.getString("official_profile_url"))),
@@ -195,7 +200,8 @@ public class JdbcCrewRepository implements CrewRepository {
                         o, rs.getString("source_profile_mode")), id);
         Map<UUID, PersonReference> people = new HashMap<>(); profiles.forEach(p -> people.put(p.person().mission1Id(), p.person()));
         Map<UUID, ExternalId> expeditionIds = new HashMap<>(); expeditions.forEach(e -> expeditionIds.put(e.mission1Id(), e.externalId()));
-        var assignments = jdbc.query("SELECT * FROM crew_assignment_observation WHERE snapshot_id = ? ORDER BY external_id",
+        var assignments = jdbc.query("SELECT * FROM crew_assignment_observation WHERE snapshot_id = ? ORDER BY"
+                            + " external_id",
                 (rs, n) -> new CrewAssignment(rs.getString("external_id") == null ? null : new ExternalId(
                         CrewSource.valueOf(rs.getString("source")), rs.getString("external_id")),
                         expeditionIds.get(rs.getObject("expedition_id", UUID.class)), people.get(rs.getObject("person_id", UUID.class)),
@@ -213,7 +219,8 @@ public class JdbcCrewRepository implements CrewRepository {
         return latest(source, station, " AND result_state = 'SUCCESS'", "completed_at");
     }
     @Override public Optional<CrewSyncRun> latestFailure(CrewSource source, Station station) {
-        return latest(source, station, " AND result_state IN ('SOURCE_RESULT', 'INVALID_SNAPSHOT', 'PERSISTENCE_FAILURE', 'UNEXPECTED_FAILURE')", "started_at");
+        return latest(source, station, " AND result_state IN ('SOURCE_RESULT', 'INVALID_SNAPSHOT', 'PERSISTENCE_FAILURE',"
+                    + " 'UNEXPECTED_FAILURE')", "started_at");
     }
     private Optional<CrewSyncRun> latest(CrewSource source, Station station, String filter, String order) {
         return run("SELECT * FROM crew_source_sync_run WHERE source = ? AND station = ?" + filter
@@ -221,19 +228,19 @@ public class JdbcCrewRepository implements CrewRepository {
     }
     @Override public Optional<Instant> lastFetchAttemptAt(CrewSource source, Station station) {
         return Optional.ofNullable(jdbc.queryForObject("""
-                SELECT max(started_at) AS value FROM crew_source_sync_run WHERE source = ? AND station = ?
-                AND result_state NOT IN ('SKIPPED_RATE_LIMIT', 'SKIPPED_NOT_DUE', 'SKIPPED_OVERLAP')
-                """, (rs, n) -> instant(rs, "value"), source.name(), station.name()));
+                        SELECT max(started_at) AS value FROM crew_source_sync_run WHERE source = ? AND station = ?
+                        AND result_state NOT IN ('SKIPPED_RATE_LIMIT', 'SKIPPED_NOT_DUE', 'SKIPPED_OVERLAP')
+                        """, (rs, n) -> instant(rs, "value"), source.name(), station.name()));
     }
     @Override public Optional<Instant> retryAfterAt(CrewSource source, Station station) {
         return Optional.ofNullable(jdbc.queryForObject("""
-                SELECT max(at) AS value FROM (
-                    SELECT retry_after_at AS at FROM crew_source_sync_run
-                        WHERE source = ? AND station = ? AND source_state = 'RATE_LIMITED'
-                    UNION ALL SELECT retry_after_at AS at FROM crew_event_catalog_run
-                        WHERE ? = 'LAUNCH_LIBRARY_2'
-                ) shared
-                """, (rs, n) -> instant(rs, "value"), source.name(), station.name(), source.name()));
+                        SELECT max(at) AS value FROM (
+                            SELECT retry_after_at AS at FROM crew_source_sync_run
+                                WHERE source = ? AND station = ? AND source_state = 'RATE_LIMITED'
+                            UNION ALL SELECT retry_after_at AS at FROM crew_event_catalog_run
+                                WHERE ? = 'LAUNCH_LIBRARY_2'
+                        ) shared
+                        """, (rs, n) -> instant(rs, "value"), source.name(), station.name(), source.name()));
     }
     private Optional<CrewSyncRun> run(String sql, Object... args) {
         return jdbc.query(sql, (rs, n) -> new CrewSyncRun(rs.getLong("id"), CrewSource.valueOf(rs.getString("source")),

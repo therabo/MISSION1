@@ -2,11 +2,8 @@ package org.mission1.crew.persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import java.time.*;
-import java.util.*;
-import java.util.concurrent.*;
-import com.fasterxml.jackson.databind.node.*;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.node.*;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,6 +18,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.*;
+
+import java.time.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 @SpringBootTest
 @Testcontainers
@@ -41,9 +42,10 @@ class JdbcCrewRepositoryTest {
     final CrewIngestionPolicy policy = new CrewIngestionPolicy(Duration.ofHours(2), Duration.ofMinutes(5));
 
     @BeforeEach void setup() throws Exception {
-        jdbc.execute("TRUNCATE crew_source_sync_run, crew_source_snapshot, crew_person, crew_person_external_id, "
-                + "crew_expedition, crew_expedition_external_id, crew_expedition_observation, "
-                + "crew_person_observation, crew_assignment_observation RESTART IDENTITY CASCADE");
+        jdbc.execute("TRUNCATE crew_source_sync_run, crew_source_snapshot, crew_person,"
+                    + " crew_person_external_id, crew_expedition, crew_expedition_external_id,"
+                    + " crew_expedition_observation, crew_person_observation,"
+                    + " crew_assignment_observation RESTART IDENTITY CASCADE");
         fixture = new FixtureCrewSource();
         service = coordinator(fixture.source);
         query = new CrewQueryService(repository, fixture.clock);
@@ -67,22 +69,26 @@ class JdbcCrewRepositoryTest {
     }
 
     @Test void cleanDatabaseMigratesV1V2V3AndHasNoPresenceTable() {
-        assertEquals(6, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
-        assertEquals(34, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public' AND table_name LIKE 'crew_%'", Integer.class));
+        assertEquals(7, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
+        assertEquals(39, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
+                            + " AND table_name LIKE 'crew_%'", Integer.class));
         assertTrue(query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).isEmpty());
-        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM information_schema.columns WHERE table_schema='public' AND column_name IN ('currently_aboard_iss', 'station_presence')", Integer.class));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM information_schema.columns WHERE"
+                            + " table_schema='public' AND column_name IN ('currently_aboard_iss',"
+                            + " 'station_presence')", Integer.class));
     }
 
     @Test void upgradesExistingV2SchemaWithoutChangingOrbitalData() {
         var baseline = Flyway.configure().dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
                 .schemas("crew_upgrade_test").target("2").load();
         assertEquals(2, baseline.migrate().migrationsExecuted);
-        jdbc.update("INSERT INTO crew_upgrade_test.nasa_oem_ephemerides (sha256,xml,creation_date,start_time,stop_time,last_retrieved_at) "
-                + "VALUES (?, ?, now(), now(), now()+interval '1 day', now())", "a".repeat(64), new byte[]{1,2,3}); // TEST sentinel
+        jdbc.update("INSERT INTO crew_upgrade_test.nasa_oem_ephemerides"
+                    + " (sha256,xml,creation_date,start_time,stop_time,last_retrieved_at) VALUES"
+                    + " (?, ?, now(), now(), now()+interval '1 day', now())", "a".repeat(64), new byte[]{1,2,3}); // TEST sentinel
         var before = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
         var upgrade = Flyway.configure().dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
                 .schemas("crew_upgrade_test").load();
-        assertEquals(4, upgrade.migrate().migrationsExecuted); upgrade.validate();
+        assertEquals(5, upgrade.migrate().migrationsExecuted); upgrade.validate();
         var after = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
         assertArrayEquals((byte[])before.getFirst().get("xml"), (byte[])after.getFirst().get("xml"));
         assertEquals(before.getFirst().get("creation_date"), after.getFirst().get("creation_date"));
@@ -109,7 +115,8 @@ class JdbcCrewRepositoryTest {
         assertTrue(restored.profiles().stream().allMatch(p -> Boolean.TRUE.equals(p.inSpace())));
         assertEquals(200, latest().successfulRun().httpStatus());
         assertEquals(7, count("crew_person")); assertEquals(1, count("crew_expedition"));
-        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public' AND table_name LIKE '%presence%'", Integer.class));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
+                            + " AND table_name LIKE '%presence%'", Integer.class));
     }
 
     @Test void identicalFetchesAreTwoRunsOneSnapshotAndOneGraph() {
@@ -232,8 +239,10 @@ class JdbcCrewRepositoryTest {
     }
 
     @Test void midGraphFailureRollsBackIdentitiesAndGraphButKeepsFailedRun() {
-        jdbc.execute("CREATE FUNCTION crew_test_fail_assignment() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'TEST failure'; END; $$");
-        jdbc.execute("CREATE TRIGGER crew_test_failure BEFORE INSERT ON crew_assignment_observation FOR EACH ROW EXECUTE FUNCTION crew_test_fail_assignment()");
+        jdbc.execute("CREATE FUNCTION crew_test_fail_assignment() RETURNS trigger LANGUAGE plpgsql AS $$"
+                    + " BEGIN RAISE EXCEPTION 'TEST failure'; END; $$");
+        jdbc.execute("CREATE TRIGGER crew_test_failure BEFORE INSERT ON crew_assignment_observation FOR"
+                    + " EACH ROW EXECUTE FUNCTION crew_test_fail_assignment()");
         try {
             var result = service.ingest(); assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, result.outcome());
             assertEquals(1, count("crew_source_sync_run")); assertEquals(0, count("crew_source_snapshot"));
@@ -249,8 +258,10 @@ class JdbcCrewRepositoryTest {
     @Test void failedNewGraphKeepsPreviouslySuccessfulSnapshotUnchanged() throws Exception {
         var old = ingest(); var page = page(); astronaut(page, 0).put("bio", "SYNTHETIC_TEST_FAILED_UPDATE");
         fixture.body = page.toString(); fixture.clock.time = fixture.clock.time.plusSeconds(7200);
-        jdbc.execute("CREATE FUNCTION crew_test_fail_profile() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'TEST failure'; END; $$");
-        jdbc.execute("CREATE TRIGGER crew_test_failure BEFORE INSERT ON crew_person_observation FOR EACH ROW EXECUTE FUNCTION crew_test_fail_profile()");
+        jdbc.execute("CREATE FUNCTION crew_test_fail_profile() RETURNS trigger LANGUAGE plpgsql AS $$"
+                    + " BEGIN RAISE EXCEPTION 'TEST failure'; END; $$");
+        jdbc.execute("CREATE TRIGGER crew_test_failure BEFORE INSERT ON crew_person_observation FOR EACH"
+                    + " ROW EXECUTE FUNCTION crew_test_fail_profile()");
         try {
             var failed = service.ingest(); assertEquals(CrewSyncRun.Outcome.PERSISTENCE_FAILURE, failed.outcome());
             assertEquals(old.id(), latest().snapshot().id()); assertEquals(old.snapshot(), latest().snapshot().snapshot());
@@ -275,9 +286,15 @@ class JdbcCrewRepositoryTest {
         for (String table : List.of("crew_source_snapshot", "crew_person_observation", "crew_expedition_observation", "crew_assignment_observation"))
             assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("DELETE FROM " + table));
         assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("UPDATE crew_person_observation SET biography='TEST'"));
-        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_person_external_id SELECT * FROM crew_person_external_id"));
-        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_assignment_observation SELECT * FROM crew_assignment_observation"));
-        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_source_snapshot (source,station,source_api_version,adapter_version,source_station_external_id,content_hash,first_observed_at,source_url,total_active_expeditions,candidates_complete) SELECT source,station,source_api_version,adapter_version,source_station_external_id,content_hash,first_observed_at,source_url,total_active_expeditions,candidates_complete FROM crew_source_snapshot"));
+        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_person_external_id SELECT * FROM"
+                                    + " crew_person_external_id"));
+        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_assignment_observation SELECT * FROM"
+                                    + " crew_assignment_observation"));
+        assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("INSERT INTO crew_source_snapshot"
+                                    + " (source,station,source_api_version,adapter_version,source_station_external_id,content_hash,first_observed_at,source_url,total_active_expeditions,candidates_complete)"
+                                    + " SELECT"
+                                    + " source,station,source_api_version,adapter_version,source_station_external_id,content_hash,first_observed_at,source_url,total_active_expeditions,candidates_complete"
+                                    + " FROM crew_source_snapshot"));
         assertThrows(DataIntegrityViolationException.class, () -> jdbc.update("DELETE FROM crew_person"));
         assertEquals(s.snapshot(), repository.findSnapshot(s.id()).orElseThrow().snapshot());
     }

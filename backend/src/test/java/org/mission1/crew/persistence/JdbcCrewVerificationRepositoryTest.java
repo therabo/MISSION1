@@ -131,7 +131,7 @@ class JdbcCrewVerificationRepositoryTest {
 
     @Test
     void emptySchemaAndV3UpgradePreserveCrewAndOrbitHistory() {
-        assertEquals(6, count("flyway_schema_history"));
+        assertEquals(7, count("flyway_schema_history"));
         var v3 =
                 Flyway.configure()
                         .dataSource(
@@ -160,7 +160,7 @@ class JdbcCrewVerificationRepositoryTest {
                                 POSTGRES.getPassword())
                         .schemas("verification_upgrade")
                         .load();
-        assertEquals(3, latest.migrate().migrationsExecuted);
+        assertEquals(4, latest.migrate().migrationsExecuted);
         latest.validate();
         assertEquals(
                 1,
@@ -244,6 +244,7 @@ class JdbcCrewVerificationRepositoryTest {
         var ll = ll2();
         var before = runs.findSnapshot(ll.snapshotId()).orElseThrow();
         ingest();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
         var e = verification.evidenceAsOf(now);
         var resolved = verification.resolve(e, now);
         assertEquals(11, resolved.size());
@@ -275,6 +276,7 @@ class JdbcCrewVerificationRepositoryTest {
     void reconciliationRoundTripsRelationalLineageAndRetainsLl2Profiles() {
         var ll = ll2();
         ingest();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
         var run = service.reconcile();
         var stored = reconciliation.latest().orElseThrow();
         var current = service.current();
@@ -304,6 +306,7 @@ class JdbcCrewVerificationRepositoryTest {
     void sameInputsReuseSnapshotButNewAlgorithmKeepsAnotherHistory() {
         ll2();
         ingest();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
         var a = service.reconcile();
         var b = service.reconcile();
         assertEquals(a.snapshotId(), b.snapshotId());
@@ -389,6 +392,7 @@ class JdbcCrewVerificationRepositoryTest {
     void reconciliationWriteFailureKeepsPreviousCanonicalSnapshot() {
         ll2();
         ingest();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
         var a = service.reconcile();
         fixture.clock.time = now.plusSeconds(7 * 3600);
         rejectInserts("crew_reconciled_person");
@@ -653,5 +657,66 @@ class JdbcCrewVerificationRepositoryTest {
         assertNull(service.current().officialCrewCount());
         assertEquals(4, count("crew_source_document"));
         assertEquals(7, count("crew_verification_evidence"));
+    }
+@Test
+    void resolverFollowsSuccessfulAtoBtoAInsteadOfSnapshotInsertionOrder() throws Exception {
+        ll2();
+        ingest();
+        var evidence = verification.evidenceAsOf(now);
+        var item =
+                evidence.stream()
+                        .filter(
+                                e ->
+                                        e.value().people().stream()
+                                                .anyMatch(
+                                                        p ->
+                                                                p.displayName()
+                                                                        .equals("Sophie Adenot")))
+                        .findFirst()
+                        .orElseThrow();
+        int subject =
+                java.util.stream.IntStream.range(0, item.value().people().size())
+                        .filter(
+                                i ->
+                                        item.value()
+                                                .people()
+                                                .get(i)
+                                                .displayName()
+                                                .equals("Sophie Adenot"))
+                        .findFirst()
+                        .orElseThrow();
+        var a =
+                verification.resolve(evidence, now).stream()
+                        .filter(r -> r.evidenceId() == item.id() && r.subjectIndex() == subject)
+                        .findFirst()
+                        .orElseThrow();
+        assertEquals(1, a.candidates().size());
+        assertNull(a.personId());
+        String original = fixture.body;
+        fixture.body = original.replace("Sophie Adenot", "TEST_ONLY Changed Metadata");
+        fixture.clock.time = now.plusSeconds(1);
+        ll2();
+        var b =
+                verification.resolve(evidence, fixture.clock.time).stream()
+                        .filter(r -> r.evidenceId() == item.id() && r.subjectIndex() == subject)
+                        .findFirst()
+                        .orElseThrow();
+        assertTrue(b.candidates().isEmpty());
+        fixture.body = original;
+        fixture.clock.time = now.plusSeconds(2);
+        ll2();
+        var again =
+                verification.resolve(evidence, fixture.clock.time).stream()
+                        .filter(r -> r.evidenceId() == item.id() && r.subjectIndex() == subject)
+                        .findFirst()
+                        .orElseThrow();
+        assertEquals(a.candidates(), again.candidates());
+        assertNotEquals(a.id(), again.id());
+        assertEquals(
+                again,
+                verification.resolutionsAsOf(fixture.clock.time).stream()
+                        .filter(r -> r.evidenceId() == item.id() && r.subjectIndex() == subject)
+                        .findFirst()
+                        .orElseThrow());
     }
 }

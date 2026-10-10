@@ -30,3 +30,8 @@ The independent orbital **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS
 ## Replay integration — 2026-10-03
 
 Crew Replay integration is complete. Effective-time reconstruction uses retained evidence, latest canonical profile metadata and bounded partial coverage. [Rules and limits](../replay/crew-replay.md); [validation](../replay/validation/README.md). Next: ISS REPLAY EVENT TIMELINE.
+
+
+## Canonical identity — 2026-10-10
+
+[ADR-0013 projection and maintenance](canonical-identity.md) joins only the reviewed Luke Delaney and Jessica Watkins identities, preserves every UUID/history, and shares field authority between Current and Replay. Meir remains distinct and Fedyaev remains unresolved. [Validation](canonical-identity-validation/README.md).

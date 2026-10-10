@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class CrewRestConfiguration {
     @Bean
-    CrewReadQueryService crewReadQueryService(CrewReadRepository repository) {
-        return new CrewReadQueryService(repository);
+    CrewReadQueryService crewReadQueryService(CrewReadRepository repository, CrewIdentityRepository identities) {
+        return new CrewReadQueryService(repository, identities);
     }
 }

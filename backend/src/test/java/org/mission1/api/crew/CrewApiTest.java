@@ -122,6 +122,7 @@ class CrewApiTest {
 
     @BeforeEach
     void setup() {
+        when(people.identityAt(any())).thenReturn(CrewCanonicalIdentity.EMPTY);
         ll2 = observation(CrewSource.LAUNCH_LIBRARY_2, "ll2");
         nasa = observation(CrewSource.NASA_OFFICIAL, "nasa");
         when(clock.instant()).thenReturn(at);

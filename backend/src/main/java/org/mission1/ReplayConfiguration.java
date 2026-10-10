@@ -18,8 +18,9 @@ class ReplayConfiguration {
             CrewRepository r,
             CrewVerificationRepository v,
             CrewReadRepository p,
-            CrewReconciliationPolicy policy) {
-        return new CrewReplayQueryService(h, r, v, p, policy);
+            CrewReconciliationPolicy policy,
+            CrewIdentityRepository identities) {
+        return new CrewReplayQueryService(h, r, v, p, policy, identities);
     }
 
     @Bean

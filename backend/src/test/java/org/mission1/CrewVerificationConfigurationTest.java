@@ -29,6 +29,7 @@ class CrewVerificationConfigurationTest {
                                 c.getBeanFactory()
                                         .setConversionService(
                                                 ApplicationConversionService.getSharedInstance()))
+                .withBean(CrewIdentityRepository.class, () -> CrewIdentityRepository.EMPTY)
                 .withBean(Clock.class, Clock::systemUTC)
                 .withBean(CrewRepository.class, () -> runs)
                 .withBean(

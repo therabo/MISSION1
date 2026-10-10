@@ -25,7 +25,6 @@ public class JdbcCrewVerificationRepository implements CrewVerificationRepositor
     private final JdbcTemplate jdbc;
     private final ObjectMapper json;
     private final JdbcCrewOccurrenceRepository occurrences;
-    private final CrewPersonResolver resolver = new CrewPersonResolver();
 
     public JdbcCrewVerificationRepository(JdbcTemplate jdbc, ObjectMapper json) {
         this.jdbc = jdbc;
@@ -413,15 +412,18 @@ ORDER BY e.id
         var candidates =
                 jdbc.query(
                         """
-SELECT DISTINCT ON(person_id) person_id,display_name,official_profile_url FROM crew_person_observation
-ORDER BY person_id,snapshot_id DESC
+SELECT DISTINCT ON(p.person_id) p.person_id,p.display_name,p.official_profile_url FROM crew_person_observation p
+JOIN crew_source_sync_run r ON r.snapshot_id=p.snapshot_id AND r.result_state='SUCCESS'
+WHERE r.completed_at<=? ORDER BY p.person_id,r.completed_at DESC,r.id DESC
 """,
                         (r, n) ->
                                 new PersonReference(
                                         r.getObject(1, UUID.class),
                                         r.getString(2),
                                         List.of(),
-                                        uri(r.getString(3))));
+                                        uri(r.getString(3))),
+                        utc(asOf));
+        var canonical = new JdbcCrewIdentityRepository(jdbc).knowledge(asOf);
         var previous = new HashMap<String, CrewIdentityResolution>();
         resolutionsAsOf(asOf)
                 .forEach(x -> previous.put(x.evidenceId() + ":" + x.subjectIndex(), x));
@@ -430,16 +432,16 @@ ORDER BY person_id,snapshot_id DESC
             for (int i = 0; i < item.value().people().size(); i++) {
                 var existing = previous.get(item.id() + ":" + i);
                 var subject = item.value().people().get(i);
-                var decision = resolver.resolve(subject, candidates, mappings);
+                var decision = CrewCanonicalPersonResolver.resolve(subject, candidates, mappings, existing, canonical);
                 // Recheck candidates when LL2 history grows. Reuse a prior audit only if its
                 // decision still holds.
                 if (existing != null
-                        && existing.resolverVersion().equals(CrewPersonResolver.VERSION)
+                        && (existing.resolverVersion().equals(CrewCanonicalPersonResolver.VERSION)
+                                || existing.resolverVersion().equals(CrewPersonResolver.VERSION))
                         && Objects.equals(existing.personId(), decision.personId())
                         && Objects.equals(existing.identityKey(), decision.nasaKey())
                         && existing.candidates().equals(decision.candidates())
-                        && (existing.personId() != null
-                                || existing.method() == decision.method())) {
+                        && existing.method() == decision.method()) {
                     result.add(existing);
                     continue;
                 }
@@ -472,7 +474,8 @@ ORDER BY person_id,snapshot_id DESC
                                         method,
                                         candidateIds,
                                         key,
-                                        CrewPersonResolver.VERSION));
+                                        CrewCanonicalPersonResolver.VERSION,
+                                        existing == null ? null : existing.id()));
                 jdbc.update(
                         """
 INSERT INTO crew_identity_resolution(evidence_id,subject_index,resolved_at,person_id,method,candidates,identity_key,resolver_version,resolution_hash)
@@ -485,7 +488,7 @@ VALUES (?,?,?,?,?,?::uuid[],?,?,?) ON CONFLICT DO NOTHING
                         method.name(),
                         array(candidateIds),
                         key,
-                        CrewPersonResolver.VERSION,
+                        CrewCanonicalPersonResolver.VERSION,
                         resolutionHash);
                 result.add(
                         jdbc.queryForObject(
@@ -493,6 +496,7 @@ VALUES (?,?,?,?,?,?::uuid[],?,?,?) ON CONFLICT DO NOTHING
                                 (r, n) -> resolution(r),
                                 resolutionHash));
             }
+        new JdbcCrewIdentityRepository(jdbc).synchronize(ReviewedCrewIdentities.load(), asOf, true);
         return List.copyOf(result);
     }
 

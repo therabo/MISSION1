@@ -1,0 +1,162 @@
+{
+  "version": "crew-reviewed-identities-v1",
+  "approvedOn": "2026-10-10",
+  "reviewContext": "Human user explicitly approved only Luke Delaney and Jessica Watkins for ADR-0013 implementation; captures originate from the completed read-only identity investigation. No names, scores or secondary IDs authorize equivalence.",
+  "declarations": [
+    {
+      "key": "luke-delaney-v1",
+      "decision": "REVIEWED_SAME_HUMAN",
+      "actor": "HUMAN_APPROVED",
+      "identities": [
+        {
+          "source": "LAUNCH_LIBRARY_2",
+          "entityKind": "PERSON",
+          "externalKey": "710"
+        },
+        {
+          "source": "NASA_OFFICIAL",
+          "entityKind": "PERSON_PROFILE_RESOURCE",
+          "externalKey": "profile:nasa-astronaut-luke-delaney"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "LL2_PERSON",
+          "category": "SECONDARY_STRUCTURED",
+          "url": "https://ll.thespacedevs.com/2.3.0/astronauts/710/",
+          "capturedAt": "2026-10-10T09:24:18.097593Z",
+          "captureHash": "b35250e7eea91b9be06a1e5ff07ce4a25ee6ae640e2bda21ec1e4b6e211c153c",
+          "locator": "/id,/name,/agency,/bio,/wiki,/flights",
+          "summary": "LL2 astronaut 710; named profile, NASA agency and Crew-13 history. Retired USMC major; Debary; UNF, Naval Postgraduate School, NASA Langley."
+        },
+        {
+          "role": "NASA_PERSON_RESOURCE",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/wp-json/wp/v2/people/129838",
+          "capturedAt": "2026-10-10T09:24:21.038841Z",
+          "captureHash": "c6a8ebb6c4627692d565340d8085995062822a135bb0a77b891e8fec0caf6e16",
+          "locator": "/id,/type,/link,/title/rendered,/content/rendered",
+          "summary": "NASA people resource 129838 about Luke Delaney; individual biography corroborates LL2 profile and Crew-13 context."
+        },
+        {
+          "role": "NASA_TOPIC_RELATION",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/wp-json/wp/v2/topic/619970",
+          "capturedAt": "2026-10-10T09:28:52.544240Z",
+          "captureHash": "611f114a38017138b6be85aeaeff729c01923404fd46816bc9141686ab19cd49",
+          "locator": "/id,/type,/content/rendered:Biography link",
+          "summary": "NASA topic 619970 explicitly links the named individual biography; content IDs remain resource identities."
+        },
+        {
+          "role": "NASA_MISSION_MANIFEST",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/blogs/commercialcrew/2026/10/01/meet-the-crew-of-nasas-spacex-crew-13/",
+          "capturedAt": "2026-10-10T09:29:33.316123Z",
+          "captureHash": "705566b177c0a6b03bd179261331ade4534374038d8b6575cc365925bb8c9c23",
+          "locator": "article main content: named Crew-13 biography and crew manifest",
+          "summary": "Official Crew-13 manifest names Luke Delaney and provides biographical and mission context."
+        },
+        {
+          "role": "SECONDARY_REVIEW_REFERENCE",
+          "category": "SECONDARY_STRUCTURED",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=pageprops%7Cinfo&ppprop=wikibase_item&inprop=url&titles=Jessica_Meir%7CJessica_Watkins%7CJoshua_Kutryk%7CAnna_Kikina%7CPyotr_Dubrov%7CLuke_Delaney_%28astronaut%29%7CJack_Hathaway%7CAnil_Menon_%28astronaut%29%7CAndrey_Fedyaev%7CSophie_Adenot%7CKoichi_Wakata&redirects=1&format=json",
+          "capturedAt": "2026-10-10T09:26:19.649261Z",
+          "captureHash": "83382d842d6ddaa16573619f100d325eb2ca9c1be546ec96b51f8fbd0d2350da",
+          "locator": "/query/pages/69448117/pageprops/wikibase_item",
+          "summary": "LL2-linked Wikipedia entity reference is a review aid, not official identity authority."
+        },
+        {
+          "role": "NASA_RETAINED_OPERATIONAL",
+          "category": "RETAINED_SOURCE",
+          "url": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "captureHash": "4be6d9b12beb527d538a28f2821736b9169f268972d7bd7d01f22cfac0baebbe",
+          "locator": "crew_evidence_subject/subject_index/1",
+          "summary": "Retained NASA operational evidence identifies this reviewed profile. Hash is the immutable evidence_hash, not a resource-body hash. Operational assertion semantics remain those of the existing evidence engine."
+        }
+      ]
+    },
+    {
+      "key": "jessica-watkins-v1",
+      "decision": "REVIEWED_SAME_HUMAN",
+      "actor": "HUMAN_APPROVED",
+      "identities": [
+        {
+          "source": "LAUNCH_LIBRARY_2",
+          "entityKind": "PERSON",
+          "externalKey": "582"
+        },
+        {
+          "source": "NASA_OFFICIAL",
+          "entityKind": "PERSON_PROFILE_RESOURCE",
+          "externalKey": "profile:jessica-watkins"
+        }
+      ],
+      "evidence": [
+        {
+          "role": "LL2_PERSON",
+          "category": "SECONDARY_STRUCTURED",
+          "url": "https://ll.thespacedevs.com/2.3.0/astronauts/582/",
+          "capturedAt": "2026-10-10T09:24:16.547005Z",
+          "captureHash": "347992eb64030f441d93bac3f8afcd18f09fdfdc2fb94861d2308aff6e1417b6",
+          "locator": "/id,/name,/agency,/bio,/wiki,/flights",
+          "summary": "LL2 astronaut 582; named profile, NASA agency and Crew-13 history. Jessica Andrea Watkins; geology, NASA 2017 selection and prior Crew-4 history."
+        },
+        {
+          "role": "NASA_PERSON_RESOURCE",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/wp-json/wp/v2/people/88101",
+          "capturedAt": "2026-10-10T09:24:21.170172Z",
+          "captureHash": "52ed66988e9be4b6e6348c471f208e13c433fce69edd48cd325570bf5b4e445b",
+          "locator": "/id,/type,/link,/title/rendered,/content/rendered",
+          "summary": "NASA people resource 88101 about Jessica Watkins; individual biography corroborates LL2 profile and Crew-13 context."
+        },
+        {
+          "role": "NASA_TOPIC_RELATION",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/wp-json/wp/v2/topic/255064",
+          "capturedAt": "2026-10-10T09:28:53.369961Z",
+          "captureHash": "cac7688827b7aa943e2c09db6950bc137caaadf6c5e7ad0166c2657f59d09968",
+          "locator": "/id,/type,/content/rendered:Biography link",
+          "summary": "NASA topic 255064 explicitly links the named individual biography; content IDs remain resource identities."
+        },
+        {
+          "role": "NASA_MISSION_MANIFEST",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/blogs/commercialcrew/2026/10/01/meet-the-crew-of-nasas-spacex-crew-13/",
+          "capturedAt": "2026-10-10T09:29:33.316123Z",
+          "captureHash": "705566b177c0a6b03bd179261331ade4534374038d8b6575cc365925bb8c9c23",
+          "locator": "article main content: named Crew-13 biography and crew manifest",
+          "summary": "Official Crew-13 manifest names Jessica Watkins and provides biographical and mission context."
+        },
+        {
+          "role": "SECONDARY_REVIEW_REFERENCE",
+          "category": "SECONDARY_STRUCTURED",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=pageprops%7Cinfo&ppprop=wikibase_item&inprop=url&titles=Jessica_Meir%7CJessica_Watkins%7CJoshua_Kutryk%7CAnna_Kikina%7CPyotr_Dubrov%7CLuke_Delaney_%28astronaut%29%7CJack_Hathaway%7CAnil_Menon_%28astronaut%29%7CAndrey_Fedyaev%7CSophie_Adenot%7CKoichi_Wakata&redirects=1&format=json",
+          "capturedAt": "2026-10-10T09:26:19.649261Z",
+          "captureHash": "83382d842d6ddaa16573619f100d325eb2ca9c1be546ec96b51f8fbd0d2350da",
+          "locator": "/query/pages/54248774/pageprops/wikibase_item",
+          "summary": "LL2-linked Wikipedia entity reference is a review aid, not official identity authority."
+        },
+        {
+          "role": "NASA_PROFILE_ALIAS",
+          "category": "PRIMARY_OFFICIAL",
+          "url": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+          "capturedAt": "2026-10-10T09:26:21.021831Z",
+          "captureHash": "ab9777fe4abae2d8790e86deada66cccbbcf64569d2a6546df3136213a29c3a1",
+          "locator": "captured HTTP redirect to /people/jessica-watkins/",
+          "summary": "Explicit official biography alias resolves to NASA people resource88101."
+        },
+        {
+          "role": "NASA_RETAINED_OPERATIONAL",
+          "category": "RETAINED_SOURCE",
+          "url": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+          "capturedAt": "2026-10-03T11:45:46.137144Z",
+          "captureHash": "4be6d9b12beb527d538a28f2821736b9169f268972d7bd7d01f22cfac0baebbe",
+          "locator": "crew_evidence_subject/subject_index/0",
+          "summary": "Retained NASA operational evidence identifies this reviewed profile. Hash is the immutable evidence_hash, not a resource-body hash. Operational assertion semantics remain those of the existing evidence engine."
+        }
+      ]
+    }
+  ]
+}

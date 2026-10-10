@@ -65,9 +65,10 @@ class CrewVerificationConfiguration {
             CrewVerificationRepository verification,
             CrewReconciliationRepository repository,
             CrewReconciliationPolicy policy,
-            Clock utcClock) {
+            Clock utcClock,
+            CrewIdentityRepository identities) {
         return new CrewReconciliationService(
-                primary, query, verification, repository, policy, utcClock);
+                primary, query, verification, repository, policy, utcClock, identities);
     }
 
     @Bean

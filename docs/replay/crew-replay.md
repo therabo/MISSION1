@@ -24,3 +24,8 @@ Coverage contains inclusive intervals, start/end, status and limitations. Crew c
 Replay and its coverage query use the same pure compatible-version selector as Current before effective-time evaluation (ADR-0012). Select from retained successfully observed source versions known at the query's present knowledge boundary; do not constrain capture/source modification time to requested T. This preserves best-current reconstruction at T and late compatible metadata revision behavior. Structured capture-at-T rules and latest profile policy are unchanged.
 
 Distinct arrival, aboard, departure, event-time, article and assertion scopes remain separate. Bounded-feed eviction does not retract earlier events. Raw evidence IDs/hashes/subjects/documents/resolutions and alternative-version lineage remain internally auditable. Unresolved/count/coverage inputs reflect selected logical occurrences; no public grouping DTO, frontend dedupe, network dependency, GET writes or current-state fallback is added. [Migration/backfill and validation](../crew/source-occurrence-versioning-validation/README.md).
+
+
+## Reviewed canonical identity — ADR-0013
+
+Current and Replay share the reviewed identity projection before temporal evaluation. Latest knowledge can join old Luke/Watkins UUID anchors without altering retained assertions or assignments effective at T. Latest retained LL2 metadata is available for historical people even when no assignment applies. Meir remains independent; Andrey Fedyaev remains unresolved. [Detailed policy](../crew/canonical-identity.md).

@@ -415,6 +415,12 @@ class JdbcCrewRefreshRepositoryTest {
                 .put("name", "Test Transfer");
         fixture.body = rosterPage.toString();
         advance(60);
+        assertEquals("OPEN",
+                refresh.followUps().getFirst().state()); // New name-only identity awaits review.
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
+        reconciliation.reconcile();
+        coordinator.tick();
         assertEquals("SETTLED", refresh.followUps().getFirst().state());
         assertTrue(
                 jdbc.queryForObject(
@@ -723,7 +729,7 @@ class JdbcCrewRefreshRepositoryTest {
                                 POSTGRES.getPassword())
                         .schemas("event_refresh_upgrade")
                         .load();
-        assertEquals(2, latest.migrate().migrationsExecuted);
+        assertEquals(3, latest.migrate().migrationsExecuted);
         latest.validate();
         for (var entry : before.entrySet())
             assertEquals(
@@ -813,6 +819,9 @@ class JdbcCrewRefreshRepositoryTest {
                                 + " Station.</p>",
                         fixture.clock.time);
         advance(5);
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
+        reconciliation.reconcile();
         advance(55);
         assertEquals("OPEN", refresh.followUps().getFirst().state());
         var changed = (ObjectNode) json.readTree(fixture.body);
@@ -1048,10 +1057,10 @@ class JdbcCrewRefreshRepositoryTest {
     }
 
     @Test
-    void emptyDatabaseMigratesToV6() {
-        assertEquals(6, count("flyway_schema_history"));
+    void emptyDatabaseMigratesToV7() {
+        assertEquals(7, count("flyway_schema_history"));
         assertEquals(
-                "6",
+                "7",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history WHERE success ORDER BY"
                                 + " installed_rank DESC LIMIT 1",

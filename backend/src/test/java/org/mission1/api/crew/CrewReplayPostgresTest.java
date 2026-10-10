@@ -164,6 +164,8 @@ class CrewReplayPostgresTest {
     void populated() {
         ll2();
         nasa();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
     }
 
@@ -204,6 +206,8 @@ class CrewReplayPostgresTest {
         body = getClass().getResourceAsStream("/fixtures/crew/nasa/occurrences/new.xml").readAllBytes();
         fixture.clock.time = Instant.parse("2026-10-06T21:27:06.770331Z");
         nasa();
+        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
+                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
     }
 
@@ -224,11 +228,16 @@ class CrewReplayPostgresTest {
         }
         assertEquals(5, jdbc.queryForObject("SELECT count(*) FROM crew_verification_evidence", Integer.class));
         assertEquals(18, jdbc.queryForObject("SELECT count(*) FROM crew_evidence_subject", Integer.class));
-        assertEquals(1, jdbc.queryForObject("SELECT count(DISTINCT occurrence_key) FROM crew_assertion_version v JOIN crew_verification_evidence e ON e.id=v.evidence_id WHERE e.evidence_type='PERSON_CURRENTLY_ABOARD'", Integer.class));
+        assertEquals(1, jdbc.queryForObject("SELECT count(DISTINCT occurrence_key) FROM crew_assertion_version v JOIN"
+                            + " crew_verification_evidence e ON e.id=v.evidence_id WHERE"
+                            + " e.evidence_type='PERSON_CURRENTLY_ABOARD'", Integer.class));
         assertEquals("EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION", historical.path("semantics").asText());
         assertEquals(Instant.parse("2026-10-02T02:01:55Z").toString(), historical.at("/crew/effectiveAt").asText());
-        var canonical = jdbc.queryForObject("SELECT person_id FROM crew_person_external_id WHERE source='LAUNCH_LIBRARY_2' AND external_id='732'", UUID.class);
-        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM crew_identity_resolution r JOIN crew_evidence_subject s USING(evidence_id,subject_index) WHERE s.display_name='Andrey Fedyaev' AND r.person_id IS NOT NULL", Integer.class));
+        var canonical = jdbc.queryForObject("SELECT person_id FROM crew_person_external_id WHERE"
+                            + " source='LAUNCH_LIBRARY_2' AND external_id='732'", UUID.class);
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM crew_identity_resolution r JOIN crew_evidence_subject"
+                            + " s USING(evidence_id,subject_index) WHERE s.display_name='Andrey"
+                            + " Fedyaev' AND r.person_id IS NOT NULL", Integer.class));
         boolean canonicalFound = false;
         for (var member : current.path("members")) if (member.path("id").asText().equals(canonical.toString())) {
             canonicalFound = true;
@@ -503,5 +512,33 @@ class CrewReplayPostgresTest {
                 r.at("/crew/state/freshness/structuredSource/sourceState").asText());
         assertFalse(r.at("/crew/state/provenance/structuredSource").isNull());
         assertEquals(7, replay(at).at("/crew/state/counts/structuredAssignments").asInt());
+    }
+@Test
+    void replayUsesReviewedCanonicalMetadataAtKnownAtWithoutFutureAssignments() throws Exception {
+        populated();
+        var tree = json.readTree(fixture.body);
+        CanonicalCrewFixture.reviewedAssignments(tree);
+        fixture.body = tree.toString();
+        fixture.clock.time = Instant.parse("2026-10-10T12:00:00Z");
+        ll2();
+        var result = replay(Instant.parse("2026-10-02T03:00:00Z"));
+        assertTrue(result.at("/crew/state/expedition").isNull());
+        assertTrue(result.at("/crew/state/counts/structuredAssignments").isNull());
+        var people = result.at("/crew/profiles");
+        for (var name : List.of("Luke Delaney", "Jessica Watkins")) {
+            var matched = new ArrayList<com.fasterxml.jackson.databind.JsonNode>();
+            people.forEach(
+                    p -> {
+                        if (p.get("name").asText().equals(name)) matched.add(p);
+                    }
+);
+            assertEquals(1, matched.size());
+            var p = matched.getFirst();
+            assertEquals("AVAILABLE", p.get("profileAvailability").asText());
+            assertTrue(p.get("currentAssignment").isNull());
+            assertTrue(
+                    p.get("biography").asText().startsWith("TEST_ONLY retained canonical profile"));
+            assertEquals(1, p.at("/canonicalProfile/aliases").size());
+        }
     }
 }

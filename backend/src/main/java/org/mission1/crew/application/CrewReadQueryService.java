@@ -7,8 +7,19 @@ import java.util.*;
 public final class CrewReadQueryService {
     private final CrewReadRepository repository;
 
+    private CrewIdentityRepository identities = CrewIdentityRepository.EMPTY;
+
     public CrewReadQueryService(CrewReadRepository repository) {
         this.repository = repository;
+    }
+
+    public CrewReadQueryService(CrewReadRepository repository, CrewIdentityRepository identities) {
+        this(repository);
+        this.identities = identities;
+    }
+
+    public CrewCanonicalIdentity identityAt(Instant at) {
+        return identities.knowledge(at);
     }
 
     public Optional<CrewSyncRun> latestStructuredOutcome() {

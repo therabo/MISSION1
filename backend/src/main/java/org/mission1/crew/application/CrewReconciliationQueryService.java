@@ -55,6 +55,7 @@ public final class CrewReconciliationQueryService {
                                                                         state.primarySnapshotId())
                                                                 .orElseThrow(),
                                                         run));
+        structured = structured.map(service.identityAt(state.reconciliationAsOf())::project);
         var evidence =
                 verification.evidenceAsOf(state.reconciliationAsOf()).stream()
                         .filter(e -> state.evidenceIds().contains(e.id()))
