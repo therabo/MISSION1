@@ -1,5 +1,11 @@
 # Crew domain contract — v1
 
+## Source occurrence versioning — 2026-10-10
+
+Article identity is the verified RSS GUID resource key, distinct from raw/observed URL and document/body hash. An assertion occurrence represents a uniquely located typed source claim across compatible revisions; a subject occurrence represents a source mention within that claim. Existing evidence and `(evidence_id, subject_index)` retain their immutable version-lineage roles. Own subject metadata versions preserve additions/removals without carrying stale fields forward. None of these source identities establishes a canonical MISSION1 person UUID.
+
+Exact normalized scope, article/station/type/time context, ordered mentions/count/completeness and explicitly supported parser semantics govern compatibility. Strong-key conflicts and uncertain scope remain independent; names retain spelling/script distinctions and are never global human keys. Current/Replay count selected unresolved source occurrences, including retained non-applicable entries, rather than raw evidence revisions. See [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) and [validation](source-occurrence-versioning-validation/README.md).
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## Earth View consumption — 2026-10-03

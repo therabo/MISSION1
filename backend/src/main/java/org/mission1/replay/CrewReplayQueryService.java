@@ -45,7 +45,8 @@ public final class CrewReplayQueryService {
     }
 
     public ReplayCoverage coverage(Instant knownAt) {
-        return coverage(history.structured(), verification.evidenceAsOf(knownAt), knownAt);
+        return coverage(history.structured(), new CrewCompatibleVersionSelector().select(
+                verification.evidenceAsOf(knownAt), verification.occurrenceVersionsAsOf(knownAt)).evidence(), knownAt);
     }
 
     private ReplayCoverage coverage(
@@ -94,7 +95,8 @@ public final class CrewReplayQueryService {
 
     public Result at(Instant at, Instant knownAt) {
         var structured = history.structured();
-        var evidence = verification.evidenceAsOf(knownAt);
+        var evidence = new CrewCompatibleVersionSelector().select(
+                verification.evidenceAsOf(knownAt), verification.occurrenceVersionsAsOf(knownAt)).evidence();
         var coverage = coverage(structured, evidence, knownAt);
         if (!coverage.contains(at))
             return new Result(

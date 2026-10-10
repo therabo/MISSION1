@@ -52,6 +52,15 @@ public interface CrewVerificationRepository {
 
     List<Evidence> evidenceAsOf(Instant asOf);
 
+    /** Read-only successful occurrence-version lineage; legacy ports retain independent versions. */
+    default List<CrewOccurrenceVersion> occurrenceVersionsAsOf(Instant asOf) { return List.of(); }
+
+    /** Explicit write boundary, never called by GET. Preview performs no mutations. */
+    default CrewOccurrencePlanner.Report previewOccurrenceAssociations() {
+        return new CrewOccurrencePlanner().plan(List.of(), java.util.Map.of());
+    }
+    default CrewOccurrencePlanner.Report associateRetainedOccurrences() { return previewOccurrenceAssociations(); }
+
     List<CrewIdentityResolution> resolve(List<Evidence> evidence, Instant asOf);
 
     List<CrewIdentityResolution> resolutionsAsOf(Instant asOf);

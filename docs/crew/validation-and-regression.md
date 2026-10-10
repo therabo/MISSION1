@@ -1,5 +1,11 @@
 # Crew milestone validation and regression — historical records and current gate
 
+## Source occurrence versioning — 2026-10-10
+
+[The occurrence validation dossier](source-occurrence-versioning-validation/README.md) records the 382→415 backend test result, successful Java21 `mvn test`/`verify`, unchanged 759 frontend tests / 61 files, typecheck/build, and development/production Current/Historical browser QA at desktop/tablet/mobile sizes. All original frontend/V1–V5 migration bytes remain unchanged.
+
+The read-only V5 preview and applied/restarted V6 backfill reproduce the investigation's 5 evidence / 4 assertion / 11 subject / 12 metadata-version / 1 multiversion result, with no conflicts or uncertain associations. PostgreSQL tests cover constraints, immutable/idempotent links, rollback, 304/reuse ordering and downgrade. Current/Replay regressions retain one UNRESOLVED Fedyaev without changing human mappings, counts or effective-time rules. Repeated isolated GETs leave all 38 public tables unchanged; browser QA performs no source acquisition. Raw audit captures remain outside Git. [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) records the accepted policy.
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## Earth View Crew panel acceptance — 2026-10-03

@@ -20,3 +20,5 @@ ADR-0006 now records the 2026-09-30 visual-frame/rear-camera clarification and a
 Its 2026-10-01 perceptual pacing clarification rejects strict constant Cartesian speed, retains cubic/display-target geometry, and documents the camera metric and temporary presentation continuity on OEM loss. Source classifications and physical delivery remain unchanged.
 
 - [ADR-0011: Query-time effective-time Mission Replay](0011-effective-time-mission-replay.md) — Accepted.
+
+- [ADR-0012: Versioned Crew source occurrences and compatible-version selection](0012-versioned-crew-source-occurrences.md) — Accepted.

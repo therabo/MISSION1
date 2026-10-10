@@ -1,0 +1,77 @@
+{
+  "old.xml": {
+    "fixture_kind": "RECORDED_SOURCE_PROJECTION",
+    "origin_document_id": 1,
+    "origin_raw_sha256": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+    "projection_sha256": "4048090b03c59e434cd40d08497b07e9786f2e4b020527404672a803a6622653",
+    "source_capture_metadata": {
+      "id": 1,
+      "source": "NASA_OFFICIAL",
+      "source_type": "NASA_ISS_OPERATIONAL_FEED",
+      "source_url": "https://www.nasa.gov/blogs/spacestation/feed/",
+      "retrieved_at": "2026-10-03T11:45:46.137144+00:00",
+      "source_published_at": null,
+      "http_status": 200,
+      "http_etag": "\"9c2bd54a32996414d5cbdaff669bdf19\"",
+      "http_last_modified": "Sat, 03 Oct 2026 04:05:00 GMT",
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "content_hash": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+      "parser_name": "NasaOperationalFeedParser",
+      "parser_version": "1.0.0",
+      "parsed": true,
+      "verified_sha256": "12257a99814dba2d2336ca0a51533ae10a94f9e651d825e8dfa6f6b0cffeeb0e",
+      "origin": "READ_ONLY_DATABASE_EXPORT"
+    },
+    "note": "Only two source items and their original paragraphs retained; no raw investigation archive is committed. old-wrapper.xml also contains an explicitly TEST_ONLY wrapper parameter. Whitespace-only RSS scaffolding lines normalized; content:encoded paragraphs are byte-identical."
+  },
+  "old-wrapper.xml": {
+    "fixture_kind": "RECORDED_SOURCE_PROJECTION",
+    "origin_document_id": 2,
+    "origin_raw_sha256": "456c60395e96d9b439be0e969101b61d99dcf05cfa94b94d5d6cbfa80beedf6b",
+    "projection_sha256": "1727ad6ad089b4af348e1bb04d47dc069279e8043e5a635ec098accc73f4af4f",
+    "source_capture_metadata": {
+      "id": 2,
+      "source": "NASA_OFFICIAL",
+      "source_type": "NASA_ISS_OPERATIONAL_FEED",
+      "source_url": "https://www.nasa.gov/blogs/spacestation/feed/",
+      "retrieved_at": "2026-10-03T21:11:08.172876+00:00",
+      "source_published_at": null,
+      "http_status": 200,
+      "http_etag": "\"242807506740b4b8120e3854a0f502fd\"",
+      "http_last_modified": "Sat, 03 Oct 2026 19:40:10 GMT",
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "content_hash": "456c60395e96d9b439be0e969101b61d99dcf05cfa94b94d5d6cbfa80beedf6b",
+      "parser_name": "NasaOperationalFeedParser",
+      "parser_version": "1.0.0",
+      "parsed": true,
+      "verified_sha256": "456c60395e96d9b439be0e969101b61d99dcf05cfa94b94d5d6cbfa80beedf6b",
+      "origin": "READ_ONLY_DATABASE_EXPORT"
+    },
+    "note": "Only two source items and their original paragraphs retained; no raw investigation archive is committed. old-wrapper.xml also contains an explicitly TEST_ONLY wrapper parameter. Explicit TEST_ONLY RSS container marker ensures different bytes. Whitespace-only RSS scaffolding lines normalized; content:encoded paragraphs are byte-identical."
+  },
+  "new.xml": {
+    "fixture_kind": "RECORDED_SOURCE_PROJECTION",
+    "origin_document_id": 17,
+    "origin_raw_sha256": "60c8d4c357baefac4783083a7abf43b5905ee69ef8a61092ed024ca661a7fe45",
+    "projection_sha256": "4c52b990ddcdf9cb80c3b1d5ac525866fd33657a551f4cc1dbe2d699242d3440",
+    "source_capture_metadata": {
+      "id": 17,
+      "source": "NASA_OFFICIAL",
+      "source_type": "NASA_ISS_OPERATIONAL_FEED",
+      "source_url": "https://www.nasa.gov/blogs/spacestation/feed/",
+      "retrieved_at": "2026-10-06T21:27:06.770331+00:00",
+      "source_published_at": null,
+      "http_status": 200,
+      "http_etag": "\"6ebe4a643252091ab8211e183ca7bab1\"",
+      "http_last_modified": "Tue, 06 Oct 2026 21:22:26 GMT",
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "content_hash": "60c8d4c357baefac4783083a7abf43b5905ee69ef8a61092ed024ca661a7fe45",
+      "parser_name": "NasaOperationalFeedParser",
+      "parser_version": "1.0.0",
+      "parsed": true,
+      "verified_sha256": "60c8d4c357baefac4783083a7abf43b5905ee69ef8a61092ed024ca661a7fe45",
+      "origin": "READ_ONLY_DATABASE_EXPORT"
+    },
+    "note": "Only two source items and their original paragraphs retained; no raw investigation archive is committed. old-wrapper.xml also contains an explicitly TEST_ONLY wrapper parameter. Whitespace-only RSS scaffolding lines normalized; content:encoded paragraphs are byte-identical."
+  }
+}

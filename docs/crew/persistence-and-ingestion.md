@@ -1,5 +1,11 @@
 # Crew persistence and ingestion
 
+## Source occurrence versioning — 2026-10-10
+
+Flyway V6 adds eight immutable article/observation, assertion/version/scope and subject/metadata/link tables around the existing evidence. Primary/unique/composite foreign keys prevent contradictory memberships; rejection triggers preserve history. Idempotent startup backfill runs after Flyway and before HTTP acceptance, under the verification source lock. Successful NASA ingestion maintains associations atomically with evidence and successful-run completion. Existing rows/hashes and identity audits are preserved.
+
+Identity/scope extraction reads already retained RSS bytes; it makes no extra HTTP call and no GET invokes it. A read-only V5-compatible `DRY_RUN` previews association counts before mutation; APPLY/OFF modes and commands are in the [backend README](../../backend/README.md). The additive schema supports application downgrade without migration reversal, restoring previous version-row interpretation. Set-based reads and batched writes avoid per-subject queries. See [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) and [backfill/query-plan/rollback evidence](source-occurrence-versioning-validation/README.md).
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## Design recorded before implementation — 2026-10-03

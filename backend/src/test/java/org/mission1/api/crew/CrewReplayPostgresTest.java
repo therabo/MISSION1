@@ -199,6 +199,73 @@ class CrewReplayPostgresTest {
         return read("/api/iss/replay?at=" + t);
     }
 
+    void metadataRevision() throws Exception {
+        populated();
+        body = getClass().getResourceAsStream("/fixtures/crew/nasa/occurrences/new.xml").readAllBytes();
+        fixture.clock.time = Instant.parse("2026-10-06T21:27:06.770331Z");
+        nasa();
+        reconciliation.reconcile();
+    }
+
+    @Test
+    void currentAndReplaySelectOneUnresolvedFedyaevWithoutChangingCanonicalHumanIdentity() throws Exception {
+        metadataRevision();
+        var current = read("/api/iss/crew");
+        var historical = replay(Instant.parse("2026-10-02T02:01:55Z"));
+        for (var state : List.of(current, historical.at("/crew/state"))) {
+            int fed = 0;
+            for (var subject : state.path("unresolvedSubjects"))
+                if (subject.path("displayName").asText().equals("Andrey Fedyaev")) {
+                    fed++;
+                    assertEquals("UNRESOLVED", subject.path("resolution").asText());
+                }
+            assertEquals(1, fed, state.toString());
+            assertEquals(state.path("unresolvedSubjects").size(), state.at("/counts/unresolvedSubjects").asInt());
+        }
+        assertEquals(5, jdbc.queryForObject("SELECT count(*) FROM crew_verification_evidence", Integer.class));
+        assertEquals(18, jdbc.queryForObject("SELECT count(*) FROM crew_evidence_subject", Integer.class));
+        assertEquals(1, jdbc.queryForObject("SELECT count(DISTINCT occurrence_key) FROM crew_assertion_version v JOIN crew_verification_evidence e ON e.id=v.evidence_id WHERE e.evidence_type='PERSON_CURRENTLY_ABOARD'", Integer.class));
+        assertEquals("EFFECTIVE_TIME_BEST_CURRENT_RECONSTRUCTION", historical.path("semantics").asText());
+        assertEquals(Instant.parse("2026-10-02T02:01:55Z").toString(), historical.at("/crew/effectiveAt").asText());
+        var canonical = jdbc.queryForObject("SELECT person_id FROM crew_person_external_id WHERE source='LAUNCH_LIBRARY_2' AND external_id='732'", UUID.class);
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM crew_identity_resolution r JOIN crew_evidence_subject s USING(evidence_id,subject_index) WHERE s.display_name='Andrey Fedyaev' AND r.person_id IS NOT NULL", Integer.class));
+        boolean canonicalFound = false;
+        for (var member : current.path("members")) if (member.path("id").asText().equals(canonical.toString())) {
+            canonicalFound = true;
+            assertNotEquals("CONFIRMED_ABOARD", member.at("/presence/state").asText());
+        }
+        assertTrue(canonicalFound, "LL2 person remains independently represented");
+    }
+
+    @Test
+    void selectedCurrentAndReplayGetHaveZeroWritesAndZeroProviderCalls() throws Exception {
+        metadataRevision();
+        var before = counts();
+        int ll2Calls = fixture.requests.get();
+        clearInvocations(nasaSource, configuredLl2, configuredNasa, configuredGp, configuredOem);
+        SqlInstrumentation.sql.clear();
+        SqlInstrumentation.enabled = true;
+        try {
+            read("/api/iss/crew"); read("/api/iss/crew");
+            replay(Instant.parse("2026-10-02T02:01:55Z"));
+            replay(Instant.parse("2026-10-02T02:01:55Z"));
+            read("/api/iss/replay/coverage");
+        } finally { SqlInstrumentation.enabled = false; }
+        assertEquals(before, counts()); assertEquals(ll2Calls, fixture.requests.get());
+        verifyNoInteractions(nasaSource, configuredLl2, configuredNasa, configuredGp, configuredOem);
+        assertTrue(SqlInstrumentation.sql.stream().allMatch(q -> q.stripLeading().toUpperCase().startsWith("SELECT")), SqlInstrumentation.sql.toString());
+    }
+
+    @Test
+    void selectedMetadataDoesNotExtendAssertionFreshnessOrEraseCountHistory() throws Exception {
+        metadataRevision(); var current = read("/api/iss/crew");
+        assertTrue(current.at("/counts/officialAboard").isNull());
+        assertEquals(11, current.at("/counts/lastKnownOfficialAboard").asInt());
+        var old = replay(Instant.parse("2026-10-02T18:14:13Z"));
+        assertEquals(11, old.at("/crew/state/counts/officialAboard").asInt());
+        assertEquals("UNAVAILABLE", replay(Instant.parse("2026-01-01T00:00:00Z")).at("/crew/availability").asText());
+    }
+
     @Test
     void lateEvidenceUsesPublicationFallbackBeforeCaptureWithoutBackfillingAssignments()
             throws Exception {

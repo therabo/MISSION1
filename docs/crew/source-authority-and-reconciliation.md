@@ -1,5 +1,11 @@
 # Crew source authority and implemented reconciliation
 
+## Source occurrence versioning — 2026-10-10
+
+Source occurrence continuity is independent of canonical human identity and operational authority. A NASA article key identifies a publishing resource; an assertion/subject occurrence identifies a claim/mention, never an astronaut. Equal names only participate inside an exactly scoped compatible claim and cannot establish a person mapping. No authoritative Andrey/Andrei correspondence was found, so that resolution remains UNRESOLVED.
+
+Selecting the newest successfully observed compatible representation does not make its old publication/event time current. The existing NASA/LL2 authority, assignments-versus-presence, partial-omission, planned/completed and freshness contracts remain unchanged. Distinct claims/events survive selection; all alternative evidence/metadata remains internally auditable. See [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) and [count/provenance validation](source-occurrence-versioning-validation/README.md).
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## Earth View presentation — 2026-10-03

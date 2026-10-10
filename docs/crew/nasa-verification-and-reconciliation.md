@@ -1,5 +1,11 @@
 # NASA Crew verification and reconciliation
 
+## Source occurrence versioning — 2026-10-10
+
+NASA article identity comes from the verified WordPress RSS GUID, with literal GUID/link and observed route retained separately. Existing immutable evidence extraction/hashing is unchanged. The exact scope/time/type candidate and ordered target/count/completeness/parser guards associate only compatible revisions; unknown or conflicting interpretations remain separate. No profile crawler or person-name matching is introduced.
+
+The pure shared selector runs before Current reconciliation and Replay effective-time evaluation. Successful retrieval/completion/start lineage orders versions, including repeated 200/304 observations and A→B→A reuse; DB IDs never choose source meaning. Newer null profile metadata stays null. Existing person resolution, presence, freshness and failure rules remain intact. Known evidence 4/12 now contributes one unresolved Fedyaev source occurrence, without resolving Andrey to LL2 Andrei. See [ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) and [regression/REST results](source-occurrence-versioning-validation/README.md).
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 ## Earth View consumer — 2026-10-03

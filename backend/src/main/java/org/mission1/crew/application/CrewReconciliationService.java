@@ -53,7 +53,8 @@ public final class CrewReconciliationService {
     private CrewReconciliationSnapshot evaluate(Instant at, boolean resolve) {
         var ll2 = query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null);
         var nasa = verification.latestSuccess().orElse(null);
-        var evidence = verification.evidenceAsOf(at);
+        var evidence = new CrewCompatibleVersionSelector().select(
+                verification.evidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
         var resolved =
                 resolve ? verification.resolve(evidence, at) : verification.resolutionsAsOf(at);
         return engine.evaluate(

@@ -24,11 +24,13 @@ import java.util.*;
 public class JdbcCrewVerificationRepository implements CrewVerificationRepository {
     private final JdbcTemplate jdbc;
     private final ObjectMapper json;
+    private final JdbcCrewOccurrenceRepository occurrences;
     private final CrewPersonResolver resolver = new CrewPersonResolver();
 
     public JdbcCrewVerificationRepository(JdbcTemplate jdbc, ObjectMapper json) {
         this.jdbc = jdbc;
         this.json = json;
+        this.occurrences = new JdbcCrewOccurrenceRepository(jdbc, json);
     }
 
     @Override
@@ -218,6 +220,7 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING RETURNING id
                         eid);
             }
         complete(run, id, o.retrievedAt(), completedAt, status, o, parsed);
+        if (parsed) associateRetainedOccurrences();
         return new Stored(id, inserted, added);
     }
 
@@ -305,6 +308,10 @@ WHERE r.source='NASA_OFFICIAL' AND NOT d.parsed ORDER BY r.completed_at DESC,r.i
     @Override
     @Transactional(readOnly = true)
     public List<Evidence> evidenceAsOf(Instant asOf) {
+        return readEvidence(asOf, false);
+    }
+
+    private List<Evidence> readEvidence(Instant asOf, boolean includeUnpublished) {
         // Two batch reads over retained assertions, never one lookup per astronaut. The engine
         // orders historical events and checks current applicability.
         var subjects = new HashMap<Long, List<PersonReference>>();
@@ -312,7 +319,7 @@ WHERE r.source='NASA_OFFICIAL' AND NOT d.parsed ORDER BY r.completed_at DESC,r.i
                 """
 SELECT s.* FROM crew_evidence_subject s JOIN crew_verification_evidence e ON e.id=s.evidence_id
 JOIN crew_source_document d ON d.id=e.document_id WHERE d.parsed AND d.retrieved_at<=?
-AND e.source_published_at<=? ORDER BY s.evidence_id,s.subject_index
+AND (e.source_published_at<=? OR (? AND e.source_published_at IS NULL)) ORDER BY s.evidence_id,s.subject_index
 """,
                 r -> {
                     subjects.computeIfAbsent(r.getLong("evidence_id"), x -> new ArrayList<>())
@@ -324,11 +331,12 @@ AND e.source_published_at<=? ORDER BY s.evidence_id,s.subject_index
                                             uri(r.getString("official_profile_url"))));
                 },
                 utc(asOf),
-                utc(asOf));
+                utc(asOf),
+                includeUnpublished);
         return jdbc.query(
                 """
 SELECT e.*,d.retrieved_at,d.http_etag,d.http_last_modified,d.content_hash FROM crew_verification_evidence e
-JOIN crew_source_document d ON d.id=e.document_id WHERE d.parsed AND d.retrieved_at<=? AND e.source_published_at<=?
+JOIN crew_source_document d ON d.id=e.document_id WHERE d.parsed AND d.retrieved_at<=? AND (e.source_published_at<=? OR (? AND e.source_published_at IS NULL))
 ORDER BY e.id
 """,
                 (r, n) -> {
@@ -364,7 +372,29 @@ ORDER BY e.id
                     return new Evidence(r.getLong("id"), r.getLong("document_id"), e);
                 },
                 utc(asOf),
-                utc(asOf));
+                utc(asOf),
+                includeUnpublished);
+    }
+
+    @Override
+    @Transactional(readOnly = true, isolation = Isolation.REPEATABLE_READ)
+    public CrewOccurrencePlanner.Report previewOccurrenceAssociations() {
+        return occurrences.preview(readEvidence(Instant.parse("9999-12-31T00:00:00Z"), true));
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public CrewOccurrencePlanner.Report associateRetainedOccurrences() {
+        jdbc.execute("SELECT pg_advisory_xact_lock(73491, 2)");
+        var report = previewOccurrenceAssociations();
+        occurrences.store(report);
+        return report;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CrewOccurrenceVersion> occurrenceVersionsAsOf(Instant asOf) {
+        return occurrences.versionsAsOf(asOf);
     }
 
     @Override

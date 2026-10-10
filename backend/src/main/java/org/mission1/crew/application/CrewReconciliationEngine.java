@@ -9,7 +9,7 @@ import java.util.*;
 
 /** Time-ordered field-aware interpretation; no source mutation or source acquisition. */
 public final class CrewReconciliationEngine {
-    public static final String VERSION = "crew-reconciliation-v1";
+    public static final String VERSION = "crew-reconciliation-v2";
 
     public record Inputs(
             CrewQueryService.Latest primary,

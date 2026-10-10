@@ -1,5 +1,9 @@
 # ISS Crew operational context
 
+## Source occurrence versioning — 2026-10-10
+
+[ADR-0012](../adr/0012-versioned-crew-source-occurrences.md) adds stable NASA article identity, conservative assertion/subject occurrences and immutable evidence/metadata membership. A shared pure selector supplies one latest successfully observed compatible source interpretation before Current and Replay reconciliation. Canonical identity, freshness and authority remain independent. No frontend change or additional provider request is required. See the [implementation and real-data validation dossier](source-occurrence-versioning-validation/README.md) for V6, backfill, counts, known-case lineage and regression evidence.
+
 **Current scheduling extension (2026-10-03):** [ISS Crew event-aware refresh](event-aware-refresh.md) adds a bounded LL2 docking/undocking calendar, conservative NASA anticipation and durable completed-NASA-transfer follow-up. Planning events remain separate from crew presence and assignment truth. Baseline 2h source schedules, parser/reconciliation semantics and this document’s dated validation evidence remain applicable. New operational history uses V5; see the [new validation dossier](event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 Current milestone: **ISS Crew Earth View panel**, implemented and validated on 2026-10-03. Crew remains an independent logical domain inside the existing Java backend/PostgreSQL. The accepted Orbit/graphics subsystem is frozen. [UI acceptance and evidence](../frontend/crew-earth-view-panel-review/README.md).

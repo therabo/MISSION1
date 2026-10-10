@@ -119,3 +119,10 @@ No-active representation has the same field groups with `expedition:null,assignm
 ## Replay integration — 2026-10-03
 
 Current Crew endpoints remain current. Historical operational state is exposed through the independent [Mission Replay API](replay-api.md), with latest retained profile metadata clearly distinguished.
+
+
+## Compatible source versions — 2026-10-10
+
+Public DTO fields and routes are unchanged. Before reconciliation, the shared ADR-0012 selector chooses the latest successfully observed compatible evidence interpretation per conservative logical source occurrence. `counts.unresolvedSubjects` and `unresolvedSubjects` count interpreted unresolved source occurrences, including retained/non-applicable entries, rather than every stored evidence version. Distinct articles/claims/events remain distinct; this is not a count of unique humans. `officialAboard`, `lastKnownOfficialAboard`, resolved presence and assignments retain their existing applicability and authority rules. A freshly observed old article does not become a newly timed operational fact.
+
+Unselected evidence and subject metadata revisions remain available in immutable internal occurrence/version lineage. They do not create additional public unresolved rows or replace selected fields with older non-null metadata. Canonical identity remains separate: NASA Andrey and LL2 Andrei are not merged. GET is database-backed, repeatable-read, network-free and write-free; association/backfill occurs outside the read path. See [validation](../crew/source-occurrence-versioning-validation/README.md).

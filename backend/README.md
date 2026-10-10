@@ -216,3 +216,12 @@ This probe disables all automatic source schedules, migrates the configured Post
 ## Replay integration — 2026-10-03
 
 Read-only Mission Replay endpoints are available at /api/iss/replay?at=<UTC instant> and /api/iss/replay/coverage. They use retained source/evidence only, with independent Crew/orbit availability. Configure mission1.replay.gp-max-offset (default PT24H, positive and at most PT24H). [Contract](../docs/api/replay-api.md).
+
+
+## Crew source occurrence versioning — ADR-0012 / Flyway V6
+
+Normal startup runs an idempotent additive Crew occurrence backfill after Flyway; successful NASA ingestion maintains the same links atomically with evidence/run completion. It reads retained RSS, makes no additional source requests and never changes old evidence or subject rows. Current/Replay reads share the pure successful-capture selector and perform no backfill or identity writes.
+
+For a read-only pre-migration association preview, launch with `--spring.main.web-application-type=none --spring.flyway.enabled=false --mission1.crew.occurrences.backfill-mode=DRY_RUN` and all source schedulers disabled as in the existing offline validation commands. The preview supports the legacy V5 schema and logs evidence/assertion/subject/version/conflict/ambiguous/unassociated counts. `APPLY` is the normal backfill mode; `OFF` skips startup association writes. Do not disable Flyway for normal serving. A downgrade can use the previous application against V6's additive tables; it restores previous version-row interpretation without deleting evidence or reversing migration history.
+
+Full Java21/PostgreSQL migration, backfill, rollback, source-identity, selector and Current/Replay regression tests are documented in [the validation dossier](../docs/crew/source-occurrence-versioning-validation/README.md). Frontend runtime/DTO shape and NASA profile enrichment are unchanged.

@@ -1,0 +1,415 @@
+{
+  "validation_date": "2026-10-10",
+  "baseline_main": "5647e44fe28c2ce806dde6cac2a7d7e4ce1f3b6f",
+  "source_archives_outside_git": "/Users/daniel/.codex/exports/mission1-crew-source-investigation/",
+  "counts": {
+    "evidence_versions": 5,
+    "assertion_occurrences": 4,
+    "subject_occurrences": 11,
+    "subject_metadata_versions": 12,
+    "multi_version_occurrences": 1,
+    "unassociated_versions": 0
+  },
+  "known_case": [
+    {
+      "evidence_id": 4,
+      "hash": "b7c92446ed126b53d52b37dccdcf16ada88b89c16552caefb71a6fab6f7b77cf",
+      "occurrence_key": "d1b2541cc18ae3a8bc41e9f10ba4b8925202e31ecdc8514ae57d76ccbcd0808b",
+      "subject_key": "96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e",
+      "metadata_version_key": "0d72f3696bb4fc94dac61b0f931fca7c5d677adfca5f49bb204cbccfd597de5d"
+    },
+    {
+      "evidence_id": 12,
+      "hash": "2e66ce03f3a9b2e00b0ed1b11086de2e633dad3cd696612c174f9af67026c4a8",
+      "occurrence_key": "d1b2541cc18ae3a8bc41e9f10ba4b8925202e31ecdc8514ae57d76ccbcd0808b",
+      "subject_key": "96907d0d3747443d9308c09c7ad860c49d4fddfa72df03015ccae7f42bb3187e",
+      "metadata_version_key": "0d72f3696bb4fc94dac61b0f931fca7c5d677adfca5f49bb204cbccfd597de5d"
+    }
+  ],
+  "selected_source_versions": [
+    {
+      "occurrence_key": "0bd450c8527cc1a1a33b36ce872c91fd67676e7c0781239f535b66da496ed69b",
+      "evidence_id": 1,
+      "run_id": 64,
+      "document_id": 25,
+      "retrieved_at": "2026-10-07T11:28:43.755959+00:00",
+      "started_at": "2026-10-07T11:28:43.561517+00:00",
+      "completed_at": "2026-10-07T11:28:43.755972+00:00",
+      "http_status": 304,
+      "position": 1
+    },
+    {
+      "occurrence_key": "29cd6994d744e3fff8e7427f74c3b7066470fc0380310417c032b555c0622b5f",
+      "evidence_id": 2,
+      "run_id": 64,
+      "document_id": 25,
+      "retrieved_at": "2026-10-07T11:28:43.755959+00:00",
+      "started_at": "2026-10-07T11:28:43.561517+00:00",
+      "completed_at": "2026-10-07T11:28:43.755972+00:00",
+      "http_status": 304,
+      "position": 1
+    },
+    {
+      "occurrence_key": "907a38adbac63553d985ca171096e6ffca85e46bc4f7164d10de8b63a852119c",
+      "evidence_id": 3,
+      "run_id": 64,
+      "document_id": 25,
+      "retrieved_at": "2026-10-07T11:28:43.755959+00:00",
+      "started_at": "2026-10-07T11:28:43.561517+00:00",
+      "completed_at": "2026-10-07T11:28:43.755972+00:00",
+      "http_status": 304,
+      "position": 1
+    },
+    {
+      "occurrence_key": "d1b2541cc18ae3a8bc41e9f10ba4b8925202e31ecdc8514ae57d76ccbcd0808b",
+      "evidence_id": 12,
+      "run_id": 64,
+      "document_id": 25,
+      "retrieved_at": "2026-10-07T11:28:43.755959+00:00",
+      "started_at": "2026-10-07T11:28:43.561517+00:00",
+      "completed_at": "2026-10-07T11:28:43.755972+00:00",
+      "http_status": 304,
+      "position": 1
+    }
+  ],
+  "rest_validation": {
+    "captured_at": "2026-10-10T09:01:28.472424+00:00",
+    "requests": [
+      {
+        "path": "/api/iss/crew",
+        "status": 200
+      },
+      {
+        "path": "/api/iss/replay?at=2026-10-02T02:01:55Z",
+        "status": 200
+      },
+      {
+        "path": "/api/iss/crew",
+        "status": 200
+      },
+      {
+        "path": "/api/iss/replay?at=2026-10-02T02:01:55Z",
+        "status": 200
+      },
+      {
+        "path": "/api/iss/replay/coverage",
+        "status": 200
+      }
+    ],
+    "Current": {
+      "counts": {
+        "officialAboard": null,
+        "lastKnownOfficialAboard": 11,
+        "resolvedAboard": 0,
+        "unresolvedSubjects": 1,
+        "unidentifiedAboard": 11,
+        "structuredAssignments": 7
+      },
+      "fedyaev": {
+        "displayName": "Andrey Fedyaev",
+        "resolution": "UNRESOLVED",
+        "evidence": {
+          "source": "NASA_OFFICIAL",
+          "sourceType": "NASA_ISS_OPERATIONAL_POST",
+          "type": "PERSON_CURRENTLY_ABOARD",
+          "assertion": "OBSERVED",
+          "completeness": "PARTIAL",
+          "asOf": "2026-10-02T02:01:55Z",
+          "provenance": {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+            "observedAt": "2026-10-06T21:27:06.770331Z",
+            "sourcePublishedAt": "2026-10-02T02:01:55Z",
+            "sourceEventAt": null,
+            "contentHash": "60c8d4c357baefac4783083a7abf43b5905ee69ef8a61092ed024ca661a7fe45",
+            "sourceVersion": "NASA_RSS",
+            "methodVersion": "NasaOperationalFeedParser/1.0.0"
+          }
+        },
+        "applicable": false
+      },
+      "algorithm": "crew-reconciliation-v2/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H"
+    },
+    "Replay": {
+      "counts": {
+        "officialAboard": null,
+        "lastKnownOfficialAboard": null,
+        "resolvedAboard": 10,
+        "unresolvedSubjects": 1,
+        "unidentifiedAboard": 0,
+        "structuredAssignments": null
+      },
+      "fedyaev": {
+        "displayName": "Andrey Fedyaev",
+        "resolution": "UNRESOLVED",
+        "evidence": {
+          "source": "NASA_OFFICIAL",
+          "sourceType": "NASA_ISS_OPERATIONAL_POST",
+          "type": "PERSON_CURRENTLY_ABOARD",
+          "assertion": "OBSERVED",
+          "completeness": "PARTIAL",
+          "asOf": "2026-10-02T02:01:55Z",
+          "provenance": {
+            "source": "NASA_OFFICIAL",
+            "sourceType": "NASA_ISS_OPERATIONAL_POST",
+            "sourceUrl": "https://www.nasa.gov/blogs/spacestation/2026/10/01/crew-13-members-enter-station-join-expedition-75/",
+            "observedAt": "2026-10-06T21:27:06.770331Z",
+            "sourcePublishedAt": "2026-10-02T02:01:55Z",
+            "sourceEventAt": null,
+            "contentHash": "60c8d4c357baefac4783083a7abf43b5905ee69ef8a61092ed024ca661a7fe45",
+            "sourceVersion": "NASA_RSS",
+            "methodVersion": "NasaOperationalFeedParser/1.0.0"
+          }
+        },
+        "applicable": true
+      },
+      "algorithm": "crew-reconciliation-v2/effective-time-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H"
+    },
+    "all_public_tables_unchanged": true,
+    "tables_checked": 38
+  },
+  "immutable_history": {
+    "crew_verification_evidence": {
+      "rows": 5,
+      "unchanged": true,
+      "canonical_snapshot_sha256": "fe1a228e76962880dd8a940919d38640f17485d531ddec38041450d537b62b34"
+    },
+    "crew_evidence_subject": {
+      "rows": 18,
+      "unchanged": true,
+      "canonical_snapshot_sha256": "2bda4deec0d9d425b821298272f86666cc911b7fda5833465ea28d4f1b35d754"
+    },
+    "crew_document_evidence": {
+      "rows": 16,
+      "unchanged": true,
+      "canonical_snapshot_sha256": "254e27afbfdfcf8ef94a74239f6e213706418af59773ab09d5b967c3c35ac651"
+    },
+    "crew_identity_resolution": {
+      "rows": 20,
+      "unchanged": true,
+      "canonical_snapshot_sha256": "6286af816444a36ab27e3e47bea4b4d057a8b73e0ee1909c47bde2206b87a631"
+    }
+  },
+  "startup": {
+    "backfill_before_http_acceptance": true,
+    "repeat_backfill_counts_unchanged": true
+  },
+  "gates": {
+    "java": 21,
+    "backend_baseline_tests": 382,
+    "backend_final_test": 415,
+    "backend_final_verify": 415,
+    "backend_failures_errors_skips": [
+      0,
+      0,
+      0
+    ],
+    "node": 24,
+    "frontend_baseline_tests": 759,
+    "frontend_final_tests": 759,
+    "frontend_files": 61,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "diff_check": "PASS",
+    "frozen_frontend_original_migration_files": 193,
+    "frozen_files_unchanged": true,
+    "baseline_app_readonly_start_against_v6": "PASS"
+  },
+  "browser": {
+    "development": {
+      "flows": [
+        {
+          "mode": "Current",
+          "width": 1440,
+          "height": 900,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Current",
+          "width": 768,
+          "height": 1024,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Current",
+          "width": 390,
+          "height": 844,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 1440,
+          "height": 900,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 768,
+          "height": 1024,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 390,
+          "height": 844,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        }
+      ],
+      "errors": [],
+      "sourceCalls": [],
+      "method": "Real local APIs; no response interception, injected facts or frontend grouping"
+    },
+    "production": {
+      "flows": [
+        {
+          "mode": "Current",
+          "width": 1440,
+          "height": 900,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Current",
+          "width": 768,
+          "height": 1024,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Current",
+          "width": 390,
+          "height": 844,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 1440,
+          "height": 900,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 768,
+          "height": 1024,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        },
+        {
+          "mode": "Historical",
+          "width": 390,
+          "height": 844,
+          "unresolvedFedyaevRows": 1,
+          "identity": "UNRESOLVED",
+          "geometry": {
+            "documentOverflow": false,
+            "horizontalOverflow": [],
+            "canvasCount": 1,
+            "workspaceCount": 1
+          },
+          "result": "PASS"
+        }
+      ],
+      "errors": [],
+      "sourceCalls": [],
+      "method": "Real local APIs; no response interception, injected facts or frontend grouping"
+    }
+  },
+  "query_plan": {
+    "execution_ms": 0.198,
+    "single_set_based_version_capture_join": true,
+    "per_person_queries": false
+  },
+  "limitations": [
+    "Exact source scope deliberately under-merges prose/order changes.",
+    "Only explicitly verified parser semantics are compatible in v1.",
+    "No new Andrey/Andrei mapping or profile enrichment.",
+    "Browser QA is Chromium/Metal emulation."
+  ],
+  "full_validation_artifacts_outside_git": "/Users/daniel/.codex/exports/mission1-crew-source-occurrences"
+}
