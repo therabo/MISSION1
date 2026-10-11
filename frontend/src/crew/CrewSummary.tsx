@@ -1,7 +1,9 @@
-import type { CurrentCrew, Presence } from './types';
+import type { CrewAssessment, CurrentCrew, Presence } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import {
   assertionLabel,
+  lastOperationalConfirmation,
+  CURRENT_PRESENCE_NOTICE,
   memberGroups,
   permittedPortrait,
   PRESENCE,
@@ -15,7 +17,7 @@ export function PresenceLabel({ presence }: { presence: Presence }) {
     <span className={`crew-presence state-${presence.state.toLowerCase()}`}>
       {PRESENCE[presence.state]}
       {presence.state === 'STALE' && presence.lastKnownState && (
-        <span> · Last known: {PRESENCE[presence.lastKnownState].toLowerCase()}</span>
+        <span> · {lastOperationalConfirmation(presence)}{presence.asOf && <> · <time dateTime={presence.asOf}>{utc(presence.asOf)}</time></>}</span>
       )}
     </span>
   );
@@ -26,32 +28,12 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
     <>
       <div className="crew-summary">
         <p className="crew-expedition">{crew.expedition?.name ?? 'Expedition unavailable'}</p>
-        <p className="crew-count">
-          {crew.counts.officialAboard === null ? (
-            <strong className="is-unavailable">Crew aboard: unavailable</strong>
-          ) : (
-            <>
-              <strong>{crew.counts.officialAboard}</strong> aboard
-            </>
-          )}
-        </p>
-        <p className="crew-count-note">{crew.counts.resolvedAboard} confirmed identities</p>
-        {crew.counts.officialAboard === null && crew.counts.lastKnownOfficialAboard !== null && (
-          <p className="crew-count-note">
-            Last reported aboard count: {crew.counts.lastKnownOfficialAboard} · current count unverified
-          </p>
-        )}
-        {crew.counts.unidentifiedAboard > 0 && (
-          <p className="crew-count-note">
-            {crew.counts.unidentifiedAboard}{' '}
-            {crew.counts.officialAboard === null ? 'in the retained count' : 'aboard'} without confirmed
-            identities
-          </p>
-        )}
+        <p className="crew-count">Current members <strong>{crew.members.length}</strong></p>
+        <p className="crew-count-note">Membership and physical presence are separate</p>
       </div>
       <details className={`crew-quality ${crew.reconciliation.status === 'MATCH' ? 'is-aligned' : ''}`}>
         <summary>
-          <strong>{quality.label}</strong>
+          <strong>{crew.members.some(m => m.presence.state === 'STALE') ? CURRENT_PRESENCE_NOTICE : quality.label}</strong>
         </summary>
         <p>{quality.note}</p>
       </details>
@@ -97,16 +79,15 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
         </section>
       ))}
       {crew.members.length === 0 && <p className="crew-note">No resolved crew members are available.</p>}
-      <CrewReports crew={crew} />
       <CrewSources crew={crew} />
     </>
   );
 }
 
 /** Shared, unchanged source reports for Current and legacy Historical/detail presentation. */
-export function CrewReports({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
+export function CrewReports({ crew, historicalAt }: { crew: CrewAssessment; historicalAt?: string }) {
   return <>
-    {crew.unresolvedSubjects.length > 0 && (
+    {'unresolvedSubjects' in crew && crew.unresolvedSubjects.length > 0 && (
         <section className="crew-unresolved" aria-label="Unresolved source reports">
           <h3>Additional NASA-reported crew</h3>
           <p>
@@ -135,7 +116,7 @@ export function CrewReports({ crew, historicalAt }: { crew: CurrentCrew; histori
   </>;
 }
 
-export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; historicalAt?: string }) {
+export function CrewSources({ crew, historicalAt }: { crew: CrewAssessment; historicalAt?: string }) {
   return (
     <details className="crew-sources">
         <summary>Data sources &amp; freshness</summary>
@@ -146,7 +127,7 @@ export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; histori
           {crew.counts.structuredAssignments ?? 'Unavailable'} structured assignments · {crew.members.length}{' '}
           resolved profiles shown. Assignment and presence are separate.
         </p>
-        {!historicalAt && crew.membership && <>
+        {!historicalAt && 'membership' in crew && crew.membership && <>
           <p>Current membership evaluated {utc(crew.membership.evaluatedAt)} · {crew.membership.health.toLowerCase()}.
             {' '}{crew.counts.resolvedAboard} identities have current confirmation of physical presence.</p>
           {crew.membership.unresolvedActiveSourceSlots > 0 && <p>{crew.membership.unresolvedActiveSourceSlots} unresolved active source slots remain separate from resolved people; sources may repeat a person.</p>}

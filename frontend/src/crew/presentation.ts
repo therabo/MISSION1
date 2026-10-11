@@ -1,9 +1,9 @@
-import type { Assertion, CrewMedia, CrewMember, CurrentCrew, PresenceState, ReconciliationStatus } from './types';
+import type { Assertion, CrewMedia, CrewMember, CrewAssessment, Presence, PresenceState, ReconciliationStatus } from './types';
 
 /** Latest successful source collection update, not assertion/event time or
  * read-time evaluation. Return an existing API value unchanged; failures and
  * unchanged fetches keep their distinct meaning in Data sources & freshness. */
-export function latestCrewSourceUpdate(crew: CurrentCrew): string | null {
+export function latestCrewSourceUpdate(crew: CrewAssessment): string | null {
   return [crew.freshness.structuredSource.lastSuccessfulFetchAt, crew.freshness.verification.lastSuccessfulFetchAt]
     .filter((at): at is string => at !== null && Number.isFinite(Date.parse(at)))
     .reduce<string | null>((latest, at) => latest === null || Date.parse(at) > Date.parse(latest) ? at : latest, null);
@@ -45,9 +45,17 @@ export const PRESENCE: Record<PresenceState, string> = {
   CONFIRMED_NOT_ABOARD: 'Confirmed not aboard',
   UNVERIFIED: 'Presence unverified',
   UNKNOWN: 'Presence unknown',
-  STALE: 'Presence outdated',
+  STALE: 'Presence not currently confirmed',
   AMBIGUOUS: 'Presence ambiguous',
 };
+// Historical presentation is frozen at the pre-cleanup wording.
+export const HISTORICAL_PRESENCE = { ...PRESENCE, STALE: 'Presence outdated' };
+export function lastOperationalConfirmation(presence: Presence): string {
+  if (presence.lastKnownState === 'CONFIRMED_ABOARD') return 'Last operational confirmation: aboard';
+  if (presence.lastKnownState === 'CONFIRMED_NOT_ABOARD') return 'Last operational confirmation: not aboard';
+  return 'Last operational assessment: ' + (presence.lastKnownState ? PRESENCE[presence.lastKnownState].toLowerCase() : 'unavailable');
+}
+export const CURRENT_PRESENCE_NOTICE = 'Current membership is known, but physical presence is not currently confirmed by operational evidence.';
 export function memberGroups(members: CrewMember[]): { label: string; members: CrewMember[] }[] {
   const groups = [
     { label: 'Commander', members: members.filter((m) => m.assignment?.roleCode === 'COMMANDER') },

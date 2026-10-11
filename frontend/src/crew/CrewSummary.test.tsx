@@ -1,9 +1,9 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { CrewSummary, PresenceLabel } from './CrewSummary';
+import { CrewSummary, PresenceLabel, CrewReports } from './CrewSummary';
 import { CrewProfile } from './CrewMemberDetail';
 import { CrewPortrait } from './CrewPortrait';
-import { crewFixture, personFixture } from '../test/crewFixture';
+import { crewFixture, historicalCrewFixture, personFixture } from '../test/crewFixture';
 import { PRESENCE, QUALITY } from './presentation';
 import type { PresenceState, ReconciliationStatus } from './types';
 
@@ -13,56 +13,33 @@ describe('Crew summary semantics', () => {
     crew.reconciliation.status = status;
     const html = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
     expect(html).toContain(QUALITY[status].label);
-    expect(html).toContain('11');
-    expect(html).toContain('confirmed identities');
+    expect(html).toContain('Current members');
     expect(html).toContain('Data sources');
   });
-  it('distinguishes official11, resolved8, unresolved3, assignments7 and cards9', () => {
+  it('uses resolved member cardinality with independent source diagnostics', () => {
     const html = renderToStaticMarkup(<CrewSummary crew={crewFixture()} onMember={() => {}} />);
-    expect(html).toContain('<strong>11</strong>');
-    expect(html).toContain('8 confirmed identities');
-    expect(html).toContain('3 aboard');
-    expect(html).toContain('3 unresolved report entries');
-    expect(html).toContain('7 structured assignments');
-    expect(html).toContain('9 resolved profiles');
-    expect((html.match(/data-member-id=/g) ?? []).length).toBe(9);
+    expect(html).toContain('Current members <strong>9</strong>'); expect(html).toContain('7 structured assignments');
+    expect(html).not.toContain('without confirmed identities'); expect(html).not.toContain('Additional NASA-reported crew');
+    expect((html.match(/data-member-id=/g) ?? [])).toHaveLength(9);
   });
-  it('never uses card length or retained count as current official count', () => {
-    const crew = crewFixture();
-    crew.counts.officialAboard = null;
+  it('never uses confirmed presence as member cardinality', () => {
+    const crew = crewFixture(); crew.counts.resolvedAboard = 0;
     const html = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
-    expect(html).toContain('Crew aboard: unavailable');
-    expect(html).toContain('Last reported aboard count: 11');
-    expect(html).not.toContain('<strong>9</strong>');
-    expect(html).not.toContain('<strong>11</strong>');
+    expect(html).toContain('Current members <strong>9</strong>'); expect(html).not.toContain('Crew aboard:');
   });
-  it('renders zero count honestly and missing expedition/no resolved members', () => {
-    const crew = crewFixture();
-    crew.counts.officialAboard = 0;
-    crew.expedition = null;
-    crew.members = [];
+  it('renders zero resolved members honestly and missing expedition', () => {
+    const crew = crewFixture(); crew.expedition = null; crew.members = [];
     const html = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
-    expect(html).toContain('<strong>0</strong>');
-    expect(html).toContain('Expedition unavailable');
+    expect(html).toContain('<strong>0</strong>'); expect(html).toContain('Expedition unavailable');
     expect(html).toContain('No resolved crew members');
   });
-  it('renders unresolved reports without person IDs, profile buttons or invented roles', () => {
-    const crew = crewFixture();
-    const subject = crew.unresolvedSubjects[0];
-    subject.applicable = false;
-    subject.evidence.type = 'PERSON_DEPARTED_STATION';
-    subject.resolution = 'AMBIGUOUS';
-    const html = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
-    const unresolved = html.slice(
-      html.indexOf('aria-label="Unresolved source reports"'),
-      html.indexOf('<details class="crew-sources"'),
-    );
-    expect(unresolved).toContain('Reported departure');
-    expect(unresolved).toContain('Identity ambiguous');
-    expect(unresolved).toContain('not currently applicable');
-    expect(unresolved).not.toContain('<button');
-    expect(unresolved).not.toContain('data-member-id');
-    expect(unresolved).not.toContain('Flight Engineer');
+  it('preserves Historical unresolved reports without selectable person identities', () => {
+    const crew = historicalCrewFixture(); const subject = crew.unresolvedSubjects[0]; subject.applicable = false;
+    subject.evidence.type = 'PERSON_DEPARTED_STATION'; subject.resolution = 'AMBIGUOUS';
+    const html = renderToStaticMarkup(<CrewReports crew={crew} historicalAt="2026-10-02T02:01:55Z" />);
+    expect(html).toContain('Reported departure'); expect(html).toContain('Identity ambiguous');
+    expect(html).toContain('not applicable at Historical UTC'); expect(html).not.toContain('<button');
+    expect(html).not.toContain('data-member-id');
   });
   it.each(Object.keys(PRESENCE) as PresenceState[])(
     'exposes exact presence label for %s without false confirmation',

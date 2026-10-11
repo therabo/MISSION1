@@ -212,11 +212,13 @@ class CrewReplayPostgresTest {
     }
 
     @Test
-    void currentAndReplaySelectOneUnresolvedFedyaevWithoutChangingCanonicalHumanIdentity() throws Exception {
+    void currentOmitsFedyaevSourceReportWhileReplayPreservesItAndCanonicalIdentity() throws Exception {
         metadataRevision();
         var current = read("/api/iss/crew");
         var historical = replay(Instant.parse("2026-10-02T02:01:55Z"));
-        for (var state : List.of(current, historical.at("/crew/state"))) {
+        assertFalse(current.has("unresolvedSubjects"));
+        assertTrue(current.at("/counts/unresolvedSubjects").isMissingNode());
+        for (var state : List.of(historical.at("/crew/state"))) {
             int fed = 0;
             for (var subject : state.path("unresolvedSubjects"))
                 if (subject.path("displayName").asText().equals("Andrey Fedyaev")) {
@@ -268,8 +270,8 @@ class CrewReplayPostgresTest {
     @Test
     void selectedMetadataDoesNotExtendAssertionFreshnessOrEraseCountHistory() throws Exception {
         metadataRevision(); var current = read("/api/iss/crew");
-        assertTrue(current.at("/counts/officialAboard").isNull());
-        assertEquals(11, current.at("/counts/lastKnownOfficialAboard").asInt());
+        assertTrue(current.at("/counts/officialAboard").isMissingNode());
+        assertTrue(current.at("/counts/lastKnownOfficialAboard").isMissingNode());
         var old = replay(Instant.parse("2026-10-02T18:14:13Z"));
         assertEquals(11, old.at("/crew/state/counts/officialAboard").asInt());
         assertEquals("UNAVAILABLE", replay(Instant.parse("2026-01-01T00:00:00Z")).at("/crew/availability").asText());

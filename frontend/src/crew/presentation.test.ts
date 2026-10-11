@@ -7,7 +7,7 @@ import {
   safeHttps,
   utc,
 } from './presentation';
-import { crewFixture } from '../test/crewFixture';
+import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
 import type { CrewMedia } from './types';
 
 describe('elapsed career duration formatting', () => {
@@ -108,6 +108,6 @@ describe('assignment/presence presentation', () => {
   });
   it('labels departure reports as departure, never as aboard', () =>
     expect(
-      assertionLabel({ ...crewFixture().unresolvedSubjects[0].evidence, type: 'PERSON_DEPARTED_STATION' }),
+      assertionLabel({ ...historicalCrewFixture().unresolvedSubjects[0].evidence, type: 'PERSON_DEPARTED_STATION' }),
     ).toBe('Reported departure'));
 });

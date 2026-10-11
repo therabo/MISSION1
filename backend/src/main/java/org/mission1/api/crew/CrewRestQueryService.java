@@ -40,7 +40,7 @@ public class CrewRestQueryService {
         this.membership = membership;
     }
 
-    public Crew crew() {
+    public CurrentCrew crew() {
         var current = reconciled.current();
         var state = current.interpretation();
         boolean activeMode =
@@ -94,58 +94,11 @@ public class CrewRestQueryService {
                                                         current,
                                                         identity))
                                 .toList();
-        Map<Long, CrewVerificationRepository.Evidence> evidence = new HashMap<>();
-        current.verificationEvidence().forEach(e -> evidence.put(e.id(), e));
-        var unresolved =
-                activeMode
-                        ? List.<UnresolvedSubject>of()
-                        : state.unresolved().stream()
-                                .map(
-                                        u -> {
-                                            var e =
-                                                    Objects.requireNonNull(
-                                                                    evidence.get(u.evidenceId()),
-                                                                    "Missing interpretation"
-                                                                        + " evidence")
-                                                            .value();
-                                            return new UnresolvedSubject(
-                                                    u.displayName(),
-                                                    u.method().name(),
-                                                    assertion(e),
-                                                    healthy(current.verificationHealth())
-                                                            && policy.applicable(
-                                                                    e,
-                                                                    state.verificationFetchedAt(),
-                                                                    state.reconciliationAsOf()));
-                                        })
-                                .toList();
-        boolean currentCount =
-                state.officialCrewCount() != null
-                        && healthy(current.verificationHealth())
-                        && current.verificationEvidence().stream()
-                                .map(CrewVerificationRepository.Evidence::value)
-                                .filter(
-                                        e ->
-                                                e.type()
-                                                        == CrewVerificationEvidence.Type
-                                                                .CREW_COUNT_ABOARD)
-                                .filter(
-                                        e ->
-                                                Objects.equals(
-                                                        e.crewCount(), state.officialCrewCount()))
-                                .anyMatch(
-                                        e ->
-                                                policy.applicable(
-                                                        e,
-                                                        state.verificationFetchedAt(),
-                                                        state.reconciliationAsOf()));
         var snapshot = current.structuredPrimary().map(x -> x.snapshot().snapshot()).orElse(null);
-        return new Crew(
+        return new CurrentCrew(
                 ISS,
                 expedition(snapshot),
-                new Counts(
-                        currentCount ? state.officialCrewCount() : null,
-                        state.officialCrewCount(),
+                new CurrentCounts(
                         (int)
                                 state.people().stream()
                                         .filter(
@@ -154,11 +107,8 @@ public class CrewRestQueryService {
                                                                 == CrewReconciliationSnapshot
                                                                         .Presence.CONFIRMED_ABOARD)
                                         .count(),
-                        unresolved.size(),
-                        state.unidentifiedCount(),
                         snapshot == null ? null : snapshot.assignments().size()),
                 members,
-                unresolved,
                 reconciliation(current),
                 freshness(current),
                 provenance(current),

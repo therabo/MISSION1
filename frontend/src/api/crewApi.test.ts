@@ -13,7 +13,7 @@ describe('Crew REST client', () => {
       .mockResolvedValueOnce(Response.json(personFixture()));
     vi.stubGlobal('fetch', mock);
     const signal = new AbortController().signal;
-    expect((await getCurrentCrew(signal)).counts.officialAboard).toBe(11);
+    expect((await getCurrentCrew(signal)).counts.structuredAssignments).toBe(7);
     expect((await getCurrentExpedition(signal)).assignmentCount).toBe(7);
     const person = personFixture();
     expect((await getCrewMember(person.id, signal)).id).toBe(person.id);
@@ -74,16 +74,9 @@ describe('Crew REST client', () => {
 describe('wire decoding', () => {
   it('preserves partial-match counts, null profiles, evidence, rights and source times', () => {
     const crew = decodeCrew(crewFixture());
-    expect(crew.counts).toEqual({
-      officialAboard: 11,
-      lastKnownOfficialAboard: 11,
-      resolvedAboard: 8,
-      unresolvedSubjects: 3,
-      unidentifiedAboard: 3,
-      structuredAssignments: 7,
-    });
+    expect(crew.counts).toEqual({ resolvedAboard: 8, structuredAssignments: 7 });
     expect(crew.members).toHaveLength(9);
-    expect(crew.unresolvedSubjects).toHaveLength(3);
+    expect(crew).not.toHaveProperty('unresolvedSubjects');
     expect(crew.members.some((m) => m.assignment === null && m.presence.state === 'CONFIRMED_ABOARD')).toBe(
       true,
     );
@@ -92,13 +85,13 @@ describe('wire decoding', () => {
     expect(() => decodeCrew(value)).toThrow(),
   );
   it.each([-1, 1.5, '11', undefined, Infinity])('rejects invalid count %s', (count) => {
-    const value = { ...crewFixture(), counts: { ...crewFixture().counts, officialAboard: count } };
+    const value = { ...crewFixture(), counts: { ...crewFixture().counts, structuredAssignments: count } };
     expect(() => decodeCrew(value)).toThrow();
   });
   it('accepts unavailable count without deriving a fallback', () => {
     const value = crewFixture();
-    value.counts.officialAboard = null;
-    expect(decodeCrew(value).counts.officialAboard).toBeNull();
+    value.counts.structuredAssignments = null;
+    expect(decodeCrew(value).counts.structuredAssignments).toBeNull();
   });
   it('ignores additive fields and does not infer missing required fields', () => {
     expect(decodeCrew({ ...crewFixture(), futureOptionalField: true })).toEqual(crewFixture());

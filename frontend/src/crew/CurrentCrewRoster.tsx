@@ -1,7 +1,7 @@
-import type { CurrentCrew, CrewMember } from './types';
+import type { CrewAssessment, CrewMember } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewReports, CrewSources } from './CrewSummary';
-import { latestCrewSourceUpdate, memberGroups, permittedPortrait, PRESENCE, QUALITY, utc } from './presentation';
+import { latestCrewSourceUpdate, memberGroups, permittedPortrait, PRESENCE, HISTORICAL_PRESENCE, lastOperationalConfirmation, CURRENT_PRESENCE_NOTICE, QUALITY, utc } from './presentation';
 import profileChevron from '../assets/interface/crew-chevron.svg';
 import type { Coverage } from '../replay/replayApi';
 
@@ -9,8 +9,9 @@ export interface HistoricalRosterContext { at: string; availability: string; cov
 
 /** S7 presentation of the existing assessment. Assignment never implies presence. */
 export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, historical }: {
-  crew: CurrentCrew; onMember: (id: string) => void; selectedMemberId?: string | null; historical?: HistoricalRosterContext;
+  crew: CrewAssessment; onMember: (id: string) => void; selectedMemberId?: string | null; historical?: HistoricalRosterContext;
 }) {
+  const historicalCounts = historical && 'unresolvedSubjects' in crew ? crew.counts : null;
   const quality = QUALITY[crew.reconciliation.status];
   const datedPresence = crew.members.some(member => member.presence.state === 'STALE');
   const members = memberGroups(crew.members).flatMap(group => group.members);
@@ -20,22 +21,22 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
   const lastUpdate = historical ? null : latestCrewSourceUpdate(crew);
   return <>
     <dl className={`crew-roster-summary${historical ? '' : ' is-current'}`} aria-label={historical ? 'Historical Crew assessment' : 'Crew assessment'}>
-      <div><dt>Reported aboard</dt><dd className={crew.counts.officialAboard === null ? 'crew-count-unavailable' : undefined}>{crew.counts.officialAboard ?? 'Unavailable'}</dd>
-        {historical && crew.counts.officialAboard === null && crew.counts.lastKnownOfficialAboard !== null && <small>Last reported: {crew.counts.lastKnownOfficialAboard} · count unverified at Historical UTC</small>}
-      </div>
-      <div><dt>{!historical && crew.membership ? 'Current members' : 'Confirmed identities'}</dt><dd>{!historical && crew.membership ? crew.members.length : crew.counts.resolvedAboard}</dd>
-        {!historical && crew.membership && <small>Membership and physical presence are separate</small>}
-      </div>
-      <div><dt>Without confirmed identity</dt><dd>{crew.counts.unidentifiedAboard}</dd>
-        {historical && crew.counts.officialAboard === null && <small>{crew.counts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
-      </div>
+      {historicalCounts ? <>
+        <div><dt>Reported aboard</dt><dd className={historicalCounts.officialAboard === null ? 'crew-count-unavailable' : undefined}>{historicalCounts.officialAboard ?? 'Unavailable'}</dd>
+          {historicalCounts.officialAboard === null && historicalCounts.lastKnownOfficialAboard !== null && <small>Last reported: {historicalCounts.lastKnownOfficialAboard} · count unverified at Historical UTC</small>}
+        </div>
+        <div><dt>Confirmed identities</dt><dd>{historicalCounts.resolvedAboard}</dd></div>
+        <div><dt>Without confirmed identity</dt><dd>{historicalCounts.unidentifiedAboard}</dd>
+          {historicalCounts.officialAboard === null && <small>{historicalCounts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
+        </div>
+      </> : <div><dt>Current members</dt><dd>{crew.members.length}</dd><small>Membership and physical presence are separate</small></div>}
       {historical && <div className="crew-assessment"><dt>ASSESSMENT UTC</dt><dd><time dateTime={historical.at}>{utc(historical.at)}</time></dd>
         <details className={`crew-assessment-evidence crew-historical-evidence${historical.availability === 'AVAILABLE' && historical.coverage.status === 'AVAILABLE' && crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
           <summary>{historical.coverage.status === 'UNAVAILABLE' ? 'Historical coverage unavailable' : historical.availability === 'PARTIAL' || historical.coverage.status === 'PARTIAL' ? 'Historical coverage partial' : quality.label} · Evidence</summary>
           <p>Best reconstruction from evidence stored today. Presence and assignments are effective at {utc(historical.at)}; coverage and roster may be partial. Assignment alone does not confirm presence.</p>
           <p>Profile names, portraits, biographies and career totals are latest-retained metadata, not historical snapshots.</p>
           <p>Reconciliation: {quality.label}. Coverage: {historical.coverage.status.toLowerCase()}.</p>
-          {crew.counts.unresolvedSubjects > 0 && <p>{crew.counts.unresolvedSubjects} unresolved source reports remain separate from confirmed identities.</p>}
+          {historicalCounts && historicalCounts.unresolvedSubjects > 0 && <p>{historicalCounts.unresolvedSubjects} unresolved source reports remain separate from confirmed identities.</p>}
           {historical.coverage.limitations.map((limitation, i) => <p key={i}>{limitation}</p>)}
           {datedPresence && <p>Historical presence evidence is dated; last-known confirmation is not confirmation at this UTC.</p>}
           {(crew.freshness.structuredSource.lastRefreshFailed || crew.freshness.verification.lastRefreshFailed) && <p>A retained source refresh failed. Fetch health describes collection, not presence at Historical UTC.</p>}
@@ -50,11 +51,9 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
         <span>Last update</span>{lastUpdate ? <time dateTime={lastUpdate}>{utc(lastUpdate)}</time> : <span>Unavailable</span>}
       </p>
       <details className={`crew-assessment-evidence${crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
-        <summary>{datedPresence ? 'Presence evidence is dated · last-known confirmation is not current confirmation.' : quality.label}
-          {crew.counts.unresolvedSubjects > 0 && <span> · {crew.counts.unresolvedSubjects} unresolved source reports</span>}
+        <summary>{datedPresence ? CURRENT_PRESENCE_NOTICE : quality.label}
         </summary>
         <p>{quality.note}</p>
-        <CrewReports crew={crew} />
         <CrewSources crew={crew} />
       </details>
       {crew.freshness.stale && crew.reconciliation.status !== 'STALE' && <p className="crew-assessment-warning">Crew data may be outdated.</p>}
@@ -67,12 +66,12 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
   </>;
 }
 
-function CrewRosterRow({ member, crew, onMember, selected, historical }: { member: CrewMember; crew: CurrentCrew; onMember: (id: string) => void; selected: boolean; historical?: HistoricalRosterContext }) {
+function CrewRosterRow({ member, crew, onMember, selected, historical }: { member: CrewMember; crew: CrewAssessment; onMember: (id: string) => void; selected: boolean; historical?: HistoricalRosterContext }) {
   const role = member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment');
   const mission = member.assignment && member.assignment.expeditionId === crew.expedition?.id ? crew.expedition.name : 'Unavailable';
   const presence = member.presence;
   const supportingPresence = presence.state === 'STALE' && presence.lastKnownState
-    ? `Last known: ${PRESENCE[presence.lastKnownState].toLowerCase()}`
+    ? historical ? `Last known: ${HISTORICAL_PRESENCE[presence.lastKnownState].toLowerCase()}` : `${lastOperationalConfirmation(presence)}${presence.asOf ? ` · ${utc(presence.asOf)}` : ''}`
     : presence.state === 'CONFIRMED_ABOARD' ? historical ? 'Identity confirmed at Historical UTC' : 'Identity confirmed in assessment'
       : presence.state === 'CONFIRMED_NOT_ABOARD' ? historical ? 'Confirmed absence at Historical UTC' : 'Confirmed absence in assessment'
         : presence.state === 'AMBIGUOUS' ? 'Conflicting or unresolved evidence' : historical ? 'Confirmation unavailable at Historical UTC' : 'Current confirmation unavailable';
@@ -86,7 +85,7 @@ function CrewRosterRow({ member, crew, onMember, selected, historical }: { membe
     </span>
     <span className="crew-roster-agency"><span className="crew-roster-field-label">Agency</span>{member.agency?.abbreviation ?? member.agency?.name ?? 'Unavailable'}</span>
     <span id={`crew-presence-${member.id}`} className={`crew-roster-presence state-${presence.state.toLowerCase()}`} title={`Presence as of ${utc(presence.asOf)}`}>
-      <span className="crew-roster-field-label">Presence evidence</span><span>{PRESENCE[presence.state]}</span><small>{supportingPresence}</small>
+      <span className="crew-roster-field-label">Presence evidence</span><span>{(historical ? HISTORICAL_PRESENCE : PRESENCE)[presence.state]}</span><small>{supportingPresence}</small>
     </span>
     <span className="crew-roster-chevron" aria-hidden="true"><img src={profileChevron} alt="" /></span>
   </button>;

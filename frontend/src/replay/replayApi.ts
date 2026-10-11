@@ -1,5 +1,5 @@
-import { decodeCrew, decodePerson } from "../crew/decode";
-import type { CurrentCrew, CrewPerson } from "../crew/types";
+import { decodeHistoricalCrew, decodePerson } from "../crew/decode";
+import type { HistoricalCrew, CrewPerson } from "../crew/types";
 export interface Coverage {
   status: string;
   start: string | null;
@@ -30,7 +30,7 @@ export interface ReplayResult {
   requestedAt: string;
   crew: {
     availability: string;
-    state: CurrentCrew | null;
+    state: HistoricalCrew | null;
     profiles: CrewPerson[];
     coverage: Coverage;
   };
@@ -142,7 +142,7 @@ export function decodeReplay(v: unknown, requestedAt: string): ReplayResult {
     requestedAt: instant(o.requestedAt),
     crew: {
       availability: text(c.availability),
-      state: c.state === null ? null : decodeCrew(c.state),
+      state: c.state === null ? null : decodeHistoricalCrew(c.state),
       profiles: c.profiles.map(decodePerson),
       coverage: coverage(c.coverage),
     },

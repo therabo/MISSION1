@@ -12,7 +12,8 @@
 .crew-workspace .crew-panel-content { display: flex; flex-direction: column; flex: 1; gap: 0; padding: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; color: var(--color-text-primary); scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; }
 .crew-workspace :is(button, summary, a, [tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
 .crew-workspace .crew-roster-summary { flex: none; display: grid; grid-template-columns: 280px 280px 300px minmax(0, 1fr); gap: 24px; padding-top: 12px; padding-block-end: calc(var(--space-primary) / 2); margin: 0; border-bottom: 1px solid rgb(42 53 66 / .55); }
-.crew-workspace .crew-roster-summary.is-current { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.crew-workspace .crew-roster-summary.is-current,
+.crew-detail-layout.has-astronaut .crew-workspace .crew-roster-summary.is-current { grid-template-columns: minmax(0, 1fr); }
 .crew-workspace .crew-roster-summary > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; min-height: 58px; margin: 0; }
 .crew-workspace .crew-roster-summary.is-current > div { min-height: 0; }
 .crew-workspace .crew-roster-summary dt { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
@@ -130,7 +131,6 @@
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: 1 / -1; min-height: 0; padding-bottom: 8px; }
 }
 @container crew-roster (max-width: 700px) {
-  .crew-workspace .crew-roster-summary.is-current > div:last-child { grid-column: 1 / -1; }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-roster-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment { grid-column: auto; }
   .crew-detail-layout.has-astronaut .crew-workspace .crew-assessment dd { font-size: 12px; line-height: 18px; }
@@ -149,7 +149,6 @@
 }
 
 @container crew-workspace (max-width: 716px) {
-  .crew-workspace .crew-roster-summary.is-current { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .crew-detail-layout.has-astronaut { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .crew-detail-layout.has-astronaut > .crew-workspace { visibility: hidden; }
   .crew-detail-layout.has-astronaut > :is(.crew-workspace, .crew-detail-surface) { grid-area: 1 / 1; }

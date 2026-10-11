@@ -113,9 +113,9 @@ class ProductionCurrentPostgresTest {
         assertEquals(7, c.path("members").size());
         assertEquals(7, c.at("/membership/resolvedCurrentMembers").asInt());
         assertEquals(7, c.at("/counts/structuredAssignments").asInt());
-        assertTrue(c.at("/counts/officialAboard").isNull());
+        assertTrue(c.at("/counts/officialAboard").isMissingNode());
         assertEquals(0, c.at("/counts/resolvedAboard").asInt());
-        assertEquals(0, c.path("unresolvedSubjects").size());
+        assertFalse(c.has("unresolvedSubjects"));
         assertEquals(
                 0,
                 jdbc.queryForObject(

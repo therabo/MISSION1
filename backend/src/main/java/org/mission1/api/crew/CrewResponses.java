@@ -105,6 +105,21 @@ public final class CrewResponses {
             int unidentifiedAboard,
             Integer structuredAssignments) {}
 
+    /** Current diagnostics are independent of the V10 resolved member cardinality. */
+    public record CurrentCounts(int resolvedAboard, Integer structuredAssignments) {}
+
+    /** Current membership is not an operational count-minus-presence interpretation. */
+    public record CurrentCrew(
+            Station station,
+            Expedition expedition,
+            CurrentCounts counts,
+            List<Member> members,
+            Reconciliation reconciliation,
+            Freshness freshness,
+            Provenance provenance,
+            @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+            MembershipProjection membership) {}
+
     public record Reconciliation(
             String status,
             Instant evaluatedAt,

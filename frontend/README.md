@@ -203,3 +203,14 @@ The main Earth View now has LIVE/REPLAY controls. Replay uses a UTC date/time an
 ## Current Crew membership — 2026-10-11
 
 Current consumes the backend ACTIVE member array; the optional committed-membership metadata identifies its evaluation/health. Current members, structured assignments, reported aboard and confirmed physical presence remain distinct. No frontend identity matching, name filtering or source fetch occurs. Unavailable Current uses the existing explicit API error view. Responsive selection/detail/back behavior and retained direct UUID details are unchanged. Historical/Replay retain their temporal member sets and prior count labels. See [activation acceptance](../docs/crew/current-active-projection-activation/README.md).
+
+## Current Crew summary cleanup — 2026-10-11
+
+Current shows only **Current members**, derived from its published V10 member array.
+Reported aboard and Without confirmed identity headlines are removed. Current decodes
+only presence/assignment diagnostics; Historical uses its own frozen count/report decoder.
+Source details retain unresolved ACTIVE source slots, explicitly separate from people;
+retained evidence does not contribute. Current stale wording is “Presence not currently
+confirmed”, with “Last operational confirmation: aboard” and operational UTC. The amber
+state, assignment disclaimer, profiles, aliases and Historical presentation are unchanged.
+See [investigation and validation](../docs/crew/current-ui-semantic-cleanup/README.md).

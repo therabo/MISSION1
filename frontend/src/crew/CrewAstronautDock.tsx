@@ -4,7 +4,7 @@ import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewPortraitRights, CrewProfileEvidence } from './CrewMemberDetail';
-import { formatDuration, permittedPortrait, PRESENCE, QUALITY, safeHttps, utc } from './presentation';
+import { formatDuration, permittedPortrait, PRESENCE, lastOperationalConfirmation, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
 import { CrewDetailActions } from './CrewDetailActions';
@@ -36,7 +36,7 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
   const profileUrl = safeHttps(person?.officialProfileUrl ?? null);
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
   const presence = member.presence;
-  const supportingPresence = presence.state === 'STALE' && presence.lastKnownState ? `Last known: ${PRESENCE[presence.lastKnownState].toLowerCase()}`
+  const supportingPresence = presence.state === 'STALE' && presence.lastKnownState ? lastOperationalConfirmation(presence)
     : presence.state === 'CONFIRMED_ABOARD' ? 'Identity confirmed in Crew assessment'
       : presence.state === 'CONFIRMED_NOT_ABOARD' ? 'Confirmed absence in Crew assessment'
         : presence.state === 'AMBIGUOUS' ? 'Conflicting or unresolved evidence' : 'Current confirmation unavailable';

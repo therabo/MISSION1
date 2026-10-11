@@ -34,3 +34,5 @@ Its 2026-10-01 perceptual pacing clarification rejects strict constant Cartesian
 ADR-0009 has a dated 2026-10-11 clarification for completed named operational departures, minute-qualified time and append-only retained reinterpretation. V1–V10 remain unchanged; new evidence is consumed by shadow V10, with public Current/Replay activation deferred.
 
 - [ADR-0017: Production Current active membership](0017-production-current-active-membership.md) — Accepted; V10 inclusion with V7 publication, default activation, scoped fail-closed availability and explicit legacy rollback. V9 identity and Replay activation remain deferred.
+
+- [ADR-0018: Purpose-specific Current Crew summary semantics](0018-current-crew-summary-semantics.md) — Accepted; remove obsolete Current count/report projections, retain Historical/source evidence, distinguish membership from operational presence.

@@ -100,7 +100,7 @@ export interface UnresolvedSubject {
   evidence: Assertion;
   applicable: boolean;
 }
-export interface CrewCounts {
+export interface HistoricalCrewCounts {
   officialAboard: number | null;
   lastKnownOfficialAboard: number | null;
   resolvedAboard: number;
@@ -140,15 +140,20 @@ export interface CrewProvenance {
   verification: Observation | null;
   contributingAssertions: Assertion[];
 }
-export interface CurrentCrew {
+interface CrewState {
   station: Station;
   expedition: Expedition | null;
-  counts: CrewCounts;
   members: CrewMember[];
-  unresolvedSubjects: UnresolvedSubject[];
   reconciliation: Reconciliation;
   freshness: CrewFreshness;
   provenance: CrewProvenance;
+}
+export interface HistoricalCrew extends CrewState {
+  counts: HistoricalCrewCounts;
+  unresolvedSubjects: UnresolvedSubject[];
+}
+export interface CurrentCrew extends CrewState {
+  counts: { resolvedAboard: number; structuredAssignments: number | null };
   membership?: {
     mode: 'ACTIVE_PROJECTION';
     revision: number;
@@ -162,6 +167,7 @@ export interface CurrentCrew {
     unresolvedActiveSourceSlots: number;
   };
 }
+export type CrewAssessment = CurrentCrew | HistoricalCrew;
 export interface ExpeditionAssignment {
   personId: string;
   name: string | null;

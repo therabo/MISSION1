@@ -14,9 +14,9 @@ Contract selected before implementation, 2026-10-03. Three read-only resources:
 
 Public DTOs are separate from domain/persistence types. Controller → REST composition/read service → existing Crew queries and a batched persisted-person query → PostgreSQL. Reads run in a read-only repeatable-read transaction. No source fetch, identity resolution write or reconciliation run is allowed on GET.
 
-Selected field groups: station, expedition, counts, members, unresolvedSubjects, reconciliation, freshness, provenance and optional Current-only membership diagnostics (ADR-0017). Separate official current count, last-known official count, confirmed resolved count, unresolved assertion-subject count, unidentified count gap and structured assignment count. Unknown optional values are explicit null; collections are arrays. UUIDs are MISSION1 identities; external IDs are labeled source/value pairs. UTC instants and elapsed durations use ISO-8601 strings. Media rights stay attached to media. Biography stays text.
+Current field groups: station, expedition, counts, members, reconciliation, freshness, provenance and optional Current-only membership diagnostics (ADR-0017/0018). Current counts contain only independent resolved physical presence and structured assignments. Historical/Replay additionally preserves its original operational current/last-known/gap/report count contract and unresolvedSubjects. Unknown optional values are explicit null; collections are arrays. UUIDs are MISSION1 identities; external IDs are labeled source/value pairs. UTC instants and elapsed durations use ISO-8601 strings. Media rights stay attached to media. Biography stays text.
 
-Unresolved subjects retain the source assertion and resolution status, without a fabricated ID or inferred canonical presence. The existing engine has no canonical unresolved-person state. Source applicability and assertion time remain visible. Last-known count may be retained while current authoritative count is null.
+Historical unresolved subjects retain the source assertion and resolution status, without a fabricated ID or inferred canonical presence. The existing engine has no canonical unresolved-person state. Source applicability and assertion time remain visible. Last-known count may be retained while current authoritative count is null.
 
 Availability: usable partial/last-known state → 200 with existing reconciliation status. No usable persisted state → 503. Explicit NO_ACTIVE_EXPEDITION → 200/null expedition/empty assignments, even without a prior graph. Latest transport failure preserves the previous valid state with health. Malformed UUID → 400; unknown UUID → 404; internal errors → sanitized 500. Follow existing ProblemDetail URN conventions. Cache-Control no-store; no ETag because time changes quality without changing source bytes. Existing CORS/security unchanged.
 
@@ -36,20 +36,30 @@ Default `ACTIVE_PROJECTION` membership is selected from the latest compatible co
 | --- | --- |
 | `station` | `{id:"ISS", name:"International Space Station"}`; provider station IDs never replace this identity. |
 | `expedition` | Nullable `{id: MISSION1 UUID, name, start, end, externalIds:[{source,value}]}`. Start/end are nullable source lifecycle instants. Membership does not mean occupancy. |
-| `counts.officialAboard` | Nullable authoritative current count from the reconciler, additionally requiring usable NASA health and count applicability under the unchanged policy. Never derived from an array. |
-| `counts.lastKnownOfficialAboard` | Nullable retained reconciler count, possibly stale/unverified. Later transitions can invalidate it; this is not an unbounded historical lookup. |
 | `counts.resolvedAboard` | Number of resolved people whose **effective current** presence is `CONFIRMED_ABOARD` in the unchanged operational assessment; independent of Current membership cardinality. |
-| `counts.unresolvedSubjects` | Number of unresolved **assertion-subject entries** in `unresolvedSubjects`, not a claim of distinct/current people. Different assertions can mention the same unresolved name. |
-| `counts.unidentifiedAboard` | Existing reconciler's nonnegative count gap (retained count minus effective confirmed resolved people, clamped at zero). It may differ from unresolved entry count, especially when stale/degraded. It never creates placeholder people. |
 | `counts.structuredAssignments` | Nullable number of assignments in the interpretation's structured input; null when there is no such input. |
 | `members` | Default: V10 `ACTIVE` humans publishable through production V7 identity/profile authority. RETAINED humans remain addressable through detail. Ordered by the existing LL2 assignment sequence, then canonical UUID for humans without assignments. No biography in collection. Explicit rollback restores the legacy reconciler union and its UUID order. |
-| `unresolvedSubjects` | Default ACTIVE mode returns `[]`: raw shadow slots stay internal; `membership.unresolvedActiveSourceSlots` is an active-scoped source-entry diagnostic, never a human count. Explicit legacy rollback and Historical retain `{displayName,resolution,evidence,applicable}`. Resolution is `UNRESOLVED` or `AMBIGUOUS`. No person UUID, candidates, parser key or guessed profile. The source assertion is exposed; no canonical unresolved-person presence is invented. |
 | `membership` | Optional Current-only `{mode,revision,evaluatedAt,policyVersion,health,ageSeconds,resolvedCurrentMembers,nonPublishableActive,canonicalCollisions,unresolvedActiveSourceSlots}`. Omitted in rollback and Historical/Replay. Revision is a diagnostic projection marker, not a source/person identifier. Health is HEALTHY/DEGRADED and includes publication gaps/collisions. |
 | `reconciliation` | Exact existing `status`, `evaluatedAt`, nullable persisted snapshot's original `reconciledAt`, `algorithmVersion`, nullable `lastAttemptAt`, `lastAttemptCompletedAt`, `lastAttemptResult`. Evaluation and persisted run times are distinct. |
 | `freshness` | `evaluatedAt`, separate `structuredSource`/`verification` health, and whether overall reconciliation status is `STALE`. Per-member stale/ambiguous states remain explicit even when another status has precedence. |
 | `provenance` | Nullable `structuredSource` observation for the exact LL2 input, nullable `verification` observation from the latest successful NASA operation, and `contributingAssertions` from all used evidence. Multiple source documents/hashes and article URLs are retained honestly. |
 
-**Official/current Crew count need not equal member array length, confirmed resolved count, unresolved entry count, or LL2 assignment count.** The dated partial-match class is official 11, resolved aboard 8, unresolved entries 3, structured assignments 7, members 9 (six in both, one LL2-only unverified, two NASA-only). Do not use array length as `crewCount`. Count equality alone never certifies exhaustive agreement.
+Current member cardinality is `members.length` / `membership.resolvedCurrentMembers`.
+It does not certify physical occupancy. Current has no `counts.officialAboard`,
+`lastKnownOfficialAboard`, `unidentifiedAboard`, `unresolvedSubjects`, or root
+`unresolvedSubjects`. There is no public reported-aboard summary. The retained
+operational count-minus-presence gap is not a count of unidentified Current humans.
+Only ACTIVE source slots appear in `membership.unresolvedActiveSourceSlots`; these
+may repeat resolved people and do not add cards. Retained source slots stay internal.
+
+Historical/Replay retains all original count fields and `{displayName,resolution,evidence,applicable}`
+unresolved reports. Those are assertion-subject entries, not distinct humans. Operational
+count evidence/history and NASA website editorial count observations are retained unchanged.
+See [the exact investigation and schema audit](../crew/current-ui-semantic-cleanup/README.md)
+and [ADR-0018](../adr/0018-current-crew-summary-semantics.md). Only the MISSION1 frontend,
+repository tests/scripts and docs consume Current; both application sides release together.
+The clean Current-only removals are intentional contract changes, with no external
+versioning/deprecation requirement found. Historical/Replay wire contract is unchanged.
 
 Each member has `{id,name,agency,nationalities,image,assignment,presence,externalIds}`. Name may be null for an identity anchor without a known public name. Agency/image/assignment are nullable. `nationalities` and `externalIds` are arrays. Agency has `name,abbreviation,type,externalIds`; nationality has nullable `alpha2,alpha3,displayName`. Image fields are documented below. Collection and detail profiles use the same latest retained LL2 authority via the established canonical profile projection, independently of assignment membership. Null/removal/media-rights and per-field provenance rules are unchanged.
 
@@ -59,7 +69,7 @@ Each member has `{id,name,agency,nationalities,image,assignment,presence,externa
 
 Reconciliation statuses are unchanged: MATCH, NASA_AHEAD, LL2_AHEAD, PARTIAL_MATCH, PRIMARY_UNAVAILABLE, VERIFICATION_UNAVAILABLE, STALE, AMBIGUOUS. Their authority/ordering rules remain in [the reconciliation design](../crew/nasa-verification-and-reconciliation.md).
 
-Unresolved subjects exist when official public evidence names someone without a safe persisted identity resolution. They carry the assertion type/time, source and applicability. A departure assertion is not presented as current aboard; repeated/equal-time/conflicting assertions are not silently folded into an invented canonical person. Only the existing resolved-person engine establishes canonical presence. Source text excerpts, subject indices and candidate identity internals are omitted.
+Historical unresolved subjects exist when official public evidence names someone without a safe persisted identity resolution. They carry the assertion type/time, source and applicability. A departure assertion is not presented as current aboard; repeated/equal-time/conflicting assertions are not silently folded into an invented canonical person. Only the existing resolved-person engine establishes canonical presence. Source text excerpts, subject indices and candidate identity internals are omitted.
 
 ## Shared health/provenance objects
 
@@ -124,7 +134,7 @@ Current Crew endpoints remain current. Historical operational state is exposed t
 
 ## Compatible source versions — 2026-10-10
 
-Public DTO fields and routes are unchanged. Before reconciliation, the shared ADR-0012 selector chooses the latest successfully observed compatible evidence interpretation per conservative logical source occurrence. `counts.unresolvedSubjects` and `unresolvedSubjects` count interpreted unresolved source occurrences, including retained/non-applicable entries, rather than every stored evidence version. Distinct articles/claims/events remain distinct; this is not a count of unique humans. `officialAboard`, `lastKnownOfficialAboard`, resolved presence and assignments retain their existing applicability and authority rules. A freshly observed old article does not become a newly timed operational fact.
+At that milestone DTO fields and routes were unchanged. Following ADR-0018, the operational counts/reports in this paragraph apply to Historical/Replay and internal reconciliation only; Current uses its narrower count contract above. Before reconciliation, the shared ADR-0012 selector chooses the latest successfully observed compatible evidence interpretation per conservative logical source occurrence. `counts.unresolvedSubjects` and `unresolvedSubjects` count interpreted unresolved source occurrences, including retained/non-applicable entries, rather than every stored evidence version. Distinct articles/claims/events remain distinct; this is not a count of unique humans. `officialAboard`, `lastKnownOfficialAboard`, resolved presence and assignments retain their existing applicability and authority rules. A freshly observed old article does not become a newly timed operational fact.
 
 Unselected evidence and subject metadata revisions remain available in immutable internal occurrence/version lineage. They do not create additional public unresolved rows or replace selected fields with older non-null metadata. Canonical identity remains separate: NASA Andrey and LL2 Andrei are not merged. GET is database-backed, repeatable-read, network-free and write-free; association/backfill occurs outside the read path. See [validation](../crew/source-occurrence-versioning-validation/README.md).
 

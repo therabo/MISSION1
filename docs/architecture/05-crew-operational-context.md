@@ -74,3 +74,13 @@ Crew milestone 7 (Replay integration) is DONE. Effective-time historical state r
 ## Production Current membership — ADR-0017
 
 The same Crew module now reads compatible sealed V10 ACTIVE membership through a separate SELECT-only port and publishes profiles through production V7 canonical authority. The default activation and explicit legacy rollback affect Current inclusion only. Existing source fields, independent presence/count quality, retained details, V9 shadow identity and historical Replay boundaries remain separate. No schema or infrastructure is added. [ADR and consequences](../adr/0017-production-current-active-membership.md), [acceptance](../crew/current-active-projection-activation/README.md).
+
+## Current summary semantic cleanup — 2026-10-11
+
+[ADR-0018](../adr/0018-current-crew-summary-semantics.md) gives Current a purpose-specific
+count DTO: confirmed physical presence and structured assignments remain independent
+source diagnostics; legacy operational count history/gap and unresolved reports remain
+internal or Historical/Replay. Current's sole headline is resolved membership cardinality.
+Typed ACTIVE source-slot diagnostics remain in source details, with no retained-slot
+contribution or human-count inference. No source, identity, lifecycle or schema changes.
+[Investigation and validation](../crew/current-ui-semantic-cleanup/README.md).

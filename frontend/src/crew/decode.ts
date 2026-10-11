@@ -192,23 +192,10 @@ export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
     station: station(v.station),
     expedition: nullable(expedition)(v.expedition),
     counts: {
-      officialAboard: nc(c.officialAboard),
-      lastKnownOfficialAboard: nc(c.lastKnownOfficialAboard),
       resolvedAboard: count(c.resolvedAboard),
-      unresolvedSubjects: count(c.unresolvedSubjects),
-      unidentifiedAboard: count(c.unidentifiedAboard),
       structuredAssignments: nc(c.structuredAssignments),
     },
     members: array(member)(v.members),
-    unresolvedSubjects: array<C.UnresolvedSubject>((value) => {
-      const s = record(value);
-      return {
-        displayName: text(s.displayName),
-        resolution: choice(['UNRESOLVED', 'AMBIGUOUS'] as const)(s.resolution),
-        evidence: assertion(s.evidence),
-        applicable: bool(s.applicable),
-      };
-    })(v.unresolvedSubjects),
     reconciliation: reconciliation(v.reconciliation),
     freshness: {
       evaluatedAt: instant(f.evaluatedAt),
@@ -236,6 +223,27 @@ export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
         unresolvedActiveSourceSlots: count(m.unresolvedActiveSourceSlots),
       };
     })() }),
+  };
+};
+/** Replay keeps the original operational-count and unresolved-report contract. */
+export const decodeHistoricalCrew: Decode<C.HistoricalCrew> = (value) => {
+  const v = record(value), c = record(v.counts);
+  const { membership: _currentOnly, ...state } = decodeCrew({ ...v, membership: undefined });
+  return {
+    ...state,
+    counts: {
+      ...state.counts,
+      officialAboard: nc(c.officialAboard),
+      lastKnownOfficialAboard: nc(c.lastKnownOfficialAboard),
+      unresolvedSubjects: count(c.unresolvedSubjects),
+      unidentifiedAboard: count(c.unidentifiedAboard),
+    },
+    unresolvedSubjects: array<C.UnresolvedSubject>((value) => {
+      const s = record(value);
+      return { displayName: text(s.displayName),
+        resolution: choice(['UNRESOLVED', 'AMBIGUOUS'] as const)(s.resolution),
+        evidence: assertion(s.evidence), applicable: bool(s.applicable) };
+    })(v.unresolvedSubjects),
   };
 };
 export const decodeExpedition: Decode<C.CurrentExpedition> = (value) => {

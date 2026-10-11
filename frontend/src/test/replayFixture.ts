@@ -1,4 +1,4 @@
-import { crewFixture, personFixture } from "./crewFixture";
+import { historicalCrewFixture, personFixture } from "./crewFixture";
 const at = "2026-10-03T12:00:00Z";
 export function replayFixture(time = at) {
   return {
@@ -7,7 +7,7 @@ export function replayFixture(time = at) {
     crew: {
       effectiveAt: time,
       availability: "PARTIAL",
-      state: crewFixture(),
+      state: historicalCrewFixture(),
       profiles: [personFixture()],
       coverage: {
         status: "PARTIAL",

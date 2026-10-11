@@ -185,12 +185,12 @@ class CrewPostgresApiTest {
         populated();
         var r = read("/api/iss/crew");
         assertEquals("PARTIAL_MATCH", r.at("/reconciliation/status").asText());
-        assertEquals(11, r.at("/counts/officialAboard").asInt());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         assertEquals(8, r.at("/counts/resolvedAboard").asInt());
-        assertEquals(3, r.at("/counts/unresolvedSubjects").asInt());
+        assertTrue(r.at("/counts/unresolvedSubjects").isMissingNode());
         assertEquals(7, r.at("/counts/structuredAssignments").asInt());
         assertEquals(9, r.get("members").size());
-        assertEquals(3, r.get("unresolvedSubjects").size());
+        assertFalse(r.has("unresolvedSubjects"));
         assertEquals(personId().toString(), read("/api/iss/crew/" + personId()).get("id").asText());
         assertEquals(7, read("/api/iss/expedition/current").get("assignmentCount").asInt());
         assertEquals(
@@ -262,8 +262,8 @@ class CrewPostgresApiTest {
         assertEquals("VERIFICATION_UNAVAILABLE", r.at("/reconciliation/status").asText());
         assertTrue(r.at("/freshness/verification/lastRefreshFailed").asBoolean());
         assertEquals(9, r.get("members").size());
-        assertTrue(r.at("/counts/officialAboard").isNull());
-        assertEquals(11, r.at("/counts/lastKnownOfficialAboard").asInt());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
+        assertTrue(r.at("/counts/lastKnownOfficialAboard").isMissingNode());
     }
 
     @Test
@@ -274,7 +274,7 @@ class CrewPostgresApiTest {
         var r = read("/api/iss/crew");
         assertEquals("STALE", r.at("/reconciliation/status").asText());
         assertTrue(r.at("/freshness/stale").asBoolean());
-        assertTrue(r.at("/counts/officialAboard").isNull());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         assertEquals(before, counts());
     }
 
@@ -283,7 +283,7 @@ class CrewPostgresApiTest {
         ll2();
         var r = read("/api/iss/crew");
         assertEquals("VERIFICATION_UNAVAILABLE", r.at("/reconciliation/status").asText());
-        assertTrue(r.at("/counts/officialAboard").isNull());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         for (var p : r.get("members")) assertEquals("UNVERIFIED", p.at("/presence/state").asText());
     }
 

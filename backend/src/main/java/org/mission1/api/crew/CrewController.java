@@ -16,7 +16,7 @@ public final class CrewController {
     }
 
     @GetMapping("/crew")
-    public ResponseEntity<CrewResponses.Crew> crew() {
+    public ResponseEntity<CrewResponses.CurrentCrew> crew() {
         return read(query.crew());
     }
 

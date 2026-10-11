@@ -339,3 +339,14 @@ updated separately and remains outside Git.
 No event timeline, notifications, history/Replay, editing, new backend resource or
 event-triggered refresh was started. RTN trajectory-separation analysis and Replay
 remain pending. The next single milestone is **ISS CREW EVENT-AWARE REFRESH**.
+
+## Current Crew summary cleanup — 2026-10-11
+
+Current shows only **Current members**, derived from its published V10 member array.
+Reported aboard and Without confirmed identity headlines are removed. Current decodes
+only presence/assignment diagnostics; Historical uses its own frozen count/report decoder.
+Source details retain unresolved ACTIVE source slots, explicitly separate from people;
+retained evidence does not contribute. Current stale wording is “Presence not currently
+confirmed”, with “Last operational confirmation: aboard” and operational UTC. The amber
+state, assignment disclaimer, profiles, aliases and Historical presentation are unchanged.
+See [investigation and validation](../../crew/current-ui-semantic-cleanup/README.md).

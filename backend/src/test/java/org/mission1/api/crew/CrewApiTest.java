@@ -355,20 +355,50 @@ class CrewApiTest {
     }
 
     @Test
-    void partialMatchPreservesElevenEightThreeSevenAndNineMembers() throws Exception {
+    void currentOmitsLegacyCountAndReportsButPreservesPresenceAssignmentsAndMembers() throws Exception {
         var r = read("/api/iss/crew");
-        assertEquals(11, r.at("/counts/officialAboard").asInt());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         assertEquals(8, r.at("/counts/resolvedAboard").asInt());
-        assertEquals(3, r.at("/counts/unresolvedSubjects").asInt());
+        assertTrue(r.at("/counts/unresolvedSubjects").isMissingNode());
         assertEquals(7, r.at("/counts/structuredAssignments").asInt());
         assertEquals(9, r.get("members").size());
-        assertEquals(3, r.get("unresolvedSubjects").size());
+        assertFalse(r.has("unresolvedSubjects"));
         assertEquals("PARTIAL_MATCH", r.at("/reconciliation/status").asText());
-        for (var u : r.get("unresolvedSubjects")) {
-            assertFalse(u.has("id"));
-            assertFalse(u.has("personId"));
-            assertFalse(u.has("candidates"));
-        }
+
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 3, 7, 11})
+    void activeCurrentNeverProjectsOperationalCountGapAsUnidentifiedHumans(int gap)
+            throws Exception {
+        // TEST_ONLY equivalent of the observed 7 humans, 8 ACTIVE /15 retained slots.
+        var state = spy(current.interpretation());
+        doReturn(11).when(state).officialCrewCount();
+        doReturn(gap).when(state).unidentifiedCount();
+        current = new CrewReconciliationQueryService.Current(state, current.structuredPrimary(),
+                current.primaryHealth(), current.verificationHealth(), current.lastPersistedInterpretation(),
+                current.lastParseFailure(), current.lastReconciliationAttempt(),
+                current.verificationEvidence(), current.identityResolutions());
+        var result = mock(org.mission1.crew.membership.Membership.Result.class);
+        when(result.counts()).thenReturn(new org.mission1.crew.membership.Membership.Counts(
+                7, 4, 8, 15, 7, 7, 3, 7, null, 11));
+        when(result.policy()).thenReturn("TEST_ONLY");
+        when(result.health()).thenReturn(org.mission1.crew.membership.Membership.HealthState.DEGRADED);
+        var projection = new org.mission1.crew.membership.ActiveMembershipReader.Projection(3, at, "TEST_ONLY", result);
+        var selected = new ProductionCurrentMembership.Selection(projection,
+                java.util.stream.IntStream.rangeClosed(1, 7).mapToObj(i -> persons.get(uuid(i))).toList(), 0, 0);
+        when(membership.mode()).thenReturn(ProductionCurrentMembership.Mode.ACTIVE_PROJECTION);
+        when(membership.select(any(), any())).thenReturn(selected);
+        var r = read("/api/iss/crew");
+        assertEquals(7, r.path("members").size());
+        assertEquals(8, r.at("/membership/unresolvedActiveSourceSlots").asInt());
+        assertEquals(2, r.path("counts").size());
+        for (var field : List.of("officialAboard", "lastKnownOfficialAboard", "unidentifiedAboard", "unresolvedSubjects"))
+            assertFalse(r.path("counts").has(field), field);
+        assertFalse(r.has("unresolvedSubjects"));
+        assertFalse(r.path("membership").has("unresolvedRetainedSourceSlots"));
+        verify(state, never()).unidentifiedCount();
+        verify(policy, never()).applicable(any(), any(), any());
     }
 
     @ParameterizedTest
@@ -379,13 +409,13 @@ class CrewApiTest {
     }
 
     @Test
-    void matchHasEmptyUnresolvedArray() throws Exception {
+    void matchedCurrentOmitsHistoricalReports() throws Exception {
         setState(ReconciliationStatus.MATCH);
         var r = read("/api/iss/crew");
-        assertEquals(0, r.get("unresolvedSubjects").size());
+        assertFalse(r.has("unresolvedSubjects"));
         assertEquals(7, r.get("members").size());
         assertEquals(7, r.at("/counts/resolvedAboard").asInt());
-        assertEquals(7, r.at("/counts/officialAboard").asInt());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         for (var p : r.get("members"))
             assertEquals("CONFIRMED_ABOARD", p.at("/presence/state").asText());
     }
@@ -485,14 +515,14 @@ class CrewApiTest {
     }
 
     @Test
-    void staleCountRetainsLastKnownButCurrentCountIsNull() throws Exception {
+    void currentOmitsOperationalCountHistoryWithoutErasingFreshness() throws Exception {
         setState(ReconciliationStatus.STALE);
         when(policy.applicable(any(), any(), any())).thenReturn(false);
         var r = read("/api/iss/crew");
-        assertTrue(r.at("/counts/officialAboard").isNull());
-        assertEquals(11, r.at("/counts/lastKnownOfficialAboard").asInt());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
+        assertTrue(r.at("/counts/lastKnownOfficialAboard").isMissingNode());
         assertTrue(r.at("/freshness/stale").asBoolean());
-        assertFalse(r.at("/unresolvedSubjects/0/applicable").asBoolean());
+        assertFalse(r.has("unresolvedSubjects"));
     }
 
     @Test
@@ -615,7 +645,7 @@ class CrewApiTest {
         var r = read("/api/iss/crew");
         assertTrue(r.at("/freshness/verification/rateLimited").asBoolean());
         assertTrue(r.at("/freshness/verification/lastRefreshFailed").asBoolean());
-        assertTrue(r.at("/counts/officialAboard").isNull());
+        assertTrue(r.at("/counts/officialAboard").isMissingNode());
         assertEquals("PARTIAL_MATCH", r.at("/reconciliation/status").asText());
     }
 

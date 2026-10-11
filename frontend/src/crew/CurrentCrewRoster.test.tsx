@@ -1,33 +1,31 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
-import { crewFixture } from '../test/crewFixture';
+import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
 import { PRESENCE, QUALITY, utc } from './presentation';
 import type { PresenceState, ReconciliationStatus } from './types';
 
 const render = (crew = crewFixture()) => renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} />);
 describe('S7 assessment and roster presentation', () => {
-  it('keeps reported, confirmed, unidentified and assignment counts distinct', () => {
+  it('shows membership cardinality separately from presence and assignments', () => {
     const html = render();
-    expect(html).toContain('Reported aboard</dt><dd>11'); expect(html).toContain('Confirmed identities</dt><dd>8');
-    expect(html).toContain('Without confirmed identity</dt><dd>3'); expect(html).toContain('7 structured assignments');
-    expect((html.match(/data-member-id=/g) ?? []).length).toBe(9);
+    expect(html).toContain('Current members</dt><dd>9');
+    expect(html).not.toContain('<dt>Reported aboard'); expect(html).not.toContain('Without confirmed identity');
+    expect(html).toContain('7 structured assignments'); expect((html.match(/data-member-id=/g) ?? [])).toHaveLength(9);
   });
-  it('does not present retained count or roster length as a current reported count', () => {
-    const crew = crewFixture(); crew.counts.officialAboard = null;
-    const html = render(crew); expect(html).toContain('Unavailable</dd>'); expect(html).not.toContain('Last reported: 11');
-    expect(html).not.toContain('current count unverified'); expect(html).not.toContain('In the retained count');
-    expect(html).not.toContain('Reported aboard</dt><dd>9'); expect(html).not.toContain('Reported aboard</dt><dd>11');
+  it('does not use confirmed presence as Current membership cardinality', () => {
+    const crew = crewFixture(); crew.counts.resolvedAboard = 0;
+    expect(render(crew)).toContain('Current members</dt><dd>9');
   });
-  it('supports missing current and retained counts without inventing zero', () => {
-    const crew = crewFixture(); crew.counts.officialAboard = null; crew.counts.lastKnownOfficialAboard = null;
-    const html = render(crew); expect(html).toContain('Unavailable</dd>'); expect(html).not.toContain('Last reported:');
+  it('supports missing structured counts without inventing zero', () => {
+    const crew = crewFixture(); crew.counts.structuredAssignments = null;
+    expect(render(crew)).toContain('Unavailable structured assignments');
   });
-  it('reports legitimate zero and empty roster while retaining evidence', () => {
-    const crew = crewFixture(); crew.counts.officialAboard = 0; crew.members = []; crew.expedition = null;
-    const html = render(crew); expect(html).toContain('Reported aboard</dt><dd>0');
+  it('reports empty resolved membership while preserving source context', () => {
+    const crew = crewFixture(); crew.members = []; crew.expedition = null;
+    const html = render(crew); expect(html).toContain('Current members</dt><dd>0');
     expect(html).toContain('No resolved crew members are available'); expect(html).not.toContain('data-member-id=');
-    expect(html).toContain('unresolved source reports');
+    expect(html).toContain('Data sources');
   });
   it('supports long names, missing identity text and more than the screenshot row count', () => {
     const crew = crewFixture(); crew.members = Array.from({length:31}, (_,i) => ({...crew.members[0], id:`TEST-only-${i}`, name: i ? 'Long TEST astronaut identity '.repeat(10) : null}));
@@ -45,7 +43,7 @@ describe('S7 assessment and roster presentation', () => {
   it.each(Object.keys(PRESENCE) as PresenceState[])('retains exact %s meaning independently from role', state => {
     const crew = crewFixture(); crew.members = [{...crew.members[0],presence:{...crew.members[0].presence,state,lastKnownState:'CONFIRMED_NOT_ABOARD'}}];
     const html = render(crew); expect(html).toContain(PRESENCE[state]); expect(html).toContain(crew.members[0].assignment!.role);
-    if (state === 'STALE') expect(html).toContain('Last known: confirmed not aboard');
+    if (state === 'STALE') expect(html).toContain('Last operational confirmation: not aboard');
   });
   it.each(Object.keys(QUALITY) as ReconciliationStatus[])('keeps %s evidence and warnings available', status => {
     const crew = crewFixture(); crew.reconciliation.status = status;
@@ -53,7 +51,7 @@ describe('S7 assessment and roster presentation', () => {
   });
   it('keeps unresolved reports read-only, without inventing selectable person identities', () => {
     const crew = crewFixture(); crew.members = []; const html = render(crew);
-    expect(html).toContain('Identity unresolved'); expect(html).not.toContain('data-member-id');
+    expect(html).not.toContain('Additional NASA-reported crew'); expect(html).not.toContain('data-member-id');
     expect(html).not.toContain('open profile');
   });
   it('preserves assessment UTC, source observation UTC, refresh failures and stale warnings', () => {
@@ -111,7 +109,7 @@ describe('compact Current metadata and successful source update time', () => {
     expect(render(crew)).toContain('<span>Last update</span><span>Unavailable</span>');
   });
   it('keeps Historical assessment, retained count and assertion dates explicit without a Current update label', () => {
-    const crew = crewFixture(); crew.counts.officialAboard = null;
+    const crew = historicalCrewFixture(); crew.counts.officialAboard = null;
     const at = '2026-10-02T12:00:00Z';
     const html = renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} historical={{at,availability:'PARTIAL',coverage:{status:'PARTIAL',start:null,end:null,intervals:[],limitations:[]}}} />);
     expect(html).toContain('ASSESSMENT UTC'); expect(html).toContain(`dateTime="${at}"`);

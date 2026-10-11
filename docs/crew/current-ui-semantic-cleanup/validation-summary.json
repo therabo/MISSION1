@@ -1,0 +1,49 @@
+{
+  "baselineSHA": "915b0e2baf66002cdccf849ccc468c7a1e1bc5ac",
+  "backend": {
+    "before": 958,
+    "after": 962,
+    "test": "PASS",
+    "verify": "PASS",
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend": {
+    "before": 764,
+    "beforeFiles": 62,
+    "after": 770,
+    "afterFiles": 63,
+    "test": "PASS",
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "performance": {
+    "before": {
+      "readMillis": 32.356,
+      "serializeMillis": 0.316,
+      "statements": 53.0,
+      "bytes": 56263.0
+    },
+    "after": {
+      "readMillis": 32.248,
+      "serializeMillis": 0.331,
+      "statements": 53.0,
+      "bytes": 56142.0
+    }
+  },
+  "GET": {
+    "writes": 0,
+    "externalNetwork": 0,
+    "V9Evaluations": 0,
+    "V10Materializations": 0,
+    "unchangedTables": 70,
+    "unchangedDetails": 13,
+    "crewReplayEqual": true
+  },
+  "schemaMigration": null,
+  "projection": 7,
+  "CurrentMembers": 7,
+  "unresolvedActiveSlots": 8,
+  "retainedSlots": 15
+}

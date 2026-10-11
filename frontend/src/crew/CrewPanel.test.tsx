@@ -103,14 +103,14 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     await mount();
     expect(container.textContent).toContain('temporarily unavailable');
     await click('Retry crew');
-    expect(container.textContent).toContain('8 confirmed identities');
+    expect(container.textContent).toContain('Current members 9');
     expect(document.activeElement?.id).toBe('crew-title');
     expect(fetchMock.mock.calls.map((call) => call[0])).toEqual(['/api/iss/crew', '/api/iss/crew']);
   });
   it('does not expose routine Refresh in the legacy Crew toolbar', async () => {
     fetchMock.mockResolvedValueOnce(Response.json(crewFixture()));
     await mount();
-    expect(container.textContent).toContain('11 aboard');
+    expect(container.textContent).toContain('Current members 9');
     expect(container.querySelector('.crew-toolbar')?.textContent).toBe('Crew');
     expect([...container.querySelectorAll('button')].some(b => /^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
   });

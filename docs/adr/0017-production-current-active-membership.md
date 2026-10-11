@@ -67,3 +67,13 @@ identities, canonical collisions, latest revision transitions/restart, visitors,
 retained detail and SELECT-only GET. Actual retained-data differential, stable aliases,
 profile fingerprints, temporal Replay, query counts, network/write audits and five-size
 development/production browser QA defend this activation.
+
+## Subsequent Current presentation contract — ADR-0018
+
+The activation acceptance numbers and captures above remain historical records. The
+[Current semantic cleanup](../crew/current-ui-semantic-cleanup/README.md) removes the Reported aboard and unidentified-gap
+headlines and their Current-only DTO fields; operational count evidence/history remains
+preserved. Current still uses V10 ACTIVE + V7, while V9 stays shadow. Historical/Replay
+retains the previous count/report contract. The normal trial instance refreshed source
+cuts before that cleanup: projection7 still has seven humans and8/15 ACTIVE/retained slots;
+the operational gap changed from11−0 to11−4. That gap is not an unidentified-human count.
