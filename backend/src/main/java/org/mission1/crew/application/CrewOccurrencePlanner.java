@@ -69,7 +69,10 @@ public final class CrewOccurrencePlanner {
               && (("1.0.0".equals(input.parserVersion())
                       && "NasaOperationalPostParser/1.0.0".equals(e.evidenceMethod()))
                   || ("1.1.0".equals(input.parserVersion())
-                      && CrewOperationalTime.read(e.evidenceMethod()).isPresent()));
+                      && CrewOperationalTime.read(e.evidenceMethod()).isPresent())
+                  || ("1.2.0".equals(input.parserVersion())
+                      && (e.evidenceMethod().equals("NasaOperationalPostParser/1.2.0|PUBLICATION_TIME_PROXY")
+                          || CrewOperationalTime.read(e.evidenceMethod()).isPresent())));
       String status =
           article == null
               ? "UNASSOCIATED_SCOPE"

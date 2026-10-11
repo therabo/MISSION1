@@ -12,7 +12,7 @@ import org.mission1.crew.domain.*;
  * partial.
  */
 public final class NasaOperationalPostParser {
-  public static final String NAME = "NasaOperationalPostParser", VERSION = "1.1.0";
+  public static final String NAME = "NasaOperationalPostParser", VERSION = "1.2.0";
   private static final Pattern AGENCY =
       Pattern.compile(
           "(?:NASA astronauts?|ESA \\(European Space Agency\\) astronauts?|CSA"
@@ -45,9 +45,11 @@ public final class NasaOperationalPostParser {
       if (element.parents().size() > 100) throw new IllegalArgumentException("DOM depth bound");
     body.select("script,style,iframe,template").remove();
     var result = new ArrayList<CrewVerificationEvidence>();
+    var activities = new NasaOnboardActivityParser();
     boolean plannedDeparture = false;
     for (var p : body.select("p")) {
       if (!p.select("q").isEmpty()) continue;
+      if (p.parents().stream().anyMatch(e -> e.is(".hds-caption,.wp-element-caption,.caption"))) continue;
       if (p.parents().stream()
           .anyMatch(e -> Set.of("blockquote", "figure", "figcaption").contains(e.tagName())))
         continue;
@@ -57,6 +59,7 @@ public final class NasaOperationalPostParser {
               .anyMatch(
                   c -> Character.isISOControl(c) || c == 0xfffd || (c >= 0xd800 && c <= 0xdfff)))
         throw new IllegalArgumentException("Operational paragraph bound/Unicode");
+      result.addAll(activities.parse(title, p, observation));
       var departure = UNDOCKED.matcher(text);
       if (departure.find()) {
         if (text.matches(
@@ -230,7 +233,12 @@ public final class NasaOperationalPostParser {
     return List.copyOf(people);
   }
 
-  public static URI officialProfile(String href) {
+  public static URI officialProfile(String href) { return officialLink(href, false); }
+
+  /** Verified NASA personal route retained as a locator; no canonical URL/ID inference. */
+  static URI officialPersonalLink(String href) { return officialLink(href, true); }
+
+  private static URI officialLink(String href, boolean personalRoute) {
     try {
       URI uri = URI.create(href);
       // Decode the observed Safe Links wrapper locally; never request Microsoft or follow it.
@@ -250,7 +258,8 @@ public final class NasaOperationalPostParser {
           && uri.getPort() == -1
           && uri.getQuery() == null
           && uri.getFragment() == null
-          && uri.getPath().matches("/people/[a-z0-9-]+/")) return uri;
+          && (uri.getPath().matches("/people/[a-z0-9-]+/")
+              || personalRoute && uri.getPath().matches("/humans-in-space/astronauts/[a-z0-9-]+/"))) return uri;
     } catch (IllegalArgumentException | NullPointerException ignored) {
     }
     return null;

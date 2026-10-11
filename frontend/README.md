@@ -214,3 +214,7 @@ retained evidence does not contribute. Current stale wording is “Presence not 
 confirmed”, with “Last operational confirmation: aboard” and operational UTC. The amber
 state, assignment disclaimer, profiles, aliases and Historical presentation are unchanged.
 See [investigation and validation](../docs/crew/current-ui-semantic-cleanup/README.md).
+
+## Current membership and dated operational evidence
+
+Every published Current human has the same primary Current-member state. Activity observations, entries and expired/unavailable evidence are separate dated annotations with detail provenance. Current refetches same-origin REST every120s after completion while visible/active; hidden/Historical presentation pauses polling. UUID selection survives arrivals; departing selections return to the roster. Refresh never contacts source providers or owns Cesium/camera transitions. [ADR-0019](../docs/adr/0019-current-membership-and-dated-operational-observations.md) and [validation](../docs/crew/current-operational-presence-validation/README.md).

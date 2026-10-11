@@ -27,7 +27,7 @@ public record CrewOperationalTime(
   }
 
   public static Optional<CrewOperationalTime> read(String method) {
-    if (!method.startsWith(METHOD + "|")) return Optional.empty();
+    if (!method.startsWith(METHOD + "|") && !method.startsWith("NasaOperationalPostParser/1.2.0|MINUTE|")) return Optional.empty();
     String[] fields = method.split("\\|", -1);
     if (fields.length != 7 || !fields[1].equals("MINUTE"))
       throw new IllegalArgumentException("Invalid temporal provenance");

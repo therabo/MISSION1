@@ -335,7 +335,13 @@ class ActiveMembershipPostgresTest {
             null,
             null,
             "TEST_ONLY_CHANGED_TARGET"));
-    evaluateIdentity();
+    // Trigger availability uses the database clock. Permit the next worker tick rather than
+    // assuming its timestamp is already due on the host in this same millisecond.
+    org.awaitility.Awaitility.await().pollInterval(Duration.ofMillis(10)).atMost(Duration.ofSeconds(2))
+        .untilAsserted(() -> {
+          evaluateIdentity();
+          assertEquals(2, store.materialize(Instant.now()).result().counts().resolvedEditorialMemberships());
+        });
     var revoked = store.materialize(Instant.now());
     assertEquals(2, revoked.result().counts().resolvedEditorialMemberships());
     assertEquals(5, revoked.result().counts().unresolvedActiveSlots());

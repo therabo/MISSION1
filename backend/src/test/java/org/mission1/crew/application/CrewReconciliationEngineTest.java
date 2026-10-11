@@ -268,7 +268,7 @@ class CrewReconciliationEngineTest {
 
     @Test
     void oldCurrentAssertionIsRetainedAsStale() {
-        var s = eval(primary(1), roster(1, NOW.minusSeconds(4 * 86400), 1));
+        var s = eval(primary(1), roster(1, NOW.minusSeconds(8 * 86400), 1));
         assertEquals(ReconciliationStatus.STALE, s.status());
         assertEquals(Presence.STALE, presence(s, 1));
     }
@@ -591,5 +591,15 @@ class CrewReconciliationEngineTest {
     @Test void replayRetainsStaleLastKnownWithoutClaimingCurrentPresenceAfterApplicabilityWindow() {
         var arrival=event(101,Type.PERSON_ENTERED_STATION,NOW.minusSeconds(15*86400),1);
         assertEquals(Presence.STALE,replay(List.of(arrival),NOW).people().getFirst().presence());
+    }
+    @Test void recurringObservedActivitiesAdvanceSelectionWithoutLeakingIntoEarlierReplay() {
+        var first=assertion(201,Type.PERSON_CURRENTLY_ABOARD,Completeness.PARTIAL,Assertion.OBSERVED,NOW.minusSeconds(7200),null,null,person(1));
+        var later=assertion(202,Type.PERSON_CURRENTLY_ABOARD,Completeness.PARTIAL,Assertion.OBSERVED,NOW.minusSeconds(1800),null,null,person(1));
+        assertTrue(replay(List.of(first,later),NOW.minusSeconds(8000)).people().isEmpty());
+        var between=replay(List.of(later,first),NOW.minusSeconds(3600)).people().getFirst();
+        assertEquals(List.of(201L),between.evidenceIds());
+        var after=replay(List.of(first,later),NOW).people().getFirst();
+        assertEquals(List.of(202L),after.evidenceIds());
+        assertEquals(Presence.CONFIRMED_ABOARD,after.presence());
     }
 }

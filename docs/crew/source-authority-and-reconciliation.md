@@ -61,3 +61,7 @@ accepted legacy evidence path. V9 decisions remain separate and unmodified by th
 ## Current activation boundary — ADR-0017 / 2026-10-11
 
 Current membership now comes from the latest compatible committed V10 ACTIVE projection, followed by established V7 canonical identity and latest-retained LL2 field authority. It remains distinct from operational presence, assignment and source count facts. Retained people and aliases stay detail-addressable; V9 identity remains shadow-only and Historical/Replay selection stays unchanged. No source/history/migration change occurs. [Activation contract, rollback and acceptance](current-active-projection-activation/README.md).
+
+## Current observation policy v2 — 2026-10-11
+
+Current uses `crew-freshness-v2`: seven-day named OBSERVED applicability, unchanged six-hour source verification, fourteen-day entry implications and seventy-two-hour count evidence. Explicit event time wins over a marked publication proxy. Earlier v1 text/captures remain historical references; public Replay explicitly retains v1. [ADR-0019](../adr/0019-current-membership-and-dated-operational-observations.md) and [validation](current-operational-presence-validation/README.md) define primary V10 membership and secondary operational reports. Activities are partial dated evidence, never editorial membership or telemetry. Personal URLs/excerpts alone do not satisfy V9 corroboration.

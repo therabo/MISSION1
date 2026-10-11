@@ -89,7 +89,7 @@ public class JdbcCrewVerificationRepository implements CrewVerificationRepositor
 SELECT DISTINCT ON(d.source_url,d.content_hash) d.*, b.body
 FROM crew_source_document d JOIN crew_document_body b USING(content_hash)
 WHERE d.source_type='NASA_ISS_OPERATIONAL_FEED' AND d.parser_name='NasaOperationalFeedParser'
-AND d.parser_version='1.0.0'
+AND d.parser_version IN ('1.0.0','1.1.0')
 ORDER BY d.source_url,d.content_hash,d.retrieved_at DESC,d.id DESC LIMIT ?
 """,
         (r, n) -> document(r),
@@ -119,7 +119,7 @@ ORDER BY d.source_url,d.content_hash,d.retrieved_at DESC,d.id DESC LIMIT ?
         || !Arrays.equals(original.source().body(), retained.source().body())
         || !original.source().observation().equals(retained.source().observation())
         || !parserName.equals("NasaOperationalFeedParser")
-        || !parserVersion.equals("1.1.0"))
+        || !Set.of("1.1.0", "1.2.0").contains(parserVersion))
       throw new IllegalArgumentException("Retained interpretation lineage mismatch");
     var o = original.source().observation();
     var observation =
@@ -232,7 +232,9 @@ VALUES ('NASA_OFFICIAL',?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING RETURNIN
           throw new IllegalArgumentException("Evidence/document lineage mismatch");
         // Unchanged 1.0 grammar retains its immutable semantic evidence identity.
         String semanticVersion =
-            e.evidenceMethod().equals("NasaOperationalPostParser/1.0.0") ? "1.0.0" : parserVersion;
+            e.evidenceMethod().equals("NasaOperationalPostParser/1.0.0") ? "1.0.0"
+                : e.type() == CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION
+                    && e.evidenceMethod().startsWith(CrewOperationalTime.METHOD + "|") ? "1.1.0" : parserVersion;
         String hash =
             hash(
                 Arrays.asList(

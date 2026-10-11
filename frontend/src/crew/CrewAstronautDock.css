@@ -21,6 +21,7 @@
 .astronaut-dock .astronaut-presence-state { font-weight: 700; }
 .astronaut-presence-state:is(.state-stale,.state-ambiguous) { color: var(--color-warning); }
 .astronaut-presence-state.state-confirmed_aboard { color: var(--color-success); }
+.astronaut-current-membership { color: var(--color-success); font-weight: 700; }
 .astronaut-dock dl { margin: 0; display: grid; gap: 6px; }
 .astronaut-dock dl > div { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 8px; min-height: 26px; align-items: center; }
 .astronaut-dock dt { color: var(--color-text-secondary); font: 400 13px/19px var(--font-interface); }

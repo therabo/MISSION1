@@ -48,19 +48,13 @@ describe('Current semantics against the observed operational gap', () => {
     expect(html).not.toContain('15 unresolved'); expect(html).not.toContain('23 unresolved');
     expect(crew.membership).not.toHaveProperty('unresolvedRetainedSourceSlots');
   });
-  it('shows stale operational confirmation and its timestamp in row, label and detail', () => {
-    const crew = decodeCrew(wire()), member = crew.members[0];
-    for (const node of [<CurrentCrewRoster crew={crew} onMember={() => {}} />,
-      <PresenceLabel presence={member.presence} />,
-      <CrewAstronautDock crew={crew} member={member} onClose={() => {}} />]) {
-      const html = renderToStaticMarkup(node);
-      expect(html).toContain('Presence not currently confirmed');
-      expect(html).toContain('Last operational confirmation: aboard');
-      expect(html).toContain('2026-10-02 02:01:55 UTC');
-      expect(html).not.toContain('Presence outdated'); expect(html).not.toContain('Last known:');
+  it('shows uniform Current membership and dated evidence separately in roster and detail', () => {
+    const crew=decodeCrew(wire()), member=crew.members[0];
+    for(const node of [<CurrentCrewRoster crew={crew} onMember={()=>{}}/>,<CrewAstronautDock crew={crew} member={member} onClose={()=>{}}/>]) {
+      const html=renderToStaticMarkup(node); expect(html).toContain('Current member');
+      expect(html).toContain('No recent operational confirmation'); expect(html).toContain('2026-10-02 02:01:55 UTC');
+      expect(html).not.toContain('Identity confirmed');
     }
-    expect(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />))
-      .toContain('Structured assignment does not confirm presence aboard.');
   });
   it('preserves Historical count/report decoding and stale presentation', () => {
     const historical = historicalCrewFixture();

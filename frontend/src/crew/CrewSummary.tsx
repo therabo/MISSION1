@@ -3,6 +3,7 @@ import { CrewPortrait } from './CrewPortrait';
 import {
   assertionLabel,
   lastOperationalConfirmation,
+  operationalAnnotation,
   CURRENT_PRESENCE_NOTICE,
   memberGroups,
   permittedPortrait,
@@ -44,7 +45,7 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
         crew.freshness.verification.lastRefreshFailed) && (
         <p className="crew-note">A source refresh failed; available information is retained.</p>
       )}
-      {memberGroups(crew.members).map((group) => (
+      {memberGroups(crew.members, true).map((group) => (
         <section className="crew-group" key={group.label} aria-label={group.label}>
           <h3>{group.label}</h3>
           <ul className="crew-members">
@@ -66,7 +67,8 @@ export function CrewSummary({ crew, onMember }: { crew: CurrentCrew; onMember: (
                         <> · {member.agency.abbreviation ?? member.agency.name ?? 'Agency unavailable'}</>
                       )}
                     </span>
-                    <PresenceLabel presence={member.presence} />
+                    <span className="crew-current-membership">Current member</span>
+                    <span className="crew-secondary-operational">{operationalAnnotation(member.presence, crew.freshness.evaluatedAt).label}</span>
                     {permittedPortrait(member.image) && <small>Photo: {member.image?.credit}</small>}
                   </span>
                   <span className="crew-chevron" aria-hidden="true">
@@ -129,7 +131,7 @@ export function CrewSources({ crew, historicalAt }: { crew: CrewAssessment; hist
         </p>
         {!historicalAt && 'membership' in crew && crew.membership && <>
           <p>Current membership evaluated {utc(crew.membership.evaluatedAt)} · {crew.membership.health.toLowerCase()}.
-            {' '}{crew.counts.resolvedAboard} identities have current confirmation of physical presence.</p>
+            {' '}{crew.counts.resolvedAboard} people have applicable dated named operational evidence.</p>
           {crew.membership.unresolvedActiveSourceSlots > 0 && <p>{crew.membership.unresolvedActiveSourceSlots} unresolved active source slots remain separate from resolved people; sources may repeat a person.</p>}
           {crew.membership.nonPublishableActive > 0 && <p>{crew.membership.nonPublishableActive} active identities await a publishable profile.</p>}
         </>}

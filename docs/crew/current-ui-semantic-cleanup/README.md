@@ -161,3 +161,7 @@ At the preceding activation cut (graph8), departure subjects had NO_AUTOMATIC_DE
 The normal trial worker evaluated them before this cleanup (graph18): the actual
 captured departure slots now have AUTO_DEFER. This task neither evaluates nor changes
 those decisions; all source/graph/decision fingerprints remain frozen from investigation onward.
+
+## Membership-first presentation — ADR-0019
+
+Every V10-published Current human receives the same primary **Current member** state. [Dated secondary evidence and validation](../current-operational-presence-validation/README.md) distinguish activity, completed entry and expired/missing reports. Identity-based presence explanations are removed. Current summary omissions and Historical contracts remain intact. Visible Current refetch is serial at120s after completion; it never calls NASA/LL2.

@@ -87,3 +87,7 @@ actual revisions 2/3, distinct article assertions and independent acquisition he
 ## Subsequent production Current activation — ADR-0017 / 2026-10-11
 
 The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.
+
+## Current presentation and observations — 2026-10-11
+
+V10 production publication remains the ADR-0017 consumer. [ADR-0019](../../adr/0019-current-membership-and-dated-operational-observations.md) introduces a new presence policy key and activity observations without changing support union, departure precedence, reentry, visitor or identity rules. [Production-service turnover validation](../current-operational-presence-validation/README.md) covers7→11→7, source lag/omissions/failures, DEFER, expiry and restart. V9 remains shadow; qualified test adapter evidence is not real-source qualification.

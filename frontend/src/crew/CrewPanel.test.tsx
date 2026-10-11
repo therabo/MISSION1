@@ -114,12 +114,12 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     expect(container.querySelector('.crew-toolbar')?.textContent).toBe('Crew');
     expect([...container.querySelectorAll('button')].some(b => /^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
   });
-  it('does not poll during five minutes of panel lifetime', async () => {
+  it('refreshes Current during five minutes of panel lifetime', async () => {
     vi.useFakeTimers();
     fetchMock.mockResolvedValue(Response.json(crewFixture()));
     await mount();
-    await act(async () => vi.advanceTimersByTime(300000));
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    await act(async () => vi.advanceTimersByTimeAsync(300000));
+    expect(fetchMock).toHaveBeenCalledTimes(3);
   });
   it('aborts abandoned detail and prevents its late response from reopening it', async () => {
     let resolveDetail: (response: Response) => void = () => {};

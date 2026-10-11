@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 
 /** Official RSS container, bounded bootstrap and full-content DOM extraction. */
 public final class NasaOperationalFeedParser implements CrewPresenceVerificationSource {
-  public static final String NAME = "NasaOperationalFeedParser", VERSION = "1.1.0";
+  public static final String NAME = "NasaOperationalFeedParser", VERSION = "1.2.0";
   public static final Duration WINDOW = Duration.ofDays(14);
   private final NasaOperationalPostParser posts = new NasaOperationalPostParser();
 

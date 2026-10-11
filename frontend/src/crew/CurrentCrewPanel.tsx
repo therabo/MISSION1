@@ -67,7 +67,7 @@ export function CurrentCrewPanelView({ resource, onClose, interactive, notice }:
     <aside id="crew-panel" className="crew-panel crew-workspace" ref={roster} aria-labelledby="crew-title">
       <header className="crew-panel-header">
         <div><h2 id="crew-title" tabIndex={-1} ref={heading}>Crew</h2>
-          <p className="crew-mission-context">{resource.data?.expedition?.name ?? 'Expedition unavailable'} · crew identities and presence evidence</p>
+          <p className="crew-mission-context">{resource.data?.expedition?.name ?? 'Expedition unavailable'} · Current membership and operational evidence</p>
         </div>
         <div className="crew-header-actions">
           <CloseButton aria-label="Close crew panel" onClick={onClose} />

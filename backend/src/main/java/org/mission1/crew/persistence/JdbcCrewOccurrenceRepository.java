@@ -70,9 +70,9 @@ final class JdbcCrewOccurrenceRepository {
 SELECT DISTINCT r.id,r.verification_document_id,r.retrieved_at,r.started_at,r.completed_at,d.id AS interpreted_document
 FROM crew_source_sync_run r JOIN crew_source_document captured ON captured.id=r.verification_document_id
 JOIN crew_source_document d ON d.id=captured.id OR (d.parser_name='NasaOperationalFeedParser'
- AND d.parser_version='1.1.0' AND d.source_url=captured.source_url AND d.content_hash=captured.content_hash)
+ AND d.parser_version IN ('1.1.0','1.2.0') AND d.source_url=captured.source_url AND d.content_hash=captured.content_hash)
 WHERE r.source='NASA_OFFICIAL' AND d.parsed
-AND (r.result_state='SUCCESS' OR (d.parser_version='1.1.0' AND r.source_state='MALFORMED_RESPONSE'))
+AND (r.result_state='SUCCESS' OR (d.parser_version IN ('1.1.0','1.2.0') AND r.source_state='MALFORMED_RESPONSE'))
 ORDER BY r.verification_document_id,r.retrieved_at,r.completed_at,r.started_at,r.id
 """,
         r -> {
@@ -255,9 +255,9 @@ FROM crew_assertion_version v JOIN crew_verification_evidence e ON e.id=v.eviden
 LEFT JOIN crew_assertion_observation o ON o.evidence_id=v.evidence_id
 LEFT JOIN crew_source_document d ON d.id=o.document_id
 LEFT JOIN crew_source_document captured ON captured.id=d.id OR (d.parser_name='NasaOperationalFeedParser'
-       AND d.parser_version='1.1.0' AND captured.source_url=d.source_url AND captured.content_hash=d.content_hash)
+       AND d.parser_version IN ('1.1.0','1.2.0') AND captured.source_url=d.source_url AND captured.content_hash=d.content_hash)
 LEFT JOIN crew_source_sync_run r ON r.verification_document_id=captured.id AND r.source='NASA_OFFICIAL'
-       AND (r.result_state='SUCCESS' OR (d.parser_version='1.1.0' AND d.parsed AND r.source_state='MALFORMED_RESPONSE'))
+       AND (r.result_state='SUCCESS' OR (d.parser_version IN ('1.1.0','1.2.0') AND d.parsed AND r.source_state='MALFORMED_RESPONSE'))
        AND r.retrieved_at<=?
 ORDER BY v.evidence_id
 """,

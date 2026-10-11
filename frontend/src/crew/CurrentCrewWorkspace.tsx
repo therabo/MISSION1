@@ -43,11 +43,11 @@ export function CurrentCrewWorkspace({ open, onClose, historical, request }: Pro
 
 /** One resource for the open Crew session preserves the real Current response
  * through a handoff. It is never passed to the Historical presentation. Closing
- * the session aborts it. No polling, persistent cache or extra replay machine. */
+ * the session aborts it. Current polling pauses during Historical presentation. */
 function CrewWorkspaceContent({ historical, request, onClose, interactive, reducedMotion }: Omit<Props, 'open'> & {
   interactive: boolean; reducedMotion: boolean;
 }) {
-  const current = useIssCrew();
+  const current = useIssCrew(interactive && !historical);
   const group = useRef<HTMLDivElement>(null);
   const motion = useRef<Animation | null>(null);
   const acceptedKey = historical ? `historical:${historical.at}` : 'current';
@@ -60,7 +60,7 @@ function CrewWorkspaceContent({ historical, request, onClose, interactive, reduc
     motion.current = group.current?.animate?.({ opacity: [0, 1] }, {
       duration: reducedMotion ? 120 : 200, easing: reducedMotion ? 'linear' : 'cubic-bezier(0.42,0,0.58,1)',
     }) ?? null;
-    // Keep the previous real Current roster while its existing resource refreshes.
+    // Temporal return requests fresh Current data while preserving the previous roster.
     if (returnedToCurrent) current.refresh();
   }, [acceptedKey, historical, reducedMotion, current.refresh]);
   useLayoutEffect(() => () => motion.current?.cancel(), []);

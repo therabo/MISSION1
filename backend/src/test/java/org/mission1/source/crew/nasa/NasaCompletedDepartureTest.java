@@ -78,8 +78,9 @@ public class NasaCompletedDepartureTest {
   void exactFullFeedPreservesNamesOrderTimeAndIndependentPublication() throws Exception {
     var result = new NasaOperationalFeedParser().verify(document(fixture()));
     assertEquals(CrewSourceState.AVAILABLE, result.state());
-    assertEquals(1, result.value().size()); // no count, cargo event or splashdown departure
-    var e = result.value().getFirst();
+    var departures=result.value().stream().filter(e -> e.type()==CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION).toList();
+    assertEquals(1, departures.size()); // No count arithmetic, cargo event or splashdown departure.
+    var e = departures.getFirst();
     assertEquals(CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION, e.type());
     assertEquals(CrewVerificationEvidence.Assertion.COMPLETED, e.assertion());
     assertEquals(

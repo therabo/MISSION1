@@ -15,7 +15,7 @@ class CrewVerificationConfiguration {
     CrewReconciliationPolicy crewReconciliationPolicy(
             @Value("${mission1.crew.verification.primary-max-age:PT6H}") Duration primary,
             @Value("${mission1.crew.verification.fetch-max-age:PT6H}") Duration fetch,
-            @Value("${mission1.crew.verification.current-assertion-max-age:PT72H}")
+            @Value("${mission1.crew.verification.current-assertion-max-age:P7D}")
                     Duration assertion,
             @Value("${mission1.crew.verification.event-implication-max-age:P14D}") Duration event) {
         return new CrewReconciliationPolicy(primary, fetch, assertion, event);

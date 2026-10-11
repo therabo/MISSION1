@@ -91,8 +91,8 @@ it('treats a different permitted profile portrait as loading after the roster po
   expect(dock().textContent).not.toContain('Loading portrait'); expect(selected()).toEqual([m.id]);
 });
 it.each([
-  ['CONFIRMED_NOT_ABOARD', 'Confirmed absence in Crew assessment'],
-  ['AMBIGUOUS', 'Conflicting or unresolved evidence'],
+  ['CONFIRMED_NOT_ABOARD', 'Current member'],
+  ['AMBIGUOUS', 'Current member'],
 ] as const)('preserves the roster %s meaning in profile presence', async (state, label) => {
   const updated = crew(); updated.members[0].presence.state = state;
   fetchMock.mockResolvedValueOnce(Response.json(updated)); await show();

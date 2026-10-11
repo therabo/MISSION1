@@ -4,6 +4,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { CurrentCrewWorkspace } from './CurrentCrewWorkspace';
 import { crewFixture, personFixture } from '../test/crewFixture';
+import { CURRENT_CREW_REFRESH_MS } from '../api/useCrewResource';
 
 let root: Root, node: HTMLDivElement, fetchMock: ReturnType<typeof vi.fn>;
 const close = vi.fn(), motions: { keys: any; options: any; cancel: ReturnType<typeof vi.fn> }[] = [];
@@ -36,8 +37,25 @@ it('offers only Close in the Crew header and no routine Refresh action',async()=
   await show();expect([...node.querySelectorAll('.crew-header-actions button')].map(b=>b.getAttribute('aria-label'))).toEqual(['Close crew panel']);
   expect([...node.querySelectorAll('button')].some(b=>/^(Refresh|Refreshing…)$/.test(b.textContent ?? ''))).toBe(false);
 });
-it('does not add polling while Current Crew remains open',async()=>{
-  await show();await act(async()=>vi.advanceTimersByTimeAsync(300000));expect(fetchMock).toHaveBeenCalledTimes(1);
+it('polls Current every two minutes while open',async()=>{
+  await show();await act(async()=>vi.advanceTimersByTimeAsync(300000));expect(fetchMock).toHaveBeenCalledTimes(3);
+});
+it.each([1440,390])('automatically displays 7→11→7 and clears a departing selection at width%s',async width=>{
+  vi.stubGlobal('innerWidth',width);
+  const initial=crewFixture(); initial.members=initial.members.slice(0,7);
+  const expanded=crewFixture();expanded.members=Array.from({length:11},(_,i)=>i<7?initial.members[i]:({...initial.members[0],id:`00000000-0000-4000-8000-${String(i).padStart(12,'0')}`,name:`TEST ONLY arrival ${i}`}));
+  const reduced={...expanded,members:expanded.members.slice(4)};let current=initial;
+  fetchMock.mockImplementation((url:string)=>Promise.resolve(Response.json(url==='/api/iss/crew'?current:personFixture())));
+  await show();const canvasContext=node.querySelector('.crew-workspace-host');const selected=initial.members[0].id;
+  await act(async()=>node.querySelector<HTMLButtonElement>(`[data-member-id="${selected}"]`)!.click());
+  current=expanded;await act(async()=>vi.advanceTimersByTimeAsync(CURRENT_CREW_REFRESH_MS));
+  expect(node.querySelectorAll('[data-member-id]')).toHaveLength(11);expect(node.querySelector('.has-astronaut')).not.toBeNull();
+  expect(node.querySelector('[data-selected-member-id]')?.getAttribute('data-selected-member-id')).toBe(selected);
+  current=reduced;await act(async()=>vi.advanceTimersByTimeAsync(CURRENT_CREW_REFRESH_MS));
+  await act(async()=>vi.advanceTimersByTimeAsync(240));
+  expect(node.querySelectorAll('[data-member-id]')).toHaveLength(7);expect(node.querySelector('.has-astronaut')).toBeNull();
+  expect(node.querySelector('.crew-workspace-host')).toBe(canvasContext);expect(document.activeElement?.id).toBe('crew-title');
+  expect(new Set([...node.querySelectorAll<HTMLElement>('[data-member-id]')].map(e=>e.dataset.memberId)).size).toBe(7);
 });
 it('aborts pending requests after bounded inert exit and cannot resurrect a dismissed panel',async()=>{
   let complete:(r:Response)=>void=()=>{};fetchMock.mockImplementation(()=>new Promise<Response>(r=>{complete=r;}));await show();

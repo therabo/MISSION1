@@ -36,3 +36,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0017: Production Current active membership](0017-production-current-active-membership.md) — Accepted; V10 inclusion with V7 publication, default activation, scoped fail-closed availability and explicit legacy rollback. V9 identity and Replay activation remain deferred.
 
 - [ADR-0018: Purpose-specific Current Crew summary semantics](0018-current-crew-summary-semantics.md) — Accepted; remove obsolete Current count/report projections, retain Historical/source evidence, distinguish membership from operational presence.
+
+- [ADR-0019: Current membership and dated operational observations](0019-current-membership-and-dated-operational-observations.md) — Accepted; Current seven-day observations, unchanged entry/Replay boundaries, bounded activity grammar and visible Current refetch.

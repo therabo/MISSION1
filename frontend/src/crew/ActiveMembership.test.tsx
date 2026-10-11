@@ -36,7 +36,7 @@ describe('Current active membership contract', () => {
     const source = renderToStaticMarkup(<CrewSources crew={active()} />);
     expect(source).toContain('degraded');
     expect(source).toContain('8 unresolved active source slots');
-    expect(source).toContain('0 identities have current confirmation');
+    expect(source).toContain('0 people have applicable dated named operational evidence');
   });
   it('keeps Historical labels and counts independent of optional Current metadata', () => {
     const html = renderToStaticMarkup(<CurrentCrewRoster crew={{...historicalCrewFixture(), counts: {...historicalCrewFixture().counts, resolvedAboard:0}}} onMember={() => {}} historical={{ at: '2026-10-02T02:01:55Z', availability: 'AVAILABLE', coverage: { status: 'AVAILABLE', limitations: [] } as never }} />);

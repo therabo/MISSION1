@@ -59,3 +59,7 @@ accepted legacy evidence path. V9 decisions remain separate and unmodified by th
 ## Production Current active membership — 2026-10-11
 
 [ADR-0017](../adr/0017-production-current-active-membership.md) activates V10 membership with production V7 canonical/profile publication. [Acceptance, failure behavior, explicit rollback and retained-data audit](current-active-projection-activation/README.md). This updates Current selection only; V9 identities remain shadow-only and Replay activation remains deferred.
+
+## Current operational observations — 2026-10-11
+
+[ADR-0019](../adr/0019-current-membership-and-dated-operational-observations.md) separates primary V10 Current membership from secondary dated source evidence. Current observed-aboard applicability is seven days, entry continuity fourteen days, count applicability seventy-two hours; public Replay keeps v1 applicability. Parser1.2.0 recognizes scoped onboard activities and retains publication proxies and unresolved subjects. [Real sources, turnover, polling and validation](current-operational-presence-validation/README.md). V7 identity and V9 shadow authority remain unchanged.

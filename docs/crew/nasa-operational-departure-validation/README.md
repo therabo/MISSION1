@@ -257,3 +257,7 @@ undated/ambiguous time and unknown crew-transition phrasing remain fail-closed.
 ## Subsequent production Current activation — ADR-0017 / 2026-10-11
 
 The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.
+
+## Parser1.2.0 continuation — 2026-10-11
+
+The [operational-presence dossier](../current-operational-presence-validation/README.md) adds conservative current/recent station activities. Existing1.0 named transition/count and1.1 timed-departure semantic identities remain unchanged. New interpretations append using V1–V10, inherit original capture lineage and never rewrite failed acquisition health. Activity scope excludes completed crew return/departure stories; a controller/cargo clock does not timestamp another subject. Departure identity limitations remain.

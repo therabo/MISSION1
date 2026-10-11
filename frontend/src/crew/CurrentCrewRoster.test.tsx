@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
-import { PRESENCE, QUALITY, utc } from './presentation';
+import { PRESENCE, QUALITY, utc, operationalAnnotation } from './presentation';
 import type { PresenceState, ReconciliationStatus } from './types';
 
 const render = (crew = crewFixture()) => renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} />);
@@ -42,8 +42,7 @@ describe('S7 assessment and roster presentation', () => {
   });
   it.each(Object.keys(PRESENCE) as PresenceState[])('retains exact %s meaning independently from role', state => {
     const crew = crewFixture(); crew.members = [{...crew.members[0],presence:{...crew.members[0].presence,state,lastKnownState:'CONFIRMED_NOT_ABOARD'}}];
-    const html = render(crew); expect(html).toContain(PRESENCE[state]); expect(html).toContain(crew.members[0].assignment!.role);
-    if (state === 'STALE') expect(html).toContain('Last operational confirmation: not aboard');
+    const html = render(crew); expect(html).toContain('Current member'); expect(html).toContain(operationalAnnotation(crew.members[0].presence, crew.freshness.evaluatedAt).label); expect(html).toContain(crew.members[0].assignment!.role);
   });
   it.each(Object.keys(QUALITY) as ReconciliationStatus[])('keeps %s evidence and warnings available', status => {
     const crew = crewFixture(); crew.reconciliation.status = status;

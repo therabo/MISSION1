@@ -64,3 +64,7 @@ keeps production Current/Replay on accepted legacy evidence until explicit activ
 health and consequent existing freshness assessments can evolve normally. Public membership,
 profiles, UUID aliases and Replay event semantics are not activated from V9/V10. This is a grammar
 extension within the accepted decision, not a replacement architecture. [Validation and limitations](../crew/nasa-operational-departure-validation/README.md).
+
+## Current observation-policy continuation — 2026-10-11
+
+[ADR-0019](0019-current-membership-and-dated-operational-observations.md) revises Current named observed-aboard applicability to seven days under a new immutable v2 policy key. This record preserves original v1 rationale and historical captures. Count applicability, entry continuity and public Replay v1 remain unchanged; membership and identity remain independent of operational evidence.

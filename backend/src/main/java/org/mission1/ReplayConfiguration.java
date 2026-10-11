@@ -20,7 +20,7 @@ class ReplayConfiguration {
             CrewReadRepository p,
             CrewReconciliationPolicy policy,
             CrewIdentityRepository identities) {
-        return new CrewReplayQueryService(h, r, v, p, policy, identities);
+        return new CrewReplayQueryService(h, r, v, p, policy.forReplay(), identities);
     }
 
     @Bean

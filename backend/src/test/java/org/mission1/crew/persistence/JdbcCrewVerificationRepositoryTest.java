@@ -134,7 +134,7 @@ class JdbcCrewVerificationRepositoryTest {
     var command = new NasaOperationalReprocessingService(verification, parser);
     var first = command.reprocess(32).getFirst();
     assertEquals(CrewSourceState.AVAILABLE, first.state());
-    assertEquals(1, first.stored().evidenceInserted());
+    assertEquals(4, first.stored().evidenceInserted());
     assertTrue(first.stored().inserted());
     assertNotEquals(old, first.stored().documentId());
     assertEquals(
@@ -144,13 +144,13 @@ class JdbcCrewVerificationRepositoryTest {
     assertEquals(old, verification.latestParseFailure().orElseThrow().documentId());
     assertArrayEquals(raw, verification.document(first.stored().documentId()).orElseThrow().body());
     assertEquals(1, count("crew_document_body"));
-    assertEquals(1, count("crew_assertion_occurrence"));
-    assertEquals(4, count("crew_subject_occurrence"));
+    assertEquals(4, count("crew_assertion_occurrence"));
+    assertEquals(10, count("crew_subject_occurrence"));
     var at = Instant.parse("2026-10-11T00:00:00Z");
-    assertEquals(1, verification.evidenceAsOf(at).size());
-    assertTrue(verification.publicEvidenceAsOf(at).isEmpty());
+    assertEquals(4, verification.evidenceAsOf(at).size());
+    assertEquals(3, verification.publicEvidenceAsOf(at).size());
     var versions = verification.occurrenceVersionsAsOf(at);
-    assertEquals(1, versions.size());
+    assertEquals(4, versions.size());
     assertEquals(1, versions.getFirst().observations().size());
     assertEquals(old, versions.getFirst().observations().getFirst().documentId());
     assertEquals(
@@ -169,8 +169,8 @@ class JdbcCrewVerificationRepositoryTest {
                 jdbc, new com.fasterxml.jackson.databind.ObjectMapper()),
             parser);
     assertFalse(restarted.reprocess(32).getFirst().stored().inserted());
-    assertEquals(1, count("crew_verification_evidence"));
-    assertEquals(4, count("crew_evidence_subject"));
+    assertEquals(4, count("crew_verification_evidence"));
+    assertEquals(10, count("crew_evidence_subject"));
   }
 
   @Test
@@ -189,19 +189,19 @@ class JdbcCrewVerificationRepositoryTest {
     command.reprocess(32);
     assertEquals(2, count("crew_document_body"));
     assertEquals(4, count("crew_source_document"));
-    assertEquals(2, count("crew_verification_evidence"));
-    assertEquals(1, count("crew_assertion_occurrence"));
-    assertEquals(4, count("crew_subject_occurrence"));
-    assertEquals(8, count("crew_evidence_subject"));
+    assertEquals(5, count("crew_verification_evidence"));
+    assertEquals(4, count("crew_assertion_occurrence"));
+    assertEquals(10, count("crew_subject_occurrence"));
+    assertEquals(14, count("crew_evidence_subject"));
     var selection =
         new CrewCompatibleVersionSelector()
             .select(
                 verification.evidenceAsOf(Instant.parse("2026-10-11T00:00:00Z")),
                 verification.occurrenceVersionsAsOf(Instant.parse("2026-10-11T00:00:00Z")));
-    assertEquals(1, selection.evidence().size());
+    assertEquals(4, selection.evidence().size());
     assertEquals(
         Instant.parse("2026-10-07T12:48:02Z"),
-        selection.evidence().getFirst().value().observation().sourcePublishedAt());
+        selection.evidence().stream().filter(e -> e.value().type()==CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION).findFirst().orElseThrow().value().observation().sourcePublishedAt());
     assertEquals(0, count("crew_identity_binding_version"));
     assertEquals(0, count("crew_auto_decision_revision"));
   }

@@ -55,8 +55,26 @@ export function lastOperationalConfirmation(presence: Presence): string {
   if (presence.lastKnownState === 'CONFIRMED_NOT_ABOARD') return 'Last operational confirmation: not aboard';
   return 'Last operational assessment: ' + (presence.lastKnownState ? PRESENCE[presence.lastKnownState].toLowerCase() : 'unavailable');
 }
-export const CURRENT_PRESENCE_NOTICE = 'Current membership is known, but physical presence is not currently confirmed by operational evidence.';
-export function memberGroups(members: CrewMember[]): { label: string; members: CrewMember[] }[] {
+export const CURRENT_PRESENCE_NOTICE = 'Current membership is source-supported. Operational presence evidence is shown separately and may be dated.';
+
+/** Current annotations describe the selected source assertion, never infer membership or identity. */
+export function operationalAnnotation(presence: Presence, evaluatedAt: string) {
+  const evidence = presence.evidence.find(e => e.asOf === presence.asOf) ?? presence.evidence[0];
+  const entry = evidence?.type === 'PERSON_ENTERED_STATION' && evidence.assertion === 'COMPLETED';
+  const observation = evidence?.type === 'PERSON_CURRENTLY_ABOARD' && evidence.assertion === 'OBSERVED';
+  const age = Date.parse(evaluatedAt) - Date.parse(presence.asOf ?? '');
+  const applicable = Number.isFinite(age) && age >= 0 && age <= (entry ? 14 : 7) * 86400_000;
+  const fresh = presence.state === 'CONFIRMED_ABOARD' && applicable;
+  const label = presence.state === 'AMBIGUOUS' ? 'Conflicting operational evidence'
+    : evidence?.type === 'PERSON_DEPARTED_STATION' ? 'Operational departure reported'
+      : !entry && !observation ? 'No individual operational observation available'
+        : presence.state === 'UNVERIFIED' ? 'Operational verification unavailable'
+          : !fresh ? 'No recent operational confirmation'
+            : entry ? 'Operational entry confirmed' : 'Operational presence recently observed';
+  const description = entry ? 'Last operational entry' : observation ? 'Last operational observation: aboard' : 'Operational evidence';
+  return { label, description, fresh, evidence, precision: evidence?.provenance.sourceEventAt ? 'Source event time' : 'Publication-time proxy' };
+}
+export function memberGroups(members: CrewMember[], current = false): { label: string; members: CrewMember[] }[] {
   const groups = [
     { label: 'Commander', members: members.filter((m) => m.assignment?.roleCode === 'COMMANDER') },
     {
@@ -70,12 +88,12 @@ export function memberGroups(members: CrewMember[]): { label: string; members: C
       ),
     },
     {
-      label: 'Other confirmed crew',
-      members: members.filter((m) => !m.assignment && m.presence.state === 'CONFIRMED_ABOARD'),
+      label: current ? 'Other Current members' : 'Other confirmed crew',
+      members: members.filter((m) => !m.assignment && (current || m.presence.state === 'CONFIRMED_ABOARD')),
     },
     {
       label: 'Other presence context',
-      members: members.filter((m) => !m.assignment && m.presence.state !== 'CONFIRMED_ABOARD'),
+      members: members.filter((m) => !current && !m.assignment && m.presence.state !== 'CONFIRMED_ABOARD'),
     },
   ];
   return groups.filter((group) => group.members.length > 0);

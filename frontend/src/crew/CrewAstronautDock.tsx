@@ -4,7 +4,7 @@ import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewPortraitRights, CrewProfileEvidence } from './CrewMemberDetail';
-import { formatDuration, permittedPortrait, PRESENCE, lastOperationalConfirmation, QUALITY, safeHttps, utc } from './presentation';
+import { formatDuration, permittedPortrait, operationalAnnotation, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
 import { CrewDetailActions } from './CrewDetailActions';
@@ -36,10 +36,7 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
   const profileUrl = safeHttps(person?.officialProfileUrl ?? null);
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
   const presence = member.presence;
-  const supportingPresence = presence.state === 'STALE' && presence.lastKnownState ? lastOperationalConfirmation(presence)
-    : presence.state === 'CONFIRMED_ABOARD' ? 'Identity confirmed in Crew assessment'
-      : presence.state === 'CONFIRMED_NOT_ABOARD' ? 'Confirmed absence in Crew assessment'
-        : presence.state === 'AMBIGUOUS' ? 'Conflicting or unresolved evidence' : 'Current confirmation unavailable';
+  const operational = operationalAnnotation(presence, crew.freshness.evaluatedAt);
   return <>
     <div className="astronaut-profile-body" data-profile-member-id={member.id}>
       <section className="astronaut-presence">
@@ -49,10 +46,16 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
             <small>{permitted ? `Photo: ${media?.credit}${portraitState === 'failed' ? ' · image failed to load' : ''}` : media ? 'Reuse permission unavailable' : 'Image unavailable'}</small>
           </div>
         </div>
-        <p className={`astronaut-presence-state state-${presence.state.toLowerCase()}`}>{PRESENCE[presence.state]}</p>
-        <p className="astronaut-secondary">{supportingPresence} · <time dateTime={presence.asOf ?? undefined}>{utc(presence.asOf)}</time></p>
+        <h3>Current membership</h3><p className="astronaut-current-membership">Current member</p>
+        <p className="astronaut-small">Source-supported membership; operational evidence is separate.</p>
       </section>
-      <section><h3>Current assignment</h3><dl><div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div></dl>
+      <section className="astronaut-operational"><h3>Operational presence evidence</h3><p>{operational.label}</p>
+        {operational.evidence && <><p className="astronaut-secondary">{operational.description} · <time dateTime={presence.asOf ?? undefined}>{utc(presence.asOf)}</time></p>
+          <p className="astronaut-small">NASA operational source · {operational.precision} · {operational.fresh ? 'Applicable' : 'Dated / unavailable confirmation'}</p>
+          {safeHttps(operational.evidence.provenance.sourceUrl) && <a href={operational.evidence.provenance.sourceUrl} target="_blank" rel="noopener noreferrer">Operational source ↗</a>}
+        </>}
+      </section>
+      <section><h3>Structured assignment</h3><dl><div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div></dl>
         <p>{member.agency?.name ?? member.agency?.abbreviation ?? person?.agency?.name ?? person?.agency?.abbreviation ?? 'Agency unavailable'}</p>
       </section>
       <section><h3>Mission context</h3><dl>
