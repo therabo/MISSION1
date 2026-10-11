@@ -34,7 +34,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 /** Full PostgreSQL→query→mapper→controller→JSON chain. Recorded fixtures are offline test-only. */
-@SpringBootTest
+@SpringBootTest(properties = "mission1.crew.current.membership-mode=LEGACY_RETAINED_UNION")
 @AutoConfigureMockMvc
 @Testcontainers
 @Import(CrewPostgresApiTest.SqlInstrumentation.class)

@@ -94,3 +94,7 @@ For the explicit local shadow-only writer, generate a Maven dependency classpath
 ## Downstream lifecycle consumer — ADR-0016 / V10
 
 The [active membership overlay](../active-membership-shadow-validation/README.md) reads a pinned V9 graph application without scoring or modifying it. Exact source table/reference/hash and current compatible source head are required for AUTO_MATCH support; AUTO_DEFER, AUTO_SEPARATE, missing associations and withdrawn/changed matches remain explicit slots. Typed LL2 humans require no NASA match. Graph changes trigger a new independent lifecycle revision. The V7 comparison is diagnostic after materialization and never feeds the automatic policy. V9 production activation, public Current and Replay remain deferred.
+
+## Subsequent production Current activation — ADR-0017 / 2026-10-11
+
+The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.

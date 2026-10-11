@@ -32,3 +32,5 @@ Its 2026-10-01 perceptual pacing clarification rejects strict constant Cartesian
 - [ADR-0016: Shadow active Crew membership and source-supported lifecycle](0016-shadow-active-crew-membership.md) — Accepted for shadow only; positive support, temporal departure veto, retained humans and explicit unresolved slots; public Current/Replay frozen.
 
 ADR-0009 has a dated 2026-10-11 clarification for completed named operational departures, minute-qualified time and append-only retained reinterpretation. V1–V10 remain unchanged; new evidence is consumed by shadow V10, with public Current/Replay activation deferred.
+
+- [ADR-0017: Production Current active membership](0017-production-current-active-membership.md) — Accepted; V10 inclusion with V7 publication, default activation, scoped fail-closed availability and explicit legacy rollback. V9 identity and Replay activation remain deferred.

@@ -149,6 +149,18 @@ export interface CurrentCrew {
   reconciliation: Reconciliation;
   freshness: CrewFreshness;
   provenance: CrewProvenance;
+  membership?: {
+    mode: 'ACTIVE_PROJECTION';
+    revision: number;
+    evaluatedAt: string;
+    policyVersion: string;
+    health: 'HEALTHY' | 'DEGRADED';
+    ageSeconds: number;
+    resolvedCurrentMembers: number;
+    nonPublishableActive: number;
+    canonicalCollisions: number;
+    unresolvedActiveSourceSlots: number;
+  };
 }
 export interface ExpeditionAssignment {
   personId: string;

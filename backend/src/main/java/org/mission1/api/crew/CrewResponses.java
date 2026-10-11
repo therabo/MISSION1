@@ -137,6 +137,11 @@ public final class CrewResponses {
             Observation verification,
             List<Assertion> contributingAssertions) {}
 
+    public record MembershipProjection(
+            String mode, long revision, Instant evaluatedAt, String policyVersion, String health,
+            long ageSeconds, int resolvedCurrentMembers, int nonPublishableActive,
+            int canonicalCollisions, int unresolvedActiveSourceSlots) {}
+
     public record Crew(
             Station station,
             Expedition expedition,
@@ -145,7 +150,15 @@ public final class CrewResponses {
             List<UnresolvedSubject> unresolvedSubjects,
             Reconciliation reconciliation,
             Freshness freshness,
-            Provenance provenance) {}
+            Provenance provenance,
+            @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
+            MembershipProjection membership) {
+        public Crew(Station station, Expedition expedition, Counts counts, List<Member> members,
+                List<UnresolvedSubject> unresolvedSubjects, Reconciliation reconciliation, Freshness freshness,
+                Provenance provenance) {
+            this(station, expedition, counts, members, unresolvedSubjects, reconciliation, freshness, provenance, null);
+        }
+    }
 
     public record ExpeditionAssignment(
             UUID personId,

@@ -39,3 +39,7 @@ See [validation](canonical-identity-validation/README.md) for retained-data and 
 ## Automatic shadow overlay
 
 [ADR-0015](../adr/0015-automatic-crew-identity-shadow.md) and [validation](automatic-identity-shadow-validation/README.md) introduce independent MACHINE decisions in V9. The reviewed policy below still governs production. Shadow extraction never uses canonical profiles, V7 bindings/equivalence or the approved manifest. Every automatic revision pins its exact source observations, vectors, model/calibration SHA, policy, runner-up and guards; contradictory evidence appends a correction and rebuilds only the shadow graph. No public UUID/detail/Current/Replay activation occurs.
+
+## Current activation boundary — ADR-0017 / 2026-10-11
+
+Current membership now comes from the latest compatible committed V10 ACTIVE projection, followed by established V7 canonical identity and latest-retained LL2 field authority. It remains distinct from operational presence, assignment and source count facts. Retained people and aliases stay detail-addressable; V9 identity remains shadow-only and Historical/Replay selection stays unchanged. No source/history/migration change occurs. [Activation contract, rollback and acceptance](current-active-projection-activation/README.md).

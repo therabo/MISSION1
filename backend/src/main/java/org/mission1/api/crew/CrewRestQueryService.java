@@ -23,61 +23,102 @@ public class CrewRestQueryService {
     private final CrewReadQueryService people;
     private final CrewReconciliationPolicy policy;
     private final Clock clock;
+    private final ProductionCurrentMembership membership;
 
     public CrewRestQueryService(
             CrewQueryService structured,
             CrewReconciliationQueryService reconciled,
             CrewReadQueryService people,
             CrewReconciliationPolicy policy,
-            Clock clock) {
+            Clock clock,
+            ProductionCurrentMembership membership) {
         this.structured = structured;
         this.reconciled = reconciled;
         this.people = people;
         this.policy = policy;
         this.clock = clock;
+        this.membership = membership;
     }
 
     public Crew crew() {
         var current = reconciled.current();
         var state = current.interpretation();
-        if (current.structuredPrimary().isEmpty()
+        boolean activeMode =
+                membership.mode() == ProductionCurrentMembership.Mode.ACTIVE_PROJECTION;
+        if (!activeMode
+                && current.structuredPrimary().isEmpty()
                 && state.people().isEmpty()
                 && state.unresolved().isEmpty()
                 && state.officialCrewCount() == null)
             throw new CrewReadException(STATE_UNAVAILABLE);
-        var persons =
-                people.findPeople(
-                        state.people().stream()
-                                .map(CrewReconciliationSnapshot.PersonState::personId)
-                                .toList(),
-                        state.reconciliationAsOf());
         var identity = people.identityAt(state.reconciliationAsOf());
+        var selected = activeMode ? membership.select(state.reconciliationAsOf(), identity) : null;
+        var persons =
+                activeMode
+                        ? Map.<UUID, CrewReadRepository.Person>of()
+                        : people.findPeople(
+                                state.people().stream()
+                                        .map(CrewReconciliationSnapshot.PersonState::personId)
+                                        .toList(),
+                                state.reconciliationAsOf());
         var members =
-                state.people().stream()
-                        .map(p -> member(requirePerson(persons, p.personId()), p, current, identity))
-                        .toList();
+                activeMode
+                        ? selected.members().stream()
+                                .sorted(
+                                        Comparator.comparingInt(
+                                                        (CrewReadRepository.Person p) ->
+                                                                assignmentOrder(p.id(), current))
+                                                .thenComparing(p -> p.id().toString()))
+                                .map(
+                                        p ->
+                                                member(
+                                                        p,
+                                                        state.people().stream()
+                                                                .filter(
+                                                                        s ->
+                                                                                s.personId()
+                                                                                        .equals(
+                                                                                                p
+                                                                                                        .id()))
+                                                                .findFirst()
+                                                                .orElse(null),
+                                                        current,
+                                                        identity))
+                                .toList()
+                        : state.people().stream()
+                                .map(
+                                        p ->
+                                                member(
+                                                        requirePerson(persons, p.personId()),
+                                                        p,
+                                                        current,
+                                                        identity))
+                                .toList();
         Map<Long, CrewVerificationRepository.Evidence> evidence = new HashMap<>();
         current.verificationEvidence().forEach(e -> evidence.put(e.id(), e));
         var unresolved =
-                state.unresolved().stream()
-                        .map(
-                                u -> {
-                                    var e =
-                                            Objects.requireNonNull(
-                                                            evidence.get(u.evidenceId()),
-                                                            "Missing interpretation evidence")
-                                                    .value();
-                                    return new UnresolvedSubject(
-                                            u.displayName(),
-                                            u.method().name(),
-                                            assertion(e),
-                                            healthy(current.verificationHealth())
-                                                    && policy.applicable(
-                                                            e,
-                                                            state.verificationFetchedAt(),
-                                                            state.reconciliationAsOf()));
-                                })
-                        .toList();
+                activeMode
+                        ? List.<UnresolvedSubject>of()
+                        : state.unresolved().stream()
+                                .map(
+                                        u -> {
+                                            var e =
+                                                    Objects.requireNonNull(
+                                                                    evidence.get(u.evidenceId()),
+                                                                    "Missing interpretation"
+                                                                        + " evidence")
+                                                            .value();
+                                            return new UnresolvedSubject(
+                                                    u.displayName(),
+                                                    u.method().name(),
+                                                    assertion(e),
+                                                    healthy(current.verificationHealth())
+                                                            && policy.applicable(
+                                                                    e,
+                                                                    state.verificationFetchedAt(),
+                                                                    state.reconciliationAsOf()));
+                                        })
+                                .toList();
         boolean currentCount =
                 state.officialCrewCount() != null
                         && healthy(current.verificationHealth())
@@ -120,7 +161,35 @@ public class CrewRestQueryService {
                 unresolved,
                 reconciliation(current),
                 freshness(current),
-                provenance(current));
+                provenance(current),
+                selected == null
+                        ? null
+                        : new MembershipProjection(
+                                membership.mode().name(),
+                                selected.projection().revision(),
+                                selected.projection().evaluatedAt(),
+                                selected.projection().result().policy(),
+                                selected.health().name(),
+                                Math.max(
+                                        0,
+                                        Duration.between(
+                                                        selected.projection().evaluatedAt(),
+                                                        state.reconciliationAsOf())
+                                                .toSeconds()),
+                                members.size(),
+                                selected.nonPublishableActive(),
+                                selected.canonicalCollisions(),
+                                selected.projection().result().counts().unresolvedActiveSlots()));
+    }
+
+    private static int assignmentOrder(UUID id, CrewReconciliationQueryService.Current current) {
+        var assignments =
+                current.structuredPrimary()
+                        .map(x -> x.snapshot().snapshot().assignments())
+                        .orElse(List.of());
+        for (int i = 0; i < assignments.size(); i++)
+            if (assignments.get(i).person().mission1Id().equals(id)) return i;
+        return Integer.MAX_VALUE;
     }
 
     public CurrentExpedition expedition() {

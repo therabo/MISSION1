@@ -8,6 +8,13 @@ import java.net.URI;
 /** Same ProblemDetail/URN conventions as the orbital read API, scoped to Crew. */
 @RestControllerAdvice(assignableTypes = CrewController.class)
 public final class CrewErrors {
+    @ExceptionHandler(org.mission1.crew.application.CurrentProjectionUnavailable.class)
+    ProblemDetail projection(org.mission1.crew.application.CurrentProjectionUnavailable failure) {
+        var p = problem(HttpStatus.SERVICE_UNAVAILABLE, "crew-current-projection-unavailable",
+                "Current Crew projection unavailable", "No compatible usable materialized Current projection is available.");
+        p.setProperty("reason", failure.reason().name());
+        return p;
+    }
     @ExceptionHandler(CrewReadException.class)
     ProblemDetail unavailable(CrewReadException failure) {
         return switch (failure.reason()) {

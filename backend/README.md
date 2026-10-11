@@ -274,3 +274,9 @@ lineage. Repeat in a fresh process to verify idempotency. Append `--live` to int
 one normal operational acquisition instead; it honors the existing gate/cooldown and records actual
 HTTP/hash/time/parse state. Neither mode calls production reconciliation or V9 evaluation. There is
 no automatic startup reprocessing, public write endpoint or frontend change.
+
+## Production Current active membership — ADR-0017
+
+Default `MISSION1_CREW_CURRENT_MEMBERSHIP_MODE=ACTIVE_PROJECTION` makes `/api/iss/crew` read the latest compatible sealed V10 revision through a SELECT-only reader, then publish ACTIVE humans through the established V7 canonical/profile layer. The worker retains its existing independent source/expiry cadence; GET does not acquire, score or materialize. Missing/incompatible/incomplete/UNAVAILABLE projections return scoped 503 without fallback. Revision age and independent source health remain explicit.
+
+For deliberate operational rollback, start with `MISSION1_CREW_CURRENT_MEMBERSHIP_MODE=LEGACY_RETAINED_UNION` (or `--mission1.crew.current.membership-mode=LEGACY_RETAINED_UNION`). Restart to apply the configuration. Clear the override/restart to reactivate. No migration reversal, identity switch, source/history deletion or Replay change is involved. Do not leave rollback configured after acceptance. See [activation validation and diagnostics](../docs/crew/current-active-projection-activation/README.md).

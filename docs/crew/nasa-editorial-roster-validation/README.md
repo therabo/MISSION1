@@ -112,3 +112,7 @@ Add `--read-only` to emit retained diagnostics without acquisition. The runner d
 ## Subsequent identity integration
 
 V9 now consumes these immutable source slots, personal captions and verified topic/Biography/people relations through the [automatic shadow resolver](../automatic-identity-shadow-validation/README.md). Source observations retain their original meaning. No editorial count, physical presence, active Current selection or public identity behavior is activated. Rejected about-person relations remain retrieval failures and never become positive human evidence.
+
+## Subsequent production Current activation — ADR-0017 / 2026-10-11
+
+The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.

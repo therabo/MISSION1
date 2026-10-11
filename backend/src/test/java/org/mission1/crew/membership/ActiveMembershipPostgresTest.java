@@ -130,7 +130,7 @@ class ActiveMembershipPostgresTest {
           id,
           r.path("name").asText(),
           r.path("bio").asText(),
-          json.createObjectNode().put("abbreviation", r.path("agency").asText()).toString());
+          json.createObjectNode().put("abbreviation", r.path("agency").asText()).set("externalIds", json.createArrayNode()).toString());
       if (assigned.contains(id))
         jdbc.update(
             "INSERT INTO"
@@ -143,9 +143,9 @@ class ActiveMembershipPostgresTest {
     }
     jdbc.update(
         "INSERT INTO"
-            + " crew_source_sync_run(source,station,started_at,completed_at,result_state,source_state,source_url,retrieved_at,content_hash,snapshot_id)"
+            + " crew_source_sync_run(source,station,started_at,completed_at,result_state,source_state,source_url,retrieved_at,content_hash,snapshot_id,source_api_version,adapter_version)"
             + " VALUES"
-            + " ('LAUNCH_LIBRARY_2','ISS',?,?,'SUCCESS','AVAILABLE','https://example.test/retained',?,?,?)",
+            + " ('LAUNCH_LIBRARY_2','ISS',?,?,'SUCCESS','AVAILABLE','https://example.test/retained',?,?,?,'TEST_ONLY','TEST_ONLY')",
         captured.atOffset(ZoneOffset.UTC),
         captured.atOffset(ZoneOffset.UTC),
         captured.atOffset(ZoneOffset.UTC),
@@ -529,9 +529,9 @@ class ActiveMembershipPostgresTest {
     jdbc.update("INSERT INTO crew_document_evidence VALUES (?,?)", document, evidence);
     jdbc.update(
         "INSERT INTO"
-            + " crew_source_sync_run(source,station,started_at,completed_at,result_state,source_state,source_url,retrieved_at,content_hash,verification_document_id)"
+            + " crew_source_sync_run(source,station,started_at,completed_at,result_state,source_state,source_url,retrieved_at,content_hash,verification_document_id,source_api_version,adapter_version)"
             + " VALUES"
-            + " ('NASA_OFFICIAL','ISS',?,?,'SUCCESS','AVAILABLE','https://example.test/event',?,?,?)",
+            + " ('NASA_OFFICIAL','ISS',?,?,'SUCCESS','AVAILABLE','https://example.test/event',?,?,?,'TEST_ONLY','TEST_ONLY')",
         captureTime.atOffset(ZoneOffset.UTC),
         captureTime.atOffset(ZoneOffset.UTC),
         captureTime.atOffset(ZoneOffset.UTC),

@@ -128,3 +128,7 @@ supports additive retained reinterpretation with immutable bodies/history; no mi
 No operational or editorial count is derived from subject cardinality. New timed departure evidence
 flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
 accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.
+
+## Current activation boundary — ADR-0017 / 2026-10-11
+
+Current membership now comes from the latest compatible committed V10 ACTIVE projection, followed by established V7 canonical identity and latest-retained LL2 field authority. It remains distinct from operational presence, assignment and source count facts. Retained people and aliases stay detail-addressable; V9 identity remains shadow-only and Historical/Replay selection stays unchanged. No source/history/migration change occurs. [Activation contract, rollback and acceptance](current-active-projection-activation/README.md).

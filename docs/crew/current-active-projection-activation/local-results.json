@@ -1,0 +1,164 @@
+{
+  "baselineSha": "f0f3dc706a0fd15480050d00608cb3814a8ebc12",
+  "validationDate": "2026-10-11",
+  "repository": "/Users/daniel/Desktop/MISSION1",
+  "mode": "ACTIVE_PROJECTION",
+  "activeMembers": [
+    {
+      "name": "Anna Kikina",
+      "canonicalId": "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Anil Menon",
+      "canonicalId": "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Pyotr Dubrov",
+      "canonicalId": "6e32c904-e487-40ef-b9fc-089cf33eb216",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Commander",
+        "roleCode": "COMMANDER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Jessica Watkins",
+      "canonicalId": "6e700f29-14ab-415a-87e4-6567860c1796",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Luke Delaney",
+      "canonicalId": "09dea926-7480-4fc5-a340-01d44a6e5dae",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Joshua Kutryk",
+      "canonicalId": "345d3c45-c57a-4bcf-b3d6-ea811ba55416",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    },
+    {
+      "name": "Sergey Teteryatnikov",
+      "canonicalId": "3e128b74-27e9-4cd5-acf2-bb76910dbe30",
+      "assignment": {
+        "expeditionId": "d4facf5b-6967-4b25-a57d-bb417bbf4d50",
+        "role": "Flight Engineer",
+        "roleCode": "FLIGHT_ENGINEER",
+        "validFrom": null,
+        "validUntil": null
+      }
+    }
+  ],
+  "counts": {
+    "currentResolvedHumans": 7,
+    "editorialSlots": 7,
+    "ll2Assignments": 7,
+    "retainedHumans": 4,
+    "resolvedActiveHumans": 7,
+    "unresolvedActiveSlots": 8,
+    "websiteReportedAboard": 7,
+    "unresolvedRetainedSlots": 15,
+    "operationalOfficialAboard": null,
+    "lastKnownOperationalAboard": null,
+    "resolvedEditorialMemberships": 3,
+    "publicOfficialAboard": null,
+    "publicLastKnownOfficialAboard": 11,
+    "publicResolvedAboard": 0,
+    "publicUnresolvedSubjects": 0
+  },
+  "projection": {
+    "revision": 3,
+    "evaluatedAt": "2026-10-11T00:17:26.156499+00:00",
+    "policy": "crew-active-shadow-v1/crew-freshness-v1:PT6H:PT6H:PT72H:PT336H/roster=PT6H/topic=PT6H/personal=PT168H",
+    "identityMode": "V9_AUTOMATIC_SHADOW",
+    "semanticHash": "629f98011e1c2e8388a3671f5d66b6e3fc22d9b6c97c87cd60dbf0832f320e45",
+    "inputHash": "8bca297fa61b36c22ea5c881b37114c56eca0db3d209531248d0852ec0f61c04",
+    "health": "DEGRADED"
+  },
+  "retainedPeople": [
+    {
+      "name": "Jessica Meir",
+      "id": "4cb06b5a-b94c-4ea8-9d66-8f54cd6a0bf2",
+      "state": "RETAINED"
+    },
+    {
+      "name": "Jack Hathaway",
+      "id": "2425a25d-fc4c-40ab-b1b3-1b88cd3ce3ed",
+      "state": "RETAINED"
+    },
+    {
+      "name": "Andrei Fedyaev",
+      "id": "e0ead20d-bbb0-4a6e-8da8-bf6b857a68b5",
+      "state": "RETAINED"
+    },
+    {
+      "name": "Sophie Adenot",
+      "id": "9735513f-4ad9-44ba-863d-4f05978fca61",
+      "state": "RETAINED"
+    }
+  ],
+  "sourceCutPins": {
+    "graph": 8,
+    "ll2Run": 137,
+    "roster": 1,
+    "evidence": [
+      1,
+      2,
+      3,
+      12,
+      21,
+      27
+    ],
+    "ll2Snapshot": 57,
+    "operationalRun": 140,
+    "topicCountFact": 2,
+    "topicAcquisition": 27,
+    "rosterAcquisition": 28,
+    "operationalAttempt": 140
+  },
+  "sourceFreshnessAtAcceptance": "STALE; retained committed classification, no API TTL or reevaluation",
+  "profileDifferential": "All eleven retained details unchanged excluding request evaluation clock; Luke/Watkins aliases unchanged",
+  "rollback": "Explicit LEGACY_RETAINED_UNION produces ten members/one unresolved report; default ACTIVE produces seven/zero raw unresolved reports",
+  "getAudit": {
+    "tables": 70,
+    "writes": 0,
+    "externalAddresses": 0,
+    "v9Evaluations": 0,
+    "v10Materializations": 0
+  },
+  "orbitalBrowserSideEffect": "One existing NASA OEM retrieval-metadata row revalidated by existing first-use cache; five XML SHA-keyed payloads and all Crew/history rows preserved",
+  "rawArtifacts": "/Users/daniel/.codex/exports/mission1-current-active-projection-activation"
+}

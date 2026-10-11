@@ -146,6 +146,12 @@ export function CrewSources({ crew, historicalAt }: { crew: CurrentCrew; histori
           {crew.counts.structuredAssignments ?? 'Unavailable'} structured assignments · {crew.members.length}{' '}
           resolved profiles shown. Assignment and presence are separate.
         </p>
+        {!historicalAt && crew.membership && <>
+          <p>Current membership evaluated {utc(crew.membership.evaluatedAt)} · {crew.membership.health.toLowerCase()}.
+            {' '}{crew.counts.resolvedAboard} identities have current confirmation of physical presence.</p>
+          {crew.membership.unresolvedActiveSourceSlots > 0 && <p>{crew.membership.unresolvedActiveSourceSlots} unresolved active source slots remain separate from resolved people; sources may repeat a person.</p>}
+          {crew.membership.nonPublishableActive > 0 && <p>{crew.membership.nonPublishableActive} active identities await a publishable profile.</p>}
+        </>}
         {(
           [
             [

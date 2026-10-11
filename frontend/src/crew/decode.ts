@@ -221,6 +221,21 @@ export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
       verification: nullable(observation)(p.verification),
       contributingAssertions: array(assertion)(p.contributingAssertions),
     },
+    ...(v.membership === undefined ? {} : { membership: (() => {
+      const m = record(v.membership);
+      return {
+        mode: choice(['ACTIVE_PROJECTION'] as const)(m.mode),
+        revision: count(m.revision),
+        evaluatedAt: instant(m.evaluatedAt),
+        policyVersion: text(m.policyVersion),
+        health: choice(['HEALTHY', 'DEGRADED'] as const)(m.health),
+        ageSeconds: count(m.ageSeconds),
+        resolvedCurrentMembers: count(m.resolvedCurrentMembers),
+        nonPublishableActive: count(m.nonPublishableActive),
+        canonicalCollisions: count(m.canonicalCollisions),
+        unresolvedActiveSourceSlots: count(m.unresolvedActiveSourceSlots),
+      };
+    })() }),
   };
 };
 export const decodeExpedition: Decode<C.CurrentExpedition> = (value) => {

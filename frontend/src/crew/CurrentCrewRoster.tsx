@@ -23,7 +23,9 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
       <div><dt>Reported aboard</dt><dd className={crew.counts.officialAboard === null ? 'crew-count-unavailable' : undefined}>{crew.counts.officialAboard ?? 'Unavailable'}</dd>
         {historical && crew.counts.officialAboard === null && crew.counts.lastKnownOfficialAboard !== null && <small>Last reported: {crew.counts.lastKnownOfficialAboard} · count unverified at Historical UTC</small>}
       </div>
-      <div><dt>Confirmed identities</dt><dd>{crew.counts.resolvedAboard}</dd></div>
+      <div><dt>{!historical && crew.membership ? 'Current members' : 'Confirmed identities'}</dt><dd>{!historical && crew.membership ? crew.members.length : crew.counts.resolvedAboard}</dd>
+        {!historical && crew.membership && <small>Membership and physical presence are separate</small>}
+      </div>
       <div><dt>Without confirmed identity</dt><dd>{crew.counts.unidentifiedAboard}</dd>
         {historical && crew.counts.officialAboard === null && <small>{crew.counts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
       </div>

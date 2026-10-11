@@ -55,3 +55,7 @@ supports additive retained reinterpretation with immutable bodies/history; no mi
 No operational or editorial count is derived from subject cardinality. New timed departure evidence
 flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
 accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.
+
+## Production Current active membership — 2026-10-11
+
+[ADR-0017](../adr/0017-production-current-active-membership.md) activates V10 membership with production V7 canonical/profile publication. [Acceptance, failure behavior, explicit rollback and retained-data audit](current-active-projection-activation/README.md). This updates Current selection only; V9 identities remain shadow-only and Replay activation remains deferred.

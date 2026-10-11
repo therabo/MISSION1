@@ -33,6 +33,7 @@ class CrewApiTest {
     @MockitoBean CrewReadQueryService people;
     @MockitoBean CrewReconciliationPolicy policy;
     @MockitoBean Clock clock;
+    @MockitoBean ProductionCurrentMembership membership;
     final Instant at = Instant.parse("2026-10-03T12:00:00Z");
     final UUID expeditionId = UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
     final UUID id = uuid(1);
@@ -122,6 +123,7 @@ class CrewApiTest {
 
     @BeforeEach
     void setup() {
+        when(membership.mode()).thenReturn(ProductionCurrentMembership.Mode.LEGACY_RETAINED_UNION);
         when(people.identityAt(any())).thenReturn(CrewCanonicalIdentity.EMPTY);
         ll2 = observation(CrewSource.LAUNCH_LIBRARY_2, "ll2");
         nasa = observation(CrewSource.NASA_OFFICIAL, "nasa");

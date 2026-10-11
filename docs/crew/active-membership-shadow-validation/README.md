@@ -83,3 +83,7 @@ remain unresolved until a compatible V9 decision exists; parsing alone cannot bo
 source occurrence's identity. Source parsing and live acquisition recovery do not activate public
 Current or Replay. The dated revision-1 results above remain immutable; the new dossier records
 actual revisions 2/3, distinct article assertions and independent acquisition health.
+
+## Subsequent production Current activation — ADR-0017 / 2026-10-11
+
+The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.

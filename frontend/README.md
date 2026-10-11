@@ -199,3 +199,7 @@ The existing sample responses add Earth-fixed velocity components and `velocityU
 ## Replay integration — 2026-10-03
 
 The main Earth View now has LIVE/REPLAY controls. Replay uses a UTC date/time and ±1 hour steps, partial coverage metadata, 250 ms debounce, request cancellation and latest-request-wins. It fetches only backend replay/coverage endpoints; LIVE orbital/comparison polling pauses. Crew panel shows historical operational state and latest retained profile metadata with explicit career labels. Cesium pauses at T, uses returned ITRF position/velocity, hides current paths and hides the ISS if orbit is unavailable. Exit restores current polling/clock/Crew with the same Viewer and no page reload or camera command. Native two-finger pinch remains UNVERIFIED. [Validation](../docs/replay/validation/README.md).
+
+## Current Crew membership — 2026-10-11
+
+Current consumes the backend ACTIVE member array; the optional committed-membership metadata identifies its evaluation/health. Current members, structured assignments, reported aboard and confirmed physical presence remain distinct. No frontend identity matching, name filtering or source fetch occurs. Unavailable Current uses the existing explicit API error view. Responsive selection/detail/back behavior and retained direct UUID details are unchanged. Historical/Replay retain their temporal member sets and prior count labels. See [activation acceptance](../docs/crew/current-active-projection-activation/README.md).
