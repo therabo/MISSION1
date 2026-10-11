@@ -44,3 +44,14 @@ The [automatic resolver dossier](automatic-identity-shadow-validation/README.md)
 ## Shadow active membership — ADR-0016 / V10
 
 The [active membership dossier](active-membership-shadow-validation/README.md) describes an independent retained-data projection. Fresh LL2 assignments, V9-resolved editorial roster membership and qualified operational positives contribute separately. A completed named departure closes an episode until a later qualified operational positive. Successful omissions retract only their source support; failures preserve last-good context. Known unsupported humans are RETAINED with identity/profile/history preserved; unresolved NASA slots never create humans. Public Current, detail and Replay retain their accepted contracts.
+
+
+## Completed operational departure parser — 2026-10-11
+
+The [departure validation dossier](nasa-operational-departure-validation/README.md) documents parser
+1.1.0, exact captured source grammar, named subjects, explicit event/publication/capture time,
+minute precision and independent source health. The existing V6 occurrence and evidence schema
+supports additive retained reinterpretation with immutable bodies/history; no migration is added.
+No operational or editorial count is derived from subject cardinality. New timed departure evidence
+flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
+accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.

@@ -117,3 +117,14 @@ Replay reads existing immutable snapshots, observations, evidence and identity r
 ## Independent NASA editorial acquisition — 2026-10-10
 
 [V8 and ADR-0014](nasa-editorial-roster-validation/README.md) retain topic facts, typed resources, semantic roster/member versions, relations and each acquisition in isolated shadow tables, reusing generic body/documents. No editorial writes target legacy sync runs, identity mappings/decisions, operational evidence or reconciliation. Capture ordering preserves A→B→A, source-local failure and restart/cache lineage. Mutable lease/budget rows govern scheduled eligibility and shared NASA pacing only. Public GETs do not call these writers or read new observations.
+
+
+## Completed operational departure parser — 2026-10-11
+
+The [departure validation dossier](nasa-operational-departure-validation/README.md) documents parser
+1.1.0, exact captured source grammar, named subjects, explicit event/publication/capture time,
+minute precision and independent source health. The existing V6 occurrence and evidence schema
+supports additive retained reinterpretation with immutable bodies/history; no migration is added.
+No operational or editorial count is derived from subject cardinality. New timed departure evidence
+flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
+accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.

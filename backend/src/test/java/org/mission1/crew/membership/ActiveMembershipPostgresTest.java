@@ -49,6 +49,8 @@ class ActiveMembershipPostgresTest {
   @Autowired ObjectMapper json;
   @Autowired JdbcTemplate jdbc;
   @Autowired PlatformTransactionManager transactions;
+  @Autowired org.mission1.crew.application.CrewVerificationRepository verification;
+  @Autowired org.mission1.crew.application.CrewRepository sourceRuns;
   final Instant t =
       Instant.now().minusSeconds(120).truncatedTo(java.time.temporal.ChronoUnit.MICROS);
   final List<String> current = List.of("650", "713", "649", "582", "710", "642", "915");
@@ -535,6 +537,18 @@ class ActiveMembershipPostgresTest {
         captureTime.atOffset(ZoneOffset.UTC),
         hash,
         document);
+    qualifyOperational(evidence, humanId, captureTime, "legacy:" + evidence + ":0");
+    return evidence;
+  }
+
+  void qualifyOperational(long evidence, String humanId, Instant captureTime, String subjectKey)
+      throws Exception {
+    String name = records().path("ll2:" + humanId).path("name").asText();
+    String hash =
+        jdbc.queryForObject(
+            "SELECT evidence_hash FROM crew_verification_evidence WHERE id=?",
+            String.class,
+            evidence);
     // Explicit synthetic rich typed source evidence exercises V9 integration without V7.
     auto.installRelease(FrozenIdentityModel.VERSION, IdentityPolicy.VERSION, captureTime);
     String bio = name + " selected in 2021 for Crew-13";
@@ -543,7 +557,7 @@ class ActiveMembershipPostgresTest {
             "crew_evidence_subject", evidence + ":0", hash, "TEST_ONLY_NAMED_EVENT", captureTime);
     var source =
         new IdentityEvidence(
-            "NASA:OPERATIONAL_SUBJECT:legacy:" + evidence + ":0",
+            "NASA:OPERATIONAL_SUBJECT:" + subjectKey,
             IdentityEvidence.Provider.NASA,
             IdentityEvidence.Kind.OPERATIONAL_SUBJECT,
             name,
@@ -584,7 +598,114 @@ class ActiveMembershipPostgresTest {
             IdentityPolicy.VERSION,
             captureTime);
     assertEquals(IdentityPolicy.Outcome.AUTO_MATCH, result.result().outcome());
-    return evidence;
+  }
+
+  @Test
+  void parsedTimedDepartureFlowsThroughV9V10AndQualifiedReentry() throws Exception {
+    var withFormer = new ArrayList<>(current);
+    withFormer.add("573");
+    ll2(withFormer, t.minusSeconds(300), "older-positive");
+    assertEquals(
+        8, store.materialize(t.minusSeconds(240)).result().counts().resolvedActiveHumans());
+    Instant event = t.minusSeconds(90).truncatedTo(java.time.temporal.ChronoUnit.MINUTES);
+    var local = event.atZone(ZoneId.of("America/New_York"));
+    String date = local.toLocalDate().toString().replace('-', '/');
+    String clock =
+        local
+                .format(java.time.format.DateTimeFormatter.ofPattern("h:mm a", Locale.US))
+                .replace("AM", "a.m.")
+                .replace("PM", "p.m.")
+            + (local.getOffset().equals(ZoneOffset.ofHours(-4)) ? " EDT" : " EST");
+    String raw =
+        "<rss xmlns:content='http://purl.org/rss/1.0/modules/content/'><channel><title>International"
+            + " Space Station - NASA</title><item><title>Crew undocks from station</title>"
+            + "<guid>https://www.nasa.gov/?post_type=nasa-blog&amp;p=999001</guid><link>https://www.nasa.gov/blogs/spacestation/"
+            + date
+            + "/test-only-departure/</link><pubDate>"
+            + t.atZone(ZoneOffset.UTC).format(java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME)
+            + "</pubDate><content:encoded><![CDATA[<p>At "
+            + clock
+            + ", NASA astronaut Jessica Meir undocked from the space-facing port of the"
+            + " International Space Station’s Harmony module aboard the SpaceX Dragon"
+            + " spacecraft.</p>]]></content:encoded></item></channel></rss>";
+    byte[] bytes = raw.getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    String hash = org.mission1.source.crew.CrewHttpReader.sha256(bytes);
+    var observation =
+        new org.mission1.crew.domain.CrewSourceObservation(
+            org.mission1.crew.domain.CrewSource.NASA_OFFICIAL,
+            org.mission1.source.crew.nasa.NasaOperationalFeedHttpSource.URL,
+            t,
+            null,
+            null,
+            null,
+            null,
+            hash,
+            "TEST_ONLY",
+            "NasaOperationalFeedParser/1.1.0");
+    var document =
+        new org.mission1.crew.domain.CrewSourceDocument(
+            org.mission1.crew.domain.NasaSourceType.NASA_ISS_OPERATIONAL_FEED, observation, bytes);
+    var output = new org.mission1.source.crew.nasa.NasaOperationalFeedParser().verify(document);
+    assertEquals(org.mission1.crew.domain.CrewSourceState.AVAILABLE, output.state());
+    assertEquals(event, output.value().getFirst().observation().sourceEventAt());
+    long run =
+        sourceRuns.startRun(
+            org.mission1.crew.domain.CrewSource.NASA_OFFICIAL,
+            org.mission1.crew.domain.Station.ISS,
+            t,
+            observation.sourceUrl());
+    verification.storeFetch(
+        run,
+        document,
+        200,
+        "application/rss+xml",
+        "NasaOperationalFeedParser",
+        "1.1.0",
+        output.value(),
+        true,
+        t.plusMillis(1));
+    long evidence = verification.evidenceAsOf(t.plusSeconds(1)).getFirst().id();
+    var unresolved = store.materialize(t.plusSeconds(1));
+    assertEquals(8, unresolved.result().counts().resolvedActiveHumans());
+    assertTrue(
+        unresolved.result().unresolved().stream()
+            .anyMatch(u -> u.slot().evidence() != null && u.slot().evidence() == evidence));
+    String subject =
+        jdbc.queryForObject(
+            "SELECT subject_key FROM crew_subject_version_link WHERE evidence_id=? AND"
+                + " subject_index=0",
+            String.class,
+            evidence);
+    qualifyOperational(evidence, "573", t.plusSeconds(2), subject);
+    var departed = store.materialize(t.plusSeconds(3));
+    assertEquals(7, departed.result().counts().resolvedActiveHumans());
+    var person =
+        departed.result().members().stream()
+            .filter(m -> m.human().key().equals("LL2:PERSON:573"))
+            .findFirst()
+            .orElseThrow();
+    assertEquals(evidence, person.departureVeto());
+    assertEquals("SOURCE_EVENT_TIME_MINUTE", person.departurePrecision());
+    ll2(withFormer, t.plusSeconds(4), "mere-newer-recapture");
+    assertEquals(7, store.materialize(t.plusSeconds(5)).result().counts().resolvedActiveHumans());
+    operational("573", "PERSON_ENTERED_STATION", t.plusSeconds(6), t.plusSeconds(7));
+    assertEquals(8, store.materialize(t.plusSeconds(8)).result().counts().resolvedActiveHumans());
+    assertEquals(
+        0,
+        jdbc.queryForObject(
+            "SELECT count(*) FROM crew_person_equivalence_decision", Integer.class));
+    assertTrue(
+        verification.publicEvidenceAsOf(t.plusSeconds(8)).stream()
+            .noneMatch(e -> e.id() == evidence));
+    assertFalse(
+        org.mission1.crew.application.CrewReconciliationPolicy.defaults()
+            .applicableEffectiveTime(output.value().getFirst(), event.minusNanos(1)));
+    assertTrue(
+        org.mission1.crew.application.CrewReconciliationPolicy.defaults()
+            .applicableEffectiveTime(output.value().getFirst(), event));
+    assertTrue(
+        org.mission1.crew.application.CrewReconciliationPolicy.defaults()
+            .applicableEffectiveTime(output.value().getFirst(), event.plusSeconds(60)));
   }
 
   @Test

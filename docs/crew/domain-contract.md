@@ -78,3 +78,14 @@ Replay retains assignment/presence and planned/completed distinctions. Operation
 ## Independent membership lifecycle — ADR-0016
 
 The internal shadow model distinguishes typed canonical human, provider/source slot, structured assignment, editorial membership, qualified operational positive, completed departure, attributed membership support, ACTIVE/RETAINED human, unresolved source slot, namespaced finding, source count, projection health and immutable revision. Membership is positive-support based and independent of identity and physical presence. Source omission retracts only one support; retained people keep the original UUID/profile/history. [Policy and persistence](active-membership-shadow-validation/README.md). Public Current/Replay domain projections remain unchanged.
+
+
+## Completed operational departure parser — 2026-10-11
+
+The [departure validation dossier](nasa-operational-departure-validation/README.md) documents parser
+1.1.0, exact captured source grammar, named subjects, explicit event/publication/capture time,
+minute precision and independent source health. The existing V6 occurrence and evidence schema
+supports additive retained reinterpretation with immutable bodies/history; no migration is added.
+No operational or editorial count is derived from subject cardinality. New timed departure evidence
+flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
+accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.

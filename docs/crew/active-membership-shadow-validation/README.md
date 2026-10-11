@@ -73,3 +73,13 @@ Frontend **759 tests / 61 files**, typecheck, production build and diff check pa
 Protected V1–V9 source/identity/reconciliation rows and original migration bytes are unchanged. The 62-table pre-edit read-only fingerprint equals the recorded pre-change HTTP baseline. Final all-**70**-table fingerprints match before/after real Current, Luke/Watkins canonical/alias detail, Meir/Hathaway/Adenot detail and Replay GETs. Additional strict Fedyaev detail comparison is identical to baseline except its evaluation clock, 200/AVAILABLE with biography and no assignment. No normal source/orbital observation append or OEM metadata change occurred. Request evaluation/reconstruction/coverage clocks are the only permitted HTTP differences; there were no orbital numeric deltas. GET causes zero writes, provider acquisition, identity evaluation or lifecycle materialization. Public Current remains **10 members / 7 assignments / 1 unresolved Andrey**, Replay remains **10 / 1** with no future assignment, and profiles/aliases/history remain preserved.
 
 See [compact validation summary](validation-summary.json). Raw source inventories, baselines, protected fingerprints, SQL/HTTP JSON, JVM logs, frontend logs and browser reports/screenshots remain under `/Users/daniel/.codex/exports/mission1-active-membership-shadow-validation/` and `/tmp/mission1-active-*`. The external project context is updated separately and stays outside Git.
+
+
+## Subsequent operational grammar milestone — 2026-10-11
+
+The [completed-departure repair](../nasa-operational-departure-validation/README.md) now supplies
+explicit minute-qualified departure evidence through the existing retained input path. New slots
+remain unresolved until a compatible V9 decision exists; parsing alone cannot borrow a former
+source occurrence's identity. Source parsing and live acquisition recovery do not activate public
+Current or Replay. The dated revision-1 results above remain immutable; the new dossier records
+actual revisions 2/3, distinct article assertions and independent acquisition health.

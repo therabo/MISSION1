@@ -321,7 +321,9 @@ public class RetainedMembershipInputs {
                 effective,
                 e.observation().sourceEventAt() == null
                     ? "PUBLICATION_TIME_PROXY"
-                    : "SOURCE_EVENT_TIME_PRECISION_UNSPECIFIED",
+                    : CrewOperationalTime.read(e.evidenceMethod())
+                        .map(t -> "SOURCE_EVENT_TIME_" + t.precision())
+                        .orElse("SOURCE_EVENT_TIME_PRECISION_UNSPECIFIED"),
                 null,
                 applicable ? Freshness.FRESH : Freshness.STALE,
                 positive,

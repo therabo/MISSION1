@@ -46,3 +46,14 @@ Field authority and the assignment/presence distinction also apply at historical
 ## Positive membership support — shadow only, 2026-10-11
 
 The V10 [membership overlay](active-membership-shadow-validation/README.md) keeps identity, assignment and presence separate. LL2 is primary for structured assignment/role/Expedition and can independently support membership. A validated, fresh NASA Expedition roster is secondary positive editorial support only after V9 MATCH binds its exact slot observation. NASA topic Expedition/count facts remain contextual/editorial; personal resources supply identity/profile evidence only. Neither roster membership nor assignment confirms physical presence. The accepted operational classifier alone supplies named presence, entry, completed departure and official count. Source-field disagreements remain separate from membership/count/identity/health findings. An operational acquisition failure retains last-known evidence but blocks current operational support; editorial success never heals it. Successful omissions retract one source support, never imply departure. Publication fallback is a labeled proxy, never inferred event precision. All captures and decisions are pinned in immutable revisions; public reconciliation and Replay remain unchanged.
+
+
+## Completed operational departure parser — 2026-10-11
+
+The [departure validation dossier](nasa-operational-departure-validation/README.md) documents parser
+1.1.0, exact captured source grammar, named subjects, explicit event/publication/capture time,
+minute precision and independent source health. The existing V6 occurrence and evidence schema
+supports additive retained reinterpretation with immutable bodies/history; no migration is added.
+No operational or editorial count is derived from subject cardinality. New timed departure evidence
+flows to V10 shadow only; public Current membership, profile identity and Replay remain on the
+accepted legacy evidence path. V9 decisions remain separate and unmodified by this command.

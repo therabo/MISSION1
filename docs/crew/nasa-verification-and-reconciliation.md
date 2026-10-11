@@ -100,3 +100,29 @@ The [implemented Crew API](../api/crew-api.md) adapts the existing canonical que
 ## Replay integration — 2026-10-03
 
 The pure engine has an explicit effective-time mode for Replay. It orders explicit source event time before publication fallback and permits late acquisition. LIVE keeps accepted fetch freshness rules. [Detailed applicability](../replay/crew-replay.md).
+
+
+## Parser 1.1.0 and explicit retained reinterpretation — 2026-10-11
+
+[ADR-0009's dated clarification](../adr/0009-field-aware-crew-reconciliation.md) and the
+[departure dossier](nasa-operational-departure-validation/README.md) supersede the 1.0 undocking
+limitation above. Feed acquisition, partial coverage, independent count/health policy and all
+previously supported presence/entry/count assertions remain. The new clause has a leading explicit
+clock, agency-qualified named subjects, past-tense ISS-port undocking and crew-spacecraft scope.
+Names are extracted within that clause, preserving spelling/order and article/paragraph lineage.
+Future/planned and historical/modal clauses remain non-completed; cargo and splashdown remain
+outside named station-departure evidence. The final transition-title guard now distinguishes cargo
+from crew, and supported prospective body wording can explain a transition headline.
+
+Time provenance is `NasaOperationalPostParser/1.1.0|MINUTE|local-ISO|source-clock|EDT-or-EST|
+America/New_York|date-basis`, decoded as CrewOperationalTime. It fits the existing 150-character
+method bound. Explicit source date and date-sensitive zone rules produce the machine minute
+boundary; source precision stays MINUTE. Missing/conflicting date context fails closed. Existing
+1.0 assertions retain their immutable fingerprints and unspecified/publication-proxy time. Reparse
+retained bytes through NasaOperationalReprocessingService, never through GET; it appends new
+interpretation documents, reuses unchanged evidence, and adds changed evidence/occurrences without
+changing acquisition health. Normal live ingestion remains the only freshness advancement.
+
+`publicEvidenceAsOf` is the explicit release boundary excluding new timed departures from Current
+and Replay until their later activation. `evidenceAsOf` continues to supply all accepted assertions
+to the retained shadow path. No V7/V9 identity or LL2/editorial data enters grammar parsing.

@@ -243,3 +243,34 @@ Full Java21/PostgreSQL migration, backfill, rollback, source-identity, selector 
 The independent `crew.membership` overlay uses retained JDBC inputs only. Its internal `ActiveMembershipStore.latest()`/`health()` expose immutable revisions and separate resolved humans, retained humans, unresolved slots, supports, counts, findings and stream health. `LegacyMembershipComparison.read()` compares to V7/public Current after materialization. No public REST endpoint/DTO or Replay dependency is added.
 
 `MISSION1_CREW_ACTIVE_SHADOW_ENABLED` defaults to true. The bounded worker starts after `MISSION1_CREW_ACTIVE_SHADOW_INITIAL_DELAY` (PT15M), then reconciles every `MISSION1_CREW_ACTIVE_SHADOW_FIXED_DELAY` (PT1M, minimum one minute), independently of GET. PostgreSQL notifications preserve generation across restart; each tick also evaluates expiry. Editorial roster/topic maximum ages default to PT6H; personal-resource health to P7D via `MISSION1_CREW_ACTIVE_SHADOW_ROSTER_MAX_AGE`, `MISSION1_CREW_ACTIVE_SHADOW_TOPIC_MAX_AGE` and `MISSION1_CREW_ACTIVE_SHADOW_PERSONAL_MAX_AGE`. Existing LL2/operational temporal properties remain authoritative. All default tests disable the worker and use offline fixtures/Testcontainers. See the [algorithm, retained-data runner and acceptance dossier](../docs/crew/active-membership-shadow-validation/README.md).
+
+
+## NASA completed named departures and retained reinterpretation
+
+Parser 1.1.0 supports verified named ISS undocking with explicit date-sensitive EDT/EST time and
+MINUTE precision. No migration is added. New timed departure assertions are shadow V10 inputs;
+Current/Replay use the explicit public legacy eligibility boundary. Identity scoring remains separate.
+See [ADR-0009](../docs/adr/0009-field-aware-crew-reconciliation.md) and the
+[validation dossier](../docs/crew/nasa-operational-departure-validation/README.md).
+
+The explicit application command reinterprets up to32 retained operational bodies under the current
+parser, preserving original capture/HTTP metadata and all failed interpretations. It performs no
+network, identity scoring or health reset. From the repository root, after building with Java21:
+
+```sh
+IFS= read -r departure_dependencies < /tmp/mission1-active-classpath.txt
+javac -cp "backend/target/classes:$departure_dependencies" -d /tmp/mission1-departure-validation-classes \
+  docs/crew/active-membership-shadow-validation/scripts/ActiveMembershipValidation.java \
+  docs/crew/nasa-operational-departure-validation/scripts/DepartureValidation.java
+java -cp "/tmp/mission1-departure-validation-classes:backend/target/classes:$departure_dependencies" \
+  DepartureValidation /absolute/output/reprocessing.json
+```
+
+Generate the classpath first with backend `mvn dependency:build-classpath
+-Dmdep.outputFile=/tmp/mission1-active-classpath.txt`, and create the output/classes directories.
+The runner disables all schedules/startup review/backfill, executes the supported command, then
+explicitly materializes V10 from persisted inputs and exports source/identity/precision/SQL/timing
+lineage. Repeat in a fresh process to verify idempotency. Append `--live` to intentionally execute
+one normal operational acquisition instead; it honors the existing gate/cooldown and records actual
+HTTP/hash/time/parse state. Neither mode calls production reconciliation or V9 evaluation. There is
+no automatic startup reprocessing, public write endpoint or frontend change.
