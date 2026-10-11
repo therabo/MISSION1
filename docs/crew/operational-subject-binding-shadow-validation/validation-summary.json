@@ -1,0 +1,822 @@
+{
+  "baselineHead": "38cbf5945ea2e911344c8d44902687b5d299e26a",
+  "at": "2026-10-11T18:55:28.742022Z",
+  "realSubjects": 25,
+  "existingHumans": 11,
+  "matches": 25,
+  "deferred": 0,
+  "conflicts": 0,
+  "wrongHumanComparisons": 256,
+  "wrongHumanMatches": 0,
+  "constructedGateFaults": 25,
+  "constructedLinkFaults": 16,
+  "operationalParityVectors": 275,
+  "operationalMaxScoreDelta": 8.673617379884035e-19,
+  "modelParityVectors": 14382,
+  "cold": {
+    "subjects": 25,
+    "inserted": 25,
+    "matches": 0,
+    "deferred": 25,
+    "conflicts": 0,
+    "selects": 7,
+    "loadNanos": 489600625,
+    "batchNanos": 738055334,
+    "queueLatencyMillis": 116835
+  },
+  "firstEnriched": {
+    "subjects": 25,
+    "inserted": 25,
+    "matches": 25,
+    "deferred": 0,
+    "conflicts": 0,
+    "selects": 7,
+    "loadNanos": 201697334,
+    "batchNanos": 702552917,
+    "queueLatencyMillis": 7
+  },
+  "restartInserted": 0,
+  "actualCandidateComparisons": 273,
+  "candidateCount": {
+    "min": 9,
+    "median": 11,
+    "p95": 11,
+    "max": 11
+  },
+  "legacyAgreements": 11,
+  "legacyUnresolvedNowShadowMatched": 14,
+  "get": {
+    "httpRequests": 17,
+    "currentAdditionalServiceReads": 20,
+    "writes": 0,
+    "invocations": {
+      "network": 0,
+      "s10": 0,
+      "score": 0,
+      "socketHTTP": 0,
+      "v10": 0
+    },
+    "baselineCurrentSelects": 48,
+    "finalCurrentSelects": 48,
+    "httpSqlCounts": [
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      8,
+      17,
+      17
+    ]
+  },
+  "productionFreeze": {
+    "tables": 69,
+    "changed": [],
+    "before": [
+      "crew_active_projection_evidence|115|11279cfbb5d2bd0e1c3b2a822bb8d2e3",
+      "crew_active_projection_finding|749|6e69dd7afa22e5f2bf1c82b5d8594ae5",
+      "crew_active_projection_input_capture|455|1dc6b82f55bdd071a8ca9869c617f1a5",
+      "crew_active_projection_member|187|9f68b3ca72fbc23e615f20af8e57377f",
+      "crew_active_projection_revision|17|c185503b1638b5092c3d70249be1d468",
+      "crew_active_projection_slot|416|88e853ec026ac4fb109d7a13d5948ed2",
+      "crew_active_projection_support|167|44542b89c39795a83ed1873066146412",
+      "crew_active_projection_work|1|99a5a8c04a4159924e9775a5ae3d0609",
+      "crew_assertion_observation|105|1a0b7b933016092f8e69ad293a34f22e",
+      "crew_assertion_occurrence|9|ab556bcd1037d06a9f5283989872c551",
+      "crew_assertion_version|10|29cef6070693e0fc7a661f5a7bd92fcc",
+      "crew_assignment_observation|84|f29cf9c9769e03724f794e2152f47220",
+      "crew_auto_candidate|46|d79dd85f18e7dad8cada316694825f58",
+      "crew_auto_decision_evidence|265|cd24eb704ac4f61e3ced6d834ef2efd3",
+      "crew_auto_decision_revision|118|2e3387c83106914596344bf32b9c0833",
+      "crew_auto_feature_snapshot|118|0d8ba13a21b2bd85d2b5ded525ec4f97",
+      "crew_auto_graph_application|835|749c91f2b87ecec12db4d78cdb39ab6f",
+      "crew_auto_graph_revision|31|91effccc15aba628af6f70e6903e4f44",
+      "crew_auto_identity|49|e2083399bfc674ad6af006291be931cf",
+      "crew_auto_input_head|49|a6b15d2d9caa015f2bceb6b1a6254a1b",
+      "crew_auto_job|39|a12f914aeed466589ec852e024479076",
+      "crew_auto_observation|91|bf3235748fc1ef674996ef8ad79ad89b",
+      "crew_auto_release|1|ba020612d5c93e3f450fd3704a5c64a9",
+      "crew_auto_sweep_lease|1|2e42083027e5cba4402f059b2447ef8f",
+      "crew_document_body|29|397e5ab1845b1d4d1d0e7daeb22b65ba",
+      "crew_document_evidence|105|f0d93ff0e543847e49463ebaf93d2aad",
+      "crew_editorial_acquisition|36|6f13d1d832e0a6a940f28dea7a43ae9a",
+      "crew_editorial_fact_capture|18|c2237dd5fcdeda150a963f03bbf1a502",
+      "crew_editorial_refresh_lease|1|c36900f299aa7c3be6c99122ed377eaf",
+      "crew_editorial_resource|10|cfb80a6f688bb4a37701bcfca533ab1b",
+      "crew_editorial_resource_relation|38|01e4d63997aee4316fb58919f4c8c43c",
+      "crew_editorial_roster_member|7|9b4fd9ff93d77de73aa3a0c005521612",
+      "crew_editorial_roster_version|1|694ae2f205ff208e833dd6bf9b06567a",
+      "crew_editorial_topic_fact|2|7c3d44230cad0ec7f37599b3686bba31",
+      "crew_event_catalog_observation|40|0edaf1c3e3496f76953979a3d55da523",
+      "crew_event_catalog_run|22|417768493483bd58b30b26337d398e24",
+      "crew_evidence_subject|32|8fe7ad2009f66a11518854c6230147d5",
+      "crew_expedition|1|6a821145f696c0e936d14a04f244e4b7",
+      "crew_expedition_external_id|1|b563db23454c8499d81c6341626f13bf",
+      "crew_expedition_observation|12|29f6870d45618f113dce417b16e05bb5",
+      "crew_identity_binding_version|4|a67be3684aef09b83895d075647b681a",
+      "crew_identity_decision_evidence|39|5dc32ddc1d00edf17b5f60e5dbe791af",
+      "crew_identity_resolution|28|f7a86b768340f0bba6331d44b0cb01d9",
+      "crew_nasa_request_budget|1|e948ae4c2b6f14d1bed19a069f6a7052",
+      "crew_operational_event_observation|8|44dc158f2841707a8c726ebfa532e486",
+      "crew_person|13|7832b64b30955dbde52c912293f1fe66",
+      "crew_person_equivalence_decision|2|f7f0f8aa009ed4470e0981c70d226d76",
+      "crew_person_external_id|16|11a8553dfe4d5ed03bf8c33de2c54ef4",
+      "crew_person_observation|84|42d46b41df3e681d76041fc77e295e6f",
+      "crew_reconciled_person|172|076d95b0ddfc2b4af9956d6d2cf2d601",
+      "crew_reconciled_person_evidence|204|0243a589d92d054ce728222d631b4a75",
+      "crew_reconciliation_evidence|65|46644afd436eb44ccd1f179cac232562",
+      "crew_reconciliation_resolution|260|efd65c1d6b4f1bda6f2086ca95ce6104",
+      "crew_reconciliation_run|136|dcac995f083cba443ba71918638c1b65",
+      "crew_reconciliation_snapshot|18|631bceb74e541feeacfcd0f5959e4591",
+      "crew_refresh_follow_up|0|d41d8cd98f00b204e9800998ecf8427e",
+      "crew_refresh_trigger|157|c6f0c1e7a7c823341b651ca51349b8ad",
+      "crew_source_article|7|3c49aca3c154ebd8172b0a931a3b63dc",
+      "crew_source_article_observation|69|d63df6fac2df8ba1aaed87577f42ef80",
+      "crew_source_document|49|7fe968696ae73899effb1e3b021ae503",
+      "crew_source_snapshot|12|e3dc824b2e273a31de5161628d357f04",
+      "crew_source_sync_run|146|4090edb7e6ce519a9bc2871c0c984f4c",
+      "crew_subject_metadata_version|26|bcedeaa76188be0223f8785d9ab68054",
+      "crew_subject_occurrence|25|16460786c8482c4aec70e8bd13ab73b0",
+      "crew_subject_version_link|32|644cd85094162e3f42d79fbb36b17567",
+      "crew_verification_evidence|10|03f422b8a97783f3f3559d39fab59214",
+      "nasa_oem_ephemerides|5|0696529fbf26850e6af76eb48fab9dc4",
+      "orbital_element_observations|32|68817d55e688c45129011b1cec247ddb",
+      "orbital_element_sets|20|79ea59a5f1324960b5573d0e5e63f08a"
+    ],
+    "after": [
+      "crew_active_projection_evidence|115|11279cfbb5d2bd0e1c3b2a822bb8d2e3",
+      "crew_active_projection_finding|749|6e69dd7afa22e5f2bf1c82b5d8594ae5",
+      "crew_active_projection_input_capture|455|1dc6b82f55bdd071a8ca9869c617f1a5",
+      "crew_active_projection_member|187|9f68b3ca72fbc23e615f20af8e57377f",
+      "crew_active_projection_revision|17|c185503b1638b5092c3d70249be1d468",
+      "crew_active_projection_slot|416|88e853ec026ac4fb109d7a13d5948ed2",
+      "crew_active_projection_support|167|44542b89c39795a83ed1873066146412",
+      "crew_active_projection_work|1|99a5a8c04a4159924e9775a5ae3d0609",
+      "crew_assertion_observation|105|1a0b7b933016092f8e69ad293a34f22e",
+      "crew_assertion_occurrence|9|ab556bcd1037d06a9f5283989872c551",
+      "crew_assertion_version|10|29cef6070693e0fc7a661f5a7bd92fcc",
+      "crew_assignment_observation|84|f29cf9c9769e03724f794e2152f47220",
+      "crew_auto_candidate|46|d79dd85f18e7dad8cada316694825f58",
+      "crew_auto_decision_evidence|265|cd24eb704ac4f61e3ced6d834ef2efd3",
+      "crew_auto_decision_revision|118|2e3387c83106914596344bf32b9c0833",
+      "crew_auto_feature_snapshot|118|0d8ba13a21b2bd85d2b5ded525ec4f97",
+      "crew_auto_graph_application|835|749c91f2b87ecec12db4d78cdb39ab6f",
+      "crew_auto_graph_revision|31|91effccc15aba628af6f70e6903e4f44",
+      "crew_auto_identity|49|e2083399bfc674ad6af006291be931cf",
+      "crew_auto_input_head|49|a6b15d2d9caa015f2bceb6b1a6254a1b",
+      "crew_auto_job|39|a12f914aeed466589ec852e024479076",
+      "crew_auto_observation|91|bf3235748fc1ef674996ef8ad79ad89b",
+      "crew_auto_release|1|ba020612d5c93e3f450fd3704a5c64a9",
+      "crew_auto_sweep_lease|1|2e42083027e5cba4402f059b2447ef8f",
+      "crew_document_body|29|397e5ab1845b1d4d1d0e7daeb22b65ba",
+      "crew_document_evidence|105|f0d93ff0e543847e49463ebaf93d2aad",
+      "crew_editorial_acquisition|36|6f13d1d832e0a6a940f28dea7a43ae9a",
+      "crew_editorial_fact_capture|18|c2237dd5fcdeda150a963f03bbf1a502",
+      "crew_editorial_refresh_lease|1|c36900f299aa7c3be6c99122ed377eaf",
+      "crew_editorial_resource_relation|38|01e4d63997aee4316fb58919f4c8c43c",
+      "crew_editorial_resource|10|cfb80a6f688bb4a37701bcfca533ab1b",
+      "crew_editorial_roster_member|7|9b4fd9ff93d77de73aa3a0c005521612",
+      "crew_editorial_roster_version|1|694ae2f205ff208e833dd6bf9b06567a",
+      "crew_editorial_topic_fact|2|7c3d44230cad0ec7f37599b3686bba31",
+      "crew_event_catalog_observation|40|0edaf1c3e3496f76953979a3d55da523",
+      "crew_event_catalog_run|22|417768493483bd58b30b26337d398e24",
+      "crew_evidence_subject|32|8fe7ad2009f66a11518854c6230147d5",
+      "crew_expedition_external_id|1|b563db23454c8499d81c6341626f13bf",
+      "crew_expedition_observation|12|29f6870d45618f113dce417b16e05bb5",
+      "crew_expedition|1|6a821145f696c0e936d14a04f244e4b7",
+      "crew_identity_binding_version|4|a67be3684aef09b83895d075647b681a",
+      "crew_identity_decision_evidence|39|5dc32ddc1d00edf17b5f60e5dbe791af",
+      "crew_identity_resolution|28|f7a86b768340f0bba6331d44b0cb01d9",
+      "crew_nasa_request_budget|1|e948ae4c2b6f14d1bed19a069f6a7052",
+      "crew_operational_event_observation|8|44dc158f2841707a8c726ebfa532e486",
+      "crew_person_equivalence_decision|2|f7f0f8aa009ed4470e0981c70d226d76",
+      "crew_person_external_id|16|11a8553dfe4d5ed03bf8c33de2c54ef4",
+      "crew_person_observation|84|42d46b41df3e681d76041fc77e295e6f",
+      "crew_person|13|7832b64b30955dbde52c912293f1fe66",
+      "crew_reconciled_person_evidence|204|0243a589d92d054ce728222d631b4a75",
+      "crew_reconciled_person|172|076d95b0ddfc2b4af9956d6d2cf2d601",
+      "crew_reconciliation_evidence|65|46644afd436eb44ccd1f179cac232562",
+      "crew_reconciliation_resolution|260|efd65c1d6b4f1bda6f2086ca95ce6104",
+      "crew_reconciliation_run|136|dcac995f083cba443ba71918638c1b65",
+      "crew_reconciliation_snapshot|18|631bceb74e541feeacfcd0f5959e4591",
+      "crew_refresh_follow_up|0|d41d8cd98f00b204e9800998ecf8427e",
+      "crew_refresh_trigger|157|c6f0c1e7a7c823341b651ca51349b8ad",
+      "crew_source_article_observation|69|d63df6fac2df8ba1aaed87577f42ef80",
+      "crew_source_article|7|3c49aca3c154ebd8172b0a931a3b63dc",
+      "crew_source_document|49|7fe968696ae73899effb1e3b021ae503",
+      "crew_source_snapshot|12|e3dc824b2e273a31de5161628d357f04",
+      "crew_source_sync_run|146|4090edb7e6ce519a9bc2871c0c984f4c",
+      "crew_subject_metadata_version|26|bcedeaa76188be0223f8785d9ab68054",
+      "crew_subject_occurrence|25|16460786c8482c4aec70e8bd13ab73b0",
+      "crew_subject_version_link|32|644cd85094162e3f42d79fbb36b17567",
+      "crew_verification_evidence|10|03f422b8a97783f3f3559d39fab59214",
+      "nasa_oem_ephemerides|5|0696529fbf26850e6af76eb48fab9dc4",
+      "orbital_element_observations|32|68817d55e688c45129011b1cec247ddb",
+      "orbital_element_sets|20|79ea59a5f1324960b5573d0e5e63f08a"
+    ],
+    "flywayExpectedAddition": "V11"
+  },
+  "httpSemanticComparison": {
+    "requests": 17,
+    "changedSemanticResponses": [],
+    "excludedResponseClocks": [
+      "Current freshness.evaluatedAt",
+      "Current membership.ageSeconds",
+      "Current reconciliation.evaluatedAt",
+      "Replay open coverage end equal to reconstructedAt",
+      "Replay reconstructedAt"
+    ]
+  },
+  "performance": {
+    "candidateFeatureMillis": {
+      "min": 0.050875,
+      "median": 0.21475,
+      "p95": 0.4405,
+      "max": 2.790041
+    },
+    "candidateScoreMillis": {
+      "min": 0.000917,
+      "median": 0.002833,
+      "p95": 0.009792,
+      "max": 0.08825
+    },
+    "subjectMillis": {
+      "min": 1.619916,
+      "median": 3.056125,
+      "p95": 7.784333,
+      "max": 12.238083
+    },
+    "candidateGenerationMillis": {
+      "min": 0.496708,
+      "median": 0.615667,
+      "p95": 4.067416,
+      "max": 5.862625
+    },
+    "warmFactLoadMillis": {
+      "min": 110.362208,
+      "median": 126.1555205,
+      "p95": 161.127292,
+      "max": 161.127292
+    },
+    "warm25PureBatchMillis": {
+      "min": 26.271458,
+      "median": 30.983396,
+      "p95": 42.769625,
+      "max": 42.769625
+    },
+    "currentGetMillis": {
+      "min": 36.053917,
+      "median": 44.4171665,
+      "p95": 68.831708,
+      "max": 72.161084
+    },
+    "baselineCurrentGetMillis": {
+      "min": 37.296958,
+      "median": 45.634437500000004,
+      "p95": 66.269542,
+      "max": 194.631625
+    },
+    "finalCachedFactLoadMillis": {
+      "min": 135.030083,
+      "median": 151.611708,
+      "p95": 188.860875,
+      "max": 188.860875
+    },
+    "finalPure25BatchMillis": {
+      "min": 29.816875,
+      "median": 35.1139585,
+      "p95": 43.793,
+      "max": 43.793
+    }
+  },
+  "sql": {
+    "cold": 89,
+    "firstEnriched": 476,
+    "warmFactLoad": [
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "current": [
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48,
+      48
+    ]
+  },
+  "officialCacheImports": [
+    {
+      "url": "https://www.nasa.gov/humans-in-space/astronauts/jessica-u-meir/",
+      "hash": "3714f421ab12b02bfb3d8d5c67224ecda13d17fd960d7e3fb7ff9cbe32951fd9",
+      "retained": 1,
+      "bytes": 328796
+    },
+    {
+      "url": "https://www.nasa.gov/people/jessica-u-meir-ph-d-nasa-astronaut/",
+      "hash": "ebca8d509dd518bdf0592eb32fa5f970b741583930e74c7c87664914e520e04e",
+      "retained": 2,
+      "bytes": 274594
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/topic/278676",
+      "hash": "1a99e34cb4ab3d3cc2b1c95d7e76d451cbe66ce40fb994b01e0d88b9398f35f6",
+      "retained": 3,
+      "bytes": 67879
+    },
+    {
+      "url": "https://www.nasa.gov/humans-in-space/astronauts/jessica-watkins/",
+      "hash": "84721f0ef43f047b69b3dff74811fe4ea2c11fa9de63e25f14497cb7c67e3226",
+      "retained": 4,
+      "bytes": 326680
+    },
+    {
+      "url": "https://www.nasa.gov/people/jessica-watkins-ph-d-nasa-astronaut/",
+      "hash": "afaed8a1f7570e723a1705f0285dc3baa73435487c44968ca37cdd7f019af0bc",
+      "retained": 5,
+      "bytes": 272401
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/topic/255064",
+      "hash": "c9190cc58b72700c01c7bd0c958784b230ea1d6b4a5ff52da437ca0e73abb703",
+      "retained": 6,
+      "bytes": 67348
+    },
+    {
+      "url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-anil-menon/",
+      "hash": "cd9e48918ebc727aa7b601a98bda6b0834b38e7ff6e5f72f240f6ffef5ad78ba",
+      "retained": 7,
+      "bytes": 319986
+    },
+    {
+      "url": "https://www.nasa.gov/people/nasa-astronaut-anil-menon/",
+      "hash": "d9c3e74e1fd730f1a3fd525244fad32bc60f61224d0fa10315929ff4b535279b",
+      "retained": 8,
+      "bytes": 271962
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/topic/620006",
+      "hash": "8a81a581fe45fb80ec7a072c3dafb7561fb9c3c52b422f2b3acb0ed2c676f082",
+      "retained": 9,
+      "bytes": 59085
+    },
+    {
+      "url": "https://www.nasa.gov/humans-in-space/astronauts/nasa-astronaut-luke-delaney/",
+      "hash": "06a9e5335bfda3059ca4799ce9da76f62fd1e9d6c80b6a85a41b7889c1fc7b05",
+      "retained": 10,
+      "bytes": 313608
+    },
+    {
+      "url": "https://www.nasa.gov/people/nasa-astronaut-luke-delaney/",
+      "hash": "ce25e23bb8952a1e1cb10bd531071c8f59fda386bf42c99d62776ff7f6bf38ea",
+      "retained": 11,
+      "bytes": 271039
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/topic/619970",
+      "hash": "b5c53476cbb4db46d54709a0e0579c42ded303db6b32f689f9f5a1b766948220",
+      "retained": 12,
+      "bytes": 52404
+    },
+    {
+      "url": "https://www.nasa.gov/people/jessica-u-meir/",
+      "hash": "ebca8d509dd518bdf0592eb32fa5f970b741583930e74c7c87664914e520e04e",
+      "retained": 13,
+      "bytes": 274594
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/people/129831",
+      "hash": "fd76ee6af4e8c89fd888ddef6dc2bc184a06a7d88189801bfd51c8d64868c010",
+      "retained": 14,
+      "bytes": 18675
+    },
+    {
+      "url": "https://www.nasa.gov/people/jessica-watkins/",
+      "hash": "afaed8a1f7570e723a1705f0285dc3baa73435487c44968ca37cdd7f019af0bc",
+      "retained": 15,
+      "bytes": 272401
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/people/88101",
+      "hash": "52ed66988e9be4b6e6348c471f208e13c433fce69edd48cd325570bf5b4e445b",
+      "retained": -14,
+      "bytes": 16634
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/people/40775",
+      "hash": "06f524cad0b1d84f0a0244e0e075d5228aad9a47b9d90d55a159414aacf74978",
+      "retained": -10,
+      "bytes": 16912
+    },
+    {
+      "url": "https://www.nasa.gov/people/nasa-astronaut-jack-hathaway/",
+      "hash": "654d7579c5f88f8d99ad67071788651f516bdd049a542bbc1cff89bf0c52442b",
+      "retained": 16,
+      "bytes": 271378
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/people/129828",
+      "hash": "f99a3059cff63a06218e04f6a7758380083f9760cd10bd82ccd8533eeb6c602a",
+      "retained": 17,
+      "bytes": 15828
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/people/129838",
+      "hash": "c6a8ebb6c4627692d565340d8085995062822a135bb0a77b891e8fec0caf6e16",
+      "retained": -18,
+      "bytes": 15606
+    },
+    {
+      "url": "https://www.gctc.ru/main.php?id=154",
+      "hash": "07dcb056966018b97525d49c54d5faa2a6ed9c11c589f48990b5d30a71599eaa",
+      "retained": 18,
+      "bytes": 456578
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/582/",
+      "hash": "24f6c5e070226c27ad3569ba06ea7dfe77dea4a0f3408d62cb5b28070218b291",
+      "retained": 19,
+      "bytes": 79120
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/642/",
+      "hash": "95825054d9fef0ab3bd25a4adcc09a195ad00ed5a25c04c01d519c2a89061463",
+      "retained": 20,
+      "bytes": 49938
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/649/",
+      "hash": "339371136280d1eaaf38e659897fe5668a8b62befc35590a6e1403a0d494c0e8",
+      "retained": 21,
+      "bytes": 68131
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/650/",
+      "hash": "51df03de0ddb1bcc520a2a1a3f881f0b90ef597e1f38261e3195d2ab2f22b336",
+      "retained": 22,
+      "bytes": 75990
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/710/",
+      "hash": "04c45ee36faa501917175a63c133ebed9dab05950f447e531b05b8868c8aaafc",
+      "retained": 23,
+      "bytes": 49366
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/712/",
+      "hash": "7f3ac5855f1399453d50b764cfffc5c9ac2f7ce74c59a71eba22636036d91686",
+      "retained": 24,
+      "bytes": 60937
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/713/",
+      "hash": "ba753cf28269811a5fd2abd6a6454f8aa474e7452128290f842d23767e7aa395",
+      "retained": 25,
+      "bytes": 56926
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/732/",
+      "hash": "f730aa3fac653fe19b5c25513160aa001212ebd48b240921169026e2b0a3ce56",
+      "retained": 26,
+      "bytes": 91127
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/747/",
+      "hash": "3cf67796baf443b32dce3e0e81f863faca56ca34fd14ced74855fda0cbb37548",
+      "retained": 27,
+      "bytes": 79686
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/915/",
+      "hash": "9d3468c9c80c84c076fba378a1ef66bea4c0a1bc1a1285c1f81f68177d8e5abe",
+      "retained": 28,
+      "bytes": 48966
+    },
+    {
+      "url": "https://www.asc-csa.gc.ca/eng/astronauts/canadian/active/bio-joshua-kutryk.asp",
+      "hash": "4bb2d1d332527302b5c868414ed96346f64337188d4c667df5e3a64460ba4635",
+      "retained": 29,
+      "bytes": 31650
+    },
+    {
+      "url": "https://ll.thespacedevs.com/2.3.0/astronauts/573/",
+      "hash": "7dff1f51a14b99ebb5abf10ab11e175a611b5c1ee2fcb4bdc53da6a13bb2717d",
+      "retained": 30,
+      "bytes": 120621
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/mission/939897",
+      "hash": "2e8e2c9aa7b4f856081049619ac80354781421232ca964eb274ee1e746202b11",
+      "retained": 31,
+      "bytes": 87388
+    },
+    {
+      "url": "https://www.nasa.gov/wp-json/wp/v2/mission/992288",
+      "hash": "36a8290a5e89f49392a2a3378e3f64f0ad03bd025d2a7c8ad21e3300bad4c320",
+      "retained": 32,
+      "bytes": 83947
+    },
+    {
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot",
+      "hash": "487257f72b20d7cab9daca2e45fa94ec26e4fa57b828922b2f501e69ea0eb472",
+      "retained": 33,
+      "bytes": 16453
+    }
+  ],
+  "liveAcquisition": {
+    "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot",
+    "finalUrl": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot",
+    "redirects": [],
+    "hash": "e20ba050aff571b25d9639e8b8bb6620d39e0b13dd2e4a8dd10c7545233b3c53",
+    "capturedAt": "2026-10-11T18:35:35.004883Z",
+    "status": 200,
+    "error": null,
+    "retained": 34
+  },
+  "liveAcquisitionMatches": 25,
+  "latestBindingExplain": [
+    {
+      "QUERY PLAN": "Unique  (cost=16.32..16.82 rows=33 width=73) (actual time=0.420..0.433 rows=25 loops=1)"
+    },
+    {
+      "QUERY PLAN": "  Buffers: shared hit=12"
+    },
+    {
+      "QUERY PLAN": "  ->  Sort  (cost=16.32..16.57 rows=100 width=73) (actual time=0.419..0.424 rows=100 loops=1)"
+    },
+    {
+      "QUERY PLAN": "        Sort Key: binding_key, id DESC"
+    },
+    {
+      "QUERY PLAN": "        Sort Method: quicksort  Memory: 35kB"
+    },
+    {
+      "QUERY PLAN": "        Buffers: shared hit=12"
+    },
+    {
+      "QUERY PLAN": "        ->  Seq Scan on crew_operational_binding_revision  (cost=0.00..13.00 rows=100 width=73) (actual time=0.043..0.369 rows=100 loops=1)"
+    },
+    {
+      "QUERY PLAN": "              Buffers: shared hit=12"
+    },
+    {
+      "QUERY PLAN": "Planning Time: 0.060 ms"
+    },
+    {
+      "QUERY PLAN": "Execution Time: 0.444 ms"
+    }
+  ],
+  "initialSizes": [
+    {
+      "relname": "crew_operational_binding_candidate",
+      "bytes": 524288
+    },
+    {
+      "relname": "crew_operational_binding_proof",
+      "bytes": 221184
+    },
+    {
+      "relname": "crew_operational_binding_release",
+      "bytes": 32768
+    },
+    {
+      "relname": "crew_operational_binding_revision",
+      "bytes": 1384448
+    },
+    {
+      "relname": "crew_operational_binding_work",
+      "bytes": 24576
+    },
+    {
+      "relname": "crew_operational_event_observation",
+      "bytes": 49152
+    },
+    {
+      "relname": "crew_operational_request_permit",
+      "bytes": 16384
+    },
+    {
+      "relname": "crew_operational_resource_attempt",
+      "bytes": 65536
+    },
+    {
+      "relname": "crew_operational_resource_version",
+      "bytes": 1425408
+    },
+    {
+      "relname": "crew_operational_resource_work",
+      "bytes": 32768
+    }
+  ],
+  "currentBeforeAndAfterMemberIds": [
+    "8036ce99-4648-40d8-9aa7-2956ddefaa91",
+    "0aa26f8e-38e0-495d-b9a2-ced538c9e726",
+    "6e32c904-e487-40ef-b9fc-089cf33eb216",
+    "6e700f29-14ab-415a-87e4-6567860c1796",
+    "09dea926-7480-4fc5-a340-01d44a6e5dae",
+    "345d3c45-c57a-4bcf-b3d6-ea811ba55416",
+    "3e128b74-27e9-4cd5-acf2-bb76910dbe30"
+  ],
+  "dependencies": {
+    "onlyNewRuntime": "com.ibm.icu:icu4j:78.3",
+    "runtimeAI": false,
+    "externalPython": false,
+    "vectorDatabase": false,
+    "graphDatabase": false,
+    "broker": false,
+    "modelServer": false
+  },
+  "finalCachedRun": {
+    "cold": {
+      "subjects": 25,
+      "inserted": 25,
+      "matches": 25,
+      "deferred": 0,
+      "conflicts": 0,
+      "selects": 7,
+      "loadNanos": 961202500,
+      "batchNanos": 1952814542,
+      "queueLatencyMillis": 1193351
+    },
+    "enriched": {
+      "subjects": 25,
+      "inserted": 0,
+      "matches": 25,
+      "deferred": 0,
+      "conflicts": 0,
+      "selects": 7,
+      "loadNanos": 327557875,
+      "batchNanos": 549490542,
+      "queueLatencyMillis": 1195317
+    },
+    "restart": {
+      "subjects": 25,
+      "inserted": 0,
+      "matches": 25,
+      "deferred": 0,
+      "conflicts": 0,
+      "selects": 7,
+      "loadNanos": 134413250,
+      "batchNanos": 271299625,
+      "queueLatencyMillis": 1198081
+    },
+    "description": "First cached evaluation appends the parsed-fact-digest cut once; enriched/restart are unchanged-cut repeats. Not the initial empty-cache cold run."
+  },
+  "finalPersistedCounts": {
+    "revisions": 100,
+    "candidates": 819,
+    "proofs": 330,
+    "resourceVersions": 34,
+    "attempts": 37,
+    "ownRequestPermits": 1
+  },
+  "finalSizes": [
+    {
+      "relname": "crew_operational_binding_candidate",
+      "bytes": 1384448
+    },
+    {
+      "relname": "crew_operational_binding_proof",
+      "bytes": 540672
+    },
+    {
+      "relname": "crew_operational_binding_release",
+      "bytes": 32768
+    },
+    {
+      "relname": "crew_operational_binding_revision",
+      "bytes": 3276800
+    },
+    {
+      "relname": "crew_operational_binding_work",
+      "bytes": 57344
+    },
+    {
+      "relname": "crew_operational_request_permit",
+      "bytes": 40960
+    },
+    {
+      "relname": "crew_operational_resource_attempt",
+      "bytes": 65536
+    },
+    {
+      "relname": "crew_operational_resource_version",
+      "bytes": 1441792
+    },
+    {
+      "relname": "crew_operational_resource_work",
+      "bytes": 32768
+    }
+  ],
+  "checks": {
+    "baselineBackend": {
+      "mvnTest": 1008,
+      "mvnVerify": 1008,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "finalBackend": {
+      "mvnTest": 1095,
+      "mvnVerify": 1095,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "java": "Amazon Corretto 21.0.3"
+    },
+    "baselineFrontend": {
+      "tests": 786,
+      "files": 65,
+      "typecheck": "PASS",
+      "build": "PASS"
+    },
+    "finalFrontend": {
+      "tests": 786,
+      "files": 65,
+      "typecheck": "PASS",
+      "build": "PASS",
+      "node": "24",
+      "sourceChanges": 0
+    },
+    "diffCheck": "PASS",
+    "freshAndV10Upgrade": "PASS",
+    "correctionSupersessionABA": "PASS",
+    "leaseReclaimAndStaleOwner": "PASS",
+    "cachedOutageRevalidation": "PASS",
+    "transportBoundsAndRedirects": "PASS",
+    "knownWrongHumanFalseMatch": 0,
+    "constructedGateFaults": 25,
+    "positiveGateControlsIncluded": 2,
+    "constructedResourceFaults": 16,
+    "restartInserted": 0
+  },
+  "validationLogSHA256": {
+    "backend-test.log": "d6f8e9f9d8d7cab0bacd61e43541e7d391ccbe87b4c45a5e1d7713805933f71f",
+    "backend-verify.log": "7da96e6ff48cf510277c74f1ce7ef5331b87e0a0fb016ceb84fdb86fd754fca1",
+    "frontend-test.log": "3ec73db378c065f1a597dd6bd5c916783a246537333ea782e225749162014f1f",
+    "frontend-typecheck.log": "40093b8a9388dfbd872cb2fa656379fbe84b8adb35e18f876b55d70b4e3d7441",
+    "frontend-build.log": "7b17a372a71ed67a38d4555abf2bf99f32fdd824c706aa59b1878819c7e4349d",
+    "runtime-final.log": "c67fc7f0fa47525925ce381d5c47f709a07bf7562426f3a62e2bc4cb6eb61a3e"
+  },
+  "unchangedProductionArtifactsSHA256": {
+    "backend/src/main/resources/db/migration/V1__orbital_element_history.sql": "49ff759c3933f49643be3e1736a47fbbfce69a6a2ea93da407290991964056f7",
+    "backend/src/main/resources/db/migration/V4__crew_nasa_verification_and_reconciliation.sql": "aafe0ccc1e6d7859c586ace401d7ea5aca4f534738cef4e131705671e580c804",
+    "backend/src/main/resources/db/migration/V3__crew_source_observation_history.sql": "6b9098968f59fa2c71c046709a2ccad6c3e78e8d8e998368271d44565325c3ed",
+    "backend/src/main/resources/db/migration/V5__crew_event_aware_refresh.sql": "c3a67ed2770f30cd76d50bc99f4f054c109a2035804e2fcd1b72a3f95a67a27f",
+    "backend/src/main/resources/db/migration/V9__crew_automatic_identity_shadow.sql": "ea2dae448a4703caab2f137ac565b5289a8fffa2e0ca3fee7fc8d81942e609a8",
+    "backend/src/main/resources/db/migration/V6__crew_source_occurrences.sql": "64f2bde165e8c89ff1eb068e1444f9ee9f9d5b63cf0dfd5bde67b562ca1bbc30",
+    "backend/src/main/resources/db/migration/V7__crew_canonical_identity.sql": "23e7fe56cd62fa66d35207b1be9b8ac58552e31faf9e251c591d92a73312471e",
+    "backend/src/main/resources/db/migration/V8__crew_nasa_editorial_shadow.sql": "ecc8175c184cb598c31e65017a1227bb4c4e7ae35e3e4a09ff71115371bf5ed0",
+    "backend/src/main/resources/db/migration/V10__crew_active_membership_shadow.sql": "9c356ec6bd4b1fa37c611982cc1b305a9c391ccaf4b5ff3b5a3d052c2c03a151",
+    "backend/src/main/resources/db/migration/V2__nasa_oem_ephemeris.sql": "d56dbcde49b5d360b1f19ce4529f2507f8422d99321c4d0ac35ac813aae1c9b9",
+    "backend/src/main/resources/crew/reviewed-identities-v1.json": "140c8fb3e9f9b7baa199e8e40085e71bf6ed90b9aa0237ffd181f5de25605ee1",
+    "backend/src/main/resources/crew/automatic/lexical-v1.json": "5c7df0376b9b8e9b64f6f9d18204f152a148baaac439fdaf4cc70b488e774c10",
+    "backend/src/main/resources/crew/automatic/model-v1.json": "469c31402cdd89ae1bc956cdcabdc57e00088b967806d322bdfbfca8d9896792"
+  },
+  "policy": {
+    "version": "s10-scoped-shadow-v1",
+    "featureSchema": "s10-research13-qualified-signals-v1",
+    "scorer": "crew-auto-identity-v1-shadow",
+    "normalization": "s10-nfkc-casefold-icu78.3-v1",
+    "transliteration": "ICU4J 78.3 Any-Latin/BGN",
+    "authority": "s10-research-authority-matrix-v1",
+    "resourceParser": "s10-official-resources-v1",
+    "cutSchema": "s10-scoped-resource-fact-digests-v1",
+    "observationArrivalThreshold": 0.991,
+    "completedDepartureThreshold": 0.999,
+    "runnerMargin": 0.2,
+    "activation": "SHADOW_ONLY"
+  },
+  "performancePercentileConvention": "Nearest rank: sorted[ceil(0.95*n)-1]. No interpolation."
+}

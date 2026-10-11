@@ -185,3 +185,7 @@ milestone report. Java 21 `mvn test` and `mvn verify` each pass 1,008 tests with
 failures, errors or skips (baseline 962). Node 24 passes 786 tests in 65 files
 (baseline 770/63), typecheck and production build. Validation results are also
 summarized in `results.json`.
+
+## Subsequent S10 investigation layer — 2026-10-11
+
+[S10 Phase 1](../operational-subject-binding-shadow-validation/README.md) qualifies all six retained parser-1.2 activity subjects in an independent shadow repository. Those bindings do not advance production observations, change the accepted seven-day policy, or alter this milestone’s production/Replay/frontend boundary. In particular, the potential Anil Menon Oct 6 advancement remains a reported counterfactual.

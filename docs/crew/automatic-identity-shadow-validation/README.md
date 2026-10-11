@@ -98,3 +98,7 @@ The [active membership overlay](../active-membership-shadow-validation/README.md
 ## Subsequent production Current activation — ADR-0017 / 2026-10-11
 
 The dated results above remain the original milestone record. [Production Current activation](../current-active-projection-activation/README.md) now consumes the compatible V10 ACTIVE result through V7 publication. This does not activate V9 identity, alter source observations/parsers or redesign Replay; all V1–V10 migration bytes remain unchanged.
+
+## S10 Phase 1 follow-on — 2026-10-11
+
+The [independent operational subject linker](../operational-subject-binding-shadow-validation/README.md) reuses this frozen model and name primitives with a separately versioned qualified operational extractor. It preserves this V9 adapter, observations, decision revisions and graph. Its V11 results do not promote V9 into production, and its source-resource authority is enforced outside logistic coefficients.

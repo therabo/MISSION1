@@ -194,7 +194,7 @@ class CrewPostgresApiTest {
         assertEquals(personId().toString(), read("/api/iss/crew/" + personId()).get("id").asText());
         assertEquals(7, read("/api/iss/expedition/current").get("assignmentCount").asInt());
         assertEquals(
-                "10",
+                "11",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history ORDER BY installed_rank DESC"
                             + " LIMIT 1",

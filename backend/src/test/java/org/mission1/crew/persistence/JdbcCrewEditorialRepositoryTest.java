@@ -104,7 +104,7 @@ class JdbcCrewEditorialRepositoryTest {
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
             .schemas("upgrade_test")
             .load();
-    assertEquals(3, upgrade.migrate().migrationsExecuted);
+    assertEquals(4, upgrade.migrate().migrationsExecuted);
     upgrade.validate();
     assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_test.crew_person"));
     assertEquals(0, count("crew_editorial_acquisition"));

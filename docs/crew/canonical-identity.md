@@ -43,3 +43,7 @@ See [validation](canonical-identity-validation/README.md) for retained-data and 
 ## Current activation boundary — ADR-0017 / 2026-10-11
 
 Current membership now comes from the latest compatible committed V10 ACTIVE projection, followed by established V7 canonical identity and latest-retained LL2 field authority. It remains distinct from operational presence, assignment and source count facts. Retained people and aliases stay detail-addressable; V9 identity remains shadow-only and Historical/Replay selection stays unchanged. No source/history/migration change occurs. [Activation contract, rollback and acceptance](current-active-projection-activation/README.md).
+
+## S10 operational bindings — isolated shadow
+
+[ADR-0020](../adr/0020-shadow-operational-subject-binding.md) associates an exact source subject/version with an existing publishable V7 human only after independent official-evidence scoring and hard gates. It creates no person, external ID, equivalence, binding declaration, canonical name, profile or alias in V7. Scoped short forms and generated transliterations stay in the immutable S10 decision. Correction/supersession changes shadow eligibility/history only. V7 remains production canonical authority. [Validation](operational-subject-binding-shadow-validation/README.md).

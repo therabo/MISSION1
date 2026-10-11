@@ -91,3 +91,7 @@ The dated results above remain the original milestone record. [Production Curren
 ## Current presentation and observations — 2026-10-11
 
 V10 production publication remains the ADR-0017 consumer. [ADR-0019](../../adr/0019-current-membership-and-dated-operational-observations.md) introduces a new presence policy key and activity observations without changing support union, departure precedence, reentry, visitor or identity rules. [Production-service turnover validation](../current-operational-presence-validation/README.md) covers7→11→7, source lag/omissions/failures, DEFER, expiry and restart. V9 remains shadow; qualified test adapter evidence is not real-source qualification.
+
+## S10 Phase 1 boundary — 2026-10-11
+
+The [operational subject binding shadow](../operational-subject-binding-shadow-validation/README.md) can run detached counterfactuals through the pure membership policy. It never invokes `ActiveMembershipStore` or persists S10 associations into V10. Existing V10 revisions, episode support/veto rows and production Current activation remain unchanged. Counterfactual hashes/effects are diagnostics, not new membership projections.

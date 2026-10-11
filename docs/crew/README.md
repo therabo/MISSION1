@@ -63,3 +63,5 @@ accepted legacy evidence path. V9 decisions remain separate and unmodified by th
 ## Current operational observations — 2026-10-11
 
 [ADR-0019](../adr/0019-current-membership-and-dated-operational-observations.md) separates primary V10 Current membership from secondary dated source evidence. Current observed-aboard applicability is seven days, entry continuity fourteen days, count applicability seventy-two hours; public Replay keeps v1 applicability. Parser1.2.0 recognizes scoped onboard activities and retains publication proxies and unresolved subjects. [Real sources, turnover, polling and validation](current-operational-presence-validation/README.md). V7 identity and V9 shadow authority remain unchanged.
+
+- [Operational subject binding shadow — S10 Phase 1](operational-subject-binding-shadow-validation/README.md): qualified official identity paths, immutable revisions, corrections and production isolation; [ADR-0020](../adr/0020-shadow-operational-subject-binding.md).

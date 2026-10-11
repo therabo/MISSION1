@@ -126,3 +126,7 @@ changing acquisition health. Normal live ingestion remains the only freshness ad
 `publicEvidenceAsOf` is the explicit release boundary excluding new timed departures from Current
 and Replay until their later activation. `evidenceAsOf` continues to supply all accepted assertions
 to the retained shadow path. No V7/V9 identity or LL2/editorial data enters grammar parsing.
+
+## S10 identity investigation layer
+
+The [operational subject binding shadow](operational-subject-binding-shadow-validation/README.md) consumes the already retained exact assertion/version and source DOM. It does not reclassify NASA activity/arrival/departure grammar, change seven-day Current applicability, alter production annotation dates, install departure vetoes or change Replay applicability. Official identity facts qualify a human association; the original typed assertion and effective/publication/capture times retain their separate operational authority. New associations are diagnostic until an independently accepted production consumer exists.

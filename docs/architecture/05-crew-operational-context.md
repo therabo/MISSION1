@@ -84,3 +84,7 @@ internal or Historical/Replay. Current's sole headline is resolved membership ca
 Typed ACTIVE source-slot diagnostics remain in source details, with no retained-slot
 contribution or human-count inference. No source, identity, lifecycle or schema changes.
 [Investigation and validation](../crew/current-ui-semantic-cleanup/README.md).
+
+## Operational entity linker — S10 Phase 1
+
+[ADR-0020](../adr/0020-shadow-operational-subject-binding.md) adds `crew.operational` within the existing application/PostgreSQL deployment. Separate bounded acquisition and retained-input evaluation queues append V11 source-scoped bindings. V8 captures and the V9 frozen scorer are reused; post-scoring V7 routing supplies only an existing publication target. No S10 dependency enters REST, Replay, V9 graph evaluation or V10 materialization. The default shadow worker has no production consumer. [Qualified evidence, regression and performance](../crew/operational-subject-binding-shadow-validation/README.md).
