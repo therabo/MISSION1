@@ -4,8 +4,11 @@ import { clampInspectionOffset } from './inspectionControls';
 import { smootherstep } from './inspectionTransition';
 import { interpolateUnitDirection } from './inspectionMode';
 
-/** Same duration as the existing local DisplayRetarget correction. */
-export const INSPECTION_RESET_SECONDS = 0.8;
+/** Deliberate user camera return, distinct from the 0.8s source-display repair.
+ * Keep meaningful orbit/zoom visible through the C2 acceleration/deceleration.
+ * Entry/exit and DisplayRetarget retain their own accepted timing.
+ */
+export const INSPECTION_RESET_SECONDS = 2.5;
 
 /** Local pose in the existing moving physical F/L/U frame. The Viewer tick
  * owns timing and cancellation, just as it does entry/exit. Quaternion orbit

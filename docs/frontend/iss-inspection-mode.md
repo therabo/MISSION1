@@ -1,5 +1,48 @@
 # ISS Inspection Mode
 
+## Reset view perceptual correction — 2026-10-12
+
+The 0.8s reset introduced at `9134a2e` was numerically progressive but was
+rejected after user observation as almost instantaneous. Its call path is
+App → existing controls bridge → capture-only `InspectionResetTransition`
+constructor → existing Viewer tick. The click does not call `setView`, `lookAt`,
+`lookAtTransform`, reset a controller/range/transform or place the camera at an
+intermediate canonical pose. The constructor copies the actual local position,
+direction, up and FOV; its clearance preflight changes only private scratch data.
+Right is derived from the captured orthonormal basis; the existing physical frame
+supplies world position/orientation. Browser before/after-click vectors, world
+basis, transform and FOV are identical, with zero camera API calls in dispatch.
+
+The actual problem was borrowing the **0.8s source-display repair duration** for
+a deliberate user flight. In the retained far/off-axis baseline trace, range
+falls from 487m to 125m in about 216ms between the middle and three-quarter
+frames. Logarithmic range distributes relative zoom, but the useful close-up
+change is compressed into a fraction of a second. Neither the C2 easing nor a
+pre-animation snap caused the problem.
+
+Reset now takes a fixed **2.5s** for every meaningful movement. No adaptive rule
+is needed within the existing 35–2000m Inspection bounds; this keeps all devices
+and sources predictable. An already canonical pose remains a visual no-op.
+The unchanged monotonic C2 smootherstep `6t⁵ − 15t⁴ + 10t³` supplies one eased
+progress for radial quaternion turn, roll, logarithmic range and FOV. Spatial
+position is that direction multiplied by range. The existing close-camera
+clearance preflight shapes the radial path from the same progress, without a
+separate zoom clock or a change to the accepted box/clearance. It prevents an
+array intersection and range reversal, including very close off-axis starts.
+
+Current uses the evolving selected-source physical F/L/U frame on every tick;
+Historical uses its unchanged selected UTC. Both use the identical reset class.
+Native wheel/pinch/orbit cancels at the reached pose with its actual basis
+retained; repeated reset replaces one flight from that pose. Resize cancels in
+place and the next press uses the existing responsive endpoint. The 90m desktop,
+42.5° elevation, 100° FOV, zero lateral intent, projection composition, model
+scale, accepted entry/exit timing and original Earth restoration are unchanged.
+
+The [existing correction dossier](branding-crew-simplification/README.md#reset-view-softness-correction--2026-10-12)
+records root-cause traces, 0/10/25/50/75/90/100% screenshots and poses, endpoint
+handoff measurements, real Historical OEM availability and both-build validation.
+The dated 0.8s implementation and its evidence below remain historical.
+
 ## Progressive Reset view — 2026-10-12
 
 The accepted 90 m desktop /42.5° elevation /100° FOV endpoint, responsive

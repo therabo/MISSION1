@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { Camera, Cartesian3, GeographicProjection, JulianDate, Matrix4, SceneMode, type Scene } from 'cesium';
 import { describe, expect, it } from 'vitest';
-import { InspectionResetTransition } from './inspectionReset';
+import { INSPECTION_RESET_SECONDS, InspectionResetTransition } from './inspectionReset';
 import { clampInspectionOffset, rearInspectionOffset } from './inspectionControls';
 import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { parseComparison } from '../orbital/comparison';
@@ -17,6 +17,81 @@ const native = (offset: Cartesian3) => {
     up: Cartesian3.clone(camera.up), fov: 100 * Math.PI / 180 };
 };
 const close = (a: Cartesian3, b: Cartesian3) => expect(Cartesian3.distance(a, b)).toBeLessThan(1e-8);
+
+describe('Inspection reset perceptual timeline', () => {
+  const offset = Cartesian3.normalize(new Cartesian3(1500, -1200, -500), new Cartesian3());
+  Cartesian3.multiplyByScalar(offset, 2000, offset);
+  const start = native(offset);
+  const angle = Cartesian3.angleBetween(offset, target);
+  const easeAt = (p: number) => 6 * p ** 5 - 15 * p ** 4 + 10 * p ** 3;
+
+  it('takes 2.5 seconds for a meaningful reset, independently of entry/exit and source repair', () => {
+    const flight = new InspectionResetTransition(start, target, 125);
+    expect(INSPECTION_RESET_SECONDS).toBe(2.5);
+    expect(flight.duration).toBe(2.5);
+    expect(flight.startMs).toBe(125);
+    // At the former completion time this remains an intermediate camera pose.
+    const pose = flight.evaluate(0.8 / flight.duration);
+    expect(Cartesian3.distance(pose.position, target)).toBeGreaterThan(900);
+    expect(Cartesian3.magnitude(pose.position)).toBeGreaterThan(1000);
+  });
+
+  it('captures without mutating the actual Camera, active transform or local/world basis', () => {
+    const camera = new Camera({ canvas: { clientWidth: 1440, clientHeight: 900 },
+      drawingBufferWidth: 1440, drawingBufferHeight: 900, mapProjection: new GeographicProjection(), mode: SceneMode.SCENE3D } as Scene);
+    camera.lookAtTransform(Matrix4.fromTranslation(new Cartesian3(2000000, 4000000, 5000000)), offset);
+    const snapshot = () => [camera.position, camera.direction, camera.up, camera.right,
+      camera.positionWC, camera.directionWC, camera.upWC, camera.rightWC].map(v => Cartesian3.clone(v));
+    const before = snapshot(), transform = Matrix4.clone(camera.transform);
+    const rendered = { position: camera.position, direction: camera.direction, up: camera.up, fov: 1.2 };
+    const flight = new InspectionResetTransition(rendered, target, 0);
+    const after = snapshot();
+    before.forEach((vector, i) => expect(after[i]).toEqual(vector));
+    expect(camera.transform).toEqual(transform);
+    const zero = flight.evaluate(0);
+    expect(zero.position).toEqual(rendered.position);
+    expect(zero.direction).toEqual(rendered.direction);
+    expect(zero.up).toEqual(rendered.up);
+    expect(zero.fov).toBe(rendered.fov);
+    close(Matrix4.multiplyByPoint(transform, zero.position, new Cartesian3()), before[4]);
+    // The capture owns its data, even if native input changes the Camera later.
+    Cartesian3.clone(target, camera.position);
+    expect(flight.evaluate(0).position).toEqual(before[0]);
+  });
+
+  it.each([0, 0.1, 0.25, 0.5, 0.75, 0.9, 1])('coordinates position, log range, orientation and FOV at %s elapsed', p => {
+    const flight = new InspectionResetTransition({ ...start, fov: 1.2 }, target, 0);
+    const pose = flight.evaluate(p), u = easeAt(p), range = Cartesian3.magnitude(pose.position);
+    expect(range).toBeCloseTo(Math.exp(Math.log(2000) * (1 - u) + Math.log(90) * u), 8);
+    expect(Cartesian3.angleBetween(pose.direction, Cartesian3.negate(target, new Cartesian3()))).toBeCloseTo(angle * (1 - u), 7);
+    expect(pose.fov).toBeCloseTo(1.2 + (flight.endFov - 1.2) * u, 12);
+    close(Cartesian3.multiplyByScalar(pose.direction, -range, new Cartesian3()), pose.position);
+    if (p === 0) {
+      expect(pose.position).toEqual(start.position); expect(pose.direction).toEqual(start.direction); expect(pose.up).toEqual(start.up);
+    } else if (p < 1) {
+      expect(range).toBeGreaterThan(90); expect(range).toBeLessThan(2000);
+      expect(Cartesian3.distance(pose.position, start.position)).toBeGreaterThan(1);
+      expect(Cartesian3.distance(pose.position, target)).toBeGreaterThan(1);
+      if (p === 0.1) expect(range).toBeGreaterThan(1900);
+      if (p === 0.25) expect(range).toBeGreaterThan(1400);
+      if (p === 0.5) expect(range).toBeCloseTo(Math.sqrt(2000 * 90), 8);
+      if (p === 0.75) expect(range).toBeGreaterThan(120);
+      if (p === 0.9) expect(range).toBeGreaterThan(92);
+    } else close(pose.position, target);
+  });
+
+  it('has soft start/stop and no visible endpoint stabilization or native tracking handoff', () => {
+    const flight = new InspectionResetTransition(start, target, 0);
+    const initial = Cartesian3.clone(flight.evaluate(0).position);
+    expect(Cartesian3.distance(flight.evaluate(0.001).position, initial)).toBeLessThan(0.001);
+    const penultimate = flight.evaluate(1 - 1e-6);
+    const position = Cartesian3.clone(penultimate.position), direction = Cartesian3.clone(penultimate.direction), up = Cartesian3.clone(penultimate.up);
+    const end = flight.evaluate(1), accepted = native(target);
+    expect(Cartesian3.distance(position, end.position)).toBeLessThan(1e-5);
+    close(direction, end.direction); close(up, end.up);
+    close(end.position, accepted.position); close(end.direction, accepted.direction); close(end.up, accepted.up);
+  });
+});
 
 describe('Inspection reset uses one progressive local pose', () => {
   const starts = {
@@ -35,7 +110,7 @@ describe('Inspection reset uses one progressive local pose', () => {
     close(flight.evaluate(0).direction, start.direction); close(flight.evaluate(0).up, start.up);
     let distance = Cartesian3.distance(start.position, target);
     const startRange = Cartesian3.magnitude(start.position);
-    for (const progress of [0.25, 0.5, 0.75]) {
+    for (const progress of [0.1, 0.25, 0.5, 0.75, 0.9]) {
       const pose = flight.evaluate(progress), range = Cartesian3.magnitude(pose.position);
       expect(Cartesian3.distance(pose.position, start.position)).toBeGreaterThan(0.1);
       expect(Cartesian3.distance(pose.position, target)).toBeGreaterThan(0.1);
@@ -111,7 +186,7 @@ describe('Inspection reset uses one progressive local pose', () => {
       const selected = JulianDate.fromIso8601(iso), before = JulianDate.toIso8601(selected);
       for (const historical of [false, true]) {
         const flight = new InspectionResetTransition(native(starts['C: off axis and far away']), target, 0);
-        for (const p of [0, 0.25, 0.5, 0.75, 1]) {
+        for (const p of [0, 0.1, 0.25, 0.5, 0.75, 0.9, 1]) {
           const time = historical ? selected : JulianDate.addSeconds(selected, p * flight.duration, new JulianDate());
           const physical = positions.getValue(time)!, velocity = velocities.getValue(time)!;
           const frame = new Matrix4(); expect(new TrajectoryVisualFrame().update(physical, velocity, frame)).toBe(frame);

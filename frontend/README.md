@@ -106,6 +106,17 @@ The renderer retains camera-independent physical paths and the exact future hori
 
 ## Progressive Inspection Reset view — 2026-10-12
 
+The original 0.8s implementation below is superseded by the perceptual correction:
+Reset uses a **2.5-second** C2 ease-in/ease-out timeline. A full click-path audit
+and browser camera spies confirm no pre-animation camera movement. The actual
+local pose, basis and FOV are captured before interpolation; position, radial
+orbit, log range, roll and FOV retain the same coordinated progress. Current and
+Historical follow their own accepted physical frame and UTC, including legitimate
+backend-selected Historical OEM. Native interruption/restart, responsive target,
+accepted framing and entry/exit remain unchanged. [Root cause and validation](../docs/frontend/branding-crew-simplification/README.md#reset-view-softness-correction--2026-10-12).
+
+Earlier implementation record:
+
 Inspection exposes Reset view through the existing camera-control bridge. One
 0.8-second C2 smootherstep transports the actual camera basis along the shortest
 local radial arc while unwinding roll and interpolating logarithmic range in the

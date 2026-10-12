@@ -1,5 +1,100 @@
 # Branding refresh and Crew presentation — 2026-10-12
 
+## Reset View softness correction — 2026-10-12
+
+Baseline is clean direct `main` **9134a2e92e3aede61da01c61483c8cc090274666**.
+This follow-up changes only the Inspection reset duration and adds camera tests
+and documentation. The previous artwork/Crew milestone and its evidence below
+remain historical. No architecture ADR is needed for this local timing correction.
+
+### Root cause and complete dispatch audit
+
+`App` invokes the existing `EarthSceneControls.resetView` bridge. In stable
+Inspection the callback passes the rendered local camera position/direction/up
+and canonical FOV to a capture-only `InspectionResetTransition`. Its constructor
+clones that state; quaternion/clearance preflight operations use owned scratch
+objects. It installs one reset reference, retains the existing basis and requests
+rendering. No camera method, range/recenter/transform change, controller reset,
+tracking change or intermediate canonical placement occurs during dispatch.
+The existing Viewer tick performs the first interpolated camera update in the
+fresh selected-source physical F/L/U frame. The Earth-only `setView` branch is
+not reached from Inspection. Entry/exit and their helpers remain byte-identical.
+
+Browser spies in both builds record **zero** `setView`, `lookAt`,
+`lookAtTransform` or `cancelFlight` calls in reset dispatch, and exact equality of
+local/world position, direction/up/right, transform and FOV before and after it.
+Tests also reproduce t=0 exactly without mutating an actual Cesium Camera.
+The full basis contains all orientation information; the diagnostic avoids
+Cesium HPR getters, which temporarily change transforms and introduce nanometre
+round-trip noise. An initial diagnostic attempt using those getters is preserved
+separately; it did not identify a product snap.
+
+The previous easing was already monotonic C2, and position/range were already
+animated. Its **0.8s** duration was copied from `DisplayRetarget`, a source-display
+repair with a different purpose. For a real browser far/off-axis start at
+1984.943m, baseline samples show 1569.665m at 186ms, 487.095m at 389ms,
+124.940m at 605ms and 92.485m at 729ms. This compresses the useful close-up
+approach into roughly 216ms between the middle and three-quarter frames.
+Logarithmic range concentrates Cartesian metres early while distributing
+relative zoom; it is not a separate timer or an initial snap. The C2 clock itself
+does not front-load progress: its 10/25/50/75/90% eased values are
+0.00856/0.103515625/0.5/0.896484375/0.99144.
+
+### Corrected camera return
+
+The default is now a fixed **2.5s**, 3.125× the former duration. There is no
+adaptive duration: one predictable deliberate return is appropriate within the
+accepted Inspection range bounds. An already canonical pose is a visual no-op.
+The C2 curve, actual capture, shortest radial turn, continuous roll, logarithmic
+range, FOV and close-clearance path remain unchanged. All derive from the same
+eased progress; clearance shaping is geometry within that timeline, rather than
+an independent zoom animation. No overshoot/bounce or new clock/listener exists.
+
+Every tick follows the current physical selected-source ISS frame. Historical
+continues to use its selected UTC, never Current time. Accepted desktop 90m range,
+responsive `90 × max(1, 1.2/aspect)`, 42.5° elevation, 100° FOV, zero lateral
+offset, physical centering, projection offsets, model scale and entry/exit stay
+unchanged. Native wheel, pinch and orbit cancel at the reached actual basis;
+repeated clicks replace one transition. Resize cancellation and responsive retry
+retain the established policy. The next native tracking frame differs only by
+floating-point tolerance, with no perceptible final recenter.
+
+### Evidence and validation
+
+All new logs, runner scripts, real API bodies, click spies, full render traces,
+videos, seven phase screenshots, contact sheets and final report are outside Git:
+`/Users/daniel/.codex/exports/mission1-reset-softness/`.
+`validation-summary.json` and `git-final.json` record final gate results and the
+single ordinary commit/remote proof; no self-referential hash is committed.
+Failed/interim diagnostics remain separate from accepted evidence.
+
+Frontend baseline **825 tests /68 files** → **835 /68**, including 28 reset
+tests. New gates check capture without mutation, exact t=0, duration, meaningful
+10/25/50/75/90% position/range/orientation/FOV, shared progress, soft endpoints and
+negligible stabilization. Retained tests cover repeated/interrupted reset, all
+five responsive endpoints, all legal close directions and real GP/OEM
+Current/Historical frames. Full tests, typecheck, build and diff checks are run;
+the existing Cesium bundle-size warning is retained.
+
+The source matrix uses real backend 8080 with development 5175 and production
+4175: Current GP/TLE at all five requested viewports, Current OEM desktop/mobile,
+Historical GP/TLE at **2026-10-03T12:04:00Z** and **2026-10-10T12:00:00Z**, and
+Historical OEM at **2026-09-30T10:00:00Z**. This last cut is legitimately returned
+as backend primary NASA_OEM, without a manual source override or substituted DTO.
+It extends the prior milestone's tested cuts, where OEM was only secondary.
+Historical UTC remains exact throughout reset. Native wheel/orbit, emulated pinch,
+mid-flight interruption/restart, close and near-maximum range, poles, no-op,
+responsive resize retry, module picking, source/time switching and Earth return
+are covered. Frame measurements and endpoint deltas are in the external report.
+This browser evidence uses Chromium/Metal and emulated touch.
+
+Backend `mvn test` and `mvn verify` each exercise **1163 tests**. Backend, REST,
+database/Flyway, GP/TLE/OEM propagation, physical ISS state/trajectory/orientation,
+model assets/scale, source policy, Crew Current/Historical and V7/V8/V9/S10/V10
+remain byte-identical. Fingerprints cover all tracked files and external
+instructions/skills. The external project context is updated; next major
+milestone remains **clean-room empty-database bootstrap validation**.
+
 ## Final supplied logo, portrait caption and progressive Reset view — 2026-10-12
 
 Baseline: clean direct `main`, **e82ad43879dd48362371535ace2cc65c4a44b56c**.
