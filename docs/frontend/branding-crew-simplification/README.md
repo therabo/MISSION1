@@ -1,5 +1,120 @@
 # Branding refresh and Crew presentation — 2026-10-12
 
+## Actual Earth Reset correction and selective Inspection restoration — 2026-10-13
+
+Baseline: clean direct `main`, **6a71fb6d4950a87e4b0a16097fe3636b018e72e9**.
+The two Reset milestones below changed a different product action. Their dated
+measurements are retained as history; their root-cause conclusions concern the
+new Inspection control and do not explain the user-facing Earth Reset defect.
+
+### Phase A: visible control, runtime and previous test gap
+
+Before production edits, both development 5175 and production 4175 were traced
+from `.earth-scene-controls .secondary-reset`: DOM button → `ContextButton` →
+`SceneControls` → `App` onClick → `EarthSceneControls.resetView` → `EarthView`
+`EARTH_OVERVIEW` branch → synchronous Cesium `camera.setView`. The actual click
+moved the camera roughly **36 million metres** in **1.9–3.2 ms**. Its first
+rendered frame was already final; no 2.5-second helper ran. The separate
+`.inspection-reset-control .secondary-reset` did reach the 2.5-second
+`InspectionResetTransition` through `ISS_INSPECTION`. **Same path: NO**.
+There was no competing writer erasing an Earth tween: that tween did not exist.
+
+Previous helper tests and browser scripts entered Inspection before pressing
+Reset. Their valid camera traces exercised the wrong control. The App Earth
+button test mocked its bridge and could not test animation. Earth return tests
+validated Inspection Back, another action. Phase A now records every relevant
+camera/API/transform write, stack, state/effect observation, final postRender pose
+and intended-versus-rendered comparison, using real backend data and visible UI.
+
+### Selective restoration
+
+`App.tsx`, `SceneControls.tsx` and the Inspection reset CSS are restored to
+**e82ad43879dd48362371535ace2cc65c4a44b56c**. `EarthView` removes only the
+Inspection reset dispatch/tick/retained-basis branch and restores its native
+tracking and zoom path. The accidental helper and tests are removed. As at e82,
+Inspection has **no Reset button**; native orbit/zoom/pinch and the accepted
+90m/42.5°/100° responsive framing, entry and exit are preserved. This is a
+selective camera restoration, not a whole-commit revert. The supplied logo and
+Crew presentation work stay byte-identical.
+
+### Correct Earth interaction and target
+
+The same visible Earth control now captures the actual rendered world position,
+direction, up and FOV, without placing the camera anywhere during dispatch.
+`EarthResetTransition` supplies one **2.5s** wall-clock timeline with C2
+`6t⁵−15t⁴+10t³` progress. A stable captured radial rail avoids antipodal flips;
+logarithmic positive WGS84 clearance changes zoom without a chord through Earth.
+The actual basis is transported along that rail and its remaining aim/roll
+converges in the transported camera basis. The same progress drives all parts.
+A visual QA iteration caught and corrected a world-basis roll residual that
+temporarily lowered Earth in the middle of the flight; it is covered by a new
+aim regression test. Interim evidence is separate from final acceptance.
+The near-canonical production case also exposed Cesium's non-unit linear
+approximation for near-parallel slerp. Normalizing the composed quaternion keeps
+the intended basis orthonormal before Camera stabilizes it; a dedicated test
+guards this case. Both full browser matrices were repeated after that repair.
+
+The canonical Earth policy remains **17,000,000m geodetic height**, Cesium's
+existing default nadir/north-up orientation, held FOV/projection and active
+transform, independently of viewport. Tests compare its geometry with actual
+native `Camera.setView`, including poles. Phase A also proved the former target
+read a retained Current GP `currentGeodetic` field even in Historical/OEM.
+That stale binding is corrected at the Earth boundary: `positionAt(sceneUTC)`
+supplies the already accepted selected-source physical state. The canonical
+geometry is preserved; the old wrong-source world XYZ is deliberately not
+reproduced in Historical. Current follows its evolving endpoint on each tick;
+Historical holds accepted UTC T. Neither orbital propagation nor data changes.
+
+During Earth Reset, the existing Viewer tick owns the camera and converts the
+world pose through the active inverse transform. It calls no `setView`, `flyTo`
+or `lookAt*`, installs no new render loop and leaves `trackedEntity` null. Native
+input is temporarily suspended, then restored by production capture listeners
+before wheel/pointer/pinch handling. Repeat captures the reached pose; native
+orbit/zoom/pinch, toolbar zoom, resize, time/source handoff, invalid state and
+Inspection entry cancel in place. Final pose is copied exactly before ownership
+returns to native Earth input. A static canonical Historical reset is a no-op.
+
+### Validation and frozen boundaries
+
+Detailed results, all frame/write/effect archives, normal-speed browser videos,
+seven-phase screenshots, runner scripts and final Git proof remain outside Git:
+`/Users/daniel/.codex/exports/mission1-earth-reset-final/`.
+The Phase-A decision was saved before Phase-B production edits. Browser runners
+click real UI controls, use real backend 8080, and never substitute DTOs, rewrite
+scene clocks or set camera poses/controller flags. Temporary instrumentation
+forwards all evaluation arguments and observes final postRender poses.
+
+The final matrix covers both builds, all five requested viewports, Current
+GP/TLE and OEM, Historical GP at **2026-10-03T12:04:00Z** and
+**2026-10-10T12:00:00Z**, and legitimate backend-primary Historical OEM at
+**2026-09-30T10:00:00Z**. It checks all rendered frames, 0/10/25/50/75/90/100%,
+exact endpoints, no click jump, no competing snap, far/angular/close/no-op,
+repeat/interruption, mobile native emulated pinch starts, Inspection restoration,
+source/time handoffs, persistent Viewer and native module picking. Touch is
+Chromium CDP emulation; physical-device touch is not claimed.
+
+Final development/production each pass **32 Earth cases, 14 Inspection
+regressions and 12 interaction checks**. Development retains **5330 rendered
+frames**, completion **2.511–2.586s**; production retains **5928 frames**,
+completion **2.509–2.537s**. Click position jump, intended/rendered position
+error, endpoint error, post-completion movement and saved Earth return error are
+all **0m** at retained precision. Canonical target latitude/longitude matches
+the selected physical ISS state within **8×10⁻¹⁶ radians**; the minimum tested
+Earth clearance is **26.3km**. Original videos were replayed at **1×** through
+the native browser decoder for Current, Historical and restored Inspection;
+decoded frame strips corroborate the actual-click traces.
+
+Frontend baseline **835/68** → **838/68**: the 28 accidentally scoped helper
+tests are replaced by 31 Earth tests, and the existing App temporal assertions
+now distinguish restored Inspection absence from the visible Earth bridge.
+Full tests, typecheck, build and diff validation are recorded externally.
+Backend Java21 test/verify retain **1163** tests. V7, V8 semantics, V9 SHADOW,
+S10/V10, Crew Current/Historical, REST, DB/Flyway, GP/OEM propagation, physical
+trajectory/orientation/model and rendering helpers are frozen. Instruction and
+skill fingerprints are unchanged. No dependency or architecture change needs an
+ADR. External `mission1-project.md` is updated; the next major milestone remains
+**clean-room empty-database bootstrap validation**.
+
 ## Reset View softness correction — 2026-10-12
 
 Baseline is clean direct `main` **9134a2e92e3aede61da01c61483c8cc090274666**.

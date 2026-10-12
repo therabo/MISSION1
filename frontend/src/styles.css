@@ -374,9 +374,9 @@ dl { margin: 8px 0 0; }
 .trajectory-swatch { display: block; width: 24px; height: 2px; flex: none; }
 .trajectory-swatch.gp { background: var(--color-trajectory-gp); }
 .trajectory-swatch.oem { background: var(--color-trajectory-oem); }
-:is(.earth-scene-controls, .inspection-reset-control) { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: flex; gap: 8px; }
-:is(.earth-scene-controls, .inspection-reset-control) .context-button { width: 44px; padding: 0; }
-:is(.earth-scene-controls, .inspection-reset-control) .context-button:last-child { width: 124px; }
+.earth-scene-controls { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: flex; gap: 8px; }
+.earth-scene-controls .context-button { width: 44px; padding: 0; }
+.earth-scene-controls .context-button:last-child { width: 124px; }
 .earth-current .cesium-viewer-bottom { bottom: calc(var(--operational-height) + 2px) !important; left: 24px !important; }
 /* Keep Cesium's credit dialog reachable by keyboard, without adding its default
    attribution label to the approved scene. Source links also remain in evidence. */
@@ -419,8 +419,8 @@ dl { margin: 8px 0 0; }
   .context-crew { grid-area: crew; }
   .context-date { grid-area: date; width: auto; height: auto; flex-direction: row; align-items: center; justify-content: center; gap: 8px; }
   .context-divider { display: none; }
-  .top-context-bar .context-button, :is(.earth-scene-controls, .inspection-reset-control) .context-button, .context-source-control, .context-source select { height: 44px; }
-  :is(.earth-scene-controls, .inspection-reset-control) { right: 16px; }
+  .top-context-bar .context-button, .earth-scene-controls .context-button, .context-source-control, .context-source select { height: 44px; }
+  .earth-scene-controls { right: 16px; }
   .source-state-slot, .source-state-content, .orbital-status-disclosure > summary { min-height: 50px; }
   .historical-time-bar { height: 60px; margin-top: 16px; }
   .historical-time-bar button { height: 44px; }
@@ -477,7 +477,7 @@ dl { margin: 8px 0 0; }
   .context-date { gap: 6px; }
   .context-date > span { display: none; }
   .trajectory-legend { left: 20px; }
-  :is(.earth-scene-controls, .inspection-reset-control) { right: 12px; }
+  .earth-scene-controls { right: 12px; }
   .earth-current .cesium-viewer-bottom { left: 12px !important; }
   .earth-current-notice { margin: 8px 12px; max-width: calc(100% - 24px); }
   .orbital-status-evidence { width: calc(100% - 24px); margin: 12px; }
@@ -495,7 +495,7 @@ dl { margin: 8px 0 0; }
 @media (pointer: coarse) and (max-width: 1243px) {
   .earth-current .cesium-credit-expand-link:not(:focus-visible) { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
   .earth-current .cesium-credit-expand-link { display: inline-flex !important; align-items: center; min-height: 44px; padding: 0 8px; font-size: 12px; }
-  :is(.earth-scene-controls, .inspection-reset-control) { bottom: 64px; }
+  .earth-scene-controls { bottom: 64px; }
 }
 /* Cesium's native mobile attribution used z-index:1 under our chrome. This
    modal alone owns the foreground; its source links and close action remain
@@ -520,31 +520,31 @@ dl { margin: 8px 0 0; }
    are width-scoped: accepted desktop glyphs, borders and geometry stay intact. */
 @media (max-width: 1243px) {
   :root { --secondary-target: 44px; --secondary-face: 38px; --secondary-icon: 18px; --calendar-action-face: 36px; }
-  :is(.earth-scene-controls, .inspection-reset-control, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face,
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face,
   .earth-current .cesium-credit-lightbox-close {
     isolation: isolate; border: 0; background: transparent; color: var(--color-text-primary);
     padding: 0; height: var(--secondary-hit-height, var(--secondary-target)); min-height: var(--secondary-hit-height, var(--secondary-target));
   }
-  :is(.earth-scene-controls, .inspection-reset-control, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face { position: relative; }
-  :is(.earth-scene-controls, .inspection-reset-control, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face::before,
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face { position: relative; }
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face::before,
   .earth-current .cesium-credit-lightbox-close::before {
     content: ''; position: absolute; z-index: -1; left: 50%; top: 50%;
     width: var(--secondary-face); height: var(--secondary-face-height, var(--secondary-face)); box-sizing: border-box;
     margin-left: calc(var(--secondary-face) / -2); margin-top: calc(var(--secondary-face-height, var(--secondary-face)) / -2);
     border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); pointer-events: none;
   }
-  :is(.earth-scene-controls, .inspection-reset-control, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:hover:not(:disabled)::before,
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:hover:not(:disabled)::before,
   .earth-current .cesium-credit-lightbox-close:hover::before { background: var(--control-hover); }
-  :is(.earth-scene-controls, .inspection-reset-control, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:focus-visible,
+  :is(.earth-scene-controls, .historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-face:focus-visible,
   .earth-current .cesium-credit-lightbox-close:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
   :is(.historical-calendar, .context-dock, .crew-panel.crew-workspace) .context-button.secondary-close,
-  :is(.earth-scene-controls, .inspection-reset-control) .context-button.secondary-zoom { width: var(--secondary-target); }
+  .earth-scene-controls .context-button.secondary-zoom { width: var(--secondary-target); }
   .secondary-face .secondary-desktop-glyph { display: none; }
   .secondary-face .secondary-icon { display: block; width: var(--secondary-icon); height: var(--secondary-icon); flex: none; }
   .secondary-icon .control-icon { width: 100%; height: 100%; }
   .secondary-icon > svg { display: block; width: 100%; height: 100%; }
-  :is(.earth-scene-controls, .inspection-reset-control) { gap: 4px; }
-  :is(.earth-scene-controls, .inspection-reset-control) .context-button.secondary-reset { width: 112px; font-size: 13px; --secondary-face: 106px; --secondary-face-height: 38px; }
+  .earth-scene-controls { gap: 4px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 112px; font-size: 13px; --secondary-face: 106px; --secondary-face-height: 38px; }
   .trajectory-legend, .trajectory-legend > span { height: 24px; }
   .trajectory-legend { font-size: 12px; line-height: 16px; gap: 16px; bottom: 34px; }
   .trajectory-legend > span { gap: 6px; }
@@ -559,9 +559,9 @@ dl { margin: 8px 0 0; }
 }
 @media (max-width: 740px) {
   :root { --secondary-face: 32px; --secondary-icon: 16px; --calendar-action-face: 32px; }
-  :is(.earth-scene-controls, .inspection-reset-control) { gap: 2px; }
-  :is(.earth-scene-controls, .inspection-reset-control) .secondary-zoom { --secondary-face: 34px; }
-  :is(.earth-scene-controls, .inspection-reset-control) .context-button.secondary-reset { width: 102px; --secondary-face: 92px; --secondary-face-height: 34px; }
+  .earth-scene-controls { gap: 2px; }
+  .earth-scene-controls .secondary-zoom { --secondary-face: 34px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 102px; --secondary-face: 92px; --secondary-face-height: 34px; }
   .trajectory-legend, .trajectory-legend > span { height: 22px; }
   .trajectory-legend { font-size: 11px; line-height: 15px; gap: 12px; bottom: 35px; }
   .trajectory-legend > span { gap: 5px; }
@@ -570,8 +570,8 @@ dl { margin: 8px 0 0; }
 }
 @media (max-width: 379px) {
   :root { --secondary-target: 40px; --secondary-face: 30px; --secondary-icon: 14px; --calendar-action-face: 30px; }
-  :is(.earth-scene-controls, .inspection-reset-control) .secondary-zoom { --secondary-face: 32px; }
-  :is(.earth-scene-controls, .inspection-reset-control) .context-button.secondary-reset { width: 92px; --secondary-face: 84px; --secondary-face-height: 32px; font-size: 12px; }
+  .earth-scene-controls .secondary-zoom { --secondary-face: 32px; }
+  .earth-scene-controls .context-button.secondary-reset { width: 92px; --secondary-face: 84px; --secondary-face-height: 32px; font-size: 12px; }
   .trajectory-legend, .trajectory-legend > span { height: 20px; }
   .trajectory-legend { bottom: 34px; }
   .trajectory-legend::before { inset: 0 -4px; }

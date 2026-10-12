@@ -1,5 +1,16 @@
 # MISSION1 Earth View
 
+**Earth Reset correction — 2026-10-13:** tracing the actual visible Earth control
+proved the earlier 0.8s/2.5s changes affected an added Inspection Reset instead.
+Inspection is restored to e82ad438 behavior without that button; branding/Crew
+work is preserved. Earth now returns progressively in 2.5s from its actual pose,
+with coordinated C2 position/clearance/orientation, held FOV/transform and the
+existing 17,000km geodetic-height/nadir/north-up endpoint policy. The reference
+uses accepted selected-source scene state, fixing the former retained Current
+GP lookup in Historical/OEM. Actual UI clicks, rendered-camera traces and
+normal-speed videos cover Current/Historical and both builds.
+[Root cause, restoration and validation](../docs/frontend/branding-crew-simplification/README.md#actual-earth-reset-correction-and-selective-inspection-restoration--2026-10-13).
+
 **Unified Crew Historical — 2026-10-12:** modern Historical consumes backend HISTORICAL_V10_S10 membership metadata, labels every returned human Member at Historical UTC, and separates assignment/operational evidence at T from latest canonical biography/career. Annotation age uses accepted T; no Current roster/profile lifecycle fallback occurs. Current retains120-second visible serial polling; Historical pauses it. Date picker, ±10-minute navigation, <=716 detail/back behavior and native Cesium/Inspection ownership remain intact. Confidence/scoring stays private. Missing membership metadata is legacy rollback rendering only. [Final validation](../docs/crew/final-crew-architecture-validation/README.md).
 
 

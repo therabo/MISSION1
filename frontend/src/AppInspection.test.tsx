@@ -99,19 +99,25 @@ it('removes Earth controls and trajectory legend throughout entry, Inspection an
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.earth-scene-controls')).not.toBeNull();
   expect(node.querySelector('.trajectory-legend')).not.toBeNull();
 });
-it.each(['Current', 'Historical'])('%s exposes reset only in stable Inspection and preserves its data/time context', async temporal => {
+it.each(['Current', 'Historical'])('%s Inspection Reset remains absent as at e82; the distinct Earth button retains its bridge', async temporal => {
   scene.reset.mockClear();
   if (temporal === 'Historical') await click('Historical');
   await click('ISS Inspection'); await mode('ENTERING_INSPECTION');
   const before = { time: shown(), replay: scene.props.replay, window: scene.props.window, source: scene.props.selectedSource };
-  expect(button('Reset view').disabled).toBe(true);
-  await mode('ISS_INSPECTION'); expect(button('Reset view').disabled).toBe(false);
-  await click('Reset view'); expect(scene.reset).toHaveBeenCalledOnce();
+  expect(node.querySelector('.earth-scene-controls,.inspection-reset-control')).toBeNull();
+  await mode('ISS_INSPECTION');
+  expect(node.querySelector('.earth-scene-controls,.inspection-reset-control')).toBeNull();
+  expect([...node.querySelectorAll('button')].some(n => n.textContent === 'Reset view')).toBe(false);
+  expect(scene.reset).not.toHaveBeenCalled();
   expect(shown()).toBe(before.time); expect(scene.props.replay?.state).toBe(before.replay?.state);
   expect(scene.props.replay?.atMs).toBe(before.replay?.atMs);
   expect(scene.props.window).toBe(before.window); expect(scene.props.selectedSource).toBe(before.source);
   expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);
-  await mode('EXITING_INSPECTION'); expect(button('Reset view').disabled).toBe(true);
+  await mode('EXITING_INSPECTION');
+  expect(node.querySelector('.earth-scene-controls,.inspection-reset-control')).toBeNull();
+  await mode('EARTH_OVERVIEW');
+  const earthButton = node.querySelector<HTMLButtonElement>('.earth-scene-controls .secondary-reset')!;
+  await act(async () => earthButton.click()); expect(scene.reset).toHaveBeenCalledOnce();
 });
 it('keeps source/temporal guards while Crew opens immediately from station-focused states', async () => {
   const target = scene.replay.mock.calls.at(-1)?.[1];

@@ -1,5 +1,33 @@
 # ISS Inspection Mode
 
+## Earth Reset path correction; Inspection restoration — 2026-10-13
+
+The dated Reset sections below are historical and superseded. Runtime tracing
+of the actual Earth `.earth-scene-controls .secondary-reset` proved that the
+0.8s/2.5s milestones animated a newly added **Inspection** control; the real
+Earth control still called synchronous `camera.setView`. They are different
+branches of one bridge, not the same camera action.
+
+Inspection is selectively restored to **e82ad438**: no Reset button, no reset
+helper/tick/retained basis, original native tracking/orbit/zoom/pinch. Accepted
+90m desktop /42.5° elevation /100° FOV, responsive rear offset, physical F/L/U
+frame, entry 6s, exit 5s, composition, model scale and module picking remain.
+Branding and Crew work from the later commits is preserved.
+
+The actual Earth button now runs its own `EarthResetTransition`: exact rendered
+capture, 2.5s C2 timeline, positive WGS84 clearance, coherent transported basis,
+held FOV/transform and canonical Earth 17,000km geodetic height/nadir/north-up.
+Its reference is the accepted selected-source physical state at scene UTC,
+correcting the previous retained Current-GP lookup in Historical/OEM. Current
+updates that endpoint each frame; Historical keeps T. Native interruption,
+repeat, resize, source/time handoffs and Inspection entry relinquish Earth camera
+ownership in place. It does not modify Inspection flight formulas.
+
+The [correction dossier](branding-crew-simplification/README.md#actual-earth-reset-correction-and-selective-inspection-restoration--2026-10-13)
+records the proven wrong path, earlier validation gap, selective restoration,
+actual-button render traces and both-build normal-speed acceptance. All large
+artifacts and the final Git report stay outside the repository.
+
 ## Reset view perceptual correction — 2026-10-12
 
 The 0.8s reset introduced at `9134a2e` was numerically progressive but was

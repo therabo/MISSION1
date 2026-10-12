@@ -34,7 +34,7 @@ import { createVisualWindow } from './visualWindow';
 import type { VisualWindow } from './visualWindow';
 import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 import { InspectionTransition, poseQuaternion, initialTangent, transitionDuration } from './inspectionTransition';
-import { InspectionResetTransition } from './inspectionReset';
+import { EarthResetTransition, earthResetTarget } from './earthReset';
 import { warmSkyRendering } from './skyRenderingWarmup';
 import { starBackgroundFactory, updateStarBackground } from './starBackground';
 import type { CameraPose } from './inspectionTransition';
@@ -111,6 +111,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   positionCallback.current = onPosition;
   const replayRef = useRef(replay);
   const presentFrame = useRef<(() => void) | null>(null);
+  const cancelEarthReset = useRef<(() => void) | null>(null);
   const held = useRef(false);
   const positionAt = (time: JulianDate, result: Cartesian3): Cartesian3 | undefined =>
     replayRef.current ? (replayRef.current.state ? Cartesian3.fromElements(replayRef.current.state.position.x,replayRef.current.state.position.y,replayRef.current.state.position.z,result) : undefined) : selectedPositionAt(selectedSourceRef.current, active.current, oemPosition.current, time, result);
@@ -177,11 +178,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     // Full-screen native lens; only the projected principal point changes.
     let canonicalFov = instance.camera.frustum instanceof PerspectiveFrustum ? instance.camera.frustum.fov! : Math.PI / 3;
     let viewportWidth = 0, viewportHeight = 0;
-    let reset: InspectionResetTransition | null = null;
-    // Retain an interrupted reset's actual local basis, including roll. Native
-    // lookAt(offset) would immediately recanonicalize it after cancellation.
-    let retainResetBasis = false;
-    const cancelReset = (): void => { reset = null; };
+    let earthReset: EarthResetTransition | null = null;
+    let earthInputs: boolean | null = null;
+    const finishEarthReset = (): void => {
+      earthReset = null;
+      if (earthInputs !== null) instance.scene.screenSpaceCameraController.enableInputs = earthInputs;
+      earthInputs = null;
+    };
+    cancelEarthReset.current = finishEarthReset;
+    const earthInverse = new Matrix4();
     let offsetX = 0, offsetY = 0;
     let pendingViewportComposition = false;
     let adaptation: { x: number; y: number; targetX: number; targetY: number; start: number } | null = null;
@@ -219,7 +224,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       if (width <= 0 || height <= 0) return;
       const changed = width !== viewportWidth || height !== viewportHeight;
       viewportWidth = width; viewportHeight = height;
-      if (changed) { cancelReset(); instance.resize(); pendingViewportComposition = true; }
+      if (changed) { finishEarthReset(); instance.resize(); pendingViewportComposition = true; }
       compose(pendingViewportComposition);
       if (workspaceRef.current?.width === width && workspaceRef.current?.height === height) pendingViewportComposition = false;
     };
@@ -521,7 +526,6 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       const saved = cameraSnapshot.current;
       if (!saved) return;
       const pose = capturePose();
-      cancelReset(); retainResetBasis = false;
       instance.camera.cancelFlight();
       const displayedTarget = displayedPosition(scenePosition, displayLiftMeters, new Cartesian3());
       const initialFocus = Cartesian3.clone(entry.current?.focusPoint ?? displayedTarget);
@@ -560,6 +564,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       const position = positionAt(instance.clock.currentTime, new Cartesian3());
       if (!position || !frameAt(position, trackingFrame)) return;
       if ((Ellipsoid.WGS84.cartesianToCartographic(instance.camera.positionWC)?.height ?? -1) < 1_000) return;
+      finishEarthReset();
       sourceRetarget = null;
       Cartesian3.clone(Cartesian3.ZERO, sourceDisplayOffset);
       Matrix4.clone(trackingFrame, cameraTrackingFrame);
@@ -723,11 +728,11 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       mousePointer = event.pointerType === 'mouse';
       if (!mousePointer) hover.pointerLeave();
     };
-    const pointerDown = (event: PointerEvent): void => { cancelReset(); pointerMove(event); hover.pointerDown(); features.clearHover(); };
+    const pointerDown = (event: PointerEvent): void => { finishEarthReset(); pointerMove(event); hover.pointerDown(); features.clearHover(); };
     const pointerUp = (): void => { hover.pointerUp(); features.clearHover(); };
     const pointerLeave = (): void => hover.pointerLeave();
     const blur = (): void => { hover.pointerLeave(); hover.pointerUp(); };
-    const wheelStart = (): void => { cancelReset(); hover.motion(); features.clearHover(); };
+    const wheelStart = (): void => { finishEarthReset(); hover.motion(); features.clearHover(); };
     canvas.addEventListener('pointermove', pointerMove, true);
     canvas.addEventListener('pointerdown', pointerDown, true);
     canvas.addEventListener('pointerleave', pointerLeave);
@@ -777,19 +782,15 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     const scenePosition = new Cartesian3();
     const displayPosition = new Cartesian3();
     const cameraOffset = new Cartesian3();
-    const retainedDirection = new Cartesian3();
-    const retainedUp = new Cartesian3();
     const trackingFrame = new Matrix4();
     const zoomToRange = (range: number) => {
       if (viewMode.current !== 'ISS_INSPECTION') return;
-      cancelReset();
       Cartesian3.clone(instance.camera.position, cameraOffset);
       const oldRange = Cartesian3.magnitude(cameraOffset);
       if (oldRange < 1e-6) return;
       Cartesian3.multiplyByScalar(cameraOffset, range / oldRange, cameraOffset);
       clampInspectionOffset(cameraOffset);
-      if (retainResetBasis) Cartesian3.clone(cameraOffset, instance.camera.position);
-      else instance.camera.lookAtTransform(instance.camera.transform, cameraOffset);
+      instance.camera.lookAtTransform(instance.camera.transform, cameraOffset);
     };
     instance.screenSpaceEventHandler.setInputAction((delta: number) => {
       if (viewMode.current === 'ISS_INSPECTION') zoomToRange(inspectionZoomRange(Cartesian3.magnitude(instance.camera.position), delta));
@@ -828,27 +829,32 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
           physicalPositionMeters: [position.x, position.y, position.z] }));
       }
       if (!position) {
+        finishEarthReset();
         leaveInspection();
         selectModule(null);
       }
       if (position && viewMode.current === 'ISS_INSPECTION') {
         // Keep native user orbit/zoom in the same moving visual frame as the model.
         const frame = trackingFrame;
-        const progress = reset ? Math.min(1, Math.max(0, (performance.now() - reset.startMs) / (reset.duration * 1000))) : null;
-        const pose = reset && progress !== null ? reset.evaluate(progress) : null;
-        Cartesian3.clone(pose?.position ?? instance.camera.position, cameraOffset);
+        Cartesian3.clone(instance.camera.position, cameraOffset);
         clampInspectionOffset(cameraOffset);
-        if (retainResetBasis) {
-          Cartesian3.clone(pose?.direction ?? instance.camera.direction, retainedDirection);
-          Cartesian3.clone(pose?.up ?? instance.camera.up, retainedUp);
-          instance.camera.lookAtTransform(frame);
-          Cartesian3.clone(cameraOffset, instance.camera.position);
-          Cartesian3.clone(retainedDirection, instance.camera.direction);
-          Cartesian3.clone(retainedUp, instance.camera.up);
-          Cartesian3.normalize(Cartesian3.cross(retainedDirection, retainedUp, instance.camera.right), instance.camera.right);
-          if (pose) applyFov(pose.fov);
-        } else instance.camera.lookAtTransform(frame, cameraOffset);
-        if (progress === 1) { reset = null; retainResetBasis = false; }
+        instance.camera.lookAtTransform(frame, cameraOffset);
+      }
+      if (earthReset && position) {
+        if (viewMode.current !== 'EARTH_OVERVIEW' || held.current || sourceChanged) finishEarthReset();
+        else {
+          const progress = Math.min(1, Math.max(0, (performance.now() - earthReset.startMs) / (earthReset.duration * 1000)));
+          const pose = earthReset.evaluate(progress, earthResetTarget(position, earthReset.start.fov));
+          // Preserve the active transform. Direct basis copying avoids setView's
+          // intermediate ENU placement and keeps the very first frame continuous.
+          Matrix4.inverseTransformation(instance.camera.transform, earthInverse);
+          Matrix4.multiplyByPoint(earthInverse, pose.position, instance.camera.position);
+          Matrix4.multiplyByPointAsVector(earthInverse, pose.direction, instance.camera.direction);
+          Matrix4.multiplyByPointAsVector(earthInverse, pose.up, instance.camera.up);
+          Cartesian3.normalize(Cartesian3.cross(instance.camera.direction, instance.camera.up, instance.camera.right), instance.camera.right);
+          applyFov(pose.fov);
+          if (progress === 1) finishEarthReset();
+        }
       }
       const flight = entry.current;
       const progress = flight ? Math.max(0, Math.min(1, (performance.now() - flight.startMs) / (flight.duration * 1000))) : null;
@@ -1003,27 +1009,26 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     // the accepted initial Earth pose; never enter the Inspection pipeline here.
     controlsCallback.current?.({
       zoomIn: () => {
-        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomIn(instance.camera.positionCartographic.height * 0.2);
+        if (viewMode.current === 'EARTH_OVERVIEW') { finishEarthReset(); instance.camera.zoomIn(instance.camera.positionCartographic.height * 0.2); }
       },
       zoomOut: () => {
-        if (viewMode.current === 'EARTH_OVERVIEW') instance.camera.zoomOut(instance.camera.positionCartographic.height * 0.2);
+        if (viewMode.current === 'EARTH_OVERVIEW') { finishEarthReset(); instance.camera.zoomOut(instance.camera.positionCartographic.height * 0.2); }
       },
       resetView: () => {
-        if (viewMode.current === 'ISS_INSPECTION') {
-          reset = new InspectionResetTransition({ position: instance.camera.position,
-            direction: instance.camera.direction, up: instance.camera.up, fov: canonicalFov },
-          rearInspectionOffset((workspaceRef.current?.width ?? viewportWidth) / (workspaceRef.current?.height ?? viewportHeight), new Cartesian3()),
-          performance.now());
-          retainResetBasis = true;
-          instance.scene.requestRender();
-          return;
-        }
-        const geo = active.current?.orbital.response.currentGeodetic;
-        if (viewMode.current === 'EARTH_OVERVIEW' && geo)
-          instance.camera.setView({ destination: Cartesian3.fromDegrees(geo.longitudeDegrees, geo.latitudeDegrees, 17_000_000) });
+        if (viewMode.current !== 'EARTH_OVERVIEW' || held.current) return;
+        const physical = positionAt(instance.clock.currentTime, new Cartesian3());
+        if (!physical) return;
+        const start = capturePose();
+        finishEarthReset();
+        earthReset = new EarthResetTransition(start, earthResetTarget(physical, start.fov), performance.now());
+        earthInputs = instance.scene.screenSpaceCameraController.enableInputs;
+        instance.scene.screenSpaceCameraController.enableInputs = false;
+        instance.scene.requestRender();
       },
     });
     return () => {
+      finishEarthReset();
+      cancelEarthReset.current = null;
       controlsCallback.current?.(null);
       destroyed = true;
       disposeImagery();
@@ -1083,6 +1088,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     const instance = viewer.current;
     const returning = (!!replayRef.current || held.current) && !replay && !holding;
     const enteringHold = holding && !held.current;
+    if (enteringHold || selectedSourceRef.current !== selectedSource || replayRef.current?.atMs !== replay?.atMs)
+      cancelEarthReset.current?.();
     held.current = holding;
     // Never install a requested time independently of its accepted data. The
     // App latch keeps the outgoing references during pending handoffs/seeks.

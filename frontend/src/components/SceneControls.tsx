@@ -26,9 +26,3 @@ export function SceneControls({ onZoomIn, onZoomOut, onReset }: Props) {
     <ContextButton className="secondary-face secondary-reset" onClick={onReset}>Reset view</ContextButton>
   </div>;
 }
-
-export function InspectionResetControl({ onReset, disabled }: { onReset: () => void; disabled: boolean }) {
-  return <div className="inspection-reset-control" role="group" aria-label="Inspection scene controls">
-    <ContextButton className="secondary-face secondary-reset" disabled={disabled} onClick={onReset}>Reset view</ContextButton>
-  </div>;
-}
