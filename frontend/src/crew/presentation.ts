@@ -2,42 +2,35 @@ import type { Assertion, CrewMedia, CrewMember, CrewAssessment, Presence, Presen
 
 /** Latest successful source collection update, not assertion/event time or
  * read-time evaluation. Return an existing API value unchanged; failures and
- * unchanged fetches keep their distinct meaning in Data sources & freshness. */
+ * unchanged fetches keep their distinct meaning in Data source. */
 export function latestCrewSourceUpdate(crew: CrewAssessment): string | null {
   return [crew.freshness.structuredSource.lastSuccessfulFetchAt, crew.freshness.verification.lastSuccessfulFetchAt]
     .filter((at): at is string => at !== null && Number.isFinite(Date.parse(at)))
     .reduce<string | null>((latest, at) => latest === null || Date.parse(at) > Date.parse(latest) ? at : latest, null);
 }
 
-export const QUALITY: Record<ReconciliationStatus, { label: string; note: string }> = {
-  MATCH: { label: 'Sources aligned', note: 'The available sources agree on the current crew.' },
+export const QUALITY: Record<ReconciliationStatus, { label: string }> = {
+  MATCH: { label: 'Sources aligned' },
   NASA_AHEAD: {
     label: 'Recent NASA update',
-    note: 'NASA reports a completed arrival newer than the structured roster.',
   },
   LL2_AHEAD: {
     label: 'Structured roster newer',
-    note: 'Newer assignments have not yet been reflected in the verified roster.',
   },
   PARTIAL_MATCH: {
     label: 'Sources partially reconciled',
-    note: 'Assignments and NASA presence reports provide an incomplete comparison.',
   },
   PRIMARY_UNAVAILABLE: {
     label: 'Structured roster unavailable',
-    note: 'Available NASA presence reports remain visible; profile and assignment context may be limited.',
   },
   VERIFICATION_UNAVAILABLE: {
     label: 'NASA verification unavailable',
-    note: 'Assignments remain visible. Current presence cannot be assumed from assignment alone.',
   },
   STALE: {
     label: 'Crew data may be outdated',
-    note: 'Available last-known information is retained with its source times and presence states.',
   },
   AMBIGUOUS: {
     label: 'Crew state requires reconciliation',
-    note: 'Conflicting or unresolved evidence remains visible without choosing an identity or presence.',
   },
 };
 export const PRESENCE: Record<PresenceState, string> = {
@@ -55,7 +48,6 @@ export function lastOperationalConfirmation(presence: Presence): string {
   if (presence.lastKnownState === 'CONFIRMED_NOT_ABOARD') return 'Last operational confirmation: not aboard';
   return 'Last operational assessment: ' + (presence.lastKnownState ? PRESENCE[presence.lastKnownState].toLowerCase() : 'unavailable');
 }
-export const CURRENT_PRESENCE_NOTICE = 'Current membership is source-supported. Operational presence evidence is shown separately and may be dated.';
 
 /** Current annotations describe the selected source assertion, never infer membership or identity. */
 export function operationalAnnotation(presence: Presence, evaluatedAt: string) {

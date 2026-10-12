@@ -13,25 +13,20 @@
 .crew-workspace :is(button, summary, a, [tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
 .crew-workspace .crew-roster-summary { flex: none; display: grid; grid-template-columns: 280px 280px 300px minmax(0, 1fr); gap: 24px; padding-top: 12px; padding-block-end: calc(var(--space-primary) / 2); margin: 0; border-bottom: 1px solid rgb(42 53 66 / .55); }
 .crew-workspace .crew-roster-summary.is-current,
-.crew-detail-layout.has-astronaut .crew-workspace .crew-roster-summary.is-current { grid-template-columns: minmax(0, 1fr); }
+.crew-detail-layout.has-astronaut .crew-workspace .crew-roster-summary.is-current { grid-template-columns: minmax(104px, 1fr) minmax(0, 2fr); }
 .crew-workspace .crew-roster-summary > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; min-height: 58px; margin: 0; }
 .crew-workspace .crew-roster-summary.is-current > div { min-height: 0; }
+.crew-workspace .crew-roster-summary .crew-last-update { align-items: flex-end; text-align: right; }
+.crew-workspace .crew-roster-summary .crew-last-update dd { display: flex; align-items: center; justify-content: flex-end; min-height: 27px; font: 400 12px/17px var(--font-numeric); }
 .crew-workspace .crew-roster-summary dt { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .crew-workspace .crew-roster-summary dd { margin: 0; font: 700 22px/27px var(--font-interface); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .crew-workspace .crew-roster-summary .crew-count-unavailable { font-size: 18px; }
 .crew-workspace .crew-roster-summary small { font: 400 11px/16px var(--font-interface); color: var(--color-text-secondary); }
 .crew-workspace .crew-assessment dt { font-weight: 700; }
 .crew-workspace .crew-assessment dd { font: 400 14px/20px var(--font-numeric); }
-.crew-roster-evidence { flex: none; display: flex; flex-wrap: wrap; align-items: start; gap: 8px 12px; padding-top: 12px; padding-bottom: 8px; }
-.crew-roster-evidence > details { flex: 1 1 auto; }
-.crew-roster-evidence > details[open] { flex-basis: 100%; }
-.crew-roster-evidence > .crew-assessment-warning { order: 2; flex-basis: 100%; margin: 0; }
-.crew-last-update { order: 1; display: flex; flex-wrap: wrap; gap: 2px 8px; max-width: 100%; margin: 0; color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
-.crew-last-update time { font-family: var(--font-numeric); font-variant-numeric: tabular-nums; }
 .crew-workspace .crew-assessment-evidence > summary { min-height: 19px; padding: 0; color: var(--color-warning); font: 400 13px/19px var(--font-interface); }
 .crew-workspace .crew-assessment-evidence.is-aligned > summary { color: var(--color-success); }
 .crew-assessment-evidence > p { margin: 8px 0; }
-.crew-assessment-warning { margin: 8px 0 0; color: var(--color-warning); }
 .crew-assessment-evidence .crew-unresolved, .crew-assessment-evidence .crew-sources { margin: 12px 0; }
 .crew-workspace .crew-roster-columns { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) 140px 80px 232px; gap: 16px; padding: 0 32px 0 12px; height: 24px; color: var(--color-text-secondary); font: 700 11px/16px var(--font-interface); }
 .crew-panel.crew-workspace .crew-roster-rows { flex: 1 0 auto; min-height: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
@@ -46,7 +41,6 @@
 .crew-roster-identity > span, .crew-roster-mission { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .crew-roster-identity > :is(.crew-current-membership, .crew-historical-membership) { color: var(--color-success); font-weight: 700; }
 .crew-roster-presence.is-operational { color: var(--color-text-secondary); }
-.crew-roster-evidence .crew-assessment-evidence > summary { color: var(--color-text-secondary); }
 .crew-roster-agency, .crew-roster-presence { color: var(--color-text-secondary); font: 400 13px/19px var(--font-interface); }
 .crew-workspace .crew-roster-presence small { color: inherit; font: 400 11px/16px var(--font-interface); }
 .crew-roster-presence.state-confirmed_aboard { color: var(--color-success); }
@@ -166,4 +160,22 @@
   .crew-detail-actions .secondary-icon > svg { display: block; width: 100%; height: 100%; }
   .astronaut-profile-body, .crew-historical-profile-body { padding: 12px; }
   .astronaut-dock .context-dock-footer { min-height: 0; padding: 12px; }
+}
+
+.crew-data-source { flex: none; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font: 400 12px/18px var(--font-interface); overflow-wrap: anywhere; }
+.crew-panel .crew-data-source > h3 { margin: 0 0 8px; color: var(--color-text-secondary); font: 700 13px/19px var(--font-interface); }
+.crew-source-group { padding: 8px 0; }
+.crew-source-group + .crew-source-group { border-top: 1px solid var(--color-border); margin-top: 4px; }
+.crew-source-group h4 { margin: 0 0 6px; font: 600 12px/18px var(--font-interface); }
+.crew-panel .crew-data-source dl { max-width: 720px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; margin: 0 0 4px; }
+.crew-panel .crew-data-source dl > div { min-width: 0; margin: 0; }
+.crew-panel .crew-data-source dt { margin: 0; }
+.crew-panel .crew-data-source dd { margin: 0; color: var(--color-text-primary); font-variant-numeric: tabular-nums; }
+.crew-data-source a { display: inline-flex; align-items: center; min-height: 28px; }
+.crew-source-reconciled { margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+@container crew-roster (max-width: 360px) {
+  .crew-panel .crew-data-source dl { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 740px) {
+  .crew-data-source a { min-height: 44px; }
 }

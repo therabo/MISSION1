@@ -41,8 +41,8 @@ describe('Current membership and dated operational annotations', () => {
   it('separates detail membership, assignment and source precision', () => {
     const crew=crewFixture();const member={...crew.members[0],presence:evidence()};
     const html=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={()=>{}} />);
-    expect(html).toContain('Current membership');expect(html).toContain('Current member');expect(html).toContain('Structured assignment');
-    expect(html).toContain('Operational presence evidence');expect(html).toContain('Publication-time proxy');expect(html).toContain('Operational source');
+    expect(html).not.toContain('Current membership');expect(html).not.toContain('Current member');expect(html).toContain('Structured assignment');
+    expect(html).not.toContain('Operational presence evidence');expect(html).not.toContain('Publication-time proxy');expect(html).not.toContain('Operational source'); expect(member.presence.evidence[0].provenance.sourcePublishedAt).toBe(at);
     expect(html).not.toContain('Identity confirmed in Crew assessment');
   });
   it('does not label source outage or future evidence recently observed', () => {

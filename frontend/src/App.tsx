@@ -23,7 +23,6 @@ import type {
 } from "./cesium/trajectorySelection";
 import type { ViewMode } from "./cesium/inspectionMode";
 import { useEarthWorkspace } from "./layout/useEarthWorkspace";
-import mission1Wordmark from "./assets/branding/MISSION1-logo.png";
 import { TopContextBar } from "./components/TopContextBar";
 import { TrajectoryLegend } from "./components/TrajectoryLegend";
 import { SceneControls, type EarthSceneControls } from "./components/SceneControls";
@@ -33,6 +32,8 @@ import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./
 import { useTemporalPresentation } from "./replay/useTemporalPresentation";
 import { InspectionStrip } from "./components/InspectionStrip";
 import { useWorkspaceDissolve } from "./layout/useWorkspaceDissolve";
+
+const mission1Wordmark = `${import.meta.env.BASE_URL}branding/MISSION1-logo.png`;
 
 export default function App() {
   const [replaying, setReplaying] = useState(false);

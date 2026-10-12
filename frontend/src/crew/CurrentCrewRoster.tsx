@@ -1,7 +1,7 @@
 import type { CrewAssessment, CrewMember } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewReports, CrewSources } from './CrewSummary';
-import { latestCrewSourceUpdate, memberGroups, permittedPortrait, HISTORICAL_PRESENCE, operationalAnnotation, CURRENT_PRESENCE_NOTICE, QUALITY, utc } from './presentation';
+import { latestCrewSourceUpdate, memberGroups, permittedPortrait, HISTORICAL_PRESENCE, operationalAnnotation, QUALITY, utc } from './presentation';
 import profileChevron from '../assets/interface/crew-chevron.svg';
 import type { Coverage } from '../replay/replayApi';
 
@@ -30,7 +30,10 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
         <div><dt>Without confirmed identity</dt><dd>{historicalCounts.unidentifiedAboard}</dd>
           {historicalCounts.officialAboard === null && <small>{historicalCounts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
         </div>
-      </> : <div><dt>{modernHistorical ? 'Members at Historical UTC' : 'Current members'}</dt><dd>{crew.members.length}</dd><small>Membership and physical presence are separate</small></div>}
+      </> : <div><dt>{modernHistorical ? 'Members at Historical UTC' : 'Current members'}</dt><dd>{crew.members.length}</dd></div>}
+      {!historical && <div className="crew-last-update"><dt>Last update</dt><dd>
+        {lastUpdate ? <time dateTime={lastUpdate}>{utc(lastUpdate)}</time> : 'Unavailable'}
+      </dd></div>}
       {historical && <div className="crew-assessment"><dt>ASSESSMENT UTC</dt><dd><time dateTime={historical.at}>{utc(historical.at)}</time></dd>
         <details className={`crew-assessment-evidence crew-historical-evidence${historical.availability === 'AVAILABLE' && historical.coverage.status === 'AVAILABLE' && crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
           <summary>{historical.coverage.status === 'UNAVAILABLE' ? 'Historical coverage unavailable' : historical.availability === 'PARTIAL' || historical.coverage.status === 'PARTIAL' ? 'Historical coverage partial' : quality.label} · Evidence</summary>
@@ -44,27 +47,15 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
           {(crew.freshness.structuredSource.lastRefreshFailed || crew.freshness.verification.lastRefreshFailed) && <p>A retained source refresh failed. Fetch health describes collection, not presence at Historical UTC.</p>}
           <p>Latest retained assertion: {utc(latestAssertion)}</p>
           <CrewReports crew={crew} historicalAt={historical.at} />
-          <CrewSources crew={crew} historicalAt={historical.at} />
+          <CrewSources crew={crew} />
         </details>
       </div>}
     </dl>
-    {!historical && <div className="crew-roster-evidence">
-      <p className="crew-last-update" title="Latest successful Crew source fetch. Presence assertions retain their own dates.">
-        <span>Last update</span>{lastUpdate ? <time dateTime={lastUpdate}>{utc(lastUpdate)}</time> : <span>Unavailable</span>}
-      </p>
-      <details className={`crew-assessment-evidence${crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
-        <summary>{CURRENT_PRESENCE_NOTICE}
-        </summary>
-        <p>{quality.note}</p>
-        <CrewSources crew={crew} />
-      </details>
-      {crew.freshness.stale && crew.reconciliation.status !== 'STALE' && <p className="crew-assessment-warning">Crew data may be outdated.</p>}
-      {(crew.freshness.structuredSource.lastRefreshFailed || crew.freshness.verification.lastRefreshFailed) && <p className="crew-assessment-warning">A source refresh failed; available information is retained.</p>}
-    </div>}
     <div className="crew-roster-columns" aria-hidden="true"><span>PERSON / ROLE</span><span>MISSION</span><span>AGENCY</span><span>{historical && !modernHistorical ? 'PRESENCE EVIDENCE' : 'OPERATIONAL EVIDENCE'}</span></div>
     {members.length ? <ul className="crew-roster-rows" aria-label="Crew identities and presence evidence">
       {members.map(member => <li key={member.id}><CrewRosterRow member={member} crew={crew} historical={historical} selected={member.id === selectedMemberId} onMember={onMember} /></li>)}
     </ul> : <p className="crew-roster-empty" role="status">{historical ? 'No resolved crew members at this Historical UTC.' : 'No resolved crew members are available.'}</p>}
+    {!historical && <CrewSources crew={crew} />}
   </>;
 }
 

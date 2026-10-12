@@ -5,7 +5,6 @@ import { decodeCrew, decodeHistoricalCrew } from './decode';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewSources, CrewSummary, PresenceLabel } from './CrewSummary';
 import { CrewAstronautDock } from './CrewAstronautDock';
-import { CURRENT_PRESENCE_NOTICE } from './presentation';
 
 // TEST ONLY: equivalent to the recorded production cut, not a runtime data source.
 function wire(gap = 11) {
@@ -30,12 +29,12 @@ describe('Current semantics against the observed operational gap', () => {
     expect(crew).not.toHaveProperty('unresolvedSubjects');
     const html = renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} />);
     expect(html).toContain('<dt>Current members</dt><dd>7</dd>');
-    expect((html.slice(0, html.indexOf('</dl>')).match(/<dt>/g) ?? [])).toHaveLength(1);
+    expect((html.slice(0, html.indexOf('</dl>')).match(/<dt>/g) ?? [])).toHaveLength(2);
     expect((html.match(/data-member-id=/g) ?? [])).toHaveLength(7);
     expect(html).not.toContain('<dt>Reported aboard');
     expect(html).not.toContain('Without confirmed identity');
     expect(html).not.toContain('Additional NASA-reported crew');
-    expect(html).toContain(CURRENT_PRESENCE_NOTICE);
+    expect(html).not.toContain('Current membership is source-supported');
     const summary = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
     expect(summary).toContain('Current members <strong>7</strong>');
     expect(summary).not.toContain('without confirmed identities');
@@ -43,18 +42,20 @@ describe('Current semantics against the observed operational gap', () => {
   it('keeps only eight ACTIVE slots in source details, never summing fifteen retained slots', () => {
     const crew = decodeCrew(wire());
     const html = renderToStaticMarkup(<CrewSources crew={crew} />);
-    expect(html).toContain('8 unresolved active source slots');
-    expect(html).toContain('sources may repeat a person');
+    expect(html).not.toContain('unresolved active source slots'); expect(crew.membership?.unresolvedActiveSourceSlots).toBe(8);
+    expect(html).not.toContain('sources may repeat a person');
     expect(html).not.toContain('15 unresolved'); expect(html).not.toContain('23 unresolved');
     expect(crew.membership).not.toHaveProperty('unresolvedRetainedSourceSlots');
   });
   it('shows uniform Current membership and dated evidence separately in roster and detail', () => {
     const crew=decodeCrew(wire()), member=crew.members[0];
-    for(const node of [<CurrentCrewRoster crew={crew} onMember={()=>{}}/>,<CrewAstronautDock crew={crew} member={member} onClose={()=>{}}/>]) {
+    for(const node of [<CurrentCrewRoster crew={crew} onMember={()=>{}}/>]) {
       const html=renderToStaticMarkup(node); expect(html).toContain('Current member');
       expect(html).toContain('No recent operational confirmation'); expect(html).toContain('2026-10-02 02:01:55 UTC');
       expect(html).not.toContain('Identity confirmed');
     }
+    const detail=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={()=>{}}/>);
+    expect(detail).not.toContain('Current membership'); expect(detail).not.toContain('Operational presence evidence');
   });
   it('preserves Historical count/report decoding and stale presentation', () => {
     const historical = historicalCrewFixture();
@@ -66,7 +67,7 @@ describe('Current semantics against the observed operational gap', () => {
     expect(html).toContain('Reported aboard</dt><dd>11');
     expect(html).toContain('Without confirmed identity</dt><dd>3');
     expect(html).toContain('Presence outdated'); expect(html).toContain('Last known: confirmed aboard');
-    expect(html).not.toContain(CURRENT_PRESENCE_NOTICE);
+    expect(html).not.toContain('Current membership is source-supported');
   });
   it('retains negative operational confirmation without implying aboard', () => {
     const presence = { ...decodeCrew(wire()).members[0].presence, lastKnownState: 'CONFIRMED_NOT_ABOARD' as const };

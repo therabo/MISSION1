@@ -19,10 +19,6 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
           <dt>Agency</dt>
           <dd>{person.agency?.name ?? person.agency?.abbreviation ?? 'Unavailable'}</dd>
         </div>
-        <div>
-          <dt>Nationality</dt>
-          <dd>{nationality || 'Unavailable'}</dd>
-        </div>
         {!historicalMember && <div>
           <dt>{replayAt ? "Assignment at replay time" : "Current assignment"}</dt>
           <dd>
@@ -31,6 +27,7 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
               : 'No structured assignment'}
           </dd>
         </div>}
+        {!historicalMember && <div><dt>Nationality</dt><dd>{nationality || 'Unavailable'}</dd></div>}
         {!historicalMember && person.currentAssignment && (
           <div>
             <dt>Assignment validity</dt>
@@ -68,7 +65,7 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
         <p className="crew-note">Biography unavailable.</p>
       )}
       <section className="crew-career">
-        <h3>{replayAt ? "Latest retained career totals" : "Career totals"}</h3>
+        <h3>Career</h3>
         {person.career ? (
           <dl>
             <div>
@@ -99,7 +96,6 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
         ) : (
           <p className="crew-note">Career statistics unavailable.</p>
         )}
-        <p className="crew-note">{replayAt ? "Latest retained profile metadata; career totals are not reconstructed at replay time." : "Cumulative source totals; not elapsed time on this expedition."}</p>
       </section>
       {profileUrl && (
         <p>
@@ -108,37 +104,9 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
           </a>
         </p>
       )}
-      <CrewPortraitRights person={person} />
       <CrewProfileEvidence person={historicalMember ? { ...person, currentAssignment: historicalMember.assignment, currentPresence: historicalMember.presence } : person} />
     </div>
   );
-}
-
-/** Shared existing disclosure content; no new evidence destination. */
-export function CrewPortraitRights({ person }: { person: CrewPerson }) {
-  return <>
-      {person.image && (
-        <details className="crew-sources">
-          <summary>Portrait credit &amp; rights</summary>
-          {!permittedPortrait(person.image) && (
-            <p>Portrait withheld because reuse permission is unknown or restricted.</p>
-          )}
-          <p>
-            Credit: {person.image.credit ?? 'Not supplied'}
-            <br />
-            License: {person.image.licenseName ?? 'Not supplied'}
-            <br />
-            Single-use restriction:{' '}
-            {person.image.singleUse === null ? 'Not supplied' : person.image.singleUse ? 'Yes' : 'No'}
-          </p>
-          {safeHttps(person.image.licenseUrl) && (
-            <a href={safeHttps(person.image.licenseUrl)} target="_blank" rel="noopener noreferrer">
-              License reference ↗
-            </a>
-          )}
-        </details>
-      )}
-    </>;
 }
 
 export function CrewProfileEvidence({ person }: { person: CrewPerson }) {

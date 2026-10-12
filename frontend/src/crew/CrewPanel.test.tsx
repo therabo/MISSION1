@@ -76,7 +76,7 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[1][0]).toBe(`/api/iss/crew/${id}`);
     expect(document.activeElement?.tagName).toBe('H3');
-    expect(container.textContent).toContain('Career totals');
+    expect(container.textContent).toContain('Career');
     await click('Back to crew');
     expect(document.activeElement?.getAttribute('data-member-id')).toBe(id);
     expect(fetchMock).toHaveBeenCalledTimes(2);
@@ -91,7 +91,7 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     expect(container.textContent).toContain('Member summary remains available');
     expect(container.querySelector('[role="alert"]')).not.toBeNull();
     await click('Retry profile');
-    expect(container.textContent).toContain('Career totals');
+    expect(container.textContent).toContain('Career');
     expect(document.activeElement?.tagName).toBe('H3');
     expect(close).not.toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalledTimes(3);
@@ -136,7 +136,7 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
     expect(signal.aborted).toBe(true);
     await act(async () => resolveDetail(Response.json(memberDetail())));
     expect(container.textContent).toContain('Flight engineers');
-    expect(container.textContent).not.toContain('Career totals');
+    expect(container.textContent).not.toContain('Career');
   });
   it('Escape backs out of detail then closes without a focus trap', async () => {
     fetchMock

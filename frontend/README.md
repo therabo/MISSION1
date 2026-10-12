@@ -33,28 +33,33 @@ frustum offsets and a pinned Cesium input/pixel-scale/globe-ray compatibility ad
 preserve the accepted physical camera and apparent scale. [Correction, native
 picking tests and evidence](../docs/frontend/occlusion-aware-workspace-centering/README.md).
 
-## Approved application wordmark — 2026-10-04
+## Application branding and Crew presentation — 2026-10-12
 
-The upper-left brand imports the frontend-owned
-[`src/assets/branding/MISSION1-logo.png`](src/assets/branding/MISSION1-logo.png)
-from `src/App.tsx`. It is a byte-identical copy of the approved transparent
-2172×724 PNG, with SHA-256
-`6a1bd669b7e47918725699caba05c9ac90c39f4ea4ccd290056decc3326a4fcb`.
-The [root asset](../MISSION1-logo.png) remains unchanged for the
-[root README](../README.md); application imports resolve entirely inside
-`frontend/`. Vite serves the frontend copy in development and emits the same
-bytes at `assets/MISSION1-logo-Cobk_ZMu.png` in the production artifact. A build
-and standalone artifact served without the root README or root logo verify
-this separation. The 2026-10-04 ownership correction changes no artwork or CSS.
+The application and root README share one canonical transparent
+[`public/branding/MISSION1-logo.png`](public/branding/MISSION1-logo.png).
+The user-provided metallic wordmark is retained at 2172×724; deterministic local
+background segmentation preserves its opaque shading and antialiased edges.
+`App.tsx` uses Vite's base URL, so the public asset is included in standalone
+frontend builds. The previous frontend copy is removed; the old root artwork is
+retained only for the dated branding dossier. The logo has one `alt="MISSION1"`,
+intrinsic dimensions, `object-fit: contain`, and a 120×40px image box. Navigation
+height and the full-screen Cesium canvas remain unchanged.
 
-The existing brand container replaces the M1 badge/plain-text logo and now stands
-alone: the adjacent `/ EARTH VIEW` / `/ ISS INSPECTION` presentation is removed,
-including transition labels, while view-state logic stays unchanged. The image stays
-present in LIVE, REPLAY and Inspection. It has
-`alt="MISSION1"`, no link or keyboard action, and passes pointer events through to
-the scene. Responsive CSS uses `height: auto` and `object-fit: contain`: 180px wide
-at 1440/1280px, 144px at 900/768px, and about 132.6px at 390px. Transparency and
-the exact 3:1 ratio are preserved. [Before/after screenshots and validation](../docs/frontend/branding-wordmark-integration/README.md).
+Current Crew shows Current members and the latest successful source fetch on one
+summary row above the divider. The essential **Data source** section follows all
+astronauts. Its LL2 and NASA groups each expose successful fetch, source state,
+original observation, publication or Unavailable, and their actual source link;
+Reconciled remains dynamic. Current and Historical detail emphasize Structured
+assignment, Role followed by Nationality, Career and retained profile information.
+Membership/presence explanatory blocks, assignment/cumulative disclaimers and the
+portrait-rights disclosure are removed from detail presentation. Portrait permission
+checks and metadata remain intact. Historical still uses its accepted roster and
+assignment at UTC T, separately from latest canonical biography/career.
+
+This supersedes the older visible Crew/branding descriptions below and in the
+[dated panel review](../docs/frontend/crew-earth-view-panel-review/README.md).
+Polling, UUID selection, error/Retry, <=716px detail Back/Close, backend/API and
+V7/S10/V10 semantics are unchanged. [Validation and asset provenance](../docs/frontend/branding-crew-simplification/README.md).
 
 ## Cesium attribution audit — 2026-10-04
 

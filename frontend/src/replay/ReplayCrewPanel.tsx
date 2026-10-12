@@ -4,9 +4,9 @@ import { CurrentCrewRoster } from '../crew/CurrentCrewRoster';
 import { CrewProfile } from '../crew/CrewMemberDetail';
 import { CloseButton } from '../components/CloseButton';
 import { CrewTemporalNotice, type CrewTemporalRequest } from '../crew/CrewTemporalNotice';
-import { operationalAnnotation, safeHttps, utc } from '../crew/presentation';
+import { utc } from '../crew/presentation';
 import { CrewDetailActions } from '../crew/CrewDetailActions';
-import type { CrewAssessment, CrewMember } from '../crew/types';
+import type { CrewAssessment, CrewMember, CrewPerson } from '../crew/types';
 
 /** S9 receives ONLY the accepted replay envelope. Latest-retained profile
  * metadata keeps its existing profile content and explicit meaning. */
@@ -92,7 +92,7 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
         <CrewDetailActions onBack={back} onClose={back} />
       </header>
       <div className="crew-historical-profile-body">
-        {modern && crew && <HistoricalLifecycle member={member} crew={crew} at={at} />}
+        {modern && crew && <HistoricalLifecycle member={member} crew={crew} person={person} />}
         {person ? <CrewProfile person={person} replayAt={at} historicalMember={modern ? member : undefined} /> : <p role="status">Historical profile unavailable for this identity. No Current profile is substituted.</p>}
       </div>
     </aside>}
@@ -100,23 +100,12 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
 }
 
 /** Temporal context comes only from the accepted roster, independent of canonical biography metadata. */
-function HistoricalLifecycle({ member, crew, at }: { member: CrewMember; crew: CrewAssessment; at: string }) {
-  const presence = member.presence;
-  const annotation = operationalAnnotation(presence, at);
+function HistoricalLifecycle({ member, crew, person }: { member: CrewMember; crew: CrewAssessment; person: CrewPerson | undefined }) {
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
-  const sourceUrl = safeHttps(annotation.evidence?.provenance.sourceUrl ?? null);
   return <div className="crew-historical-lifecycle">
-    <section><h3>Membership at Historical UTC</h3><p className="crew-historical-membership">Member at {utc(at)}</p>
-      <p className="crew-note">Source-supported membership; operational evidence is separate.</p>
-    </section>
-    <section className="astronaut-operational"><h3>Operational presence evidence at Historical UTC</h3><p>{annotation.label}</p>
-      {annotation.evidence && <><p>{annotation.description} · <time dateTime={presence.asOf ?? undefined}>{utc(presence.asOf)}</time></p>
-        <p className="crew-note">NASA operational source · {annotation.precision} · {annotation.fresh ? 'Applicable at Historical UTC' : 'Dated / unavailable confirmation at Historical UTC'}</p>
-        {sourceUrl && <a href={sourceUrl} target="_blank" rel="noopener noreferrer">Operational source ↗</a>}
-      </>}
-    </section>
-    <section><h3>Assignment at Historical UTC</h3><dl>
+    <section><h3>Structured assignment</h3><dl>
       <div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div>
+      <div><dt>Nationality</dt><dd>{(person?.nationalities ?? member.nationalities).map(n => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable').join(', ') || 'Unavailable'}</dd></div>
       <div><dt>Expedition</dt><dd>{mission ?? 'Unavailable'}</dd></div>
       {member.assignment && <div><dt>Assignment validity</dt><dd>{utc(member.assignment.validFrom)} → {utc(member.assignment.validUntil)}</dd></div>}
     </dl></section>

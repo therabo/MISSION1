@@ -57,12 +57,12 @@ it('loads profiles locally while all roster rows remain usable', async () => {
 });
 it('updates the same dock after the real profile resolves', async () => {
   let resolve!: (r: Response) => void; fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise<Response>(r => { resolve = r; })); await show(); await select(); const same = dock();
-  const member = crew().members.find(m => m.id === same.dataset.entityId)!; await act(async () => resolve(Response.json(profile(member)))); expect(dock()).toBe(same); expect(dock().textContent).toContain('Career totals / cumulative'); expect(dock().textContent).not.toContain('Loading astronaut profile');
+  const member = crew().members.find(m => m.id === same.dataset.entityId)!; await act(async () => resolve(Response.json(profile(member)))); expect(dock()).toBe(same); expect(dock().textContent).toContain('Career'); expect(dock().textContent).not.toContain('Loading astronaut profile');
 });
 it.each([404,500,503])('isolates HTTP%s in the selected dock and retries only the profile', async status => {
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(new Response('', { status })); await show(); await select(); const same = dock(), id = same.dataset.entityId;
   expect(same.querySelector('[role="alert"]')).not.toBeNull(); expect(rows()).toHaveLength(9); expect(selected()).toEqual([id]); await press('Retry profile');
-  expect(dock()).toBe(same); expect(dock().textContent).toContain('Career totals / cumulative'); expect(fetchMock.mock.calls.filter(c => c[0] === '/api/iss/crew')).toHaveLength(1);
+  expect(dock()).toBe(same); expect(dock().textContent).toContain('Career'); expect(fetchMock.mock.calls.filter(c => c[0] === '/api/iss/crew')).toHaveLength(1);
 });
 it('does not fabricate a missing profile, biography, career or portrait', async () => {
   const m = crew().members[0], person = { ...profile(m), profileAvailability: 'UNAVAILABLE', biography: null, career: null, image: null, profileProvenance: null };
@@ -71,7 +71,7 @@ it('does not fabricate a missing profile, biography, career or portrait', async 
 });
 it('withholds portraits under the original rights rules', async () => {
   const m = crew().members[0], person = profile(m); person.image = { url:'https://example.com/portrait.jpg', thumbnailUrl:null, credit:'NASA', licenseName:'NASA Image and Media Guidelines', licenseUrl:'https://www.nasa.gov/nasa-brand-center/images-and-media/', singleUse:true };
-  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('Reuse permission unavailable'); expect(dock().textContent).toContain('Single-use restriction: Yes');
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('Reuse permission unavailable'); expect(dock().textContent).not.toContain('Portrait credit & rights'); expect(person.image?.singleUse).toBe(true);
 });
 it('keeps identity and credit when a permitted portrait fails', async () => {
   const m = crew().members.find(m => m.image?.singleUse === false)!, person = profile(m); person.image = m.image;
@@ -97,10 +97,10 @@ it.each([
   const updated = crew(); updated.members[0].presence.state = state;
   fetchMock.mockResolvedValueOnce(Response.json(updated)); await show();
   await act(async () => rows().find(b => b.dataset.memberId === updated.members[0].id)!.click());
-  expect(dock().querySelector('.astronaut-presence')!.textContent).toContain(label);
+  expect(rows()[0].textContent).toContain(label); expect(updated.members[0].presence.state).toBe(state); expect(dock().querySelector('.astronaut-presence')).toBeNull();
 });
 it('preserves assignment vs presence, source observation vs fetch, and cumulative duration semantics', async () => {
-  await show(); await select(); const text = dock().textContent!; expect(text).toContain('Structured assignment does not confirm presence'); expect(text).toContain('not elapsed time on this expedition'); expect(text).toContain('Profile last successful fetch'); expect(text).toContain('Original profile observation'); expect(text).toContain('Profile assessment');
+  await show(); await select(); const text = dock().textContent!; expect(text).not.toContain('Structured assignment does not confirm presence'); expect(text).not.toContain('not elapsed time on this expedition'); expect(text).toContain('Career'); expect(text).toContain('Profile last successful fetch'); expect(text).toContain('Original profile observation'); expect(text).toContain('Profile assessment');
 });
 it('keeps the bottom evidence disclosure usable without a redundant shortcut or reserved footer button', async () => {
   await show(); await select(); const evidence = [...dock().querySelectorAll('details')].find(d => d.querySelector('summary')?.textContent === 'Profile source & presence evidence')!;

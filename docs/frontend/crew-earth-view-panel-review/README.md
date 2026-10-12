@@ -1,5 +1,7 @@
 # ISS Crew Earth View panel review
 
+The 2026-10-12 [Crew presentation milestone](../branding-crew-simplification/README.md) supersedes the visible source/detail layout: essential Data source follows the roster; detail emphasizes assignment, Nationality after Role and Career. Earlier validation and architectural evidence below remain historical.
+
 > Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
 
 **Backend follow-up (2026-10-03):** [Event-aware refresh](../../crew/event-aware-refresh.md) adds background source scheduling and PostgreSQL operational audit. The accepted panel, API contract, Cesium/orbital runtime, assets and this dossier’s historical measurements remain frozen. New browser/API regression evidence belongs to the [event refresh dossier](../../crew/event-aware-refresh-validation/README.md). Native pinch remains UNVERIFIED; this scheduling milestone does not change that status.

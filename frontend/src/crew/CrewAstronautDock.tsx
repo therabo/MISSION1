@@ -3,8 +3,8 @@ import { useCrewMember } from '../api/useCrewResource';
 import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
-import { CrewPortraitRights, CrewProfileEvidence } from './CrewMemberDetail';
-import { formatDuration, permittedPortrait, operationalAnnotation, QUALITY, safeHttps, utc } from './presentation';
+import { CrewProfileEvidence } from './CrewMemberDetail';
+import { formatDuration, permittedPortrait, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
 import { CrewDetailActions } from './CrewDetailActions';
@@ -35,34 +35,25 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
   const portraitState = portraitResult && portraitResult.url === permitted ? portraitResult.state : 'loading';
   const profileUrl = safeHttps(person?.officialProfileUrl ?? null);
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
-  const presence = member.presence;
-  const operational = operationalAnnotation(presence, crew.freshness.evaluatedAt);
   return <>
     <div className="astronaut-profile-body" data-profile-member-id={member.id}>
-      <section className="astronaut-presence">
+      <div className="astronaut-identity">
         <div className="astronaut-portrait-identity" onLoadCapture={() => setPortraitResult({ url: permitted, state: 'ready' })} onErrorCapture={() => setPortraitResult({ url: permitted, state: 'failed' })}>
           <CrewPortrait name={member.name} media={media} />
           <div><p>{permitted ? portraitState === 'failed' ? 'Portrait unavailable' : portraitState === 'ready' ? 'Portrait' : 'Loading portrait…' : 'Portrait unavailable'}</p>
             <small>{permitted ? `Photo: ${media?.credit}${portraitState === 'failed' ? ' · image failed to load' : ''}` : media ? 'Reuse permission unavailable' : 'Image unavailable'}</small>
           </div>
         </div>
-        <h3>Current membership</h3><p className="astronaut-current-membership">Current member</p>
-        <p className="astronaut-small">Source-supported membership; operational evidence is separate.</p>
-      </section>
-      <section className="astronaut-operational"><h3>Operational presence evidence</h3><p>{operational.label}</p>
-        {operational.evidence && <><p className="astronaut-secondary">{operational.description} · <time dateTime={presence.asOf ?? undefined}>{utc(presence.asOf)}</time></p>
-          <p className="astronaut-small">NASA operational source · {operational.precision} · {operational.fresh ? 'Applicable' : 'Dated / unavailable confirmation'}</p>
-          {safeHttps(operational.evidence.provenance.sourceUrl) && <a href={operational.evidence.provenance.sourceUrl} target="_blank" rel="noopener noreferrer">Operational source ↗</a>}
-        </>}
-      </section>
-      <section><h3>Structured assignment</h3><dl><div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div></dl>
+      </div>
+      <section><h3>Structured assignment</h3><dl><div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div>
+        <div><dt>Nationality</dt><dd>{(person?.nationalities ?? member.nationalities).map(n => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable').join(', ') || 'Unavailable'}</dd></div></dl>
         <p>{member.agency?.name ?? member.agency?.abbreviation ?? person?.agency?.name ?? person?.agency?.abbreviation ?? 'Agency unavailable'}</p>
       </section>
       <section><h3>Mission context</h3><dl>
         <div><dt>Expedition</dt><dd>{mission ?? 'Unavailable'}</dd></div>
         <div><dt>Arrival / departure</dt><dd>Unavailable</dd></div>
         <div><dt>Vehicle</dt><dd>Unavailable</dd></div>
-      </dl><p className="astronaut-small">Structured assignment does not confirm presence aboard.</p></section>
+      </dl></section>
       {resource.loading && <p className="astronaut-secondary" role="status">Loading astronaut profile…</p>}
       {resource.error && <div className="crew-error" role="alert"><p>{resource.error}</p><p>Member summary remains available.</p>
         {person && <p>Showing the previous profile response. The profile refresh failed.</p>}
@@ -71,7 +62,7 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
       {person && <>
         {person.profileAvailability === 'UNAVAILABLE' && <p className="astronaut-secondary">Structured profile unavailable. Available identity and NASA presence context are shown.</p>}
         <section><h3>Biography / retained profile</h3>{person.biography ? person.biography.length > 700 ? <details className="astronaut-biography"><summary>Read biography</summary><p>{person.biography}</p></details> : <p>{person.biography}</p> : <p className="astronaut-secondary">Biography unavailable.</p>}</section>
-        <section><h3>Career totals / cumulative</h3>{person.career ? <dl>
+        <section><h3>Career</h3>{person.career ? <dl>
           <div><dt>Time in space</dt><dd className="astronaut-numeric">{formatDuration(person.career.timeInSpace)}</dd></div>
           <div><dt>EVA time</dt><dd className="astronaut-numeric">{formatDuration(person.career.evaTime)}</dd></div>
           <div><dt>Flights</dt><dd className="astronaut-numeric">{person.career.flightsCount ?? 'Unavailable'}</dd></div>
@@ -79,16 +70,13 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
           <div><dt>First flight</dt><dd className="astronaut-numeric">{utc(person.career.firstFlight)}</dd></div>
           <div><dt>Last flight</dt><dd className="astronaut-numeric">{utc(person.career.lastFlight)}</dd></div>
         </dl> : <p className="astronaut-secondary">Career statistics unavailable.</p>}
-          <p className="astronaut-small">Cumulative source totals; not elapsed time on this expedition.</p>
         </section>
         <section><h3>Profile context</h3><dl>
-          <div><dt>Nationality</dt><dd>{person.nationalities.map(n => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable').join(', ') || 'Unavailable'}</dd></div>
           {person.currentAssignment && <div><dt>Profile assignment validity</dt><dd>{utc(person.currentAssignment.validFrom)} → {utc(person.currentAssignment.validUntil)}</dd></div>}
-        </dl><p className="astronaut-small">Profile metadata is the latest retained response. Presence above uses the Crew assessment at {utc(crew.freshness.evaluatedAt)}.</p>
+        </dl><p className="astronaut-small">Profile metadata is the latest retained response.</p>
           <p className="astronaut-small">Profile assessment: {QUALITY[person.reconciliation.status].label} · evaluated {utc(person.reconciliation.evaluatedAt)}</p>
           {profileUrl && <p><a href={profileUrl} target="_blank" rel="noopener noreferrer">Official profile ↗</a></p>}
         </section>
-        <CrewPortraitRights person={person} />
         <CrewProfileEvidence person={person} />
       </>}
     </div>

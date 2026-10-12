@@ -29,14 +29,14 @@ describe('Current active membership contract', () => {
   it('shows seven Current members with source-slot diagnostics', () => {
     const html = renderToStaticMarkup(<CurrentCrewRoster crew={active()} onMember={() => {}} />);
     expect(html).toContain('<dt>Current members</dt><dd>7</dd>');
-    expect(html).toContain('Membership and physical presence are separate');
+    expect(html).not.toContain('Membership and physical presence are separate');
     expect(html).not.toContain('<dt>Reported aboard');
     expect(html).toContain('Unavailable');
     expect((html.match(/data-member-id=/g) ?? [])).toHaveLength(7);
     const source = renderToStaticMarkup(<CrewSources crew={active()} />);
-    expect(source).toContain('degraded');
-    expect(source).toContain('8 unresolved active source slots');
-    expect(source).toContain('0 people have applicable dated named operational evidence');
+    expect(source).not.toContain('degraded'); expect(active().membership?.health).toBe('DEGRADED');
+    expect(source).not.toContain('unresolved active source slots'); expect(active().membership?.unresolvedActiveSourceSlots).toBe(8);
+    expect(source).not.toContain('people have applicable dated named operational evidence');
   });
   it('keeps Historical labels and counts independent of optional Current metadata', () => {
     const html = renderToStaticMarkup(<CurrentCrewRoster crew={{...historicalCrewFixture(), counts: {...historicalCrewFixture().counts, resolvedAboard:0}}} onMember={() => {}} historical={{ at: '2026-10-02T02:01:55Z', availability: 'AVAILABLE', coverage: { status: 'AVAILABLE', limitations: [] } as never }} />);

@@ -75,7 +75,7 @@ it('retains partial/unresolved evidence separately from confirmed identities', a
 it('keeps latest-retained metadata explicit without pretending portraits/biographies were captured at T', async () => {
   await show(); expect(node.textContent).toContain('latest-retained metadata, not historical snapshots');
   await clickProfile(); expect(node.querySelector('.crew-profile')).not.toBeNull();
-  expect(node.textContent).toContain('career totals are not reconstructed at replay time');
+  expect(node.textContent).toContain('Career'); expect(node.textContent).toContain('latest retained metadata');
   expect(node.textContent).toContain('Assignment at replay time'); expect(fetch).not.toHaveBeenCalled();
 });
 it('does not label historical presence/counts as Current confirmation', async () => {

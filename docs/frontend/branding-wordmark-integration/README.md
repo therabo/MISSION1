@@ -1,5 +1,7 @@
 # Approved MISSION1 wordmark integration
 
+The 2026-10-12 [branding refresh](../branding-crew-simplification/README.md) replaces the visible wordmark and shares one new public asset between README and application. The old root artwork remains an archived reference; the old frontend copy is removed. Earlier records below describe the prior artwork and ownership.
+
 > Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
 
 Original integration validated on 2026-10-04 (Europe/Rome), with its visual

@@ -73,9 +73,9 @@ it('shows accepted historical membership and assignment independently of newer c
   await show(result);
   await act(async () => rows().find(row => row.dataset.memberId === member.id)!.click());
   const detail = node.querySelector('.crew-historical-detail')!;
-  expect(detail.textContent).toContain('Membership at Historical UTC');
-  expect(detail.textContent).toContain('Member at 2026-10-07 12:05:00 UTC');
-  expect(detail.textContent).toContain('Operational presence evidence at Historical UTC');
+  expect(detail.textContent).not.toContain('Membership at Historical UTC');
+  expect(rows()[0].textContent).toContain('Member at Historical UTC'); expect(result.crew.state?.membership?.evaluatedAt).toBe('2026-10-07T12:05:00Z');
+  expect(detail.textContent).not.toContain('Operational presence evidence at Historical UTC');
   expect(detail.textContent).toContain('No structured assignment');
   expect(detail.textContent).toContain('latest retained canonical metadata');
   expect(detail.textContent).not.toContain('TEST ONLY today role');

@@ -1,5 +1,7 @@
 # ui/restyling responsive hardening — 2026-10-08
 
+The 2026-10-12 [branding and Crew presentation milestone](../branding-crew-simplification/README.md) aligns Current members / Last update before the divider, moves essential Data source after the roster and simplifies Current/Historical detail. The accepted <=716px container navigation, shell height and Cesium layout remain unchanged.
+
 ## Crew spacing and immediate Inspection navigation — 2026-10-09
 
 The [focused Crew interaction milestone](crew-transition-timing.md) starts on `main` at `98114d2d23afb611df38c973f0c078cf84369f66`. Crew opens immediately while the accepted Inspection-to-Earth transition continues behind it. Current/Historical retain interactive responsive details and bottom profile evidence; the redundant shortcut is removed, and both summaries share a deliberate 12px divider gap. Camera and data contracts stay unchanged.

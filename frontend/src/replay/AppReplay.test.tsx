@@ -3,7 +3,7 @@ import { act } from 'react';
 import { createRoot,type Root } from 'react-dom/client';
 import { beforeEach,afterEach,expect,it,vi } from 'vitest';
 import App from '../App';
-import mission1Wordmark from '../assets/branding/MISSION1-logo.png';
+const mission1Wordmark = '/branding/MISSION1-logo.png';
 import { replayFixture } from '../test/replayFixture';
 const flags=vi.hoisted(() => ({live:[] as boolean[],comparison:[] as boolean[]}));
 vi.mock('../api/useOrbitalDelivery',() => ({useOrbitalDelivery:(enabled=true) => {flags.live.push(enabled);return {window:null,status:'unavailable',message:null};}}));

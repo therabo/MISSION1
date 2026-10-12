@@ -12,13 +12,13 @@ describe('Crew summary semantics', () => {
     const crew = crewFixture();
     crew.reconciliation.status = status;
     const html = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
-    expect(html).toContain(QUALITY[status].label);
+    expect(html).not.toContain('<details class="crew-quality'); expect(crew.reconciliation.status).toBe(status);
     expect(html).toContain('Current members');
-    expect(html).toContain('Data sources');
+    expect(html).toContain('Data source');
   });
   it('uses resolved member cardinality with independent source diagnostics', () => {
     const html = renderToStaticMarkup(<CrewSummary crew={crewFixture()} onMember={() => {}} />);
-    expect(html).toContain('Current members <strong>9</strong>'); expect(html).toContain('7 structured assignments');
+    expect(html).toContain('Current members <strong>9</strong>'); expect(html).not.toContain('structured assignments');
     expect(html).not.toContain('without confirmed identities'); expect(html).not.toContain('Additional NASA-reported crew');
     expect((html.match(/data-member-id=/g) ?? [])).toHaveLength(9);
   });
@@ -66,8 +66,8 @@ describe('partial/safe astronaut profiles', () => {
     const html = renderToStaticMarkup(<CrewProfile person={person} />);
     expect(html).toContain('&lt;script&gt;');
     expect(html).not.toContain('<script>');
-    expect(html).toContain('Career totals');
-    expect(html).toContain('not elapsed time');
+    expect(html).toContain('<h3>Career</h3>');
+    expect(html).not.toContain('not elapsed time');
   });
   it('supports NASA-only/null profile fields without invented zeros or agency', () => {
     const person = personFixture();
@@ -98,8 +98,8 @@ describe('partial/safe astronaut profiles', () => {
     const person = personFixture();
     person.image = crewFixture().members.find((m) => m.image?.singleUse)!.image;
     const html = renderToStaticMarkup(<CrewProfile person={person} />);
-    expect(html).toContain('Portrait withheld');
-    expect(html).toContain('Single-use restriction');
+    expect(html).not.toContain('Portrait credit');
+    expect(html).not.toContain('Single-use restriction'); expect(person.image?.singleUse).toBe(true);
     const avatar = renderToStaticMarkup(<CrewPortrait media={person.image} name={person.name} />);
     expect(avatar).not.toContain('<img');
     expect(avatar).toContain('aria-hidden');
