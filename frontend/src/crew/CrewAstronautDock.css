@@ -28,7 +28,6 @@
 .astronaut-dock .crew-sources p { margin-top: 8px; color: var(--color-text-secondary); font-size: 12px; line-height: 17px; }
 .astronaut-dock a { color: var(--color-interaction); }
 .astronaut-dock :is(button,summary,a,[tabindex]):focus-visible { outline: 2px solid var(--color-interaction); outline-offset: -2px; }
-.astronaut-dock .context-dock-footer { flex: none; padding: 16px 24px 12px; }
 @media (max-width: 1243px) {
   .astronaut-dock .context-dock-header .context-button { flex: none; width: 44px; height: 44px; }
   .astronaut-dock summary { min-height: 44px; }

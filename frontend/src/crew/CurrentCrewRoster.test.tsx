@@ -46,7 +46,7 @@ describe('S7 assessment and roster presentation', () => {
   });
   it.each(Object.keys(QUALITY) as ReconciliationStatus[])('keeps %s evidence and warnings available', status => {
     const crew = crewFixture(); crew.reconciliation.status = status;
-    const html = render(crew); expect(html).toContain('<h3>Data source</h3>'); expect(crew.reconciliation.status).toBe(status);
+    const html = render(crew); expect(html).toContain('<summary>Data source</summary>'); expect(crew.reconciliation.status).toBe(status);
   });
   it('keeps unresolved reports read-only, without inventing selectable person identities', () => {
     const crew = crewFixture(); crew.members = []; const html = render(crew);

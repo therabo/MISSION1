@@ -65,7 +65,7 @@ it('preserves the bottom profile evidence disclosure without an internal navigat
   expect(evidence.querySelector('summary')?.textContent).toBe('Profile source & presence evidence');
   expect([...profile.querySelectorAll('button,a')].some(e => e.textContent === 'Profile source & presence evidence')).toBe(false);
   await act(async () => evidence.querySelector('summary')!.click());
-  expect(evidence.open).toBe(true); expect(evidence.textContent).toContain('Original profile observation');
+  expect(evidence.open).toBe(true); expect(evidence.textContent).not.toContain('Original profile observation');
 });
 it('retains partial/unresolved evidence separately from confirmed identities', async () => {
   const result = data(); result.crew.coverage.limitations = ['TEST ONLY assignment evidence incomplete']; await show(result);

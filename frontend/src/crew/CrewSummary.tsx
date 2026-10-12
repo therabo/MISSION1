@@ -110,15 +110,15 @@ export function CrewReports({ crew, historicalAt }: { crew: CrewAssessment; hist
 
 /** Essential collection provenance; underlying diagnostics remain in the REST contract. */
 export function CrewSources({ crew }: { crew: CrewAssessment }) {
-  return <section className="crew-data-source" aria-label="Data source">
-    <h3>Data source</h3>
+  return <details className="crew-sources crew-data-source">
+    <summary>Data source</summary>
     {([
       ['Structured roster · Launch Library 2', crew.freshness.structuredSource, crew.provenance.structuredSource],
       ['NASA verification', crew.freshness.verification, crew.provenance.verification],
     ] as const).map(([label, health, observation]) => {
       const reference = safeHttps(observation?.sourceUrl ?? null);
       return <section className="crew-source-group" key={label} aria-label={label}>
-        <h4>{label}</h4>
+        <h3>{label}</h3>
         <dl>
           <div><dt>Last successful fetch</dt><dd>{utc(health.lastSuccessfulFetchAt)}</dd></div>
           <div><dt>Source state</dt><dd>{health.sourceState?.replaceAll('_', ' ').toLowerCase() ?? 'Unavailable'}</dd></div>
@@ -129,5 +129,5 @@ export function CrewSources({ crew }: { crew: CrewAssessment }) {
       </section>;
     })}
     <p className="crew-source-reconciled">Reconciled {utc(crew.reconciliation.reconciledAt)}</p>
-  </section>;
+  </details>;
 }

@@ -1,5 +1,7 @@
 // @vitest-environment jsdom
 import { readFileSync } from 'node:fs';
+import { act } from 'react';
+import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { crewFixture, personFixture } from '../test/crewFixture';
@@ -13,8 +15,8 @@ import type { CrewPerson } from './types';
 const resource = vi.hoisted(() => ({ data: null as CrewPerson | null }));
 vi.mock('../api/useCrewResource', () => ({ useCrewMember: () => ({ ...resource, loading: false, error: null, refresh: vi.fn() }) }));
 const dom = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
-const removed = ['Membership and physical presence are separate', 'Current membership is source-supported', 'Available last-known information is retained', 'Data source & freshness', 'Source-supported membership; operational evidence is separate.', 'Operational presence evidence', 'Structured assignment does not confirm presence aboard.', 'Cumulative source totals; not elapsed time on this expedition.', 'Career totals / cumulative', 'Portrait credit & rights'];
-beforeEach(() => { resource.data = null; });
+const removed = ['Membership and physical presence are separate', 'Current membership is source-supported', 'Available last-known information is retained', 'Data source & freshness', 'Source-supported membership; operational evidence is separate.', 'Operational presence evidence', 'Structured assignment does not confirm presence aboard.', 'Cumulative source totals; not elapsed time on this expedition.', 'Career totals / cumulative', 'Portrait credit & rights', 'Profile context', 'Profile observation', 'Original profile observation'];
+beforeEach(() => { resource.data = null; Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true }); });
 
 describe('branding and compact Crew presentation', () => {
   it('uses one full-resolution transparent canonical PNG in README and application', () => {
@@ -65,8 +67,8 @@ describe('branding and compact Crew presentation', () => {
   it('keeps two primary source groups and dynamically renders reconciliation and source references', () => {
     const crew = crewFixture(); crew.reconciliation.reconciledAt = '2031-02-03T04:05:06Z';
     const root = dom(renderToStaticMarkup(<CrewSources crew={crew} />));
-    expect(root.querySelector('h3')?.textContent).toBe('Data source');
-    expect([...root.querySelectorAll('h4')].map(n => n.textContent)).toEqual(['Structured roster · Launch Library 2', 'NASA verification']);
+    expect(root.querySelector('summary')?.textContent).toBe('Data source');
+    expect([...root.querySelectorAll('.crew-source-group h3')].map(n => n.textContent)).toEqual(['Structured roster · Launch Library 2', 'NASA verification']);
     expect(root.querySelectorAll('.crew-source-group')).toHaveLength(2);
     expect(root.querySelector('.crew-source-reconciled')?.textContent).toBe(`Reconciled ${utc(crew.reconciliation.reconciledAt)}`);
     for (const [index, source] of (['structuredSource', 'verification'] as const).entries()) {
@@ -75,9 +77,32 @@ describe('branding and compact Crew presentation', () => {
       expect(a.getAttribute('aria-label')).toContain('source reference'); expect(a.tabIndex).toBe(0);
       expect(a.rel).toBe('noopener noreferrer');
     }
-    expect(root.querySelector('details')).toBeNull();
+    expect(root.querySelector('details')?.open).toBe(false); expect(root.querySelector('details > summary')?.textContent).toBe('Data source');
   });
-  it('keeps essential provenance after an empty roster', () => {
+  it('restores the native, initially collapsed source disclosure and supports opening and closing', async () => {
+    const host = document.createElement('div'); document.body.append(host); const root = createRoot(host);
+    try {
+      await act(async () => root.render(<CrewSources crew={crewFixture()} />));
+      const disclosure = host.querySelector('details')!, summary = disclosure.querySelector('summary')!;
+      expect(disclosure.open).toBe(false); expect(summary.textContent).toBe('Data source');
+      expect(summary.parentElement).toBe(disclosure); expect(summary.querySelector('button,a')).toBeNull();
+      await act(async () => summary.click()); expect(disclosure.open).toBe(true);
+      expect(disclosure.querySelectorAll('.crew-source-group')).toHaveLength(2);
+      await act(async () => summary.click()); expect(disclosure.open).toBe(false);
+    } finally { await act(async () => root.unmount()); host.remove(); }
+  });
+  it('preserves an open source disclosure when real source values refresh', async () => {
+    const host = document.createElement('div'); document.body.append(host); const root = createRoot(host);
+    try {
+      const crew = crewFixture(); await act(async () => root.render(<CrewSources crew={crew} />));
+      const disclosure = host.querySelector('details')!; await act(async () => disclosure.querySelector('summary')!.click());
+      const refreshed = structuredClone(crew); refreshed.freshness.verification.lastSuccessfulFetchAt = '2031-04-05T06:07:08Z';
+      await act(async () => root.render(<CrewSources crew={refreshed} />));
+      expect(host.querySelector('details')).toBe(disclosure); expect(disclosure.open).toBe(true);
+      expect(disclosure.textContent).toContain('2031-04-05 06:07:08 UTC'); expect(crew.freshness.verification).not.toEqual(refreshed.freshness.verification);
+    } finally { await act(async () => root.unmount()); host.remove(); }
+  });
+  it('keeps essential provenance after an empty roster' , () => {
     const crew = crewFixture(); crew.members = [];
     const root = dom(renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} />));
     expect(root.querySelector('.crew-roster-empty')?.compareDocumentPosition(root.querySelector('.crew-data-source')!)! & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();

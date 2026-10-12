@@ -37,8 +37,15 @@ picking tests and evidence](../docs/frontend/occlusion-aware-workspace-centering
 
 The application and root README share one canonical transparent
 [`public/branding/MISSION1-logo.png`](public/branding/MISSION1-logo.png).
-The user-provided metallic wordmark is retained at 2172×724; deterministic local
-background segmentation preserves its opaque shading and antialiased edges.
+The first transparency conversion clipped artwork and has been superseded by a
+conservative regeneration from the untouched Desktop original. The user-provided
+metallic wordmark retains its 2172×724 canvas and every original RGB coordinate;
+only alpha changes. Border-color/connected-background processing with reviewed
+foreground guards preserves letters, antennas, details and glows. No crop, trim,
+resize, foreground erosion or GrabCut is used; uncertain edges retain soft alpha.
+The user subsequently removed the source and stopped further image work; the
+already generated asset remains at its last working version. The dossier records
+that interruption and the available checks without claiming all logo gates complete.
 `App.tsx` uses Vite's base URL, so the public asset is included in standalone
 frontend builds. The previous frontend copy is removed; the old root artwork is
 retained only for the dated branding dossier. The logo has one `alt="MISSION1"`,
@@ -46,13 +53,16 @@ intrinsic dimensions, `object-fit: contain`, and a 120×40px image box. Navigati
 height and the full-screen Cesium canvas remain unchanged.
 
 Current Crew shows Current members and the latest successful source fetch on one
-summary row above the divider. The essential **Data source** section follows all
-astronauts. Its LL2 and NASA groups each expose successful fetch, source state,
+summary row above the divider. The essential **Data source** accordion follows all
+astronauts and restores the prior native, initially collapsed details/summary
+interaction, marker and keyboard/focus behavior. Its LL2 and NASA groups each expose successful fetch, source state,
 original observation, publication or Unavailable, and their actual source link;
 Reconciled remains dynamic. Current and Historical detail emphasize Structured
 assignment, Role followed by Nationality, Career and retained profile information.
 Membership/presence explanatory blocks, assignment/cumulative disclaimers and the
-portrait-rights disclosure are removed from detail presentation. Portrait permission
+portrait-rights disclosure are removed from detail presentation. The correction
+also removes Profile context and Profile observation, including the shared original
+profile-observation timestamp in Current/Historical evidence. Portrait permission
 checks and metadata remain intact. Historical still uses its accepted roster and
 assignment at UTC T, separately from latest canonical biography/career.
 

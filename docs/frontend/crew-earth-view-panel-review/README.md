@@ -1,6 +1,6 @@
 # ISS Crew Earth View panel review
 
-The 2026-10-12 [Crew presentation milestone](../branding-crew-simplification/README.md) supersedes the visible source/detail layout: essential Data source follows the roster; detail emphasizes assignment, Nationality after Role and Career. Earlier validation and architectural evidence below remain historical.
+The 2026-10-12 [Crew presentation and correction milestones](../branding-crew-simplification/README.md) supersede the visible source/detail layout: essential Data source follows the roster as the original initially collapsed native accordion; detail emphasizes assignment, Nationality after Role and Career, with Profile context and Profile observation hidden. Earlier validation and architectural evidence below remain historical.
 
 > Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.
 

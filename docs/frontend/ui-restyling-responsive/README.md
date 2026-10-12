@@ -1,6 +1,6 @@
 # ui/restyling responsive hardening — 2026-10-08
 
-The 2026-10-12 [branding and Crew presentation milestone](../branding-crew-simplification/README.md) aligns Current members / Last update before the divider, moves essential Data source after the roster and simplifies Current/Historical detail. The accepted <=716px container navigation, shell height and Cesium layout remain unchanged.
+The 2026-10-12 [branding and Crew presentation corrections](../branding-crew-simplification/README.md) align Current members / Last update before the divider, keep essential Data source after the roster with its restored initially collapsed native accordion, and hide Profile context/Profile observation in detail. The logo is regenerated from the untouched source without crop/trim. The accepted <=716px container navigation, shell height and Cesium layout remain unchanged.
 
 ## Crew spacing and immediate Inspection navigation — 2026-10-09
 

@@ -4,7 +4,7 @@ import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewProfileEvidence } from './CrewMemberDetail';
-import { formatDuration, permittedPortrait, QUALITY, safeHttps, utc } from './presentation';
+import { formatDuration, permittedPortrait, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
 import { CrewDetailActions } from './CrewDetailActions';
@@ -33,7 +33,6 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
   const media = person ? person.image : member.image;
   const permitted = permittedPortrait(media);
   const portraitState = portraitResult && portraitResult.url === permitted ? portraitResult.state : 'loading';
-  const profileUrl = safeHttps(person?.officialProfileUrl ?? null);
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
   return <>
     <div className="astronaut-profile-body" data-profile-member-id={member.id}>
@@ -71,17 +70,8 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
           <div><dt>Last flight</dt><dd className="astronaut-numeric">{utc(person.career.lastFlight)}</dd></div>
         </dl> : <p className="astronaut-secondary">Career statistics unavailable.</p>}
         </section>
-        <section><h3>Profile context</h3><dl>
-          {person.currentAssignment && <div><dt>Profile assignment validity</dt><dd>{utc(person.currentAssignment.validFrom)} → {utc(person.currentAssignment.validUntil)}</dd></div>}
-        </dl><p className="astronaut-small">Profile metadata is the latest retained response.</p>
-          <p className="astronaut-small">Profile assessment: {QUALITY[person.reconciliation.status].label} · evaluated {utc(person.reconciliation.evaluatedAt)}</p>
-          {profileUrl && <p><a href={profileUrl} target="_blank" rel="noopener noreferrer">Official profile ↗</a></p>}
-        </section>
         <CrewProfileEvidence person={person} />
       </>}
     </div>
-    <footer className="context-dock-footer">
-      <p className="astronaut-small">Profile observation: <time dateTime={person?.profileProvenance?.observedAt}>{utc(person?.profileProvenance?.observedAt ?? null)}</time></p>
-    </footer>
   </>;
 }

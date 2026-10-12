@@ -159,14 +159,13 @@
   .crew-detail-actions .secondary-icon { display: block; width: 18px; height: 18px; }
   .crew-detail-actions .secondary-icon > svg { display: block; width: 100%; height: 100%; }
   .astronaut-profile-body, .crew-historical-profile-body { padding: 12px; }
-  .astronaut-dock .context-dock-footer { min-height: 0; padding: 12px; }
 }
 
 .crew-data-source { flex: none; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font: 400 12px/18px var(--font-interface); overflow-wrap: anywhere; }
-.crew-panel .crew-data-source > h3 { margin: 0 0 8px; color: var(--color-text-secondary); font: 700 13px/19px var(--font-interface); }
+.crew-panel .crew-data-source > summary { color: var(--color-text-secondary); font: 700 13px/19px var(--font-interface); }
 .crew-source-group { padding: 8px 0; }
 .crew-source-group + .crew-source-group { border-top: 1px solid var(--color-border); margin-top: 4px; }
-.crew-source-group h4 { margin: 0 0 6px; font: 600 12px/18px var(--font-interface); }
+.crew-panel .crew-source-group h3 { margin: 0 0 6px; font: 600 12px/18px var(--font-interface); }
 .crew-panel .crew-data-source dl { max-width: 720px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; margin: 0 0 4px; }
 .crew-panel .crew-data-source dl > div { min-width: 0; margin: 0; }
 .crew-panel .crew-data-source dt { margin: 0; }

@@ -114,7 +114,6 @@ export function CrewProfileEvidence({ person }: { person: CrewPerson }) {
       <details className="crew-sources">
         <summary>Profile source &amp; presence evidence</summary>
         <p>Profile last successful fetch: {utc(person.profileLastSuccessfulFetchAt)}</p>
-        <p>Original profile observation: {utc(person.profileProvenance?.observedAt ?? null)}</p>
         {safeHttps(person.profileProvenance?.sourceUrl ?? null) && (
           <a
             href={safeHttps(person.profileProvenance?.sourceUrl ?? null)}
