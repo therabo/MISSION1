@@ -13,10 +13,15 @@ class CrewActiveMembershipConfiguration {
   @Bean
   ActiveMembershipPolicy activeMembershipPolicy(
       CrewReconciliationPolicy temporal,
+      org.mission1.crew.operational.OperationalProductionBindings bindings,
       @Value("${mission1.crew.active-shadow.roster-max-age:PT6H}") Duration roster,
       @Value("${mission1.crew.active-shadow.topic-max-age:PT6H}") Duration topic,
       @Value("${mission1.crew.active-shadow.personal-max-age:P7D}") Duration personal) {
-    return new ActiveMembershipPolicy(temporal, roster, topic, personal);
+    return new ActiveMembershipPolicy(temporal, roster, topic, personal)
+        .production(
+            bindings.mode()
+                == org.mission1.crew.operational.OperationalProductionBindings.Mode
+                    .S10_SCOPED_BINDING);
   }
 
   @Bean

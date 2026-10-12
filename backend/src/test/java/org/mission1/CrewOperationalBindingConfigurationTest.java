@@ -27,7 +27,7 @@ class CrewOperationalBindingConfigurationTest {
   void defaultShadowOnHasSeparateBoundedDispatchAndInitialDelay() throws Exception {
     var annotation =
         CrewOperationalBindingConfiguration.class
-            .getDeclaredMethod("operationalBindingScheduler", OperationalBindingWorker.class)
+            .getDeclaredMethod("operationalBindingScheduler", OperationalBindingWorker.class, boolean.class)
             .getAnnotation(ConditionalOnProperty.class);
     assertTrue(annotation.matchIfMissing());
     assertEquals("true", annotation.havingValue());

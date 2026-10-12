@@ -80,7 +80,7 @@ public final class CrewReconciliationEngine {
                     && e.completeness() == Completeness.EXHAUSTIVE) exhaustive.add(item);
             for (int i = 0; i < e.people().size(); i++) {
                 var r = resolved.get(item.id() + ":" + i);
-                if (r != null) usedResolution.add(r.id());
+                if (r != null && r.id()>0) usedResolution.add(r.id());
                 if (r == null || r.personId() == null) {
                     var method = r == null ? CrewIdentityResolution.Method.UNRESOLVED : r.method();
                     unresolved.add(

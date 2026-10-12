@@ -151,21 +151,24 @@ interface CrewState {
 export interface HistoricalCrew extends CrewState {
   counts: HistoricalCrewCounts;
   unresolvedSubjects: UnresolvedSubject[];
+  membership?: MembershipProjection & { mode: 'HISTORICAL_V10_S10' };
+}
+export interface MembershipProjection {
+  mode: 'ACTIVE_PROJECTION' | 'HISTORICAL_V10_S10';
+  /** Historical evaluation is read-only: revision=0, ageSeconds=0. */
+  revision: number;
+  evaluatedAt: string;
+  policyVersion: string;
+  health: 'HEALTHY' | 'DEGRADED';
+  ageSeconds: number;
+  resolvedCurrentMembers: number;
+  nonPublishableActive: number;
+  canonicalCollisions: number;
+  unresolvedActiveSourceSlots: number;
 }
 export interface CurrentCrew extends CrewState {
   counts: { resolvedAboard: number; structuredAssignments: number | null };
-  membership?: {
-    mode: 'ACTIVE_PROJECTION';
-    revision: number;
-    evaluatedAt: string;
-    policyVersion: string;
-    health: 'HEALTHY' | 'DEGRADED';
-    ageSeconds: number;
-    resolvedCurrentMembers: number;
-    nonPublishableActive: number;
-    canonicalCollisions: number;
-    unresolvedActiveSourceSlots: number;
-  };
+  membership?: MembershipProjection & { mode: 'ACTIVE_PROJECTION' };
 }
 export type CrewAssessment = CurrentCrew | HistoricalCrew;
 export interface ExpeditionAssignment {

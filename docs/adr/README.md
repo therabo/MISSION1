@@ -40,3 +40,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0019: Current membership and dated operational observations](0019-current-membership-and-dated-operational-observations.md) — Accepted; Current seven-day observations, unchanged entry/Replay boundaries, bounded activity grammar and visible Current refetch.
 
 - [ADR-0020: Shadow operational subject binding](0020-shadow-operational-subject-binding.md) — Accepted for shadow only; qualified source-scoped official evidence, immutable V11 revisions and detached production differentials; no production consumer.
+
+- [ADR-0021](0021-production-operational-binding-and-unified-crew-replay.md): Production operational binding and unified Crew Replay — Accepted; S10 production, V9 shadow, one V10 lifecycle, clean-room bootstrap next.

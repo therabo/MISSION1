@@ -11,10 +11,11 @@ export interface HistoricalRosterContext { at: string; availability: string; cov
 export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, historical }: {
   crew: CrewAssessment; onMember: (id: string) => void; selectedMemberId?: string | null; historical?: HistoricalRosterContext;
 }) {
-  const historicalCounts = historical && 'unresolvedSubjects' in crew ? crew.counts : null;
+  const modernHistorical = historical && crew.membership?.mode === 'HISTORICAL_V10_S10';
+  const historicalCounts = historical && !modernHistorical && 'unresolvedSubjects' in crew ? crew.counts : null;
   const quality = QUALITY[crew.reconciliation.status];
   const datedPresence = historical && crew.members.some(m => m.presence.state === 'STALE');
-  const members = memberGroups(crew.members, !historical).flatMap(group => group.members);
+  const members = memberGroups(crew.members, !historical || !!modernHistorical).flatMap(group => group.members);
   const assertionTimes = crew.provenance.contributingAssertions.map(assertion => assertion.asOf)
     .filter((at): at is string => at !== null && Number.isFinite(Date.parse(at)));
   const latestAssertion = assertionTimes.reduce<string | null>((latest, at) => latest === null || Date.parse(at) > Date.parse(latest) ? at : latest, null);
@@ -29,13 +30,14 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
         <div><dt>Without confirmed identity</dt><dd>{historicalCounts.unidentifiedAboard}</dd>
           {historicalCounts.officialAboard === null && <small>{historicalCounts.lastKnownOfficialAboard === null ? 'Historical reported count unavailable' : 'In the retained count'}</small>}
         </div>
-      </> : <div><dt>Current members</dt><dd>{crew.members.length}</dd><small>Membership and physical presence are separate</small></div>}
+      </> : <div><dt>{modernHistorical ? 'Members at Historical UTC' : 'Current members'}</dt><dd>{crew.members.length}</dd><small>Membership and physical presence are separate</small></div>}
       {historical && <div className="crew-assessment"><dt>ASSESSMENT UTC</dt><dd><time dateTime={historical.at}>{utc(historical.at)}</time></dd>
         <details className={`crew-assessment-evidence crew-historical-evidence${historical.availability === 'AVAILABLE' && historical.coverage.status === 'AVAILABLE' && crew.reconciliation.status === 'MATCH' ? ' is-aligned' : ''}`}>
           <summary>{historical.coverage.status === 'UNAVAILABLE' ? 'Historical coverage unavailable' : historical.availability === 'PARTIAL' || historical.coverage.status === 'PARTIAL' ? 'Historical coverage partial' : quality.label} · Evidence</summary>
-          <p>Best reconstruction from evidence stored today. Presence and assignments are effective at {utc(historical.at)}; coverage and roster may be partial. Assignment alone does not confirm presence.</p>
+          <p>Best reconstruction from evidence stored today. {modernHistorical ? 'Membership, operational evidence and assignments' : 'Presence and assignments'} are effective at {utc(historical.at)}; coverage and roster may be partial. Assignment alone does not confirm presence.</p>
           <p>Profile names, portraits, biographies and career totals are latest-retained metadata, not historical snapshots.</p>
           <p>Reconciliation: {quality.label}. Coverage: {historical.coverage.status.toLowerCase()}.</p>
+          {modernHistorical && <p>Later qualified source evidence and identity bindings may improve this reconstruction. Original source capture times remain visible.</p>}
           {historicalCounts && historicalCounts.unresolvedSubjects > 0 && <p>{historicalCounts.unresolvedSubjects} unresolved source reports remain separate from confirmed identities.</p>}
           {historical.coverage.limitations.map((limitation, i) => <p key={i}>{limitation}</p>)}
           {datedPresence && <p>Historical presence evidence is dated; last-known confirmation is not confirmation at this UTC.</p>}
@@ -59,7 +61,7 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
       {crew.freshness.stale && crew.reconciliation.status !== 'STALE' && <p className="crew-assessment-warning">Crew data may be outdated.</p>}
       {(crew.freshness.structuredSource.lastRefreshFailed || crew.freshness.verification.lastRefreshFailed) && <p className="crew-assessment-warning">A source refresh failed; available information is retained.</p>}
     </div>}
-    <div className="crew-roster-columns" aria-hidden="true"><span>PERSON / ROLE</span><span>MISSION</span><span>AGENCY</span><span>{historical ? 'PRESENCE EVIDENCE' : 'OPERATIONAL EVIDENCE'}</span></div>
+    <div className="crew-roster-columns" aria-hidden="true"><span>PERSON / ROLE</span><span>MISSION</span><span>AGENCY</span><span>{historical && !modernHistorical ? 'PRESENCE EVIDENCE' : 'OPERATIONAL EVIDENCE'}</span></div>
     {members.length ? <ul className="crew-roster-rows" aria-label="Crew identities and presence evidence">
       {members.map(member => <li key={member.id}><CrewRosterRow member={member} crew={crew} historical={historical} selected={member.id === selectedMemberId} onMember={onMember} /></li>)}
     </ul> : <p className="crew-roster-empty" role="status">{historical ? 'No resolved crew members at this Historical UTC.' : 'No resolved crew members are available.'}</p>}
@@ -67,10 +69,12 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
 }
 
 function CrewRosterRow({ member, crew, onMember, selected, historical }: { member: CrewMember; crew: CrewAssessment; onMember: (id: string) => void; selected: boolean; historical?: HistoricalRosterContext }) {
+  const modernHistorical = historical && crew.membership?.mode === 'HISTORICAL_V10_S10';
+  const operationalPresentation = !historical || modernHistorical;
   const role = member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment');
   const mission = member.assignment && member.assignment.expeditionId === crew.expedition?.id ? crew.expedition.name : 'Unavailable';
   const presence = member.presence;
-  const operational = operationalAnnotation(presence, crew.freshness.evaluatedAt);
+  const operational = operationalAnnotation(presence, historical?.at ?? crew.freshness.evaluatedAt);
   const supportingPresence = presence.state === 'STALE' && presence.lastKnownState
     ? `Last known: ${HISTORICAL_PRESENCE[presence.lastKnownState].toLowerCase()}`
     : presence.state === 'CONFIRMED_ABOARD' ? 'Identity confirmed at Historical UTC'
@@ -80,13 +84,13 @@ function CrewRosterRow({ member, crew, onMember, selected, historical }: { membe
     onClick={() => onMember(member.id)} aria-label={`${member.name ?? 'Name unavailable'} — open profile`}
     aria-describedby={`crew-context-${member.id} crew-presence-${member.id}`}>
     <CrewPortrait name={member.name} media={member.image} />
-    <span className="crew-roster-identity" id={`crew-context-${member.id}`} title={historical ? `Assignment effective at ${utc(historical.at)}. Identity metadata is latest-retained.` : undefined}><strong>{member.name ?? 'Name unavailable'}</strong>{!historical && <span className="crew-current-membership">Current member</span>}<span>{role}</span></span>
+    <span className="crew-roster-identity" id={`crew-context-${member.id}`} title={historical ? `Assignment effective at ${utc(historical.at)}. Identity metadata is latest-retained.` : undefined}><strong>{member.name ?? 'Name unavailable'}</strong>{!historical && <span className="crew-current-membership">Current member</span>}{modernHistorical && <span className="crew-historical-membership">Member at Historical UTC</span>}<span>{role}</span></span>
     <span className="crew-roster-mission"><span className="crew-roster-field-label">Mission</span><span>{mission}</span>
       {permittedPortrait(member.image) && <small>Photo: {member.image?.credit}</small>}
     </span>
     <span className="crew-roster-agency"><span className="crew-roster-field-label">Agency</span>{member.agency?.abbreviation ?? member.agency?.name ?? 'Unavailable'}</span>
-    <span id={`crew-presence-${member.id}`} className={`crew-roster-presence${historical ? ` state-${presence.state.toLowerCase()}` : ' is-operational'}`} title={historical ? `Presence as of ${utc(presence.asOf)}` : `${operational.precision}: ${utc(presence.asOf)}`}>
-      <span className="crew-roster-field-label">{historical ? 'Presence evidence' : 'Operational evidence'}</span><span>{historical ? HISTORICAL_PRESENCE[presence.state] : operational.label}</span><small>{historical ? supportingPresence : operational.evidence ? `${operational.description} · ${utc(presence.asOf)}` : 'NASA operational source'}</small>
+    <span id={`crew-presence-${member.id}`} className={`crew-roster-presence${operationalPresentation ? ' is-operational' : ` state-${presence.state.toLowerCase()}`}`} title={operationalPresentation ? `${operational.precision}: ${utc(presence.asOf)}` : `Presence as of ${utc(presence.asOf)}`}>
+      <span className="crew-roster-field-label">{operationalPresentation ? 'Operational evidence' : 'Presence evidence'}</span><span>{operationalPresentation ? operational.label : HISTORICAL_PRESENCE[presence.state]}</span><small>{operationalPresentation ? operational.evidence ? `${operational.description} · ${utc(presence.asOf)}` : 'NASA operational source' : supportingPresence}</small>
     </span>
     <span className="crew-roster-chevron" aria-hidden="true"><img src={profileChevron} alt="" /></span>
   </button>;

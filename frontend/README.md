@@ -1,5 +1,8 @@
 # MISSION1 Earth View
 
+**Unified Crew Historical — 2026-10-12:** modern Historical consumes backend HISTORICAL_V10_S10 membership metadata, labels every returned human Member at Historical UTC, and separates assignment/operational evidence at T from latest canonical biography/career. Annotation age uses accepted T; no Current roster/profile lifecycle fallback occurs. Current retains120-second visible serial polling; Historical pauses it. Date picker, ±10-minute navigation, <=716 detail/back behavior and native Cesium/Inspection ownership remain intact. Confidence/scoring stays private. Missing membership metadata is legacy rollback rendering only. [Final validation](../docs/crew/final-crew-architecture-validation/README.md).
+
+
 ## Responsive restyling — 2026-10-08
 
 The accepted 1440×900 desktop layout remains the visual reference. Current/Historical navigation, summary, Crew and detail surfaces use the existing content-driven flex/grid and roster container queries. Compact controls retain 44px heights; long content scrolls inside its information surface while the `100dvh` shell and Cesium canvas remain full-screen. The Historical calendar is bounded to the actual scene row with one compact date/time scroll owner and reachable Close/Apply actions. Native compact attribution owns the foreground above chrome. Resizing retains source, member/module selection and accepted UTC; camera, graphics and data contracts are unchanged. See the [complete responsive inventory, golden comparison and browser dossier](../docs/frontend/ui-restyling-responsive/README.md).

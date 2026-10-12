@@ -30,6 +30,7 @@ class CrewVerificationConfigurationTest {
                                         .setConversionService(
                                                 ApplicationConversionService.getSharedInstance()))
                 .withBean(CrewIdentityRepository.class, () -> CrewIdentityRepository.EMPTY)
+                .withBean(org.mission1.crew.operational.OperationalProductionBindings.class, () -> mock(org.mission1.crew.operational.OperationalProductionBindings.class))
                 .withBean(Clock.class, Clock::systemUTC)
                 .withBean(CrewRepository.class, () -> runs)
                 .withBean(

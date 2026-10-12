@@ -1,5 +1,8 @@
 # Replay REST API
 
+**Crew contract update — ADR-0021 / 2026-10-12:** normal `state.members` contains published V10 ACTIVE humans at T; `state.membership` compatibly adds mode HISTORICAL_V10_S10, revision0, evaluatedAt=T, policyVersion, health, ageSeconds0 and publication/unresolved-active cardinalities. Zero revision means read-only evaluation, never a stored projection ID. Historical profiles' currentAssignment/currentPresence compatibility fields refer to T; biography/career remain latest canonical metadata. No resolver scores are public. Source assertions with effective>T are absent from contributing evidence. PARTIAL_MATCH and UNRESOLVED/AMBIGUOUS retain their public enum values. Runtime mode `mission1.replay.crew.mode=LEGACY` restores the earlier contract without membership metadata for emergency rollback/comparison.
+
+
 ## GET /api/iss/replay?at=2026-10-02T03:00:00Z
 
 Required ISO-8601 instant `at` (normalized to UTC, year 1900 onwards), no later than server clock. Missing, malformed or future time returns 400; unsupported retained coverage returns 200 with explicit independent UNAVAILABLE subsystems. Successful responses use Cache-Control: no-store.

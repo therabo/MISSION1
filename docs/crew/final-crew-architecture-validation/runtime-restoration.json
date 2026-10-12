@@ -1,0 +1,61 @@
+{
+  "pid": 85818,
+  "args": [
+    "/Users/daniel/Library/Java/JavaVirtualMachines/corretto-21.0.3/Contents/Home/bin/java",
+    "-jar",
+    "/Users/daniel/Desktop/MISSION1/backend/target/mission1-backend-0.1.0-SNAPSHOT.jar",
+    "--server.port=8080"
+  ],
+  "sourceWorkerOverrides": {},
+  "s10ConsumerMode": "S10_SCOPED_BINDING default",
+  "historicalMode": "UNIFIED_V10_S10 default",
+  "sourceS10V10Workers": "normal defaults enabled",
+  "preservedOriginalFrontendPids": [
+    58931,
+    47556
+  ],
+  "currentMembership": {
+    "mode": "ACTIVE_PROJECTION",
+    "revision": 26,
+    "evaluatedAt": "2026-10-12T09:21:57.984303Z",
+    "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+    "health": "DEGRADED",
+    "ageSeconds": 1490,
+    "resolvedCurrentMembers": 7,
+    "nonPublishableActive": 0,
+    "canonicalCollisions": 0,
+    "unresolvedActiveSourceSlots": 0
+  },
+  "currentNames": [
+    "Anna Kikina",
+    "Anil Menon",
+    "Pyotr Dubrov",
+    "Jessica Watkins",
+    "Luke Delaney",
+    "Joshua Kutryk",
+    "Sergey Teteryatnikov"
+  ],
+  "historicalDepartureNames": [
+    "Anil Menon",
+    "Anna Kikina",
+    "Jessica Watkins",
+    "Joshua Kutryk",
+    "Luke Delaney",
+    "Pyotr Dubrov",
+    "Sergey Teteryatnikov"
+  ],
+  "cleanup": [
+    {
+      "pid": 85197,
+      "marker": "--server.port=8081"
+    },
+    {
+      "pid": 81328,
+      "marker": "--port 5190"
+    },
+    {
+      "pid": 81329,
+      "marker": "--port 4190"
+    }
+  ]
+}

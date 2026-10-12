@@ -1,0 +1,40 @@
+{
+  "pass": true,
+  "cases": [
+    {
+      "case": "s10-old-revision-update",
+      "pass_": true,
+      "error": "ERROR:  Crew source history is immutable\nCONTEXT:  PL/pgSQL function crew_reject_history_mutation() line 3 at RAISE"
+    },
+    {
+      "case": "s10-old-candidate-update",
+      "pass_": true,
+      "error": "ERROR:  Crew source history is immutable\nCONTEXT:  PL/pgSQL function crew_reject_history_mutation() line 3 at RAISE"
+    },
+    {
+      "case": "s10-old-proof-delete",
+      "pass_": true,
+      "error": "ERROR:  Crew source history is immutable\nCONTEXT:  PL/pgSQL function crew_reject_history_mutation() line 3 at RAISE"
+    },
+    {
+      "case": "v10-old-revision-update",
+      "pass_": true,
+      "error": "ERROR:  Crew source history is immutable\nCONTEXT:  PL/pgSQL function crew_reject_history_mutation() line 3 at RAISE"
+    },
+    {
+      "case": "v10-old-member-delete",
+      "pass_": true,
+      "error": "ERROR:  Crew source history is immutable\nCONTEXT:  PL/pgSQL function crew_reject_history_mutation() line 3 at RAISE"
+    },
+    {
+      "case": "s10-late-candidate-insert",
+      "pass_": true,
+      "error": "ERROR:  S10 binding revision sealed\nCONTEXT:  PL/pgSQL function crew_operational_binding_open() line 5 at RAISE"
+    },
+    {
+      "case": "v10-late-binding-insert",
+      "pass_": true,
+      "error": "ERROR:  Shadow projection revision is sealed\nCONTEXT:  PL/pgSQL function crew_active_require_open_revision() line 5 at RAISE"
+    }
+  ]
+}

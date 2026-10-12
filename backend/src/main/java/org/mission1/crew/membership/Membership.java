@@ -7,6 +7,7 @@ import java.util.*;
 public final class Membership {
   private Membership() {}
 
+  public static final String PRODUCTION_MODE = "S10_SCOPED_BINDING";
   public static final String MODE = "V9_AUTOMATIC_SHADOW";
 
   public enum State {

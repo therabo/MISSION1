@@ -206,3 +206,7 @@ preserved. Current still uses V10 ACTIVE + V7, while V9 stays shadow. Historical
 retains the previous count/report contract. The normal trial instance refreshed source
 cuts before that cleanup: projection7 still has seven humans and8/15 ACTIVE/retained slots;
 the operational gap changed from11−0 to11−4. That gap is not an unidentified-human count.
+
+## Subsequent unified production architecture — 2026-10-12
+
+[ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate S10 scoped operational bindings and the shared V10 Current/Historical lifecycle. V7 remains canonical; V9 general identity remains SHADOW. The earlier accepted capture and read-isolation results below retain their dated meaning. Historical now evaluates seven-day observations at T without backdating structured/editorial capture; clean-room empty-database bootstrap validation is the next separate milestone.

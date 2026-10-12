@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-12T09:23:51.320438Z",
+  "label": "primary",
+  "allTablesUnchanged": true,
+  "getInvocations": {
+    "externalHTTP": 0,
+    "org.mission1.crew.application.CrewIngestionService.ingest": 0,
+    "org.mission1.crew.application.NasaCrewVerificationIngestionService.ingest": 0,
+    "org.mission1.crew.automatic.AutomaticIdentityStore.evaluate": 0,
+    "org.mission1.crew.automatic.AutomaticIdentityWorker.run": 0,
+    "org.mission1.crew.automatic.FrozenIdentityModel.score": 0,
+    "org.mission1.crew.membership.ActiveMembershipStore.materialize": 0,
+    "org.mission1.crew.operational.OperationalBindingWorker.acquire": 0,
+    "org.mission1.crew.operational.OperationalBindingWorker.evaluate": 0,
+    "org.mission1.crew.operational.OperationalResolver.evaluate": 0,
+    "org.mission1.source.crew.CrewHttpReader.fetch": 0,
+    "org.mission1.source.crew.nasa.NasaCrewArticleReader.read": 0,
+    "org.mission1.source.crew.nasa.NasaEditorialHttp.fetch": 0,
+    "org.mission1.source.crew.nasa.NasaOperationalFeedHttpSource.fetch": 0,
+    "org.mission1.source.crew.nasa.OperationalResourceHttp.fetch": 0
+  },
+  "getWrites": 0,
+  "allPreparedQueriesSelectOnly": true,
+  "allGetConnectionsReadOnly": true,
+  "forbiddenMethodInstrumentation": [
+    "V9 scoring/evaluation",
+    "S10 evaluation/acquisition",
+    "V10 materialization",
+    "source HTTP/acquisition",
+    "actual external Java HTTP send/sendAsync"
+  ],
+  "tables": 80,
+  "measuredGETs": 148,
+  "warmups": 30
+}

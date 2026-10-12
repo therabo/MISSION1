@@ -95,3 +95,7 @@ V10 production publication remains the ADR-0017 consumer. [ADR-0019](../../adr/0
 ## S10 Phase 1 boundary — 2026-10-11
 
 The [operational subject binding shadow](../operational-subject-binding-shadow-validation/README.md) can run detached counterfactuals through the pure membership policy. It never invokes `ActiveMembershipStore` or persists S10 associations into V10. Existing V10 revisions, episode support/veto rows and production Current activation remain unchanged. Counterfactual hashes/effects are diagnostics, not new membership projections.
+
+## Subsequent final production architecture — 2026-10-12
+
+[ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate the separately versioned S10 operational consumer and unify Current/Historical V10 lifecycle. V7 remains canonical; V9 general identity remains SHADOW. This dossier and its original immutable rows retain their dated acceptance meaning. Historical now uses seven-day observations relative to T, without backdating captured rosters. The next milestone is dedicated clean-room empty-database bootstrap validation.

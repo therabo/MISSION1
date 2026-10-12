@@ -369,3 +369,7 @@ One ordinary milestone commit on `main`, normal SSH push, fetch/ls-remote equali
 clean working tree are required for delivery. The parent is the baseline SHA above;
 final SHA and checks are recorded after commit in the external `git-final.json` and
 user-facing delivery report, avoiding a self-referential commit identifier here.
+
+## Subsequent final production architecture — 2026-10-12
+
+[ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate the separately versioned S10 operational consumer and unify Current/Historical V10 lifecycle. V7 remains canonical; V9 general identity remains SHADOW. This dossier and its original immutable rows retain their dated acceptance meaning. Historical now uses seven-day observations relative to T, without backdating captured rosters. The next milestone is dedicated clean-room empty-database bootstrap validation.

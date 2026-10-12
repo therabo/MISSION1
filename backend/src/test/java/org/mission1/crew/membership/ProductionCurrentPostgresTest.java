@@ -28,7 +28,7 @@ import java.time.*;
 import java.util.*;
 
 /** Offline source-derived fixtures, real V1--V10 persistence and production HTTP composition. */
-@SpringBootTest
+@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
 @AutoConfigureMockMvc
 @Testcontainers
 class ProductionCurrentPostgresTest {

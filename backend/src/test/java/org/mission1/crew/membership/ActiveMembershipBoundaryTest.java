@@ -19,20 +19,21 @@ class ActiveMembershipBoundaryTest {
       String s = Files.readString(root.resolve("crew/membership/" + file));
       for (var forbidden :
           List.of(
-              "CrewIdentityRepository",
               "ReviewedCrewIdentities",
-              "crew_identity_binding_version",
-              "crew_person_equivalence_decision",
               "CrewRestQueryService",
               "HttpClient",
               "ProcessBuilder",
               "FrozenIdentityModel",
               ".evaluateIdentity(")) assertFalse(s.contains(forbidden), file + ":" + forbidden);
     }
+    // Current and Replay may reuse the pure policy/read adapter, never its writer or scorer.
     for (var directory : List.of("api", "replay"))
       try (var files = Files.walk(root.resolve(directory))) {
-        for (var p : files.filter(p -> p.toString().endsWith(".java")).toList())
-          assertFalse(Files.readString(p).contains("crew.membership"), p.toString());
+        for (var p : files.filter(p -> p.toString().endsWith(".java")).toList()) {
+          var source=Files.readString(p);
+          for(var forbidden:List.of("ActiveMembershipStore", "OperationalBindingWorker", "OperationalResolver", "FrozenIdentityModel"))
+            assertFalse(source.contains(forbidden), p+":"+forbidden);
+        }
       }
   }
 }

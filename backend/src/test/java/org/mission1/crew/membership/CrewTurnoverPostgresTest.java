@@ -29,7 +29,7 @@ import org.testcontainers.junit.jupiter.*;
 /**
  * TEST_ONLY transport and qualified identity evidence; production ingestion, jobs, V10 and HTTP.
  */
-@SpringBootTest
+@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
 @AutoConfigureMockMvc
 @Testcontainers
 @Import(CrewTurnoverPostgresTest.TimeConfiguration.class)

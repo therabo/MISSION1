@@ -6,14 +6,14 @@ import { PresenceLabel } from './CrewSummary';
 import { formatDuration, permittedPortrait, QUALITY, safeHttps, utc } from './presentation';
 import type { CrewPerson } from './types';
 
-export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt?: string }) {
+export function CrewProfile({ person, replayAt, historicalMember }: { person: CrewPerson; replayAt?: string; historicalMember?: CrewMember }) {
   const nationality = person.nationalities
     .map((n) => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable')
     .join(', ');
   const profileUrl = safeHttps(person.officialProfileUrl);
   return (
     <div className="crew-profile">
-      {replayAt && <p className="crew-note">Assignment and presence are effective at {replayAt}. Profile details use the latest retained metadata and may be newer.</p>}
+      {replayAt && <p className="crew-note">{historicalMember ? 'Profile details use the latest retained canonical metadata and may be newer than this Historical UTC.' : `Assignment and presence are effective at ${replayAt}. Profile details use the latest retained metadata and may be newer.`}</p>}
       <dl>
         <div>
           <dt>Agency</dt>
@@ -23,15 +23,15 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
           <dt>Nationality</dt>
           <dd>{nationality || 'Unavailable'}</dd>
         </div>
-        <div>
+        {!historicalMember && <div>
           <dt>{replayAt ? "Assignment at replay time" : "Current assignment"}</dt>
           <dd>
             {person.currentAssignment
               ? (person.currentAssignment.role ?? 'Role unavailable')
               : 'No structured assignment'}
           </dd>
-        </div>
-        {person.currentAssignment && (
+        </div>}
+        {!historicalMember && person.currentAssignment && (
           <div>
             <dt>Assignment validity</dt>
             <dd>
@@ -39,14 +39,14 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
             </dd>
           </div>
         )}
-        <div>
+        {!historicalMember && <div>
           <dt>Presence as of</dt>
           <dd>{utc(person.currentPresence.asOf)}</dd>
-        </div>
+        </div>}
       </dl>
-      <p className="crew-note">
+      {!historicalMember && <p className="crew-note">
         {QUALITY[person.reconciliation.status].label} · evaluated {utc(person.reconciliation.evaluatedAt)}
-      </p>
+      </p>}
       {person.profileAvailability === 'UNAVAILABLE' && (
         <p className="crew-note">
           Structured profile unavailable. Available identity and NASA presence context are shown.
@@ -109,7 +109,7 @@ export function CrewProfile({ person, replayAt }: { person: CrewPerson; replayAt
         </p>
       )}
       <CrewPortraitRights person={person} />
-      <CrewProfileEvidence person={person} />
+      <CrewProfileEvidence person={historicalMember ? { ...person, currentAssignment: historicalMember.assignment, currentPresence: historicalMember.presence } : person} />
     </div>
   );
 }

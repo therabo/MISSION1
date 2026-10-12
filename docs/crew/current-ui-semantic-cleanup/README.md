@@ -165,3 +165,7 @@ those decisions; all source/graph/decision fingerprints remain frozen from inves
 ## Membership-first presentation — ADR-0019
 
 Every V10-published Current human receives the same primary **Current member** state. [Dated secondary evidence and validation](../current-operational-presence-validation/README.md) distinguish activity, completed entry and expired/missing reports. Identity-based presence explanations are removed. Current summary omissions and Historical contracts remain intact. Visible Current refetch is serial at120s after completion; it never calls NASA/LL2.
+
+## Subsequent unified production architecture — 2026-10-12
+
+[ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate S10 scoped operational bindings and the shared V10 Current/Historical lifecycle. V7 remains canonical; V9 general identity remains SHADOW. The earlier accepted capture and read-isolation results below retain their dated meaning. Historical now evaluates seven-day observations at T without backdating structured/editorial capture; clean-room empty-database bootstrap validation is the next separate milestone.

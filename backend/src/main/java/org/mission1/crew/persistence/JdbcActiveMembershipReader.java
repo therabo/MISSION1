@@ -109,6 +109,19 @@ public class JdbcActiveMembershipReader implements ActiveMembershipReader {
                             )
                             (SELECT * FROM expected EXCEPT SELECT * FROM retained)
                             UNION ALL (SELECT * FROM retained EXCEPT SELECT * FROM expected))
+                          AND NOT EXISTS(SELECT FROM crew_active_projection_support s WHERE s.projection_id=r.id
+                            AND r.identity_mode='S10_SCOPED_BINDING' AND s.support_type='NASA_EDITORIAL_ROSTER'
+                            AND NOT crew_active_editorial_binding_qualified(r.id,s.human_key,s.roster_id,s.member_index))
+                          AND (r.identity_mode<>'S10_SCOPED_BINDING' OR (
+                            (SELECT count(*) FROM crew_active_projection_binding b WHERE b.projection_id=r.id)=
+                              (SELECT count(*) FROM jsonb_each(r.input_cut->'identityHealth'->'bindings') b WHERE b.value->>'provider' IS NOT NULL)
+                            AND NOT EXISTS(SELECT FROM jsonb_each(r.input_cut->'identityHealth'->'bindings') j
+                              LEFT JOIN crew_active_projection_binding b ON b.projection_id=r.id AND j.key=b.evidence_id||':'||b.subject_index
+                              WHERE j.value->>'provider' IS NOT NULL AND (b.payload IS DISTINCT FROM j.value
+                                OR b.human_key IS DISTINCT FROM j.value->>'provider'
+                                OR b.binding_id IS DISTINCT FROM (j.value->>'revision')::bigint
+                                OR b.explicit_resolution_id IS DISTINCT FROM (j.value->>'resolution')::bigint
+                                OR b.known_at IS DISTINCT FROM (j.value->>'knownAt')::timestamptz))))
                           AND NOT EXISTS(SELECT FROM crew_active_projection_member m WHERE m.projection_id=r.id AND m.state='ACTIVE'
                             AND NOT EXISTS(SELECT FROM crew_active_projection_support s WHERE s.projection_id=r.id AND s.human_key=m.human_key AND s.eligible))
                           AND (SELECT count(*) FROM crew_active_projection_member m WHERE m.projection_id=r.id AND m.state='ACTIVE')=(r.result->'counts'->>'resolvedActiveHumans')::int
@@ -123,7 +136,7 @@ public class JdbcActiveMembershipReader implements ActiveMembershipReader {
                         (r, n) -> {
                             try {
                                 if (!policy.key().equals(r.getString("policy_version"))
-                                        || !Membership.MODE.equals(r.getString("identity_mode")))
+                                        || !policy.identityMode().equals(r.getString("identity_mode")))
                                     throw new CurrentProjectionUnavailable(INCOMPATIBLE);
                                 String result = r.getString("serialized_result"),
                                         cut = r.getString("serialized_cut");

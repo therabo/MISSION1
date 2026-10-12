@@ -92,7 +92,7 @@ public class ActiveMembershipStore {
             Long.class,
             predecessor,
             policy.key(),
-            MODE,
+            inputs.identityMode(),
             utc(at),
             utc(at),
             c.ll2Run(),
@@ -194,6 +194,31 @@ public class ActiveMembershipStore {
           """,
           revision,
           "{" + String.join(",", c.evidence().stream().map(Object::toString).toList()) + "}");
+    if (inputs.modern()) {
+      var bindings = json.valueToTree(c.identityHealth()).path("bindings");
+      var bindingRows = new ArrayList<Object[]>();
+      bindings
+          .fields()
+          .forEachRemaining(
+              entry -> {
+                var b = entry.getValue();
+                if (!b.hasNonNull("provider")) return;
+                var ref = entry.getKey().split(":");
+                bindingRows.add(
+                    new Object[] {
+                      revision,
+                      Long.parseLong(ref[0]),
+                      Integer.parseInt(ref[1]),
+                      b.path("provider").asText(),
+                      b.hasNonNull("revision") ? b.path("revision").asLong() : null,
+                      b.hasNonNull("resolution") ? b.path("resolution").asLong() : null,
+                      utc(Instant.parse(b.path("knownAt").asText())),
+                      encode(b)
+                    });
+              });
+      jdbc.batchUpdate(
+          "INSERT INTO crew_active_projection_binding VALUES(?,?,?,?,?,?,?,?::jsonb)", bindingRows);
+    }
     jdbc.batchUpdate(
         """
         INSERT INTO crew_active_projection_support VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::jsonb)
@@ -228,7 +253,9 @@ public class ActiveMembershipStore {
     System.getLogger(getClass().getName())
         .log(
             System.Logger.Level.INFO,
-            "Crew active shadow: revision={0}, active={1}, retained={2}, unresolved_active={3},"
+            "Crew lifecycle mode="
+                + inputs.identityMode()
+                + ": revision={0}, active={1}, retained={2}, unresolved_active={3},"
                 + " conflicts={4}, departure_vetoes={5}, health={6}",
             revision,
             result.counts().resolvedActiveHumans(),

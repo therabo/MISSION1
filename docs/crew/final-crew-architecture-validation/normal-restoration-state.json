@@ -1,0 +1,146 @@
+{
+  "at": "2026-10-12T11:12:05.748628+00:00",
+  "s10Bindings": 150,
+  "latestV10": {
+    "id": 29,
+    "mode": "S10_SCOPED_BINDING",
+    "at": "2026-10-12T11:12:02.758827+00:00",
+    "counts": {
+      "editorialSlots": 7,
+      "ll2Assignments": 7,
+      "retainedHumans": 4,
+      "resolvedActiveHumans": 7,
+      "unresolvedActiveSlots": 4,
+      "websiteReportedAboard": 7,
+      "unresolvedRetainedSlots": 0,
+      "operationalOfficialAboard": null,
+      "lastKnownOperationalAboard": null,
+      "resolvedEditorialMemberships": 3
+    },
+    "bindings": 25,
+    "departureVetoCount": 4
+  },
+  "sources": [
+    {
+      "id": 152,
+      "source": "NASA_OFFICIAL",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-12T11:11:03.285176+00:00",
+      "completed_at": "2026-10-12T11:11:03.375697+00:00",
+      "snapshot_id": null,
+      "verification_document_id": 120
+    },
+    {
+      "id": 151,
+      "source": "LAUNCH_LIBRARY_2",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-12T11:06:02.469436+00:00",
+      "completed_at": "2026-10-12T11:06:02.527447+00:00",
+      "snapshot_id": 67,
+      "verification_document_id": null
+    },
+    {
+      "id": 150,
+      "source": "NASA_OFFICIAL",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-12T09:10:26.21447+00:00",
+      "completed_at": "2026-10-12T09:10:26.978407+00:00",
+      "snapshot_id": null,
+      "verification_document_id": 120
+    },
+    {
+      "id": 149,
+      "source": "LAUNCH_LIBRARY_2",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-12T09:05:25.784731+00:00",
+      "completed_at": "2026-10-12T09:05:25.834789+00:00",
+      "snapshot_id": 67,
+      "verification_document_id": null
+    },
+    {
+      "id": 148,
+      "source": "NASA_OFFICIAL",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-11T19:13:27.922807+00:00",
+      "completed_at": "2026-10-11T19:13:27.9673+00:00",
+      "snapshot_id": null,
+      "verification_document_id": 120
+    },
+    {
+      "id": 147,
+      "source": "LAUNCH_LIBRARY_2",
+      "result_state": "SUCCESS",
+      "retrieved_at": "2026-10-11T19:08:27.385422+00:00",
+      "completed_at": "2026-10-11T19:08:27.411513+00:00",
+      "snapshot_id": 66,
+      "verification_document_id": null
+    }
+  ],
+  "currentMembership": {
+    "mode": "ACTIVE_PROJECTION",
+    "revision": 29,
+    "evaluatedAt": "2026-10-12T11:12:02.758827Z",
+    "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+    "health": "DEGRADED",
+    "ageSeconds": 3,
+    "resolvedCurrentMembers": 7,
+    "nonPublishableActive": 0,
+    "canonicalCollisions": 0,
+    "unresolvedActiveSourceSlots": 4
+  },
+  "currentNames": [
+    "Anna Kikina",
+    "Anil Menon",
+    "Pyotr Dubrov",
+    "Jessica Watkins",
+    "Luke Delaney",
+    "Joshua Kutryk",
+    "Sergey Teteryatnikov"
+  ],
+  "presence": [
+    {
+      "name": "Anna Kikina",
+      "state": "STALE",
+      "effectiveAt": "2026-10-02T02:01:55Z"
+    },
+    {
+      "name": "Anil Menon",
+      "state": "CONFIRMED_ABOARD",
+      "effectiveAt": "2026-10-06T17:57:55Z"
+    },
+    {
+      "name": "Pyotr Dubrov",
+      "state": "STALE",
+      "effectiveAt": "2026-10-02T02:01:55Z"
+    },
+    {
+      "name": "Jessica Watkins",
+      "state": "CONFIRMED_ABOARD",
+      "effectiveAt": "2026-10-05T17:18:04Z"
+    },
+    {
+      "name": "Luke Delaney",
+      "state": "CONFIRMED_ABOARD",
+      "effectiveAt": "2026-10-09T16:35:40Z"
+    },
+    {
+      "name": "Joshua Kutryk",
+      "state": "CONFIRMED_ABOARD",
+      "effectiveAt": "2026-10-05T17:18:04Z"
+    },
+    {
+      "name": "Sergey Teteryatnikov",
+      "state": "CONFIRMED_ABOARD",
+      "effectiveAt": "2026-10-05T17:18:04Z"
+    }
+  ],
+  "historicalDepartureNames": [
+    "Anil Menon",
+    "Anna Kikina",
+    "Jessica Watkins",
+    "Joshua Kutryk",
+    "Luke Delaney",
+    "Pyotr Dubrov",
+    "Sergey Teteryatnikov"
+  ]
+}

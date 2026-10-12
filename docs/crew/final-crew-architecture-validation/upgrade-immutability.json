@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "tablesCompared": 81,
+  "changes": [
+    {
+      "table": "crew_auto_job",
+      "lostRows": 1,
+      "mutable": true
+    }
+  ],
+  "v7Exact": true
+}

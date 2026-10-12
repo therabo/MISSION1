@@ -67,9 +67,11 @@ class CrewVerificationConfiguration {
             CrewReconciliationRepository repository,
             CrewReconciliationPolicy policy,
             Clock utcClock,
-            CrewIdentityRepository identities) {
+            CrewIdentityRepository identities,
+            org.mission1.crew.operational.OperationalProductionBindings bindings) {
         return new CrewReconciliationService(
-                primary, query, verification, repository, policy, utcClock, identities);
+                primary, query, verification, repository, policy, utcClock, identities)
+                .bindings(bindings);
     }
 
     @Bean

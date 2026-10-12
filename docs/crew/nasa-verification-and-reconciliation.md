@@ -1,5 +1,8 @@
 # NASA Crew verification and reconciliation
 
+**Production update — ADR-0021 / 2026-10-12:** normal annotations and V10 operational slots share `OperationalProductionBindings`; they consume exact compatible sealed S10 production decisions, including timed completed departures, and never call the legacy identity writer. V9 stays SHADOW. Qualified last-good operational positives remain membership supports within their original applicability windows after a failed acquisition; failure independently marks Current verification/presence unverified. Historical evaluates `crew-freshness-v2` relative to T and excludes future events. [Final validation](final-crew-architecture-validation/README.md). Earlier dated legacy behavior is retained below for rollback/audit.
+
+
 ## Source occurrence versioning — 2026-10-10
 
 NASA article identity comes from the verified WordPress RSS GUID, with literal GUID/link and observed route retained separately. Existing immutable evidence extraction/hashing is unchanged. The exact scope/time/type candidate and ordered target/count/completeness/parser guards associate only compatible revisions; unknown or conflicting interpretations remain separate. No profile crawler or person-name matching is introduced.

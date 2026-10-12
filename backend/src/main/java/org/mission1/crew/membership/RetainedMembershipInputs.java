@@ -20,6 +20,8 @@ public class RetainedMembershipInputs {
   private final CrewEditorialRepository editorial;
   private final CrewVerificationRepository verification;
   private final ActiveMembershipPolicy policy;
+  private org.mission1.crew.operational.OperationalProductionBindings bindings;
+  private CrewIdentityRepository identities;
 
   public RetainedMembershipInputs(
       JdbcTemplate jdbc,
@@ -32,6 +34,30 @@ public class RetainedMembershipInputs {
     this.editorial = editorial;
     this.verification = verification;
     this.policy = policy;
+  }
+
+  @org.springframework.beans.factory.annotation.Autowired
+  public RetainedMembershipInputs(
+      JdbcTemplate jdbc,
+      ObjectMapper json,
+      CrewEditorialRepository editorial,
+      CrewVerificationRepository verification,
+      ActiveMembershipPolicy policy,
+      org.mission1.crew.operational.OperationalProductionBindings bindings,
+      CrewIdentityRepository identities) {
+    this(jdbc, json, editorial, verification, policy);
+    this.bindings = bindings;
+    this.identities = identities;
+  }
+
+  public boolean modern() {
+    return bindings != null
+        && bindings.mode()
+            == org.mission1.crew.operational.OperationalProductionBindings.Mode.S10_SCOPED_BINDING;
+  }
+
+  public String identityMode() {
+    return modern() ? Membership.PRODUCTION_MODE : Membership.MODE;
   }
 
   private JsonNode node(Object o) {
@@ -80,15 +106,53 @@ public class RetainedMembershipInputs {
       propagation = Propagation.REQUIRES_NEW,
       isolation = Isolation.REPEATABLE_READ)
   public Input load(Instant at) {
+    return load(at, at, EvaluationContext.CURRENT);
+  }
+
+  public enum EvaluationContext {
+    CURRENT,
+    HISTORICAL
+  }
+
+  @Transactional(readOnly = true, isolation = Isolation.REPEATABLE_READ)
+  public List<Instant> editorialCaptures(Instant knownAt) {
+    return jdbc.query(
+        """
+        SELECT a.completed_at FROM crew_editorial_acquisition a JOIN crew_editorial_roster_version r ON r.id=a.roster_id
+        WHERE a.stream='NASA_EDITORIAL_EXPEDITION' AND a.outcome<>'FAILURE' AND a.completed_at<=?
+          AND r.parser_name=? AND r.parser_version=? ORDER BY a.completed_at,a.id
+        """,
+        (rs, n) -> rs.getObject(1, OffsetDateTime.class).toInstant(),
+        knownAt.atOffset(ZoneOffset.UTC),
+        CrewEditorial.PARSER,
+        CrewEditorial.VERSION);
+  }
+
+  @Transactional(
+      readOnly = true,
+      propagation = Propagation.REQUIRED,
+      isolation = Isolation.REPEATABLE_READ)
+  public Input load(Instant at, Instant knownAt) {
+    return load(at, knownAt, EvaluationContext.HISTORICAL);
+  }
+
+  @Transactional(
+      readOnly = true,
+      propagation = Propagation.REQUIRED,
+      isolation = Isolation.REPEATABLE_READ)
+  public Input load(Instant at, Instant knownAt, EvaluationContext context) {
+    boolean historical = context == EvaluationContext.HISTORICAL;
+    var known = knownAt.atOffset(ZoneOffset.UTC);
     var by = at.atOffset(ZoneOffset.UTC);
     var runs =
         jdbc.queryForList(
             """
             SELECT DISTINCT ON(source,category) * FROM (
              SELECT *,CASE WHEN result_state='SUCCESS' THEN 'GOOD' WHEN source_state='NO_ACTIVE_EXPEDITION' THEN 'EMPTY' ELSE 'FAILURE' END category
-             FROM crew_source_sync_run WHERE station='ISS' AND completed_at<=? AND result_state IN ('SUCCESS','SOURCE_RESULT','INVALID_SNAPSHOT','PERSISTENCE_FAILURE','UNEXPECTED_FAILURE')
+             FROM crew_source_sync_run WHERE station='ISS' AND completed_at<=? AND coalesce(retrieved_at,completed_at)<=? AND result_state IN ('SUCCESS','SOURCE_RESULT','INVALID_SNAPSHOT','PERSISTENCE_FAILURE','UNEXPECTED_FAILURE')
             ) r ORDER BY source,category,completed_at DESC,id DESC
             """,
+            known,
             by);
     var llGood = newest(runs, "LAUNCH_LIBRARY_2", "GOOD");
     var llEmpty = newest(runs, "LAUNCH_LIBRARY_2", "EMPTY");
@@ -111,7 +175,7 @@ public class RetainedMembershipInputs {
             WHERE o.source='LAUNCH_LIBRARY_2' AND r.completed_at<=?
             ORDER BY o.external_id,r.completed_at DESC,r.id DESC LIMIT 10001
             """,
-            by);
+            known);
     if (people.size() > 10000) throw new IllegalStateException("Bounded Crew human scope exceeded");
     var humans =
         people.stream()
@@ -189,11 +253,13 @@ public class RetainedMembershipInputs {
             .findFirst()
             .orElse(null);
     var graph =
-        first(
-            jdbc.queryForList(
-                "SELECT * FROM crew_auto_graph_revision WHERE applied_at<=? ORDER BY id DESC LIMIT"
-                    + " 1",
-                by));
+        modern()
+            ? null
+            : first(
+                jdbc.queryForList(
+                    "SELECT * FROM crew_auto_graph_revision WHERE applied_at<=? ORDER BY id DESC"
+                        + " LIMIT 1",
+                    by));
     var decisionRows =
         graph == null
             ? List.<Map<String, Object>>of()
@@ -240,12 +306,76 @@ public class RetainedMembershipInputs {
             && ((Number) epochFact.get("value")).intValue() == roster.roster().expedition();
     // A failed topic/mission capture retains last-good membership; an observed epoch mismatch
     // blocks its current eligibility.
+    var productionIdentity = modern() ? identities.knowledge(knownAt) : null;
+    var canonicalHumans = new HashMap<UUID, String>();
+    if (modern())
+      for (var h : humans)
+        canonicalHumans.put(productionIdentity.canonicalize(h.anchor()), h.key());
+    var editorialBindings = new TreeMap<String, Object>();
+    var editorialAuthorities =
+        modern() && roster != null
+            ? jdbc.queryForList(
+                """
+                SELECT rel.*,a.resource_metadata,a.completed_at,
+                  b.id identity_binding,b.status binding_status,b.person_id binding_person,x.person_id original_owner
+                FROM (SELECT DISTINCT ON(member_index,observed_url) * FROM crew_editorial_resource_relation
+                  WHERE roster_id=? ORDER BY member_index,observed_url,id DESC) rel
+                LEFT JOIN crew_editorial_acquisition a ON a.id=rel.acquisition_id
+                LEFT JOIN LATERAL (SELECT * FROM crew_identity_binding_version
+                  WHERE source='NASA_OFFICIAL' AND entity_kind='PERSON_PROFILE_RESOURCE'
+                    AND external_key='profile:'||(a.resource_metadata->>'slug') AND known_at<=?
+                  ORDER BY known_at DESC,id DESC LIMIT 1) b ON true
+                LEFT JOIN crew_person_external_id x ON x.source='NASA_OFFICIAL'
+                  AND x.external_id='profile:'||(a.resource_metadata->>'slug')
+                LEFT JOIN crew_person original ON original.id=x.person_id
+                WHERE a.completed_at<=? AND (x.person_id IS NULL OR original.created_at<=?)
+                """,
+                roster.id(),
+                known,
+                known,
+                known)
+            : List.<Map<String, Object>>of();
     if (roster != null)
       for (var m : roster.roster().members()) {
         String key = "NASA:EDITORIAL_SLOT:" + roster.resource().key() + ":" + m.index();
         var b =
             boundary.bind(
                 key, "crew_editorial_roster_member", roster.id() + ":" + m.index(), hash(m));
+        if (modern()) {
+          var candidates = new TreeMap<String, Map<String, Object>>();
+          for (var relation : editorialAuthorities) {
+            if (((Number) relation.get("member_index")).intValue() != m.index()
+                || !"VERIFIED_ABOUT_PERSON_RELATION".equals(relation.get("status"))) continue;
+            var resource = node(relation.get("resource_metadata"));
+            if (!"NASA_PEOPLE_RESOURCE".equals(resource.path("kind").asText())) continue;
+            UUID owner;
+            if (relation.get("identity_binding") != null) {
+              if (!"ACTIVE".equals(relation.get("binding_status"))) continue;
+              owner = (UUID) relation.get("binding_person");
+            } else owner = (UUID) relation.get("original_owner");
+            if (owner == null) continue;
+            var canonical = productionIdentity.canonicalize(owner);
+            var provider = canonicalHumans.get(canonical);
+            if (provider == null) continue;
+            var pin = new TreeMap<String, Object>();
+            pin.put("provider", provider);
+            pin.put("person", canonical);
+            pin.put("relation", id(relation, "id"));
+            pin.put("acquisition", id(relation, "acquisition_id"));
+            pin.put("identityBinding", id(relation, "identity_binding"));
+            pin.put("originalOwner", relation.get("identity_binding") == null ? owner : null);
+            pin.put("resourceKey", "profile:" + resource.path("slug").asText());
+            candidates.put(provider, pin);
+          }
+          var pin = candidates.size() == 1 ? candidates.firstEntry().getValue() : null;
+          b =
+              new ShadowMembershipIdentity.Binding(
+                  pin == null ? null : pin.get("provider").toString(),
+                  null,
+                  null,
+                  pin == null ? "UNRESOLVED_V7_RESOURCE" : "EXPLICIT_V7_RESOURCE");
+          if (pin != null) editorialBindings.put(roster.id() + ":" + m.index(), pin);
+        }
         editorialSlots.add(
             new Slot(
                 key,
@@ -270,7 +400,8 @@ public class RetainedMembershipInputs {
       }
     var selected =
         new CrewCompatibleVersionSelector()
-            .select(verification.evidenceAsOf(at), verification.occurrenceVersionsAsOf(at));
+            .select(
+                verification.evidenceAsOf(knownAt), verification.occurrenceVersionsAsOf(knownAt));
     var subjectKeys =
         jdbc.queryForList(
             "SELECT s.evidence_id,s.subject_index,v.subject_key,e.evidence_hash FROM"
@@ -287,6 +418,10 @@ public class RetainedMembershipInputs {
     }
     boolean opHealthy =
         opGood != null && (opAttempt == null || id(opAttempt, "id").equals(id(opGood, "id")));
+    var resolved =
+        modern()
+            ? bindings.resolve(selected.evidence(), knownAt)
+            : Map.<String, org.mission1.crew.operational.OperationalProductionBindings.Binding>of();
     var events = new ArrayList<Event>();
     for (var item : selected.evidence()) {
       var e = item.value();
@@ -300,12 +435,24 @@ public class RetainedMembershipInputs {
       if (e.type() != CrewVerificationEvidence.Type.PERSON_CURRENTLY_ABOARD
           && e.assertion() != CrewVerificationEvidence.Assertion.COMPLETED) continue;
       boolean applicable =
-          opHealthy && policy.temporal().applicable(e, time(opGood, "retrieved_at"), at);
+          historical
+              ? policy.temporal().applicableEffectiveTime(e, at)
+              : (modern() ? opGood != null : opHealthy)
+                  && policy.temporal().applicable(e, time(opGood, "retrieved_at"), at);
       for (int i = 0; i < e.people().size(); i++) {
         String ref = item.id() + ":" + i;
         String subject = subjects.getOrDefault(ref, "legacy:" + ref);
         String key = "NASA:OPERATIONAL_SUBJECT:" + subject;
         var b = boundary.bind(key, "crew_evidence_subject", ref, hashes.get(item.id()));
+        if (modern()) {
+          var binding = resolved.get(ref);
+          b =
+              new ShadowMembershipIdentity.Binding(
+                  binding == null ? null : binding.provider(),
+                  null,
+                  null,
+                  binding == null ? "UNRESOLVED" : binding.state());
+        }
         boolean positive = e.type() != CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION;
         var slot =
             new Slot(
@@ -344,13 +491,13 @@ public class RetainedMembershipInputs {
                 time(opGood, "retrieved_at"));
     var operationalState =
         new CrewReconciliationEngine(policy.temporal())
-            .evaluate(
+            .evaluateEffectiveTime(
                 new CrewReconciliationEngine.Inputs(
                     null, false, opVerification, opHealthy, selected.evidence(), List.of(), at));
     Integer lastKnown = operationalState.officialCrewCount();
     // Reuse the existing temporal count gate independently from shadow identity/membership.
     boolean countApplicable =
-        opHealthy
+        (historical || opHealthy)
             && lastKnown != null
             && selected.evidence().stream()
                 .anyMatch(
@@ -359,9 +506,7 @@ public class RetainedMembershipInputs {
                             && !e.value()
                                 .assertion()
                                 .equals(CrewVerificationEvidence.Assertion.PLANNED)
-                            && policy
-                                .temporal()
-                                .applicable(e.value(), time(opGood, "retrieved_at"), at));
+                            && policy.temporal().applicableEffectiveTime(e.value(), at));
     var health = new ArrayList<Health>();
     health.add(
         runHealth(
@@ -416,18 +561,37 @@ public class RetainedMembershipInputs {
                 null,
                 Freshness.NO_DATA));
     var identityHealth =
-        new TreeMap<String, Object>(
-            jdbc.queryForMap(
-                """
-                SELECT count(*) FILTER(WHERE failed) failed_jobs,count(*) FILTER(WHERE NOT failed AND generation>completed_generation AND available_at<=?) pending_jobs FROM crew_auto_job
-                """,
-                by));
-    identityHealth.put(
-        "degraded",
-        graph == null
-            || decisions.stream().anyMatch(d -> !d.currentHead())
-            || ((Number) identityHealth.get("failed_jobs")).longValue() > 0
-            || ((Number) identityHealth.get("pending_jobs")).longValue() > 0);
+        modern()
+            ? new TreeMap<String, Object>()
+            : new TreeMap<String, Object>(
+                jdbc.queryForMap(
+                    """
+                    SELECT count(*) FILTER(WHERE failed) failed_jobs,count(*) FILTER(WHERE NOT failed AND generation>completed_generation AND available_at<=?) pending_jobs FROM crew_auto_job
+                    """,
+                    by));
+    if (!modern())
+      identityHealth.put(
+          "degraded",
+          graph == null
+              || decisions.stream().anyMatch(d -> !d.currentHead())
+              || ((Number) identityHealth.get("failed_jobs")).longValue() > 0
+              || ((Number) identityHealth.get("pending_jobs")).longValue() > 0);
+    if (modern()) {
+      var lineage = new TreeMap<String, Object>();
+      resolved.forEach(
+          (ref, b) -> {
+            if (events.stream()
+                .anyMatch(e -> (e.slot().evidence() + ":" + e.slot().subjectIndex()).equals(ref)))
+              lineage.put(ref, b);
+          });
+      identityHealth.put("mode", Membership.PRODUCTION_MODE);
+      identityHealth.put(
+          "release", org.mission1.crew.operational.OperationalPolicy.PRODUCTION.version());
+      identityHealth.put("bindings", lineage);
+      identityHealth.put("editorialBindings", editorialBindings);
+      identityHealth.put("degraded", resolved.values().stream().anyMatch(b -> !b.matched()));
+      identityHealth.put("historical", historical);
+    }
     if (roster != null && !epochCompatible)
       health.add(
           new Health(

@@ -44,7 +44,7 @@
 .crew-roster-identity strong { font: 700 16px/23px var(--font-interface); }
 .crew-roster-row > span { min-width: 0; overflow-wrap: anywhere; }
 .crew-roster-identity > span, .crew-roster-mission { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
-.crew-roster-identity > .crew-current-membership { color: var(--color-success); font-weight: 700; }
+.crew-roster-identity > :is(.crew-current-membership, .crew-historical-membership) { color: var(--color-success); font-weight: 700; }
 .crew-roster-presence.is-operational { color: var(--color-text-secondary); }
 .crew-roster-evidence .crew-assessment-evidence > summary { color: var(--color-text-secondary); }
 .crew-roster-agency, .crew-roster-presence { color: var(--color-text-secondary); font: 400 13px/19px var(--font-interface); }

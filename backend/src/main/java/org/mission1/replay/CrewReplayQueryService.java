@@ -30,6 +30,9 @@ public final class CrewReplayQueryService {
     private final CrewReconciliationPolicy policy;
     private final CrewReconciliationEngine engine;
 
+    private UnifiedCrewReplay unified;
+    public CrewReplayQueryService unified(UnifiedCrewReplay value) { unified=value; return this; }
+
     private CrewIdentityRepository identities = CrewIdentityRepository.EMPTY;
 
     public CrewReplayQueryService(
@@ -59,7 +62,7 @@ public final class CrewReplayQueryService {
 
     public ReplayCoverage coverage(Instant knownAt) {
         return coverage(history.structured(), new CrewCompatibleVersionSelector().select(
-                verification.publicEvidenceAsOf(knownAt), verification.occurrenceVersionsAsOf(knownAt)).evidence(), knownAt);
+                (unified==null?verification.publicEvidenceAsOf(knownAt):verification.evidenceAsOf(knownAt)), verification.occurrenceVersionsAsOf(knownAt)).evidence(), knownAt);
     }
 
     private ReplayCoverage coverage(
@@ -84,6 +87,7 @@ public final class CrewReplayQueryService {
                                         new ReplayCoverage.Interval(
                                                 t, t.plus(policy.effectiveMaxAge(e))));
                         });
+        if(unified!=null) intervals.addAll(unified.editorialIntervals(now));
         return ReplayCoverage.of(
                 intervals,
                 now,
@@ -107,9 +111,10 @@ public final class CrewReplayQueryService {
     }
 
     public Result at(Instant at, Instant knownAt) {
+        if(unified!=null) return unified.at(at,knownAt,coverage(knownAt));
         var structured = history.structured();
         var evidence = new CrewCompatibleVersionSelector().select(
-                verification.publicEvidenceAsOf(knownAt), verification.occurrenceVersionsAsOf(knownAt)).evidence();
+                (unified==null?verification.publicEvidenceAsOf(knownAt):verification.evidenceAsOf(knownAt)), verification.occurrenceVersionsAsOf(knownAt)).evidence();
         var coverage = coverage(structured, evidence, knownAt);
         if (!coverage.contains(at))
             return new Result(

@@ -34,7 +34,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 /** Full PostgreSQL→query→mapper→controller→JSON chain. Recorded fixtures are offline test-only. */
-@SpringBootTest(properties = "mission1.crew.current.membership-mode=LEGACY_RETAINED_UNION")
+@SpringBootTest(properties = {"mission1.crew.current.membership-mode=LEGACY_RETAINED_UNION", "mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
 @AutoConfigureMockMvc
 @Testcontainers
 @Import(CrewPostgresApiTest.SqlInstrumentation.class)
@@ -194,7 +194,7 @@ class CrewPostgresApiTest {
         assertEquals(personId().toString(), read("/api/iss/crew/" + personId()).get("id").asText());
         assertEquals(7, read("/api/iss/expedition/current").get("assignmentCount").asInt());
         assertEquals(
-                "11",
+                "12",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history ORDER BY installed_rank DESC"
                             + " LIMIT 1",

@@ -1,0 +1,22 @@
+effectiveUTC,availability,members,names,structuredAssignments,resolvedDepartureSubjects,legacyMembers,added,removed
+2026-10-02T02:01:54.999999999Z,UNAVAILABLE,0,,0,0,0,,
+2026-10-02T02:01:55Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,0,0,10,Andrei Fedyaev,
+2026-10-03T10:30:18.796288999Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,0,0,,,
+2026-10-03T10:30:18.796289Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,,,
+2026-10-03T10:30:18.856620Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,,,
+2026-10-03T12:04:00Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,11,,
+2026-10-05T17:18:03.999999999Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,11,,
+2026-10-05T17:18:04Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,11,,
+2026-10-06T17:57:54.999999999Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,0,0,10,Andrei Fedyaev,
+2026-10-06T17:57:55Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,0,0,10,Andrei Fedyaev,
+2026-10-07T12:04:59.999999999Z,PARTIAL,11,Andrei Fedyaev | Anil Menon | Anna Kikina | Jack Hathaway | Jessica Meir | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov | Sophie Adenot,7,0,11,,
+2026-10-07T12:05:00Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,11,,Andrei Fedyaev | Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-07T12:05:00.000000001Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,11,,Andrei Fedyaev | Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-08T12:00:00Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,11,,Andrei Fedyaev | Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-09T02:01:54.999999999Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,,,
+2026-10-09T02:01:55Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,,,
+2026-10-09T02:01:55.000000001Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,3,8,,,
+2026-10-09T16:35:39.999999999Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,7,8,10,,Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-09T16:35:40Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,7,8,10,,Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-10T12:00:00Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,7,8,10,,Jack Hathaway | Jessica Meir | Sophie Adenot
+2026-10-11T22:05:07.552306Z,PARTIAL,7,Anil Menon | Anna Kikina | Jessica Watkins | Joshua Kutryk | Luke Delaney | Pyotr Dubrov | Sergey Teteryatnikov,7,8,,,

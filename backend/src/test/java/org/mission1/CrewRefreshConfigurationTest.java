@@ -33,6 +33,7 @@ class CrewRefreshConfigurationTest {
                         Clock.class,
                         () -> Clock.fixed(Instant.parse("2026-10-03T00:00:00Z"), ZoneOffset.UTC))
                 .withBean(CrewIdentityRepository.class, () -> CrewIdentityRepository.EMPTY)
+                .withBean(org.mission1.crew.operational.OperationalProductionBindings.class, () -> mock(org.mission1.crew.operational.OperationalProductionBindings.class))
                 .withBean(CrewHttpReader.class, () -> mock(CrewHttpReader.class))
                 .withBean(LaunchLibrary2CrewSource.class, () -> source)
                 .withBean(CrewRepository.class, () -> mock(CrewRepository.class))

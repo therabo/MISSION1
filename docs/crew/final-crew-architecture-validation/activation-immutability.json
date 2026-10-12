@@ -1,0 +1,93 @@
+{
+  "pass": true,
+  "tablesCompared": 81,
+  "changes": [
+    {
+      "table": "crew_active_projection_work",
+      "lostRows": 1,
+      "mutable": true
+    },
+    {
+      "table": "crew_operational_binding_work",
+      "lostRows": 1,
+      "mutable": true
+    }
+  ],
+  "additions": [
+    {
+      "table": "crew_active_projection_evidence",
+      "addedRows": 18,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_finding",
+      "addedRows": 76,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_input_capture",
+      "addedRows": 58,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_member",
+      "addedRows": 22,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_revision",
+      "addedRows": 2,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_slot",
+      "addedRows": 33,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_support",
+      "addedRows": 37,
+      "mutable": false
+    },
+    {
+      "table": "crew_active_projection_work",
+      "addedRows": 1,
+      "mutable": true
+    },
+    {
+      "table": "crew_operational_binding_candidate",
+      "addedRows": 273,
+      "mutable": false
+    },
+    {
+      "table": "crew_operational_binding_proof",
+      "addedRows": 110,
+      "mutable": false
+    },
+    {
+      "table": "crew_operational_binding_release",
+      "addedRows": 1,
+      "mutable": false
+    },
+    {
+      "table": "crew_operational_binding_revision",
+      "addedRows": 25,
+      "mutable": false
+    },
+    {
+      "table": "crew_operational_binding_work",
+      "addedRows": 1,
+      "mutable": true
+    },
+    {
+      "table": "flyway_schema_history",
+      "addedRows": 1,
+      "mutable": false
+    }
+  ],
+  "v7Exact": true,
+  "oldS10Count": 125,
+  "newS10Count": 150,
+  "oldV10Count": 21,
+  "newV10Count": 23
+}

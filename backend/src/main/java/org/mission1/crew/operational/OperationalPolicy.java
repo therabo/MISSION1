@@ -28,6 +28,32 @@ public record OperationalPolicy(
           OperationalNames.VERSION,
           "s10-research-authority-matrix-v1");
 
+  public static final OperationalPolicy PRODUCTION =
+      new OperationalPolicy(
+          "s10-scoped-production-v1",
+          .991,
+          .999,
+          .20,
+          256,
+          10000,
+          SHADOW.schema(),
+          SHADOW.scorer(),
+          SHADOW.normalization(),
+          SHADOW.authority());
+
+  /** Shadow serialized bytes stay unchanged. Production explicitly pins consumption rules. */
+  public Object release(com.fasterxml.jackson.databind.ObjectMapper json) {
+    if (!version.equals(PRODUCTION.version())) return this;
+    var n = json.valueToTree(this);
+    var value = (com.fasterxml.jackson.databind.node.ObjectNode) n;
+    value.put("modelSha", FrozenIdentityModel.SHA);
+    value.put("icu", "78.3");
+    value.put("resourceParser", OperationalResources.VERSION);
+    value.put("proofValidity", "P30D_AT_KNOWLEDGE_TIME");
+    value.put("consumption", "EXACT_LATEST_SEALED_EXISTING_V7_FAIL_CLOSED_V1");
+    return value;
+  }
+
   public OperationalPolicy {
     if (observation < 0
         || observation > 1

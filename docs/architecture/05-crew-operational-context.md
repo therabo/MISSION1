@@ -1,5 +1,8 @@
 # Crew operational-context architecture
 
+**Accepted final Crew architecture — 2026-10-12:** one Java application/PostgreSQL, V7 canonical identity, V8 editorial acquisition, V9 general identity SHADOW, `s10-scoped-production-v1` exact operational bindings, and one V10 lifecycle policy in Current and Historical contexts. [ADR-0021](../adr/0021-production-operational-binding-and-unified-crew-replay.md); [acceptance](../crew/final-crew-architecture-validation/README.md). Earlier dated sections below retain their original milestone meaning.
+
+
 **Current scheduling extension (2026-10-03):** [Event-aware refresh](../crew/event-aware-refresh.md) is an operational Crew scheduling concern. LL2 `/events/` candidate history is separate from roster snapshots; completed named NASA transfer evidence permits bounded LL2 follow-up without changing authority or reconciliation. V5/ADR-0010 record durable eligibility, source-run associations, Retry-After, settlement and restart behavior. See the [validation dossier](../crew/event-aware-refresh-validation/README.md). Next single milestone: **ISS CREW REPLAY INTEGRATION**, not started.
 
 Status: Crew REST and Earth View Crew panel implemented, NASA verification/reconciliation retained and validated, 2026-10-03. ADR-0007 governs field authority, ADR-0008 the retained LL2 history/UUIDs, and [ADR-0009](../adr/0009-field-aware-crew-reconciliation.md) the independent evidence and derived interpretation. One Spring backend and PostgreSQL remain sufficient.

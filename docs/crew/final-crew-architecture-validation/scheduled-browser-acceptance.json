@@ -1,0 +1,87 @@
+{
+  "kind": "TEST ONLY source fixtures, accelerated Java scheduler and browser clock; actual Java HTTP REST and production UI hook; no DTO substitution",
+  "api": "http://127.0.0.1:63194",
+  "frontend": "http://localhost:5190",
+  "scenario": {
+    "apiBase": "http://127.0.0.1:63194",
+    "start": "2026-10-12T09:20:11Z",
+    "entry": "2026-10-12T11:20:12Z",
+    "departure": "2026-10-12T13:20:13Z",
+    "selectedOutgoingName": "Jessica Watkins"
+  },
+  "phases": [
+    {
+      "phase": "initial",
+      "members": 7,
+      "result": "PASS"
+    },
+    {
+      "phase": "arrival",
+      "members": 11,
+      "selectedOutgoingId": "a5ff4e68-10ac-4070-b71e-f41a22d87937",
+      "refresh": "production120s hook; virtual clock",
+      "result": "PASS"
+    },
+    {
+      "phase": "departure",
+      "members": 7,
+      "selectedDepartingAstronautCleared": true,
+      "refresh": "production120s hook; virtual clock",
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-exact-http-initial",
+      "effectiveAt": "2026-10-12T09:20:11Z",
+      "members": 7,
+      "realJavaHttp": true,
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-exact-http-arrival",
+      "effectiveAt": "2026-10-12T11:20:12Z",
+      "members": 11,
+      "realJavaHttp": true,
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-exact-http-departure",
+      "effectiveAt": "2026-10-12T13:20:13Z",
+      "members": 7,
+      "realJavaHttp": true,
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-ui-initial",
+      "effectiveAt": "2026-10-12T09:20:13.000Z",
+      "members": 7,
+      "method": "native ten-minute step controls; orbital-history calendar remains honestly unavailable",
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-ui-arrival",
+      "effectiveAt": "2026-10-12T11:20:13.000Z",
+      "members": 11,
+      "method": "native ten-minute step controls; orbital-history calendar remains honestly unavailable",
+      "result": "PASS"
+    },
+    {
+      "phase": "historical-ui-departure",
+      "effectiveAt": "2026-10-12T13:20:13.000Z",
+      "members": 7,
+      "method": "native ten-minute step controls; orbital-history calendar remains honestly unavailable",
+      "result": "PASS"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "expectedUnavailableOrbitalTransport": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "providerRequests": [],
+  "result": "PASS"
+}

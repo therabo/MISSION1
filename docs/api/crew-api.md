@@ -1,5 +1,8 @@
 # ISS Crew REST API
 
+**Production binding update — ADR-0021 / 2026-10-12:** Current inclusion remains committed V10 ACTIVE through V7. Operational annotations now share the exact S10 production binding consumer used by V10 and Historical. Accepted matches consume automatically; incompatible/deferred/conflicting/superseded heads fail closed. No public score or per-match approval API is added. Existing profile/alias routes and latest canonical field authority remain unchanged.
+
+
 **Operational scheduling note (2026-10-03):** [Event-aware refresh](../crew/event-aware-refresh.md) can shorten background source eligibility near verified planning windows and after completed named NASA transfers. These three GET routes, JSON fields, read-only behavior, status/freshness semantics and reconciliation rules are unchanged. Events never directly alter presence or official count. No refresh or event endpoint is added.
 
 ## Earth View consumer — 2026-10-03

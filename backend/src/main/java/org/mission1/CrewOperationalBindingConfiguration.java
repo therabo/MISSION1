@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.Scheduled;
 
-/** S10 background SHADOW ON; a production consumer deliberately does not exist. */
+/** S10 background evaluation; production consumption defaults ON under its explicit release. */
 @Configuration
 class CrewOperationalBindingConfiguration {
   @Bean
@@ -35,6 +35,7 @@ class CrewOperationalBindingConfiguration {
       RetainedMembershipInputs membership,
       ActiveMembershipPolicy policy,
       ObjectMapper json,
+      OperationalProductionBindings bindings,
       Clock utcClock,
       OperationalResourceHttp http,
       @Value(
@@ -48,7 +49,10 @@ class CrewOperationalBindingConfiguration {
         json,
         utcClock,
         http,
-        seeds.isBlank() ? List.of() : Arrays.stream(seeds.split(",")).map(String::strip).toList());
+        seeds.isBlank() ? List.of() : Arrays.stream(seeds.split(",")).map(String::strip).toList(),
+        bindings.mode() == OperationalProductionBindings.Mode.S10_SCOPED_BINDING
+            ? OperationalPolicy.PRODUCTION
+            : OperationalPolicy.SHADOW);
   }
 
   @Bean
@@ -56,15 +60,23 @@ class CrewOperationalBindingConfiguration {
       name = "mission1.crew.operational-shadow.enabled",
       havingValue = "true",
       matchIfMissing = true)
-  Scheduler operationalBindingScheduler(OperationalBindingWorker worker) {
-    return new Scheduler(worker);
+  Scheduler operationalBindingScheduler(
+      OperationalBindingWorker worker,
+      @Value("${mission1.crew.operational-shadow.acquisition-enabled:true}") boolean acquire) {
+    return new Scheduler(worker, acquire);
   }
 
   static final class Scheduler {
     private final OperationalBindingWorker worker;
+    private final boolean acquisitionEnabled;
 
     Scheduler(OperationalBindingWorker w) {
+      this(w, true);
+    }
+
+    Scheduler(OperationalBindingWorker w, boolean acquisitionEnabled) {
       worker = w;
+      this.acquisitionEnabled = acquisitionEnabled;
     }
 
     @Scheduled(
@@ -86,6 +98,7 @@ class CrewOperationalBindingConfiguration {
         fixedDelayString = "${mission1.crew.operational-shadow.acquisition-delay:PT5M}",
         initialDelayString = "${mission1.crew.operational-shadow.initial-delay:PT15M}")
     void acquire() {
+      if (!acquisitionEnabled) return;
       try {
         worker.acquire();
       } catch (RuntimeException e) {

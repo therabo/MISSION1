@@ -1,0 +1,39 @@
+{
+  "pass": true,
+  "fixture": {
+    "evidence": 106,
+    "resolution": 29,
+    "knownAt": "2026-10-11T22:03:42.057918+00:00"
+  },
+  "newerUnresolved": 30,
+  "cases": [
+    {
+      "case": "explicit-typed-provider-positive",
+      "pass": true,
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "case": "explicit-wrong-payload-target",
+      "pass": true,
+      "exitCode": 3,
+      "stdout": "",
+      "stderr": "ERROR:  Explicit fallback target/current authority mismatch\nCONTEXT:  PL/pgSQL function crew_active_production_binding_check() line 43 at RAISE"
+    },
+    {
+      "case": "explicit-wrong-human-target",
+      "pass": true,
+      "exitCode": 3,
+      "stdout": "",
+      "stderr": "ERROR:  Explicit fallback target/current authority mismatch\nCONTEXT:  PL/pgSQL function crew_active_production_binding_check() line 43 at RAISE"
+    },
+    {
+      "case": "explicit-stale-resolution",
+      "pass": true,
+      "exitCode": 3,
+      "stdout": "",
+      "stderr": "ERROR:  Explicit fallback target/current authority mismatch\nCONTEXT:  PL/pgSQL function crew_active_production_binding_check() line 43 at RAISE"
+    }
+  ]
+}

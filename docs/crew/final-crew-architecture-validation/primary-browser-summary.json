@@ -1,0 +1,56 @@
+{
+  "runner": [
+    {
+      "case": "navigation-development",
+      "exitCode": 0
+    },
+    {
+      "case": "navigation-production",
+      "exitCode": 0
+    },
+    {
+      "case": "scene-production",
+      "exitCode": 0
+    },
+    {
+      "case": "handover-production",
+      "exitCode": 0
+    },
+    {
+      "case": "gp-inspection-both",
+      "exitCode": 0
+    }
+  ],
+  "artifactRoot": "/Users/daniel/.codex/exports/mission1-final-crew/primary-final",
+  "navigation": {
+    "development": {
+      "viewports": 10,
+      "resize": 22,
+      "container": 8,
+      "errors": []
+    },
+    "production": {
+      "viewports": 10,
+      "resize": 22,
+      "container": 8,
+      "errors": []
+    }
+  },
+  "scene": {
+    "build": "production",
+    "viewports": 5,
+    "states": 52,
+    "pageErrors": [],
+    "consoleErrors": []
+  },
+  "handover": {
+    "build": "production",
+    "viewports": 5,
+    "result": "PASS",
+    "errors": []
+  },
+  "gpInspection": {
+    "cases": 10,
+    "errors": []
+  }
+}

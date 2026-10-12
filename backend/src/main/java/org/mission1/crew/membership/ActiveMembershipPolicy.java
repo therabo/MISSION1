@@ -50,8 +50,19 @@ public final class ActiveMembershipPolicy {
     return personalAge;
   }
 
+  private boolean production;
+
+  public ActiveMembershipPolicy production(boolean enabled) {
+    production = enabled;
+    return this;
+  }
+
+  public String identityMode() {
+    return production ? Membership.PRODUCTION_MODE : Membership.MODE;
+  }
+
   public String key() {
-    return VERSION
+    return (production ? "crew-active-production-v1" : VERSION)
         + "/"
         + temporal.key()
         + "/roster="
@@ -214,7 +225,8 @@ public final class ActiveMembershipPolicy {
                       : positive(latestEvents.getFirst())
                           ? "CONFIRMED_ABOARD"
                           : "CONFIRMED_NOT_ABOARD";
-      if (!latestEvents.isEmpty()
+      if (!Boolean.TRUE.equals(in.cut().identityHealth().get("historical"))
+          && !latestEvents.isEmpty()
           && !ambiguity
           && in.cut().health().stream()
               .anyMatch(
@@ -366,7 +378,9 @@ public final class ActiveMembershipPolicy {
           new Finding(
               "IDENTITY",
               "RESOLVER_DEGRADED",
-              "V9_IDENTITY_RESOLVER",
+              in.cut().identityHealth().containsKey("mode")
+                  ? "S10_SCOPED_BINDING"
+                  : "V9_IDENTITY_RESOLVER",
               "Pending, failed or incompatible retained evidence"));
     var health =
         !sourceUsable

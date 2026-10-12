@@ -14,6 +14,7 @@ public record CrewIdentityResolution(
         String identityKey,
         String resolverVersion) {
     public enum Method {
+        S10_SCOPED_BINDING,
         EXTERNAL_ID,
         OFFICIAL_PROFILE,
         AUTHORITATIVE_MAPPING,

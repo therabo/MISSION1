@@ -1,5 +1,8 @@
 # Canonical Crew identity and retained profile projection
 
+**Final scoped production extension — 2026-10-12:** V7 remains unchanged canonical identity/profile/alias authority. S10 production binds exact source subjects/versions, including source Josh→canonical Joshua and Andrey→retained Andrei, without any global nickname/transliteration alias, person creation or equivalence. Explicit current V7 correspondence is fallback only with no S10 decision; disagreement fails closed. Latest DEFER/CONFLICT/incompatible/SUPERSEDED never revives old MATCH. Historical may use today's later binding for an older effective assertion; original capture and binding knowledge times remain separately auditable. The earlier reviewed/global V7 scope below remains intact.
+
+
 ADR-0013 adds a reviewed overlay to V3–V6. It preserves permanent UUID anchors, original provider mappings, source observations, occurrences, resolutions and reconciled history. Provider identities, UUID equivalence and operational subject resolution remain separate concepts.
 
 ## Reviewed scope

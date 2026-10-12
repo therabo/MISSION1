@@ -60,11 +60,16 @@ public class OperationalBindingStore {
 
   @Transactional
   public void install(Instant at) {
-    String policy = encode(OperationalPolicy.SHADOW);
+    install(at, OperationalPolicy.SHADOW);
+  }
+
+  @Transactional
+  public void install(Instant at, OperationalPolicy release) {
+    String policy = encode(release.release(json));
     var retained =
         jdbc.queryForList(
             "SELECT serialized_policy FROM crew_operational_binding_release WHERE version=?",
-            OperationalPolicy.SHADOW.version());
+            release.version());
     if (!retained.isEmpty()) {
       if (!policy.equals(retained.getFirst().get("serialized_policy")))
         throw new IllegalStateException("Immutable S10 policy mismatch");
@@ -73,7 +78,7 @@ public class OperationalBindingStore {
     jdbc.update(
         "INSERT INTO crew_operational_binding_release VALUES(?,?,?,?::jsonb,?,?) ON CONFLICT DO"
             + " NOTHING",
-        OperationalPolicy.SHADOW.version(),
+        release.version(),
         utc(at),
         policy,
         policy,
@@ -83,7 +88,7 @@ public class OperationalBindingStore {
         jdbc.queryForObject(
             "SELECT serialized_policy FROM crew_operational_binding_release WHERE version=?",
             String.class,
-            OperationalPolicy.SHADOW.version());
+            release.version());
     if (!policy.equals(previous)) throw new IllegalStateException("Immutable S10 policy mismatch");
   }
 
@@ -310,6 +315,17 @@ public class OperationalBindingStore {
       OperationalShadowComparison.Differential differential,
       Instant at,
       Job lease) {
+    return save(evaluations, resources, differential, at, lease, OperationalPolicy.SHADOW);
+  }
+
+  @Transactional
+  public List<Saved> save(
+      List<Evaluation> evaluations,
+      List<Resource> resources,
+      OperationalShadowComparison.Differential differential,
+      Instant at,
+      Job lease,
+      OperationalPolicy release) {
     jdbc.execute("SELECT pg_advisory_xact_lock(73491,10)");
     if (lease != null
         && jdbc.queryForObject(
@@ -337,7 +353,10 @@ public class OperationalBindingStore {
           knowledge.resolveProviderIdentity(
               CrewCanonicalIdentity.Key.legacy(
                   CrewSource.LAUNCH_LIBRARY_2, r.get("external_id").toString()));
-      if (p == null) p = knowledge.canonicalize((UUID) r.get("person_id"));
+      var canonicalAnchor = knowledge.canonicalize((UUID) r.get("person_id"));
+      if (p != null && !p.equals(canonicalAnchor))
+        continue; // No publishable V7 route without equivalence.
+      p = canonicalAnchor;
       targets.put("LL2:PERSON:" + r.get("external_id"), p);
     }
     var canonicalOwners = new HashMap<String, Set<String>>();
@@ -446,7 +465,7 @@ public class OperationalBindingStore {
       var old = previous.get(binding);
       var cut = new TreeMap<String, Object>();
       cut.put("subject", subject);
-      cut.put("release", OperationalPolicy.SHADOW);
+      cut.put("release", release.release(json));
       cut.put("cutSchema", "s10-scoped-resource-fact-digests-v1");
       cut.put("resourceParser", OperationalResources.VERSION);
       cut.put(
@@ -476,8 +495,18 @@ public class OperationalBindingStore {
       cut.put("gates", e.reasons());
       cut.put("candidateSetTruncated", e.truncated());
       cut.put("v7Targets", targets);
-      cut.put("productionResolution", prod);
-      cut.put("productionProjection", projection);
+      if (release.version().equals(OperationalPolicy.SHADOW.version())) {
+        cut.put("productionResolution", prod);
+        cut.put("productionProjection", projection);
+      } else {
+        // Diagnostic revisions cannot feed back into the semantic S10 cut.
+        cut.put(
+            "explicitV7Target",
+            prod != null
+                    && Set.of("EXTERNAL_ID", "AUTHORITATIVE_MAPPING").contains(prod.get("method"))
+                ? prodPerson
+                : null);
+      }
       String serializedCut = encode(cut), inputHash = hash(serializedCut);
       if (old != null && old.get("input_hash").equals(inputHash)) {
         saved.add(
@@ -502,6 +531,8 @@ public class OperationalBindingStore {
                       : "NEW_EVIDENCE_OR_POLICY_CUT";
       var result = new TreeMap<String, Object>();
       result.put("evaluation", e);
+      result.put("productionResolution", prod);
+      result.put("productionProjection", projection);
       result.put("shadowBeforeHash", hash(encode(differential.before())));
       result.put("shadowAfterHash", hash(encode(differential.after())));
       result.put("comparison", comparison);
@@ -526,7 +557,7 @@ public class OperationalBindingStore {
               subject.evidenceHash(),
               subject.documentHash(),
               old == null ? null : old.get("id"),
-              OperationalPolicy.SHADOW.version(),
+              release.version(),
               inputHash,
               serializedCut,
               serializedCut,

@@ -1,5 +1,8 @@
 # Crew source authority and implemented reconciliation
 
+**Normal production authority — 2026-10-12:** S10 binds exact operational assertions to existing V7 humans; V10 owns membership. Editorial supports require exact verified V8 personal-resource lineage and current explicit V7 correspondence, with latest revision selected before status filtering. V9 cannot authorize normal Current/Historical support. NASA operational observations remain secondary dated evidence, never continuous individual onboard telemetry. Source failure preserves eligible last-good support and degrades collection/presence health independently. Historical uses the same lifecycle at effective T, while identity/proof knowledge remains current. Earlier dated restrictions below are historical acceptance records.
+
+
 ## Source occurrence versioning — 2026-10-10
 
 Source occurrence continuity is independent of canonical human identity and operational authority. A NASA article key identifies a publishing resource; an assertion/subject occurrence identifies a claim/mention, never an astronaut. Equal names only participate inside an exactly scoped compatible claim and cannot establish a person mapping. No authoritative Andrey/Andrei correspondence was found, so that resolution remains UNRESOLVED.

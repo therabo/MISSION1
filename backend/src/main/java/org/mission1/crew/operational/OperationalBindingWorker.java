@@ -16,6 +16,7 @@ public final class OperationalBindingWorker {
   private final RetainedMembershipInputs membership;
   private final OperationalShadowComparison comparison;
   private final OperationalResolver resolver;
+  private final OperationalPolicy release;
   private final Clock clock;
   private final OperationalResourceHttp http;
   private final List<String> agencySeeds;
@@ -29,13 +30,36 @@ public final class OperationalBindingWorker {
       Clock clock,
       OperationalResourceHttp http,
       List<String> agencySeeds) {
+    this(
+        store,
+        inputs,
+        membership,
+        membershipPolicy,
+        json,
+        clock,
+        http,
+        agencySeeds,
+        OperationalPolicy.SHADOW);
+  }
+
+  public OperationalBindingWorker(
+      OperationalBindingStore store,
+      RetainedOperationalInputs inputs,
+      RetainedMembershipInputs membership,
+      ActiveMembershipPolicy membershipPolicy,
+      ObjectMapper json,
+      Clock clock,
+      OperationalResourceHttp http,
+      List<String> agencySeeds,
+      OperationalPolicy release) {
+    this.release = release;
     this.store = store;
     this.inputs = inputs;
     this.membership = membership;
     this.clock = clock;
     this.http = http;
     comparison = new OperationalShadowComparison(membershipPolicy);
-    resolver = new OperationalResolver(FrozenIdentityModel.load(json), OperationalPolicy.SHADOW);
+    resolver = new OperationalResolver(FrozenIdentityModel.load(json), release);
     this.agencySeeds = List.copyOf(agencySeeds);
     agencySeeds.forEach(OperationalResources::allowed);
   }
@@ -54,7 +78,7 @@ public final class OperationalBindingWorker {
       List<Evaluation> evaluations) {}
 
   public Run evaluate() {
-    store.install(clock.instant());
+    store.install(clock.instant(), release);
     var next = store.claim(clock.instant());
     if (next.isEmpty()) return new Run(0, 0, 0, 0, 0, 0, 0, 0, 0, List.of(), List.of());
     var job = next.get();
@@ -75,7 +99,7 @@ public final class OperationalBindingWorker {
                   .map(s -> resolver.evaluate(s, batch.resources(), cut, batch.complete()))
                   .toList());
       var diff = comparison.compare(membership.load(cut), evaluated, cut);
-      var saved = store.save(evaluated, batch.resources(), diff, clock.instant(), job);
+      var saved = store.save(evaluated, batch.resources(), diff, clock.instant(), job, release);
       store.finish(job, clock.instant(), false);
       int matches = (int) saved.stream().filter(s -> s.outcome().equals("AUTO_MATCH")).count(),
           conflicts = (int) saved.stream().filter(s -> s.outcome().equals("CONFLICT")).count();
@@ -83,7 +107,9 @@ public final class OperationalBindingWorker {
       System.getLogger(getClass().getName())
           .log(
               System.Logger.Level.INFO,
-              "s10_shadow evaluated={0} match={1} defer={2} conflict={3} revisions={4}"
+              "s10_binding release="
+                  + release.version()
+                  + " evaluated={0} match={1} defer={2} conflict={3} revisions={4}"
                   + " truncated={5} missing_proof={6} threshold_failures={7} margin_failures={8}",
               evaluated.size(),
               matches,

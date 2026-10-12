@@ -1,0 +1,211 @@
+{
+  "crew_auto_candidate": {
+    "unchanged": true,
+    "before": {
+      "count": 46,
+      "hash": "adec1b4074f4697e4061be4934a0b9ab"
+    },
+    "after": {
+      "count": 46,
+      "hash": "adec1b4074f4697e4061be4934a0b9ab"
+    }
+  },
+  "crew_auto_decision_evidence": {
+    "unchanged": true,
+    "before": {
+      "count": 344,
+      "hash": "01a610e049ba2a68bf28047c0c894865"
+    },
+    "after": {
+      "count": 344,
+      "hash": "01a610e049ba2a68bf28047c0c894865"
+    }
+  },
+  "crew_auto_decision_revision": {
+    "unchanged": true,
+    "before": {
+      "count": 153,
+      "hash": "52746967303e3085d1c75836697dcf5a"
+    },
+    "after": {
+      "count": 153,
+      "hash": "52746967303e3085d1c75836697dcf5a"
+    }
+  },
+  "crew_auto_feature_snapshot": {
+    "unchanged": true,
+    "before": {
+      "count": 153,
+      "hash": "1dce729c2f9735e4a4f3b7c9089bf325"
+    },
+    "after": {
+      "count": 153,
+      "hash": "1dce729c2f9735e4a4f3b7c9089bf325"
+    }
+  },
+  "crew_auto_graph_application": {
+    "unchanged": true,
+    "before": {
+      "count": 1177,
+      "hash": "041868fb348ff68a68c85d91b22f747a"
+    },
+    "after": {
+      "count": 1177,
+      "hash": "041868fb348ff68a68c85d91b22f747a"
+    }
+  },
+  "crew_auto_graph_revision": {
+    "unchanged": true,
+    "before": {
+      "count": 40,
+      "hash": "0d24d8e57e7131eafec7fc82923a1c89"
+    },
+    "after": {
+      "count": 40,
+      "hash": "0d24d8e57e7131eafec7fc82923a1c89"
+    }
+  },
+  "crew_auto_identity": {
+    "unchanged": true,
+    "before": {
+      "count": 49,
+      "hash": "76aed6ba72693e56b64fba8872a6656a"
+    },
+    "after": {
+      "count": 49,
+      "hash": "76aed6ba72693e56b64fba8872a6656a"
+    }
+  },
+  "crew_auto_input_head": {
+    "unchanged": true,
+    "before": {
+      "count": 49,
+      "hash": "dbd89b246a763fee6bbae5c2bd018a56"
+    },
+    "after": {
+      "count": 49,
+      "hash": "dbd89b246a763fee6bbae5c2bd018a56"
+    }
+  },
+  "crew_auto_job": {
+    "unchanged": true,
+    "before": {
+      "count": 39,
+      "hash": "2b258848dec8c35862e794e2ef44dc6d"
+    },
+    "after": {
+      "count": 39,
+      "hash": "2b258848dec8c35862e794e2ef44dc6d"
+    }
+  },
+  "crew_auto_observation": {
+    "unchanged": true,
+    "before": {
+      "count": 105,
+      "hash": "8f263b67092179b4a74a46fa34179cf4"
+    },
+    "after": {
+      "count": 105,
+      "hash": "8f263b67092179b4a74a46fa34179cf4"
+    }
+  },
+  "crew_auto_release": {
+    "unchanged": true,
+    "before": {
+      "count": 1,
+      "hash": "ce9b836e7359ab606ae96fa48ae4fffc"
+    },
+    "after": {
+      "count": 1,
+      "hash": "ce9b836e7359ab606ae96fa48ae4fffc"
+    }
+  },
+  "crew_auto_sweep_lease": {
+    "unchanged": true,
+    "before": {
+      "count": 1,
+      "hash": "5fab2f3425824ba646fc480caa4879a7"
+    },
+    "after": {
+      "count": 1,
+      "hash": "5fab2f3425824ba646fc480caa4879a7"
+    }
+  },
+  "crew_identity_binding_version": {
+    "unchanged": true,
+    "before": {
+      "count": 4,
+      "hash": "ef849b2f262316f8e08597d7d2836bb3"
+    },
+    "after": {
+      "count": 4,
+      "hash": "ef849b2f262316f8e08597d7d2836bb3"
+    }
+  },
+  "crew_identity_decision_evidence": {
+    "unchanged": true,
+    "before": {
+      "count": 39,
+      "hash": "e59e9afc0c6f4254a920f91e2c52f128"
+    },
+    "after": {
+      "count": 39,
+      "hash": "e59e9afc0c6f4254a920f91e2c52f128"
+    }
+  },
+  "crew_identity_resolution": {
+    "unchanged": true,
+    "before": {
+      "count": 28,
+      "hash": "a011a2022f0589ebd5553374d5e6e20d"
+    },
+    "after": {
+      "count": 28,
+      "hash": "a011a2022f0589ebd5553374d5e6e20d"
+    }
+  },
+  "crew_person": {
+    "unchanged": true,
+    "before": {
+      "count": 13,
+      "hash": "31960324bad0f62bb0a6b5b3e95d9b26"
+    },
+    "after": {
+      "count": 13,
+      "hash": "31960324bad0f62bb0a6b5b3e95d9b26"
+    }
+  },
+  "crew_person_equivalence_decision": {
+    "unchanged": true,
+    "before": {
+      "count": 2,
+      "hash": "885362a2f1dd360f8a77ea96d7b3de9f"
+    },
+    "after": {
+      "count": 2,
+      "hash": "885362a2f1dd360f8a77ea96d7b3de9f"
+    }
+  },
+  "crew_person_external_id": {
+    "unchanged": true,
+    "before": {
+      "count": 16,
+      "hash": "2bc2614dae689916056077f47f548a5d"
+    },
+    "after": {
+      "count": 16,
+      "hash": "2bc2614dae689916056077f47f548a5d"
+    }
+  },
+  "crew_person_observation": {
+    "unchanged": true,
+    "before": {
+      "count": 91,
+      "hash": "33503b2f4b3521c9acd627b62df2cddd"
+    },
+    "after": {
+      "count": 91,
+      "hash": "33503b2f4b3521c9acd627b62df2cddd"
+    }
+  }
+}

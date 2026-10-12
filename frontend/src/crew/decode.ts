@@ -183,6 +183,21 @@ const member: Decode<C.CrewMember> = (value) => {
     externalIds: array(external)(v.externalIds),
   };
 };
+function membership<M extends C.MembershipProjection['mode']>(value: unknown, mode: M): C.MembershipProjection & { mode: M } {
+  const m = record(value);
+  return {
+    mode: choice([mode])(m.mode),
+    revision: count(m.revision),
+    evaluatedAt: instant(m.evaluatedAt),
+    policyVersion: text(m.policyVersion),
+    health: choice(['HEALTHY', 'DEGRADED'] as const)(m.health),
+    ageSeconds: count(m.ageSeconds),
+    resolvedCurrentMembers: count(m.resolvedCurrentMembers),
+    nonPublishableActive: count(m.nonPublishableActive),
+    canonicalCollisions: count(m.canonicalCollisions),
+    unresolvedActiveSourceSlots: count(m.unresolvedActiveSourceSlots),
+  };
+}
 export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
   const v = record(value),
     c = record(v.counts),
@@ -208,29 +223,16 @@ export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
       verification: nullable(observation)(p.verification),
       contributingAssertions: array(assertion)(p.contributingAssertions),
     },
-    ...(v.membership === undefined ? {} : { membership: (() => {
-      const m = record(v.membership);
-      return {
-        mode: choice(['ACTIVE_PROJECTION'] as const)(m.mode),
-        revision: count(m.revision),
-        evaluatedAt: instant(m.evaluatedAt),
-        policyVersion: text(m.policyVersion),
-        health: choice(['HEALTHY', 'DEGRADED'] as const)(m.health),
-        ageSeconds: count(m.ageSeconds),
-        resolvedCurrentMembers: count(m.resolvedCurrentMembers),
-        nonPublishableActive: count(m.nonPublishableActive),
-        canonicalCollisions: count(m.canonicalCollisions),
-        unresolvedActiveSourceSlots: count(m.unresolvedActiveSourceSlots),
-      };
-    })() }),
+    ...(v.membership === undefined ? {} : { membership: membership(v.membership, 'ACTIVE_PROJECTION') }),
   };
 };
-/** Replay keeps the original operational-count and unresolved-report contract. */
+/** Modern Replay adds a read-only V10 evaluation; legacy rollback keeps its original contract. */
 export const decodeHistoricalCrew: Decode<C.HistoricalCrew> = (value) => {
   const v = record(value), c = record(v.counts);
   const { membership: _currentOnly, ...state } = decodeCrew({ ...v, membership: undefined });
   return {
     ...state,
+    ...(v.membership === undefined ? {} : { membership: membership(v.membership, 'HISTORICAL_V10_S10') }),
     counts: {
       ...state.counts,
       officialAboard: nc(c.officialAboard),

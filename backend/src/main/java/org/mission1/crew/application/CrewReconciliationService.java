@@ -18,6 +18,9 @@ public final class CrewReconciliationService {
     private final CrewReconciliationPolicy policy;
     private final Clock clock;
 
+    private org.mission1.crew.operational.OperationalProductionBindings bindings;
+    public CrewReconciliationService bindings(org.mission1.crew.operational.OperationalProductionBindings value) { bindings=value; return this; }
+
     private CrewIdentityRepository identities = CrewIdentityRepository.EMPTY;
 
     public CrewReconciliationService(
@@ -73,11 +76,16 @@ public final class CrewReconciliationService {
         var ll2 = identity.project(
                         query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null));
         var nasa = verification.latestSuccess().orElse(null);
+        boolean modern=bindings!=null && bindings.mode()==org.mission1.crew.operational.OperationalProductionBindings.Mode.S10_SCOPED_BINDING;
         var evidence = new CrewCompatibleVersionSelector().select(
-                verification.publicEvidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
-        var resolved =
-                resolve ? verification.resolve(evidence, at) : verification.resolutionsAsOf(at);
-        if (resolve) {
+                modern?verification.evidenceAsOf(at):verification.publicEvidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
+        var resolved = modern ? bindings.resolve(evidence,at).entrySet().stream().map(entry->{
+          var parts=entry.getKey().split(":");var b=entry.getValue();
+          return new CrewIdentityResolution(0,Long.parseLong(parts[0]),Integer.parseInt(parts[1]),b.person(),
+              b.matched()?CrewIdentityResolution.Method.S10_SCOPED_BINDING:CrewIdentityResolution.Method.UNRESOLVED,
+              List.of(),entry.getKey(),"s10-scoped-production-v1");
+        }).toList() : resolve ? verification.resolve(evidence, at) : verification.resolutionsAsOf(at);
+        if (resolve && !modern) {
             // Resolution can materialize a pending reviewed pair in its own committed transaction.
             identity = identityAt(at);
             ll2 = identity.project(ll2);

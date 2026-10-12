@@ -729,7 +729,7 @@ class JdbcCrewRefreshRepositoryTest {
                                 POSTGRES.getPassword())
                         .schemas("event_refresh_upgrade")
                         .load();
-        assertEquals(7, latest.migrate().migrationsExecuted);
+        assertEquals(8, latest.migrate().migrationsExecuted);
         latest.validate();
         for (var entry : before.entrySet())
             assertEquals(
@@ -1058,9 +1058,9 @@ class JdbcCrewRefreshRepositoryTest {
 
     @Test
     void emptyDatabaseMigratesToV9() {
-        assertEquals(11, count("flyway_schema_history"));
+        assertEquals(12, count("flyway_schema_history"));
         assertEquals(
-                "11",
+                "12",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history WHERE success ORDER BY"
                                 + " installed_rank DESC LIMIT 1",

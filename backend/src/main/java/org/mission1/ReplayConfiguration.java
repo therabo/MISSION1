@@ -19,8 +19,19 @@ class ReplayConfiguration {
             CrewVerificationRepository v,
             CrewReadRepository p,
             CrewReconciliationPolicy policy,
-            CrewIdentityRepository identities) {
-        return new CrewReplayQueryService(h, r, v, p, policy.forReplay(), identities);
+            CrewIdentityRepository identities,
+            org.mission1.crew.membership.RetainedMembershipInputs inputs,
+            org.mission1.crew.membership.ActiveMembershipPolicy lifecycle,
+            CrewReadQueryService read,
+            @Value("${mission1.replay.crew.mode:UNIFIED_V10_S10}") String mode) {
+        if (!java.util.Set.of("UNIFIED_V10_S10", "LEGACY").contains(mode)) {
+            throw new IllegalArgumentException("Known Crew Replay mode required");
+        }
+        var replay = new CrewReplayQueryService(
+                h, r, v, p, mode.equals("LEGACY") ? policy.forReplay() : policy, identities);
+        return mode.equals("LEGACY")
+                ? replay
+                : replay.unified(new UnifiedCrewReplay(inputs, lifecycle, read, r, v));
     }
 
     @Bean

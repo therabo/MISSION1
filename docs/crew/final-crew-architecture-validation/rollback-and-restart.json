@@ -1,0 +1,335 @@
+{
+  "fresh-production": {
+    "database": {
+      "bindings": 150,
+      "projection": {
+        "id": 24,
+        "mode": "S10_SCOPED_BINDING",
+        "policy": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+        "at": "2026-10-12T09:19:37.065671+00:00",
+        "counts": {
+          "editorialSlots": 7,
+          "ll2Assignments": 7,
+          "retainedHumans": 4,
+          "resolvedActiveHumans": 7,
+          "unresolvedActiveSlots": 0,
+          "websiteReportedAboard": 7,
+          "unresolvedRetainedSlots": 4,
+          "operationalOfficialAboard": null,
+          "lastKnownOperationalAboard": null,
+          "resolvedEditorialMemberships": 0
+        }
+      },
+      "sources": [
+        {
+          "id": 150,
+          "source": "NASA_OFFICIAL",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:10:26.21447+00:00",
+          "completed_at": "2026-10-12T09:10:26.978407+00:00",
+          "snapshot_id": null,
+          "verification_document_id": 120
+        },
+        {
+          "id": 149,
+          "source": "LAUNCH_LIBRARY_2",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:05:25.784731+00:00",
+          "completed_at": "2026-10-12T09:05:25.834789+00:00",
+          "snapshot_id": 67,
+          "verification_document_id": null
+        }
+      ]
+    },
+    "currentNames": [
+      "Anna Kikina",
+      "Anil Menon",
+      "Pyotr Dubrov",
+      "Jessica Watkins",
+      "Luke Delaney",
+      "Joshua Kutryk",
+      "Sergey Teteryatnikov"
+    ],
+    "membership": {
+      "mode": "ACTIVE_PROJECTION",
+      "revision": 24,
+      "evaluatedAt": "2026-10-12T09:19:37.065671Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 56,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    },
+    "historicalDepartureNames": [
+      "Anil Menon",
+      "Anna Kikina",
+      "Jessica Watkins",
+      "Joshua Kutryk",
+      "Luke Delaney",
+      "Pyotr Dubrov",
+      "Sergey Teteryatnikov"
+    ],
+    "historicalMembership": {
+      "mode": "HISTORICAL_V10_S10",
+      "revision": 0,
+      "evaluatedAt": "2026-10-07T12:05:00Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 0,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    }
+  },
+  "legacy-rollback": {
+    "database": {
+      "bindings": 150,
+      "projection": {
+        "id": 25,
+        "mode": "V9_AUTOMATIC_SHADOW",
+        "policy": "crew-active-shadow-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+        "at": "2026-10-12T09:21:02.760558+00:00",
+        "counts": {
+          "editorialSlots": 7,
+          "ll2Assignments": 7,
+          "retainedHumans": 4,
+          "resolvedActiveHumans": 7,
+          "unresolvedActiveSlots": 10,
+          "websiteReportedAboard": 7,
+          "unresolvedRetainedSlots": 19,
+          "operationalOfficialAboard": null,
+          "lastKnownOperationalAboard": null,
+          "resolvedEditorialMemberships": 0
+        }
+      },
+      "sources": [
+        {
+          "id": 150,
+          "source": "NASA_OFFICIAL",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:10:26.21447+00:00",
+          "completed_at": "2026-10-12T09:10:26.978407+00:00",
+          "snapshot_id": null,
+          "verification_document_id": 120
+        },
+        {
+          "id": 149,
+          "source": "LAUNCH_LIBRARY_2",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:05:25.784731+00:00",
+          "completed_at": "2026-10-12T09:05:25.834789+00:00",
+          "snapshot_id": 67,
+          "verification_document_id": null
+        }
+      ]
+    },
+    "currentNames": [
+      "Anna Kikina",
+      "Anil Menon",
+      "Pyotr Dubrov",
+      "Jessica Watkins",
+      "Luke Delaney",
+      "Joshua Kutryk",
+      "Sergey Teteryatnikov"
+    ],
+    "membership": {
+      "mode": "ACTIVE_PROJECTION",
+      "revision": 25,
+      "evaluatedAt": "2026-10-12T09:21:02.760558Z",
+      "policyVersion": "crew-active-shadow-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 1,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 10
+    },
+    "historicalDepartureNames": [
+      "Anna Kikina",
+      "Sophie Adenot",
+      "Andrei Fedyaev",
+      "Luke Delaney",
+      "Anil Menon",
+      "Jack Hathaway",
+      "Joshua Kutryk",
+      "Sergey Teteryatnikov",
+      "Jessica Meir",
+      "Pyotr Dubrov",
+      "Jessica Watkins"
+    ],
+    "historicalMembership": null
+  },
+  "restored-production": {
+    "database": {
+      "bindings": 150,
+      "projection": {
+        "id": 26,
+        "mode": "S10_SCOPED_BINDING",
+        "policy": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+        "at": "2026-10-12T09:21:57.984303+00:00",
+        "counts": {
+          "editorialSlots": 7,
+          "ll2Assignments": 7,
+          "retainedHumans": 4,
+          "resolvedActiveHumans": 7,
+          "unresolvedActiveSlots": 0,
+          "websiteReportedAboard": 7,
+          "unresolvedRetainedSlots": 4,
+          "operationalOfficialAboard": null,
+          "lastKnownOperationalAboard": null,
+          "resolvedEditorialMemberships": 0
+        }
+      },
+      "sources": [
+        {
+          "id": 150,
+          "source": "NASA_OFFICIAL",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:10:26.21447+00:00",
+          "completed_at": "2026-10-12T09:10:26.978407+00:00",
+          "snapshot_id": null,
+          "verification_document_id": 120
+        },
+        {
+          "id": 149,
+          "source": "LAUNCH_LIBRARY_2",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:05:25.784731+00:00",
+          "completed_at": "2026-10-12T09:05:25.834789+00:00",
+          "snapshot_id": 67,
+          "verification_document_id": null
+        }
+      ]
+    },
+    "currentNames": [
+      "Anna Kikina",
+      "Anil Menon",
+      "Pyotr Dubrov",
+      "Jessica Watkins",
+      "Luke Delaney",
+      "Joshua Kutryk",
+      "Sergey Teteryatnikov"
+    ],
+    "membership": {
+      "mode": "ACTIVE_PROJECTION",
+      "revision": 26,
+      "evaluatedAt": "2026-10-12T09:21:57.984303Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 1,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    },
+    "historicalDepartureNames": [
+      "Anil Menon",
+      "Anna Kikina",
+      "Jessica Watkins",
+      "Joshua Kutryk",
+      "Luke Delaney",
+      "Pyotr Dubrov",
+      "Sergey Teteryatnikov"
+    ],
+    "historicalMembership": {
+      "mode": "HISTORICAL_V10_S10",
+      "revision": 0,
+      "evaluatedAt": "2026-10-07T12:05:00Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 0,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    }
+  },
+  "restored-readonly-restart": {
+    "database": {
+      "bindings": 150,
+      "projection": {
+        "id": 26,
+        "mode": "S10_SCOPED_BINDING",
+        "policy": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+        "at": "2026-10-12T09:21:57.984303+00:00",
+        "counts": {
+          "editorialSlots": 7,
+          "ll2Assignments": 7,
+          "retainedHumans": 4,
+          "resolvedActiveHumans": 7,
+          "unresolvedActiveSlots": 0,
+          "websiteReportedAboard": 7,
+          "unresolvedRetainedSlots": 4,
+          "operationalOfficialAboard": null,
+          "lastKnownOperationalAboard": null,
+          "resolvedEditorialMemberships": 0
+        }
+      },
+      "sources": [
+        {
+          "id": 150,
+          "source": "NASA_OFFICIAL",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:10:26.21447+00:00",
+          "completed_at": "2026-10-12T09:10:26.978407+00:00",
+          "snapshot_id": null,
+          "verification_document_id": 120
+        },
+        {
+          "id": 149,
+          "source": "LAUNCH_LIBRARY_2",
+          "result_state": "SUCCESS",
+          "retrieved_at": "2026-10-12T09:05:25.784731+00:00",
+          "completed_at": "2026-10-12T09:05:25.834789+00:00",
+          "snapshot_id": 67,
+          "verification_document_id": null
+        }
+      ]
+    },
+    "currentNames": [
+      "Anna Kikina",
+      "Anil Menon",
+      "Pyotr Dubrov",
+      "Jessica Watkins",
+      "Luke Delaney",
+      "Joshua Kutryk",
+      "Sergey Teteryatnikov"
+    ],
+    "membership": {
+      "mode": "ACTIVE_PROJECTION",
+      "revision": 26,
+      "evaluatedAt": "2026-10-12T09:21:57.984303Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 83,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    },
+    "historicalDepartureNames": [
+      "Anil Menon",
+      "Anna Kikina",
+      "Jessica Watkins",
+      "Joshua Kutryk",
+      "Luke Delaney",
+      "Pyotr Dubrov",
+      "Sergey Teteryatnikov"
+    ],
+    "historicalMembership": {
+      "mode": "HISTORICAL_V10_S10",
+      "revision": 0,
+      "evaluatedAt": "2026-10-07T12:05:00Z",
+      "policyVersion": "crew-active-production-v1/crew-freshness-v2:PT6H:PT6H:PT168H:PT336H/count=PT72H/roster=PT6H/topic=PT6H/personal=PT168H",
+      "health": "DEGRADED",
+      "ageSeconds": 0,
+      "resolvedCurrentMembers": 7,
+      "nonPublishableActive": 0,
+      "canonicalCollisions": 0,
+      "unresolvedActiveSourceSlots": 0
+    }
+  }
+}

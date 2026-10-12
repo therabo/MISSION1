@@ -102,3 +102,7 @@ The dated results above remain the original milestone record. [Production Curren
 ## S10 Phase 1 follow-on — 2026-10-11
 
 The [independent operational subject linker](../operational-subject-binding-shadow-validation/README.md) reuses this frozen model and name primitives with a separately versioned qualified operational extractor. It preserves this V9 adapter, observations, decision revisions and graph. Its V11 results do not promote V9 into production, and its source-resource authority is enforced outside logistic coefficients.
+
+## Subsequent final production architecture — 2026-10-12
+
+[ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate the separately versioned S10 operational consumer and unify Current/Historical V10 lifecycle. V7 remains canonical; V9 general identity remains SHADOW. This dossier and its original immutable rows retain their dated acceptance meaning. Historical now uses seven-day observations relative to T, without backdating captured rosters. The next milestone is dedicated clean-room empty-database bootstrap validation.

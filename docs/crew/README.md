@@ -1,5 +1,8 @@
 # ISS Crew operational context
 
+**Final production authority — 2026-10-12:** V7 canonical identity/profiles/aliases; V8 editorial/resource ingestion; V9 general identity SHADOW; S10 exact operational-subject binding to existing V7 humans; V10 lifecycle for Current and Historical at UTC T. [ADR-0021](../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](final-crew-architecture-validation/README.md) supersede the earlier dated rollout restrictions below. Next Crew milestone: dedicated clean-room empty-database bootstrap validation. RTN remains separate.
+
+
 **2026-10-10 — independent editorial shadow source:** [NASA editorial roster](nasa-editorial-roster-validation/README.md) adds verified topic/mission discovery, immutable roster/member/count observations, explicit typed personal-resource relations and source-specific health. It does not change public Current, Replay, LL2 assignment authority, operational RSS semantics or reviewed V7 identities. [ADR-0014](../adr/0014-nasa-editorial-roster-shadow-observations.md).
 
 ## Source occurrence versioning — 2026-10-10

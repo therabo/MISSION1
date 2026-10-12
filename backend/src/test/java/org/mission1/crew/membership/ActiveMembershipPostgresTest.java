@@ -27,7 +27,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.*;
 
-@SpringBootTest
+@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
 @Testcontainers
 class ActiveMembershipPostgresTest {
   @Container static final PostgreSQLContainer<?> PG = new PostgreSQLContainer<>("postgres:16.10");
@@ -238,7 +238,7 @@ class ActiveMembershipPostgresTest {
   @Test
   void freshAndV9Upgrade() {
     assertEquals(
-        11, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history", Integer.class));
+        12, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history", Integer.class));
     var old =
         Flyway.configure()
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
@@ -255,7 +255,7 @@ class ActiveMembershipPostgresTest {
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
             .schemas("active_upgrade")
             .load();
-    assertEquals(2, newer.migrate().migrationsExecuted);
+    assertEquals(3, newer.migrate().migrationsExecuted);
     newer.validate();
     assertEquals(before, jdbc.queryForList("SELECT * FROM active_upgrade.crew_person"));
   }

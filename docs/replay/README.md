@@ -1,5 +1,8 @@
 # Mission Replay
 
+**Final Crew production migration — 2026-10-12:** Current and Historical now share V7/S10/V10 lifecycle semantics; Replay evaluates effective UTC T using evidence known today. `UNIFIED_V10_S10` is normal; `LEGACY` is explicit rollback/comparison. Source capture and identity knowledge stay distinct, with no source calls, identity scoring, writes or V10 materialization from GET. [Final Crew validation](../crew/final-crew-architecture-validation/README.md). The next Crew milestone is clean-room empty-database bootstrap validation, separately from any orbital timeline or RTN work.
+
+
 Replay(T) is the best current reconstruction of operational state **effective at T**, using evidence presently stored in PostgreSQL. It includes late acquisition and late publication when an explicit event timestamp establishes an earlier effective time. It does not answer what MISSION1 knew at T; knowledge-time replay is a separate future capability. Source publication, capture, content identity and method lineage remain visible.
 
 ```text
