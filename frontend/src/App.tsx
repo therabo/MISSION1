@@ -25,7 +25,7 @@ import type { ViewMode } from "./cesium/inspectionMode";
 import { useEarthWorkspace } from "./layout/useEarthWorkspace";
 import { TopContextBar } from "./components/TopContextBar";
 import { TrajectoryLegend } from "./components/TrajectoryLegend";
-import { SceneControls, type EarthSceneControls } from "./components/SceneControls";
+import { InspectionResetControl, SceneControls, type EarthSceneControls } from "./components/SceneControls";
 import { HistoricalTimeBar } from "./replay/HistoricalTimeBar";
 import { HistoricalOrbitalSummary } from "./replay/HistoricalOrbitalSummary";
 import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./replay/historicalPresentation";
@@ -234,6 +234,8 @@ export default function App() {
           <SceneControls onZoomIn={() => earthControls.current?.zoomIn()}
             onZoomOut={() => earthControls.current?.zoomOut()} onReset={() => earthControls.current?.resetView()} />
           </>}
+          {stationFocused && <InspectionResetControl disabled={viewMode !== 'ISS_INSPECTION' || temporal.holding}
+            onReset={() => earthControls.current?.resetView()} />}
         </div>
         <HistoricalTimeBar open={replaying && !stationFocused && !crewOpen} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
           coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}

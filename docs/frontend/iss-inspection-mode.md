@@ -1,5 +1,48 @@
 # ISS Inspection Mode
 
+## Progressive Reset view — 2026-10-12
+
+The accepted 90 m desktop /42.5° elevation /100° FOV endpoint, responsive
+`rearInspectionOffset`, physical selected-source F/L/U pivot and model scale stay
+unchanged. The preceding baseline had only an instantaneous Earth Reset command;
+its toolbar was hidden in Inspection. The existing camera-control bridge now also
+exposes a dedicated Inspection Reset view button in the scene overlay, enabled
+only in stable Inspection. It does not change navigation or canvas geometry.
+
+`InspectionResetTransition` captures the actual local camera position, direction,
+up and canonical FOV at the press. The existing Viewer tick evaluates one normalized
+wall-clock progress, using the existing C2 `smootherstep`. One quaternion turn transports the actual basis along the shortest radial arc;
+roll unwinds continuously toward the accepted up vector. Range and FOV derive
+from that same eased progress. A bounded capture-time clearance preflight adjusts
+outward radial progress only for close poses that would otherwise meet an array
+edge and produce a range reversal; the existing clearance values stay unchanged. Quaternion orbit avoids a pole-induced
+up-vector flip. The existing directional clearance clamp still applies. Duration
+is 0.8s, matching the existing local `DisplayRetarget` correction; there was no
+accepted Inspection-reset duration to preserve. Entry/exit duration and formulas
+are untouched. No Cesium flight, extra animation listener or timeout chain is added.
+
+Each frame installs this local pose in the same freshly evaluated physical frame
+already used by Inspection. Current follows the moving selected-source sample;
+Historical follows its accepted UTC T and backend primary state. No world target,
+Current state fallback, physical sample change, scene-time change or source request
+is introduced. Perspective offsets keep their existing composition policy. At
+completion the local position is exactly the existing rear offset; the next native
+lookAt has the same target orientation, with no visible numerical handoff.
+
+Wheel, pinch and pointer orbit cancel the one reset without moving the camera.
+The current local basis is retained on subsequent tracking ticks and proportional
+zoom, preventing an interrupted roll from snapping to the canonical up vector.
+Repeated presses capture the current interpolated pose and replace the reset.
+Resize cancels it in place; a later reset uses the new responsive range. Leaving
+Inspection cancels reset before the existing Back transition captures/uses its
+actual pose. Source loss and temporal guards retain their accepted semantics.
+
+[Final branding/reset validation](branding-crew-simplification/README.md) records
+intermediate 25/50/75% tests, native browser traces and the Historical OEM availability
+limit. Historical currently consumes the backend primary automatically; availability
+of an OEM secondary alone does not enable a selectable Historical OEM scene.
+
+
 ## Restyled responsive validation — 2026-10-08
 
 The existing strip and module overlays were audited across desktop, tablet, phone and short landscape sizes without changing their accepted composition. Compact module content remains internally scrollable; exposed canvas pixels around the dock still accept native picks and orbit/zoom input. Native browser QA checks 90m desktop range, 42.5° elevation, 100° FOV, the existing portrait widening, hover clearing during camera motion, selection/color restoration and Earth return. Camera and Cesium code remain byte-identical to the initial restyling branch. [Complete layout and interaction dossier](ui-restyling-responsive/README.md).

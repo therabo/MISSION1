@@ -71,7 +71,7 @@ it('does not fabricate a missing profile, biography, career or portrait', async 
 });
 it('withholds portraits under the original rights rules', async () => {
   const m = crew().members[0], person = profile(m); person.image = { url:'https://example.com/portrait.jpg', thumbnailUrl:null, credit:'NASA', licenseName:'NASA Image and Media Guidelines', licenseUrl:'https://www.nasa.gov/nasa-brand-center/images-and-media/', singleUse:true };
-  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('Reuse permission unavailable'); expect(dock().textContent).not.toContain('Portrait credit & rights'); expect(person.image?.singleUse).toBe(true);
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).not.toContain('Reuse permission unavailable'); expect(dock().querySelector('.astronaut-portrait-identity small')).toBeNull(); expect(dock().textContent).not.toContain('Portrait credit & rights'); expect(person.image?.singleUse).toBe(true);
 });
 it('keeps identity and credit when a permitted portrait fails', async () => {
   const m = crew().members.find(m => m.image?.singleUse === false)!, person = profile(m); person.image = m.image;

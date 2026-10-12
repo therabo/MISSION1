@@ -40,7 +40,7 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
         <div className="astronaut-portrait-identity" onLoadCapture={() => setPortraitResult({ url: permitted, state: 'ready' })} onErrorCapture={() => setPortraitResult({ url: permitted, state: 'failed' })}>
           <CrewPortrait name={member.name} media={media} />
           <div><p>{permitted ? portraitState === 'failed' ? 'Portrait unavailable' : portraitState === 'ready' ? 'Portrait' : 'Loading portrait…' : 'Portrait unavailable'}</p>
-            <small>{permitted ? `Photo: ${media?.credit}${portraitState === 'failed' ? ' · image failed to load' : ''}` : media ? 'Reuse permission unavailable' : 'Image unavailable'}</small>
+            {(permitted || !media) && <small>{permitted ? `Photo: ${media?.credit}${portraitState === 'failed' ? ' · image failed to load' : ''}` : 'Image unavailable'}</small>}
           </div>
         </div>
       </div>

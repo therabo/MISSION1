@@ -14,7 +14,7 @@ import { crewFixture, personFixture } from './test/crewFixture';
 // Synthetic TEST data only. Camera/astronomy are validated separately in real Cesium QA.
 const scene = vi.hoisted(() => ({ props: {} as any, mounts: 0, unmounts: 0,
   delivery: {} as any, replay: vi.fn(), crewError: null as string | null, profileError: null as string | null,
-  retryCrew: vi.fn(), retryProfile: vi.fn(),
+  retryCrew: vi.fn(), retryProfile: vi.fn(), reset: vi.fn(),
   animations: [] as { element: HTMLElement; keys: unknown; options: unknown; cancel: ReturnType<typeof vi.fn> }[] }));
 vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: scene.crewError, refresh: scene.retryCrew }),
   useCrewMember: (id: string) => ({ data: { ...personFixture(), id }, loading: false, error: scene.profileError, refresh: scene.retryProfile }) }));
@@ -26,6 +26,7 @@ vi.mock('./cesium/EarthView', () => ({ EarthView: (props: any) => {
   scene.props = props;
   useEffect(() => {
     scene.mounts++;
+    props.onControlsReady({ zoomIn: vi.fn(), zoomOut: vi.fn(), resetView: scene.reset });
     const w = parseOrbitalWindow(orbitalPayload(), 0);
     props.onSceneTime(w.generatedMs); props.onModelStatus('ready');
     props.onPosition({ source: 'PRIMARY_GP_TLE', timeMs: w.generatedMs, ...w.response.currentGeodetic });
@@ -97,6 +98,20 @@ it('removes Earth controls and trajectory legend throughout entry, Inspection an
   }
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.earth-scene-controls')).not.toBeNull();
   expect(node.querySelector('.trajectory-legend')).not.toBeNull();
+});
+it.each(['Current', 'Historical'])('%s exposes reset only in stable Inspection and preserves its data/time context', async temporal => {
+  scene.reset.mockClear();
+  if (temporal === 'Historical') await click('Historical');
+  await click('ISS Inspection'); await mode('ENTERING_INSPECTION');
+  const before = { time: shown(), replay: scene.props.replay, window: scene.props.window, source: scene.props.selectedSource };
+  expect(button('Reset view').disabled).toBe(true);
+  await mode('ISS_INSPECTION'); expect(button('Reset view').disabled).toBe(false);
+  await click('Reset view'); expect(scene.reset).toHaveBeenCalledOnce();
+  expect(shown()).toBe(before.time); expect(scene.props.replay?.state).toBe(before.replay?.state);
+  expect(scene.props.replay?.atMs).toBe(before.replay?.atMs);
+  expect(scene.props.window).toBe(before.window); expect(scene.props.selectedSource).toBe(before.source);
+  expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);
+  await mode('EXITING_INSPECTION'); expect(button('Reset view').disabled).toBe(true);
 });
 it('keeps source/temporal guards while Crew opens immediately from station-focused states', async () => {
   const target = scene.replay.mock.calls.at(-1)?.[1];

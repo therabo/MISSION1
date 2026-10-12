@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -15,7 +16,7 @@ import type { CrewPerson } from './types';
 const resource = vi.hoisted(() => ({ data: null as CrewPerson | null }));
 vi.mock('../api/useCrewResource', () => ({ useCrewMember: () => ({ ...resource, loading: false, error: null, refresh: vi.fn() }) }));
 const dom = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
-const removed = ['Membership and physical presence are separate', 'Current membership is source-supported', 'Available last-known information is retained', 'Data source & freshness', 'Source-supported membership; operational evidence is separate.', 'Operational presence evidence', 'Structured assignment does not confirm presence aboard.', 'Cumulative source totals; not elapsed time on this expedition.', 'Career totals / cumulative', 'Portrait credit & rights', 'Profile context', 'Profile observation', 'Original profile observation'];
+const removed = ['Membership and physical presence are separate', 'Current membership is source-supported', 'Available last-known information is retained', 'Data source & freshness', 'Source-supported membership; operational evidence is separate.', 'Operational presence evidence', 'Structured assignment does not confirm presence aboard.', 'Cumulative source totals; not elapsed time on this expedition.', 'Career totals / cumulative', 'Portrait credit & rights', 'Profile context', 'Profile observation', 'Original profile observation', 'Reuse permission unavailable'];
 beforeEach(() => { resource.data = null; Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true }); });
 
 describe('branding and compact Crew presentation', () => {
@@ -23,6 +24,7 @@ describe('branding and compact Crew presentation', () => {
     const asset = readFileSync('public/branding/MISSION1-logo.png');
     expect(asset.subarray(1, 4).toString()).toBe('PNG');
     expect(asset.readUInt32BE(16)).toBe(2172); expect(asset.readUInt32BE(20)).toBe(724);
+    expect(createHash('sha256').update(asset).digest('hex')).toBe('1e24b1ad4e9f0a79eb1f8a85e2ce7d0d3aeb8ee1935e62f305542350d5e3339f');
     expect(asset[25]).toBe(6); // RGBA PNG, no downscale.
     const readme = readFileSync('../README.md', 'utf8');
     expect(readme).toContain('src="frontend/public/branding/MISSION1-logo.png"');
@@ -125,6 +127,19 @@ describe('branding and compact Crew presentation', () => {
     member.nationalities = [{ displayName: 'TEST nationality', alpha2: null, alpha3: null }];
     const root = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
     expect(root.textContent).toContain('TEST nationality');
+  });
+  it.each([null, true])('hides the dedicated reuse-permission caption while retaining singleUse=%s portrait metadata', singleUse => {
+    const crew = crewFixture(), member = crew.members[0];
+    resource.data = { ...personFixture(), id: member.id };
+    resource.data.image = { ...resource.data.image!, credit: 'TEST rights credit', singleUse };
+    const before = structuredClone(resource.data);
+    const current = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
+    expect(current.querySelector('.astronaut-portrait-identity small')).toBeNull();
+    expect(current.querySelector('.astronaut-portrait-identity img')).toBeNull();
+    expect(current.textContent).toContain('Portrait unavailable');
+    const historical = dom(renderToStaticMarkup(<CrewProfile person={resource.data} replayAt="2026-10-03T12:00:00Z" historicalMember={member} />));
+    for (const text of removed) { expect(current.textContent).not.toContain(text); expect(historical.textContent).not.toContain(text); }
+    expect(resource.data).toEqual(before);
   });
   it('keeps Historical canonical profile metadata and Career without returning removed disclosures', () => {
     const person = personFixture();

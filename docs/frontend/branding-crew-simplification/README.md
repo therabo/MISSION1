@@ -1,5 +1,173 @@
 # Branding refresh and Crew presentation — 2026-10-12
 
+## Final supplied logo, portrait caption and progressive Reset view — 2026-10-12
+
+Baseline: clean direct `main`, **e82ad43879dd48362371535ace2cc65c4a44b56c**.
+This section supersedes the earlier logo conversion/interruption records below.
+Those records remain historical and are not sources for this replacement. Final
+commit/remote equality is recorded outside Git to avoid a self-referential hash.
+
+### Exact artwork and stable loading paths
+
+The sole new source is `/Users/daniel/Desktop/MISSION1-logo.png`: PNG, 8-bit RGBA,
+**2172×724**, alpha present with extrema **0–255**, **1,553,635 bytes**. Inspection
+of the supplied source and repository copy confirms identical artwork. An exact
+raw file copy is compatible with the application; no crop, trim, rescale, redraw,
+recoloring, alpha conversion or segmentation is performed.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| New Desktop source | `1e24b1ad4e9f0a79eb1f8a85e2ce7d0d3aeb8ee1935e62f305542350d5e3339f` |
+| Canonical repository PNG | `1e24b1ad4e9f0a79eb1f8a85e2ce7d0d3aeb8ee1935e62f305542350d5e3339f` |
+
+The canonical path remains
+[`frontend/public/branding/MISSION1-logo.png`](../../../frontend/public/branding/MISSION1-logo.png).
+Root README is byte-identical and still loads
+`frontend/public/branding/MISSION1-logo.png` at width 800 with its natural 3:1 ratio.
+App retains `import.meta.env.BASE_URL + branding/MISSION1-logo.png` and the same
+intrinsic dimensions. No filename/case/import/deployment change, second copy,
+base64 or absolute runtime path is introduced. Development and production serve
+the exact hash above. The source's own alpha and artwork edges remain untouched.
+
+The existing image box is 120×40 px, `object-fit: contain`. At 1440×900, 1024×768,
+768×1024, 390×844 and 320×568, source/repository comparisons and native screenshots
+show the complete logo with no clipping, stretch or new CSS background. Navigation
+heights remain 64/94/94/146/146 px; canvas stays the full viewport, exactly matching
+the accepted geometry. Root README needs no rendering-dimension adjustment.
+
+### Astronaut detail
+
+Current detail removes only the unavailable reuse-permission caption and its
+conditional `<small>` row for unknown/restricted media. The generic missing-image
+fallback and permitted photo credit remain. The unknown/restricted portrait is
+still withheld by the unchanged permission function. Normal Current and Historical
+detail do not contain **Reuse permission unavailable**. Actual backend Pyotr Dubrov
+metadata still reports license **Unknown**, credit/null license URL and `singleUse:true`;
+its metadata is retained, rather than converted into permission or discarded.
+
+The earlier cleanup remains: no membership/presence explanation/detail blocks,
+Profile context/observation, assignment/cumulative disclaimers or Portrait credit
+& rights disclosure. Role is followed by one Nationality; Career remains. Current
+members / Last update remain at the top, with essential Data source in the native,
+initially collapsed bottom accordion. Backend/API/V7 data and provenance stay intact.
+
+### Previous Reset behavior and correction
+
+The inspected baseline exposes Reset view only in Earth Overview. That callback
+uses an instantaneous `Camera.setView`; the Earth toolbar is hidden in Inspection.
+There is no Inspection-reset tween or accepted Inspection-reset duration to tune.
+The correction adds an Inspection reset branch to the existing control bridge and
+a single scene-overlay button, enabled only in stable Inspection. Earth Reset,
+Inspection entry and Back keep their accepted behavior and geometry.
+
+The new typed `InspectionResetTransition` is evaluated by the existing Viewer tick,
+without another animation system/listener or a timeout chain. Duration is **0.8s**,
+matching the existing local `DisplayRetarget` correction. One normalized wall-clock
+progress uses existing C2 **smootherstep**. The press captures the actual current
+local position, direction, up and canonical FOV, including a partly completed reset.
+One quaternion turn transports the actual basis along the shortest radial arc,
+with continuous roll convergence to the accepted up vector. Logarithmic range
+and FOV derive from the identical eased progress. A bounded 512-step capture-time
+clearance preflight advances outward radial progress only when a close camera
+would otherwise meet an array edge. Its radial time exponent has 10% preflight
+headroom; geometry/clearance values and final range do not change. This prevents
+the per-frame safety clamp from causing a range reversal.
+Thus spatial orbit and approach/zoom converge together. A pole does not cause an
+up-vector flip. The accepted direction-dependent clearance clamp is reused.
+
+Target is the unchanged `rearInspectionOffset`: desktop 90 m slant range, 42.5°
+elevation, 100° FOV, zero lateral offset; narrower screens retain their existing
+range rule. Accepted projection/composition offsets, selected physical pivot,
+model scale and orbital samples/trajectory are untouched. No start/end setView is
+used. The last pose takes the exact local endpoint; its natural tracking handoff
+has only negligible floating-point differences.
+
+Each tick applies the pose in the same freshly evaluated selected-source physical
+F/L/U frame already owned by Inspection. Current follows the moving sampled ISS;
+Historical uses its accepted scene UTC T. The algorithm holds no incompatible
+world destination, changes no time/source and requests no Current state for reset.
+There are no separate Current/Historical camera paths.
+
+Wheel/pinch/orbit cancels reset in place. Tracking and proportional zoom retain
+the interrupted local basis, including roll, so cancellation cannot recanonicalize
+orientation instantly. Repeated presses replace the one reset from its actual
+interpolated pose. Resize cancels in place; the next press captures the responsive
+endpoint for the new viewport. Existing Back/source-loss exits cancel reset and
+retain the original entry/exit semantics.
+
+### Deterministic validation and architecture freeze
+
+Java 21 / Node 24. Baseline backend `mvn test`: **1163**, frontend **803 / 67 files**.
+Final backend `mvn test` and `mvn verify`: **1163 each**, zero failures/errors/skips.
+Frontend adds 22 focused cases, reaching **825 / 68 files**; full tests, typecheck,
+production build and diff checks pass. The existing Cesium large-chunk warning
+remains. Original camera regression tests are not weakened.
+
+New tests verify the canonical bytes/hash and unchanged README/App paths; unavailable
+caption absence and retained rights metadata; reset control/time/data ownership;
+exact intermediate 25/50/75% position/range convergence, same-range off-axis and
+same-direction wrong-range starts, far/close zoom, above/below poles, already-at-target,
+repeated/interrupted restart, responsive endpoints, final native orientation/FOV,
+64 closest legal directions ×401 progress samples with monotone range, and shared Current/Historical handling for recorded GP/TLE and OEM samples.
+
+All tracked backend/API/Flyway/source/physical orbit/ISS orientation/model asset
+files and all files outside the explicitly audited frontend/docs paths are
+byte-identical to the baseline. V7, V8, V9 SHADOW, S10 production, V10 and Current/
+Historical lifecycle semantics are unchanged. No dependency or ADR is required.
+AGENTS.md and all 60 external instruction/skill/support files are unchanged. The
+next major milestone remains **clean-room empty-database bootstrap validation**.
+
+### Native browser evidence
+
+Final browser outcomes and numerical summaries are recorded in
+`/Users/daniel/.codex/exports/mission1-final-branding-reset/validation-summary.json`.
+The same external directory preserves real HTTP bodies, source metadata/hash,
+baseline fingerprints, Node/Java logs, browser runners, every rendered reset frame
+and start/intermediate/final screenshots. Failed interim harness attempts remain
+separate from final passing gates. Earlier reuse of a stale pre-dispatch snapshot,
+an overly strict 10-nanometre lateral check and an incorrect expectation that
+Historical source selection unlocks were corrected in the QA harness; they were
+not changes to accepted camera/source semantics. A later dense clearance test
+found a genuine range reversal in the initial reset implementation for close
+off-axis poses. The shortest radial rail and clearance preflight fix that edge;
+full frontend tests/build and all camera browser matrices were repeated afterward.
+
+Final native browser gates pass in development 5175 and production 4175 with real
+8080 bodies: all five shell/logo sizes; 20 Current/Historical detail viewport flows,
+44 resizes and 16 container-boundary cases;22 Current/History source-matrix resets
+plus14 extreme/interruption reset traces. Each reset preserves start/middle/final
+screenshots and every rendered local pose. Native wheel, drag orbit, emulated pinch
+and their cancellation, repeated/no-op reset, resize cancellation/mobile retry,
+verified DESTINY picking, source switching and return to Current pass. All browser
+page/console error arrays are empty. Keyboard source disclosure, focus, Back/Close,
+scroll, image alt, overflow and contrast checks pass. This is Chromium/Metal and
+emulated touch, rather than physical-device certification.
+
+| Viewport | Accepted reset slant range | Navigation height |
+| --- | ---: | ---: |
+|1440×900|90m|64px|
+|1024×768|90m|94px|
+|768×1024|144m|94px|
+|390×844|233.723077m|146px|
+|320×568|191.7m|146px|
+
+The 22 final matrix cases reach their unchanged local target with maximum numerical
+camera-position error **2.144×10⁻⁸ m**, below the 1×10⁻⁵ m browser tolerance. Native
+orientation/elevation/FOV, zero lateral offset, source and mode assertions pass.
+Historical UTC is exact at both cuts throughout each reset. Earth world-pose
+restoration error is **0 m** in every matrix case. These are camera numerical
+assertions, not independent orbital-accuracy measurements. Exact 25/50/75% unit
+samples and the nearby actual rendered samples all show coherent position/range
+convergence; already-correct range remains stable in the off-axis-only case.
+
+The retained Historical UI consumes the backend **primary** automatically. At the
+two tested UTC cuts (2026-10-03T12:04:00Z and 2026-10-10T12:00:00Z) that primary is
+GP/TLE, although an OEM secondary is available. Eight additional real coverage
+probes also select GP/TLE. A selectable Historical OEM scene is therefore not
+available at these tested cuts; no source-policy change or fabricated/rewritten DTO is
+used to force one. Shared Historical OEM frame behavior is covered by deterministic
+real-recorded-source tests. Current OEM is exercised in the actual browser.
+
 ## Corrective milestone — Crew presentation and interrupted logo work
 
 This correction starts from clean `main` at

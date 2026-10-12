@@ -35,22 +35,16 @@ picking tests and evidence](../docs/frontend/occlusion-aware-workspace-centering
 
 ## Application branding and Crew presentation — 2026-10-12
 
-The application and root README share one canonical transparent
+The application and root README share one canonical user-supplied
 [`public/branding/MISSION1-logo.png`](public/branding/MISSION1-logo.png).
-The first transparency conversion clipped artwork and has been superseded by a
-conservative regeneration from the untouched Desktop original. The user-provided
-metallic wordmark retains its 2172×724 canvas and every original RGB coordinate;
-only alpha changes. Border-color/connected-background processing with reviewed
-foreground guards preserves letters, antennas, details and glows. No crop, trim,
-resize, foreground erosion or GrabCut is used; uncertain edges retain soft alpha.
-The user subsequently removed the source and stopped further image work; the
-already generated asset remains at its last working version. The dossier records
-that interruption and the available checks without claiming all logo gates complete.
-`App.tsx` uses Vite's base URL, so the public asset is included in standalone
-frontend builds. The previous frontend copy is removed; the old root artwork is
-retained only for the dated branding dossier. The logo has one `alt="MISSION1"`,
-intrinsic dimensions, `object-fit: contain`, and a 120×40px image box. Navigation
-height and the full-screen Cesium canvas remain unchanged.
+The final replacement uses the new `MISSION1-logo.png` exactly as supplied:
+RGBA PNG, 2172×724, existing alpha preserved, SHA-256
+`1e24b1ad4e9f0a79eb1f8a85e2ce7d0d3aeb8ee1935e62f305542350d5e3339f`.
+It is an exact byte copy, without crop, trim, segmentation or recoloring.
+README's repository-relative path and App's Vite base-relative path stay unchanged;
+standalone builds include the same public asset. The intrinsic 3:1 ratio,
+120×40px image box, `object-fit: contain`, navigation height and Cesium canvas
+geometry remain accepted. Earlier conversion records are historical.
 
 Current Crew shows Current members and the latest successful source fetch on one
 summary row above the divider. The essential **Data source** accordion follows all
@@ -62,7 +56,8 @@ assignment, Role followed by Nationality, Career and retained profile informatio
 Membership/presence explanatory blocks, assignment/cumulative disclaimers and the
 portrait-rights disclosure are removed from detail presentation. The correction
 also removes Profile context and Profile observation, including the shared original
-profile-observation timestamp in Current/Historical evidence. Portrait permission
+profile-observation timestamp in Current/Historical evidence. The unavailable
+reuse-permission caption and its dedicated row are also removed. Portrait permission
 checks and metadata remain intact. Historical still uses its accepted roster and
 assignment at UTC T, separately from latest canonical biography/career.
 
@@ -108,6 +103,20 @@ The station protection mask now checks visibility per fragment at the Earth limb
 ## Trajectory rendering correction — 2026-10-02
 
 The renderer retains camera-independent physical paths and the exact future horizon. Each `preRender` uses the current camera/source/UTC/model snapshot for a bounded first temporal exit, curved local re-entry mask and capsule coverage of both layers. An ambiguous start never hides the safe far body. The local search also handles an exit before the next projection crosses the camera plane. Camera, assets, quality, source interpolation and provenance remain frozen. [Classification, physical invariants, native raster traces, independent fast-motion tests, performance and regressions](../docs/frontend/trajectory-rendering-artifact-review/final-candidate/README.md). Earlier dated trajectory start/mask descriptions are historical; the original failed investigation remains preserved.
+
+## Progressive Inspection Reset view — 2026-10-12
+
+Inspection exposes Reset view through the existing camera-control bridge. One
+0.8-second C2 smootherstep transports the actual camera basis along the shortest
+local radial arc while unwinding roll and interpolating logarithmic range in the
+same moving selected-source frame as the ISS. A capture-time clearance preflight
+keeps close outward resets monotone without changing the model bounds. It keeps the accepted responsive rear offset, 42.5° elevation,
+100° FOV, physical pivot, projection offsets and model scale. Current and Historical
+share the same Viewer tick and algorithm; Reset never selects a source or UTC.
+Wheel/pinch/orbit cancels at the current pose, including roll; repeated presses
+replace the one reset. Resize cancels without recentering; the next reset captures
+its new responsive target. Entry, Back and Earth Reset keep their existing behavior.
+[Implementation, validation and source limits](../docs/frontend/branding-crew-simplification/README.md).
 
 ## Inspection range and trajectory clearance audit — 2026-10-02
 
