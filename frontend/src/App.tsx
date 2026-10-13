@@ -125,7 +125,6 @@ export default function App() {
 
   const inspecting =
     viewMode === "ENTERING_INSPECTION" || viewMode === "ISS_INSPECTION";
-  const approaching = viewMode === "ENTERING_INSPECTION";
   const returning = viewMode === "EXITING_INSPECTION";
   const stationFocused = inspecting || returning;
   // Earth and Inspection share anchored chrome; camera state remains authoritative.
@@ -163,13 +162,8 @@ export default function App() {
     sceneError={sceneError}
     modelState={modelState}
     inspecting={stationFocused}
-    approaching={approaching}
-    returning={returning}
     selectedSource={currentSource}
     position={position}
-    crewOpen={crewOpen}
-    onCrewOpen={openCrew}
-    compact={!presentationHistorical}
     detailOnly={stationFocused}
     sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null}
   />;
@@ -225,7 +219,7 @@ export default function App() {
           }}
           onHistorical={() => changeTemporalMode(true)}
           onCrew={openCrew} crewOpen={crewOpen}
-          source={<TrajectorySelector presentation="context" selectedSource={earthSource} viewMode={viewMode}
+          source={<TrajectorySelector selectedSource={earthSource} viewMode={viewMode}
             automatic={replaying || presentationHistorical} emptyLabel={historicalWaiting ? 'Waiting' : 'Unavailable'}
             oemReason={presentationHistorical ? null : oemReason} sourceNotice={presentationHistorical ? null : sourceNotice} onSelect={chooseSource} />} />
         <div className="earth-scene-ui">

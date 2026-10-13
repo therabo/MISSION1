@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.Scheduled;
 
-/** S10 background evaluation; production consumption defaults ON under its explicit release. */
+/** Operational binding background evaluation; production consumption defaults ON under its explicit release. */
 @Configuration
 class CrewOperationalBindingConfiguration {
   @Bean
@@ -89,7 +89,7 @@ class CrewOperationalBindingConfiguration {
         System.getLogger(getClass().getName())
             .log(
                 System.Logger.Level.WARNING,
-                "s10_worker_failed category={0}",
+                "operational_binding_failed category={0}",
                 e.getClass().getSimpleName());
       }
     }
@@ -105,7 +105,7 @@ class CrewOperationalBindingConfiguration {
         System.getLogger(getClass().getName())
             .log(
                 System.Logger.Level.WARNING,
-                "s10_acquisition_failed category={0}",
+                "operational_resource_acquisition_failed category={0}",
                 e.getClass().getSimpleName());
       }
     }

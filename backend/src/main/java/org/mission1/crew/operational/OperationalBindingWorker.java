@@ -5,7 +5,7 @@ import static org.mission1.crew.operational.OperationalBinding.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.*;
 import java.util.*;
-import org.mission1.crew.automatic.FrozenIdentityModel;
+import org.mission1.crew.research.FrozenIdentityModel;
 import org.mission1.crew.membership.*;
 import org.mission1.source.crew.nasa.OperationalResourceHttp;
 

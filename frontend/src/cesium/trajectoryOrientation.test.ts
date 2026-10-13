@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Cartesian3, JulianDate, Matrix4, type ScreenSpaceCameraController } from 'cesium';
 import { readFileSync } from 'node:fs';
-import { TrajectoryVisualFrame, MODEL_VISUAL_FORWARD } from './trajectoryOrientation';
+import { TrajectoryVisualFrame } from './trajectoryOrientation';
 import { makeVelocityProperty } from './velocityProperty';
 import { makeSampledPosition } from './sampleProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
@@ -16,7 +16,7 @@ describe('trajectory visual orientation and moving rear camera', () => {
     for (const sample of samples) {
       const time = JulianDate.fromIso8601(sample.time), position = p.getValue(time)!, velocity = v.getValue(time)!;
       expect(builder.update(position, velocity, matrix)).toBe(matrix);
-      const forward = Matrix4.multiplyByPointAsVector(matrix, MODEL_VISUAL_FORWARD, new Cartesian3());
+      const forward = Matrix4.multiplyByPointAsVector(matrix, Cartesian3.UNIT_X, new Cartesian3());
       const left = Matrix4.multiplyByPointAsVector(matrix, Cartesian3.UNIT_Y, new Cartesian3());
       const up = Matrix4.multiplyByPointAsVector(matrix, Cartesian3.UNIT_Z, new Cartesian3());
       expect(Cartesian3.angleBetween(forward, velocity)).toBeLessThan(1e-10);
@@ -37,7 +37,7 @@ describe('trajectory visual orientation and moving rear camera', () => {
     expect(builder.update(p, new Cartesian3(NaN, 1, 0), result)).toBeUndefined();
     for (const v of [new Cartesian3(0, 7000, 0), new Cartesian3(0, 0, 7000), new Cartesian3(7000, 0, 0)]) {
       expect(builder.update(p, v, result)).toBeDefined();
-      expect(Cartesian3.angleBetween(Matrix4.multiplyByPointAsVector(result, MODEL_VISUAL_FORWARD, new Cartesian3()), v)).toBeLessThan(1e-10);
+      expect(Cartesian3.angleBetween(Matrix4.multiplyByPointAsVector(result, Cartesian3.UNIT_X, new Cartesian3()), v)).toBeLessThan(1e-10);
       expect(Array.from({ length: 16 }, (_, i) => result[i]).every(Number.isFinite)).toBe(true);
     }
   });

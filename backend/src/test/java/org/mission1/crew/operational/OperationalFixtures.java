@@ -7,7 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.*;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
-import org.mission1.crew.automatic.*;
+import org.mission1.crew.research.*;
 import org.mission1.source.crew.CrewHttpReader;
 
 final class OperationalFixtures {

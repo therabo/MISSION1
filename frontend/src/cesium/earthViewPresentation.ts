@@ -10,20 +10,6 @@ export const EARTH_OVERVIEW_DISPLAY_LIFT_METERS = 75_000;
 export const DISPLAY_LIFT_REMOVAL_FRACTION = 0.35;
 export const OVERVIEW_SILHOUETTE = { sizePixels: 0.5, alpha: 0.12 } as const;
 
-/** Same early smooth removal as the model-only lift; never changes PBR materials. */
-export function silhouetteForMode(mode: ViewMode, entryProgress: number | null,
-  returning: { startVisibility: number; progress: number } | null,
-  result = { sizePixels: 0, alpha: 0, visibility: 0 }): { sizePixels: number; alpha: number; visibility: number } {
-  let visibility = 0;
-  if (mode === 'EARTH_OVERVIEW') visibility = 1;
-  else if (mode === 'ENTERING_INSPECTION' && entryProgress !== null) visibility = 1 - smootherstep(entryProgress / DISPLAY_LIFT_REMOVAL_FRACTION);
-  else if (mode === 'EXITING_INSPECTION' && returning) visibility = returning.startVisibility +
-    (1 - returning.startVisibility) * smootherstep(returning.progress);
-  result.sizePixels = OVERVIEW_SILHOUETTE.sizePixels * visibility;
-  result.alpha = OVERVIEW_SILHOUETTE.alpha * visibility;
-  result.visibility = visibility;
-  return result;
-}
 
 export function enteringDisplayLift(progress: number): number {
   // Remove before the camera reaches close range, with zero endpoint derivatives.

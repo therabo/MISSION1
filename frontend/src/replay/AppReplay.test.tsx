@@ -9,8 +9,8 @@ const flags=vi.hoisted(() => ({live:[] as boolean[],comparison:[] as boolean[]})
 vi.mock('../api/useOrbitalDelivery',() => ({useOrbitalDelivery:(enabled=true) => {flags.live.push(enabled);return {window:null,status:'unavailable',message:null};}}));
 vi.mock('../api/useComparisonDelivery',() => ({useComparisonDelivery:(_time:unknown,enabled=true) => {flags.comparison.push(enabled);return {response:null,status:'loading'};}}));
 vi.mock('../cesium/EarthView',() => ({EarthView:({replay}:{replay:{atMs:number}|null}) => <div data-testid="scene" data-epoch={replay?.atMs ?? 'LIVE'}/> }));
-vi.mock('../components/OrbitalStatus',() => ({OrbitalStatus:({onCrewOpen}:{onCrewOpen:()=>void}) => <div>Current orbital state<button id="crew-launcher" onClick={onCrewOpen}>Crew</button></div>}));
-vi.mock('../crew/CrewPanel',() => ({CrewPanel:() => <aside id="crew-panel">Current Crew</aside>}));
+vi.mock('../components/OrbitalStatus',() => ({OrbitalStatus:() => <div>Current orbital state</div>}));
+vi.mock('../crew/CurrentCrewPanel',() => ({CurrentCrewPanelView:() => <aside id="crew-panel">Current Crew</aside>}));
 let node:HTMLDivElement,root:Root;
 beforeEach(() => {Object.defineProperty(globalThis,'IS_REACT_ACT_ENVIRONMENT',{value:true,configurable:true});vi.useFakeTimers();vi.setSystemTime(new Date('2026-10-03T13:00:00Z'));flags.live.length=0;flags.comparison.length=0;node=document.createElement('div');document.body.append(node);root=createRoot(node);vi.stubGlobal('ResizeObserver',class {observe(){} disconnect(){}});vi.stubGlobal('requestAnimationFrame',(f:()=>void)=>setTimeout(f,0));vi.stubGlobal('fetch',vi.fn((url:string)=>{const fixture=replayFixture(url.includes('?at=')?decodeURIComponent(url.split('at=')[1]):undefined);return Promise.resolve(Response.json(url.endsWith('/coverage')?{crew:fixture.crew.coverage,orbit:fixture.orbit.coverage,joint:fixture.crew.coverage,orbitGate:'BOUNDED'}:fixture));}));});
 afterEach(async() => {await act(async()=>root.unmount());node.remove();vi.unstubAllGlobals();vi.useRealTimers();});

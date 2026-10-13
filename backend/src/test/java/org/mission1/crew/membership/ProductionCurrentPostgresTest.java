@@ -57,8 +57,8 @@ class ProductionCurrentPostgresTest {
     @Autowired MockMvc http;
     @Autowired CrewEditorialRepository editorial;
     @Autowired org.mission1.source.crew.nasa.NasaEditorialParser parser;
-    @Autowired org.mission1.crew.automatic.AutomaticIdentityStore auto;
-    @Autowired org.mission1.crew.automatic.AutomaticIdentityWorker worker;
+    @Autowired org.mission1.crew.research.IdentityResearchStore auto;
+    @Autowired org.mission1.crew.research.IdentityResearchWorker worker;
     ActiveMembershipPostgresTest fixture;
 
     @BeforeEach

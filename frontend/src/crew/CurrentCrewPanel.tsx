@@ -1,20 +1,13 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { useIssCrew, type CrewResource } from '../api/useCrewResource';
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import type { CrewResource } from '../api/useCrewResource';
 import type { CurrentCrew } from './types';
 import { CloseButton } from '../components/CloseButton';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewAstronautDock } from './CrewAstronautDock';
 
-/** Current presentation owns one UUID, never a second copy of Crew/profile facts.
- * The roster resource and its scroll container survive every selection change. */
-export function CurrentCrewPanel({ onClose, interactive }: { onClose: () => void; interactive: boolean }) {
-  const resource = useIssCrew();
-  return <CurrentCrewPanelView resource={resource} onClose={onClose} interactive={interactive} />;
-}
-
 /** A Crew session may retain its real Current resource during a temporal handoff.
  * Historical never reads this resource. Selection belongs to this Current view. */
-export function CurrentCrewPanelView({ resource, onClose, interactive, notice }: {
+export const CurrentCrewPanelView = memo(function CurrentCrewPanelView({ resource, onClose, interactive, notice }: {
   resource: CrewResource<CurrentCrew>; onClose: () => void; interactive: boolean; notice?: ReactNode;
 }) {
   const [selectedCrewMemberId, setSelectedCrewMemberId] = useState<string | null>(null);
@@ -87,4 +80,4 @@ export function CurrentCrewPanelView({ resource, onClose, interactive, notice }:
     </aside>
     <CrewAstronautDock member={selectedMember} crew={resource.data} onClose={closeDetail} />
   </div>;
-}
+});

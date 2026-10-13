@@ -50,7 +50,9 @@ class CrewEditorialConfigurationTest {
               assertNull(c.getStartupFailure());
               assertTrue(
                   c.getBeansOfType(CrewEditorialConfiguration.EditorialScheduler.class).isEmpty());
-              assertNotNull(c.getBean(CrewEditorialShadowService.class));
+              assertNotNull(c.getBean(NasaEditorialSource.class));
+              assertTrue(c.getBeansOfType(CrewResourceHealthDiagnostic.class).isEmpty());
+              assertTrue(c.getBeansOfType(CrewResourceComparison.class).isEmpty());
               verifyNoInteractions(r);
             });
   }

@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
 import org.mission1.crew.application.*;
-import org.mission1.crew.automatic.FrozenIdentityModel;
+import org.mission1.crew.research.FrozenIdentityModel;
 import org.mission1.crew.domain.CrewSource;
 import org.mission1.source.crew.CrewHttpReader;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -355,7 +355,7 @@ public class OperationalBindingStore {
                   CrewSource.LAUNCH_LIBRARY_2, r.get("external_id").toString()));
       var canonicalAnchor = knowledge.canonicalize((UUID) r.get("person_id"));
       if (p != null && !p.equals(canonicalAnchor))
-        continue; // No publishable V7 route without equivalence.
+        continue; // No publishable canonical identity route without equivalence.
       p = canonicalAnchor;
       targets.put("LL2:PERSON:" + r.get("external_id"), p);
     }

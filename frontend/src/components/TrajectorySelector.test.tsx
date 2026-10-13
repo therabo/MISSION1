@@ -6,7 +6,7 @@ const props = { selectedSource: 'PRIMARY_GP_TLE' as const, viewMode: 'EARTH_OVER
 describe('accessible position-source selector', () => {
   it('exposes primary default, OEM identity and a text description independent of color', () => {
     const html=renderToStaticMarkup(<TrajectorySelector {...props} />);
-    expect(html).toContain('aria-pressed="true"');
+    expect(html).toContain('aria-label="Orbital source"');
     expect(html).toContain('MISSION1 GP/TLE propagated state');
     expect(html).toContain('NASA OEM');
     expect(html).not.toContain('disabled');
@@ -20,17 +20,17 @@ describe('accessible position-source selector', () => {
     expect(renderToStaticMarkup(<TrajectorySelector {...props} oemReason="Coverage missing" />)).toContain('disabled');
     for(const mode of ['ENTERING_INSPECTION','ISS_INSPECTION','EXITING_INSPECTION'] as const){
       const html=renderToStaticMarkup(<TrajectorySelector {...props} viewMode={mode} />);
-      expect(html.match(/disabled=""/g)).toHaveLength(2);
+      expect(html).toMatch(/<select[^>]*disabled=""/);
       expect(html).toContain('Return to Earth View to change source');
     }
   });
   it('uses the same source identities, classification and guards in the compact context selector', () => {
-    const html = renderToStaticMarkup(<TrajectorySelector {...props} presentation="context" oemReason="Coverage missing" />);
+    const html = renderToStaticMarkup(<TrajectorySelector {...props} oemReason="Coverage missing" />);
     expect(html).toContain('SOURCE'); expect(html).toContain('aria-label="Orbital source"');
     expect(html).toContain('MISSION1 GP/TLE propagated state'); expect(html).toContain('OEM unavailable · Coverage missing');
     expect(html).toContain('<option value="NASA_OEM" disabled=""');
     for (const mode of ['ENTERING_INSPECTION', 'ISS_INSPECTION', 'EXITING_INSPECTION'] as const) {
-      const locked = renderToStaticMarkup(<TrajectorySelector {...props} presentation="context" viewMode={mode} />);
+      const locked = renderToStaticMarkup(<TrajectorySelector {...props} viewMode={mode} />);
       expect(locked).toMatch(/<select[^>]*disabled=""/); expect(locked).toContain('Return to Earth View to change source');
     }
   });

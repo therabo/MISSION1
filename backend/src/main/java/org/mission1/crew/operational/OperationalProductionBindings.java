@@ -208,7 +208,7 @@ public class OperationalProductionBindings {
           || !OperationalPolicy.PRODUCTION.version().equals(r.get("release_version"))) return false;
       if (!json.writeValueAsString(OperationalPolicy.PRODUCTION.release(json))
               .equals(r.get("serialized_policy"))
-          || !org.mission1.crew.automatic.FrozenIdentityModel.SHA.equals(r.get("model_sha")))
+          || !org.mission1.crew.research.FrozenIdentityModel.SHA.equals(r.get("model_sha")))
         return false;
       String cut = (String) r.get("serialized_cut"), value = (String) r.get("serialized_result");
       if (!hash(cut).equals(r.get("input_hash")) || !hash(value).equals(r.get("result_hash")))

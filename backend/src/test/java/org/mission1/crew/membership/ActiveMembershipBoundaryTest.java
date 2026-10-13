@@ -13,7 +13,7 @@ class ActiveMembershipBoundaryTest {
     for (var file :
         List.of(
             "RetainedMembershipInputs.java",
-            "ShadowMembershipIdentity.java",
+            "ResearchMembershipIdentity.java",
             "ActiveMembershipPolicy.java",
             "ActiveMembershipStore.java")) {
       String s = Files.readString(root.resolve("crew/membership/" + file));

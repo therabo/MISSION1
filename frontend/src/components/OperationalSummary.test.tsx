@@ -42,10 +42,10 @@ describe('physical operational summary', () => {
 });
 
 function status(orbital: OrbitalWindow | null = window, buffer: 'active' | 'expired' = 'active', overrides: Partial<ComponentProps<typeof OrbitalStatus>> = {}) {
-  return renderToStaticMarkup(<OrbitalStatus compact crewOpen={false} onCrewOpen={() => {}}
+  return renderToStaticMarkup(<OrbitalStatus
     delivery={{ window: orbital, status: orbital ? 'ready' : 'unavailable', message: null }}
     comparison={{ response: null, status: 'loading' }} buffer={buffer} sceneTimeMs={position.timeMs}
-    sceneError={null} modelState={{ status: 'ready', loadMs: 1000 }} inspecting={false} approaching={false} returning={false}
+    sceneError={null} modelState={{ status: 'ready', loadMs: 1000 }} inspecting={false}
     selectedSource="PRIMARY_GP_TLE" position={position} {...overrides} />);
 }
 

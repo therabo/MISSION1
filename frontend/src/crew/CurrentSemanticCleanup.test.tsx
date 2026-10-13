@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
 import { decodeCrew, decodeHistoricalCrew } from './decode';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
-import { CrewSources, CrewSummary, PresenceLabel } from './CrewSummary';
+import { CrewSources } from './CrewSourceEvidence';
 import { CrewAstronautDock } from './CrewAstronautDock';
 
 // TEST ONLY: equivalent to the recorded production cut, not a runtime data source.
@@ -35,9 +35,6 @@ describe('Current semantics against the observed operational gap', () => {
     expect(html).not.toContain('Without confirmed identity');
     expect(html).not.toContain('Additional NASA-reported crew');
     expect(html).not.toContain('Current membership is source-supported');
-    const summary = renderToStaticMarkup(<CrewSummary crew={crew} onMember={() => {}} />);
-    expect(summary).toContain('Current members <strong>7</strong>');
-    expect(summary).not.toContain('without confirmed identities');
   });
   it('keeps only eight ACTIVE slots in source details, never summing fifteen retained slots', () => {
     const crew = decodeCrew(wire());
@@ -71,9 +68,10 @@ describe('Current semantics against the observed operational gap', () => {
   });
   it('retains negative operational confirmation without implying aboard', () => {
     const presence = { ...decodeCrew(wire()).members[0].presence, lastKnownState: 'CONFIRMED_NOT_ABOARD' as const };
-    const html = renderToStaticMarkup(<PresenceLabel presence={presence} />);
-    expect(html).toContain('Last operational confirmation: not aboard');
-    expect(html).not.toContain('Last operational confirmation: aboard');
+    const crew = historicalCrewFixture(); crew.members = [{ ...crew.members[0], presence }];
+    const html = renderToStaticMarkup(<CurrentCrewRoster crew={crew} onMember={() => {}} historical={{ at: '2026-10-02T02:01:55Z', availability: 'AVAILABLE', coverage: { status: 'AVAILABLE', limitations: [] } as never }} />);
+    expect(html).toContain('Last known: confirmed not aboard');
+    expect(html).not.toContain('Last known: confirmed aboard');
     expect(html).toContain('state-stale');
   });
 });

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import org.mission1.crew.application.*;
-import org.mission1.crew.automatic.FrozenIdentityModel;
+import org.mission1.crew.research.FrozenIdentityModel;
 import org.mission1.crew.domain.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 

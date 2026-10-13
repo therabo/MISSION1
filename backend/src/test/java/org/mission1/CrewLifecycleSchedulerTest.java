@@ -6,7 +6,7 @@ import static org.mockito.Mockito.*;
 import java.time.*;
 import org.junit.jupiter.api.*;
 import org.mission1.crew.application.*;
-import org.mission1.crew.automatic.AutomaticIdentityWorker;
+import org.mission1.crew.research.IdentityResearchWorker;
 import org.mission1.crew.membership.ActiveMembershipStore;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -14,11 +14,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 class CrewLifecycleSchedulerTest {
   @Test
   void durableIdentityJobsAreConsumedByTheBoundedProductionTick() throws Exception {
-    var worker = mock(AutomaticIdentityWorker.class);
-    new CrewAutomaticIdentityConfiguration.AutomaticScheduler(worker).work();
+    var worker = mock(IdentityResearchWorker.class);
+    new CrewIdentityResearchConfiguration.IdentityResearchScheduler(worker).work();
     verify(worker).run(16);
     var schedule =
-        CrewAutomaticIdentityConfiguration.AutomaticScheduler.class
+        CrewIdentityResearchConfiguration.IdentityResearchScheduler.class
             .getDeclaredMethod("work")
             .getAnnotation(Scheduled.class);
     assertTrue(schedule.fixedDelayString().contains("PT1M"));

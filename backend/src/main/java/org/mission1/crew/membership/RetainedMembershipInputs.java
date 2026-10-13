@@ -274,7 +274,7 @@ public class RetainedMembershipInputs {
                 """,
                 id(graph, "id"));
     var components = graph == null ? json.createArrayNode() : node(graph.get("components"));
-    var decisions = new ArrayList<ShadowMembershipIdentity.Decision>();
+    var decisions = new ArrayList<ResearchMembershipIdentity.Decision>();
     for (var r : decisionRows) {
       String source = (String) r.get("source_key"), target = (String) r.get("candidate_key");
       boolean inComponent = false;
@@ -284,7 +284,7 @@ public class RetainedMembershipInputs {
         if (members.contains(source) && members.contains(target)) inComponent = true;
       }
       decisions.add(
-          new ShadowMembershipIdentity.Decision(
+          new ResearchMembershipIdentity.Decision(
               id(r, "id"),
               source,
               target,
@@ -296,7 +296,7 @@ public class RetainedMembershipInputs {
               inComponent));
     }
     var boundary =
-        new ShadowMembershipIdentity(decisions, humans.stream().map(Human::key).toList());
+        new ResearchMembershipIdentity(decisions, humans.stream().map(Human::key).toList());
     var editorialSlots = new ArrayList<Slot>();
     Freshness rosterFresh =
         policy.freshness(roster == null ? null : roster.capturedAt(), policy.rosterAge(), at);
@@ -369,7 +369,7 @@ public class RetainedMembershipInputs {
           }
           var pin = candidates.size() == 1 ? candidates.firstEntry().getValue() : null;
           b =
-              new ShadowMembershipIdentity.Binding(
+              new ResearchMembershipIdentity.Binding(
                   pin == null ? null : pin.get("provider").toString(),
                   null,
                   null,
@@ -447,7 +447,7 @@ public class RetainedMembershipInputs {
         if (modern()) {
           var binding = resolved.get(ref);
           b =
-              new ShadowMembershipIdentity.Binding(
+              new ResearchMembershipIdentity.Binding(
                   binding == null ? null : binding.provider(),
                   null,
                   null,

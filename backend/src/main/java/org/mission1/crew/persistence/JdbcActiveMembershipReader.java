@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-/** Single set-based, repeatable-read compatibility check of sealed V10 state. */
+/** Single set-based, repeatable-read compatibility check of sealed Crew membership state. */
 @Repository
 public class JdbcActiveMembershipReader implements ActiveMembershipReader {
     private final JdbcTemplate jdbc;

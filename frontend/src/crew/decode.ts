@@ -226,7 +226,7 @@ export const decodeCrew: Decode<C.CurrentCrew> = (value) => {
     ...(v.membership === undefined ? {} : { membership: membership(v.membership, 'ACTIVE_PROJECTION') }),
   };
 };
-/** Modern Replay adds a read-only V10 evaluation; legacy rollback keeps its original contract. */
+/** Unified Historical adds a read-only membership evaluation; rollback keeps its original contract. */
 export const decodeHistoricalCrew: Decode<C.HistoricalCrew> = (value) => {
   const v = record(value), c = record(v.counts);
   const { membership: _currentOnly, ...state } = decodeCrew({ ...v, membership: undefined });
@@ -246,28 +246,6 @@ export const decodeHistoricalCrew: Decode<C.HistoricalCrew> = (value) => {
         resolution: choice(['UNRESOLVED', 'AMBIGUOUS'] as const)(s.resolution),
         evidence: assertion(s.evidence), applicable: bool(s.applicable) };
     })(v.unresolvedSubjects),
-  };
-};
-export const decodeExpedition: Decode<C.CurrentExpedition> = (value) => {
-  const v = record(value);
-  return {
-    station: station(v.station),
-    expedition: nullable(expedition)(v.expedition),
-    assignmentCount: count(v.assignmentCount),
-    assignments: array<C.ExpeditionAssignment>((value) => {
-      const a = record(value);
-      return {
-        personId: uuid(a.personId),
-        name: nt(a.name),
-        role: nt(a.role),
-        roleCode: role(a.roleCode),
-        agency: nullable(agency)(a.agency),
-        nationalities: array(nationality)(a.nationalities),
-      };
-    })(v.assignments),
-    sourceState: text(v.sourceState),
-    freshness: health(v.freshness),
-    provenance: nullable(observation)(v.provenance),
   };
 };
 export const decodePerson: Decode<C.CrewPerson> = (value) => {

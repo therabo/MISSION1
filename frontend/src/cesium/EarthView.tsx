@@ -87,8 +87,6 @@ interface EarthViewProps {
   onControlsReady?: (controls: EarthSceneControls | null) => void;
 }
 
-export const APPROACH_DURATION_SECONDS = 6;
-export const EXIT_DURATION_SECONDS = 5;
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
 export const EarthView = memo(function EarthView({ workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, moduleSelection = null, onViewModeChange, onControlsReady }: EarthViewProps) {

@@ -8,7 +8,7 @@ import java.nio.charset.*;
 import java.time.*;
 import java.util.*;
 import java.util.regex.*;
-import org.mission1.crew.automatic.*;
+import org.mission1.crew.research.*;
 import org.mission1.crew.domain.CrewEditorial;
 import org.mission1.source.crew.CrewHttpReader;
 import org.mission1.source.crew.nasa.NasaEditorialParser;
@@ -322,7 +322,7 @@ public final class OperationalResources {
           link.tagName().equals("link")
               && href.matches(
                   "https://www\\.nasa\\.gov/wp-json/wp/v2/(people|topic|mission)/[1-9][0-9]*");
-      // V8 owns typed Expedition roster semantics; S10's named mission witness is Crew-scoped.
+      // Crew resource acquisition owns typed Expedition roster semantics; S10's named mission witness is Crew-scoped.
       if (path.matches("/mission/expedition-[0-9]+/") && href.contains("/wp-json/wp/v2/mission/"))
         typed = false;
       boolean biography = kind == Kind.NASA_TOPIC || kind == Kind.NASA_HTML;

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Cartesian3, Ellipsoid, Color } from 'cesium';
 import { ISS_MODEL } from './modelPresentation';
-import { applyModelSilhouette, displayLiftForMode, DISPLAY_LIFT_REMOVAL_FRACTION, EARTH_OVERVIEW_DISPLAY_LIFT_METERS, enteringDisplayLift, modelDisplayPosition, returningDisplayLift, silhouetteForMode, OVERVIEW_SILHOUETTE } from './earthViewPresentation';
+import { applyModelSilhouette, displayLiftForMode, DISPLAY_LIFT_REMOVAL_FRACTION, EARTH_OVERVIEW_DISPLAY_LIFT_METERS, enteringDisplayLift, modelDisplayPosition, returningDisplayLift, OVERVIEW_SILHOUETTE } from './earthViewPresentation';
 
 describe('physical and display Earth View positions', () => {
   it('shrinks only the Overview minimum footprint, preserving asset scale and scale limit', () => {
@@ -48,31 +48,18 @@ describe('physical and display Earth View positions', () => {
       expect(returningDisplayLift(startLift, 0.5)).toBeCloseTo((startLift + 75000) / 2);
     }
   });
-  it('keeps the thin white perimeter in Overview and removes it smoothly for Inspection', () => {
-    const overview = silhouetteForMode('EARTH_OVERVIEW', null, null);
-    expect(overview.sizePixels).toBe(OVERVIEW_SILHOUETTE.sizePixels);
-    expect(overview.alpha).toBe(OVERVIEW_SILHOUETTE.alpha);
-    expect(overview.sizePixels).toBeGreaterThan(0);
-    expect(silhouetteForMode('ISS_INSPECTION', null, null)).toEqual({ sizePixels: 0, alpha: 0, visibility: 0 });
-    const entering = Array.from({ length: 101 }, (_, i) => silhouetteForMode('ENTERING_INSPECTION', i / 100, null).visibility);
-    expect(entering[0]).toBe(1); expect(entering[35]).toBe(0);
-    expect(entering.every((v, i) => i === 0 || v <= entering[i - 1])).toBe(true);
-    const interrupted = silhouetteForMode('ENTERING_INSPECTION', 0.1, null).visibility;
-    expect(silhouetteForMode('EXITING_INSPECTION', null, { startVisibility: interrupted, progress: 0 }).visibility).toBe(interrupted);
-    expect(silhouetteForMode('EXITING_INSPECTION', null, { startVisibility: interrupted, progress: 1 }).visibility).toBe(1);
-  });
 });
 
 describe('retained silhouette pipeline', () => {
   it('keeps an invisible outline and one-sided geometry without crossing the shader-size boundary', () => {
     const model = { silhouetteSize: 0.5, silhouetteColor: Color.WHITE.withAlpha(0.12), backFaceCulling: false };
-    applyModelSilhouette(model, silhouetteForMode('ISS_INSPECTION', null, null));
+    applyModelSilhouette(model, { sizePixels: 0, alpha: 0 });
     expect(model.silhouetteSize).toBeGreaterThan(0);
     expect(model.silhouetteSize).toBeLessThan(0.00001);
     expect(model.silhouetteColor.alpha).toBeGreaterThan(0);
     expect(model.silhouetteColor.alpha).toBeLessThan(1e-10);
     expect(model.backFaceCulling).toBe(true);
-    applyModelSilhouette(model, silhouetteForMode('EARTH_OVERVIEW', null, null));
+    applyModelSilhouette(model, OVERVIEW_SILHOUETTE);
     expect(model.silhouetteSize).toBe(0.5);
     expect(model.silhouetteColor.alpha).toBe(0.12);
     expect(model.backFaceCulling).toBe(false);

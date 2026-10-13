@@ -156,15 +156,15 @@ public class ActiveMembershipStore {
     var captureRows = new ArrayList<Object[]>();
     for (var h : c.health())
       if (h.attemptId() != null) {
-        boolean legacy =
+        boolean sourceRun =
             h.stream().equals("LL2_STRUCTURED_CREW") || h.stream().equals("NASA_OPERATIONAL_FEED");
         captureRows.add(
             new Object[] {
               revision,
               "HEALTH:" + h.stream() + ":" + h.resource(),
               h.stream(),
-              legacy ? h.attemptId() : null,
-              legacy ? null : h.attemptId(),
+              sourceRun ? h.attemptId() : null,
+              sourceRun ? null : h.attemptId(),
               null
             });
       }

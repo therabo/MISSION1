@@ -7,7 +7,7 @@ import { makeVelocityProperty } from './velocityProperty';
 import { InspectionTransition, poseQuaternion, smootherstep } from './inspectionTransition';
 import { rearInspectionOffset } from './inspectionControls';
 import { TrajectoryVisualFrame } from './trajectoryOrientation';
-import { enteringDisplayLift, silhouetteForMode, modelDisplayPosition } from './earthViewPresentation';
+import { enteringDisplayLift, modelDisplayPosition } from './earthViewPresentation';
 const frame = new Matrix4();
 const position = new Cartesian3(6_800_000, 0, 0);
 new TrajectoryVisualFrame().update(position, new Cartesian3(0, 7500, 0), frame);
@@ -67,7 +67,6 @@ describe('coordinated physical-pivot camera transitions', () => {
     expect(Cartesian3.distance(first, start.position)).toBeLessThan(0.01);
     expect(smootherstep(0)).toBe(0); expect(smootherstep(1)).toBe(1);
     expect(enteringDisplayLift(0)).toBe(75000); expect(enteringDisplayLift(0.35)).toBe(0);
-    expect(silhouetteForMode('ENTERING_INSPECTION', 0.35, null).visibility).toBe(0);
     let previousQuaternion: Quaternion | null = null;
     for (let i = 0; i <= 1000; i++) {
       const pose = flight.evaluate(frame, i / 1000);

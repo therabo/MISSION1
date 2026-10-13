@@ -41,13 +41,8 @@ export const PRESENCE: Record<PresenceState, string> = {
   STALE: 'Presence not currently confirmed',
   AMBIGUOUS: 'Presence ambiguous',
 };
-// Historical presentation is frozen at the pre-cleanup wording.
+// Historical presence labels retain the supported contract wording.
 export const HISTORICAL_PRESENCE = { ...PRESENCE, STALE: 'Presence outdated' };
-export function lastOperationalConfirmation(presence: Presence): string {
-  if (presence.lastKnownState === 'CONFIRMED_ABOARD') return 'Last operational confirmation: aboard';
-  if (presence.lastKnownState === 'CONFIRMED_NOT_ABOARD') return 'Last operational confirmation: not aboard';
-  return 'Last operational assessment: ' + (presence.lastKnownState ? PRESENCE[presence.lastKnownState].toLowerCase() : 'unavailable');
-}
 
 /** Current annotations describe the selected source assertion, never infer membership or identity. */
 export function operationalAnnotation(presence: Presence, evaluatedAt: string) {

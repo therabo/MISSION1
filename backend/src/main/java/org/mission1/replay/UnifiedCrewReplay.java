@@ -9,7 +9,7 @@ import org.mission1.crew.application.*;
 import org.mission1.crew.domain.*;
 import org.mission1.crew.membership.*;
 
-/** Read-only effective-time context for the same V10 lifecycle and V7 publication boundary. */
+/** Read-only effective-time context for the same Crew membership lifecycle and canonical identity publication boundary. */
 public final class UnifiedCrewReplay {
   private final RetainedMembershipInputs inputs;
   private final ActiveMembershipPolicy policy;

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mission1.crew.application.*;
-import org.mission1.crew.automatic.*;
+import org.mission1.crew.research.*;
 import org.mission1.crew.domain.*;
 import org.mission1.source.crew.CrewHttpReader;
 import org.mission1.source.crew.nasa.*;
@@ -74,8 +74,8 @@ class CrewTurnoverPostgresTest {
   @Autowired CrewRepository runs;
   @Autowired CrewVerificationRepository verification;
   @Autowired CrewReconciliationService reconciliation;
-  @Autowired AutomaticIdentityStore auto;
-  @Autowired AutomaticIdentityWorker worker;
+  @Autowired IdentityResearchStore auto;
+  @Autowired IdentityResearchWorker worker;
 
   @org.springframework.test.context.bean.override.mockito.MockitoSpyBean
   RetainedIdentityEvidence loader;
@@ -724,7 +724,7 @@ class CrewTurnoverPostgresTest {
     var oldRow =
         jdbc.queryForMap(
             "SELECT * FROM crew_active_projection_revision WHERE id=?", old.revision());
-    var restarted = new AutomaticIdentityWorker(auto, loader, clock, json);
+    var restarted = new IdentityResearchWorker(auto, loader, clock, json);
     assertEquals(0, restarted.run(256).failed());
     current(7);
     assertEquals(

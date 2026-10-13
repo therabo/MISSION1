@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import { useOverlayPresence } from '../layout/useOverlayPresence';
-import { CrewPanel } from './CrewPanel';
+import { CurrentCrewPanelView } from './CurrentCrewPanel';
 import { useIssCrew } from '../api/useCrewResource';
 import { ReplayCrewPanel } from '../replay/ReplayCrewPanel';
 import type { ReplayResult } from '../replay/replayApi';
@@ -67,6 +67,6 @@ function CrewWorkspaceContent({ historical, request, onClose, interactive, reduc
   return <div className="crew-workspace-group" ref={group} data-temporal-context={historical ? 'historical' : 'current'}>
     {historical ? <ReplayCrewPanel data={historical.data} at={historical.at} loading={false} error={null}
       request={request} interactive={interactive} onClose={onClose} />
-      : <CrewPanel resource={current} notice={<CrewTemporalNotice request={request} />} workspace interactive={interactive} onClose={onClose} />}
+      : <CurrentCrewPanelView resource={current} notice={<CrewTemporalNotice request={request} />} interactive={interactive} onClose={onClose} />}
   </div>;
 }

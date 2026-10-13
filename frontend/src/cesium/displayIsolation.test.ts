@@ -5,7 +5,7 @@ import { parseComparison } from '../orbital/comparison';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { createVisualWindow } from './visualWindow';
 import { createTrajectoryTrails, updateTrail } from './trajectoryRendering';
-import { cameraTrackingFrame } from './inspectionMode';
+import { cameraTrackingFrame } from '../test/visualSample';
 import { modelDisplayPosition } from './earthViewPresentation';
 import { selectedPositionAt, oemPositionProperty } from './trajectorySelection';
 

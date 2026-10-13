@@ -18,8 +18,8 @@ const harness = vi.hoisted(() => ({
 vi.mock('./api/useOrbitalDelivery', () => ({ useOrbitalDelivery: (...args: unknown[]) => harness.orbital(...args) }));
 vi.mock('./api/useComparisonDelivery', () => ({ useComparisonDelivery: (...args: unknown[]) => harness.comparison(...args) }));
 vi.mock('./replay/useMissionReplay', () => ({ useMissionReplay: (...args: unknown[]) => harness.replay(...args) }));
+vi.mock('./crew/CurrentCrewPanel', () => ({ CurrentCrewPanelView: ({ onClose }: { onClose: () => void }) => <button onClick={onClose}>Close Crew</button> }));
 vi.mock('./layout/useEarthWorkspace', () => ({ useEarthWorkspace: () => null }));
-vi.mock('./crew/CrewPanel', () => ({ CrewPanel: ({ onClose }: { onClose: () => void }) => <button onClick={onClose}>Close legacy Crew</button> }));
 vi.mock('./cesium/EarthView', () => ({ EarthView: (props: {
   onControlsReady: (controls: unknown) => void; onSceneTime: (time: number) => void;
   onPosition: (position: PositionSnapshot) => void; onModelStatus: (status: string) => void;
@@ -72,7 +72,7 @@ async function choose(source: 'PRIMARY_GP_TLE' | 'NASA_OEM') {
   await act(async () => { select.value = source; select.dispatchEvent(new Event('change', { bubbles: true })); });
 }
 
-describe('Phase 2 App presentation wiring without a WebGL test double for domain state', () => {
+describe('App presentation wiring without a WebGL test double for domain state', () => {
   it('renders physical values and Cesium UTC, and sends scene controls to the stable existing bridge', async () => {
     await act(async () => root.render(<App />));
     expect(container.textContent).toContain('4.691° N'); expect(container.textContent).toContain('416.4 km');
@@ -90,8 +90,8 @@ describe('Phase 2 App presentation wiring without a WebGL test double for domain
     expect(container.querySelector('main')?.classList.contains('has-crew-panel')).toBe(true);
     expect(container.querySelectorAll('.top-context-bar')).toHaveLength(1);
     expect(container.querySelector('.crew-workspace-host')).not.toBeNull();
-    expect(container.textContent).toContain('Close legacy Crew');
-    await click('Close legacy Crew');
+    expect(container.textContent).toContain('Close Crew');
+    await click('Close Crew');
     expect(container.querySelector('.operational-summary')).not.toBeNull();
     expect(harness.props.window).toBe(originalWindow);
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE'); expect(harness.props.replay).toBeNull();
@@ -125,7 +125,7 @@ describe('Phase 2 App presentation wiring without a WebGL test double for domain
   });
 });
 
-describe('Phase 3 source guards and persistent application context', () => {
+describe('Orbital source guards and persistent application context', () => {
   it('switches both ways without remounting the Viewer, resetting camera controls, UTC or unrelated replay state', async () => {
     harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
     await act(async () => root.render(<App />));
@@ -178,7 +178,7 @@ describe('Phase 3 source guards and persistent application context', () => {
     harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
     await act(async () => root.render(<App />)); await choose('NASA_OEM');
     await click('Crew'); expect(harness.props.selectedSource).toBe('NASA_OEM');
-    await click('Close legacy Crew');
+    await click('Close Crew');
     expect(container.querySelector('select')?.value).toBe('NASA_OEM');
     expect(container.querySelector('.source-state-slot > summary')?.textContent).toBe('NASA OEM statusAvailable');
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);

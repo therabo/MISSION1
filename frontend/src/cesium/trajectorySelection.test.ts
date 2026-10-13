@@ -5,7 +5,7 @@ import { parseComparison } from '../orbital/comparison';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
 import { orbitalPayload } from '../test/orbitalFixture';
 import { createVisualWindow } from './visualWindow';
-import { cameraTrackingFrame } from './inspectionMode';
+import { cameraTrackingFrame } from '../test/visualSample';
 import { comparisonCanReplace, DEFAULT_TRAJECTORY_SOURCE, effectiveSource, oemPositionProperty, oemUnavailableReason, requestedSource, selectedPositionAt, SOURCE_LABELS } from './trajectorySelection';
 
 function setup() {

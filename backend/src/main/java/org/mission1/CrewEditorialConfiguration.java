@@ -47,22 +47,6 @@ class CrewEditorialConfiguration {
   }
 
   @Bean
-  CrewEditorialShadowService crewEditorialShadowService(
-      CrewEditorialRepository repository,
-      CrewQueryService query,
-      CrewIdentityRepository identities,
-      CrewReadQueryService people,
-      Clock utcClock) {
-    return new CrewEditorialShadowService(repository, query, identities, people, utcClock);
-  }
-
-  @Bean
-  CrewEditorialHealthService crewEditorialHealthService(
-      CrewEditorialRepository repository, CrewQueryService query) {
-    return new CrewEditorialHealthService(repository, query);
-  }
-
-  @Bean
   @ConditionalOnProperty(
       name = "mission1.crew.editorial.enabled",
       havingValue = "true",
@@ -106,7 +90,7 @@ class CrewEditorialConfiguration {
           var r = source.acquire();
           LOG.log(
               System.Logger.Level.INFO,
-              "NASA editorial shadow: outcome={0}, expedition={1}, slots={2}, requests={3}",
+              "NASA Crew resource acquisition: outcome={0}, expedition={1}, slots={2}, requests={3}",
               r.outcome(),
               r.expedition(),
               r.members(),

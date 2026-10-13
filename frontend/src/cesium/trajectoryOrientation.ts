@@ -1,11 +1,8 @@
 import { Cartesian3, Cartesian4, Ellipsoid, Matrix4 } from 'cesium';
 
-export const VISUAL_ORIENTATION = 'TRAJECTORY_ALIGNED_VISUAL_ORIENTATION';
 // Verified pinned VTAD geometry: source +Z points toward Harmony, +Y away
 // from Cupola. Cesium's (X,Y,Z)->(Z,X,Y) conversion gives +X forward,
 // +Y left, +Z up. The remaining asset correction is therefore identity.
-export const MODEL_VISUAL_FORWARD = Cartesian3.UNIT_X;
-export const MODEL_VISUAL_UP = Cartesian3.UNIT_Z;
 
 /** Reused per Viewer; no quaternion sign ambiguity or per-frame matrix allocation. */
 export class TrajectoryVisualFrame {

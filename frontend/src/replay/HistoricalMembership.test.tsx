@@ -9,7 +9,7 @@ import { decodeCrew, decodeHistoricalCrew } from '../crew/decode';
 
 const at = '2026-10-07T12:05:00Z';
 let node: HTMLDivElement, root: Root;
-function modern(time = at): ReplayResult {
+function unifiedMembership(time = at): ReplayResult {
   const result = decodeReplay(replayFixture(time), time);
   const crew = result.crew.state!;
   crew.freshness.evaluatedAt = time;
@@ -29,15 +29,15 @@ async function show(result: ReplayResult) {
 }
 const rows = () => [...node.querySelectorAll<HTMLButtonElement>('[data-member-id]')];
 
-it('preserves modern historical policy metadata and rejects a Current mode in Historical', () => {
-  const crew = modern().crew.state!;
+it('preserves unifiedMembership historical policy metadata and rejects a Current mode in Historical', () => {
+  const crew = unifiedMembership().crew.state!;
   expect(decodeHistoricalCrew(crew).membership).toEqual(crew.membership);
   expect(() => decodeCrew(crew)).toThrow();
   expect(() => decodeHistoricalCrew({ ...crew, membership: { ...crew.membership, mode: 'ACTIVE_PROJECTION' } })).toThrow();
   expect(decodeHistoricalCrew({ ...crew, membership: undefined }).membership).toBeUndefined();
 });
 it('labels all active members uniformly, including a member with no assignment or current confirmation', async () => {
-  const result = modern(), crew = result.crew.state!;
+  const result = unifiedMembership(), crew = result.crew.state!;
   const member = crew.members[0];
   member.assignment = null; member.presence = { ...member.presence, state: 'UNKNOWN', evidence: [], asOf: null };
   crew.counts.officialAboard = 200; // TEST ONLY aggregate cannot determine roster membership.
@@ -52,7 +52,7 @@ it('labels all active members uniformly, including a member with no assignment o
   expect(fetch).not.toHaveBeenCalled();
 });
 it('evaluates the annotation seven-day boundary relative to accepted Historical UTC, independent of wall clock', async () => {
-  const result = modern(), member = result.crew.state!.members[0];
+  const result = unifiedMembership(), member = result.crew.state!.members[0];
   const observed = '2026-09-30T12:05:00Z';
   member.presence = { ...member.presence, state: 'CONFIRMED_ABOARD', asOf: observed,
     evidence: [{ ...member.presence.evidence[0], type: 'PERSON_CURRENTLY_ABOARD', assertion: 'OBSERVED', asOf: observed }] };
@@ -60,12 +60,12 @@ it('evaluates the annotation seven-day boundary relative to accepted Historical 
   result.crew.state!.freshness.evaluatedAt = '2027-01-01T00:00:00Z';
   await show(result);
   expect(rows().find(row => row.dataset.memberId === member.id)!.textContent).toContain('Operational presence recently observed');
-  const later = modern('2026-10-07T12:05:00.001Z'); later.crew.state!.members[0].presence = member.presence;
+  const later = unifiedMembership('2026-10-07T12:05:00.001Z'); later.crew.state!.members[0].presence = member.presence;
   await show(later);
   expect(rows().find(row => row.dataset.memberId === member.id)!.textContent).toContain('No recent operational confirmation');
 });
 it('shows accepted historical membership and assignment independently of newer canonical profile lifecycle fields', async () => {
-  const result = modern(), member = result.crew.state!.members.find(m => m.id === result.crew.profiles[0].id)!;
+  const result = unifiedMembership(), member = result.crew.state!.members.find(m => m.id === result.crew.profiles[0].id)!;
   member.assignment = null; member.presence = { ...member.presence, state: 'UNKNOWN', evidence: [], asOf: null };
   const person = result.crew.profiles[0];
   person.currentAssignment = { ...person.currentAssignment!, role: 'TEST ONLY today role' };
@@ -83,10 +83,10 @@ it('shows accepted historical membership and assignment independently of newer c
   expect(fetch).not.toHaveBeenCalled();
 });
 it('clears a selected departing member on an accepted Historical seek while retaining the new roster', async () => {
-  const result = modern('2026-10-07T12:04:59Z'); await show(result);
+  const result = unifiedMembership('2026-10-07T12:04:59Z'); await show(result);
   const id = rows()[0].dataset.memberId;
   await act(async () => rows()[0].click());
-  const after = modern(); after.crew.state!.members = after.crew.state!.members.filter(m => m.id !== id);
+  const after = unifiedMembership(); after.crew.state!.members = after.crew.state!.members.filter(m => m.id !== id);
   await show(after);
   expect(node.querySelector('.crew-historical-detail')).toBeNull();
   expect(rows().some(row => row.dataset.memberId === id)).toBe(false);

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ReplayResult } from './replayApi';
 import { CurrentCrewRoster } from '../crew/CurrentCrewRoster';
-import { CrewProfile } from '../crew/CrewMemberDetail';
+import { CrewProfile } from '../crew/CrewProfile';
 import { CloseButton } from '../components/CloseButton';
 import { CrewTemporalNotice, type CrewTemporalRequest } from '../crew/CrewTemporalNotice';
 import { utc } from '../crew/presentation';
@@ -23,7 +23,7 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
   const crew = accepted?.crew.availability !== 'UNAVAILABLE' ? accepted?.crew.state : null;
   const member = crew?.members.find(m => m.id === selected);
   const person = member && accepted?.crew.profiles.find(p => p.id === member.id);
-  const modern = crew?.membership?.mode === 'HISTORICAL_V10_S10';
+  const unifiedMembership = crew?.membership?.mode === 'HISTORICAL_V10_S10';
   const back = useCallback(() => { restoreMember.current = selected; setSelected(null); }, [selected]);
   useLayoutEffect(() => {
     if (interactive && !document.activeElement?.closest('.context-temporal')) heading.current?.focus({ preventScroll: true });
@@ -72,7 +72,7 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
       <div className="crew-header-actions"><CloseButton aria-label="Close crew panel" onClick={onClose} /></div>
     </header>
     <div className="crew-panel-content">
-      <p className="sr-only">Effective at {at}. Historical {modern ? 'membership, operational evidence' : 'roster'} and assignments; profile metadata is latest-retained.</p>
+      <p className="sr-only">Effective at {at}. Historical {unifiedMembership ? 'membership, operational evidence' : 'roster'} and assignments; profile metadata is latest-retained.</p>
       <CrewTemporalNotice request={request} />
       {loading && !accepted && <p className="crew-loading" role="status">Loading historical crew…</p>}
       {error && <div className="crew-error" role="alert"><p>{error}</p></div>}
@@ -92,8 +92,8 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
         <CrewDetailActions onBack={back} onClose={back} />
       </header>
       <div className="crew-historical-profile-body">
-        {modern && crew && <HistoricalLifecycle member={member} crew={crew} person={person} />}
-        {person ? <CrewProfile person={person} replayAt={at} historicalMember={modern ? member : undefined} /> : <p role="status">Historical profile unavailable for this identity. No Current profile is substituted.</p>}
+        {unifiedMembership && crew && <HistoricalLifecycle member={member} crew={crew} person={person} />}
+        {person ? <CrewProfile person={person} replayAt={at} historicalMember={unifiedMembership ? member : undefined} /> : <p role="status">Historical profile unavailable for this identity. No Current profile is substituted.</p>}
       </div>
     </aside>}
   </div>;

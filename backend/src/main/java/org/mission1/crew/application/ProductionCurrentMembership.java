@@ -9,7 +9,7 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-/** V10 inclusion followed by V7 publication. No V9 authority or write dependency. ADR-0017. */
+/** Crew membership inclusion followed by canonical identity publication. No identity research authority or write dependency. ADR-0017. */
 @Service
 public class ProductionCurrentMembership {
     public enum Mode {

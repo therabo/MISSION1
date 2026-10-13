@@ -1,7 +1,8 @@
+import { convexFootprint, footprintDistance } from '../test/trajectoryReference';
 import { describe, expect, it } from 'vitest';
 import { BoundingSphere, Cartesian3, JulianDate, Matrix4, type Model, type Scene } from 'cesium';
 import { makeSampledPosition } from './sampleProperty';
-import { convexFootprint, desiredGapCssPixels, displayedModelNearDepth, earliestClearTime, footprintDistance, initialRegion, initialRegionDistance, segmentDistance, protectedCircle } from './trajectoryClearance';
+import { desiredGapCssPixels, displayedModelNearDepth, earliestClearTime, initialRegion, initialRegionDistance, segmentDistance, protectedCircle } from './trajectoryClearance';
 
 const hull = convexFootprint([{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }]);
 describe('screen-space source-specific trajectory clearance', () => {

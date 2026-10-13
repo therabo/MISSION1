@@ -186,10 +186,3 @@ export async function fetchReplayCoverage(
     orbitGate: text(o.orbitGate),
   };
 }
-export function utcInput(value: string, now = Date.now()): string | null {
-  const normalized = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value) ? value + ":00" : value;
-  const t = Date.parse(normalized + "Z");
-  if (!Number.isFinite(t) || t > now) return null;
-  const iso = new Date(t).toISOString();
-  return iso.slice(0, 19) === normalized ? iso : null;
-}

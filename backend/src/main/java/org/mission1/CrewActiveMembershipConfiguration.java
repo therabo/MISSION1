@@ -62,7 +62,7 @@ class CrewActiveMembershipConfiguration {
         System.getLogger(getClass().getName())
             .log(
                 System.Logger.Level.WARNING,
-                "Crew active shadow projection failed: {0}",
+                "Crew membership projection failed: {0}",
                 e.getClass().getSimpleName());
       }
     }

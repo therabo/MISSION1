@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
 import { decodeCrew } from './decode';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
-import { CrewSources } from './CrewSummary';
+import { CrewSources } from './CrewSourceEvidence';
 
 function active() {
   const crew = crewFixture();

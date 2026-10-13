@@ -5,7 +5,7 @@ import com.ibm.icu.util.VersionInfo;
 import java.text.Normalizer;
 import java.util.*;
 
-/** Generated comparison variants have no authority and are never written to V7 aliases. */
+/** Generated comparison variants have no authority and are never written to canonical identity aliases. */
 public final class OperationalNames {
   public static final String VERSION = "s10-nfkc-casefold-icu78.3-v1";
 

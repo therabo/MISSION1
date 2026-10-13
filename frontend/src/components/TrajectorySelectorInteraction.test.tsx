@@ -37,7 +37,7 @@ afterEach(async () => {
 async function render(source: TrajectorySource = 'PRIMARY_GP_TLE', reason: string | null = null,
   mode: ViewMode = 'EARTH_OVERVIEW', notice: string | null = null, automatic = false) {
   await act(async () => root.render(<>
-    <TrajectorySelector presentation="context" selectedSource={source} viewMode={mode}
+    <TrajectorySelector selectedSource={source} viewMode={mode}
       oemReason={reason} sourceNotice={notice} onSelect={onSelect} automatic={automatic} />
     <TrajectoryLegend selectedSource={source} oemReason={reason} />
   </>));

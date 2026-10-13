@@ -1,7 +1,7 @@
 package org.mission1.crew.operational;
 
 import java.util.*;
-import org.mission1.crew.automatic.FrozenIdentityModel;
+import org.mission1.crew.research.FrozenIdentityModel;
 
 /** Immutable SHADOW starting policy. Independent operational calibration precedes activation. */
 public record OperationalPolicy(

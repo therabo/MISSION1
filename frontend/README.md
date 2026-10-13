@@ -1,5 +1,16 @@
 # MISSION1 Earth View
 
+Current production uses `CurrentCrewWorkspace` → `CurrentCrewPanelView` /
+`ReplayCrewPanel`, with shared `CrewSourceEvidence` and `CrewProfile`.
+`TrajectorySelector` is the context-bar source selector; `OrbitalStatus` supplies
+the Current summary and retained evidence. `HistoricalTimeBar` and
+`HistoricalCalendar` own Historical navigation. Earth Reset and Inspection retain
+their accepted separate responsibilities.
+
+[Current architecture](../docs/architecture/current-production.md) ·
+[Cleanup inventory and checks](../docs/maintenance/production-code-cleanup.md).
+The dated validation sections below remain historical records.
+
 **Earth Reset correction — 2026-10-13:** tracing the actual visible Earth control
 proved the earlier 0.8s/2.5s changes affected an added Inspection Reset instead.
 Inspection is restored to e82ad438 behavior without that button; branding/Crew

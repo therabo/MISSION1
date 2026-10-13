@@ -1,25 +1,22 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CrewApiError, getCrewMember, getCurrentCrew, getCurrentExpedition } from './crewApi';
-import { crewFixture, expeditionFixture, personFixture } from '../test/crewFixture';
+import { CrewApiError, getCrewMember, getCurrentCrew } from './crewApi';
+import { crewFixture, personFixture } from '../test/crewFixture';
 import { decodeCrew, decodePerson } from '../crew/decode';
 
 afterEach(() => vi.unstubAllGlobals());
 describe('Crew REST client', () => {
-  it('reads all three implemented resources through relative MISSION1 paths with cancellation and no-store', async () => {
+  it('reads Crew and lazy profiles through relative MISSION1 paths with cancellation and no-store', async () => {
     const mock = vi
       .fn()
       .mockResolvedValueOnce(Response.json(crewFixture()))
-      .mockResolvedValueOnce(Response.json(expeditionFixture()))
       .mockResolvedValueOnce(Response.json(personFixture()));
     vi.stubGlobal('fetch', mock);
     const signal = new AbortController().signal;
     expect((await getCurrentCrew(signal)).counts.structuredAssignments).toBe(7);
-    expect((await getCurrentExpedition(signal)).assignmentCount).toBe(7);
     const person = personFixture();
     expect((await getCrewMember(person.id, signal)).id).toBe(person.id);
     expect(mock.mock.calls.map((call) => call[0])).toEqual([
       '/api/iss/crew',
-      '/api/iss/expedition/current',
       `/api/iss/crew/${person.id}`,
     ]);
     expect(mock.mock.calls.every((call) => call[1].signal === signal && call[1].cache === 'no-store')).toBe(

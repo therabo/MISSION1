@@ -3,7 +3,7 @@ import { useCrewMember } from '../api/useCrewResource';
 import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
-import { CrewProfileEvidence } from './CrewMemberDetail';
+import { CrewProfileEvidence } from './CrewProfile';
 import { formatDuration, permittedPortrait, utc } from './presentation';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';

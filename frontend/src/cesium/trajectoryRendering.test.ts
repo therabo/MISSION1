@@ -1,9 +1,10 @@
+import { forwardOpacity } from '../test/trajectoryReference';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createHash } from 'node:crypto';
 import { Cartesian2, Cartesian3, Color, GeometryInstance, Geometry, PolylineGeometry, PrimitiveCollection, SceneTransforms, type Scene } from 'cesium';
 import { fixture } from '../test/comparisonFixture';
 import { parseComparison } from '../orbital/comparison';
-import { adaptTrailClearance, createTrajectoryTrails, FORWARD_TRAIL, forwardBounds, forwardOpacity, orderTrails, TRAJECTORY_ACCENTS, updateTrail } from './trajectoryRendering';
+import { adaptTrailClearance, createTrajectoryTrails, FORWARD_TRAIL, forwardBounds, orderTrails, TRAJECTORY_ACCENTS, updateTrail } from './trajectoryRendering';
 beforeAll(() => { for (const name of ['HTMLCanvasElement', 'HTMLImageElement', 'ImageBitmap', 'OffscreenCanvas']) vi.stubGlobal(name, class {}); });
 afterAll(() => vi.unstubAllGlobals());
 

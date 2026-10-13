@@ -699,7 +699,7 @@ class UnifiedCrewLifecyclePostgresTest {
     var batch = operationalInputs.load(clock.instant());
     var resolver =
         new OperationalResolver(
-            org.mission1.crew.automatic.FrozenIdentityModel.load(json),
+            org.mission1.crew.research.FrozenIdentityModel.load(json),
             OperationalPolicy.PRODUCTION);
     var subject = batch.subjects().getFirst();
     var conflict =

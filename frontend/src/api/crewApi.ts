@@ -1,4 +1,4 @@
-import { decodeCrew, decodeExpedition, decodePerson } from '../crew/decode';
+import { decodeCrew, decodePerson } from '../crew/decode';
 
 export class CrewApiError extends Error {
   constructor(
@@ -32,7 +32,5 @@ async function get<T>(path: string, decode: (payload: unknown) => T, signal: Abo
   return decode(payload);
 }
 export const getCurrentCrew = (signal: AbortSignal) => get('/api/iss/crew', decodeCrew, signal);
-export const getCurrentExpedition = (signal: AbortSignal) =>
-  get('/api/iss/expedition/current', decodeExpedition, signal);
 export const getCrewMember = (id: string, signal: AbortSignal) =>
   get(`/api/iss/crew/${encodeURIComponent(id)}`, decodePerson, signal);

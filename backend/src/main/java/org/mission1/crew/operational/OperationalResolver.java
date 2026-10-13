@@ -4,10 +4,10 @@ import static org.mission1.crew.operational.OperationalBinding.*;
 
 import java.time.*;
 import java.util.*;
-import org.mission1.crew.automatic.*;
+import org.mission1.crew.research.*;
 
 /**
- * Pure local resolver. No JDBC, V7 relationship bits, HTTP, canonical writes or production
+ * Pure local resolver. No JDBC, canonical identity relationship bits, HTTP, canonical writes or production
  * consumer.
  */
 public final class OperationalResolver {

@@ -7,9 +7,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { crewFixture, personFixture } from '../test/crewFixture';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
-import { CrewSources } from './CrewSummary';
+import { CrewSources } from './CrewSourceEvidence';
 import { CrewAstronautDock } from './CrewAstronautDock';
-import { CrewProfile } from './CrewMemberDetail';
+import { CrewProfile } from './CrewProfile';
 import { utc } from './presentation';
 import type { CrewPerson } from './types';
 

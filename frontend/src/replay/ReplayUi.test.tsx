@@ -3,7 +3,6 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { ReplayCrewPanel } from "./ReplayCrewPanel";
-import { ReplayControls } from "./ReplayControls";
 import { decodeReplay } from "./replayApi";
 import { replayFixture } from "../test/replayFixture";
 let root: Root, node: HTMLDivElement;
@@ -78,42 +77,4 @@ it("historical panel announces loading and keyboard close", async () => {
       ),
   );
   expect(close).toHaveBeenCalledOnce();
-});
-it("LIVE/REPLAY controls toggle modes and step UTC without camera controls", async () => {
-  const mode = vi.fn(),
-    time = vi.fn();
-  await act(async () =>
-    root.render(
-      <ReplayControls
-        enabled={false}
-        at={at}
-        onMode={mode}
-        onTime={time}
-        disabled={false}
-        coverage={null}
-      />,
-    ),
-  );
-  await act(async () => node.querySelector("button")?.click());
-  expect(mode).toHaveBeenCalledWith(true);
-  await act(async () =>
-    root.render(
-      <ReplayControls
-        enabled
-        at={at}
-        onMode={mode}
-        onTime={time}
-        disabled={false}
-        coverage={null}
-      />,
-    ),
-  );
-  await act(async () =>
-    node
-      .querySelector<HTMLButtonElement>('[aria-label="Replay back 10 minutes"]')
-      ?.click(),
-  );
-  expect(time).toHaveBeenCalledWith("2026-10-03T11:50:00.000Z");
-  await act(async () => node.querySelector("button")?.click());
-  expect(mode).toHaveBeenLastCalledWith(false);
 });

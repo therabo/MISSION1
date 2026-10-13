@@ -99,9 +99,6 @@ export function parseModelManifest(input: unknown): IssModelManifest {
 
 export const ISS_MODEL = parseModelManifest(rawManifest);
 
-export function semanticMapping(nodeIndex: number): SemanticMapping | { status: 'UNMAPPED' } {
-  return ISS_MODEL.semanticMappings.find((mapping) => mapping.nodeIndex === nodeIndex) ?? { status: 'UNMAPPED' };
-}
 
 /** A pick must match both independent numeric fields in the pinned GLB metadata. */
 export function resolveVerifiedModulePick(featureId: unknown, moduleCode: unknown): SemanticMapping | null {

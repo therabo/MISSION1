@@ -171,23 +171,6 @@ export interface CurrentCrew extends CrewState {
   membership?: MembershipProjection & { mode: 'ACTIVE_PROJECTION' };
 }
 export type CrewAssessment = CurrentCrew | HistoricalCrew;
-export interface ExpeditionAssignment {
-  personId: string;
-  name: string | null;
-  role: string | null;
-  roleCode: RoleCode;
-  agency: Agency | null;
-  nationalities: Nationality[];
-}
-export interface CurrentExpedition {
-  station: Station;
-  expedition: Expedition | null;
-  assignmentCount: number;
-  assignments: ExpeditionAssignment[];
-  sourceState: string;
-  freshness: SourceHealth;
-  provenance: Observation | null;
-}
 export interface Career {
   timeInSpace: string | null;
   evaTime: string | null;

@@ -105,7 +105,7 @@ public final class CrewResponses {
             int unidentifiedAboard,
             Integer structuredAssignments) {}
 
-    /** Current diagnostics are independent of the V10 resolved member cardinality. */
+    /** Current diagnostics are independent of the Crew membership resolved member cardinality. */
     public record CurrentCounts(int resolvedAboard, Integer structuredAssignments) {}
 
     /** Current membership is not an operational count-minus-presence interpretation. */

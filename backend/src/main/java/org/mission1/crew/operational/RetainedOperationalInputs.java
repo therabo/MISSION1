@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.*;
 
-/** Set-based retained input reads. V7 targets/production outcomes never enter scoring features. */
+/** Set-based retained input reads. canonical identity targets/production outcomes never enter scoring features. */
 @Repository
 public class RetainedOperationalInputs {
   private final JdbcTemplate jdbc;
@@ -133,9 +133,9 @@ public class RetainedOperationalInputs {
       } catch (Exception e) {
         throw new IllegalStateException("Stored S10 fact integrity", e);
       }
-    // Reuse V8 captures in place. No V8 resource, relation, acquisition or body is
+    // Reuse editorial captures in place. No resource, relation, acquisition or body is
     // duplicated/written.
-    var v8 =
+    var editorialCaptures =
         jdbc.queryForList(
             """
             SELECT DISTINCT ON(a.requested_url) a.*,d.content_hash,d.content_type,b.body,
@@ -149,7 +149,7 @@ public class RetainedOperationalInputs {
             """,
             utc(cut),
             utc(cut));
-    for (var r : v8)
+    for (var r : editorialCaptures)
       try {
         var redirects =
             json.convertValue(
@@ -172,9 +172,9 @@ public class RetainedOperationalInputs {
                   : fact.validated(
                       ((Number) r.get("validation_id")).longValue(), time(r.get("validated_at"))));
       } catch (IllegalArgumentException e) {
-        /* Unknown/unsupported V8 resources remain retained, never proof. */
+        /* Unknown/unsupported editorial resources remain retained, never proof. */
       } catch (Exception e) {
-        throw new IllegalStateException("Retained V8 fact read", e);
+        throw new IllegalStateException("Retained editorial fact read", e);
       }
     var providerRows =
         jdbc.queryForList(
@@ -197,7 +197,7 @@ public class RetainedOperationalInputs {
       if (!time(r.get("completed_at")).isBefore(cut.minus(Duration.ofDays(7))))
         structuredUrls.addAll(OperationalResourceDiscovery.structured(
             (String) r.get("biography"), (String) r.get("expedition"), (String) r.get("official_profile_url")));
-    // Newly observed V8 links must not wait for the old Expedition HTML's weekly refresh.
+    // Newly observed editorial links must not wait for the retained Expedition HTML's weekly refresh.
     // They remain acquisition locators; rejected relations never generate new work.
     var editorialUrls = jdbc.queryForList("""
         SELECT observed_url FROM (
@@ -219,7 +219,7 @@ public class RetainedOperationalInputs {
     boolean complete =
         rows.size() <= 10000
             && stored.size() <= 10000
-            && v8.size() <= 10000
+            && editorialCaptures.size() <= 10000
             && providerRows.size() <= 10000
             && editorialUrls.size() <= 10000
             && urls.stream()

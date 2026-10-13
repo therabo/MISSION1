@@ -27,13 +27,6 @@ export function forwardBounds(sceneMs: number, periodSeconds: number, coverageEn
     endMs: Math.min(sceneMs + FORWARD_TRAIL.horizonRevolutions * periodSeconds * 1000, coverageEndMs) };
 }
 
-/** Inverse smoothstep, monotonic and exactly zero at the real visible endpoint. */
-export function forwardOpacity(sampleMs: number, startMs: number, endMs: number, rampMs = 0): number {
-  if (sampleMs < startMs || sampleMs >= endMs || endMs <= startMs) return 0;
-  const u = (sampleMs - startMs) / (endMs - startMs);
-  const ramp = rampMs > 0 ? Math.min(1, (sampleMs - startMs) / rampMs) : 1;
-  return ramp * ramp * (3 - 2 * ramp) * (1 - u * u * (3 - 2 * u));
-}
 
 /** Public Fabric composition retains the soft glow envelope. st.s is the uniform
  * sample-time fraction. Clip the past/start gap and all times beyond the horizon.

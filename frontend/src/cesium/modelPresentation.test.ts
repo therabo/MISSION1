@@ -1,11 +1,12 @@
+import { modelPositionAt } from '../test/visualSample';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { Cartesian3, JulianDate } from 'cesium';
 import { orbitalPayload } from '../test/orbitalFixture';
 import { parseOrbitalWindow } from '../orbital/sampleMapping';
-import { createVisualWindow, modelPositionAt } from './visualWindow';
-import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForState, resolveVerifiedModulePick, semanticMapping } from './modelPresentation';
+import { createVisualWindow } from './visualWindow';
+import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForState, resolveVerifiedModulePick } from './modelPresentation';
 
 const glb = readFileSync(new URL('../../public/models/iss-vtad-source-png.glb', import.meta.url));
 const inventory = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-model-inventory.json', import.meta.url), 'utf8')) as {
@@ -58,9 +59,7 @@ describe('NASA ISS model asset', () => {
     for (const mapping of ISS_MODEL.semanticMappings) {
       expect(asset.nodes[mapping.nodeIndex].name).toBe(mapping.nodeName);
       expect(mapping.status).toBe('VERIFIED');
-      expect(semanticMapping(mapping.nodeIndex)).toEqual(mapping);
     }
-    expect(semanticMapping(2)).toEqual({ status: 'UNMAPPED' });
     expect(review.nodes).toHaveLength(asset.nodes.length);
     for (const item of review.nodes) {
       expect(item.assetNodeName).toBe(asset.nodes[item.nodeIndex].name);

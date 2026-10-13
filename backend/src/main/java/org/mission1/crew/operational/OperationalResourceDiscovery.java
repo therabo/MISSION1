@@ -3,7 +3,7 @@ package org.mission1.crew.operational;
 import java.time.Instant;
 import java.util.*;
 import java.util.regex.Pattern;
-import org.mission1.crew.automatic.IdentityFeatures;
+import org.mission1.crew.research.IdentityFeatures;
 
 /** Candidate locators only. Neither a derived URL nor a source link is identity evidence. */
 public final class OperationalResourceDiscovery {
