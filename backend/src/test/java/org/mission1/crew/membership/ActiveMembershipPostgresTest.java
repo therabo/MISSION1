@@ -238,7 +238,7 @@ class ActiveMembershipPostgresTest {
   @Test
   void freshAndV9Upgrade() {
     assertEquals(
-        12, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history", Integer.class));
+        13, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history", Integer.class));
     var old =
         Flyway.configure()
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
@@ -255,7 +255,7 @@ class ActiveMembershipPostgresTest {
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
             .schemas("active_upgrade")
             .load();
-    assertEquals(3, newer.migrate().migrationsExecuted);
+    assertEquals(4, newer.migrate().migrationsExecuted);
     newer.validate();
     assertEquals(before, jdbc.queryForList("SELECT * FROM active_upgrade.crew_person"));
   }

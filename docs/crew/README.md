@@ -1,5 +1,7 @@
 # ISS Crew operational context
 
+**2026-10-13 bootstrap extension:** [Source-directed future resource discovery](dynamic-resource-discovery.md) follows new structured mission/Expedition/person context and changed official V8 relations into the existing paced resource graph. Five static seeds remain optional reference inputs. V7/V9/S10/V10 authority is unchanged. Historical coverage begins with observations acquired by that installation; pre-installation backfill is not required. [Final validation](../bootstrap/clean-room-validation/final-fixes.md).
+
 **Final production authority — 2026-10-12:** V7 canonical identity/profiles/aliases; V8 editorial/resource ingestion; V9 general identity SHADOW; S10 exact operational-subject binding to existing V7 humans; V10 lifecycle for Current and Historical at UTC T. [ADR-0021](../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](final-crew-architecture-validation/README.md) supersede the earlier dated rollout restrictions below. Next Crew milestone: dedicated clean-room empty-database bootstrap validation. RTN remains separate.
 
 

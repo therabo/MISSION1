@@ -15,7 +15,7 @@ import org.mission1.source.crew.nasa.NasaEditorialParser;
 
 /** Bounded, source-specific extractors. Resource IDs and URLs remain locators, not crosswalks. */
 public final class OperationalResources {
-  public static final String VERSION = "s10-official-resources-v1";
+  public static final String VERSION = "s10-official-resources-v2";
 
   public record Capture(
       String url,
@@ -315,21 +315,35 @@ public final class OperationalResources {
       } else kind = Kind.AGENCY_INDEX;
     }
     var dom = NasaEditorialParser.dom(html);
+    dom.select("header,footer,nav,figcaption,cite,.author,.byline,[rel=author]").remove();
     for (var link : dom.select("link[rel=alternate][href],a[href]")) {
       String href = link.attr("href");
       boolean typed =
           link.tagName().equals("link")
               && href.matches(
                   "https://www\\.nasa\\.gov/wp-json/wp/v2/(people|topic|mission)/[1-9][0-9]*");
+      // V8 owns typed Expedition roster semantics; S10's named mission witness is Crew-scoped.
+      if (path.matches("/mission/expedition-[0-9]+/") && href.contains("/wp-json/wp/v2/mission/"))
+        typed = false;
       boolean biography = kind == Kind.NASA_TOPIC || kind == Kind.NASA_HTML;
       biography =
           biography
               && (link.text().toLowerCase(Locale.ROOT).contains("biography")
                   || link.attr("aria-label").toLowerCase(Locale.ROOT).contains("biography"));
-      if (typed || biography)
+      // Named mission/expedition pages may advertise official personal resources. These
+      // links only expand acquisition; the resolver still demands qualified subject proof.
+      boolean missionPage = kind == Kind.NASA_MISSION
+          || kind == Kind.NASA_HTML && path.startsWith("/mission/");
+      if (typed || biography || missionPage)
         try {
-          links.add(allowed(href).toString());
+          String candidate = allowed(URI.create(c.finalUrl()).resolve(href).toString()).toString();
+          // No mission-to-mission crawl. Only source-advertised typed self and personal paths.
+          if (!typed && !biography && URI.create(candidate).getHost().equals("www.nasa.gov")
+              && !URI.create(candidate).getPath().matches("/(people|humans-in-space/astronauts)/.+")) continue;
+          if (!links.contains(candidate)) links.add(candidate);
+          if (links.size() > 64) throw new IllegalArgumentException("RESOURCE_LINK_BOUND");
         } catch (IllegalArgumentException ignored) {
+          if (links.size() > 64) throw new IllegalArgumentException("RESOURCE_LINK_BOUND");
         }
     }
     if (kind == Kind.NASA_PEOPLE || kind == Kind.AGENCY_PERSON)

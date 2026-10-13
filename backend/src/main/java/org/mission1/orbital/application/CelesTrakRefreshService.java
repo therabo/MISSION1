@@ -21,14 +21,17 @@ public final class CelesTrakRefreshService {
     private final CelesTrakRefreshPolicy policy;
     private final CelesTrakSourceHealthTracker health;
     private final Clock clock;
+    private final CelesTrakRequestStore requests;
 
     public CelesTrakRefreshService(OrbitalElementSetRepository repository, OrbitalElementsSource source,
-                                  CelesTrakRefreshPolicy policy, CelesTrakSourceHealthTracker health, Clock clock) {
+                                  CelesTrakRefreshPolicy policy, CelesTrakSourceHealthTracker health, Clock clock,
+                                  CelesTrakRequestStore requests) {
         this.repository = Objects.requireNonNull(repository);
         this.source = Objects.requireNonNull(source);
         this.policy = Objects.requireNonNull(policy);
         this.health = Objects.requireNonNull(health);
         this.clock = Objects.requireNonNull(clock);
+        this.requests = Objects.requireNonNull(requests);
     }
 
     /** Synchronized to prevent overlapping attempts in this one application instance. */
@@ -40,19 +43,38 @@ public final class CelesTrakRefreshService {
         }
 
         final Instant lastSuccess;
+        final CelesTrakRequestStore.State requestState;
         try {
             lastSuccess = repository.lastSuccessfulRetrieval(PROVIDER, ISS_CATALOG_NUMBER).orElse(null);
+            requestState = requests.state();
         } catch (RuntimeException failure) {
             LOG.error("CelesTrak refresh could not read local retrieval history");
             return result(CelesTrakRefreshResult.Outcome.PERSISTENCE_FAILURE, now, null, null, false);
         }
+        if (requestState.suspended()) {
+            return result(CelesTrakRefreshResult.Outcome.SKIPPED_PROVIDER_SUSPENDED, now, null, null, false);
+        }
         Instant lastRequest = health.lastAttemptAt();
         Instant lastActivity = lastSuccess == null ? lastRequest
                 : lastRequest == null || lastSuccess.isAfter(lastRequest) ? lastSuccess : lastRequest;
-        if (!policy.shouldFetch(now, lastActivity)) {
-            Instant next = lastActivity.plus(policy.minimumInterval());
+        Instant next = lastActivity == null ? requestState.nextEligibleAt()
+                : lastActivity.plus(policy.minimumInterval()).isAfter(requestState.nextEligibleAt())
+                    ? lastActivity.plus(policy.minimumInterval()) : requestState.nextEligibleAt();
+        if (now.isBefore(next)) {
             LOG.info("CelesTrak refresh skipped; next eligible at {}", next);
             return result(CelesTrakRefreshResult.Outcome.SKIPPED_TOO_SOON, now, next, null, false);
+        }
+
+        try {
+            if (!requests.reserve(now, now.plus(policy.minimumInterval()))) {
+                var state = requests.state();
+                return result(state.suspended() ? CelesTrakRefreshResult.Outcome.SKIPPED_PROVIDER_SUSPENDED
+                        : CelesTrakRefreshResult.Outcome.SKIPPED_TOO_SOON, now,
+                        state.suspended() ? null : state.nextEligibleAt(), null, false);
+            }
+        } catch (RuntimeException failure) {
+            LOG.error("CelesTrak request cooldown could not be reserved; no provider request made");
+            return result(CelesTrakRefreshResult.Outcome.PERSISTENCE_FAILURE, now, null, null, false);
         }
 
         LOG.info("Eligible CelesTrak ISS GP refresh started");
@@ -62,6 +84,12 @@ public final class CelesTrakRefreshService {
         } catch (SourceFetchException failure) {
             SourceFailureCategory category = failure.category();
             health.sourceFailed(now, category, failure.httpStatus() != null && failure.httpStatus() != 200);
+            if (health.suspendedForProviderResponse()) {
+                try { requests.suspend(); }
+                catch (RuntimeException localFailure) {
+                    LOG.error("CelesTrak suspension could not be persisted; process remains suspended");
+                }
+            }
             LOG.warn("CelesTrak refresh failed: category={}, httpStatus={}", category, failure.httpStatus());
             var outcome = switch (category) {
                 case INVALID_RESPONSE, INVALID_TLE, WRONG_SATELLITE -> CelesTrakRefreshResult.Outcome.INVALID_SOURCE_DATA;

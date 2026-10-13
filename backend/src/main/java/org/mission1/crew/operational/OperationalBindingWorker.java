@@ -87,12 +87,7 @@ public final class OperationalBindingWorker {
       Instant cut = clock.instant();
       var batch = inputs.load(cut);
       if (batch.subjects().size() > 256) throw new IllegalStateException("S10_SUBJECT_BATCH_BOUND");
-      var discoveries = new TreeSet<>(batch.providerUrls());
-      discoveries.addAll(agencySeeds);
-      for (var s : batch.subjects())
-        for (var a : s.anchors()) if (a.url() != null) discoveries.add(a.url());
-      for (var r : batch.resources()) discoveries.addAll(r.links());
-      store.discover(discoveries, cut);
+      store.discover(OperationalResourceDiscovery.candidates(batch, agencySeeds, cut), cut);
       var evaluated =
           OperationalResolver.consistent(
               batch.subjects().stream()

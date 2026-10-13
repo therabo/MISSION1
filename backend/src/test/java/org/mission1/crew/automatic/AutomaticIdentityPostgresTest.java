@@ -107,10 +107,10 @@ class AutomaticIdentityPostgresTest {
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
             .schemas("upgrade_auto")
             .load();
-    assertEquals(4, upgrade.migrate().migrationsExecuted);
+    assertEquals(5, upgrade.migrate().migrationsExecuted);
     upgrade.validate();
     assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_auto.crew_person"));
-    assertEquals(12, count("flyway_schema_history"));
+    assertEquals(13, count("flyway_schema_history"));
   }
 
   @Test

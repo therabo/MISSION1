@@ -223,10 +223,10 @@ class OperationalBindingPostgresTest {
             .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
             .schemas("upgrade_operational")
             .load();
-    assertEquals(2, next.migrate().migrationsExecuted);
+    assertEquals(3, next.migrate().migrationsExecuted);
     next.validate();
     assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_operational.crew_person"));
-    assertEquals(12, count("flyway_schema_history"));
+    assertEquals(13, count("flyway_schema_history"));
   }
 
   @Test

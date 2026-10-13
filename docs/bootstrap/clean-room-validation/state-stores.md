@@ -1,3 +1,8 @@
+**2026-10-13 extension:** V13 adds `celestrak_request_state` in the existing
+PostgreSQL database. Its one row retains the request deadline and non-200 suspension
+across restart; source-health diagnostics remain in memory. No additional state
+store is introduced. The dated baseline inventory follows. [Final proof](final-fixes.md).
+
 # State-store inventory — baseline dfb4f883
 
 | Store | Technology | Runtime required? | Purpose | Connection/config source | Persistence location | Bootstrap | Clean-room action |

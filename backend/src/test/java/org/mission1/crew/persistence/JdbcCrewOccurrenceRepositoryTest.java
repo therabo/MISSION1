@@ -133,7 +133,7 @@ class JdbcCrewOccurrenceRepositoryTest {
             var plan=repository.previewOccurrenceAssociations();assertEquals(4,plan.assertionOccurrences());assertEquals(11,plan.subjectOccurrences());
             assertFalse(local.queryForObject("SELECT to_regclass('crew_assertion_version') IS NOT NULL",Boolean.class));
             var latest=Flyway.configure().dataSource(POSTGRES.getJdbcUrl(),POSTGRES.getUsername(),POSTGRES.getPassword()).schemas("occurrence_legacy").load();
-            assertEquals(7,latest.migrate().migrationsExecuted);latest.validate();
+            assertEquals(8,latest.migrate().migrationsExecuted);latest.validate();
             var applied=repository.associateRetainedOccurrences();assertEquals(plan,applied);
             assertEquals(before,local.queryForList("SELECT * FROM crew_verification_evidence ORDER BY id"));
             assertEquals(5,local.queryForObject("SELECT count(*) FROM crew_assertion_version",Integer.class));

@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.sun.net.httpserver.HttpServer;
 import org.junit.jupiter.api.Test;
 import org.mission1.orbital.application.CelesTrakRefreshPolicy;
+import org.mission1.orbital.application.CelesTrakRequestStore;
 import org.mission1.orbital.application.CelesTrakRefreshResult;
 import org.mission1.orbital.application.CelesTrakRefreshService;
 import org.mission1.orbital.application.CelesTrakSourceHealthTracker;
@@ -57,6 +58,7 @@ class CelesTrakRefreshIntegrationTest {
 
     @Autowired MockMvc mvc;
     @Autowired OrbitalElementSetRepository repository;
+    @Autowired CelesTrakRequestStore requestStore;
     @Autowired TleElementParser parser;
     @Autowired CelesTrakRefreshPolicy policy;
     @Autowired CelesTrakSourceHealthTracker health;
@@ -82,7 +84,7 @@ class CelesTrakRefreshIntegrationTest {
         try {
             URI local = URI.create("http://127.0.0.1:" + server.getAddress().getPort() + "/iss");
             var adapter = new CelesTrakOrbitalElementsSource(HttpClient.newHttpClient(), clock, parser, local);
-            var refresh = new CelesTrakRefreshService(repository, adapter, policy, health, clock);
+            var refresh = new CelesTrakRefreshService(repository, adapter, policy, health, clock, requestStore);
 
             when(clock.instant()).thenReturn(FIRST);
             assertEquals(CelesTrakRefreshResult.Outcome.FETCHED_NEW_ELEMENT, refresh.refresh().outcome());
@@ -100,7 +102,7 @@ class CelesTrakRefreshIntegrationTest {
             // A new process-local tracker must still respect the durable observation.
             when(clock.instant()).thenReturn(FIRST.plusSeconds(60));
             var restarted = new CelesTrakRefreshService(repository, adapter, policy,
-                    new CelesTrakSourceHealthTracker(), clock);
+                    new CelesTrakSourceHealthTracker(), clock, requestStore);
             assertEquals(CelesTrakRefreshResult.Outcome.SKIPPED_TOO_SOON, restarted.refresh().outcome());
             assertEquals(1, requests.get());
 

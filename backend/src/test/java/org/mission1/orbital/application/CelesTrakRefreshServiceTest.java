@@ -28,10 +28,15 @@ class CelesTrakRefreshServiceTest {
     private final Clock clock = mock(Clock.class);
     private final CelesTrakSourceHealthTracker health = new CelesTrakSourceHealthTracker();
     private final CelesTrakRefreshPolicy policy = new CelesTrakRefreshPolicy(INTERVAL);
+    private final CelesTrakRequestStore requests = mock(CelesTrakRequestStore.class);
     private final CelesTrakRefreshService service = new CelesTrakRefreshService(
-            repository, source, policy, health, clock);
+            repository, source, policy, health, clock, requests);
 
-    @BeforeEach void fixedTime() { when(clock.instant()).thenReturn(NOW); }
+    @BeforeEach void fixedTime() {
+        when(clock.instant()).thenReturn(NOW);
+        when(requests.state()).thenReturn(new CelesTrakRequestStore.State(Instant.EPOCH, false));
+        when(requests.reserve(any(), any())).thenReturn(true);
+    }
 
     @Test void noPreviousRetrievalIsEligibleAndStoresNewSet() {
         OrbitalElementSet elements = fixture(NOW);

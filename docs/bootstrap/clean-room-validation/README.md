@@ -1,3 +1,20 @@
+# Final bootstrap fixes — 2026-10-13
+
+[Final fixes and new empty-store proof](final-fixes.md) address prompt initial GP,
+exact retry eligibility and source-directed future Crew resource discovery. They
+use the normal source paths and retain V7/V9/S10/V10 authority and source budgets.
+[ADR-0022](../../adr/0022-durable-gp-eligibility-and-source-directed-resource-discovery.md)
+adds only the necessary durable GP request-state table; Crew uses its existing queue.
+
+**Historical coverage begins with observations acquired by that MISSION1
+installation. Pre-installation historical backfill is not a production requirement.**
+No archive intake, copied observations or manufactured prior state is introduced.
+The earlier LEVEL 3 records below are preserved as dated evidence, including their
+observed defects and explicit skipped repeat. Their old pre-installation coverage
+criterion does not define acceptance for this final milestone.
+
+---
+
 # Clean-room bootstrap validation — 2026-10-13
 
 **LEVEL 3 — CURRENT ZERO-TOUCH. Full clean-room acceptance is not proven.** Canonical checkout is

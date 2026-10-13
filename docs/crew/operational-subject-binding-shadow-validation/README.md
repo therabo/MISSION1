@@ -373,3 +373,16 @@ user-facing delivery report, avoiding a self-referential commit identifier here.
 ## Subsequent final production architecture — 2026-10-12
 
 [ADR-0021](../../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](../final-crew-architecture-validation/README.md) activate the separately versioned S10 operational consumer and unify Current/Historical V10 lifecycle. V7 remains canonical; V9 general identity remains SHADOW. This dossier and its original immutable rows retain their dated acceptance meaning. Historical now uses seven-day observations relative to T, without backdating captured rosters. The next milestone is dedicated clean-room empty-database bootstrap validation.
+
+
+## Subsequent dynamic discovery — 2026-10-13
+
+[Source-directed future resources](../dynamic-resource-discovery.md) extend only
+acquisition discovery under ADR-0022. Source Crew identifiers now generate bounded
+NASA candidates; fresh LL2 assignments and changed V8 relations trigger work, while
+unchanged URLs retain their queue deadlines. Five static seeds remain useful
+compatibility/reference inputs. The resource parser's acquisition-link extension is
+versioned v2; policy/model/threshold/margin/witness/contradiction/completeness gates
+and V7/V9/V10 authority are unchanged. This dated shadow validation retains its
+original acceptance meaning. Historical is installation-relative, with no new
+pre-installation archive intake.

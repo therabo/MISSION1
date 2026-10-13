@@ -31,6 +31,7 @@ public class RetainedOperationalInputs {
       List<Subject> subjects,
       List<Resource> resources,
       List<String> providerUrls,
+      List<String> structuredUrls,
       boolean complete,
       int queries,
       long loadNanos) {}
@@ -178,15 +179,37 @@ public class RetainedOperationalInputs {
     var providerRows =
         jdbc.queryForList(
             """
-            SELECT DISTINCT o.external_id FROM crew_person_observation o
+            SELECT DISTINCT ON(o.external_id) o.external_id,o.biography,o.official_profile_url,r.completed_at,e.name expedition
+            FROM crew_person_observation o
             JOIN crew_source_sync_run r ON r.snapshot_id=o.snapshot_id AND r.result_state='SUCCESS'
-            WHERE o.source='LAUNCH_LIBRARY_2' AND r.completed_at<=? ORDER BY o.external_id LIMIT 10001
+            LEFT JOIN crew_assignment_observation a ON a.snapshot_id=o.snapshot_id AND a.person_id=o.person_id
+            LEFT JOIN crew_expedition_observation e ON e.snapshot_id=a.snapshot_id AND e.expedition_id=a.expedition_id
+            WHERE o.source='LAUNCH_LIBRARY_2' AND r.completed_at<=?
+            ORDER BY o.external_id,r.completed_at DESC,r.id DESC LIMIT 10001
             """,
             utc(cut));
     var urls =
         providerRows.stream()
             .map(r -> "https://ll.thespacedevs.com/2.3.0/astronauts/" + r.get("external_id") + "/")
             .toList();
+    var structuredUrls = new TreeSet<String>();
+    for (var r : providerRows)
+      if (!time(r.get("completed_at")).isBefore(cut.minus(Duration.ofDays(7))))
+        structuredUrls.addAll(OperationalResourceDiscovery.structured(
+            (String) r.get("biography"), (String) r.get("expedition"), (String) r.get("official_profile_url")));
+    // Newly observed V8 links must not wait for the old Expedition HTML's weekly refresh.
+    // They remain acquisition locators; rejected relations never generate new work.
+    var editorialUrls = jdbc.queryForList("""
+        SELECT observed_url FROM (
+          SELECT DISTINCT ON(r.member_index,r.observed_url) r.observed_url,r.status
+          FROM crew_editorial_resource_relation r
+          WHERE r.roster_id=(SELECT roster_id FROM crew_editorial_acquisition
+            WHERE roster_id IS NOT NULL AND completed_at<=? AND completed_at>=?
+            ORDER BY completed_at DESC,id DESC LIMIT 1)
+          ORDER BY r.member_index,r.observed_url,r.id DESC
+        ) links WHERE status<>'REJECTED_MISMATCH' ORDER BY observed_url LIMIT 10001
+        """, utc(cut), utc(cut.minus(Duration.ofDays(7))));
+    editorialUrls.forEach(r -> structuredUrls.add(r.get("observed_url").toString()));
     var latest = new TreeMap<String, Resource>();
     for (var r : resources) {
       String key = r.kind() == Kind.NATIVE_DIRECTORY ? r.ref() : r.url();
@@ -198,6 +221,7 @@ public class RetainedOperationalInputs {
             && stored.size() <= 10000
             && v8.size() <= 10000
             && providerRows.size() <= 10000
+            && editorialUrls.size() <= 10000
             && urls.stream()
                 .allMatch(
                     u ->
@@ -211,8 +235,9 @@ public class RetainedOperationalInputs {
         List.copyOf(subjects),
         List.copyOf(latest.values()),
         urls,
+        List.copyOf(structuredUrls),
         complete,
-        7,
+        8,
         System.nanoTime() - start);
   }
 }

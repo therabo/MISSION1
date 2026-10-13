@@ -12,6 +12,7 @@ import org.mission1.orbital.application.CurrentOrbitalStateService;
 import org.mission1.orbital.application.OrbitalElementSetRepository;
 import org.mission1.orbital.application.CelesTrakRefreshPolicy;
 import org.mission1.orbital.application.CelesTrakRefreshService;
+import org.mission1.orbital.application.CelesTrakRequestStore;
 import org.mission1.orbital.application.CelesTrakSourceHealthTracker;
 import org.mission1.orbital.application.OrbitalSampleWindowService;
 import org.mission1.source.orbital.celestrak.CelesTrakOrbitalElementsSource;
@@ -24,6 +25,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.TaskScheduler;
 
 /** Spring wires the boundaries; calculation and domain types stay framework independent. */
 @Configuration
@@ -65,22 +67,18 @@ class OrbitalConfiguration {
         return new NasaOemTrajectoryService(repository, source, parser, data, utcClock);
     }
     @Bean CelesTrakRefreshPolicy celesTrakRefreshPolicy(
-            @Value("${mission1.orbital.celestrak.refresh.interval:PT2H10M}") Duration interval,
-            @Value("${mission1.orbital.celestrak.refresh.initial-delay:PT2H10M}") Duration initialDelay) {
-        CelesTrakRefreshPolicy policy = new CelesTrakRefreshPolicy(interval);
-        if (initialDelay.compareTo(interval) < 0) {
-            throw new IllegalArgumentException("Initial delay must be at least the CelesTrak refresh interval");
-        }
-        return policy;
+            @Value("${mission1.orbital.celestrak.refresh.interval:PT2H10M}") Duration interval) {
+        return new CelesTrakRefreshPolicy(interval);
     }
     @Bean CelesTrakRefreshService celesTrakRefreshService(OrbitalElementSetRepository repository,
             CelesTrakOrbitalElementsSource source, CelesTrakRefreshPolicy policy,
-            CelesTrakSourceHealthTracker health, Clock utcClock) {
-        return new CelesTrakRefreshService(repository, source, policy, health, utcClock);
+            CelesTrakSourceHealthTracker health, Clock utcClock, CelesTrakRequestStore requests) {
+        return new CelesTrakRefreshService(repository, source, policy, health, utcClock, requests);
     }
     @Bean
     @ConditionalOnProperty(name = "mission1.orbital.celestrak.refresh.enabled", havingValue = "true", matchIfMissing = true)
-    CelesTrakRefreshScheduler celesTrakRefreshScheduler(CelesTrakRefreshService service) {
-        return new CelesTrakRefreshScheduler(service);
+    CelesTrakRefreshScheduler celesTrakRefreshScheduler(CelesTrakRefreshService service,
+                                                      TaskScheduler scheduler, Clock utcClock) {
+        return new CelesTrakRefreshScheduler(service, scheduler, utcClock);
     }
 }
