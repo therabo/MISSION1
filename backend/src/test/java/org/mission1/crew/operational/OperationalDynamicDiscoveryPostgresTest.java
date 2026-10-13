@@ -11,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mission1.crew.FixtureCrewSource;
 import org.mission1.crew.application.*;
 import org.mission1.crew.domain.*;
@@ -56,6 +58,8 @@ class OperationalDynamicDiscoveryPostgresTest {
     jdbc.execute("TRUNCATE crew_person,crew_source_snapshot,crew_source_document,crew_operational_binding_release,"
         + "crew_operational_resource_version,crew_operational_resource_work,crew_operational_request_permit RESTART IDENTITY CASCADE");
     jdbc.update("UPDATE crew_operational_binding_work SET generation=1,completed_generation=0,claimed_until='epoch',claim_token=NULL,next_at='epoch'");
+    // Each test starts its own virtual clock at T; do not inherit a later test's NASA pacing slot.
+    jdbc.update("UPDATE crew_nasa_request_budget SET next_request_at='epoch',cooldown_until='epoch'");
     fixture = new FixtureCrewSource();
     fixture.clock.time = T;
     var client = mock(HttpClient.class);
@@ -243,6 +247,166 @@ class OperationalDynamicDiscoveryPostgresTest {
     editorialLink("https://www.nasa.gov/people/test-only-wrong/",CrewEditorial.RelationStatus.REJECTED_MISMATCH);
     worker.evaluate();
     assertEquals(2,count("crew_operational_resource_work"));
+    assertEquals(0,exchanges.size());
+  }
+
+  /** SYNTHETIC upstream relation URLs are stable across display-name changes. */
+  record NamedMission(String name, int id, int astronaut) {
+    String url() { return "https://www.nasa.gov/mission/test-only-operation-" + id + "/"; }
+    String providerUrl() { return "https://ll.thespacedevs.com/2.3.0/astronauts/" + astronaut + "/"; }
+    String personUrl() { return "https://www.nasa.gov/people/test-only-person-" + astronaut + "/"; }
+    String typedPersonUrl() { return "https://www.nasa.gov/wp-json/wp/v2/people/" + (id + 100000); }
+    String flightId() { return UUID.nameUUIDFromBytes(("TEST_ONLY_" + id).getBytes(StandardCharsets.UTF_8)).toString(); }
+  }
+
+  void namedStructured(NamedMission mission) throws Exception {
+    var page = (ObjectNode) json.readTree(FixtureCrewSource.fixture("active-iss-expedition-detailed"));
+    var exp = (ObjectNode) page.path("results").get(0);
+    exp.put("id",9094).put("name","Expedition 94");
+    var assignment = (ObjectNode) exp.path("crew").get(0).deepCopy();
+    assignment.put("id",800000 + mission.astronaut());
+    ((ObjectNode) assignment.path("astronaut")).put("id",mission.astronaut()).put("name","Avery Example")
+        .put("bio","SYNTHETIC TEST_ONLY. Selected in 2013 for NASA. Assigned to " + mission.name() + ".");
+    exp.putArray("crew").add(assignment);
+    fixture.body = json.writeValueAsString(page);
+    assertEquals(CrewSyncRun.Outcome.SUCCESS,new CrewIngestionService(fixture.source,crew,policy,fixture.clock,
+        fixture.source.currentExpeditionUrl()).ingestScheduled().outcome());
+    bodies.put(mission.providerUrl(),"""
+        {"id":%d,"name":"Avery Example","agency":{"abbrev":"NASA"},"date_of_birth":"1984-04-03",
+         "bio":"SYNTHETIC TEST_ONLY. Selected in 2013.","flights_count":1,"landings":[],
+         "flights":[{"id":"%s","net":"2026-10-01T12:00:00Z","status":{"id":3},
+           "mission":{"id":%d,"name":"%s"},"rocket":{"configuration":{"full_name":"TEST_ONLY vehicle"}},
+           "launch_service_provider":{"name":"TEST_ONLY operator"}}]}
+        """.formatted(mission.astronaut(),mission.flightId(),mission.id(),mission.name()));
+    bodies.put("https://www.nasa.gov/mission/expedition-94/","<h1>Expedition 94</h1><p>SYNTHETIC TEST_ONLY</p>");
+    bodies.put(mission.url(),"<main><h1>" + mission.name() + "</h1><p>SYNTHETIC TEST_ONLY</p><a href='"
+        + mission.personUrl() + "'>Biography</a></main>");
+    bodies.put(mission.personUrl(),"<link rel='alternate' href='" + mission.typedPersonUrl()
+        + "'><main><h1>Avery Example</h1><p>SYNTHETIC TEST_ONLY</p></main>");
+    bodies.put(mission.typedPersonUrl(),"""
+        {"id":%d,"type":"people","status":"publish","slug":"test-only-person-%d",
+         "link":"%s","title":{"rendered":"NASA Astronaut Avery Example"},
+         "content":{"rendered":"<p>SYNTHETIC TEST_ONLY. Avery Example was born April 3, 1984 and selected in 2013.</p>"}}
+        """.formatted(mission.id()+100000,mission.astronaut(),mission.personUrl()));
+  }
+
+  void namedOfficialRelation(NamedMission mission) throws Exception {
+    // Normal V8 acquisition/parsing/retention creates this relation, never a direct store insertion.
+    var parser = new NasaEditorialParser(json);
+    var sourceBodies = new HashMap<String,byte[]>();
+    var topic = (ObjectNode) json.readTree(NasaEditorialParserTest.fixture("iss-topic"));
+    ((ObjectNode) topic.path("content")).put("rendered",
+        "<div>94<h4>Expedition</h4></div><div>1<h4>Crew Members Aboard</h4></div>");
+    var topicResource = parser.resource(topic,CrewEditorial.Kind.NASA_TOPIC);
+    sourceBodies.put(NasaEditorialParser.TOPIC.toString(),("<link rel='canonical' href='" + NasaEditorialParser.TOPIC
+        + "'><link rel='alternate' href='" + NasaEditorialParser.API + "topic/" + topicResource.wpId()
+        + "'><h1>Station Research News</h1>").getBytes(StandardCharsets.UTF_8));
+    sourceBodies.put(NasaEditorialParser.API + "topic/" + topicResource.wpId(),json.writeValueAsBytes(topic));
+    sourceBodies.put(NasaEditorialParser.API + "mission-status?slug=active&per_page=100",NasaEditorialParserTest.fixture("active-taxonomy-slug"));
+    sourceBodies.put(NasaEditorialParser.API + "mission-target?slug=international-space-station&per_page=100",NasaEditorialParserTest.fixture("target-slug"));
+    var expedition = (ObjectNode) NasaEditorialParserTest.current().deepCopy();
+    expedition.put("id",998094).put("slug","expedition-94").put("link","https://www.nasa.gov/mission/expedition-94/");
+    ((ObjectNode) expedition.path("title")).put("rendered","Expedition 94");
+    ((ObjectNode) expedition.path("content")).put("rendered","<h2>Crew Members</h2><p>Avery Example, Flight Engineer</p>"
+        + "<div><h2>At the Station</h2><div><h3>Avery Example</h3><img src='https://images.nasa.gov/test-only.jpg'"
+        + " alt='NASA astronaut Avery Example during " + mission.name() + "'><p>NASA Expedition 94 flight engineer</p>"
+        + "<a href='" + mission.url() + "'>" + mission.name() + " mission</a></div></div>");
+    byte[] list = json.writeValueAsBytes(json.createArrayNode().add(expedition));
+    String filters = "mission-status=10828&mission-target=11040";
+    sourceBodies.put(NasaEditorialParser.API + "mission?" + filters + "&search=Expedition&per_page=100",list);
+    sourceBodies.put(NasaEditorialParser.API + "mission?slug=expedition-94&" + filters + "&per_page=100",list);
+    var source = new NasaEditorialSource((stream,url,cached) -> {
+      byte[] body = sourceBodies.get(url.toString());
+      assertNotNull(body,"Unexpected V8 request " + url);
+      return new CrewEditorial.Capture(stream,url,url,List.of(),fixture.clock.instant(),fixture.clock.instant(),200,
+          Map.of("Content-Type",List.of(url.getPath().startsWith("/wp-json/") ? "application/json" : "text/html"),
+              "X-WP-Total",List.of("1"),"X-WP-TotalPages",List.of("1")),body,null);
+    },editorial,parser,fixture.clock,NasaEditorialParser.TOPIC);
+    var result = source.acquire();
+    assertNotNull(result.rosterId(),result.toString());
+    assertEquals(1,result.members());
+    assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM crew_editorial_resource_relation WHERE roster_id=?"
+        + " AND observed_url=? AND status='OBSERVED_LINK'",Integer.class,result.rosterId(),mission.url()));
+    assertEquals(CrewEditorial.CaptionKind.GENERIC_ROLE_TEXT,
+        editorial.latestRoster(fixture.clock.instant()).orElseThrow().roster().members().getFirst().mentions().getLast().captionKind());
+  }
+
+  void namedObservation(NamedMission mission) {
+    var source = mock(CrewVerificationHttpSource.class);
+    String rss = """
+        <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>International Space Station - NASA</title><item>
+        <title>SYNTHETIC TEST_ONLY %s research</title><link>https://www.nasa.gov/blogs/spacestation/2026/10/13/test-only-named/</link>
+        <guid>https://www.nasa.gov/blogs/spacestation/2026/10/13/test-only-named/</guid><pubDate>Tue, 13 Oct 2026 18:00:00 GMT</pubDate>
+        <content:encoded><![CDATA[<p>NASA astronaut <a href="%s">Avery Example</a> is working aboard the International Space Station during %s.</p>]]></content:encoded>
+        </item></channel></rss>
+        """.formatted(mission.name(),mission.personUrl(),mission.name());
+    when(source.fetch(any(),any(),any())).thenReturn(new CrewVerificationHttpSource.Fetch(rss.getBytes(StandardCharsets.UTF_8),
+        null,200,"application/rss+xml",null,null,fixture.clock.instant()));
+    assertEquals(1,new NasaCrewVerificationIngestionService(source,new NasaOperationalFeedParser(),verification,crew,policy,
+        fixture.clock,NasaOperationalFeedHttpSource.URL,NasaOperationalFeedParser.NAME,NasaOperationalFeedParser.VERSION)
+        .ingestScheduled().evidenceInserted());
+  }
+
+  @ParameterizedTest @CsvSource({"Alex-1,905101,990101","Aurora,905102,990102"})
+  void officialRelationsDiscoverNonCrewMissionsAndFeedS10WithoutNameFallback(String name,int id,int astronaut) throws Exception {
+    var mission = new NamedMission(name,id,astronaut);
+    assertFalse(name.contains("Crew"));
+    assertEquals(0,count("crew_operational_resource_work"));
+    assertEquals(0,count("crew_operational_binding_revision"));
+    namedStructured(mission);
+    assertTrue(OperationalResourceDiscovery.structured("Assigned to " + name,null,null).isEmpty());
+    worker.evaluate();
+    assertFalse(jdbc.queryForList("SELECT requested_url FROM crew_operational_resource_work",String.class).contains(mission.url()));
+    namedOfficialRelation(mission); // now the official source relation supplies the exact candidate URL
+    namedObservation(mission);
+    assertEquals(1,worker.evaluate().deferred());
+    assertTrue(jdbc.queryForList("SELECT requested_url FROM crew_operational_resource_work",String.class).contains(mission.url()));
+    acquire(); // stable astronaut ID -> normal detailed person/flight resource
+    acquire(); // bounded Expedition HTML; separate from this named mission
+    acquire(); // source-advertised mission, independent of title/prefix/number
+    var missionResource = inputs.load(fixture.clock.instant()).resources().stream()
+        .filter(r -> r.url().equals(mission.url())).findFirst().orElseThrow();
+    assertEquals(name,missionResource.name());
+    assertEquals(OperationalBinding.Kind.NASA_HTML,missionResource.kind());
+    assertTrue(missionResource.missions().isEmpty());
+    var provider = inputs.load(fixture.clock.instant()).resources().stream()
+        .filter(r -> r.url().equals(mission.providerUrl())).findFirst().orElseThrow();
+    assertEquals(mission.flightId(),provider.flights().getFirst().id());
+    assertTrue(provider.missions().isEmpty());
+    acquire(); // personal HTML, an intermediary rather than an identity witness
+    nextEvaluation();
+    acquire(); // source-advertised typed people resource, not a Crew named-roster witness
+    fixture.clock.time = fixture.clock.time.plusSeconds(900);
+    var qualified = worker.evaluate();
+    assertEquals(1,qualified.matches(),qualified.evaluations().toString());
+    assertTrue(qualified.evaluations().getFirst().candidates().getFirst().proofs().stream().anyMatch(p ->
+        p.authority()==OperationalBinding.Authority.VERIFIED_OFFICIAL_PERSON_RESOURCE));
+    var work = jdbc.queryForList("SELECT * FROM crew_operational_resource_work ORDER BY requested_url");
+    int requests = exchanges.size();
+    nextEvaluation();
+    assertEquals(work,jdbc.queryForList("SELECT * FROM crew_operational_resource_work ORDER BY requested_url"));
+    assertFalse(worker.acquire());
+    assertEquals(requests,exchanges.size());
+    fixture.clock.time = fixture.clock.time.plusSeconds(7200);
+    var renamed = new NamedMission("Nimbus",id,astronaut);
+    namedStructured(renamed);
+    namedOfficialRelation(renamed);
+    assertEquals(1,worker.evaluate().matches());
+    assertEquals(work,jdbc.queryForList("SELECT * FROM crew_operational_resource_work ORDER BY requested_url"));
+    assertEquals(requests,exchanges.size());
+    System.out.println("SYNTHETIC " + name + ": V8 source relation -> automatic mission work -> validated resource -> S10 MATCH; rename Nimbus preserves work; ZERO seeds");
+  }
+
+  @Test void sameDisplayNameWithDistinctSourceRelationsQueuesDistinctMissionWork() throws Exception {
+    var first = new NamedMission("Aurora",905201,990201);
+    var second = new NamedMission("Aurora",905202,990202);
+    namedStructured(first); namedOfficialRelation(first); worker.evaluate();
+    fixture.clock.time = fixture.clock.time.plusSeconds(7200);
+    namedStructured(second); namedOfficialRelation(second); worker.evaluate();
+    var urls = jdbc.queryForList("SELECT requested_url FROM crew_operational_resource_work",String.class);
+    assertTrue(urls.contains(first.url()));
+    assertTrue(urls.contains(second.url()));
+    assertEquals(5,urls.size()); // shared Expedition, two provider IDs, two distinct upstream mission URLs
     assertEquals(0,exchanges.size());
   }
 }

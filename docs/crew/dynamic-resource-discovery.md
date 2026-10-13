@@ -105,3 +105,33 @@ contradiction, threshold, margin and completeness tests remain passing. V7 canon
 authority, V9 SHADOW, S10 releases/thresholds/gates and V10 lifecycle are unchanged.
 Historical coverage begins with observations acquired by this installation;
 pre-installation archive intake/backfill is not a production requirement.
+
+## Mission-name-agnostic relation smoke test — 2026-10-13
+
+Controlled SYNTHETIC **Alex-1** and **Aurora** pass with zero static seeds and no
+production changes. Normal LL2 source intake supplies new astronaut IDs and
+person-specific flights with distinct mission IDs. Normal NASA V8 acquisition
+and parsing retain an explicit official mission link in the roster member's
+source DOM; S10 automatically queues that exact `observed_url`, validates the
+mission HTML, follows official personal/typed-resource links and reaches MATCH
+through qualified personal-resource and successful-flight evidence. Both cases
+have empty recognized mission-token sets and GENERIC_ROLE_TEXT captions.
+
+The durable discovery key is the source-advertised URL, with retained resource,
+astronaut and flight identifiers preserving lineage. Renaming either mission to
+**Nimbus** while retaining IDs/relations leaves all work/deadlines unchanged and
+still MATCHes. Unchanged inputs add no work/requests; two same-name **Aurora**
+missions with distinct source relations queue distinct URLs. No resource work or
+S10 decision is manually inserted. Synthetic names/IDs do not occur in production.
+
+The Crew-N slug fallback in `OperationalResourceDiscovery.missions`, recognized
+mission-token extraction in `IdentityFeatures.missions`, Crew-scoped named-roster
+qualification in `OperationalResources.parse`, and optional Crew flight-caption
+classification in `NasaEditorialParser.mention` remain unchanged. They provide
+source-specific enrichment/alternate witnesses; they are not prerequisites for
+the tested generic official-relation discovery and qualified-person path. A bare
+unknown mission display name still does not invent an official URL. Valid source
+relations remain required; this does not expand identity or presence authority.
+
+Crew-42 and the new cases pass; `mvn test` and `mvn verify` each pass 1,189 tests
+with zero failures/errors/skips, and diff checks pass. No frontend or migration change.
