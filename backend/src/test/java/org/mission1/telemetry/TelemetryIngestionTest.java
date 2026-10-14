@@ -27,7 +27,8 @@ class TelemetryIngestionTest {
         var repository=mock(TelemetryRepository.class);var http=mock(TelemetryHttp.class);var diagnostics=new TelemetryDiagnostics();
         when(repository.claimBootstrap(anyString(),any())).thenReturn(true);
         when(repository.store(any(),any())).thenReturn(new TelemetryRepository.StoreResult(0,0,0));
-        when(http.get(any(),anyBoolean(),anyInt())).thenThrow(new java.io.IOException("offline"));
+        when(http.get(any(),anyInt())).thenThrow(new java.io.IOException("offline"));
+        when(http.initialSse(any(),any(),any())).thenThrow(new java.io.IOException("offline"));
         var both=new CountDownLatch(2);doAnswer(a -> {both.countDown();return new TelemetryRepository.StoreResult(0,0,0);}).when(repository).store(any(),any());
         try(var worker=worker(repository,http,diagnostics,true)) {
             worker.start();assertTrue(both.await(3,TimeUnit.SECONDS));assertEquals(2,diagnostics.bootstrapFailures.get());
@@ -38,12 +39,14 @@ class TelemetryIngestionTest {
         var repository=mock(TelemetryRepository.class);var http=mock(TelemetryHttp.class);var diagnostics=new TelemetryDiagnostics();
         when(repository.claimBootstrap(anyString(),any())).thenReturn(true);
         when(repository.store(any(),any())).thenReturn(new TelemetryRepository.StoreResult(1,1,0));
-        when(http.get(any(),eq(true),anyInt())).thenReturn(fixture("sensedata-events.txt"));
-        when(http.get(any(),eq(false),anyInt())).thenReturn(fixture("isslive-stats.json"));
+        when(http.initialSse(any(),any(),any())).thenAnswer(a -> new SenseDataTelemetrySource(MAPPER,CATALOG)
+                .parse(new java.io.ByteArrayInputStream((fixture("sensedata-events.txt")+"\n\n").getBytes(java.nio.charset.StandardCharsets.UTF_8)),NOW));
+        when(http.get(any(),anyInt())).thenReturn(fixture("isslive-stats.json"));
         var completed=new CountDownLatch(2);doAnswer(a -> {completed.countDown();return null;}).when(repository).completeBootstrap(anyString());
         try(var worker=worker(repository,http,diagnostics,true)) {
             worker.start();worker.start();assertTrue(completed.await(3,TimeUnit.SECONDS));
-            verify(http,times(2)).get(any(),anyBoolean(),anyInt());assertEquals(0,diagnostics.bootstrapFailures.get());
+            verify(http,times(1)).get(any(),anyInt());verify(http,times(1)).initialSse(any(),any(),any());
+            assertEquals(0,diagnostics.bootstrapFailures.get());assertNotNull(diagnostics.senseData);
             verify(repository,times(1)).initialize(CATALOG);
         }
     }
@@ -63,9 +66,14 @@ class TelemetryIngestionTest {
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());server.start();
         try(var http=new TelemetryHttp(Duration.ofSeconds(1))) {
             var base="http://127.0.0.1:"+server.getAddress().getPort();
-            assertThrows(java.io.IOException.class,() -> http.get(URI.create(base+"/large"),false,32));
-            long started=System.nanoTime();assertThrows(java.io.IOException.class,() -> http.get(URI.create(base+"/silent"),true,1024));
+            assertThrows(java.io.IOException.class,() -> http.get(URI.create(base+"/large"),32));
+            long started=System.nanoTime();assertThrows(java.io.IOException.class,() -> http.initialSse(URI.create(base+"/silent"),Duration.ofSeconds(1),
+                    input -> new SenseDataTelemetrySource(MAPPER,CATALOG).parse(input,NOW)));
             assertTrue(Duration.ofNanos(System.nanoTime()-started).compareTo(Duration.ofSeconds(3))<0);
+            started=System.nanoTime();
+            assertThrows(java.io.IOException.class,() -> http.initialSse(URI.create(base+"/silent"),Duration.ofMillis(100),
+                    input -> new SenseDataTelemetrySource(MAPPER,CATALOG).parse(input,NOW)));
+            assertTrue(Duration.ofNanos(System.nanoTime()-started).compareTo(Duration.ofSeconds(2))<0);
         } finally {release.countDown();server.stop(0);}
     }
 }

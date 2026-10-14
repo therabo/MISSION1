@@ -22,6 +22,11 @@ from/to, records and nullable nextCursor. Order is recordTime then immutable ide
 Unknown IDs are 404, invalid bounds/cursor are 400. GET never acquires or writes.
 
 GET `/api/iss/telemetry/diagnostics` is operational state, separate from value trust.
+Its nullable `senseData` object reports the most recent completed bootstrap in this
+process: input classifications, parser/binding exclusions, normalization and write
+counts, duplicate/conflict counts, bytes and timings. It creates no observations and
+does not replace persisted provenance. A restart that skips a completed bootstrap
+leaves this process-local object null.
 Component/history reads use local PostgreSQL and read-only REPEATABLE READ/no-store.
 Known unmapped components return NO_VERIFIED_MAPPING with no parameters. Historical
 includes later-acquired old records at or before T, preserves receipt, selects no

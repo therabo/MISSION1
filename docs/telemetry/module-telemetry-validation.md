@@ -6,6 +6,11 @@ installation floor is absent. V1 SHA-256 remains
 `007b9e7e759f33d1bab7997434b1464d91a2fdeb18cc7667003b2f7875678e9e`
 and Flyway checksum remains -1371784637.
 
+This records the original implementation milestone. The subsequent
+[retained coverage correction and all-component audit](retained-coverage-audit.md)
+supersedes its 256 KiB/512-record SenseData limitation and documents current source
+availability, safe failed-pass retry and the expanded regression results.
+
 ## Context and implementation
 
 Reviewed project AGENTS, external mission1-project.md (its rejected-floor header

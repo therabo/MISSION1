@@ -20,6 +20,9 @@ public final class TelemetryCatalog {
             List<Definition> definitions, List<Blocked> blocked) {}
     private final Data data;
     private final String sha256;
+    private record Scope(String researchSha256, Set<String> stationSystems, Set<String> controls) {}
+    private final Scope scope;
+    private final Set<String> blockedIds = new HashSet<>();
     private final Map<String,Definition> byRaw = new LinkedHashMap<>(), byId = new LinkedHashMap<>();
     public TelemetryCatalog(ObjectMapper mapper) {
         try (var input = getClass().getResourceAsStream("/telemetry/module-catalog.json")) {
@@ -27,11 +30,17 @@ public final class TelemetryCatalog {
             data = mapper.readValue(bytes, Data.class);
             sha256 = TelemetryRecord.hash(new String(bytes, java.nio.charset.StandardCharsets.UTF_8));
         } catch (IOException e) { throw new IllegalStateException("Telemetry registry unreadable", e); }
+        try (var input = getClass().getResourceAsStream("/telemetry/source-scope.json")) {
+            scope = mapper.readValue(Objects.requireNonNull(input), Scope.class);
+        } catch (IOException e) { throw new IllegalStateException("Telemetry source scope unreadable", e); }
+        if (!scope.researchSha256().equals(data.researchSha256())) throw new IllegalStateException("Unmatched source scope research");
         var blocked = new HashSet<String>();
         data.blocked().forEach(b -> blocked.add(b.rawItemId()));
+        blockedIds.addAll(blocked);
         for (var d : data.definitions()) {
             if (blocked.contains(d.rawItemId()) || !data.components().contains(d.componentId())
                     || byRaw.put(d.rawItemId(), d) != null || byId.put(d.parameterId(),d) != null
+                    || scope.stationSystems().contains(d.rawItemId()) || scope.controls().contains(d.rawItemId())
                     || d.rawOnly() && d.unit()!=null || d.enumValue() && d.enumMapping().isEmpty())
                 throw new IllegalStateException("Invalid telemetry definition: " + d.rawItemId());
         }
@@ -46,4 +55,12 @@ public final class TelemetryCatalog {
     public Optional<Definition> raw(String id) { return Optional.ofNullable(byRaw.get(id)); }
     public Optional<Definition> parameter(String id) { return Optional.ofNullable(byId.get(id)); }
     public List<Definition> component(String id) { return definitions().stream().filter(d -> d.componentId().equals(id)).toList(); }
+    public String classifyRaw(String id) {
+        if ("STATUS".equals(id)) return "PROVIDER_LOCAL_STATUS";
+        if (byRaw.containsKey(id)) return "QUALIFIED_COMPONENT_MATCH";
+        if (scope.stationSystems().contains(id)) return "QUALIFIED_STATION_SYSTEM_MATCH";
+        if (blockedIds.contains(id)) return "BLOCKED_DEFINITION";
+        if (scope.controls().contains(id)) return "EXCLUDED_CONTROL";
+        return "UNKNOWN_RAW_ID";
+    }
 }

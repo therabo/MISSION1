@@ -17,28 +17,31 @@ public final class TelemetryHttp implements AutoCloseable {
         this.timeout=timeout;
         client=HttpClient.newBuilder().connectTimeout(timeout).followRedirects(HttpClient.Redirect.NEVER).build();
     }
-    public String get(URI uri, boolean initialSse, int maxBytes) throws IOException, InterruptedException {
-        var request=HttpRequest.newBuilder(uri).timeout(timeout).header("Accept",initialSse?"text/event-stream":"application/json")
+    @FunctionalInterface public interface StreamReader<T> { T read(InputStream input) throws IOException; }
+    public <T> T initialSse(URI uri, Duration readTimeout, StreamReader<T> reader) throws IOException, InterruptedException {
+        var request=HttpRequest.newBuilder(uri).timeout(timeout).header("Accept","text/event-stream")
+                .header("Accept-Encoding","identity").header("User-Agent","MISSION1/0.1 public-telemetry-bootstrap").GET().build();
+        var response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
+        try (var input=response.body()) {
+            if (response.statusCode()!=200) throw new IOException("HTTP " + response.statusCode());
+            if (!response.headers().firstValue("content-type").orElse("").startsWith("text/event-stream")) throw new IOException("Expected SSE");
+            var deadline=deadlines.schedule(() -> { try { input.close(); } catch(IOException ignored) {} },readTimeout.toMillis(),TimeUnit.MILLISECONDS);
+            try { return reader.read(input); }
+            finally { deadline.cancel(false); }
+        }
+    }
+    public String get(URI uri, int maxBytes) throws IOException, InterruptedException {
+        var request=HttpRequest.newBuilder(uri).timeout(timeout).header("Accept","application/json")
                 .header("User-Agent","MISSION1/0.1 public-telemetry-bootstrap").GET().build();
         var response=client.send(request,HttpResponse.BodyHandlers.ofInputStream());
         try (var input=response.body()) {
             if (response.statusCode()!=200) throw new IOException("HTTP " + response.statusCode());
-            if (initialSse && !response.headers().firstValue("content-type").orElse("").startsWith("text/event-stream")) throw new IOException("Expected SSE");
             var deadline=deadlines.schedule(() -> { try { input.close(); } catch(IOException ignored) {} },timeout.toMillis(),TimeUnit.MILLISECONDS);
             try {
                 var output=new ByteArrayOutputStream(); int next;
-                boolean event=false; StringBuilder line=new StringBuilder();
                 while ((next=input.read())!=-1) {
                     if (output.size()>=maxBytes) throw new IOException("Oversized telemetry body");
                     output.write(next);
-                    if (initialSse) {
-                        if (next=='\n') {
-                            String text=line.toString().trim();
-                            if (text.equals("event: records")) event=true;
-                            if (text.isEmpty() && event) break;
-                            line.setLength(0);
-                        } else line.append((char)next);
-                    }
                 }
                 return output.toString(java.nio.charset.StandardCharsets.UTF_8);
             } finally { deadline.cancel(false); }

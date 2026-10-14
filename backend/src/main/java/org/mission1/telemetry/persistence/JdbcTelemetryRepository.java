@@ -116,11 +116,19 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
                 """,(rs,n) -> read(rs),catalog.version(),parameter,utc(lower),utc(to),cursor,cursor,catalog.version(),parameter,limit);
     }
     @Override public boolean claimBootstrap(String provider, Instant now) {
+        return claimBootstrap(provider,now,false);
+    }
+    @Override public boolean claimBootstrap(String provider, Instant now, boolean retryFailed) {
         return jdbc.update("""
                 INSERT INTO telemetry_bootstrap_state VALUES(?,?,?,false)
-                ON CONFLICT(provider,catalog_version) DO UPDATE SET attempted_at=EXCLUDED.attempted_at
-                WHERE NOT telemetry_bootstrap_state.completed AND telemetry_bootstrap_state.attempted_at<=EXCLUDED.attempted_at-interval '24 hours'
-                """,provider,catalog.version(),utc(now))==1;
+                ON CONFLICT(provider,catalog_version) DO UPDATE
+                SET attempted_at=greatest(EXCLUDED.attempted_at,telemetry_bootstrap_state.attempted_at+interval '1 microsecond')
+                WHERE NOT telemetry_bootstrap_state.completed AND (
+                  telemetry_bootstrap_state.attempted_at<=EXCLUDED.attempted_at-interval '24 hours'
+                  OR (? AND EXISTS(SELECT 1 FROM telemetry_acquisition a
+                    WHERE a.provider=telemetry_bootstrap_state.provider AND a.outcome='FAILED'
+                    AND a.acquired_at>=telemetry_bootstrap_state.attempted_at)))
+                """,provider,catalog.version(),utc(now),retryFailed)==1;
     }
     @Override public void completeBootstrap(String provider) {
         jdbc.update("UPDATE telemetry_bootstrap_state SET completed=true WHERE provider=? AND catalog_version=?",provider,catalog.version());

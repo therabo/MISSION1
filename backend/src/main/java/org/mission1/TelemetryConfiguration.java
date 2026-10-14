@@ -35,14 +35,21 @@ class TelemetryConfiguration {
             @Value("${mission1.telemetry.isslive-endpoint:https://api.iss.live/api/telemetry/stats/}") URI archive,
             @Value("${mission1.telemetry.native-endpoint:https://push.lightstreamer.com}") URI nativeEndpoint,
             @Value("${mission1.telemetry.adapter-set:ISSLIVE}") String adapter,
-            @Value("${mission1.telemetry.native-retry:PT30S}") Duration retry) {
+            @Value("${mission1.telemetry.native-retry:PT30S}") Duration retry,
+            @Value("${mission1.telemetry.sensedata-bootstrap-timeout:PT30S}") Duration senseTimeout,
+            @Value("${mission1.telemetry.sensedata-max-event-bytes:4194304}") int senseBytes,
+            @Value("${mission1.telemetry.sensedata-max-records:20700}") int senseRecords,
+            @Value("${mission1.telemetry.retry-failed-bootstrap:false}") boolean retryFailed) {
         if (queue<1 || queue>8192 || batch<1 || batch>256 || timeout.compareTo(Duration.ofSeconds(1))<0 || timeout.compareTo(Duration.ofSeconds(60))>0 || retry.compareTo(Duration.ofSeconds(5))<0)
             throw new IllegalArgumentException("Invalid bounded telemetry configuration");
+        if (senseTimeout.compareTo(Duration.ofSeconds(1))<0 || senseTimeout.compareTo(Duration.ofSeconds(60))>0)
+            throw new IllegalArgumentException("Invalid SenseData bootstrap deadline");
         for (var endpoint:new URI[]{sense,archive,nativeEndpoint})
             if (!"https".equals(endpoint.getScheme()) || endpoint.getHost()==null || endpoint.getUserInfo()!=null || endpoint.getQuery()!=null)
                 throw new IllegalArgumentException("Telemetry endpoints require HTTPS without credentials/query");
         return new TelemetryIngestion(catalog,repository,new TelemetryNormalizer(catalog),diagnostics,utcClock,new TelemetryHttp(timeout),
-                new SenseDataTelemetrySource(mapper,catalog),new IssLiveTelemetrySource(mapper,catalog),queue,batch,bootstrap,nativeEnabled,sense,archive,nativeEndpoint.toString(),adapter,retry.toMillis());
+                new SenseDataTelemetrySource(mapper,catalog,new SenseDataTelemetrySource.Limits(senseBytes,senseRecords)),
+                new IssLiveTelemetrySource(mapper,catalog),queue,batch,bootstrap,nativeEnabled,sense,archive,nativeEndpoint.toString(),adapter,retry.toMillis(),retryFailed,senseTimeout);
     }
     @Bean @ConditionalOnProperty(name="mission1.telemetry.enabled",havingValue="true",matchIfMissing=true)
     TelemetryStartup telemetryStartup(TelemetryIngestion ingestion) { return new TelemetryStartup(ingestion); }

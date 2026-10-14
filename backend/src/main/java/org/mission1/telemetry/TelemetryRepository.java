@@ -11,6 +11,9 @@ public interface TelemetryRepository {
     StoreResult store(Acquisition acquisition, List<TelemetryRecord> records);
     Map<String,TelemetryRecord> selected(String componentId, Instant at);
     List<TelemetryRecord> history(String parameterId, Instant from, Instant to, String cursor, int limit);
-    boolean claimBootstrap(String provider, Instant now);
+    default boolean claimBootstrap(String provider, Instant now) {
+        return claimBootstrap(provider,now,false);
+    }
+    boolean claimBootstrap(String provider, Instant now, boolean retryFailed);
     void completeBootstrap(String provider);
 }

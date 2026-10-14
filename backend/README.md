@@ -8,6 +8,11 @@ local Current or recordTime <= accepted Historical T, without interpolation/floo
 [Configuration, APIs, provenance and limits](../docs/telemetry/module-telemetry.md),
 [validation](../docs/telemetry/module-telemetry-validation.md).
 
+The corrected SenseData SSE bootstrap streams its complete bounded initial backfill,
+including multiple records per channel. See [coverage audit and safe failed-pass
+retry](../docs/telemetry/retained-coverage-audit.md); never reset telemetry history to
+retry acquisition. Successful provider/catalog passes remain idempotent.
+
 **Current bootstrap behavior — 2026-10-13:** [ADR-0022](../docs/adr/0022-durable-gp-eligibility-and-source-directed-resource-discovery.md) adds prompt normal GP startup, a durable request boundary and exact-deadline scheduling. [Dynamic resource discovery](../docs/crew/dynamic-resource-discovery.md) follows new source mission/Expedition/astronaut/relation observations through the existing paced resource and operational binding graph. Static mission locators are optional compatibility seeds. Identity gates, Current/Replay, UI and propagation remain unchanged.
 
 **Public database baseline — ADR-0023, followed by ADR-0024 telemetry:** startup applies

@@ -119,6 +119,80 @@ class TelemetryPostgresTest {
         var restarted=new JdbcTelemetryRepository(jdbc,tx,CATALOG,MAPPER);restarted.initialize(CATALOG);
         assertFalse(restarted.claimBootstrap("SENSEDATA",NOW.plus(Duration.ofDays(2))));
     }
+    @Test void explicitRetryRequiresActualFailedAttemptAndPreservesExistingEvidence() {
+        var retained=record("52",SEPT,"ISS_LIVE");store(retained);
+        assertTrue(repository.claimBootstrap("SENSEDATA",NOW));
+        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(1),true)); // in progress is not failed.
+        repository.store(new TelemetryRepository.Acquisition(UUID.randomUUID(),"SENSEDATA","RETAINED_BOOTSTRAP",
+                "https://test.invalid/",NOW.plusSeconds(2),"FAILED","IOException",0),List.of());
+        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3)));
+        assertTrue(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3),true));
+        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3),true));
+        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(4),true));
+        assertEquals(retained.id(),head().id());
+        repository.completeBootstrap("SENSEDATA");
+        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(5),true));
+        assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
+    }
+    @Test void everyDefinitionTraversesPersistenceToItsOwnComponentRestRepresentation() {
+        var all=CATALOG.definitions().stream().map(d -> NORMALIZER.normalize(raw(d.rawItemId(),"0",NOW.minusSeconds(10),"NATIVE")).orElseThrow()).toArray(TelemetryRecord[]::new);
+        assertEquals(131,store(all).inserted());
+        var query=new TelemetryQueryService(CATALOG,repository,Clock.fixed(NOW,ZoneOffset.UTC));int exposed=0;
+        for (String component:CATALOG.components()) {
+            var selected=repository.selected(component,NOW);var rest=query.component(component,null);
+            assertEquals(selected.keySet(),rest.parameters().stream().filter(p -> p.record()!=null).map(TelemetryQueryService.Parameter::parameterId).collect(java.util.stream.Collectors.toSet()));
+            for (var p:rest.parameters()) {
+                assertNotNull(p.record());var d=CATALOG.parameter(p.parameterId()).orElseThrow();
+                assertEquals(component,d.componentId());assertEquals(d.rawItemId(),p.record().source().rawItemId());
+                assertEquals(d.displayCategory(),p.category());assertEquals(d.label(),p.label());assertEquals(d.unit(),p.unit());
+                assertEquals(selected.get(p.parameterId()).recordTime(),p.record().recordTime());exposed++;
+            }
+        }
+        assertEquals(131,exposed);
+        assertEquals(131,jdbc.queryForObject("SELECT count(*) FROM telemetry_record_evidence",Integer.class));
+    }
+    @Test void largeCompleteSseEventTraversesHttpWorkerBatchesPersistenceAndComponentResponses() throws Exception {
+        // TEST_ONLY valid full rings: source framing is real HTTP, values never leave this disposable DB.
+        var rows=new ArrayList<String>();
+        for (var d:CATALOG.definitions()) if (d.senseDataDecimals()!=null)
+            for (int n=0;n<150;n++) rows.add(SenseDataStreamingTest.row(d.rawItemId(),NOW.getEpochSecond()-150+n));
+        byte[] payload=SenseDataStreamingTest.event("["+String.join(",",rows)+"]");assertTrue(payload.length>262144);
+        var server=com.sun.net.httpserver.HttpServer.create(new java.net.InetSocketAddress("127.0.0.1",0),0);
+        server.createContext("/events",exchange -> {
+            exchange.getResponseHeaders().add("Content-Type","text/event-stream");exchange.sendResponseHeaders(200,0);
+            try(var out=exchange.getResponseBody()) {
+                for (int offset=0;offset<payload.length;offset+=1024) out.write(payload,offset,Math.min(1024,payload.length-offset));
+            }
+        });
+        server.createContext("/stats",exchange -> {
+            byte[] body="{\"stats\":[]}".getBytes(java.nio.charset.StandardCharsets.UTF_8);
+            exchange.sendResponseHeaders(200,body.length);try(var out=exchange.getResponseBody()){out.write(body);}
+        });
+        server.start();var base="http://127.0.0.1:"+server.getAddress().getPort();var diagnostics=new TelemetryDiagnostics();
+        try(var worker=new TelemetryIngestion(CATALOG,repository,NORMALIZER,diagnostics,Clock.fixed(NOW,ZoneOffset.UTC),
+                new TelemetryHttp(Duration.ofSeconds(5)),new SenseDataTelemetrySource(MAPPER,CATALOG),new IssLiveTelemetrySource(MAPPER,CATALOG),
+                8,64,true,false,java.net.URI.create(base+"/events"),java.net.URI.create(base+"/stats"),"https://push.lightstreamer.com","ISSLIVE",30000)) {
+            worker.start();long deadline=System.nanoTime()+Duration.ofSeconds(30).toNanos();
+            while (diagnostics.senseData==null && diagnostics.bootstrapFailures.get()==0 && System.nanoTime()<deadline) Thread.sleep(10);
+            assertNotNull(diagnostics.senseData);assertEquals(6300,diagnostics.senseData.fetched());
+            assertEquals(6300,diagnostics.senseData.normalized());assertEquals(6300,diagnostics.senseData.inserted());
+            assertEquals(6300,diagnostics.senseData.admitted());assertEquals(0,diagnostics.senseData.duplicates());
+            assertEquals(0,diagnostics.senseData.rejected());assertEquals(0,diagnostics.bootstrapFailures.get());
+            assertEquals(6300,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
+            assertEquals(6300,jdbc.queryForObject("SELECT count(*) FROM telemetry_record_evidence",Integer.class));
+            var query=new TelemetryQueryService(CATALOG,repository,Clock.fixed(NOW,ZoneOffset.UTC));int heads=0;
+            for (String component:CATALOG.components()) for (var parameter:query.component(component,null).parameters()) {
+                if (parameter.record()==null) continue;
+                assertEquals(component,CATALOG.parameter(parameter.parameterId()).orElseThrow().componentId());
+                assertEquals(NOW.minusSeconds(1),parameter.record().recordTime());heads++;
+            }
+            assertEquals(42,heads);
+            while (jdbc.queryForObject("SELECT count(*) FROM telemetry_bootstrap_state WHERE completed",Integer.class)<2
+                    && diagnostics.bootstrapFailures.get()==0 && System.nanoTime()<deadline) Thread.sleep(10);
+            assertEquals(2,jdbc.queryForObject("SELECT count(*) FROM telemetry_bootstrap_state WHERE completed",Integer.class));
+            assertEquals(0,diagnostics.bootstrapFailures.get());
+        } finally { server.stop(0); }
+    }
     @Test void restReadTransactionCannotWriteAndChangesNoEvidence() {
         store(record("52",SEPT,"SENSEDATA"));
         var read=new TransactionTemplate(new DataSourceTransactionManager(jdbc.getDataSource()));read.setReadOnly(true);

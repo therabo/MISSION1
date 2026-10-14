@@ -32,6 +32,13 @@ preferred; ISS.live supplies explicit complementary mappings. Native callbacks
 copy immutable bounded fields to a bounded queue and never write JDBC on the SDK
 thread. No periodic retained-provider polling is introduced.
 
+Corrective clarification (2026-10-14): SenseData's initial SSE event can contain
+multiple retained records per channel. Consume it incrementally with explicit
+byte/record/token/deadline bounds, verify completion before persistence, and classify
+every input ID. An operator-requested failed-pass retry uses the same atomic claim
+and requires actual failed acquisition evidence; completed passes remain idempotent.
+This refines the bounded bootstrap decision without changing the schema or admission.
+
 Read-only module/latest/as-of and bounded history APIs query local persistence.
 Historical selects recordTime <= accepted T using present evidence, preserving
 actual acquisition time. No installation floor, interpolation, synthetic samples,

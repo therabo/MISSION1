@@ -41,6 +41,13 @@ their reviewed unit/state. Raw-only channel numbers have physical unit unset; CN
 is metadata, never a suffix. Unknown codes retain their number and show `Unknown
 code N`. Blank/non-finite/malformed/oversized input never defaults to zero.
 
+`source-scope.json` contains reviewed station-system/control IDs only, tied to the
+same research digest. It classifies input outside the component registry without
+activating extra definitions. Every SenseData record contributes exactly one of:
+QUALIFIED_COMPONENT_MATCH, QUALIFIED_STATION_SYSTEM_MATCH, BLOCKED_DEFINITION,
+EXCLUDED_CONTROL, PROVIDER_LOCAL_STATUS or UNKNOWN_RAW_ID. Malformed records and
+component matches without a verified provider binding are counted separately.
+
 Blocked pressures, calibration conflicts, OGA rates, clock/quaternion/vector semantics,
 UDM associations and community robotics stay inactive. Definitions contain no values.
 Production never reads test fixtures, research observations or provider seed files.
@@ -63,7 +70,28 @@ identifies its security dependency update. Maven preserves Jackson BOM 2.22.1,
 Kotlin 2.2.21 and OkHttp 5.3.2 instead of Boot's older managed baseline. Full tests
 exercise this classpath. TLS verification stays enabled.
 
-SenseData captures one bounded initial `https://iss.telemetry.space/events` batch.
+SenseData streams the first complete `records` event at `https://iss.telemetry.space/events`.
+The [pinned server](https://github.com/sensedata/space-telemetry/blob/1134b02f89bf6981091fa98a5c1b8e6b6cc34144/src/server/create-server.ts)
+sends an initial backfill array, then live events. Its
+[buffer](https://github.com/sensedata/space-telemetry/blob/1134b02f89bf6981091fa98a5c1b8e6b6cc34144/src/server/buffer.ts)
+holds 150 records per channel; backfill selects its last 450 seconds or one latest
+record when that window is empty. It can therefore exceed one record per item.
+SSE framing is consumed incrementally, including multiline data/CRLF; Jackson reads
+one bounded record at a time. Neither a complete data line nor the event JSON tree
+is buffered. Only component candidate tuples remain until the event terminator is
+verified; truncated/oversized events persist no partial observations. Structurally
+malformed item fields are isolated. The connection closes after the first event.
+
+Defaults: 4 MiB framed bootstrap bytes and 20,700 records (138 pinned provider
+channels ×150), with configurable hard ceilings of 8 MiB/50,550 records. The current
+measured event is about 401 KiB; the default accommodates full channel rings without
+an unlimited stream. Transport read-ahead is 4 KiB, headers at most 256 bytes,
+preamble 16 KiB within the total byte budget, depth eight, names 64 characters,
+numeric tokens 128 and decoded string tokens 1,024. Relevant field values are at most
+128 characters and each record has at most 16 fields. Excess framing/token/count
+bounds fail the event; bad relevant item fields within token bounds are counted and
+excluded individually. The HTTP connection/header deadline is 15 seconds; the
+separate streamed-bootstrap deadline is 30 seconds and closes stalled input.
 Only exact admitted registry IDs with researched decimal precision are imported.
 Original k/v/t/s provide channel/value/reconstructed record date/status. STATUS is
 provider software state; TIME controls are excluded; vm is a mean, never the last
@@ -88,6 +116,17 @@ even when some definitions have no upstream record. Failed/interrupted attempts 
 retry on a later startup after 24 hours. No continuous retained polling or UI-driven
 source fetch exists. A new catalog version has its own pass. Manually deleting
 evidence is not a supported recovery workflow.
+
+For an explicitly requested immediate retry, start with
+`MISSION1_TELEMETRY_RETRY_FAILED_BOOTSTRAP=true` (or
+`--mission1.telemetry.retry-failed-bootstrap=true`). The same atomic production claim
+requires a persisted FAILED acquisition since that provider/catalog attempt. An
+in-progress claim and every completed pass remain protected; advancing the claim
+also prevents concurrent retries consuming the same failure. Default pacing remains
+24 hours, including interrupted attempts without persisted failure. No data, history
+or coordination rows need manual deletion/update. A complete pass with all component
+dates rejected by policy is still a completed bounded acquisition, not a transport
+failure, and does not become a successful observation or a newer head.
 
 ## Time, provenance and admission
 
@@ -166,6 +205,10 @@ head. V1 and checksum remain unchanged.
   order/immutable-ID ties and a validated parameter/range-scoped cursor.
 - `GET /api/iss/telemetry/diagnostics` returns connection/subscription and callback,
   rejection/conflict/queue/drop/persistence/bootstrap counters.
+  Its nullable process-local `senseData` summary reconciles fetched/classified,
+  malformed/unbound, normalized/rejected, inserted/admitted/conflicting/duplicate
+  counts and event-byte/parse/database timings. It is absent after a restart that
+  correctly skips an already completed pass; it is not persistent value provenance.
 
 Component/history GETs are read-only REPEATABLE READ, local SQL only and no-store.
 Unknown IDs are 404, invalid bounds 400, known unmapped components truthful empty
@@ -190,7 +233,9 @@ hidden/closed docks do not poll. API failure stays local to telemetry.
 
 `mission1.telemetry.*` has matching MISSION1_TELEMETRY_* environment variables:
 enabled, native-enabled, bootstrap-enabled, native-endpoint, adapter-set, native-retry,
-sensedata-endpoint, isslive-endpoint, timeout, queue-size and batch-size. Defaults:
+sensedata-endpoint, isslive-endpoint, timeout, queue-size, batch-size,
+sensedata-bootstrap-timeout, sensedata-max-event-bytes, sensedata-max-records and
+retry-failed-bootstrap. Defaults:
 enabled, researched HTTPS endpoints, ISSLIVE, SDK retry 30 seconds, external deadline
 15 seconds, queue 1024/batch 64. Queue max 8192, batch max 256; field/body/item/deadline
 bounds apply. Endpoints are administrator configuration, never user request URLs.
@@ -201,6 +246,11 @@ Run Java21/Docker `mvn test` and `mvn verify`, and Node24 `npm test`,
 Testcontainers PostgreSQL, never live feeds. The frozen publication test targets V1;
 forward-migration tests cover V2. [Validation](module-telemetry-validation.md) records
 counts, real bounded acquisition, restart/GET purity, timings and responsive evidence.
+The independent TEST definition reference verifies all 131 qualified mappings and
+provider bindings against the research; the all-definition PostgreSQL and frontend
+tests verify component selection, decoding and normal/raw rendering without row loss.
+The [retained coverage audit](retained-coverage-audit.md) explains each module's actual
+source availability, policy exclusions and SQL→REST→UI reconciliation.
 
 Native silence does not authorize invented data. A subscription acknowledgement
 does not establish a payload/cadence. Providers expose incomplete time lineage;
