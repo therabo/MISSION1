@@ -67,8 +67,8 @@ class JdbcCrewRepositoryTest {
         s.profiles().forEach(p -> result.put(p.person().externalIds().getFirst().value(), p)); return result;
     }
 
-    @Test void cleanDatabaseMigratesV1V2V3AndHasNoPresenceTable() {
-        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
+    @Test void cleanDatabaseMigratesPublicBaselineAndTelemetryWithoutChangingCrewSchema() {
+        assertEquals(List.of("1","2"), jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank", String.class));
         assertEquals(78, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
                             + " AND table_name LIKE 'crew_%'", Integer.class));
         assertTrue(query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).isEmpty());

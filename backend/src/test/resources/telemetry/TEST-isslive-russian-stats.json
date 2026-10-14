@@ -1,0 +1,41 @@
+{
+  "window": {
+    "start": "2026-07-16T16:32:46.422442Z",
+    "end": "2026-10-14T16:32:46.422442Z"
+  },
+  "stats": [
+    {
+      "sensor": "rsmcs_sm_sudn_mode",
+      "display_name": "SM SUDN Dynamic Mode",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.203000Z",
+        "v": 6,
+        "label": "Thrusters help CMG (desaturate CMG)"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 9
+    },
+    {
+      "sensor": "urine_tank_fill_level",
+      "display_name": "Urine Tank Fill Level",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Percent",
+        "symbol": "%"
+      },
+      "latest": {
+        "t": "2026-09-14T14:10:29.900000Z",
+        "v": 52.0,
+        "label": null
+      },
+      "min": 0.0,
+      "max": 75.0,
+      "avg": 41.24826203208556,
+      "count": 59840
+    }
+  ]
+}

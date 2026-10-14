@@ -1,0 +1,392 @@
+{
+  "window": {
+    "start": "2026-07-16T16:30:17.423059Z",
+    "end": "2026-10-14T16:30:17.423059Z"
+  },
+  "stats": [
+    {
+      "sensor": "airlock_ccaa_state",
+      "display_name": "Airlock CCAA State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-09T14:19:55.798000Z",
+        "v": 5,
+        "label": "ON"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 17
+    },
+    {
+      "sensor": "airlock_crewlock_cabin_pressure",
+      "display_name": "Crewlock Cabin Pressure",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Pounds per Square Inch Absolute",
+        "symbol": "psia"
+      },
+      "latest": {
+        "t": "2026-09-14T14:15:07.502000Z",
+        "v": 755.7269897460938,
+        "label": null
+      },
+      "min": 0.0,
+      "max": 759.5340576171875,
+      "avg": 726.0088482010865,
+      "count": 627296
+    },
+    {
+      "sensor": "airlock_depress_pump_switch_status",
+      "display_name": "Airlock Depress Pump Switch Status",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.201000Z",
+        "v": 0,
+        "label": "Commanded OFF"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 24
+    },
+    {
+      "sensor": "airlock_n2_supply_valve_position",
+      "display_name": "Airlock N2 Supply Valve Position",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.900000Z",
+        "v": 1,
+        "label": "OPEN"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 11
+    },
+    {
+      "sensor": "al_o2_hi_p_supply_valve_position",
+      "display_name": "Airlock O2 High Pressure Supply Valve Position",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.900000Z",
+        "v": 0,
+        "label": "CLOSED"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 28
+    },
+    {
+      "sensor": "al_o2_lo_p_supply_valve_position",
+      "display_name": "Airlock Low Pressure O2 Supply Valve Position",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.900000Z",
+        "v": 1,
+        "label": "OPEN"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 11
+    },
+    {
+      "sensor": "cabin_temperature",
+      "display_name": "Cabin temperature",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Celsius",
+        "symbol": "\u00b0C"
+      },
+      "latest": {
+        "t": "2026-09-14T14:14:34.202000Z",
+        "v": 23.57479476928711,
+        "label": null
+      },
+      "min": 22.506071090698242,
+      "max": 25.209314346313477,
+      "avg": 23.47928844294105,
+      "count": 293912
+    },
+    {
+      "sensor": "clean_water_tank_fill_level",
+      "display_name": "Clean Water Tank Fill Level",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Percent",
+        "symbol": "%"
+      },
+      "latest": {
+        "t": "2026-09-14T14:14:38.706000Z",
+        "v": 79.2699966430664,
+        "label": null
+      },
+      "min": 16.700000762939453,
+      "max": 95.05000305175781,
+      "avg": 62.042565850527644,
+      "count": 199895
+    },
+    {
+      "sensor": "gps1_operational_status",
+      "display_name": "GPS-1 Operational Status",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-14T14:12:03.099000Z",
+        "v": 0,
+        "label": "DOING POSITION FIXES"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 42471
+    },
+    {
+      "sensor": "gps2_operational_status",
+      "display_name": "GPS-2 Operational Status",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-14T14:12:27.298000Z",
+        "v": 0,
+        "label": "DOING POSITION FIXES"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 43354
+    },
+    {
+      "sensor": "lab_ccaa_starboard_state",
+      "display_name": "Lab Starboard Air Conditioner State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:37.702000Z",
+        "v": 4,
+        "label": "OFF"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 5
+    },
+    {
+      "sensor": "lab_port_ccaa_state",
+      "display_name": "Lab Port Air Conditioner State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:37.702000Z",
+        "v": 5,
+        "label": "ON"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 5
+    },
+    {
+      "sensor": "node2_ccaa_state",
+      "display_name": "Node 2 CCAA State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T16:23:12.702000Z",
+        "v": 5,
+        "label": "ON"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 14
+    },
+    {
+      "sensor": "node3_ccaa_state",
+      "display_name": "Node 3 CCAA State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-09T16:35:17.702000Z",
+        "v": 5,
+        "label": "ON"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 15
+    },
+    {
+      "sensor": "node3_oga_o2_production_rate",
+      "display_name": "Node 3 OGA O2 Production Rate",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Pounds Mass per Day",
+        "symbol": "lbm/day"
+      },
+      "latest": {
+        "t": "2026-09-08T15:54:37.298000Z",
+        "v": -59.45689010620117,
+        "label": null
+      },
+      "min": -59.45689010620117,
+      "max": -59.45689010620117,
+      "avg": -59.45689010620117,
+      "count": 7
+    },
+    {
+      "sensor": "node3_oga_process_cmd_status",
+      "display_name": "Node 3 OGA Process Command Status",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:37.298000Z",
+        "v": 1,
+        "label": "PROCESS"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 7
+    },
+    {
+      "sensor": "pvcu_3b_drive_voltage",
+      "display_name": "PVCU 3B Drive Voltage",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Volts",
+        "symbol": "V"
+      },
+      "latest": {
+        "t": "2026-09-14T14:14:39.507000Z",
+        "v": 152.01416015625,
+        "label": null
+      },
+      "min": 0.0,
+      "max": 161.7041015625,
+      "avg": 153.3793441595543,
+      "count": 151365
+    },
+    {
+      "sensor": "pvcu_solar_array_3b_drive_voltage",
+      "display_name": "PVCU Solar Array 3B Drive Voltage",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Volts",
+        "symbol": "V"
+      },
+      "latest": {
+        "t": "2026-09-14T14:15:04.706000Z",
+        "v": 159.8583984375,
+        "label": null
+      },
+      "min": -0.97412109375,
+      "max": 161.2939453125,
+      "avg": 153.0576255040851,
+      "count": 145429
+    },
+    {
+      "sensor": "rsmcs_sm_sudn_mode",
+      "display_name": "SM SUDN Dynamic Mode",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-08T15:54:39.203000Z",
+        "v": 6,
+        "label": "Thrusters help CMG (desaturate CMG)"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 9
+    },
+    {
+      "sensor": "upa_state",
+      "display_name": "Urine Processor State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-14T01:03:44.900000Z",
+        "v": 32,
+        "label": "STANDBY"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 188
+    },
+    {
+      "sensor": "urine_tank_fill_level",
+      "display_name": "Urine Tank Fill Level",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Percent",
+        "symbol": "%"
+      },
+      "latest": {
+        "t": "2026-09-14T14:10:29.900000Z",
+        "v": 52.0,
+        "label": null
+      },
+      "min": 0.0,
+      "max": 75.0,
+      "avg": 41.24826203208556,
+      "count": 59840
+    },
+    {
+      "sensor": "waste_water_tank_fill_level",
+      "display_name": "Waste Water Tank Fill Level",
+      "data_type": "numeric",
+      "unit": {
+        "name": "Percent",
+        "symbol": "%"
+      },
+      "latest": {
+        "t": "2026-09-14T14:14:58.706000Z",
+        "v": 39.619998931884766,
+        "label": null
+      },
+      "min": 1.159999966621399,
+      "max": 89.77999877929688,
+      "avg": 38.93632484989152,
+      "count": 250390
+    },
+    {
+      "sensor": "wpa_process_command_status",
+      "display_name": "Water Processor State",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-13T22:24:14.799000Z",
+        "v": 3,
+        "label": "STANDBY"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 78
+    },
+    {
+      "sensor": "wpa_process_step",
+      "display_name": "Node 3 WPA Process Step",
+      "data_type": "enum",
+      "unit": null,
+      "latest": {
+        "t": "2026-09-13T22:04:32.836000Z",
+        "v": 2,
+        "label": "HEATUP"
+      },
+      "min": null,
+      "max": null,
+      "avg": null,
+      "count": 155
+    }
+  ]
+}

@@ -2,6 +2,8 @@ import { useCallback, useRef } from 'react';
 import { ISS_MODEL, type SemanticMapping } from '../cesium/modelPresentation';
 import { ContextDock } from './ContextDock';
 import './ModuleInfo.css';
+import { useModuleTelemetry } from '../telemetry/useModuleTelemetry';
+import { ModuleTelemetryReadings, ModuleTelemetryTechnical } from '../telemetry/ModuleTelemetry';
 
 interface ModuleInfoProps {
   module: SemanticMapping | null;
@@ -10,14 +12,15 @@ interface ModuleInfoProps {
   acceptedAt?: string;
 }
 
-/** Source-model identity and dated assessment only, never internal telemetry or
- * a reconstructed attachment timeline. Retained content is an inert exit snapshot;
+/** Source-model identity, dated assessment and backend-owned real telemetry.
+ * Retained content is an inert exit snapshot;
  * App's module prop remains the sole selected state.
  */
 export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: ModuleInfoProps) {
   const last = useRef<SemanticMapping | null>(null);
   if (module?.status === 'VERIFIED') last.current = module;
   const shown = module?.status === 'VERIFIED' ? module : last.current;
+  const telemetry = useModuleTelemetry(shown?.componentId ?? '', historical ? acceptedAt ?? null : null, module?.status === 'VERIFIED' && (!historical || !!acceptedAt));
   const restoreFocus = useCallback(() => document.querySelector<HTMLElement>('.inspection-modules')?.focus({ preventScroll: true }), []);
   if (!shown) return null;
   const configurationLabel = shown.configurationStatus === 'CURRENT_CONFIRMED'
@@ -41,7 +44,8 @@ export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: 
       {shown.configurationStatus === 'REMOVED_FROM_CURRENT_STATION' && <p className="module-secondary">Historical NASA VTAD asset representation; this component is absent from the current ISS.</p>}
       {historical && <p className="module-secondary">Current assessment; attachment at the selected Historical UTC is not reconstructed.{acceptedAt && <time dateTime={acceptedAt}>{acceptedAt}</time>}</p>}
     </section>
-    <section><h3>Limitations / availability</h3><p className="module-unavailable">Live module telemetry <strong>unavailable</strong></p>
+    <ModuleTelemetryReadings data={telemetry.data} loading={telemetry.loading} error={telemetry.error} />
+    <section><h3>Limitations / availability</h3>
       <p className="module-caveat">NASA VTAD geometry may differ from the current ISS.</p>
     </section>
     <section><h3>Supporting technical detail</h3><dl>
@@ -49,7 +53,7 @@ export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: 
       <div><dt>Identity mapping</dt><dd>{shown.status === 'VERIFIED' ? 'Verified' : shown.status}</dd></div>
       <div><dt>Asset node</dt><dd className="module-code">{shown.nodeIndex}</dd></div>
       <div className="module-type-row"><dt>Component type</dt><dd>{shown.componentType}</dd></div>
-    </dl><p className="module-secondary">{shown.nodeName}</p>
+    </dl><ModuleTelemetryTechnical data={telemetry.data} /><p className="module-secondary">{shown.nodeName}</p>
       <p className="module-secondary">Identity verified: {shown.identityVerifiedOn} · Earth View display: NOT TO SCALE</p>
     </section>
   </ContextDock>;

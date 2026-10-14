@@ -28,7 +28,7 @@ it('opens one non-modal dock with a meaningful heading and real provenance', asy
   await select(5); const dock = host.querySelector('aside')!;
   expect(dock.getAttribute('role')).toBe('region'); expect(dock.hasAttribute('aria-modal')).toBe(false);
   expect(document.activeElement?.textContent).toBe('Zvezda'); expect(dock.getAttribute('aria-labelledby')).toBe(document.activeElement?.id);
-  expect(dock.textContent).toContain('Crew systems and propulsion'); expect(dock.textContent).toContain('unavailable');
+  expect(dock.textContent).toContain('Crew systems and propulsion'); expect(dock.textContent).toContain('Telemetry');
   expect([...dock.querySelectorAll('a')].map(a => a.href)).toContain(ISS_MODEL.semanticMappings[5].identityEvidenceUrl);
   expect(host.querySelector('.module-panel')).toBeNull();
 });

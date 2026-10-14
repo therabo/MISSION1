@@ -1,5 +1,11 @@
 # MISSION1 Earth View
 
+Component telemetry populates the existing ModuleInfo/ContextDock. Selected Current
+records refresh through local REST every 60 seconds while visible; Historical uses
+the accepted UTC and does not poll. Each value retains its Last telemetry record date.
+Raw channels/provenance stay in Supporting technical detail. No cards, navigation or
+camera behavior are redesigned. [Contract and limits](../docs/telemetry/module-telemetry.md).
+
 The public database rebaseline changes only Historical's development-era wire label
 to `UNIFIED_HISTORICAL` and its profile-policy terminology. REST fields, rendering,
 geometry and controls remain unchanged. [Publication validation](../docs/architecture/database-publication-baseline.md).

@@ -24,6 +24,16 @@
 .module-dock .module-evidence { width: 100%; text-decoration: none; }
 .module-dock .context-dock-footer p { color: var(--color-text-secondary); font-size: 11px; line-height: 16px; }
 .module-dock a { color: inherit; }
+.module-dock .module-telemetry-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.module-dock .module-telemetry-group + .module-telemetry-group { margin-top: 8px; }
+.module-dock h4 { margin: 0; color: var(--color-text-secondary); font: 600 12px/17px var(--font-interface); }
+.module-dock .module-telemetry-reading { padding: 8px 0; border-bottom: 1px solid var(--border-overlay); min-width: 0; }
+.module-dock .module-telemetry-reading p + p { margin-top: 4px; }
+.module-dock .module-telemetry-value { font-family: var(--font-numeric); font-size: 16px; }
+.module-dock .module-telemetry-missing, .module-dock .module-telemetry-technical, .module-dock .module-telemetry-evidence { color: var(--color-text-secondary); font: 400 12px/18px var(--font-interface); min-width: 0; }
+.module-dock summary { cursor: pointer; padding: 4px 0; overflow-wrap: anywhere; }
+.module-dock summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 2px; }
+.module-dock .module-telemetry-technical > .module-telemetry-group { margin-top: 8px; }
 .module-dock a:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 2px; }
 @media (max-width: 1243px) {
   .context-dock.module-dock { margin: 12px 12px 32px; }
@@ -31,12 +41,14 @@
   .module-dock .module-evidence { min-height: 44px; height: auto; }
 }
 @media (max-height: 620px) {
+  .module-dock .module-telemetry-reading { scroll-margin-top: 108px; }
   .context-dock.module-dock { display: block; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
   .module-dock::after { display: none; }
   .module-dock .context-dock-header { position: sticky; top: 0; z-index: 1; background: var(--surface-context); }
   .module-dock .context-dock-content { overflow: visible; }
 }
 @media (max-width: 740px) {
+  .module-dock .module-telemetry-reading { scroll-margin-top: 108px; }
   .context-dock.module-dock { width: 45%; display: block; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
   .module-dock::after { display: none; }
   .module-dock .context-dock-header { position: sticky; top: 0; z-index: 1; height: auto; max-height: none; display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 6px 8px; padding: 12px; background: var(--surface-context); }

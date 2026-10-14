@@ -1,9 +1,17 @@
 # MISSION1 orbital core
 
+**Component telemetry — ADR-0024:** all 131 supported component definitions use
+native Lightstreamer and bounded SenseData/ISS.live retained bootstrap after readiness.
+Ordinary PostgreSQL/JDBC preserves immutable provider records and their original
+dates. Public V1 stays unchanged; schema-only V2 adds telemetry. Module cards read
+local Current or recordTime <= accepted Historical T, without interpolation/floor.
+[Configuration, APIs, provenance and limits](../docs/telemetry/module-telemetry.md),
+[validation](../docs/telemetry/module-telemetry-validation.md).
+
 **Current bootstrap behavior — 2026-10-13:** [ADR-0022](../docs/adr/0022-durable-gp-eligibility-and-source-directed-resource-discovery.md) adds prompt normal GP startup, a durable request boundary and exact-deadline scheduling. [Dynamic resource discovery](../docs/crew/dynamic-resource-discovery.md) follows new source mission/Expedition/astronaut/relation observations through the existing paced resource and operational binding graph. Static mission locators are optional compatibility seeds. Identity gates, Current/Replay, UI and propagation remain unchanged.
 
-**Public database baseline — ADR-0023:** startup applies only
-`V1__initial_schema.sql`. It creates 80 domain tables with no preloaded observations,
+**Public database baseline — ADR-0023, followed by ADR-0024 telemetry:** startup applies
+`V1__initial_schema.sql` as the frozen baseline, followed by telemetry V2. V1 creates 80 domain tables with no preloaded observations,
 source captures, memberships or coordination rows. Application initialization creates
 six mutable coordination registers separately; the packaged reviewed identity manifest
 and frozen model remain explicit application reference inputs. All operational history

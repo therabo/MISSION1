@@ -15,8 +15,17 @@
     <properties>
         <java.version>21</java.version>
         <orekit.version>13.1.8</orekit.version>
+        <!-- SDK 5.3.3 security/transport baseline must not be downgraded by Boot's BOM. -->
+        <jackson-bom.version>2.22.1</jackson-bom.version>
+        <kotlin.version>2.2.21</kotlin.version>
+        <okhttp.version>5.3.2</okhttp.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.lightstreamer</groupId>
+            <artifactId>ls-javase-client</artifactId>
+            <version>5.3.3</version>
+        </dependency>
         <dependency>
             <groupId>com.ibm.icu</groupId>
             <artifactId>icu4j</artifactId>
@@ -75,6 +84,15 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Cached PostgreSQL Spring contexts close their pools after the tests.
+                         Permit their bounded teardown; individual test limits are unchanged. -->
+                    <forkedProcessExitTimeoutInSeconds>90</forkedProcessExitTimeoutInSeconds>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

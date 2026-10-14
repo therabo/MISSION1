@@ -14,8 +14,9 @@ describe('verified static module information', () => {
         expect(html).toContain(module.componentType);
         expect(html).toContain(module.nodeName);
         expect(html).toContain('Configuration context');
-        expect(html).toContain('Live module telemetry');
-        expect(html).toContain('unavailable');
+        expect(html).toContain('Telemetry');
+        expect(html).toContain('Loading telemetry');
+        expect(html).not.toContain('Last telemetry record');
         expect(html).toContain('NOT TO SCALE');
         expect(html).toContain(ISS_MODEL.sourcePage);
       }
@@ -29,12 +30,12 @@ describe('verified static module information', () => {
     const historical = renderToStaticMarkup(<ModuleInfo module={pirs} onClose={() => {}} />);
     expect(historical).toContain('Removed from current station');
     expect(historical).toContain('Historical NASA VTAD asset representation');
-    expect(historical).toContain('unavailable');
+    expect(historical).toContain('Loading telemetry');
 
     const destiny = ISS_MODEL.semanticMappings[0];
     const current = renderToStaticMarkup(<ModuleInfo module={{ ...destiny, agency: undefined, role: undefined }} onClose={() => {}} />);
     expect(current).toContain('Current station component confirmed');
     expect(current).not.toContain('Historical NASA VTAD asset representation');
-    expect(current).toContain('Live module telemetry');
+    expect(current).toContain('Loading telemetry');
   });
 });

@@ -24,7 +24,8 @@ class PublicDatabaseBaselineTest {
         var source = new DriverManagerDataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword());
         jdbc = new JdbcTemplate(source);
         assertEquals(0, count("SELECT count(*) FROM pg_tables WHERE schemaname='public'"));
-        flyway = Flyway.configure().dataSource(source).load();
+        // This frozen publication contract verifies V1 independently of forward migrations.
+        flyway = Flyway.configure().dataSource(source).target("1").load();
         assertEquals(1, flyway.migrate().migrationsExecuted);
     }
 
