@@ -20,7 +20,7 @@ class CrewIdentityResearchConfiguration {
 
   @Bean
   @ConditionalOnProperty(
-      name = "mission1.crew.automatic-shadow.enabled",
+      name = "mission1.crew.identity-research.enabled",
       havingValue = "true",
       matchIfMissing = true)
   IdentityResearchScheduler identityResearchScheduler(IdentityResearchWorker worker) {
@@ -35,8 +35,8 @@ class CrewIdentityResearchConfiguration {
     }
 
     @Scheduled(
-        fixedDelayString = "${mission1.crew.automatic-shadow.fixed-delay:PT1M}",
-        initialDelayString = "${mission1.crew.automatic-shadow.initial-delay:PT15M}")
+        fixedDelayString = "${mission1.crew.identity-research.fixed-delay:PT1M}",
+        initialDelayString = "${mission1.crew.identity-research.initial-delay:PT15M}")
     void work() {
       try {
         worker.run(16);

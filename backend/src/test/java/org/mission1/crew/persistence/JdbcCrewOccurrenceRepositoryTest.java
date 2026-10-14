@@ -2,7 +2,6 @@ package org.mission1.crew.persistence;
 
 import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.mission1.crew.application.*;
 import org.mission1.crew.domain.*;
@@ -120,26 +119,7 @@ class JdbcCrewOccurrenceRepositoryTest {
         assertEquals(rows.getFirst().get("raw_url"),rows.getFirst().get("observed_url"));
         assertNotEquals(rows.getFirst().get("representation_hash"),rows.getLast().get("representation_hash"));
     }
-    @Test void dryRunOnV5ThenAdditiveUpgradeAndBackfillPreserveLegacyData() throws Exception {
-        populate();
-        var v5=Flyway.configure().dataSource(POSTGRES.getJdbcUrl(),POSTGRES.getUsername(),POSTGRES.getPassword()).schemas("occurrence_legacy").target("5").load();
-        v5.migrate();
-        for(var t:List.of("crew_document_body","crew_source_document","crew_verification_evidence","crew_evidence_subject","crew_document_evidence","crew_source_sync_run"))
-            jdbc.update("INSERT INTO occurrence_legacy."+t+" SELECT * FROM public."+t);
-        try(var ds=new SingleConnectionDataSource(POSTGRES.getJdbcUrl(),POSTGRES.getUsername(),POSTGRES.getPassword(),true)) {
-            ds.getConnection().createStatement().execute("SET search_path TO occurrence_legacy");
-            var local=new JdbcTemplate(ds);var repository=new JdbcCrewVerificationRepository(local,json);
-            var before=local.queryForList("SELECT * FROM crew_verification_evidence ORDER BY id");
-            var plan=repository.previewOccurrenceAssociations();assertEquals(4,plan.assertionOccurrences());assertEquals(11,plan.subjectOccurrences());
-            assertFalse(local.queryForObject("SELECT to_regclass('crew_assertion_version') IS NOT NULL",Boolean.class));
-            var latest=Flyway.configure().dataSource(POSTGRES.getJdbcUrl(),POSTGRES.getUsername(),POSTGRES.getPassword()).schemas("occurrence_legacy").load();
-            assertEquals(8,latest.migrate().migrationsExecuted);latest.validate();
-            var applied=repository.associateRetainedOccurrences();assertEquals(plan,applied);
-            assertEquals(before,local.queryForList("SELECT * FROM crew_verification_evidence ORDER BY id"));
-            assertEquals(5,local.queryForObject("SELECT count(*) FROM crew_assertion_version",Integer.class));
-            assertEquals(12,local.queryForObject("SELECT count(*) FROM crew_subject_metadata_version",Integer.class));
-        }
-    }
+
     @Test void failedAssociationInsertRollsBackEntireIngestAndLeavesPriorState() throws Exception {
         ingest("old.xml",OLD);var before=history();
         jdbc.execute("CREATE FUNCTION test_occurrence_reject() RETURNS trigger LANGUAGE plpgsql AS $$"

@@ -38,8 +38,8 @@ public final class FrozenIdentityModel {
   public record Score(double linear, double rawProbability, double probability) {}
 
   public static FrozenIdentityModel load(ObjectMapper json) {
-    try (var m = FrozenIdentityModel.class.getResourceAsStream("/crew/automatic/model-v1.json");
-        var l = FrozenIdentityModel.class.getResourceAsStream("/crew/automatic/lexical-v1.json")) {
+    try (var m = FrozenIdentityModel.class.getResourceAsStream("/crew/identity-research/model-v1.json");
+        var l = FrozenIdentityModel.class.getResourceAsStream("/crew/identity-research/lexical-v1.json")) {
       if (m == null || l == null)
         throw new IllegalStateException("Missing frozen identity artifact");
       return new FrozenIdentityModel(json, m.readAllBytes(), SHA, l.readAllBytes(), LEXICAL_SHA);

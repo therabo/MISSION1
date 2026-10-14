@@ -13,7 +13,7 @@ function unifiedMembership(time = at): ReplayResult {
   const result = decodeReplay(replayFixture(time), time);
   const crew = result.crew.state!;
   crew.freshness.evaluatedAt = time;
-  crew.membership = { mode: 'HISTORICAL_V10_S10', revision: 0, evaluatedAt: time,
+  crew.membership = { mode: 'UNIFIED_HISTORICAL', revision: 0, evaluatedAt: time,
     policyVersion: 'crew-active-production-v1/crew-freshness-v2', health: 'HEALTHY', ageSeconds: 0,
     resolvedCurrentMembers: crew.members.length, nonPublishableActive: 0, canonicalCollisions: 0, unresolvedActiveSourceSlots: 0 };
   return result;

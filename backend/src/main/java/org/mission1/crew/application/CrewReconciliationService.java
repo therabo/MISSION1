@@ -76,13 +76,13 @@ public final class CrewReconciliationService {
         var ll2 = identity.project(
                         query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).orElse(null));
         var nasa = verification.latestSuccess().orElse(null);
-        boolean scopedBinding=bindings!=null && bindings.mode()==org.mission1.crew.operational.OperationalProductionBindings.Mode.S10_SCOPED_BINDING;
+        boolean scopedBinding=bindings!=null;
         var evidence = new CrewCompatibleVersionSelector().select(
-                scopedBinding?verification.evidenceAsOf(at):verification.publicEvidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
+                verification.evidenceAsOf(at), verification.occurrenceVersionsAsOf(at)).evidence();
         var resolved = scopedBinding ? bindings.resolve(evidence,at).entrySet().stream().map(entry->{
           var parts=entry.getKey().split(":");var b=entry.getValue();
           return new CrewIdentityResolution(0,Long.parseLong(parts[0]),Integer.parseInt(parts[1]),b.person(),
-              b.matched()?CrewIdentityResolution.Method.S10_SCOPED_BINDING:CrewIdentityResolution.Method.UNRESOLVED,
+              b.matched()?CrewIdentityResolution.Method.OPERATIONAL_SUBJECT_BINDING:CrewIdentityResolution.Method.UNRESOLVED,
               List.of(),entry.getKey(),"s10-scoped-production-v1");
         }).toList() : resolve ? verification.resolve(evidence, at) : verification.resolutionsAsOf(at);
         if (resolve && !scopedBinding) {

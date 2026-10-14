@@ -48,9 +48,9 @@ class IdentityResearchSourceIntegrationTest {
   void clean() {
     jdbc.execute(
         "TRUNCATE"
-            + " crew_auto_identity,crew_auto_release,crew_auto_graph_revision,crew_auto_job,crew_source_snapshot,crew_person,crew_document_body,crew_editorial_resource"
+            + " crew_identity_research_identity,crew_identity_research_release,crew_identity_research_graph_revision,crew_identity_research_job,crew_source_snapshot,crew_person,crew_document_body,crew_resource"
             + " RESTART IDENTITY CASCADE");
-    jdbc.update("UPDATE crew_auto_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
+    jdbc.update("UPDATE crew_identity_research_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
     store.installRelease(FrozenIdentityModel.VERSION, IdentityPolicy.VERSION, TIME);
   }
 
@@ -290,12 +290,12 @@ class IdentityResearchSourceIntegrationTest {
     org.mockito.Mockito.when(bad.readTree(org.mockito.ArgumentMatchers.any(byte[].class)))
         .thenThrow(new java.io.IOException("TEST_ONLY_INVALID_ARTIFACT"));
     nasa();
-    var before = jdbc.queryForList("SELECT * FROM crew_auto_job");
+    var before = jdbc.queryForList("SELECT * FROM crew_identity_research_job");
     var w = new IdentityResearchWorker(store, loader, Clock.fixed(TIME, ZoneOffset.UTC), bad);
     assertEquals(0, w.run(16).claimed());
     assertEquals(false, w.health().get("modelLoaded"));
-    assertEquals(before, jdbc.queryForList("SELECT * FROM crew_auto_job"));
+    assertEquals(before, jdbc.queryForList("SELECT * FROM crew_identity_research_job"));
     assertEquals(
-        0, jdbc.queryForObject("SELECT count(*) FROM crew_auto_decision_revision", Integer.class));
+        0, jdbc.queryForObject("SELECT count(*) FROM crew_identity_research_decision_revision", Integer.class));
   }
 }

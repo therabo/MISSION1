@@ -14,24 +14,14 @@ import java.time.*;
 class ReplayConfiguration {
     @Bean
     CrewReplayQueryService crewReplay(
-            ReplayHistoryRepository h,
-            CrewRepository r,
-            CrewVerificationRepository v,
-            CrewReadRepository p,
-            CrewReconciliationPolicy policy,
-            CrewIdentityRepository identities,
+            ReplayHistoryRepository history,
+            CrewRepository runs,
+            CrewVerificationRepository verification,
             org.mission1.crew.membership.RetainedMembershipInputs inputs,
             org.mission1.crew.membership.ActiveMembershipPolicy lifecycle,
-            CrewReadQueryService read,
-            @Value("${mission1.replay.crew.mode:UNIFIED_V10_S10}") String mode) {
-        if (!java.util.Set.of("UNIFIED_V10_S10", "LEGACY").contains(mode)) {
-            throw new IllegalArgumentException("Known Crew Replay mode required");
-        }
-        var replay = new CrewReplayQueryService(
-                h, r, v, p, mode.equals("LEGACY") ? policy.forReplay() : policy, identities);
-        return mode.equals("LEGACY")
-                ? replay
-                : replay.unified(new UnifiedCrewReplay(inputs, lifecycle, read, r, v));
+            CrewReadQueryService read) {
+        return new CrewReplayQueryService(history, verification, lifecycle.temporal(),
+                new UnifiedCrewReplay(inputs, lifecycle, read, runs, verification));
     }
 
     @Bean

@@ -47,7 +47,7 @@ public class IdentityResearchComparison {
     var knowledge = production.knowledge(now);
     Map<String, String> resourceUrls = new HashMap<>();
     jdbc.query(
-        "SELECT id,resource_metadata->>'canonicalUrl' FROM crew_editorial_acquisition WHERE"
+        "SELECT id,resource_metadata->>'canonicalUrl' FROM crew_resource_acquisition WHERE"
             + " resource_metadata IS NOT NULL",
         r -> {
           resourceUrls.put(r.getString(1), r.getString(2));
@@ -64,11 +64,11 @@ public class IdentityResearchComparison {
     Set<String> productionDeferred = new HashSet<>();
     jdbc.query(
         """
-        SELECT DISTINCT ON(coalesce(v.subject_key,'legacy:'||r.evidence_id||':'||r.subject_index))
-        coalesce(v.subject_key,'legacy:'||r.evidence_id||':'||r.subject_index),r.person_id
+        SELECT DISTINCT ON(coalesce(v.subject_key,'unassociated:'||r.evidence_id||':'||r.subject_index))
+        coalesce(v.subject_key,'unassociated:'||r.evidence_id||':'||r.subject_index),r.person_id
         FROM crew_identity_resolution r LEFT JOIN crew_subject_version_link v
         ON v.evidence_id=r.evidence_id AND v.subject_index=r.subject_index
-        ORDER BY coalesce(v.subject_key,'legacy:'||r.evidence_id||':'||r.subject_index),r.resolved_at DESC,r.id DESC
+        ORDER BY coalesce(v.subject_key,'unassociated:'||r.evidence_id||':'||r.subject_index),r.resolved_at DESC,r.id DESC
         """,
         r -> {
           String key = "NASA:OPERATIONAL_SUBJECT:" + r.getString(1);
@@ -89,7 +89,7 @@ public class IdentityResearchComparison {
       if (subjectReferences.containsKey(source)) references.add(subjectReferences.get(source));
       for (var ref : fact.references()) {
         String url =
-            ref.table().equals("crew_editorial_acquisition")
+            ref.table().equals("crew_resource_acquisition")
                 ? resourceUrls.getOrDefault(ref.id(), "")
                 : "";
         var m = pattern.matcher(ref.locator() + " " + url);
@@ -97,7 +97,7 @@ public class IdentityResearchComparison {
           String key = "profile:" + m.group(1);
           var id =
               knowledge.resolveProviderIdentity(
-                  CrewCanonicalIdentity.Key.legacy(CrewSource.NASA_OFFICIAL, key));
+                  CrewCanonicalIdentity.Key.provider(CrewSource.NASA_OFFICIAL, key));
           if (id == null) id = anchors.get("NASA_OFFICIAL:" + key);
           if (id != null) references.add(knowledge.canonicalize(id));
         }

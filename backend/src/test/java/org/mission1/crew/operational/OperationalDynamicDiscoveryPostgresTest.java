@@ -55,9 +55,9 @@ class OperationalDynamicDiscoveryPostgresTest {
   static final String TYPED = "https://www.nasa.gov/wp-json/wp/v2/mission/999042";
 
   @BeforeEach @SuppressWarnings("unchecked") void empty() throws Exception {
-    jdbc.execute("TRUNCATE crew_person,crew_source_snapshot,crew_source_document,crew_operational_binding_release,"
+    jdbc.execute("TRUNCATE crew_person,crew_source_snapshot,crew_source_document,crew_operational_subject_binding_release,"
         + "crew_operational_resource_version,crew_operational_resource_work,crew_operational_request_permit RESTART IDENTITY CASCADE");
-    jdbc.update("UPDATE crew_operational_binding_work SET generation=1,completed_generation=0,claimed_until='epoch',claim_token=NULL,next_at='epoch'");
+    jdbc.update("UPDATE crew_operational_subject_binding_work SET generation=1,completed_generation=0,claimed_until='epoch',claim_token=NULL,next_at='epoch'");
     // Each test starts its own virtual clock at T; do not inherit a later test's NASA pacing slot.
     jdbc.update("UPDATE crew_nasa_request_budget SET next_request_at='epoch',cooldown_until='epoch'");
     fixture = new FixtureCrewSource();
@@ -170,7 +170,7 @@ class OperationalDynamicDiscoveryPostgresTest {
     assertEquals(versions, count("crew_operational_resource_version"));
     assertEquals(4, exchanges.size());
     assertEquals(OperationalPolicy.PRODUCTION.version(), jdbc.queryForObject(
-        "SELECT release_version FROM crew_operational_binding_revision ORDER BY id DESC LIMIT 1", String.class));
+        "SELECT release_version FROM crew_operational_subject_binding_revision ORDER BY id DESC LIMIT 1", String.class));
     System.out.println("SYNTHETIC Crew-42: normal LL2 -> discovery -> paced official HTML/typed mission -> S10 MATCH; zero static seeds");
   }
 
@@ -325,7 +325,7 @@ class OperationalDynamicDiscoveryPostgresTest {
     var result = source.acquire();
     assertNotNull(result.rosterId(),result.toString());
     assertEquals(1,result.members());
-    assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM crew_editorial_resource_relation WHERE roster_id=?"
+    assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM crew_resource_relation WHERE roster_id=?"
         + " AND observed_url=? AND status='OBSERVED_LINK'",Integer.class,result.rosterId(),mission.url()));
     assertEquals(CrewEditorial.CaptionKind.GENERIC_ROLE_TEXT,
         editorial.latestRoster(fixture.clock.instant()).orElseThrow().roster().members().getFirst().mentions().getLast().captionKind());
@@ -352,13 +352,15 @@ class OperationalDynamicDiscoveryPostgresTest {
     var mission = new NamedMission(name,id,astronaut);
     assertFalse(name.contains("Crew"));
     assertEquals(0,count("crew_operational_resource_work"));
-    assertEquals(0,count("crew_operational_binding_revision"));
+    assertEquals(0,count("crew_operational_subject_binding_revision"));
     namedStructured(mission);
     assertTrue(OperationalResourceDiscovery.structured("Assigned to " + name,null,null).isEmpty());
     worker.evaluate();
     assertFalse(jdbc.queryForList("SELECT requested_url FROM crew_operational_resource_work",String.class).contains(mission.url()));
     namedOfficialRelation(mission); // now the official source relation supplies the exact candidate URL
     namedObservation(mission);
+    // Respect the normal worker deadline even when SQL notifications use a later wall clock.
+    fixture.clock.time = fixture.clock.time.plusSeconds(900);
     assertEquals(1,worker.evaluate().deferred());
     assertTrue(jdbc.queryForList("SELECT requested_url FROM crew_operational_resource_work",String.class).contains(mission.url()));
     acquire(); // stable astronaut ID -> normal detailed person/flight resource

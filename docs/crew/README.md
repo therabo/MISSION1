@@ -1,5 +1,14 @@
 # ISS Crew operational context
 
+The public runtime and schema are described in [current architecture](../architecture/current-production.md)
+and the [publication baseline](../architecture/database-publication-baseline.md).
+Fresh installations use only `V1__initial_schema.sql`; pre-publication databases and
+rollback selectors are unsupported. Canonical Identity, Crew Resource Acquisition,
+Identity Research (SHADOW), Operational Subject Binding, Membership/Lifecycle,
+Current, Historical and Dynamic Mission/Resource Discovery retain their accepted
+semantics. The dated milestone notes below are historical records of their original
+checkouts; migration generation names there are not current architectural layers.
+
 **2026-10-13 bootstrap extension:** [Source-directed future resource discovery](dynamic-resource-discovery.md) follows new structured mission/Expedition/person context and changed official Crew Resource Acquisition relations into the existing paced resource graph. Five static seeds remain optional reference inputs. Canonical Identity/Identity Research/Operational Subject Binding/Crew Membership/Lifecycle authority is unchanged. Historical coverage begins with observations acquired by that installation; pre-installation backfill is not required. [Final validation](../bootstrap/clean-room-validation/final-fixes.md).
 
 **Final production authority — 2026-10-12:** Canonical Identity canonical identity/profiles/aliases; Crew Resource Acquisition editorial/resource ingestion; Identity Research general identity SHADOW; Operational Subject Binding exact operational-subject binding to existing Canonical Identity humans; Crew Membership/Lifecycle lifecycle for Current and Historical at UTC T. [ADR-0021](../adr/0021-production-operational-binding-and-unified-crew-replay.md) and [final validation](final-crew-architecture-validation/README.md) supersede the earlier dated rollout restrictions below. Next Crew milestone: dedicated clean-room empty-database bootstrap validation. RTN remains separate.

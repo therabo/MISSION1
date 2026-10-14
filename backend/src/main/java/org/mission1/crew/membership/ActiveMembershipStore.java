@@ -59,7 +59,7 @@ public class ActiveMembershipStore {
     jdbc.execute("SELECT pg_advisory_xact_lock(73491,6)");
     long generation =
         jdbc.queryForObject(
-            "SELECT generation FROM crew_active_projection_work WHERE singleton", Long.class);
+            "SELECT generation FROM crew_membership_projection_work WHERE singleton", Long.class);
     // Separate read transaction begins after acquiring the writer lock. Waiting writers cannot use
     // an old snapshot.
     var input = inputs.load(at);
@@ -70,7 +70,7 @@ public class ActiveMembershipStore {
         semanticHash = hash(meaning);
     var latest =
         jdbc.queryForList(
-            "SELECT id,input_hash,semantic_hash FROM crew_active_projection_revision ORDER BY id"
+            "SELECT id,input_hash,semantic_hash FROM crew_membership_projection_revision ORDER BY id"
                 + " DESC LIMIT 1");
     Long predecessor = latest.isEmpty() ? null : ((Number) latest.getFirst().get("id")).longValue();
     if (!latest.isEmpty()
@@ -84,7 +84,7 @@ public class ActiveMembershipStore {
     long revision =
         jdbc.queryForObject(
             """
-            INSERT INTO crew_active_projection_revision(predecessor_id,policy_version,identity_mode,evaluated_at,created_at,
+            INSERT INTO crew_membership_projection_revision(predecessor_id,policy_version,identity_mode,evaluated_at,created_at,
              ll2_run_id,ll2_snapshot_id,roster_acquisition_id,roster_id,topic_acquisition_id,topic_count_fact_id,graph_id,
              operational_run_id,operational_attempt_id,input_hash,semantic_hash,serialized_cut,input_cut,serialized_result,result,health)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::jsonb,?,?::jsonb,?) RETURNING id
@@ -152,7 +152,7 @@ public class ActiveMembershipStore {
             });
     }
     jdbc.batchUpdate(
-        "INSERT INTO crew_active_projection_member VALUES (?,?,?,?,?,?,?::jsonb)", memberRows);
+        "INSERT INTO crew_membership_projection_member VALUES (?,?,?,?,?,?,?::jsonb)", memberRows);
     var captureRows = new ArrayList<Object[]>();
     for (var h : c.health())
       if (h.attemptId() != null) {
@@ -183,18 +183,18 @@ public class ActiveMembershipStore {
     var uniqueCaptures = new TreeMap<String, Object[]>();
     for (var row : captureRows) uniqueCaptures.put(row[1].toString(), row);
     jdbc.batchUpdate(
-        "INSERT INTO crew_active_projection_input_capture VALUES (?,?,?,?,?,?)",
+        "INSERT INTO crew_membership_projection_input_capture VALUES (?,?,?,?,?,?)",
         new ArrayList<>(uniqueCaptures.values()));
 
     // Exact selected operational assertion cut, with original document FKs.
     if (!c.evidence().isEmpty())
       jdbc.update(
           """
-          INSERT INTO crew_active_projection_evidence SELECT ?,id,document_id FROM crew_verification_evidence WHERE id=ANY(?::bigint[])
+          INSERT INTO crew_membership_projection_evidence SELECT ?,id,document_id FROM crew_verification_evidence WHERE id=ANY(?::bigint[])
           """,
           revision,
           "{" + String.join(",", c.evidence().stream().map(Object::toString).toList()) + "}");
-    if (inputs.modern()) {
+    if (inputs.productionBinding()) {
       var bindings = json.valueToTree(c.identityHealth()).path("bindings");
       var bindingRows = new ArrayList<Object[]>();
       bindings
@@ -217,11 +217,11 @@ public class ActiveMembershipStore {
                     });
               });
       jdbc.batchUpdate(
-          "INSERT INTO crew_active_projection_binding VALUES(?,?,?,?,?,?,?,?::jsonb)", bindingRows);
+          "INSERT INTO crew_membership_projection_binding VALUES(?,?,?,?,?,?,?,?::jsonb)", bindingRows);
     }
     jdbc.batchUpdate(
         """
-        INSERT INTO crew_active_projection_support VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::jsonb)
+        INSERT INTO crew_membership_projection_support VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::jsonb)
         """,
         supportRows);
     var slotRows = new ArrayList<Object[]>();
@@ -243,9 +243,9 @@ public class ActiveMembershipStore {
           });
     }
     jdbc.batchUpdate(
-        "INSERT INTO crew_active_projection_slot VALUES (?,?,?,?,?,?,?,?,?,?,?::jsonb)", slotRows);
+        "INSERT INTO crew_membership_projection_slot VALUES (?,?,?,?,?,?,?,?,?,?,?::jsonb)", slotRows);
     jdbc.batchUpdate(
-        "INSERT INTO crew_active_projection_finding VALUES (?,?,?,?,?)",
+        "INSERT INTO crew_membership_projection_finding VALUES (?,?,?,?,?)",
         result.findings().stream()
             .map(f -> new Object[] {revision, f.namespace(), f.code(), f.subject(), f.detail()})
             .toList());
@@ -270,7 +270,7 @@ public class ActiveMembershipStore {
 
   private void finish(long generation, Instant at) {
     jdbc.update(
-        "UPDATE crew_active_projection_work SET"
+        "UPDATE crew_membership_projection_work SET"
             + " completed_generation=greatest(completed_generation,?),last_success_at=? WHERE"
             + " singleton",
         generation,
@@ -279,14 +279,14 @@ public class ActiveMembershipStore {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   public void failure() {
-    jdbc.update("UPDATE crew_active_projection_work SET failures=failures+1 WHERE singleton");
+    jdbc.update("UPDATE crew_membership_projection_work SET failures=failures+1 WHERE singleton");
   }
 
   @Transactional(readOnly = true, isolation = Isolation.REPEATABLE_READ)
   public Optional<Latest> latest() {
     return jdbc
         .query(
-            "SELECT * FROM crew_active_projection_revision ORDER BY id DESC LIMIT 1",
+            "SELECT * FROM crew_membership_projection_revision ORDER BY id DESC LIMIT 1",
             (r, n) -> {
               try {
                 return new Latest(
@@ -296,7 +296,7 @@ public class ActiveMembershipStore {
                     r.getString("semantic_hash"),
                     json.readValue(r.getString("serialized_result"), Result.class));
               } catch (Exception e) {
-                throw new IllegalStateException("Invalid shadow projection", e);
+                throw new IllegalStateException("Invalid membership projection", e);
               }
             })
         .stream()
@@ -310,30 +310,30 @@ public class ActiveMembershipStore {
         new TreeMap<>(
             jdbc.queryForMap(
                 "SELECT generation,completed_generation,last_success_at,failures FROM"
-                    + " crew_active_projection_work WHERE singleton"));
-    h.put("shadow_projection_failures", h.get("failures"));
+                    + " crew_membership_projection_work WHERE singleton"));
+    h.put("membership_projection_failures", h.get("failures"));
     h.put(
-        "shadow_projection_revisions",
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Long.class));
+        "membership_projection_revisions",
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Long.class));
     h.put(
-        "shadow_projection_age_seconds",
+        "membership_projection_age_seconds",
         latest
             .map(l -> Math.max(0, Duration.between(l.evaluatedAt(), at).toSeconds()))
             .orElse(-1L));
     if (latest.isPresent()) {
       var r = latest.get().result();
-      h.put("shadow_active_members", r.counts().resolvedActiveHumans());
-      h.put("shadow_retained_people", r.counts().retainedHumans());
-      h.put("shadow_unresolved_active_slots", r.counts().unresolvedActiveSlots());
+      h.put("membership_active_members", r.counts().resolvedActiveHumans());
+      h.put("membership_retained_people", r.counts().retainedHumans());
+      h.put("membership_unresolved_active_slots", r.counts().unresolvedActiveSlots());
       h.put(
-          "shadow_membership_conflicts",
+          "membership_conflicts",
           r.findings().stream().filter(f -> f.namespace().equals("MEMBERSHIP")).count());
       h.put(
-          "shadow_departure_vetoes",
+          "membership_departure_vetoes",
           r.members().stream().filter(m -> m.departureVeto() != null).count());
       for (var type : Type.values())
         h.put(
-            "shadow_membership_" + type.name().toLowerCase(Locale.ROOT) + "_supported",
+            "membership_" + type.name().toLowerCase(Locale.ROOT) + "_supported",
             r.members().stream()
                 .filter(m -> m.supports().stream().anyMatch(s -> s.type() == type && s.eligible()))
                 .count());

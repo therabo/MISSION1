@@ -50,7 +50,7 @@ public final class OperationalShadowComparison {
               e.candidate(),
               null,
               null,
-              "S10_QUALIFIED_SHADOW_ONLY",
+              "OPERATIONAL_QUALIFIED_SHADOW_ONLY",
               s.fieldConflicts());
       events.add(new Event(slot, event.type(), event.assertion(), event.applicable()));
     }
@@ -74,7 +74,7 @@ public final class OperationalShadowComparison {
       if (e.outcome() == Outcome.AUTO_MATCH) {
         codes.add(
             e.subject().departure()
-                ? "WOULD_APPLY_V10_DEPARTURE_VETO_CANDIDATE"
+                ? "WOULD_APPLY_MEMBERSHIP_DEPARTURE_VETO_CANDIDATE"
                 : e.subject().type().equals("PERSON_ENTERED_STATION")
                     ? "WOULD_CREATE_ENTRY_SUPPORT"
                     : "WOULD_BIND_OPERATIONAL_OBSERVATION");

@@ -29,10 +29,10 @@ import org.testcontainers.junit.jupiter.*;
 /**
  * TEST_ONLY transport and qualified identity evidence; production ingestion, jobs, V10 and HTTP.
  */
-@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
+@SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
-@Import(CrewTurnoverPostgresTest.TimeConfiguration.class)
+@Import({CrewTurnoverPostgresTest.TimeConfiguration.class, ResearchMembershipTestConfiguration.class})
 class CrewTurnoverPostgresTest {
   @Container static final PostgreSQLContainer<?> PG = new PostgreSQLContainer<>("postgres:16.10");
 
@@ -404,11 +404,11 @@ class CrewTurnoverPostgresTest {
     var old = after.path("members").get(0).path("id").asText();
     assertTrue(current(8).path("members").toString().contains(old));
     long revisions =
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Long.class);
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Long.class);
     store.materialize(clock.now);
     assertEquals(
         revisions,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Long.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Long.class));
   }
 
   @Test
@@ -493,19 +493,19 @@ class CrewTurnoverPostgresTest {
         jdbc.queryForList("SELECT id,state_key FROM crew_reconciliation_snapshot ORDER BY id");
     long
         projections =
-            jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Long.class),
+            jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Long.class),
         decisions =
-            jdbc.queryForObject("SELECT count(*) FROM crew_auto_decision_revision", Long.class);
+            jdbc.queryForObject("SELECT count(*) FROM crew_identity_research_decision_revision", Long.class);
     http.perform(get("/api/iss/crew")).andExpect(status().isOk());
     assertEquals(
         before,
         jdbc.queryForList("SELECT id,state_key FROM crew_reconciliation_snapshot ORDER BY id"));
     assertEquals(
         projections,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Long.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Long.class));
     assertEquals(
         decisions,
-        jdbc.queryForObject("SELECT count(*) FROM crew_auto_decision_revision", Long.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_identity_research_decision_revision", Long.class));
   }
 
   @Test
@@ -686,7 +686,7 @@ class CrewTurnoverPostgresTest {
     assertEquals(retainedRoster, editorial.latestRoster(clock.now).orElseThrow().id());
     assertTrue(
         jdbc.queryForObject(
-            "SELECT count(*)>0 FROM crew_editorial_acquisition WHERE"
+            "SELECT count(*)>0 FROM crew_resource_acquisition WHERE"
                 + " stream='NASA_EDITORIAL_EXPEDITION' AND outcome='FAILURE'",
             Boolean.class));
     assertEquals(0, worker.run(256).failed());
@@ -706,11 +706,11 @@ class CrewTurnoverPostgresTest {
     ll2(original);
     var oldPolicy =
         new ActiveMembershipPolicy(
-            CrewReconciliationPolicy.legacy(),
+            new CrewReconciliationPolicy(Duration.ofHours(6), Duration.ofHours(6), Duration.ofDays(6), Duration.ofDays(14)),
             Duration.ofHours(6),
             Duration.ofHours(6),
             Duration.ofDays(7));
-    // Production repository persists a genuine old-policy cut, then the v2 store appends its new
+    // Production repository persists a different configured policy cut, then the default store appends its new
     // cut.
     var legacyStore =
         new ActiveMembershipStore(
@@ -723,14 +723,14 @@ class CrewTurnoverPostgresTest {
             .execute(tx -> legacyStore.materialize(clock.now));
     var oldRow =
         jdbc.queryForMap(
-            "SELECT * FROM crew_active_projection_revision WHERE id=?", old.revision());
+            "SELECT * FROM crew_membership_projection_revision WHERE id=?", old.revision());
     var restarted = new IdentityResearchWorker(auto, loader, clock, json);
     assertEquals(0, restarted.run(256).failed());
     current(7);
     assertEquals(
         oldRow,
         jdbc.queryForMap(
-            "SELECT * FROM crew_active_projection_revision WHERE id=?", old.revision()));
+            "SELECT * FROM crew_membership_projection_revision WHERE id=?", old.revision()));
     assertTrue(store.latest().orElseThrow().result().policy().contains("crew-freshness-v2"));
   }
 }

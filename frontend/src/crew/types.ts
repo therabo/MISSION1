@@ -151,10 +151,10 @@ interface CrewState {
 export interface HistoricalCrew extends CrewState {
   counts: HistoricalCrewCounts;
   unresolvedSubjects: UnresolvedSubject[];
-  membership?: MembershipProjection & { mode: 'HISTORICAL_V10_S10' };
+  membership?: MembershipProjection & { mode: 'UNIFIED_HISTORICAL' };
 }
 export interface MembershipProjection {
-  mode: 'ACTIVE_PROJECTION' | 'HISTORICAL_V10_S10';
+  mode: 'ACTIVE_PROJECTION' | 'UNIFIED_HISTORICAL';
   /** Historical evaluation is read-only: revision=0, ageSeconds=0. */
   revision: number;
   evaluatedAt: string;

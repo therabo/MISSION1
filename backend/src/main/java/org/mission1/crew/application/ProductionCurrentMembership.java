@@ -2,7 +2,6 @@ package org.mission1.crew.application;
 
 import org.mission1.crew.domain.CrewSource;
 import org.mission1.crew.membership.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.*;
@@ -13,8 +12,7 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class ProductionCurrentMembership {
     public enum Mode {
-        ACTIVE_PROJECTION,
-        LEGACY_RETAINED_UNION
+        ACTIVE_PROJECTION
     }
 
     public record Selection(
@@ -31,20 +29,17 @@ public class ProductionCurrentMembership {
 
     private final ActiveMembershipReader reader;
     private final CrewReadQueryService people;
-    private final Mode mode;
     private final AtomicReference<String> lastDiagnostic = new AtomicReference<>();
 
     public ProductionCurrentMembership(
             ActiveMembershipReader reader,
-            CrewReadQueryService people,
-            @Value("${mission1.crew.current.membership-mode:ACTIVE_PROJECTION}") Mode mode) {
+            CrewReadQueryService people) {
         this.reader = reader;
         this.people = people;
-        this.mode = mode;
     }
 
     public Mode mode() {
-        return mode;
+        return Mode.ACTIVE_PROJECTION;
     }
 
     public Selection select(Instant at, CrewCanonicalIdentity identity) {
@@ -59,7 +54,7 @@ public class ProductionCurrentMembership {
             if (projection.evaluatedAt().isAfter(at))
                 throw new CurrentProjectionUnavailable(CurrentProjectionUnavailable.Reason.FUTURE);
         } catch (CurrentProjectionUnavailable failure) {
-            String diagnostic = mode + ":" + failure.reason();
+            String diagnostic = mode() + ":" + failure.reason();
             if (!diagnostic.equals(lastDiagnostic.getAndSet(diagnostic)))
                 System.getLogger(getClass().getName())
                         .log(
@@ -67,7 +62,7 @@ public class ProductionCurrentMembership {
                                 "crew_current_membership_mode={0}"
                                     + " crew_current_projection_health=UNAVAILABLE"
                                     + " crew_current_failure_reason={1}",
-                                mode,
+                                mode(),
                                 failure.reason());
             throw failure;
         }
@@ -81,7 +76,7 @@ public class ProductionCurrentMembership {
         for (var m : active) {
             var h = m.human();
             var p = profiles.get(h.anchor());
-            // Verify retained provider authority independently of the automatic shadow identity.
+            // Verify retained provider authority independently of the identity research.
             if (p == null
                     || !p.id().equals(identity.canonicalize(h.anchor()))
                     || p.externalIds().stream()
@@ -98,7 +93,7 @@ public class ProductionCurrentMembership {
                 new Selection(
                         projection, List.copyOf(published.values()), nonPublishable, collisions);
         String diagnostic =
-                mode
+                mode()
                         + ":"
                         + projection.revision()
                         + ":"
@@ -119,7 +114,7 @@ public class ProductionCurrentMembership {
                                 + " crew_current_projection_health={4}"
                                 + " crew_current_non_publishable_active={5}"
                                 + " crew_current_canonical_collisions={6}",
-                            mode,
+                            mode(),
                             projection.revision(),
                             published.size(),
                             Math.max(0, Duration.between(projection.evaluatedAt(), at).toSeconds()),

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.*;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -69,7 +68,7 @@ class JdbcCrewRepositoryTest {
     }
 
     @Test void cleanDatabaseMigratesV1V2V3AndHasNoPresenceTable() {
-        assertEquals(13, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
+        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history WHERE success", Integer.class));
         assertEquals(78, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
                             + " AND table_name LIKE 'crew_%'", Integer.class));
         assertTrue(query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).isEmpty());
@@ -78,22 +77,7 @@ class JdbcCrewRepositoryTest {
                             + " 'station_presence')", Integer.class));
     }
 
-    @Test void upgradesExistingV2SchemaWithoutChangingOrbitalData() {
-        var baseline = Flyway.configure().dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
-                .schemas("crew_upgrade_test").target("2").load();
-        assertEquals(2, baseline.migrate().migrationsExecuted);
-        jdbc.update("INSERT INTO crew_upgrade_test.nasa_oem_ephemerides"
-                    + " (sha256,xml,creation_date,start_time,stop_time,last_retrieved_at) VALUES"
-                    + " (?, ?, now(), now(), now()+interval '1 day', now())", "a".repeat(64), new byte[]{1,2,3}); // TEST sentinel
-        var before = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
-        var upgrade = Flyway.configure().dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
-                .schemas("crew_upgrade_test").load();
-        assertEquals(11, upgrade.migrate().migrationsExecuted); upgrade.validate();
-        var after = jdbc.queryForList("SELECT * FROM crew_upgrade_test.nasa_oem_ephemerides");
-        assertArrayEquals((byte[])before.getFirst().get("xml"), (byte[])after.getFirst().get("xml"));
-        assertEquals(before.getFirst().get("creation_date"), after.getFirst().get("creation_date"));
-        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM crew_upgrade_test.crew_source_snapshot", Integer.class));
-    }
+
 
     @Test void roundTripsRealRecordedObservationsWithIdentityProvenanceDurationsAndRights() {
         var original = fixture.source.fetchCurrentExpedition(Station.ISS).value();

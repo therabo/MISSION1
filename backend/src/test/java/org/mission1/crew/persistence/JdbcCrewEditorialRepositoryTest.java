@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.net.URI;
 import java.time.*;
 import java.util.*;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -46,8 +45,8 @@ class JdbcCrewEditorialRepositoryTest {
 
   @BeforeEach
   void clean() {
-    jdbc.execute("TRUNCATE crew_document_body,crew_editorial_resource RESTART IDENTITY CASCADE");
-    jdbc.update("UPDATE crew_editorial_refresh_lease SET next_eligible_at='1970-01-01T00:00:00Z'");
+    jdbc.execute("TRUNCATE crew_document_body,crew_resource RESTART IDENTITY CASCADE");
+    jdbc.update("UPDATE crew_resource_refresh_lease SET next_eligible_at='1970-01-01T00:00:00Z'");
     jdbc.update(
         "UPDATE crew_nasa_request_budget SET"
             + " next_request_at='1970-01-01T00:00:00Z',cooldown_until='1970-01-01T00:00:00Z'");
@@ -86,29 +85,7 @@ class JdbcCrewEditorialRepositoryTest {
     return jdbc.queryForObject("SELECT count(*) FROM " + table, Integer.class);
   }
 
-  @Test
-  void migrationV7UpgradeAndFreshSchemaAreAdditive() {
-    var old =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_test")
-            .target("7")
-            .load();
-    assertEquals(7, old.migrate().migrationsExecuted);
-    jdbc.update(
-        "INSERT INTO upgrade_test.crew_person VALUES"
-            + " ('00000000-0000-0000-0000-000000000123',now())");
-    var before = jdbc.queryForList("SELECT * FROM upgrade_test.crew_person");
-    var upgrade =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_test")
-            .load();
-    assertEquals(6, upgrade.migrate().migrationsExecuted);
-    upgrade.validate();
-    assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_test.crew_person"));
-    assertEquals(0, count("crew_editorial_acquisition"));
-  }
+
 
   @Test
   void sameBodyNoiseAndModifiedChangesReuseSemanticContentButKeepEveryCapture() {
@@ -124,9 +101,9 @@ class JdbcCrewEditorialRepositoryTest {
     ((ObjectNode) noisy).put("modified_gmt", "2026-10-10T12:00:02");
     var changed = roster(t.plusSeconds(2), noisy.toString());
     assertEquals(a.rosterId(), changed.rosterId());
-    assertEquals(3, count("crew_editorial_acquisition"));
-    assertEquals(1, count("crew_editorial_roster_version"));
-    assertEquals(7, count("crew_editorial_roster_member"));
+    assertEquals(3, count("crew_resource_acquisition"));
+    assertEquals(1, count("crew_resource_roster_version"));
+    assertEquals(7, count("crew_resource_roster_member"));
     assertEquals(2, count("crew_source_document"));
     assertEquals(
         t.plusSeconds(2), repository.latestRoster(t.plusSeconds(3)).orElseThrow().capturedAt());
@@ -166,7 +143,7 @@ class JdbcCrewEditorialRepositoryTest {
     var latest = restarted.latestRoster(t.plusSeconds(5)).orElseThrow();
     assertEquals(a.rosterId(), latest.id());
     assertEquals(again.id(), latest.acquisitionId());
-    assertEquals(2, count("crew_editorial_roster_version"));
+    assertEquals(2, count("crew_resource_roster_version"));
     assertEquals(changed.rosterId(), restarted.latestRoster(t.plusSeconds(2)).orElseThrow().id());
     assertTrue(restarted.latestRoster(t.minusSeconds(1)).isEmpty());
   }
@@ -201,8 +178,8 @@ class JdbcCrewEditorialRepositoryTest {
             Outcome.DEGRADED,
             "TOPIC_COUNT_ROSTER_MISMATCH:reported=8,roster=7");
     assertEquals(first.rosterId(), second.rosterId());
-    assertEquals(1, count("crew_editorial_roster_version"));
-    assertEquals(2, count("crew_editorial_acquisition"));
+    assertEquals(1, count("crew_resource_roster_version"));
+    assertEquals(2, count("crew_resource_acquisition"));
     assertTrue(
         repository
             .latest(Stream.NASA_EDITORIAL_EXPEDITION, second.capture().requestedUrl(), false)
@@ -228,8 +205,8 @@ class JdbcCrewEditorialRepositoryTest {
           facts,
           Outcome.SUCCESS,
           "VALID_FACTS");
-    assertEquals(2, count("crew_editorial_topic_fact"));
-    assertEquals(4, count("crew_editorial_fact_capture"));
+    assertEquals(2, count("crew_resource_topic_fact"));
+    assertEquals(4, count("crew_resource_fact_capture"));
     var changed = n.deepCopy();
     ((ObjectNode) changed.path("content"))
         .put(
@@ -245,8 +222,8 @@ class JdbcCrewEditorialRepositoryTest {
         parser.topic(changed, r, NasaEditorialParser.TOPIC),
         Outcome.SUCCESS,
         "VALID_FACTS");
-    assertEquals(3, count("crew_editorial_topic_fact"));
-    assertEquals(6, count("crew_editorial_fact_capture"));
+    assertEquals(3, count("crew_resource_topic_fact"));
+    assertEquals(6, count("crew_resource_fact_capture"));
   }
 
   @Test
@@ -277,13 +254,13 @@ class JdbcCrewEditorialRepositoryTest {
   @ParameterizedTest
   @ValueSource(
       strings = {
-        "crew_editorial_acquisition",
-        "crew_editorial_resource",
-        "crew_editorial_roster_version",
-        "crew_editorial_roster_member",
-        "crew_editorial_topic_fact",
-        "crew_editorial_fact_capture",
-        "crew_editorial_resource_relation"
+        "crew_resource_acquisition",
+        "crew_resource",
+        "crew_resource_roster_version",
+        "crew_resource_roster_member",
+        "crew_resource_topic_fact",
+        "crew_resource_fact_capture",
+        "crew_resource_relation"
       })
   void immutableRowsCannotBeUpdatedOrDeleted(String table) {
     var c = roster(t, current().toString());
@@ -319,9 +296,9 @@ class JdbcCrewEditorialRepositoryTest {
                 "UPDATE "
                     + table
                     + " SET "
-                    + (table.equals("crew_editorial_roster_member")
+                    + (table.equals("crew_resource_roster_member")
                         ? "member_index=member_index"
-                        : table.equals("crew_editorial_fact_capture")
+                        : table.equals("crew_resource_fact_capture")
                             ? "fact_id=fact_id"
                             : "id=id")));
   }
@@ -333,13 +310,13 @@ class JdbcCrewEditorialRepositoryTest {
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "INSERT INTO crew_editorial_resource(resource_kind,wp_id) VALUES ('PERSON',123)"));
+                "INSERT INTO crew_resource(resource_kind,wp_id) VALUES ('PERSON',123)"));
     assertThrows(
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
                 "INSERT INTO"
-                    + " crew_editorial_roster_member(roster_id,member_index,display_name,role_text,mentions,conflicts,semantic_hash)"
+                    + " crew_resource_roster_member(roster_id,member_index,display_name,role_text,mentions,conflicts,semantic_hash)"
                     + " VALUES (?,30,'TEST','TEST','[]','[]',?)",
                 a.rosterId(),
                 "a".repeat(64)));

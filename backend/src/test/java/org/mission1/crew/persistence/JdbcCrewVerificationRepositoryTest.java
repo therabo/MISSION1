@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.mission1.crew.FixtureCrewSource;
 import org.mission1.crew.application.*;
@@ -148,7 +147,6 @@ class JdbcCrewVerificationRepositoryTest {
     assertEquals(10, count("crew_subject_occurrence"));
     var at = Instant.parse("2026-10-11T00:00:00Z");
     assertEquals(4, verification.evidenceAsOf(at).size());
-    assertEquals(3, verification.publicEvidenceAsOf(at).size());
     var versions = verification.occurrenceVersionsAsOf(at);
     assertEquals(4, versions.size());
     assertEquals(1, versions.getFirst().observations().size());
@@ -203,7 +201,7 @@ class JdbcCrewVerificationRepositoryTest {
         Instant.parse("2026-10-07T12:48:02Z"),
         selection.evidence().stream().filter(e -> e.value().type()==CrewVerificationEvidence.Type.PERSON_DEPARTED_STATION).findFirst().orElseThrow().value().observation().sourcePublishedAt());
     assertEquals(0, count("crew_identity_binding_version"));
-    assertEquals(0, count("crew_auto_decision_revision"));
+    assertEquals(0, count("crew_identity_research_decision_revision"));
   }
 
   @Test
@@ -265,42 +263,7 @@ class JdbcCrewVerificationRepositoryTest {
     return nasa((u, e, l) -> fetch(200, body, null)).ingest();
   }
 
-  @Test
-  void emptySchemaAndV3UpgradePreserveCrewAndOrbitHistory() {
-    assertEquals(13, count("flyway_schema_history"));
-    var v3 =
-        Flyway.configure()
-            .dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
-            .schemas("verification_upgrade")
-            .target("3")
-            .load();
-    assertEquals(3, v3.migrate().migrationsExecuted);
-    jdbc.update(
-        "INSERT INTO verification_upgrade.crew_person(id,created_at) VALUES (?,?)",
-        new UUID(0, 1),
-        now.atOffset(ZoneOffset.UTC));
-    jdbc.update(
-        "INSERT INTO"
-            + " verification_upgrade.nasa_oem_ephemerides(sha256,xml,creation_date,start_time,stop_time,last_retrieved_at)"
-            + " VALUES (?, ?, now(),now(),now()+interval '1 day',now())",
-        "c".repeat(64),
-        new byte[] {1, 2, 3});
-    var latest =
-        Flyway.configure()
-            .dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
-            .schemas("verification_upgrade")
-            .load();
-    assertEquals(10, latest.migrate().migrationsExecuted);
-    latest.validate();
-    assertEquals(
-        1,
-        jdbc.queryForObject(
-            "SELECT count(*) FROM verification_upgrade.crew_person", Integer.class));
-    assertArrayEquals(
-        new byte[] {1, 2, 3},
-        jdbc.queryForObject(
-            "SELECT xml FROM verification_upgrade.nasa_oem_ephemerides", byte[].class));
-  }
+
 
   @Test
   void twoIdenticalFetchesDeduplicateRawDocumentAndEvidence() {
@@ -368,26 +331,25 @@ class JdbcCrewVerificationRepositoryTest {
     var ll = ll2();
     var before = runs.findSnapshot(ll.snapshotId()).orElseThrow();
     ingest();
-    org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
     var e = verification.evidenceAsOf(now);
     var resolved = verification.resolve(e, now);
     assertEquals(11, resolved.size());
     assertEquals(
-        6,
+        0,
         resolved.stream()
             .filter(x -> x.method() == CrewIdentityResolution.Method.EXACT_UNIQUE_NAME)
             .count());
     assertEquals(
-        2,
+        5,
         resolved.stream()
             .filter(x -> x.method() == CrewIdentityResolution.Method.OFFICIAL_PROFILE)
             .count());
     assertEquals(
-        3,
+        6,
         resolved.stream()
             .filter(x -> x.method() == CrewIdentityResolution.Method.UNRESOLVED)
             .count());
-    assertEquals(9, count("crew_person"));
+    assertEquals(12, count("crew_person"));
     assertEquals(12, count("crew_person_external_id"));
     assertEquals(7, count("crew_person_observation"));
     assertEquals(before, runs.findSnapshot(ll.snapshotId()).orElseThrow());
@@ -400,7 +362,6 @@ class JdbcCrewVerificationRepositoryTest {
   void reconciliationRoundTripsRelationalLineageAndRetainsLl2Profiles() {
     var ll = ll2();
     ingest();
-    org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
     var run = service.reconcile();
     var stored = reconciliation.latest().orElseThrow();
     var current = service.current();
@@ -408,9 +369,9 @@ class JdbcCrewVerificationRepositoryTest {
     assertEquals(current, stored.value());
     assertEquals(ll.snapshotId(), stored.value().primarySnapshotId());
     assertEquals(11, stored.value().officialCrewCount());
-    assertEquals(6, stored.value().presentInBoth().size());
-    assertEquals(2, stored.value().onlyInNasa().size());
-    assertEquals(3, stored.value().unresolved().size());
+    assertEquals(0, stored.value().presentInBoth().size());
+    assertEquals(5, stored.value().onlyInNasa().size());
+    assertEquals(6, stored.value().unresolved().size());
     assertEquals(ReconciliationStatus.PARTIAL_MATCH, stored.value().status());
     assertEquals(3, count("crew_reconciliation_evidence"));
     assertEquals(11, count("crew_reconciliation_resolution"));
@@ -430,7 +391,6 @@ class JdbcCrewVerificationRepositoryTest {
   void sameInputsReuseSnapshotButNewAlgorithmKeepsAnotherHistory() {
     ll2();
     ingest();
-    org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
     var a = service.reconcile();
     var b = service.reconcile();
     assertEquals(a.snapshotId(), b.snapshotId());
@@ -513,7 +473,6 @@ class JdbcCrewVerificationRepositoryTest {
   void reconciliationWriteFailureKeepsPreviousCanonicalSnapshot() {
     ll2();
     ingest();
-    org.mission1.crew.LegacyCrewIdentityFixture.retainV1(jdbc, verification, now);
     var a = service.reconcile();
     fixture.clock.time = now.plusSeconds(7 * 3600);
     rejectInserts("crew_reconciled_person");

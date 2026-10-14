@@ -25,7 +25,7 @@ class FrozenIdentityModelTest {
           new BufferedReader(
               new InputStreamReader(
                   new GZIPInputStream(
-                      getClass().getResourceAsStream("/crew/automatic/" + file))))) {
+                      getClass().getResourceAsStream("/crew/identity-research/" + file))))) {
         for (String line; (line = in.readLine()) != null; ) {
           var row = JSON.readTree(line);
           var score = MODEL.score(vector(row.path("features")));

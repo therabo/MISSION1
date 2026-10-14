@@ -31,7 +31,7 @@ public final class ResearchMembershipIdentity {
 
   public Binding bind(String source, String table, String referenceId, String hash) {
     var d = decisions.get(source);
-    if (d == null) return new Binding(null, null, null, "NO_AUTOMATIC_DECISION");
+    if (d == null) return new Binding(null, null, null, "NO_RESEARCH_DECISION");
     boolean own = false;
     for (var r : d.evidence().path("references"))
       if (table.equals(r.path("table").asText())

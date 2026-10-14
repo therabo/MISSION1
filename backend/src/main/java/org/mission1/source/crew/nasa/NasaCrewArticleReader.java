@@ -52,7 +52,7 @@ public final class NasaCrewArticleReader {
             }
             return List.copyOf(result);
         } catch (Exception e) {
-            // Unsupported legacy input stays unassociated; it cannot acquire a guessed source ID.
+            // Unassociated source input stays unassociated; it cannot acquire a guessed source ID.
             return List.of();
         }
     }

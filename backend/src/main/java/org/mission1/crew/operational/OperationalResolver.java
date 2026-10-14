@@ -40,7 +40,7 @@ public final class OperationalResolver {
         List.of(),
         List.of(
             new IdentityEvidence.Reference(
-                "s10_resource", r.ref(), r.hash(), r.locator(), r.capturedAt())));
+                "operational_resource", r.ref(), r.hash(), r.locator(), r.capturedAt())));
   }
 
   private static double[] features(

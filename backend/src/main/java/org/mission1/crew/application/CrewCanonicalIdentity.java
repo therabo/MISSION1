@@ -18,7 +18,7 @@ public final class CrewCanonicalIdentity {
                 throw new IllegalArgumentException("Typed person identity required");
         }
 
-        public static Key legacy(CrewSource source, String key) {
+        public static Key provider(CrewSource source, String key) {
             return new Key(
                     source,
                     source == CrewSource.LAUNCH_LIBRARY_2 ? "PERSON" : "PERSON_PROFILE_RESOURCE",
@@ -82,7 +82,7 @@ public final class CrewCanonicalIdentity {
     public PersonReference reference(PersonReference p) {
         var approved =
                 p.externalIds().stream()
-                        .map(e -> resolveProviderIdentity(Key.legacy(e.source(), e.value())))
+                        .map(e -> resolveProviderIdentity(Key.provider(e.source(), e.value())))
                         .filter(Objects::nonNull)
                         .distinct()
                         .toList();

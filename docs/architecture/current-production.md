@@ -1,7 +1,7 @@
 # Current production architecture
 
-Accepted semantics are governed by ADR-0021 and ADR-0022. This naming cleanup changes
-no architecture, schema, source authority, threshold, API or rendering policy. One
+Accepted semantics are governed by ADR-0021 and ADR-0022; ADR-0023 establishes the
+first public database baseline and removes pre-publication compatibility. One
 Java21/Spring application and PostgreSQL remain the complete backend deployment.
 
 | Responsibility | Current implementation |
@@ -30,31 +30,32 @@ is 2h10m and one timer follows `nextEligibleAt`. State is computed from retained
 elements, never live onboard telemetry. OEM remains a separately sourced prediction.
 No provider/source selection, propagation, camera timing or frame convention changed.
 
-Deployment/wire compatibility keeps `S10_SCOPED_BINDING`, `UNIFIED_V10_S10`,
-`HISTORICAL_V10_S10`, `V9_AUTOMATIC_SHADOW`, existing schedule keys and serialized
-releases. Explicit `LEGACY_RETAINED_UNION`, `LEGACY_OPERATIONAL_BINDING` and Replay
-`LEGACY` remain supported emergency fallback modes. No automatic fallback is added.
+Fresh PostgreSQL applies exactly `V1__initial_schema.sql`, defining the final schema
+without operational or coordination rows. Normal application initialization creates
+six mutable coordination registers; the existing packaged reviewed manifest and
+frozen model initialize their own reference knowledge. Source pipelines populate
+all observations, resource work, identity decisions, memberships and orbital history.
+The development V1–V13 chain has been squashed before first public release. Upgrade
+from its databases is deliberately unsupported; those stores must be discarded.
+
+Production operational binding and unified Historical are the only production paths.
+Current retains its `ACTIVE_PROJECTION` wire label; Historical uses `UNIFIED_HISTORICAL`.
+Research execution uses `IDENTITY_RESEARCH_SHADOW`; production lineage uses
+`OPERATIONAL_SUBJECT_BINDING`. Research cannot authorize production identity or
+membership. Missing/corrupt/expired projections and incompatible binding heads still
+fail closed. Explicit canonical correspondence remains a safety fallback only when
+no operational binding head exists. Scheduler namespaces are `identity-research`,
+`membership` and `operational-binding`; no rollback selector is supported.
 
 Diagnostic resource/research comparisons live in test scope and are absent from
 the production jar. The explicit retained-document reinterpretation command and
 the documented `StationPresence` evidence contract remain preserved; ordinary
 production acquisition uses its established source services.
 
-## Historical vocabulary compatibility
+Frozen parser/model/policy and source API versions retain their provenance meaning.
+Historical dossiers and ADRs describe their original revisions; reproducing dated
+scripts requires the corresponding Git checkout, not the public schema.
 
-| Historical label | Domain responsibility |
-| --- | --- |
-| V7 | Canonical Identity |
-| V8 | Crew Resource Acquisition |
-| V9 | Identity Research (SHADOW) |
-| S10 | Operational Subject Binding |
-| V10 | Crew Membership/Lifecycle |
-
-Migration files/checksums, persisted SQL/JSON identities, release/model/parser
-versions and historical validation dossiers remain unchanged. Historical scripts
-refer to the checkout at which they were recorded; reproducing that dated evidence
-requires that revision. They are not production entrypoints of the cleaned jar.
-
-[Cleanup audit](../maintenance/production-code-cleanup.md) ·
-[Dynamic discovery](../crew/dynamic-resource-discovery.md) ·
-[ADR index](../adr/README.md).
+[Publication schema and validation](database-publication-baseline.md) ·
+[Previous code cleanup](../maintenance/production-code-cleanup.md) ·
+[Dynamic discovery](../crew/dynamic-resource-discovery.md) · [ADR index](../adr/README.md).

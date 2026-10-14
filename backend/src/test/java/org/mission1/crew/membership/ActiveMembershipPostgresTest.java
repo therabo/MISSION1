@@ -9,7 +9,6 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.zip.GZIPInputStream;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,7 +26,8 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.*;
 
-@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
+@org.springframework.context.annotation.Import(ResearchMembershipTestConfiguration.class)
+@SpringBootTest
 @Testcontainers
 class ActiveMembershipPostgresTest {
   @Container static final PostgreSQLContainer<?> PG = new PostgreSQLContainer<>("postgres:16.10");
@@ -61,9 +61,9 @@ class ActiveMembershipPostgresTest {
   void clean() {
     jdbc.execute(
         "TRUNCATE"
-            + " crew_active_projection_revision,crew_auto_identity,crew_auto_release,crew_auto_graph_revision,crew_auto_job,crew_source_snapshot,crew_person,crew_document_body,crew_editorial_resource"
+            + " crew_membership_projection_revision,crew_identity_research_identity,crew_identity_research_release,crew_identity_research_graph_revision,crew_identity_research_job,crew_source_snapshot,crew_person,crew_document_body,crew_resource"
             + " RESTART IDENTITY CASCADE");
-    jdbc.update("UPDATE crew_auto_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
+    jdbc.update("UPDATE crew_identity_research_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
   }
 
   JsonNode fixture(String name) throws Exception {
@@ -77,7 +77,7 @@ class ActiveMembershipPostgresTest {
   JsonNode records() throws Exception {
     try (var in =
         new GZIPInputStream(
-            getClass().getResourceAsStream("/crew/automatic/source-feature-reference.json.gz"))) {
+            getClass().getResourceAsStream("/crew/identity-research/source-feature-reference.json.gz"))) {
       return json.readTree(in).path("records");
     }
   }
@@ -235,30 +235,7 @@ class ActiveMembershipPostgresTest {
     assertEquals(0, worker.run(256).failed());
   }
 
-  @Test
-  void freshAndV9Upgrade() {
-    assertEquals(
-        13, jdbc.queryForObject("SELECT count(*) FROM flyway_schema_history", Integer.class));
-    var old =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("active_upgrade")
-            .target("9")
-            .load();
-    assertEquals(9, old.migrate().migrationsExecuted);
-    jdbc.update(
-        "INSERT INTO active_upgrade.crew_person VALUES"
-            + " ('00000000-0000-0000-0000-000000000001',now())");
-    var before = jdbc.queryForList("SELECT * FROM active_upgrade.crew_person");
-    var newer =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("active_upgrade")
-            .load();
-    assertEquals(4, newer.migrate().migrationsExecuted);
-    newer.validate();
-    assertEquals(before, jdbc.queryForList("SELECT * FROM active_upgrade.crew_person"));
-  }
+
 
   @Test
   void independentLl2ActiveAndRetainedProfiles() throws Exception {
@@ -312,7 +289,7 @@ class ActiveMembershipPostgresTest {
     assertEquals(
         10,
         jdbc.queryForObject(
-            "SELECT count(*) FROM crew_active_projection_support WHERE projection_id=?",
+            "SELECT count(*) FROM crew_membership_projection_support WHERE projection_id=?",
             Integer.class,
             r.revision()));
   }
@@ -412,7 +389,7 @@ class ActiveMembershipPostgresTest {
     assertEquals(old, again.result().cut().ll2Snapshot());
     assertEquals(
         3,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Integer.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Integer.class));
   }
 
   @Test
@@ -426,19 +403,19 @@ class ActiveMembershipPostgresTest {
     }
     assertEquals(
         1,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Integer.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Integer.class));
   }
 
   @ParameterizedTest
   @ValueSource(
       strings = {
-        "crew_active_projection_revision",
-        "crew_active_projection_member",
-        "crew_active_projection_support",
-        "crew_active_projection_slot",
-        "crew_active_projection_finding",
-        "crew_active_projection_evidence",
-        "crew_active_projection_input_capture"
+        "crew_membership_projection_revision",
+        "crew_membership_projection_member",
+        "crew_membership_projection_support",
+        "crew_membership_projection_slot",
+        "crew_membership_projection_finding",
+        "crew_membership_projection_evidence",
+        "crew_membership_projection_input_capture"
       })
   void immutableHistory(String table) throws Exception {
     ll2(current, t, "a");
@@ -466,7 +443,7 @@ class ActiveMembershipPostgresTest {
         r.semanticHash(),
         jdbc.queryForObject(
             "SELECT encode(sha256(convert_to(serialized_result,'UTF8')),'hex') FROM"
-                + " crew_active_projection_revision WHERE id=?",
+                + " crew_membership_projection_revision WHERE id=?",
             String.class,
             r.revision()));
     assertThrows(
@@ -482,7 +459,7 @@ class ActiveMembershipPostgresTest {
                 }));
     assertEquals(
         1,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Integer.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Integer.class));
     var wrongOwner =
         assertThrows(
             DataIntegrityViolationException.class,
@@ -492,9 +469,9 @@ class ActiveMembershipPostgresTest {
                         status -> {
                           var open = store.materialize(t.plus(Duration.ofHours(7)));
                           jdbc.update(
-                              "INSERT INTO crew_active_projection_member SELECT"
+                              "INSERT INTO crew_membership_projection_member SELECT"
                                   + " projection_id,'LL2:PERSON:WRONG',person_id,state,profile_snapshot_id,departure_evidence_id,payload"
-                                  + " FROM crew_active_projection_member WHERE projection_id=?"
+                                  + " FROM crew_membership_projection_member WHERE projection_id=?"
                                   + " LIMIT 1",
                               open.revision());
                         }));
@@ -543,7 +520,7 @@ class ActiveMembershipPostgresTest {
         captureTime.atOffset(ZoneOffset.UTC),
         hash,
         document);
-    qualifyOperational(evidence, humanId, captureTime, "legacy:" + evidence + ":0");
+    qualifyOperational(evidence, humanId, captureTime, "unassociated:" + evidence + ":0");
     return evidence;
   }
 
@@ -701,8 +678,8 @@ class ActiveMembershipPostgresTest {
         jdbc.queryForObject(
             "SELECT count(*) FROM crew_person_equivalence_decision", Integer.class));
     assertTrue(
-        verification.publicEvidenceAsOf(t.plusSeconds(8)).stream()
-            .noneMatch(e -> e.id() == evidence));
+        verification.evidenceAsOf(t.plusSeconds(8)).stream()
+            .anyMatch(e -> e.id() == evidence));
     assertFalse(
         org.mission1.crew.application.CrewReconciliationPolicy.defaults()
             .applicableEffectiveTime(output.value().getFirst(), event.minusNanos(1)));
@@ -764,9 +741,9 @@ class ActiveMembershipPostgresTest {
                         status -> {
                           var open = store.materialize(t.plus(Duration.ofHours(7)));
                           jdbc.update(
-                              "INSERT INTO crew_active_projection_slot SELECT"
+                              "INSERT INTO crew_membership_projection_slot SELECT"
                                   + " projection_id,slot_key||'wrong',state,acquisition_id,roster_id,999,evidence_id,subject_index,decision_id,observation_id,payload"
-                                  + " FROM crew_active_projection_slot WHERE projection_id=? LIMIT"
+                                  + " FROM crew_membership_projection_slot WHERE projection_id=? LIMIT"
                                   + " 1",
                               open.revision());
                         }));
@@ -780,41 +757,41 @@ class ActiveMembershipPostgresTest {
                         status -> {
                           var open = store.materialize(t.plus(Duration.ofHours(7)));
                           jdbc.update(
-                              "INSERT INTO crew_active_projection_support SELECT"
+                              "INSERT INTO crew_membership_projection_support SELECT"
                                   + " projection_id,human_key,support_key||'wrong',support_type,stream,captured_at,effective_at,precision,freshness,eligible,snapshot_id,expedition_id,person_id,acquisition_id,roster_id,member_index,evidence_id,subject_index,999999,observation_id,departure_evidence_id,payload"
-                                  + " FROM crew_active_projection_support WHERE decision_id IS NOT"
+                                  + " FROM crew_membership_projection_support WHERE decision_id IS NOT"
                                   + " NULL AND projection_id=? LIMIT 1",
                               open.revision());
                         }));
     assertTrue(
-        wrongSupport.getMostSpecificCause().getMessage().contains("Unqualified automatic binding"));
+        wrongSupport.getMostSpecificCause().getMessage().contains("Unqualified identity research binding"));
     String columns =
         "predecessor_id,policy_version,identity_mode,evaluated_at,created_at,ll2_run_id,ll2_snapshot_id,roster_acquisition_id,roster_id,topic_acquisition_id,topic_count_fact_id,graph_id,operational_run_id,operational_attempt_id,input_hash,semantic_hash,serialized_cut,input_cut,serialized_result,result,health";
     assertThrows(
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "INSERT INTO crew_active_projection_revision("
+                "INSERT INTO crew_membership_projection_revision("
                     + columns
                     + ") SELECT "
                     + columns
-                    + " FROM crew_active_projection_revision WHERE id=?",
+                    + " FROM crew_membership_projection_revision WHERE id=?",
                 r.revision()));
     assertThrows(
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "INSERT INTO crew_active_projection_revision("
+                "INSERT INTO crew_membership_projection_revision("
                     + columns
                     + ") SELECT "
                     + columns
                         .replace("predecessor_id", String.valueOf(r.revision()))
                         .replace("semantic_hash", "repeat('0',64)")
-                    + " FROM crew_active_projection_revision WHERE id=?",
+                    + " FROM crew_membership_projection_revision WHERE id=?",
                 r.revision()));
     assertEquals(
         1,
-        jdbc.queryForObject("SELECT count(*) FROM crew_active_projection_revision", Integer.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_membership_projection_revision", Integer.class));
   }
 
   @Test
@@ -826,7 +803,7 @@ class ActiveMembershipPostgresTest {
             DataIntegrityViolationException.class,
             () ->
                 jdbc.update(
-                    "INSERT INTO crew_active_projection_finding VALUES"
+                    "INSERT INTO crew_membership_projection_finding VALUES"
                         + " (?,'MEMBERSHIP','TEST_ONLY_LATE_INSERT','TEST_ONLY','TEST_ONLY')",
                     r.revision()));
     assertTrue(failure.getMostSpecificCause().getMessage().contains("sealed"));
@@ -835,28 +812,28 @@ class ActiveMembershipPostgresTest {
   @Test
   void sourceNotificationSurvivesRestartAndCompletesOnlyObservedGeneration() throws Exception {
     long before =
-        jdbc.queryForObject("SELECT generation FROM crew_active_projection_work", Long.class);
+        jdbc.queryForObject("SELECT generation FROM crew_membership_projection_work", Long.class);
     ll2(current, t, "a");
     long notified =
-        jdbc.queryForObject("SELECT generation FROM crew_active_projection_work", Long.class);
+        jdbc.queryForObject("SELECT generation FROM crew_membership_projection_work", Long.class);
     assertTrue(notified > before);
     store.materialize(t.plusSeconds(1));
     assertEquals(
         notified,
         jdbc.queryForObject(
-            "SELECT completed_generation FROM crew_active_projection_work", Long.class));
+            "SELECT completed_generation FROM crew_membership_projection_work", Long.class));
     ll2(current, t.plusSeconds(2), "b");
     assertTrue(
         jdbc.queryForObject(
-            "SELECT generation>completed_generation FROM crew_active_projection_work",
+            "SELECT generation>completed_generation FROM crew_membership_projection_work",
             Boolean.class));
     store.failure();
     assertTrue(
-        jdbc.queryForObject("SELECT failures>0 FROM crew_active_projection_work", Boolean.class));
+        jdbc.queryForObject("SELECT failures>0 FROM crew_membership_projection_work", Boolean.class));
     store.materialize(t.plusSeconds(3));
     assertFalse(
         jdbc.queryForObject(
-            "SELECT generation>completed_generation FROM crew_active_projection_work",
+            "SELECT generation>completed_generation FROM crew_membership_projection_work",
             Boolean.class));
   }
 }

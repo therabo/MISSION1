@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.*;
 import com.sun.net.httpserver.HttpServer;
 
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -393,10 +392,11 @@ class JdbcCrewRefreshRepositoryTest {
     void completedArrivalTriggersThenSettlesOnlyAfterMatchingStructuredAssignment()
             throws Exception {
         advance(5);
+        org.mission1.crew.ReviewedIdentityTestFixture.bind(jdbc, "990650", "profile:test-transfer", fixture.clock.time);
         nasaBody =
                 feed(
                         "TEST_ONLY Arrival",
-                        "<p>NASA astronauts Test Transfer have entered the International Space"
+                        "<p>NASA astronauts <a href='https://www.nasa.gov/people/test-transfer/'>Test Transfer</a> have entered the International Space"
                                 + " Station.</p>",
                         fixture.clock.time);
         advance(5);
@@ -412,13 +412,11 @@ class JdbcCrewRefreshRepositoryTest {
                         String.class));
         var rosterPage = (ObjectNode) json.readTree(fixture.body);
         ((ObjectNode) rosterPage.withArray("results").get(0).get("crew").get(0).get("astronaut"))
-                .put("name", "Test Transfer");
+                .put("name", "Test Transfer").put("id", 990650);
         fixture.body = rosterPage.toString();
         advance(60);
-        assertEquals("OPEN",
-                refresh.followUps().getFirst().state()); // New name-only identity awaits review.
-        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
-                jdbc, verification, fixture.clock.time);
+        assertEquals("SETTLED",
+                refresh.followUps().getFirst().state()); // Explicit reviewed typed correspondence is known.
         reconciliation.reconcile();
         coordinator.tick();
         assertEquals("SETTLED", refresh.followUps().getFirst().state());
@@ -652,93 +650,7 @@ class JdbcCrewRefreshRepositoryTest {
                         + nasaRequests.get());
     }
 
-    @Test
-    void v4UpgradePreservesLl2NasaReconciliationAndOrbitSentinels() {
-        roster.ingest();
-        nasaBody =
-                feed(
-                        "TEST_ONLY Arrival",
-                        "<p>NASA astronauts Jessica Meir have entered the International Space"
-                                + " Station.</p>",
-                        start.minusSeconds(60));
-        nasa.ingest();
-        reconciliation.reconcile();
-        var migration =
-                Flyway.configure()
-                        .dataSource(
-                                POSTGRES.getJdbcUrl(),
-                                POSTGRES.getUsername(),
-                                POSTGRES.getPassword())
-                        .schemas("event_refresh_upgrade")
-                        .target("4")
-                        .load();
-        assertEquals(4, migration.migrate().migrationsExecuted);
-        List<String> tables =
-                List.of(
-                        "crew_source_snapshot",
-                        "crew_person",
-                        "crew_person_external_id",
-                        "crew_expedition",
-                        "crew_expedition_external_id",
-                        "crew_expedition_observation",
-                        "crew_person_observation",
-                        "crew_assignment_observation",
-                        "crew_document_body",
-                        "crew_source_document",
-                        "crew_verification_evidence",
-                        "crew_evidence_subject",
-                        "crew_document_evidence",
-                        "crew_identity_resolution",
-                        "crew_source_sync_run",
-                        "crew_reconciliation_snapshot",
-                        "crew_reconciliation_run",
-                        "crew_reconciliation_evidence",
-                        "crew_reconciliation_resolution",
-                        "crew_reconciled_person",
-                        "crew_reconciled_person_evidence");
-        Map<String, String> before = new LinkedHashMap<>();
-        for (var table : tables) {
-            jdbc.execute(
-                    "INSERT INTO event_refresh_upgrade."
-                            + table
-                            + " OVERRIDING SYSTEM VALUE SELECT * FROM public."
-                            + table);
-            before.put(table, tableHash("event_refresh_upgrade." + table));
-        }
-        jdbc.update(
-                "INSERT INTO"
-                    + " event_refresh_upgrade.orbital_element_sets(catalog_number,source_format,line1,line2,element_epoch,provider,upstream_origin,source_uri,sha256,classification)"
-                    + " VALUES"
-                    + " (25544,'TLE',?,?,now(),'TEST_ONLY','TEST_ONLY','https://example.invalid/TEST',?,'SOURCE_PROVIDED_ORBITAL_ELEMENTS')",
-                "1".repeat(69),
-                "2".repeat(69),
-                "a".repeat(64));
-        jdbc.update(
-                "INSERT INTO"
-                    + " event_refresh_upgrade.nasa_oem_ephemerides(sha256,xml,creation_date,start_time,stop_time,last_retrieved_at)"
-                    + " VALUES (?, ?,now(),now(),now()+interval '1 day',now())",
-                "c".repeat(64),
-                new byte[] {1, 2, 3});
-        before.put("orbital_element_sets", tableHash("event_refresh_upgrade.orbital_element_sets"));
-        before.put("nasa_oem_ephemerides", tableHash("event_refresh_upgrade.nasa_oem_ephemerides"));
-        var latest =
-                Flyway.configure()
-                        .dataSource(
-                                POSTGRES.getJdbcUrl(),
-                                POSTGRES.getUsername(),
-                                POSTGRES.getPassword())
-                        .schemas("event_refresh_upgrade")
-                        .load();
-        assertEquals(9, latest.migrate().migrationsExecuted);
-        latest.validate();
-        for (var entry : before.entrySet())
-            assertEquals(
-                    entry.getValue(),
-                    tableHash("event_refresh_upgrade." + entry.getKey()),
-                    entry.getKey());
-        assertTrue(count("crew_verification_evidence") > 0);
-        assertTrue(count("crew_reconciliation_snapshot") > 0);
-    }
+
 
     String tableHash(String table) {
         return jdbc.queryForObject(
@@ -812,15 +724,14 @@ class JdbcCrewRefreshRepositoryTest {
     void completedDepartureSettlesOnlyAfterPersonIsAbsentFromStructuredAssignments()
             throws Exception {
         advance(5);
+        org.mission1.crew.ReviewedIdentityTestFixture.bind(jdbc, "573", "profile:jessica-meir", fixture.clock.time);
         nasaBody =
                 feed(
                         "TEST_ONLY Departure",
-                        "<p>NASA astronauts Jessica Meir have departed the International Space"
+                        "<p>NASA astronauts <a href='https://www.nasa.gov/people/jessica-meir/'>Jessica Meir</a> have departed the International Space"
                                 + " Station.</p>",
                         fixture.clock.time);
         advance(5);
-        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
-                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
         advance(55);
         assertEquals("OPEN", refresh.followUps().getFirst().state());
@@ -1057,10 +968,10 @@ class JdbcCrewRefreshRepositoryTest {
     }
 
     @Test
-    void emptyDatabaseMigratesToV9() {
-        assertEquals(13, count("flyway_schema_history"));
+    void emptyDatabaseUsesPublicBaseline() {
+        assertEquals(1, count("flyway_schema_history"));
         assertEquals(
-                "13",
+                "1",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history WHERE success ORDER BY"
                                 + " installed_rank DESC LIMIT 1",

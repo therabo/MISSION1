@@ -77,7 +77,7 @@ public class RetainedOperationalInputs {
       byte[] body = (byte[]) r.get("body");
       var scope = OperationalSubjectScope.read(body, article, excerpt, name);
       String key =
-          Objects.toString(r.get("subject_key"), "legacy:" + id + ":" + r.get("subject_index"));
+          Objects.toString(r.get("subject_key"), "unassociated:" + id + ":" + r.get("subject_index"));
       String version =
           Objects.toString(
               r.get("version_key"),
@@ -131,7 +131,7 @@ public class RetainedOperationalInputs {
                   .validated(
                       ((Number) r.get("validation_id")).longValue(), time(r.get("validated_at"))));
       } catch (Exception e) {
-        throw new IllegalStateException("Stored S10 fact integrity", e);
+        throw new IllegalStateException("Stored operational binding fact integrity", e);
       }
     // Reuse editorial captures in place. No resource, relation, acquisition or body is
     // duplicated/written.
@@ -140,10 +140,10 @@ public class RetainedOperationalInputs {
             """
             SELECT DISTINCT ON(a.requested_url) a.*,d.content_hash,d.content_type,b.body,
               validation.id validation_id,validation.completed_at validated_at
-            FROM crew_editorial_acquisition a JOIN crew_source_document d ON d.id=a.document_id
+            FROM crew_resource_acquisition a JOIN crew_source_document d ON d.id=a.document_id
             JOIN crew_document_body b ON b.content_hash=d.content_hash
             LEFT JOIN LATERAL (SELECT id,completed_at FROM crew_operational_resource_attempt v
-              WHERE v.reused_editorial_acquisition_id=a.id AND v.completed_at<=? ORDER BY v.completed_at DESC,v.id DESC LIMIT 1) validation ON true
+              WHERE v.reused_resource_acquisition_id=a.id AND v.completed_at<=? ORDER BY v.completed_at DESC,v.id DESC LIMIT 1) validation ON true
             WHERE a.stream='NASA_PERSON_RESOURCE'  AND a.outcome<>'FAILURE' AND a.completed_at<=?
             ORDER BY a.requested_url,a.completed_at DESC,a.id DESC LIMIT 10001
             """,
@@ -165,7 +165,7 @@ public class RetainedOperationalInputs {
                 Objects.toString(r.get("content_type"), "application/json"),
                 null,
                 (byte[]) r.get("body"));
-        for (var fact : parser.parse(c, "crew_editorial_acquisition:" + r.get("id")))
+        for (var fact : parser.parse(c, "crew_resource_acquisition:" + r.get("id")))
           resources.add(
               r.get("validation_id") == null
                   ? fact
@@ -202,8 +202,8 @@ public class RetainedOperationalInputs {
     var editorialUrls = jdbc.queryForList("""
         SELECT observed_url FROM (
           SELECT DISTINCT ON(r.member_index,r.observed_url) r.observed_url,r.status
-          FROM crew_editorial_resource_relation r
-          WHERE r.roster_id=(SELECT roster_id FROM crew_editorial_acquisition
+          FROM crew_resource_relation r
+          WHERE r.roster_id=(SELECT roster_id FROM crew_resource_acquisition
             WHERE roster_id IS NOT NULL AND completed_at<=? AND completed_at>=?
             ORDER BY completed_at DESC,id DESC LIMIT 1)
           ORDER BY r.member_index,r.observed_url,r.id DESC

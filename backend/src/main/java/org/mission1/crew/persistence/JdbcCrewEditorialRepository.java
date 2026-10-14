@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.*;
 
-/** Isolated append-only shadow writer. Never writes legacy runs, identities or reconciliation. */
+/** Append-only Crew resource writer, independent of source runs, canonical identity and reconciliation. */
 @Repository
 public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
   private final JdbcTemplate jdbc;
@@ -57,12 +57,12 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
 
   private long resource(Resource r) {
     jdbc.update(
-        "INSERT INTO crew_editorial_resource(resource_kind,wp_id) VALUES (?,?) ON CONFLICT DO"
+        "INSERT INTO crew_resource(resource_kind,wp_id) VALUES (?,?) ON CONFLICT DO"
             + " NOTHING",
         r.kind().name(),
         r.wpId());
     return jdbc.queryForObject(
-        "SELECT id FROM crew_editorial_resource WHERE resource_kind=? AND wp_id=?",
+        "SELECT id FROM crew_resource WHERE resource_kind=? AND wp_id=?",
         Long.class,
         r.kind().name(),
         r.wpId());
@@ -117,7 +117,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
       var ids =
           jdbc.query(
               """
-              INSERT INTO crew_editorial_roster_version(resource_id,expedition_number,semantic_hash,parser_name,parser_version,completeness,conflicts)
+              INSERT INTO crew_resource_roster_version(resource_id,expedition_number,semantic_hash,parser_name,parser_version,completeness,conflicts)
               VALUES (?,?,?,?,?,'PARSED_EDITORIAL_SECTION',?::jsonb) ON CONFLICT DO NOTHING RETURNING id
               """,
               (rs, n) -> rs.getLong(1),
@@ -130,7 +130,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
       rosterId =
           ids.isEmpty()
               ? jdbc.queryForObject(
-                  "SELECT id FROM crew_editorial_roster_version WHERE resource_id=? AND"
+                  "SELECT id FROM crew_resource_roster_version WHERE resource_id=? AND"
                       + " semantic_hash=? AND parser_name=? AND parser_version=?",
                   Long.class,
                   rid,
@@ -142,7 +142,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
         for (Member m : roster.members())
           jdbc.update(
               """
-              INSERT INTO crew_editorial_roster_member(roster_id,member_index,display_name,role_text,agency_text,mentions,conflicts,semantic_hash)
+              INSERT INTO crew_resource_roster_member(roster_id,member_index,display_name,role_text,agency_text,mentions,conflicts,semantic_hash)
               VALUES (?,?,?,?,?,?::jsonb,?::jsonb,?)
               """,
               rosterId,
@@ -168,7 +168,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     long id =
         jdbc.queryForObject(
             """
-            INSERT INTO crew_editorial_acquisition(stream,requested_url,final_url,redirects,started_at,completed_at,http_status,headers,
+            INSERT INTO crew_resource_acquisition(stream,requested_url,final_url,redirects,started_at,completed_at,http_status,headers,
             document_id,resource_id,resource_metadata,outcome,reason,retry_after_at,roster_id,parser_name,parser_version)
             VALUES (?,?,?,?::jsonb,?,?,?,?::jsonb,?,?,?::jsonb,?,?,?,?,?,?) RETURNING id
             """,
@@ -197,7 +197,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
           String unit = s.kind().equals("NASA_EDITORIAL_EXPEDITION_NUMBER") ? "number" : "persons";
           jdbc.update(
               """
-              INSERT INTO crew_editorial_topic_fact(resource_id,fact_kind,value,unit,source_text,source_locator,semantic_hash,parser_name,parser_version)
+              INSERT INTO crew_resource_topic_fact(resource_id,fact_kind,value,unit,source_text,source_locator,semantic_hash,parser_name,parser_version)
               VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING
               """,
               rid,
@@ -211,7 +211,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
               CrewEditorial.VERSION);
           long fid =
               jdbc.queryForObject(
-                  "SELECT id FROM crew_editorial_topic_fact WHERE resource_id=? AND fact_kind=? AND"
+                  "SELECT id FROM crew_resource_topic_fact WHERE resource_id=? AND fact_kind=? AND"
                       + " semantic_hash=? AND parser_name=? AND parser_version=?",
                   Long.class,
                   rid,
@@ -219,7 +219,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
                   semantic,
                   CrewEditorial.PARSER,
                   CrewEditorial.VERSION);
-          jdbc.update("INSERT INTO crew_editorial_fact_capture VALUES (?,?)", id, fid);
+          jdbc.update("INSERT INTO crew_resource_fact_capture VALUES (?,?)", id, fid);
         }
     return new StoredCapture(id, rosterId, c, r, outcome, reason);
   }
@@ -230,7 +230,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     return jdbc
         .query(
             """
-            SELECT a.*,b.body FROM crew_editorial_acquisition a LEFT JOIN crew_source_document d ON d.id=a.document_id
+            SELECT a.*,b.body FROM crew_resource_acquisition a LEFT JOIN crew_source_document d ON d.id=a.document_id
             LEFT JOIN crew_document_body b ON b.content_hash=d.content_hash
             WHERE a.stream=? AND a.requested_url=? AND a.parser_name=? AND a.parser_version=?
             """
@@ -280,7 +280,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     var captures =
         jdbc.query(
             """
-            SELECT a.*,b.body FROM crew_editorial_acquisition a JOIN crew_source_document d ON d.id=a.document_id
+            SELECT a.*,b.body FROM crew_resource_acquisition a JOIN crew_source_document d ON d.id=a.document_id
             JOIN crew_document_body b ON b.content_hash=d.content_hash
             WHERE a.roster_id IS NOT NULL AND a.completed_at<=? AND a.parser_name=? AND a.parser_version=?
             ORDER BY a.completed_at DESC,a.id DESC LIMIT 1
@@ -294,7 +294,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     long id = c.rosterId();
     var members =
         jdbc.query(
-            "SELECT * FROM crew_editorial_roster_member WHERE roster_id=? ORDER BY member_index",
+            "SELECT * FROM crew_resource_roster_member WHERE roster_id=? ORDER BY member_index",
             (r, n) ->
                 new Member(
                     r.getInt("member_index"),
@@ -308,7 +308,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
             id);
     var root =
         jdbc.queryForMap(
-            "SELECT expedition_number,conflicts FROM crew_editorial_roster_version WHERE id=?", id);
+            "SELECT expedition_number,conflicts FROM crew_resource_roster_version WHERE id=?", id);
     var roster =
         new Roster(
             (Integer) root.get("expedition_number"),
@@ -317,7 +317,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     var relations =
         jdbc.query(
             """
-            SELECT x.*,a.resource_metadata FROM crew_editorial_resource_relation x LEFT JOIN crew_editorial_acquisition a ON a.id=x.acquisition_id
+            SELECT x.*,a.resource_metadata FROM crew_resource_relation x LEFT JOIN crew_resource_acquisition a ON a.id=x.acquisition_id
             WHERE x.roster_id=? ORDER BY x.id
             """,
             (r, n) ->
@@ -344,7 +344,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     Long target = r.target() == null ? null : resource(r.target());
     jdbc.update(
         """
-        INSERT INTO crew_editorial_resource_relation(roster_id,member_index,subject_name,observed_url,source_locator,status,target_resource_id,acquisition_id,reason,relation_hash)
+        INSERT INTO crew_resource_relation(roster_id,member_index,subject_name,observed_url,source_locator,status,target_resource_id,acquisition_id,reason,relation_hash)
         VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING
         """,
         r.rosterId(),
@@ -365,8 +365,8 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
     return jdbc.query(
         """
         SELECT DISTINCT ON(a.stream,a.requested_url) a.stream,a.requested_url,a.outcome,a.reason,a.completed_at,a.retry_after_at,
-        (SELECT max(b.completed_at) FROM crew_editorial_acquisition b WHERE b.stream=a.stream AND b.requested_url=a.requested_url AND b.outcome<>'FAILURE') good_at
-        FROM crew_editorial_acquisition a ORDER BY a.stream,a.requested_url,a.completed_at DESC,a.id DESC
+        (SELECT max(b.completed_at) FROM crew_resource_acquisition b WHERE b.stream=a.stream AND b.requested_url=a.requested_url AND b.outcome<>'FAILURE') good_at
+        FROM crew_resource_acquisition a ORDER BY a.stream,a.requested_url,a.completed_at DESC,a.id DESC
         """,
         (r, n) ->
             new Health(
@@ -383,7 +383,7 @@ public class JdbcCrewEditorialRepository implements CrewEditorialRepository {
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   public boolean claimRefresh(Instant now, Duration interval) {
     return jdbc.update(
-            "UPDATE crew_editorial_refresh_lease SET next_eligible_at=? WHERE singleton AND"
+            "UPDATE crew_resource_refresh_lease SET next_eligible_at=? WHERE singleton AND"
                 + " next_eligible_at<=?",
             utc(now.plus(interval)),
             utc(now))

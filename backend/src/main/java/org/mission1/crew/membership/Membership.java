@@ -3,12 +3,12 @@ package org.mission1.crew.membership;
 import java.time.*;
 import java.util.*;
 
-/** Internal shadow contracts. A source slot never acquires a human UUID. ADR-0016. */
+/** Membership/lifecycle contracts with explicit execution authority. A source slot never acquires a human UUID. ADR-0016. */
 public final class Membership {
   private Membership() {}
 
-  public static final String PRODUCTION_MODE = "S10_SCOPED_BINDING";
-  public static final String MODE = "V9_AUTOMATIC_SHADOW";
+  public static final String PRODUCTION_MODE = "OPERATIONAL_SUBJECT_BINDING";
+  public static final String MODE = "IDENTITY_RESEARCH_SHADOW";
 
   public enum State {
     ACTIVE,

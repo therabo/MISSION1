@@ -52,6 +52,6 @@ public final class OperationalResourceDiscovery {
     if (url == null) return;
     try { urls.add(OperationalResources.allowed(url).toString()); }
     catch (IllegalArgumentException ignored) { return; }
-    if (urls.size() > MAX_CANDIDATES) throw new IllegalStateException("S10_DISCOVERY_BATCH_BOUND");
+    if (urls.size() > MAX_CANDIDATES) throw new IllegalStateException("OPERATIONAL_DISCOVERY_BATCH_BOUND");
   }
 }

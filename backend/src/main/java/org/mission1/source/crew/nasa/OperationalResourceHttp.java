@@ -60,7 +60,7 @@ public final class OperationalResourceHttp {
             HttpRequest.newBuilder(current)
                 .timeout(Duration.ofSeconds(20))
                 .header("Accept", "application/json,text/html;q=0.9")
-                .header("User-Agent", "MISSION1-scoped-operational-shadow/1")
+                .header("User-Agent", "MISSION1-operational-subject-binding/1")
                 .GET()
                 .build();
         try (AutoCloseable permit =

@@ -38,17 +38,12 @@ class CrewObservationPolicyTest {
   }
 
   @Test
-  void legacyAndNewPolicyAreIdentifiableAndDifferent() {
-    var observed = evidence(CrewVerificationEvidence.Type.PERSON_CURRENTLY_ABOARD, null);
-    assertTrue(CrewReconciliationPolicy.legacy().key().startsWith("crew-freshness-v1:"));
-    assertTrue(CrewReconciliationPolicy.defaults().key().contains("PT168H"));
-    assertTrue(CrewReconciliationPolicy.defaults().key().startsWith("crew-freshness-v2:"));
-    var at = t.plus(Duration.ofDays(4));
-    assertFalse(CrewReconciliationPolicy.legacy().applicable(observed, at, at));
-    assertTrue(CrewReconciliationPolicy.defaults().applicable(observed, at, at));
-    assertEquals(
-        CrewReconciliationPolicy.legacy().key(),
-        CrewReconciliationPolicy.defaults().forReplay().key());
+  void publishedPolicyIdentifiesSevenDayApplicability() {
+    var policy = CrewReconciliationPolicy.defaults();
+    assertTrue(policy.key().startsWith("crew-freshness-v2:"));
+    assertTrue(policy.key().contains("PT168H"));
+    assertThrows(IllegalArgumentException.class, () -> new CrewReconciliationPolicy(
+        Duration.ofHours(6), Duration.ofHours(6), Duration.ofHours(72), Duration.ofDays(14), "crew-freshness-v1"));
   }
 
   @Test
@@ -73,6 +68,6 @@ class CrewObservationPolicyTest {
         evidence(CrewVerificationEvidence.Type.PERSON_CURRENTLY_ABOARD, t.minusSeconds(3600));
     var at = t.plus(Duration.ofDays(7));
     assertFalse(p.applicable(observed, at, at));
-    assertTrue(CrewReconciliationPolicy.legacy().applicable(e, t, t));
+    assertTrue(p.applicable(e, t, t));
   }
 }

@@ -123,7 +123,7 @@ class CrewApiTest {
 
     @BeforeEach
     void setup() {
-        when(membership.mode()).thenReturn(ProductionCurrentMembership.Mode.LEGACY_RETAINED_UNION);
+        when(membership.mode()).thenReturn(ProductionCurrentMembership.Mode.ACTIVE_PROJECTION);
         when(people.identityAt(any())).thenReturn(CrewCanonicalIdentity.EMPTY);
         ll2 = observation(CrewSource.LAUNCH_LIBRARY_2, "ll2");
         nasa = observation(CrewSource.NASA_OFFICIAL, "nasa");
@@ -341,6 +341,19 @@ class CrewApiTest {
                                 new CrewVerificationRepository.Evidence(102, 201, count)),
                         List.of());
         when(reconciled.current()).thenAnswer(inv -> current);
+        when(membership.select(any(), any())).thenAnswer(inv -> {
+            if (current.interpretation().people().isEmpty())
+                throw new CurrentProjectionUnavailable(CurrentProjectionUnavailable.Reason.MISSING);
+            var result = mock(org.mission1.crew.membership.Membership.Result.class);
+            var counts = new org.mission1.crew.membership.Membership.Counts(
+                    current.interpretation().people().size(), 0, 3, 3, 7, 7, 0, 0, null, null);
+            when(result.counts()).thenReturn(counts);
+            when(result.policy()).thenReturn("TEST_ONLY");
+            when(result.health()).thenReturn(org.mission1.crew.membership.Membership.HealthState.DEGRADED);
+            var projection = new org.mission1.crew.membership.ActiveMembershipReader.Projection(3, at, "TEST_ONLY", result);
+            return new ProductionCurrentMembership.Selection(projection,
+                    current.interpretation().people().stream().map(p -> persons.get(p.personId())).toList(), 0, 0);
+        });
     }
 
     JsonNode read(String path) throws Exception {
@@ -388,7 +401,7 @@ class CrewApiTest {
         var selected = new ProductionCurrentMembership.Selection(projection,
                 java.util.stream.IntStream.rangeClosed(1, 7).mapToObj(i -> persons.get(uuid(i))).toList(), 0, 0);
         when(membership.mode()).thenReturn(ProductionCurrentMembership.Mode.ACTIVE_PROJECTION);
-        when(membership.select(any(), any())).thenReturn(selected);
+        doReturn(selected).when(membership).select(any(), any());
         var r = read("/api/iss/crew");
         assertEquals(7, r.path("members").size());
         assertEquals(8, r.at("/membership/unresolvedActiveSourceSlots").asInt());
@@ -612,7 +625,7 @@ class CrewApiTest {
         mvc.perform(get("/api/iss/crew"))
                 .andExpect(status().isServiceUnavailable())
                 .andExpect(content().contentTypeCompatibleWith("application/problem+json"))
-                .andExpect(jsonPath("$.type").value("urn:mission1:problem:crew-state-unavailable"));
+                .andExpect(jsonPath("$.type").value("urn:mission1:problem:crew-current-projection-unavailable"));
     }
 
     @Test

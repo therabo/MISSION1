@@ -28,7 +28,8 @@ import java.time.*;
 import java.util.*;
 
 /** Offline source-derived fixtures, real V1--V10 persistence and production HTTP composition. */
-@SpringBootTest(properties={"mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
+@org.springframework.context.annotation.Import(ResearchMembershipTestConfiguration.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
 class ProductionCurrentPostgresTest {
@@ -119,7 +120,7 @@ class ProductionCurrentPostgresTest {
         assertEquals(
                 0,
                 jdbc.queryForObject(
-                        "SELECT count(*) FROM crew_auto_decision_revision", Integer.class));
+                        "SELECT count(*) FROM crew_identity_research_decision_revision", Integer.class));
         assertEquals(
                 0,
                 jdbc.queryForObject(
@@ -226,28 +227,20 @@ class ProductionCurrentPostgresTest {
         assertEquals(
                 3,
                 jdbc.queryForObject(
-                        "SELECT count(*) FROM crew_active_projection_revision", Integer.class));
+                        "SELECT count(*) FROM crew_membership_projection_revision", Integer.class));
     }
 
     @Test
-    void restartReaderUsesSameCommittedRevisionAndExplicitRollbackNeedsNoProjection()
+    void restartReaderUsesSameCommittedRevisionAndPublication()
             throws Exception {
         active();
         var prior = reader.latestCompatible().orElseThrow();
         var restarted = new JdbcActiveMembershipReader(jdbc, json, policy);
         assertEquals(prior, restarted.latestCompatible().orElseThrow());
-        var rollback =
-                new ProductionCurrentMembership(
-                        () -> {
-                            throw new AssertionError("rollback must not read V10");
-                        },
-                        people,
-                        ProductionCurrentMembership.Mode.LEGACY_RETAINED_UNION);
-        var restored =
-                new CrewRestQueryService(structured, reconciled, people, temporal, clock, rollback)
-                        .crew();
+        var restartedPublication = new ProductionCurrentMembership(restarted, people);
+        var restored = new CrewRestQueryService(structured, reconciled, people, temporal, clock, restartedPublication).crew();
         assertEquals(7, restored.members().size());
-        assertNull(restored.membership());
+        assertEquals(prior.revision(), restored.membership().revision());
     }
 
     @Test
@@ -398,7 +391,7 @@ class ProductionCurrentPostgresTest {
         String body = json.writeValueAsString(result), cut = json.writeValueAsString(result.cut());
         jdbc.update(
                 "INSERT INTO"
-                    + " crew_active_projection_revision(policy_version,identity_mode,evaluated_at,created_at,input_hash,semantic_hash,serialized_cut,input_cut,serialized_result,result,health)"
+                    + " crew_membership_projection_revision(policy_version,identity_mode,evaluated_at,created_at,input_hash,semantic_hash,serialized_cut,input_cut,serialized_result,result,health)"
                     + " VALUES(?,?,?, ?,?,?,?,?::jsonb,?,?::jsonb,?)",
                 result.policy(),
                 Membership.MODE,

@@ -181,7 +181,7 @@ class JdbcCrewIdentityRepositoryTest {
         assertEquals(
                 0,
                 jdbc.queryForObject(
-                        "SELECT count(*) FROM crew_active_equivalence WHERE"
+                        "SELECT count(*) FROM crew_current_person_equivalence WHERE"
                             + " declaration_key='luke-delaney-v1'",
                         Integer.class));
         assertThrows(
@@ -289,7 +289,7 @@ class JdbcCrewIdentityRepositoryTest {
                         "profile:nasa-astronaut-luke-delaney");
         long old =
                 jdbc.queryForObject(
-                        "SELECT id FROM crew_active_identity_binding WHERE"
+                        "SELECT id FROM crew_current_identity_binding WHERE"
                             + " external_key='profile:nasa-astronaut-luke-delaney'",
                         Long.class);
         var proof = ReviewedCrewIdentities.load().declarations().getFirst().evidence();

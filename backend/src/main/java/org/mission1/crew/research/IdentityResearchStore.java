@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.*;
 
-/** Only crew_auto_* writes. All mutations are outside public reads. */
+/** Only identity research writes. All mutations are outside public reads. */
 @Repository
 public class IdentityResearchStore {
   private final JdbcTemplate jdbc;
@@ -75,7 +75,7 @@ public class IdentityResearchStore {
     int inserted =
         jdbc.update(
             """
-            INSERT INTO crew_auto_release VALUES (?,?,?,?,?,?,?,?::jsonb) ON CONFLICT DO NOTHING
+            INSERT INTO crew_identity_research_release VALUES (?,?,?,?,?,?,?,?::jsonb) ON CONFLICT DO NOTHING
             """,
             modelVersion,
             policyVersion,
@@ -88,7 +88,7 @@ public class IdentityResearchStore {
     // Immutable release IDs cannot be reused with different semantics.
     var release =
         jdbc.queryForMap(
-            "SELECT * FROM crew_auto_release WHERE model_version=? AND policy_version=?",
+            "SELECT * FROM crew_identity_research_release WHERE model_version=? AND policy_version=?",
             modelVersion,
             policyVersion);
     if (!release.get("model_sha").equals(FrozenIdentityModel.SHA)
@@ -100,15 +100,15 @@ public class IdentityResearchStore {
     if (inserted > 0)
       for (String k :
           jdbc.queryForList(
-              "SELECT identity_key FROM crew_auto_identity WHERE provider='NASA'", String.class))
+              "SELECT identity_key FROM crew_identity_research_identity WHERE provider='NASA'", String.class))
         enqueue(k, now);
   }
 
   private void enqueue(String identity, Instant now) {
     jdbc.update(
         """
-        INSERT INTO crew_auto_job(job_key,job_kind,identity_key,available_at,enqueued_at) VALUES (?,'EVALUATE',?,?,?)
-        ON CONFLICT(job_key) DO UPDATE SET generation=crew_auto_job.generation+1,available_at=excluded.available_at,
+        INSERT INTO crew_identity_research_job(job_key,job_kind,identity_key,available_at,enqueued_at) VALUES (?,'EVALUATE',?,?,?)
+        ON CONFLICT(job_key) DO UPDATE SET generation=crew_identity_research_job.generation+1,available_at=excluded.available_at,
         enqueued_at=excluded.enqueued_at,attempts=0,failed=false,last_error=NULL
         """,
         "E:" + identity,
@@ -121,8 +121,8 @@ public class IdentityResearchStore {
   public void requestImport(Instant now) {
     jdbc.update(
         """
-        INSERT INTO crew_auto_job(job_key,job_kind,available_at,enqueued_at) VALUES ('IMPORT','IMPORT',?,?)
-        ON CONFLICT(job_key) DO UPDATE SET generation=crew_auto_job.generation+1,available_at=excluded.available_at,enqueued_at=excluded.enqueued_at,failed=false,attempts=0
+        INSERT INTO crew_identity_research_job(job_key,job_kind,available_at,enqueued_at) VALUES ('IMPORT','IMPORT',?,?)
+        ON CONFLICT(job_key) DO UPDATE SET generation=crew_identity_research_job.generation+1,available_at=excluded.available_at,enqueued_at=excluded.enqueued_at,failed=false,attempts=0
         """,
         utc(now),
         utc(now));
@@ -137,7 +137,7 @@ public class IdentityResearchStore {
     List<IdentityEvidence> changed = new ArrayList<>();
     for (var r : evidence) {
       jdbc.update(
-          "INSERT INTO crew_auto_identity(identity_key,provider,entity_kind) VALUES (?,?,?) ON"
+          "INSERT INTO crew_identity_research_identity(identity_key,provider,entity_kind) VALUES (?,?,?) ON"
               + " CONFLICT DO NOTHING",
           r.key(),
           r.provider().name(),
@@ -145,7 +145,7 @@ public class IdentityResearchStore {
       String h = hash(r);
       jdbc.update(
           "INSERT INTO"
-              + " crew_auto_observation(identity_key,evidence_hash,extractor_version,evidence,known_at)"
+              + " crew_identity_research_observation(identity_key,evidence_hash,extractor_version,evidence,known_at)"
               + " VALUES (?,?,?,?::jsonb,?) ON CONFLICT DO NOTHING",
           r.key(),
           h,
@@ -155,7 +155,7 @@ public class IdentityResearchStore {
     }
     Map<String, Long> versions = new HashMap<>();
     jdbc.query(
-        "SELECT id,identity_key,evidence_hash FROM crew_auto_observation WHERE extractor_version=?",
+        "SELECT id,identity_key,evidence_hash FROM crew_identity_research_observation WHERE extractor_version=?",
         r -> {
           versions.put(r.getString(2) + ":" + r.getString(3), r.getLong(1));
         },
@@ -164,7 +164,7 @@ public class IdentityResearchStore {
       Long id = versions.get(r.key() + ":" + hash(r));
       if (old.containsKey(r.key()) && old.get(r.key()).id() == id) continue;
       jdbc.update(
-          "INSERT INTO crew_auto_input_head VALUES (?,?) ON CONFLICT(identity_key) DO UPDATE SET"
+          "INSERT INTO crew_identity_research_input_head VALUES (?,?) ON CONFLICT(identity_key) DO UPDATE SET"
               + " observation_id=excluded.observation_id",
           r.key(),
           id);
@@ -183,7 +183,7 @@ public class IdentityResearchStore {
       Set<String> keys = new HashSet<>();
       changedLl2.forEach(r -> keys.add(r.key()));
       jdbc.query(
-          "SELECT source_key,candidate_key FROM crew_auto_candidate",
+          "SELECT source_key,candidate_key FROM crew_identity_research_candidate",
           r -> {
             if (keys.contains(r.getString(2))) affected.add(r.getString(1));
           });
@@ -202,7 +202,7 @@ public class IdentityResearchStore {
   @Transactional(readOnly = true)
   public List<Input> inputs() {
     return jdbc.query(
-        "SELECT o.id,o.evidence FROM crew_auto_input_head h JOIN crew_auto_observation o ON"
+        "SELECT o.id,o.evidence FROM crew_identity_research_input_head h JOIN crew_identity_research_observation o ON"
             + " o.id=h.observation_id ORDER BY h.identity_key",
         (r, n) -> {
           try {
@@ -218,10 +218,10 @@ public class IdentityResearchStore {
     return jdbc
         .query(
             """
-            WITH due AS (SELECT job_key FROM crew_auto_job WHERE NOT failed AND available_at<=?
+            WITH due AS (SELECT job_key FROM crew_identity_research_job WHERE NOT failed AND available_at<=?
               AND (lease_until IS NULL OR lease_until<=?) AND (generation>completed_generation OR job_kind='EVALUATE')
               ORDER BY CASE WHEN job_kind='IMPORT' THEN 0 ELSE 1 END,available_at,job_key FOR UPDATE SKIP LOCKED LIMIT 1)
-            UPDATE crew_auto_job j SET lease_until=?,lease_token=?,attempts=least(attempts+1,8)
+            UPDATE crew_identity_research_job j SET lease_until=?,lease_token=?,attempts=least(attempts+1,8)
             FROM due WHERE j.job_key=due.job_key RETURNING j.*
             """,
             (r, n) ->
@@ -248,7 +248,7 @@ public class IdentityResearchStore {
             : Duration.ofDays(36500);
     jdbc.update(
         """
-        UPDATE crew_auto_job SET completed_generation=greatest(completed_generation,?),lease_until=NULL,lease_token=NULL,
+        UPDATE crew_identity_research_job SET completed_generation=greatest(completed_generation,?),lease_until=NULL,lease_token=NULL,
         available_at=CASE WHEN generation>? THEN ? ELSE ? END,last_success_at=?,last_error=NULL,
         attempts=CASE WHEN ? THEN attempts ELSE 0 END
         WHERE job_key=? AND lease_token=?
@@ -266,7 +266,7 @@ public class IdentityResearchStore {
   @Transactional
   public void fail(Job job, Instant now, RuntimeException error) {
     jdbc.update(
-        "UPDATE crew_auto_job SET"
+        "UPDATE crew_identity_research_job SET"
             + " lease_until=NULL,lease_token=NULL,failed=(attempts>=8),last_error=?,available_at=?"
             + " WHERE job_key=? AND lease_token=?",
         error.getClass().getSimpleName(),
@@ -278,7 +278,7 @@ public class IdentityResearchStore {
   @Transactional
   public boolean safetySweep(Instant now, String model, String policy) {
     if (jdbc.update(
-            "UPDATE crew_auto_sweep_lease SET next_at=? WHERE singleton AND next_at<=?",
+            "UPDATE crew_identity_research_sweep_lease SET next_at=? WHERE singleton AND next_at<=?",
             utc(now.plus(Duration.ofDays(1))),
             utc(now))
         != 1) return false;
@@ -286,8 +286,8 @@ public class IdentityResearchStore {
     for (String key :
         jdbc.queryForList(
             """
-            SELECT i.identity_key FROM crew_auto_identity i LEFT JOIN LATERAL
-            (SELECT * FROM crew_auto_decision_revision WHERE source_key=i.identity_key ORDER BY id DESC LIMIT 1) d ON true
+            SELECT i.identity_key FROM crew_identity_research_identity i LEFT JOIN LATERAL
+            (SELECT * FROM crew_identity_research_decision_revision WHERE source_key=i.identity_key ORDER BY id DESC LIMIT 1) d ON true
             WHERE i.provider='NASA' AND (d.id IS NULL OR d.model_version<>? OR d.policy_version<>? OR
             (d.outcome='AUTO_DEFER' AND d.evaluated_at<?))
             """,
@@ -302,7 +302,7 @@ public class IdentityResearchStore {
     return jdbc.query(
         """
         SELECT DISTINCT ON(d.source_key) d.source_key,c.candidate_key,d.outcome,d.id
-        FROM crew_auto_decision_revision d LEFT JOIN crew_auto_candidate c ON c.id=d.candidate_id
+        FROM crew_identity_research_decision_revision d LEFT JOIN crew_identity_research_candidate c ON c.id=d.candidate_id
         ORDER BY d.source_key,d.id DESC
         """,
         (r, n) ->
@@ -382,7 +382,7 @@ public class IdentityResearchStore {
     snapshot.put("policyResult", result);
     String snapshotHash = hash(snapshot);
     jdbc.update(
-        "INSERT INTO crew_auto_feature_snapshot VALUES (?,?,?,?::jsonb,?) ON CONFLICT DO NOTHING",
+        "INSERT INTO crew_identity_research_feature_snapshot VALUES (?,?,?,?::jsonb,?) ON CONFLICT DO NOTHING",
         snapshotHash,
         source.id(),
         FrozenIdentityModel.SCHEMA,
@@ -391,7 +391,7 @@ public class IdentityResearchStore {
     Long candidateId = null;
     for (var s : scores) {
       jdbc.update(
-          "INSERT INTO crew_auto_candidate(source_key,candidate_key) VALUES (?,?) ON CONFLICT DO"
+          "INSERT INTO crew_identity_research_candidate(source_key,candidate_key) VALUES (?,?) ON CONFLICT DO"
               + " NOTHING",
           sourceKey,
           s.candidate());
@@ -399,13 +399,13 @@ public class IdentityResearchStore {
     if (best != null)
       candidateId =
           jdbc.queryForObject(
-              "SELECT id FROM crew_auto_candidate WHERE source_key=? AND candidate_key=?",
+              "SELECT id FROM crew_identity_research_candidate WHERE source_key=? AND candidate_key=?",
               Long.class,
               sourceKey,
               best.candidate());
     var previous =
         jdbc.queryForList(
-            "SELECT * FROM crew_auto_decision_revision WHERE source_key=? ORDER BY id DESC LIMIT 1",
+            "SELECT * FROM crew_identity_research_decision_revision WHERE source_key=? ORDER BY id DESC LIMIT 1",
             sourceKey);
     Long predecessor =
         previous.isEmpty() ? null : ((Number) previous.getFirst().get("id")).longValue();
@@ -418,7 +418,7 @@ public class IdentityResearchStore {
       revision =
           jdbc.queryForObject(
               """
-              INSERT INTO crew_auto_decision_revision(source_key,candidate_id,predecessor_id,outcome,probability,runner_key,runner_probability,margin,
+              INSERT INTO crew_identity_research_decision_revision(source_key,candidate_id,predecessor_id,outcome,probability,runner_key,runner_probability,margin,
               model_version,policy_version,feature_schema,model_sha,snapshot_hash,witnesses,conflicts,reasons,known_at,evaluated_at)
               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?::jsonb,?::jsonb,?::jsonb,?,?) RETURNING id
               """,
@@ -445,12 +445,12 @@ public class IdentityResearchStore {
       observations.add(source.id());
       scores.forEach(s -> observations.add(s.observation()));
       for (long id : observations)
-        jdbc.update("INSERT INTO crew_auto_decision_evidence VALUES (?,?)", revision, id);
+        jdbc.update("INSERT INTO crew_identity_research_decision_evidence VALUES (?,?)", revision, id);
       appendGraph(facts.keySet(), now);
       System.getLogger(getClass().getName())
           .log(
               System.Logger.Level.INFO,
-              "auto_identity source={0} candidate={1} model={2} policy={3} p={4} margin={5}"
+              "identity_research source={0} candidate={1} model={2} policy={3} p={4} margin={5}"
                   + " witnesses={6} conflicts={7} revision={8} outcome={9}",
               sourceKey,
               best == null ? null : best.candidate(),
@@ -481,12 +481,12 @@ public class IdentityResearchStore {
     String h = hash(components);
     var prior =
         jdbc.queryForList(
-            "SELECT id,graph_hash FROM crew_auto_graph_revision ORDER BY id DESC LIMIT 1");
+            "SELECT id,graph_hash FROM crew_identity_research_graph_revision ORDER BY id DESC LIMIT 1");
     if (!prior.isEmpty() && prior.getFirst().get("graph_hash").equals(h)) return;
     Long pred = prior.isEmpty() ? null : ((Number) prior.getFirst().get("id")).longValue();
     long id =
         jdbc.queryForObject(
-            "INSERT INTO crew_auto_graph_revision(predecessor_id,graph_hash,components,applied_at)"
+            "INSERT INTO crew_identity_research_graph_revision(predecessor_id,graph_hash,components,applied_at)"
                 + " VALUES (?,?,?::jsonb,?) RETURNING id",
             Long.class,
             pred,
@@ -494,7 +494,7 @@ public class IdentityResearchStore {
             encode(components),
             utc(now));
     for (var edge : edges)
-      jdbc.update("INSERT INTO crew_auto_graph_application VALUES (?,?)", id, edge.revision());
+      jdbc.update("INSERT INTO crew_identity_research_graph_application VALUES (?,?)", id, edge.revision());
   }
 
   @Transactional(readOnly = true)
@@ -505,7 +505,7 @@ public class IdentityResearchStore {
             SELECT count(*) FILTER(WHERE generation>completed_generation OR job_kind='EVALUATE' AND available_at<=now()) pending,
             count(*) FILTER(WHERE failed) failed,count(*) FILTER(WHERE attempts>1) retries,
             min(enqueued_at) FILTER(WHERE generation>completed_generation) oldest_pending,
-            max(last_success_at) latest_success FROM crew_auto_job
+            max(last_success_at) latest_success FROM crew_identity_research_job
             """);
     Map<String, Object> out = new TreeMap<>();
     out.put("modelLoaded", loaded);
@@ -514,10 +514,10 @@ public class IdentityResearchStore {
     out.put("queue", jobs);
     out.put(
         "auto_identity_revision_total",
-        jdbc.queryForObject("SELECT count(*) FROM crew_auto_decision_revision", Long.class));
+        jdbc.queryForObject("SELECT count(*) FROM crew_identity_research_decision_revision", Long.class));
     var counts =
         jdbc.queryForList(
-            "SELECT outcome,count(*) count FROM crew_auto_decision_revision GROUP BY outcome");
+            "SELECT outcome,count(*) count FROM crew_identity_research_decision_revision GROUP BY outcome");
     out.put("decisions", counts);
     for (String outcome : List.of("MATCH", "SEPARATE", "DEFER"))
       out.put(
@@ -530,7 +530,7 @@ public class IdentityResearchStore {
     out.put(
         "auto_identity_conflict_total",
         jdbc.queryForObject(
-            "SELECT count(*) FROM crew_auto_decision_revision WHERE"
+            "SELECT count(*) FROM crew_identity_research_decision_revision WHERE"
                 + " jsonb_array_length(conflicts)>0",
             Long.class));
     var active = edges();
@@ -544,7 +544,7 @@ public class IdentityResearchStore {
     out.put(
         "high_risk_match_count",
         jdbc.queryForObject(
-            "SELECT count(*) FROM crew_auto_decision_revision WHERE outcome='AUTO_MATCH' AND"
+            "SELECT count(*) FROM crew_identity_research_decision_revision WHERE outcome='AUTO_MATCH' AND"
                 + " probability<0.995",
             Long.class));
     out.put("auto_identity_queue_pending", jobs.get("pending"));
@@ -566,15 +566,15 @@ public class IdentityResearchStore {
         jdbc.queryForList(
             """
             SELECT DISTINCT ON(d.source_key) d.*,c.candidate_key,s.payload
-            FROM crew_auto_decision_revision d LEFT JOIN crew_auto_candidate c ON c.id=d.candidate_id
-            JOIN crew_auto_feature_snapshot s ON s.snapshot_hash=d.snapshot_hash ORDER BY d.source_key,d.id DESC
+            FROM crew_identity_research_decision_revision d LEFT JOIN crew_identity_research_candidate c ON c.id=d.candidate_id
+            JOIN crew_identity_research_feature_snapshot s ON s.snapshot_hash=d.snapshot_hash ORDER BY d.source_key,d.id DESC
             """);
     for (var row : rows)
       for (String field : List.of("payload", "witnesses", "conflicts", "reasons")) {
         try {
           row.put(field, json.readValue(row.get(field).toString(), Object.class));
         } catch (Exception e) {
-          throw new IllegalStateException("Invalid retained automatic JSON", e);
+          throw new IllegalStateException("Invalid retained identity research JSON", e);
         }
       }
     return rows;

@@ -68,15 +68,15 @@ public class OperationalBindingStore {
     String policy = encode(release.release(json));
     var retained =
         jdbc.queryForList(
-            "SELECT serialized_policy FROM crew_operational_binding_release WHERE version=?",
+            "SELECT serialized_policy FROM crew_operational_subject_binding_release WHERE version=?",
             release.version());
     if (!retained.isEmpty()) {
       if (!policy.equals(retained.getFirst().get("serialized_policy")))
-        throw new IllegalStateException("Immutable S10 policy mismatch");
+        throw new IllegalStateException("Immutable operational binding policy mismatch");
       return;
     }
     jdbc.update(
-        "INSERT INTO crew_operational_binding_release VALUES(?,?,?,?::jsonb,?,?) ON CONFLICT DO"
+        "INSERT INTO crew_operational_subject_binding_release VALUES(?,?,?,?::jsonb,?,?) ON CONFLICT DO"
             + " NOTHING",
         release.version(),
         utc(at),
@@ -86,10 +86,10 @@ public class OperationalBindingStore {
         FrozenIdentityModel.SHA);
     String previous =
         jdbc.queryForObject(
-            "SELECT serialized_policy FROM crew_operational_binding_release WHERE version=?",
+            "SELECT serialized_policy FROM crew_operational_subject_binding_release WHERE version=?",
             String.class,
             release.version());
-    if (!policy.equals(previous)) throw new IllegalStateException("Immutable S10 policy mismatch");
+    if (!policy.equals(previous)) throw new IllegalStateException("Immutable operational binding policy mismatch");
   }
 
   @Transactional
@@ -98,7 +98,7 @@ public class OperationalBindingStore {
     var rows =
         jdbc.queryForList(
             """
-            UPDATE crew_operational_binding_work SET claim_token=?,claimed_until=?
+            UPDATE crew_operational_subject_binding_work SET claim_token=?,claimed_until=?
             WHERE singleton AND claimed_until<=? AND next_at<=?
             RETURNING generation,notified_at
             """,
@@ -120,7 +120,7 @@ public class OperationalBindingStore {
     int n =
         jdbc.update(
             """
-            UPDATE crew_operational_binding_work SET completed_generation=CASE WHEN ? THEN completed_generation ELSE ? END,
+            UPDATE crew_operational_subject_binding_work SET completed_generation=CASE WHEN ? THEN completed_generation ELSE ? END,
             failures=CASE WHEN ? THEN failures+1 ELSE 0 END,
             next_at=CASE WHEN generation>? THEN ? ELSE ? END,claimed_until='epoch',claim_token=NULL
             WHERE singleton AND claim_token=? AND claimed_until>?
@@ -133,7 +133,7 @@ public class OperationalBindingStore {
             utc(at.plusSeconds(failure ? 300 : 900)),
             j.token(),
             utc(at));
-    if (n != 1) throw new IllegalStateException("S10 worker lease lost");
+    if (n != 1) throw new IllegalStateException("Operational binding worker lease lost");
   }
 
   @Transactional
@@ -185,7 +185,7 @@ public class OperationalBindingStore {
             j.url(),
             j.token(),
             utc(at));
-    if (n != 1) throw new IllegalStateException("S10 resource lease lost");
+    if (n != 1) throw new IllegalStateException("Operational resource lease lost");
   }
 
   @Transactional(readOnly = true)
@@ -194,8 +194,8 @@ public class OperationalBindingStore {
         jdbc.queryForList(
             """
             SELECT max(at) captured_at FROM (
-              SELECT completed_at at FROM crew_operational_resource_attempt WHERE requested_url=? AND (resource_version_id IS NOT NULL OR reused_editorial_acquisition_id IS NOT NULL)
-              UNION ALL SELECT completed_at FROM crew_editorial_acquisition WHERE requested_url=? AND stream='NASA_PERSON_RESOURCE' AND outcome<>'FAILURE'
+              SELECT completed_at at FROM crew_operational_resource_attempt WHERE requested_url=? AND (resource_version_id IS NOT NULL OR reused_resource_acquisition_id IS NOT NULL)
+              UNION ALL SELECT completed_at FROM crew_resource_acquisition WHERE requested_url=? AND stream='NASA_PERSON_RESOURCE' AND outcome<>'FAILURE'
             ) captures WHERE at<=?
             """,
             url,
@@ -247,11 +247,11 @@ public class OperationalBindingStore {
     try {
       var facts =
           new OperationalResources(json)
-              .parse(capture, "s10:" + hash(capture.url()) + ":" + capture.hash());
+              .parse(capture, "operational-resource:" + hash(capture.url()) + ":" + capture.hash());
       var existing =
           jdbc.queryForList(
               """
-              SELECT a.id FROM crew_editorial_acquisition a JOIN crew_source_document d ON d.id=a.document_id
+              SELECT a.id FROM crew_resource_acquisition a JOIN crew_source_document d ON d.id=a.document_id
               WHERE a.requested_url=? AND a.final_url=? AND d.content_hash=? AND a.stream='NASA_PERSON_RESOURCE'
                 AND a.outcome<>'FAILURE' AND a.completed_at<=? ORDER BY a.completed_at DESC,a.id DESC LIMIT 1
               """,
@@ -285,7 +285,7 @@ public class OperationalBindingStore {
                 capture.hash(),
                 OperationalResources.VERSION);
       }
-      reason = reused == null ? "CAPTURED_TYPED_FACTS" : "REUSED_V8_TYPED_CAPTURE";
+      reason = reused == null ? "CAPTURED_TYPED_FACTS" : "REUSED_RESOURCE_CAPTURE";
     } catch (IllegalArgumentException e) {
       reason =
           e.getMessage() != null && e.getMessage().matches("[A-Z][A-Z0-9_]{0,99}")
@@ -294,7 +294,7 @@ public class OperationalBindingStore {
     }
     jdbc.update(
         "INSERT INTO"
-            + " crew_operational_resource_attempt(requested_url,attempted_at,completed_at,http_status,reason,resource_version_id,retry_at,reused_editorial_acquisition_id)"
+            + " crew_operational_resource_attempt(requested_url,attempted_at,completed_at,http_status,reason,resource_version_id,retry_at,reused_resource_acquisition_id)"
             + " VALUES(?,?,?,?,?,?,?,?)",
         capture.url(),
         utc(capture.capturedAt()),
@@ -329,12 +329,12 @@ public class OperationalBindingStore {
     jdbc.execute("SELECT pg_advisory_xact_lock(73491,10)");
     if (lease != null
         && jdbc.queryForObject(
-                "SELECT count(*) FROM crew_operational_binding_work WHERE singleton AND"
+                "SELECT count(*) FROM crew_operational_subject_binding_work WHERE singleton AND"
                     + " claim_token=? AND claimed_until>?",
                 Integer.class,
                 lease.token(),
                 utc(at))
-            != 1) throw new IllegalStateException("S10 evaluation lease lost");
+            != 1) throw new IllegalStateException("Operational binding evaluation lease lost");
     // Only AFTER local scoring: existing canonical routing, profile publishability and production
     // comparison.
     var knowledge = identity.knowledge(at);
@@ -351,7 +351,7 @@ public class OperationalBindingStore {
     for (var r : anchors) {
       var p =
           knowledge.resolveProviderIdentity(
-              CrewCanonicalIdentity.Key.legacy(
+              CrewCanonicalIdentity.Key.provider(
                   CrewSource.LAUNCH_LIBRARY_2, r.get("external_id").toString()));
       var canonicalAnchor = knowledge.canonicalize((UUID) r.get("person_id"));
       if (p != null && !p.equals(canonicalAnchor))
@@ -378,12 +378,12 @@ public class OperationalBindingStore {
         r -> resolutions.put(r.get("evidence_id") + ":" + r.get("subject_index"), r));
     Long projection =
         jdbc.queryForObject(
-            "SELECT max(id) FROM crew_active_projection_revision WHERE evaluated_at<=?",
+            "SELECT max(id) FROM crew_membership_projection_revision WHERE evaluated_at<=?",
             Long.class,
             utc(at));
     var previousRows =
         jdbc.queryForList(
-            "SELECT DISTINCT ON(binding_key) * FROM crew_operational_binding_revision ORDER BY"
+            "SELECT DISTINCT ON(binding_key) * FROM crew_operational_subject_binding_revision ORDER BY"
                 + " binding_key,id DESC");
     var previous = new HashMap<String, Map<String, Object>>();
     previousRows.forEach(r -> previous.put(r.get("binding_key").toString(), r));
@@ -414,7 +414,7 @@ public class OperationalBindingStore {
                   0,
                   0));
       } catch (Exception error) {
-        throw new IllegalStateException("Stored S10 supersession lineage", error);
+        throw new IllegalStateException("Stored operational binding supersession lineage", error);
       }
     }
     var saved = new ArrayList<Saved>();
@@ -433,14 +433,14 @@ public class OperationalBindingStore {
                 e.runnerProbability(),
                 e.margin(),
                 e.truncated(),
-                List.of("NO_PUBLISHABLE_V7_TARGET"),
+                List.of("NO_PUBLISHABLE_CANONICAL_TARGET"),
                 e.candidates(),
                 e.cut(),
                 e.candidateNanos(),
                 e.totalNanos());
       if (e.outcome() == Outcome.AUTO_MATCH
           && canonicalOwners.get(subject.evidenceId() + ":" + target).size() > 1)
-        e = e.conflict("DISTINCT_SOURCE_SUBJECTS_SAME_V7_HUMAN");
+        e = e.conflict("DISTINCT_SOURCE_SUBJECTS_SAME_CANONICAL_HUMAN");
       var prod = resolutions.get(subject.evidenceId() + ":" + subject.index());
       UUID prodPerson = prod == null ? null : knowledge.canonicalize((UUID) prod.get("person_id"));
       String comparison =
@@ -466,7 +466,7 @@ public class OperationalBindingStore {
       var cut = new TreeMap<String, Object>();
       cut.put("subject", subject);
       cut.put("release", release.release(json));
-      cut.put("cutSchema", "s10-scoped-resource-fact-digests-v1");
+      cut.put("cutSchema", "operational-subject-cut-v1");
       cut.put("resourceParser", OperationalResources.VERSION);
       cut.put(
           "resources",
@@ -486,7 +486,7 @@ public class OperationalBindingStore {
         String replacement = hash(selected.get(subject.key()));
         Long replacementId =
             jdbc.queryForObject(
-                "SELECT max(id) FROM crew_operational_binding_revision WHERE binding_key=?",
+                "SELECT max(id) FROM crew_operational_subject_binding_revision WHERE binding_key=?",
                 Long.class,
                 replacement);
         cut.put("supersededBy", Map.of("bindingKey", replacement, "revision", replacementId));
@@ -494,14 +494,14 @@ public class OperationalBindingStore {
       cut.put("outcome", e.outcome());
       cut.put("gates", e.reasons());
       cut.put("candidateSetTruncated", e.truncated());
-      cut.put("v7Targets", targets);
+      cut.put("canonicalTargets", targets);
       if (release.version().equals(OperationalPolicy.SHADOW.version())) {
         cut.put("productionResolution", prod);
         cut.put("productionProjection", projection);
       } else {
-        // Diagnostic revisions cannot feed back into the semantic S10 cut.
+        // Diagnostic revisions cannot feed back into the semantic operational binding cut.
         cut.put(
-            "explicitV7Target",
+            "explicitCanonicalTarget",
             prod != null
                     && Set.of("EXTERNAL_ID", "AUTHORITATIVE_MAPPING").contains(prod.get("method"))
                 ? prodPerson
@@ -541,7 +541,7 @@ public class OperationalBindingStore {
       Long id =
           jdbc.queryForObject(
               """
-              INSERT INTO crew_operational_binding_revision(binding_key,subject_key,source_version,evidence_id,subject_index,document_id,evidence_hash,document_hash,
+              INSERT INTO crew_operational_subject_binding_revision(binding_key,subject_key,source_version,evidence_id,subject_index,document_id,evidence_hash,document_hash,
                 predecessor_id,release_version,input_hash,serialized_cut,input_cut,known_at,effective_at,outcome,target_provider_key,target_person_id,
                 probability,runner_key,runner_probability,margin,reasons,correction_reason,serialized_result,result,result_hash,
                 production_person_id,production_resolution_id,production_projection_id,comparison,consequences)
@@ -583,14 +583,14 @@ public class OperationalBindingStore {
       int rank = 0, proofIndex = 0;
       for (var c : e.candidates()) {
         jdbc.update(
-            "INSERT INTO crew_operational_binding_candidate VALUES(?,?,?,?::jsonb)",
+            "INSERT INTO crew_operational_subject_binding_candidate VALUES(?,?,?,?::jsonb)",
             id,
             c.key(),
             rank++,
             encode(c));
         for (var p : c.proofs())
           jdbc.update(
-              "INSERT INTO crew_operational_binding_proof VALUES(?,?,?,?,?,?,?,?,?,?::jsonb)",
+              "INSERT INTO crew_operational_subject_binding_proof VALUES(?,?,?,?,?,?,?,?,?,?::jsonb)",
               id,
               proofIndex++,
               c.key(),

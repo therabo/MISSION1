@@ -40,9 +40,8 @@ import org.testcontainers.junit.jupiter.*;
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = {
-      "mission1.crew.operational-binding.mode=S10_SCOPED_BINDING",
-      "mission1.replay.crew.mode=UNIFIED_V10_S10",
-      "mission1.crew.operational-shadow.resource-seeds=https://www.gctc.ru/main.php?id=154,https://www.asc-csa.gc.ca/eng/astronauts/canadian/active/bio-joshua-kutryk.asp,https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot,https://www.nasa.gov/wp-json/wp/v2/mission/939897,https://www.nasa.gov/wp-json/wp/v2/mission/992288"
+
+      "mission1.crew.operational-binding.resource-seeds=https://www.gctc.ru/main.php?id=154,https://www.asc-csa.gc.ca/eng/astronauts/canadian/active/bio-joshua-kutryk.asp,https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot,https://www.nasa.gov/wp-json/wp/v2/mission/939897,https://www.nasa.gov/wp-json/wp/v2/mission/992288"
     })
 @AutoConfigureMockMvc
 @Testcontainers
@@ -195,12 +194,12 @@ class UnifiedCrewLifecyclePostgresTest {
     scheduled.acquisitions.set(0);
     scheduled.resourceFetches.set(0);
     jdbc.execute(
-        "TRUNCATE crew_operational_binding_release,crew_operational_resource_version,"
-            + "crew_operational_resource_work,crew_active_projection_revision,crew_auto_identity,"
-            + "crew_auto_release,crew_source_snapshot,crew_person,crew_document_body,"
-            + "crew_editorial_resource RESTART IDENTITY CASCADE");
+        "TRUNCATE crew_operational_subject_binding_release,crew_operational_resource_version,"
+            + "crew_operational_resource_work,crew_membership_projection_revision,crew_identity_research_identity,"
+            + "crew_identity_research_release,crew_source_snapshot,crew_person,crew_document_body,"
+            + "crew_resource RESTART IDENTITY CASCADE");
     jdbc.update(
-        "UPDATE crew_operational_binding_work SET generation=1,completed_generation=0,"
+        "UPDATE crew_operational_subject_binding_work SET generation=1,completed_generation=0,"
             + "claimed_until='epoch',claim_token=NULL,next_at='epoch'");
     start = Instant.now().plusSeconds(2).truncatedTo(ChronoUnit.SECONDS);
     baselineBindings = null;
@@ -468,7 +467,7 @@ class UnifiedCrewLifecyclePostgresTest {
     assertEquals(n, ids(c).size());
     for (var m : c.path("members")) read("/api/iss/crew/" + m.path("id").asText());
     assertEquals(
-        0, jdbc.queryForObject("SELECT count(*) FROM crew_auto_decision_revision", Integer.class));
+        0, jdbc.queryForObject("SELECT count(*) FROM crew_identity_research_decision_revision", Integer.class));
     int mappings =
         jdbc.queryForObject("SELECT count(*) FROM crew_identity_binding_version", Integer.class);
     if (baselineBindings == null) baselineBindings = mappings;
@@ -597,11 +596,11 @@ class UnifiedCrewLifecyclePostgresTest {
         membership.latest().orElseThrow().result().members().stream()
             .noneMatch(m -> m.departureVeto() != null));
     var before =
-        jdbc.queryForList("SELECT id,input_hash FROM crew_active_projection_revision ORDER BY id");
+        jdbc.queryForList("SELECT id,input_hash FROM crew_membership_projection_revision ORDER BY id");
     for (var t : List.of(start, start.plusSeconds(30), clock.instant(), start)) historical(t, 7);
     assertEquals(
         before,
-        jdbc.queryForList("SELECT id,input_hash FROM crew_active_projection_revision ORDER BY id"));
+        jdbc.queryForList("SELECT id,input_hash FROM crew_membership_projection_revision ORDER BY id"));
   }
 
   @ParameterizedTest
@@ -692,10 +691,10 @@ class UnifiedCrewLifecyclePostgresTest {
     assertFalse(ids(matched).contains(human(b).toString()));
     long oldBinding =
         jdbc.queryForObject(
-            "SELECT max(id) FROM crew_operational_binding_revision WHERE outcome='AUTO_MATCH'",
+            "SELECT max(id) FROM crew_operational_subject_binding_revision WHERE outcome='AUTO_MATCH'",
             Long.class);
     var oldRow =
-        jdbc.queryForMap("SELECT * FROM crew_operational_binding_revision WHERE id=?", oldBinding);
+        jdbc.queryForMap("SELECT * FROM crew_operational_subject_binding_revision WHERE id=?", oldBinding);
     var batch = operationalInputs.load(clock.instant());
     var resolver =
         new OperationalResolver(
@@ -758,7 +757,7 @@ class UnifiedCrewLifecyclePostgresTest {
     assertEquals(ids(corrected), ids(historical(entry, 8)));
     assertEquals(
         oldRow,
-        jdbc.queryForMap("SELECT * FROM crew_operational_binding_revision WHERE id=?", oldBinding));
+        jdbc.queryForMap("SELECT * FROM crew_operational_subject_binding_revision WHERE id=?", oldBinding));
     assertEquals(12, jdbc.queryForObject("SELECT count(*) FROM crew_person", Integer.class));
   }
 
@@ -812,7 +811,7 @@ class UnifiedCrewLifecyclePostgresTest {
     var before = current(11);
     var revisions =
         jdbc.queryForList(
-            "SELECT id,input_hash,result_hash FROM crew_operational_binding_revision ORDER BY id");
+            "SELECT id,input_hash,result_hash FROM crew_operational_subject_binding_revision ORDER BY id");
     long projection = membership.latest().orElseThrow().revision();
     var restarted =
         new OperationalBindingWorker(
@@ -829,7 +828,7 @@ class UnifiedCrewLifecyclePostgresTest {
       // Simulates a repaired/delivered notification after application restart; evaluation must
       // coalesce the unchanged factual cut rather than depend on diagnostic V10 revision IDs.
       jdbc.update(
-          "UPDATE crew_operational_binding_work SET"
+          "UPDATE crew_operational_subject_binding_work SET"
               + " generation=generation+1,next_at='epoch',claimed_until='epoch',claim_token=NULL");
       assertEquals(0, restarted.evaluate().inserted());
       reconciliation.reconcile();
@@ -838,7 +837,7 @@ class UnifiedCrewLifecyclePostgresTest {
     assertEquals(
         revisions,
         jdbc.queryForList(
-            "SELECT id,input_hash,result_hash FROM crew_operational_binding_revision ORDER BY id"));
+            "SELECT id,input_hash,result_hash FROM crew_operational_subject_binding_revision ORDER BY id"));
     assertEquals(projection, membership.latest().orElseThrow().revision());
     assertEquals(ids(before), ids(current(11)));
     assertEquals(ids(before), ids(historical(clock.instant(), 11)));
@@ -1003,7 +1002,7 @@ class UnifiedCrewLifecyclePostgresTest {
     assertEquals(
         0,
         jdbc.queryForObject(
-            "SELECT count(*) FROM crew_operational_binding_revision", Integer.class));
+            "SELECT count(*) FROM crew_operational_subject_binding_revision", Integer.class));
   }
 
   @Test
@@ -1048,11 +1047,11 @@ class UnifiedCrewLifecyclePostgresTest {
             "SELECT count(*)>0 FROM crew_operational_resource_version", Boolean.class));
     assertTrue(
         jdbc.queryForObject(
-            "SELECT count(*)>=8 FROM crew_operational_binding_revision WHERE outcome='AUTO_MATCH'",
+            "SELECT count(*)>=8 FROM crew_operational_subject_binding_revision WHERE outcome='AUTO_MATCH'",
             Boolean.class));
     assertTrue(
         jdbc.queryForObject(
-            "SELECT count(*)>=3 FROM crew_active_projection_revision", Boolean.class));
+            "SELECT count(*)>=3 FROM crew_membership_projection_revision", Boolean.class));
     historical(entry.minusSeconds(1), 7);
     historical(entry, 11);
     historical(departure.minusSeconds(1), 11);

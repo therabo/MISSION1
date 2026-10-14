@@ -187,7 +187,7 @@ class OperationalResolverTest {
     assertTrue(
         OperationalPolicy.SHADOW.gates(s, c, 0, false, true).contains("CANDIDATE_SET_INCOMPLETE"));
     assertTrue(
-        OperationalPolicy.SHADOW.gates(s, c, 0, true, false).contains("NO_PUBLISHABLE_V7_TARGET"));
+        OperationalPolicy.SHADOW.gates(s, c, 0, true, false).contains("NO_PUBLISHABLE_CANONICAL_TARGET"));
   }
 
   @Test

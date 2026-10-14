@@ -227,7 +227,7 @@ public final class UnifiedCrewReplay {
             input.ll2Current() ? input.assignments().size() : null);
     var metadata =
         new CrewResponses.MembershipProjection(
-            "HISTORICAL_V10_S10",
+            "UNIFIED_HISTORICAL",
             0,
             at,
             result.policy(),
@@ -261,7 +261,7 @@ public final class UnifiedCrewReplay {
         "PARTIAL",
         "PARTIAL",
         coverage,
-        "LATEST_AVAILABLE_CANONICAL_METADATA; V10_LIFECYCLE_AT_REQUESTED_TIME; S10_KNOWLEDGE_TODAY",
+        "LATEST_AVAILABLE_CANONICAL_METADATA; MEMBERSHIP_LIFECYCLE_AT_REQUESTED_TIME; OPERATIONAL_BINDING_KNOWLEDGE_TODAY",
         state,
         List.copyOf(details));
   }

@@ -143,15 +143,15 @@ public class RetainedIdentityEvidence {
     var ops =
         jdbc.queryForList(
             """
-            SELECT DISTINCT ON(coalesce(v.subject_key,'legacy:'||s.evidence_id||':'||s.subject_index))
-            coalesce(v.subject_key,'legacy:'||s.evidence_id||':'||s.subject_index) subject_key,s.*,e.evidence_hash,d.retrieved_at
+            SELECT DISTINCT ON(coalesce(v.subject_key,'unassociated:'||s.evidence_id||':'||s.subject_index))
+            coalesce(v.subject_key,'unassociated:'||s.evidence_id||':'||s.subject_index) subject_key,s.*,e.evidence_hash,d.retrieved_at
             FROM crew_evidence_subject s JOIN crew_verification_evidence e ON e.id=s.evidence_id
             JOIN crew_source_document d ON d.id=e.document_id
             LEFT JOIN crew_subject_version_link v ON v.evidence_id=s.evidence_id AND v.subject_index=s.subject_index
             LEFT JOIN crew_document_evidence de ON de.evidence_id=e.id
             LEFT JOIN crew_source_sync_run r ON r.verification_document_id=de.document_id AND r.result_state='SUCCESS'
             WHERE d.retrieved_at<=?
-            ORDER BY coalesce(v.subject_key,'legacy:'||s.evidence_id||':'||s.subject_index),coalesce(r.completed_at,d.retrieved_at) DESC,s.evidence_id DESC LIMIT 10001
+            ORDER BY coalesce(v.subject_key,'unassociated:'||s.evidence_id||':'||s.subject_index),coalesce(r.completed_at,d.retrieved_at) DESC,s.evidence_id DESC LIMIT 10001
             """,
             by.atOffset(ZoneOffset.UTC));
     for (var r : ops)
@@ -179,7 +179,7 @@ public class RetainedIdentityEvidence {
     var captures =
         jdbc.queryForList(
             """
-            SELECT a.*,d.content_hash,b.body FROM crew_editorial_acquisition a
+            SELECT a.*,d.content_hash,b.body FROM crew_resource_acquisition a
             JOIN crew_source_document d ON d.id=a.document_id JOIN crew_document_body b ON b.content_hash=d.content_hash
             WHERE a.stream='NASA_PERSON_RESOURCE' AND a.outcome<>'FAILURE' AND a.completed_at<=?
             ORDER BY a.completed_at,a.id LIMIT 10001
@@ -230,7 +230,7 @@ public class RetainedIdentityEvidence {
         String bio = "";
         refs.add(
             new Reference(
-                "crew_editorial_roster_member",
+                "crew_resource_roster_member",
                 root.id() + ":" + member.index(),
                 hash(member),
                 "member_index:" + member.index(),
@@ -332,7 +332,7 @@ public class RetainedIdentityEvidence {
 
   private Reference reference(Map<String, Object> r, String locator) {
     return new Reference(
-        "crew_editorial_acquisition",
+        "crew_resource_acquisition",
         r.get("id").toString(),
         (String) r.get("content_hash"),
         locator,

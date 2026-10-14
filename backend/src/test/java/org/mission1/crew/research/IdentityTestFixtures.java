@@ -13,7 +13,7 @@ final class IdentityTestFixtures {
   static final Instant TIME = Instant.parse("2026-10-10T12:00:00Z");
 
   static JsonNode file(String name) {
-    try (var raw = IdentityTestFixtures.class.getResourceAsStream("/crew/automatic/" + name);
+    try (var raw = IdentityTestFixtures.class.getResourceAsStream("/crew/identity-research/" + name);
         var in = name.endsWith(".gz") ? new GZIPInputStream(raw) : raw) {
       return JSON.readTree(in);
     } catch (Exception e) {
@@ -22,7 +22,7 @@ final class IdentityTestFixtures {
   }
 
   static byte[] artifact(String name) {
-    try (var in = FrozenIdentityModel.class.getResourceAsStream("/crew/automatic/" + name)) {
+    try (var in = FrozenIdentityModel.class.getResourceAsStream("/crew/identity-research/" + name)) {
       return in.readAllBytes();
     } catch (Exception e) {
       throw new IllegalStateException(e);

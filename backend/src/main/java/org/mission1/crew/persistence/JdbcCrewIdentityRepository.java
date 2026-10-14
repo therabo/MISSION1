@@ -359,7 +359,7 @@ public class JdbcCrewIdentityRepository implements CrewIdentityRepository {
         jdbc.execute("SELECT pg_advisory_xact_lock(73491,1)");
         var pairs =
                 jdbc.queryForList(
-                        "SELECT * FROM crew_active_equivalence WHERE declaration_key=?",
+                        "SELECT * FROM crew_current_person_equivalence WHERE declaration_key=?",
                         declaration);
         for (var p : pairs) {
             Long next =

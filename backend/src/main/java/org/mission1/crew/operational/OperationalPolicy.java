@@ -80,7 +80,7 @@ public record OperationalPolicy(
     var reasons = new ArrayList<String>();
     if (!s.integrity()) reasons.add("SOURCE_LINEAGE_INCOMPLETE");
     if (!complete) reasons.add("CANDIDATE_SET_INCOMPLETE");
-    if (!target) reasons.add("NO_PUBLISHABLE_V7_TARGET");
+    if (!target) reasons.add("NO_PUBLISHABLE_CANONICAL_TARGET");
     if (!c.compatibleName()) reasons.add("NAME_INCOMPATIBLE");
     if (!c.qualifiedWitness()) reasons.add("MISSING_QUALIFIED_WITNESS");
     if (!c.contradictions().isEmpty()) reasons.add("AUTHORITY_CONTRADICTION");

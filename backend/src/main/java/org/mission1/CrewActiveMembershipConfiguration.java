@@ -13,26 +13,21 @@ class CrewActiveMembershipConfiguration {
   @Bean
   ActiveMembershipPolicy activeMembershipPolicy(
       CrewReconciliationPolicy temporal,
-      org.mission1.crew.operational.OperationalProductionBindings bindings,
-      @Value("${mission1.crew.active-shadow.roster-max-age:PT6H}") Duration roster,
-      @Value("${mission1.crew.active-shadow.topic-max-age:PT6H}") Duration topic,
-      @Value("${mission1.crew.active-shadow.personal-max-age:P7D}") Duration personal) {
-    return new ActiveMembershipPolicy(temporal, roster, topic, personal)
-        .production(
-            bindings.mode()
-                == org.mission1.crew.operational.OperationalProductionBindings.Mode
-                    .S10_SCOPED_BINDING);
+      @Value("${mission1.crew.membership.roster-max-age:PT6H}") Duration roster,
+      @Value("${mission1.crew.membership.topic-max-age:PT6H}") Duration topic,
+      @Value("${mission1.crew.membership.personal-max-age:P7D}") Duration personal) {
+    return new ActiveMembershipPolicy(temporal, roster, topic, personal).production(true);
   }
 
   @Bean
   @ConditionalOnProperty(
-      name = "mission1.crew.active-shadow.enabled",
+      name = "mission1.crew.membership.enabled",
       havingValue = "true",
       matchIfMissing = true)
   ActiveScheduler activeScheduler(
       ActiveMembershipStore store,
       Clock utcClock,
-      @Value("${mission1.crew.active-shadow.fixed-delay:PT1M}") Duration delay) {
+      @Value("${mission1.crew.membership.fixed-delay:PT1M}") Duration delay) {
     if (delay.compareTo(Duration.ofMinutes(1)) < 0)
       throw new IllegalArgumentException("Bounded membership cadence required");
     return new ActiveScheduler(store, utcClock);
@@ -48,8 +43,8 @@ class CrewActiveMembershipConfiguration {
     }
 
     @Scheduled(
-        fixedDelayString = "${mission1.crew.active-shadow.fixed-delay:PT1M}",
-        initialDelayString = "${mission1.crew.active-shadow.initial-delay:PT15M}")
+        fixedDelayString = "${mission1.crew.membership.fixed-delay:PT1M}",
+        initialDelayString = "${mission1.crew.membership.initial-delay:PT15M}")
     void reconcile() {
       try {
         store.materialize(clock.instant());

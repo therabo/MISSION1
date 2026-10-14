@@ -6,7 +6,6 @@ import java.util.*;
 import org.mission1.crew.application.*;
 import org.mission1.crew.domain.*;
 import org.mission1.source.crew.CrewHttpReader;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.*;
@@ -14,11 +13,6 @@ import org.springframework.transaction.annotation.*;
 /** One set-based production boundary. Reads sealed facts; cannot acquire, score or write. */
 @Repository
 public class OperationalProductionBindings {
-  public enum Mode {
-    S10_SCOPED_BINDING,
-    LEGACY_OPERATIONAL_BINDING
-  }
-
   public record Binding(
       String provider, UUID person, Long revision, Long resolution, Instant knownAt, String state) {
     public boolean matched() {
@@ -29,21 +23,14 @@ public class OperationalProductionBindings {
   private final JdbcTemplate jdbc;
   private final ObjectMapper json;
   private final CrewIdentityRepository identities;
-  private final Mode mode;
 
   public OperationalProductionBindings(
       JdbcTemplate jdbc,
       ObjectMapper json,
-      CrewIdentityRepository identities,
-      @Value("${mission1.crew.operational-binding.mode:S10_SCOPED_BINDING}") Mode mode) {
+      CrewIdentityRepository identities) {
     this.jdbc = jdbc;
     this.json = json;
     this.identities = identities;
-    this.mode = mode;
-  }
-
-  public Mode mode() {
-    return mode;
   }
 
   @Transactional(readOnly = true, isolation = Isolation.REPEATABLE_READ)
@@ -60,11 +47,11 @@ public class OperationalProductionBindings {
             SELECT b.*,rel.serialized_policy,rel.model_sha,
               s.display_name exact_name,e.evidence_hash exact_hash,e.evidence_type exact_type,e.assertion exact_assertion,
               d.content_hash exact_document_hash,v.subject_key exact_subject,v.version_key exact_version,
-              (SELECT count(*) FROM crew_operational_binding_candidate c WHERE c.revision_id=b.id) candidate_count,
-              (SELECT count(*) FROM crew_operational_binding_proof p WHERE p.revision_id=b.id) proof_count,
-              NOT EXISTS(SELECT FROM crew_operational_binding_candidate c WHERE c.revision_id=b.id
+              (SELECT count(*) FROM crew_operational_subject_binding_candidate c WHERE c.revision_id=b.id) candidate_count,
+              (SELECT count(*) FROM crew_operational_subject_binding_proof p WHERE p.revision_id=b.id) proof_count,
+              NOT EXISTS(SELECT FROM crew_operational_subject_binding_candidate c WHERE c.revision_id=b.id
                 AND (c.candidate_key IS DISTINCT FROM c.payload->>'key' OR c.payload IS DISTINCT FROM b.result->'evaluation'->'candidates'->c.candidate_rank)) candidates_equal,
-              NOT EXISTS(SELECT FROM crew_operational_binding_proof p JOIN crew_operational_binding_candidate c
+              NOT EXISTS(SELECT FROM crew_operational_subject_binding_proof p JOIN crew_operational_subject_binding_candidate c
                 ON c.revision_id=p.revision_id AND c.candidate_key=p.candidate_key
                 WHERE p.revision_id=b.id AND (NOT c.payload->'proofs' @> jsonb_build_array(p.payload)
                   OR p.resource_ref IS DISTINCT FROM p.payload->>'resourceRef'
@@ -73,9 +60,9 @@ public class OperationalProductionBindings {
                   OR p.relation_type IS DISTINCT FROM p.payload->>'relation'
                   OR p.independence_group IS DISTINCT FROM p.payload->>'independenceGroup'
                   OR p.required IS DISTINCT FROM (p.payload->>'required')::boolean)) proofs_equal
-            FROM (SELECT DISTINCT ON(evidence_id,subject_index) * FROM crew_operational_binding_revision
+            FROM (SELECT DISTINCT ON(evidence_id,subject_index) * FROM crew_operational_subject_binding_revision
               WHERE evidence_id=ANY(?::bigint[]) AND known_at<=? ORDER BY evidence_id,subject_index,id DESC) b
-            JOIN crew_operational_binding_release rel ON rel.version=b.release_version
+            JOIN crew_operational_subject_binding_release rel ON rel.version=b.release_version
             JOIN crew_evidence_subject s ON s.evidence_id=b.evidence_id AND s.subject_index=b.subject_index
             JOIN crew_verification_evidence e ON e.id=b.evidence_id JOIN crew_source_document d ON d.id=b.document_id
             LEFT JOIN crew_subject_version_link v ON v.evidence_id=b.evidence_id AND v.subject_index=b.subject_index
@@ -113,7 +100,7 @@ public class OperationalProductionBindings {
           var canonical = knowledge.canonicalize((UUID) r.get("person_id"));
           var approved =
               knowledge.resolveProviderIdentity(
-                  CrewCanonicalIdentity.Key.legacy(
+                  CrewCanonicalIdentity.Key.provider(
                       CrewSource.LAUNCH_LIBRARY_2, r.get("external_id").toString()));
           if (approved == null || approved.equals(canonical))
             targets.put("LL2:PERSON:" + r.get("external_id"), canonical);
@@ -143,7 +130,7 @@ public class OperationalProductionBindings {
                         && old.get("identity_key") != null
                         && oldPerson.equals(
                             knowledge.resolveProviderIdentity(
-                                CrewCanonicalIdentity.Key.legacy(
+                                CrewCanonicalIdentity.Key.provider(
                                     CrewSource.NASA_OFFICIAL, old.get("identity_key").toString())))
                     || "EXTERNAL_ID".equals(old.get("method"))
                         && source.externalIds().stream()
@@ -166,10 +153,10 @@ public class OperationalProductionBindings {
                   provider == null
                       ? null
                       : ((java.sql.Timestamp) old.get("resolved_at")).toInstant(),
-                  provider == null ? "UNRESOLVED" : "EXPLICIT_V7"));
+                  provider == null ? "UNRESOLVED" : "CANONICAL_IDENTITY"));
           continue;
         }
-        String state = "S10_" + head.get("outcome");
+        String state = "OPERATIONAL_" + head.get("outcome");
         Long revision = ((Number) head.get("id")).longValue();
         Instant decision = ((java.sql.Timestamp) head.get("known_at")).toInstant();
         String target = (String) head.get("target_provider_key");
@@ -180,9 +167,9 @@ public class OperationalProductionBindings {
                 && person.equals(targets.get(target));
         if (valid && strong && oldPerson != null && !person.equals(oldPerson)) {
           valid = false;
-          state = "S10_V7_CONFLICT";
+          state = "OPERATIONAL_CANONICAL_CONFLICT";
         }
-        if (!valid && state.equals("S10_AUTO_MATCH")) state = "S10_INCOMPATIBLE_OR_EXPIRED";
+        if (!valid && state.equals("OPERATIONAL_AUTO_MATCH")) state = "OPERATIONAL_INCOMPATIBLE_OR_EXPIRED";
         result.put(
             ref,
             new Binding(
@@ -219,7 +206,7 @@ public class OperationalProductionBindings {
       var s = c.path("subject");
       if (!c.path("release").equals(json.valueToTree(OperationalPolicy.PRODUCTION.release(json)))
           || !OperationalResources.VERSION.equals(c.path("resourceParser").asText())
-          || !"s10-scoped-resource-fact-digests-v1".equals(c.path("cutSchema").asText())
+          || !"operational-subject-cut-v1".equals(c.path("cutSchema").asText())
           || !c.has("candidateSetTruncated")
           || c.path("candidateSetTruncated").asBoolean()
           || !"AUTO_MATCH".equals(evaluation.path("outcome").asText())
@@ -234,7 +221,7 @@ public class OperationalProductionBindings {
           || !json.readTree(r.get("reasons").toString()).isEmpty()) return false;
       String key =
           r.get("exact_subject") == null
-              ? "legacy:" + r.get("evidence_id") + ":" + index
+              ? "unassociated:" + r.get("evidence_id") + ":" + index
               : r.get("exact_subject").toString();
       String version =
           r.get("exact_version") == null

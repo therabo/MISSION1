@@ -35,11 +35,10 @@ class CrewOperationalBindingConfiguration {
       RetainedMembershipInputs membership,
       ActiveMembershipPolicy policy,
       ObjectMapper json,
-      OperationalProductionBindings bindings,
       Clock utcClock,
       OperationalResourceHttp http,
       @Value(
-              "${mission1.crew.operational-shadow.resource-seeds:https://www.gctc.ru/main.php?id=154,https://www.asc-csa.gc.ca/eng/astronauts/canadian/active/bio-joshua-kutryk.asp,https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot,https://www.nasa.gov/mission/nasas-spacex-crew-12/,https://www.nasa.gov/mission/nasas-spacex-crew-13/}")
+              "${mission1.crew.operational-binding.resource-seeds:https://www.gctc.ru/main.php?id=154,https://www.asc-csa.gc.ca/eng/astronauts/canadian/active/bio-joshua-kutryk.asp,https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Astronauts/Sophie_Adenot,https://www.nasa.gov/mission/nasas-spacex-crew-12/,https://www.nasa.gov/mission/nasas-spacex-crew-13/}")
           String seeds) {
     return new OperationalBindingWorker(
         store,
@@ -50,19 +49,17 @@ class CrewOperationalBindingConfiguration {
         utcClock,
         http,
         seeds.isBlank() ? List.of() : Arrays.stream(seeds.split(",")).map(String::strip).toList(),
-        bindings.mode() == OperationalProductionBindings.Mode.S10_SCOPED_BINDING
-            ? OperationalPolicy.PRODUCTION
-            : OperationalPolicy.SHADOW);
+        OperationalPolicy.PRODUCTION);
   }
 
   @Bean
   @ConditionalOnProperty(
-      name = "mission1.crew.operational-shadow.enabled",
+      name = "mission1.crew.operational-binding.enabled",
       havingValue = "true",
       matchIfMissing = true)
   Scheduler operationalBindingScheduler(
       OperationalBindingWorker worker,
-      @Value("${mission1.crew.operational-shadow.acquisition-enabled:true}") boolean acquire) {
+      @Value("${mission1.crew.operational-binding.acquisition-enabled:true}") boolean acquire) {
     return new Scheduler(worker, acquire);
   }
 
@@ -80,8 +77,8 @@ class CrewOperationalBindingConfiguration {
     }
 
     @Scheduled(
-        fixedDelayString = "${mission1.crew.operational-shadow.fixed-delay:PT1M}",
-        initialDelayString = "${mission1.crew.operational-shadow.initial-delay:PT15M}")
+        fixedDelayString = "${mission1.crew.operational-binding.fixed-delay:PT1M}",
+        initialDelayString = "${mission1.crew.operational-binding.initial-delay:PT15M}")
     void evaluate() {
       try {
         worker.evaluate();
@@ -95,8 +92,8 @@ class CrewOperationalBindingConfiguration {
     }
 
     @Scheduled(
-        fixedDelayString = "${mission1.crew.operational-shadow.acquisition-delay:PT5M}",
-        initialDelayString = "${mission1.crew.operational-shadow.initial-delay:PT15M}")
+        fixedDelayString = "${mission1.crew.operational-binding.acquisition-delay:PT5M}",
+        initialDelayString = "${mission1.crew.operational-binding.initial-delay:PT15M}")
     void acquire() {
       if (!acquisitionEnabled) return;
       try {

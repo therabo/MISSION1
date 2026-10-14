@@ -11,7 +11,7 @@ export interface HistoricalRosterContext { at: string; availability: string; cov
 export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, historical }: {
   crew: CrewAssessment; onMember: (id: string) => void; selectedMemberId?: string | null; historical?: HistoricalRosterContext;
 }) {
-  const unifiedHistorical = historical && crew.membership?.mode === 'HISTORICAL_V10_S10';
+  const unifiedHistorical = historical && crew.membership?.mode === 'UNIFIED_HISTORICAL';
   const historicalCounts = historical && !unifiedHistorical && 'unresolvedSubjects' in crew ? crew.counts : null;
   const quality = QUALITY[crew.reconciliation.status];
   const datedPresence = historical && crew.members.some(m => m.presence.state === 'STALE');
@@ -60,7 +60,7 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
 }
 
 function CrewRosterRow({ member, crew, onMember, selected, historical }: { member: CrewMember; crew: CrewAssessment; onMember: (id: string) => void; selected: boolean; historical?: HistoricalRosterContext }) {
-  const unifiedHistorical = historical && crew.membership?.mode === 'HISTORICAL_V10_S10';
+  const unifiedHistorical = historical && crew.membership?.mode === 'UNIFIED_HISTORICAL';
   const operationalPresentation = !historical || unifiedHistorical;
   const role = member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment');
   const mission = member.assignment && member.assignment.expeditionId === crew.expedition?.id ? crew.expedition.name : 'Unavailable';

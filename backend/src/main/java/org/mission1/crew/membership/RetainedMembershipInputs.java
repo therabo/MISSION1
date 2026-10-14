@@ -50,14 +50,12 @@ public class RetainedMembershipInputs {
     this.identities = identities;
   }
 
-  public boolean modern() {
-    return bindings != null
-        && bindings.mode()
-            == org.mission1.crew.operational.OperationalProductionBindings.Mode.S10_SCOPED_BINDING;
+  public boolean productionBinding() {
+    return bindings != null;
   }
 
   public String identityMode() {
-    return modern() ? Membership.PRODUCTION_MODE : Membership.MODE;
+    return productionBinding() ? Membership.PRODUCTION_MODE : Membership.MODE;
   }
 
   private JsonNode node(Object o) {
@@ -118,7 +116,7 @@ public class RetainedMembershipInputs {
   public List<Instant> editorialCaptures(Instant knownAt) {
     return jdbc.query(
         """
-        SELECT a.completed_at FROM crew_editorial_acquisition a JOIN crew_editorial_roster_version r ON r.id=a.roster_id
+        SELECT a.completed_at FROM crew_resource_acquisition a JOIN crew_resource_roster_version r ON r.id=a.roster_id
         WHERE a.stream='NASA_EDITORIAL_EXPEDITION' AND a.outcome<>'FAILURE' AND a.completed_at<=?
           AND r.parser_name=? AND r.parser_version=? ORDER BY a.completed_at,a.id
         """,
@@ -228,7 +226,7 @@ public class RetainedMembershipInputs {
         first(
             jdbc.queryForList(
                 """
-                SELECT a.* FROM crew_editorial_acquisition a WHERE stream='NASA_EDITORIAL_TOPIC' AND outcome<>'FAILURE'
+                SELECT a.* FROM crew_resource_acquisition a WHERE stream='NASA_EDITORIAL_TOPIC' AND outcome<>'FAILURE'
                 AND parser_name=? AND parser_version=? AND completed_at<=? ORDER BY completed_at DESC,id DESC LIMIT 1
                 """,
                 CrewEditorial.PARSER,
@@ -239,7 +237,7 @@ public class RetainedMembershipInputs {
             ? List.<Map<String, Object>>of()
             : jdbc.queryForList(
                 """
-                SELECT f.* FROM crew_editorial_fact_capture c JOIN crew_editorial_topic_fact f ON f.id=c.fact_id WHERE c.acquisition_id=? ORDER BY f.fact_kind
+                SELECT f.* FROM crew_resource_fact_capture c JOIN crew_resource_topic_fact f ON f.id=c.fact_id WHERE c.acquisition_id=? ORDER BY f.fact_kind
                 """,
                 id(topic, "id"));
     var countFact =
@@ -253,11 +251,11 @@ public class RetainedMembershipInputs {
             .findFirst()
             .orElse(null);
     var graph =
-        modern()
+        productionBinding()
             ? null
             : first(
                 jdbc.queryForList(
-                    "SELECT * FROM crew_auto_graph_revision WHERE applied_at<=? ORDER BY id DESC"
+                    "SELECT * FROM crew_identity_research_graph_revision WHERE applied_at<=? ORDER BY id DESC"
                         + " LIMIT 1",
                     by));
     var decisionRows =
@@ -266,10 +264,10 @@ public class RetainedMembershipInputs {
             : jdbc.queryForList(
                 """
                 SELECT d.*,c.candidate_key,f.source_observation_id,o.evidence,h.observation_id head_observation,ho.known_at head_known_at
-                FROM crew_auto_graph_application ga JOIN crew_auto_decision_revision d ON d.id=ga.decision_id
-                LEFT JOIN crew_auto_candidate c ON c.id=d.candidate_id JOIN crew_auto_feature_snapshot f ON f.snapshot_hash=d.snapshot_hash
-                JOIN crew_auto_observation o ON o.id=f.source_observation_id LEFT JOIN crew_auto_input_head h ON h.identity_key=d.source_key
-                LEFT JOIN crew_auto_observation ho ON ho.id=h.observation_id
+                FROM crew_identity_research_graph_application ga JOIN crew_identity_research_decision_revision d ON d.id=ga.decision_id
+                LEFT JOIN crew_identity_research_candidate c ON c.id=d.candidate_id JOIN crew_identity_research_feature_snapshot f ON f.snapshot_hash=d.snapshot_hash
+                JOIN crew_identity_research_observation o ON o.id=f.source_observation_id LEFT JOIN crew_identity_research_input_head h ON h.identity_key=d.source_key
+                LEFT JOIN crew_identity_research_observation ho ON ho.id=h.observation_id
                 WHERE ga.graph_id=? ORDER BY d.source_key
                 """,
                 id(graph, "id"));
@@ -306,21 +304,21 @@ public class RetainedMembershipInputs {
             && ((Number) epochFact.get("value")).intValue() == roster.roster().expedition();
     // A failed topic/mission capture retains last-good membership; an observed epoch mismatch
     // blocks its current eligibility.
-    var productionIdentity = modern() ? identities.knowledge(knownAt) : null;
+    var productionIdentity = productionBinding() ? identities.knowledge(knownAt) : null;
     var canonicalHumans = new HashMap<UUID, String>();
-    if (modern())
+    if (productionBinding())
       for (var h : humans)
         canonicalHumans.put(productionIdentity.canonicalize(h.anchor()), h.key());
     var editorialBindings = new TreeMap<String, Object>();
     var editorialAuthorities =
-        modern() && roster != null
+        productionBinding() && roster != null
             ? jdbc.queryForList(
                 """
                 SELECT rel.*,a.resource_metadata,a.completed_at,
                   b.id identity_binding,b.status binding_status,b.person_id binding_person,x.person_id original_owner
-                FROM (SELECT DISTINCT ON(member_index,observed_url) * FROM crew_editorial_resource_relation
+                FROM (SELECT DISTINCT ON(member_index,observed_url) * FROM crew_resource_relation
                   WHERE roster_id=? ORDER BY member_index,observed_url,id DESC) rel
-                LEFT JOIN crew_editorial_acquisition a ON a.id=rel.acquisition_id
+                LEFT JOIN crew_resource_acquisition a ON a.id=rel.acquisition_id
                 LEFT JOIN LATERAL (SELECT * FROM crew_identity_binding_version
                   WHERE source='NASA_OFFICIAL' AND entity_kind='PERSON_PROFILE_RESOURCE'
                     AND external_key='profile:'||(a.resource_metadata->>'slug') AND known_at<=?
@@ -340,8 +338,8 @@ public class RetainedMembershipInputs {
         String key = "NASA:EDITORIAL_SLOT:" + roster.resource().key() + ":" + m.index();
         var b =
             boundary.bind(
-                key, "crew_editorial_roster_member", roster.id() + ":" + m.index(), hash(m));
-        if (modern()) {
+                key, "crew_resource_roster_member", roster.id() + ":" + m.index(), hash(m));
+        if (productionBinding()) {
           var candidates = new TreeMap<String, Map<String, Object>>();
           for (var relation : editorialAuthorities) {
             if (((Number) relation.get("member_index")).intValue() != m.index()
@@ -373,7 +371,7 @@ public class RetainedMembershipInputs {
                   pin == null ? null : pin.get("provider").toString(),
                   null,
                   null,
-                  pin == null ? "UNRESOLVED_V7_RESOURCE" : "EXPLICIT_V7_RESOURCE");
+                  pin == null ? "UNRESOLVED_CANONICAL_RESOURCE" : "CANONICAL_RESOURCE_BINDING");
           if (pin != null) editorialBindings.put(roster.id() + ":" + m.index(), pin);
         }
         editorialSlots.add(
@@ -419,7 +417,7 @@ public class RetainedMembershipInputs {
     boolean opHealthy =
         opGood != null && (opAttempt == null || id(opAttempt, "id").equals(id(opGood, "id")));
     var resolved =
-        modern()
+        productionBinding()
             ? bindings.resolve(selected.evidence(), knownAt)
             : Map.<String, org.mission1.crew.operational.OperationalProductionBindings.Binding>of();
     var events = new ArrayList<Event>();
@@ -437,14 +435,14 @@ public class RetainedMembershipInputs {
       boolean applicable =
           historical
               ? policy.temporal().applicableEffectiveTime(e, at)
-              : (modern() ? opGood != null : opHealthy)
+              : (productionBinding() ? opGood != null : opHealthy)
                   && policy.temporal().applicable(e, time(opGood, "retrieved_at"), at);
       for (int i = 0; i < e.people().size(); i++) {
         String ref = item.id() + ":" + i;
-        String subject = subjects.getOrDefault(ref, "legacy:" + ref);
+        String subject = subjects.getOrDefault(ref, "unassociated:" + ref);
         String key = "NASA:OPERATIONAL_SUBJECT:" + subject;
         var b = boundary.bind(key, "crew_evidence_subject", ref, hashes.get(item.id()));
-        if (modern()) {
+        if (productionBinding()) {
           var binding = resolved.get(ref);
           b =
               new ResearchMembershipIdentity.Binding(
@@ -522,8 +520,8 @@ public class RetainedMembershipInputs {
         jdbc.queryForList(
             """
             SELECT DISTINCT ON(a.stream,a.requested_url) a.*,
-             (SELECT max(b.completed_at) FROM crew_editorial_acquisition b WHERE b.stream=a.stream AND b.requested_url=a.requested_url AND b.outcome<>'FAILURE' AND b.completed_at<=?) good_at
-            FROM crew_editorial_acquisition a WHERE a.completed_at<=? ORDER BY a.stream,a.requested_url,a.completed_at DESC,a.id DESC
+             (SELECT max(b.completed_at) FROM crew_resource_acquisition b WHERE b.stream=a.stream AND b.requested_url=a.requested_url AND b.outcome<>'FAILURE' AND b.completed_at<=?) good_at
+            FROM crew_resource_acquisition a WHERE a.completed_at<=? ORDER BY a.stream,a.requested_url,a.completed_at DESC,a.id DESC
             """,
             by,
             by);
@@ -561,22 +559,22 @@ public class RetainedMembershipInputs {
                 null,
                 Freshness.NO_DATA));
     var identityHealth =
-        modern()
+        productionBinding()
             ? new TreeMap<String, Object>()
             : new TreeMap<String, Object>(
                 jdbc.queryForMap(
                     """
-                    SELECT count(*) FILTER(WHERE failed) failed_jobs,count(*) FILTER(WHERE NOT failed AND generation>completed_generation AND available_at<=?) pending_jobs FROM crew_auto_job
+                    SELECT count(*) FILTER(WHERE failed) failed_jobs,count(*) FILTER(WHERE NOT failed AND generation>completed_generation AND available_at<=?) pending_jobs FROM crew_identity_research_job
                     """,
                     by));
-    if (!modern())
+    if (!productionBinding())
       identityHealth.put(
           "degraded",
           graph == null
               || decisions.stream().anyMatch(d -> !d.currentHead())
               || ((Number) identityHealth.get("failed_jobs")).longValue() > 0
               || ((Number) identityHealth.get("pending_jobs")).longValue() > 0);
-    if (modern()) {
+    if (productionBinding()) {
       var lineage = new TreeMap<String, Object>();
       resolved.forEach(
           (ref, b) -> {

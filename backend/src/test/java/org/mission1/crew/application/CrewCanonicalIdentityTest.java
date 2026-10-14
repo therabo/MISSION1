@@ -63,7 +63,7 @@ class CrewCanonicalIdentityTest {
     }
 
     @Test
-    void newNameOnlyCandidateRequiresReviewWhileRetainedV1AuditSurvives() {
+    void nameOnlyCandidateRequiresReviewDespitePrePublicationAudit() {
         var candidate = new PersonReference(alias, "TEST_ONLY Exact Name", List.of(), null);
         var decision =
                 CrewCanonicalPersonResolver.resolve(
@@ -83,8 +83,8 @@ class CrewCanonicalIdentityTest {
         var retained =
                 CrewCanonicalPersonResolver.resolve(
                         subject(null), List.of(candidate), Map.of(), old, identity());
-        assertEquals(root, retained.personId());
-        assertEquals(old.method(), retained.method());
+        assertNull(retained.personId());
+        assertEquals(CrewIdentityResolution.Method.UNRESOLVED, retained.method());
     }
 
     @Test

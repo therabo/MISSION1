@@ -322,7 +322,7 @@ public final class OperationalResources {
           link.tagName().equals("link")
               && href.matches(
                   "https://www\\.nasa\\.gov/wp-json/wp/v2/(people|topic|mission)/[1-9][0-9]*");
-      // Crew resource acquisition owns typed Expedition roster semantics; S10's named mission witness is Crew-scoped.
+      // Crew resource acquisition owns typed Expedition roster semantics; Operational binding's named mission witness is Crew-scoped.
       if (path.matches("/mission/expedition-[0-9]+/") && href.contains("/wp-json/wp/v2/mission/"))
         typed = false;
       boolean biography = kind == Kind.NASA_TOPIC || kind == Kind.NASA_HTML;

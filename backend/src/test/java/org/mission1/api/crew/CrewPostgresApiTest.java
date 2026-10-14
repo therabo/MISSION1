@@ -34,7 +34,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 /** Full PostgreSQL→query→mapper→controller→JSON chain. Recorded fixtures are offline test-only. */
-@SpringBootTest(properties = {"mission1.crew.current.membership-mode=LEGACY_RETAINED_UNION", "mission1.crew.operational-binding.mode=LEGACY_OPERATIONAL_BINDING", "mission1.replay.crew.mode=LEGACY"})
+@SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
 @Import(CrewPostgresApiTest.SqlInstrumentation.class)
@@ -59,6 +59,7 @@ class CrewPostgresApiTest {
     @Autowired CrewRepository runs;
     @Autowired CrewVerificationRepository verification;
     @Autowired CrewReconciliationService reconciliation;
+    @Autowired org.mission1.crew.membership.ActiveMembershipStore membershipStore;
     @MockitoBean Clock clock;
     @MockitoSpyBean LaunchLibrary2CrewSource configuredLl2;
     @MockitoBean NasaCrewVerificationIngestionService configuredNasa;
@@ -132,6 +133,7 @@ class CrewPostgresApiTest {
                         fixture.clock,
                         fixture.source.currentExpeditionUrl())
                 .ingest();
+        membershipStore.materialize(fixture.clock.time);
     }
 
     void nasa() {
@@ -146,13 +148,12 @@ class CrewPostgresApiTest {
                         NasaOperationalFeedParser.NAME,
                         NasaOperationalFeedParser.VERSION)
                 .ingest();
+        membershipStore.materialize(fixture.clock.time);
     }
 
     void populated() {
         ll2();
         nasa();
-        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
-                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
     }
 
@@ -186,15 +187,15 @@ class CrewPostgresApiTest {
         var r = read("/api/iss/crew");
         assertEquals("PARTIAL_MATCH", r.at("/reconciliation/status").asText());
         assertTrue(r.at("/counts/officialAboard").isMissingNode());
-        assertEquals(8, r.at("/counts/resolvedAboard").asInt());
+        assertEquals(0, r.at("/counts/resolvedAboard").asInt());
         assertTrue(r.at("/counts/unresolvedSubjects").isMissingNode());
         assertEquals(7, r.at("/counts/structuredAssignments").asInt());
-        assertEquals(9, r.get("members").size());
+        assertEquals(7, r.get("members").size());
         assertFalse(r.has("unresolvedSubjects"));
         assertEquals(personId().toString(), read("/api/iss/crew/" + personId()).get("id").asText());
         assertEquals(7, read("/api/iss/expedition/current").get("assignmentCount").asInt());
         assertEquals(
-                "13",
+                "1",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history ORDER BY installed_rank DESC"
                             + " LIMIT 1",
@@ -261,7 +262,7 @@ class CrewPostgresApiTest {
         r = read("/api/iss/crew");
         assertEquals("VERIFICATION_UNAVAILABLE", r.at("/reconciliation/status").asText());
         assertTrue(r.at("/freshness/verification/lastRefreshFailed").asBoolean());
-        assertEquals(9, r.get("members").size());
+        assertEquals(7, r.get("members").size());
         assertTrue(r.at("/counts/officialAboard").isMissingNode());
         assertTrue(r.at("/counts/lastKnownOfficialAboard").isMissingNode());
     }
@@ -288,18 +289,18 @@ class CrewPostgresApiTest {
     }
 
     @Test
-    void nasaOnlyStateIsUsableWithoutPrimaryAndProfile() throws Exception {
+    void nasaOnlyEvidenceCannotFabricateCurrentMembersButRetainsProviderDetails() throws Exception {
         nasa();
-        org.mission1.crew.LegacyCrewIdentityFixture.retainV1(
-                jdbc, verification, fixture.clock.time);
         reconciliation.reconcile();
         var r = read("/api/iss/crew");
         assertEquals("PRIMARY_UNAVAILABLE", r.at("/reconciliation/status").asText());
         assertTrue(r.get("expedition").isNull());
         assertTrue(r.at("/counts/structuredAssignments").isNull());
-        assertFalse(r.get("members").isEmpty());
+        assertTrue(r.get("members").isEmpty());
+        verification.resolve(verification.evidenceAsOf(fixture.clock.time), fixture.clock.time);
+        var known = jdbc.queryForObject("SELECT id FROM crew_person ORDER BY id LIMIT 1", UUID.class);
         for (var member : r.get("members")) assertTrue(member.get("assignment").isNull());
-        var p = read("/api/iss/crew/" + r.at("/members/0/id").asText());
+        var p = read("/api/iss/crew/" + known.toString());
         assertEquals("UNAVAILABLE", p.get("profileAvailability").asText());
         assertFalse(p.get("name").isNull());
         assertTrue(p.get("currentAssignment").isNull());
@@ -309,7 +310,7 @@ class CrewPostgresApiTest {
     void emptyDatabaseProduces503AndUnknownPerson404() throws Exception {
         mvc.perform(get("/api/iss/crew"))
                 .andExpect(status().isServiceUnavailable())
-                .andExpect(jsonPath("$.type").value("urn:mission1:problem:crew-state-unavailable"));
+                .andExpect(jsonPath("$.type").value("urn:mission1:problem:crew-current-projection-unavailable"));
         mvc.perform(get("/api/iss/expedition/current")).andExpect(status().isServiceUnavailable());
         mvc.perform(get("/api/iss/crew/" + UUID.randomUUID())).andExpect(status().isNotFound());
     }
@@ -477,6 +478,7 @@ class CrewPostgresApiTest {
     void reviewedCanonicalIdentityJoinsRetainedProfilesAndKeepsBothUuidUrls() throws Exception {
         populated();
         var tree = json.readTree(fixture.body);
+        CanonicalCrewFixture.sourceAnchors(jdbc, at);
         CanonicalCrewFixture.reviewedAssignments(tree);
         fixture.body = tree.toString();
         fixture.clock.time = Instant.parse("2026-10-10T12:00:00Z");
@@ -492,7 +494,7 @@ class CrewPostgresApiTest {
                             provider);
             var root =
                     jdbc.queryForObject(
-                            "SELECT representative_id FROM crew_active_equivalence WHERE"
+                            "SELECT representative_id FROM crew_current_person_equivalence WHERE"
                                 + " alias_id=?",
                             UUID.class,
                             alias);

@@ -47,13 +47,6 @@ public interface CrewVerificationRepository {
 
   List<Evidence> evidenceAsOf(Instant asOf);
 
-  /** Release boundary: the new timed-departure interpretation is shadow-only until activation. */
-  default List<Evidence> publicEvidenceAsOf(Instant asOf) {
-    return evidenceAsOf(asOf).stream()
-        .filter(e -> !e.value().evidenceMethod().startsWith(CrewOperationalTime.METHOD + "|"))
-        .toList();
-  }
-
   /** Explicit bounded reinterpretation input; no transport acquisition or freshness update. */
   default List<Document> retainedOperationalDocuments(int limit) {
     return List.of();
@@ -68,7 +61,7 @@ public interface CrewVerificationRepository {
     throw new UnsupportedOperationException("Retained reinterpretation unavailable");
   }
 
-  /** Read-only successful occurrence-version lineage; legacy ports retain independent versions. */
+  /** Read-only successful occurrence-version lineage; unassociated source versions remain independent. */
   default List<CrewOccurrenceVersion> occurrenceVersionsAsOf(Instant asOf) {
     return List.of();
   }

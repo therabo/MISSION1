@@ -63,3 +63,11 @@ cache has no demonstrated need. Mature retained data and finite qualified resour
 remain prerequisites; this milestone does not certify operational precision or
 prove a complete empty-database bootstrap. Clean-room bootstrap is the next separate
 milestone. Validation and limitations are recorded in the final Crew dossier.
+
+## Publication compatibility update — 2026-10-14
+
+[ADR-0023](0023-public-initial-database-schema.md) supersedes this record's development
+migration and emergency rollback clauses before first public release. The public
+installation uses one schema-only V1 and the qualified production/unified Historical
+paths exclusively. This dated decision's gates, authority, lifecycle and time semantics
+remain accepted; its original migration/mode names remain historical evidence.

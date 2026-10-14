@@ -1,5 +1,9 @@
 # MISSION1 Earth View
 
+The public database rebaseline changes only Historical's development-era wire label
+to `UNIFIED_HISTORICAL` and its profile-policy terminology. REST fields, rendering,
+geometry and controls remain unchanged. [Publication validation](../docs/architecture/database-publication-baseline.md).
+
 Current production uses `CurrentCrewWorkspace` → `CurrentCrewPanelView` /
 `ReplayCrewPanel`, with shared `CrewSourceEvidence` and `CrewProfile`.
 `TrajectorySelector` is the context-bar source selector; `OrbitalStatus` supplies
@@ -22,7 +26,7 @@ GP lookup in Historical/OEM. Actual UI clicks, rendered-camera traces and
 normal-speed videos cover Current/Historical and both builds.
 [Root cause, restoration and validation](../docs/frontend/branding-crew-simplification/README.md#actual-earth-reset-correction-and-selective-inspection-restoration--2026-10-13).
 
-**Unified Crew Historical — 2026-10-12:** modern Historical consumes backend HISTORICAL_V10_S10 membership metadata, labels every returned human Member at Historical UTC, and separates assignment/operational evidence at T from latest canonical biography/career. Annotation age uses accepted T; no Current roster/profile lifecycle fallback occurs. Current retains120-second visible serial polling; Historical pauses it. Date picker, ±10-minute navigation, <=716 detail/back behavior and native Cesium/Inspection ownership remain intact. Confidence/scoring stays private. Missing membership metadata is legacy rollback rendering only. [Final validation](../docs/crew/final-crew-architecture-validation/README.md).
+**Unified Crew Historical — 2026-10-12:** modern Historical consumes backend UNIFIED_HISTORICAL membership metadata, labels every returned human Member at Historical UTC, and separates assignment/operational evidence at T from latest canonical biography/career. Annotation age uses accepted T; no Current roster/profile lifecycle fallback occurs. Current retains120-second visible serial polling; Historical pauses it. Date picker, ±10-minute navigation, <=716 detail/back behavior and native Cesium/Inspection ownership remain intact. Confidence/scoring stays private. Missing membership metadata is legacy rollback rendering only. [Final validation](../docs/crew/final-crew-architecture-validation/README.md).
 
 
 ## Responsive restyling — 2026-10-08

@@ -33,8 +33,7 @@ class OperationalProductionBindingsTest {
     return new OperationalProductionBindings(
         mock(JdbcTemplate.class),
         JSON,
-        CrewIdentityRepository.EMPTY,
-        OperationalProductionBindings.Mode.S10_SCOPED_BINDING);
+        CrewIdentityRepository.EMPTY);
   }
 
   private record Prepared(Map<String, Object> row, CrewVerificationRepository.Evidence evidence) {}
@@ -82,7 +81,7 @@ class OperationalProductionBindingsTest {
     cut.put("subject", s);
     cut.put("release", OperationalPolicy.PRODUCTION.release(JSON));
     cut.put("resourceParser", OperationalResources.VERSION);
-    cut.put("cutSchema", "s10-scoped-resource-fact-digests-v1");
+    cut.put("cutSchema", "operational-subject-cut-v1");
     cut.put("candidateSetTruncated", e.truncated());
     cut.put(
         "resources",
@@ -202,7 +201,7 @@ class OperationalProductionBindingsTest {
             CrewCanonicalIdentity.EMPTY,
             true);
     assertFalse(bound.matched());
-    assertEquals("S10_" + outcome, bound.state());
+    assertEquals("OPERATIONAL_" + outcome, bound.state());
     assertEquals(100L, bound.revision());
     assertNull(bound.resolution());
   }
@@ -222,7 +221,7 @@ class OperationalProductionBindingsTest {
             CrewCanonicalIdentity.EMPTY,
             true);
     assertFalse(bound.matched());
-    assertEquals("S10_INCOMPATIBLE_OR_EXPIRED", bound.state());
+    assertEquals("OPERATIONAL_INCOMPATIBLE_OR_EXPIRED", bound.state());
   }
 
   private static List<Map<String, Object>> providers(UUID person, String id, String name) {
@@ -261,7 +260,7 @@ class OperationalProductionBindingsTest {
             });
     var consumer =
         new OperationalProductionBindings(
-            jdbc, JSON, at -> knowledge, OperationalProductionBindings.Mode.S10_SCOPED_BINDING);
+            jdbc, JSON, at -> knowledge);
     var result = consumer.resolve(List.of(p.evidence()), CUT);
     assertEquals(3, sql.size(), "set-based constant SQL count");
     assertTrue(sql.getFirst().contains("DISTINCT ON(evidence_id,subject_index)"));
@@ -319,7 +318,7 @@ class OperationalProductionBindingsTest {
             CrewCanonicalIdentity.EMPTY,
             true);
     assertFalse(b.matched());
-    assertEquals("S10_V7_CONFLICT", b.state());
+    assertEquals("OPERATIONAL_CANONICAL_CONFLICT", b.state());
   }
 
   @Test
@@ -365,7 +364,7 @@ class OperationalProductionBindingsTest {
     var knowledge =
         new CrewCanonicalIdentity(
             List.of(),
-            Map.of(CrewCanonicalIdentity.Key.legacy(CrewSource.NASA_OFFICIAL, key), HUMAN));
+            Map.of(CrewCanonicalIdentity.Key.provider(CrewSource.NASA_OFFICIAL, key), HUMAN));
     assertTrue(
         resolve(
                 p,

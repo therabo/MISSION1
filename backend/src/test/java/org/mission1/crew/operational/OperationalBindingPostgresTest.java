@@ -6,7 +6,6 @@ import static org.mission1.crew.operational.OperationalFixtures.*;
 
 import java.time.*;
 import java.util.*;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.mission1.crew.membership.ActiveMembershipPolicy;
 import org.mission1.crew.membership.RetainedMembershipInputs;
@@ -48,10 +47,10 @@ class OperationalBindingPostgresTest {
   void clean() {
     jdbc.execute(
         "TRUNCATE"
-            + " crew_operational_binding_release,crew_operational_resource_version,crew_person,crew_source_snapshot,crew_source_document"
+            + " crew_operational_subject_binding_release,crew_operational_resource_version,crew_person,crew_source_snapshot,crew_source_document"
             + " RESTART IDENTITY CASCADE");
     jdbc.update(
-        "UPDATE crew_operational_binding_work SET"
+        "UPDATE crew_operational_subject_binding_work SET"
             + " generation=1,completed_generation=0,claimed_until='epoch',claim_token=NULL,next_at='epoch'");
     store.install(CUT);
     for (var n : CORPUS.path("captures"))
@@ -205,29 +204,7 @@ class OperationalBindingPostgresTest {
     return store.save(List.of(e), resources, diff, at, null);
   }
 
-  @Test
-  void freshAndV10UpgradeAreAdditive() {
-    var old =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_operational")
-            .target("10")
-            .load();
-    assertEquals(10, old.migrate().migrationsExecuted);
-    jdbc.update(
-        "INSERT INTO upgrade_operational.crew_person"
-            + " VALUES('00000000-0000-0000-0000-000000000123',now())");
-    var before = jdbc.queryForList("SELECT * FROM upgrade_operational.crew_person");
-    var next =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_operational")
-            .load();
-    assertEquals(3, next.migrate().migrationsExecuted);
-    next.validate();
-    assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_operational.crew_person"));
-    assertEquals(13, count("flyway_schema_history"));
-  }
+
 
   @Test
   void deferMatchConflictSupersessionAndRestartAppendImmutableRevisions() {
@@ -272,25 +249,25 @@ class OperationalBindingPostgresTest {
     assertEquals(2, corrected.size());
     assertTrue(corrected.stream().anyMatch(x -> x.outcome().equals("SUPERSEDED")));
     assertFalse(save(newer, RESOURCES, CUT.plusSeconds(6)).getFirst().inserted());
-    assertEquals(6, count("crew_operational_binding_revision"));
+    assertEquals(6, count("crew_operational_subject_binding_revision"));
     assertEquals(1, count("crew_person"));
     assertEquals(0, count("crew_identity_binding_version"));
-    assertEquals(0, count("crew_auto_decision_revision"));
-    assertEquals(0, count("crew_active_projection_revision"));
+    assertEquals(0, count("crew_identity_research_decision_revision"));
+    assertEquals(0, count("crew_membership_projection_revision"));
     assertThrows(
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "UPDATE crew_operational_binding_revision SET reasons='[]' WHERE id=?",
+                "UPDATE crew_operational_subject_binding_revision SET reasons='[]' WHERE id=?",
                 match.id()));
     assertThrows(
         DataIntegrityViolationException.class,
-        () -> jdbc.update("DELETE FROM crew_operational_binding_revision WHERE id=?", match.id()));
+        () -> jdbc.update("DELETE FROM crew_operational_subject_binding_revision WHERE id=?", match.id()));
     assertThrows(
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "INSERT INTO crew_operational_binding_candidate"
+                "INSERT INTO crew_operational_subject_binding_candidate"
                     + " VALUES(?,'LL2:PERSON:999',255,'{}')",
                 match.id()));
   }

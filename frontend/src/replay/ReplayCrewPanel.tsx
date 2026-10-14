@@ -23,7 +23,7 @@ export function ReplayCrewPanel({ data, loading, error, at, onClose, interactive
   const crew = accepted?.crew.availability !== 'UNAVAILABLE' ? accepted?.crew.state : null;
   const member = crew?.members.find(m => m.id === selected);
   const person = member && accepted?.crew.profiles.find(p => p.id === member.id);
-  const unifiedMembership = crew?.membership?.mode === 'HISTORICAL_V10_S10';
+  const unifiedMembership = crew?.membership?.mode === 'UNIFIED_HISTORICAL';
   const back = useCallback(() => { restoreMember.current = selected; setSelected(null); }, [selected]);
   useLayoutEffect(() => {
     if (interactive && !document.activeElement?.closest('.context-temporal')) heading.current?.focus({ preventScroll: true });

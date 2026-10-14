@@ -19,8 +19,14 @@ follows qualified source relations.
 - [Earth View, Inspection and frontend setup](frontend/README.md)
 - [Current production architecture](docs/architecture/current-production.md)
 - [Architecture decisions](docs/adr/README.md)
+- [Public database baseline](docs/architecture/database-publication-baseline.md)
 - [Production cleanup inventory and validation](docs/maintenance/production-code-cleanup.md)
 
 From the repository root, start PostgreSQL with `docker compose up -d --wait postgres`,
 then run `mvn spring-boot:run` in `backend/` and `npm run dev` in `frontend/`.
 Java21 and Node24 are required.
+
+Fresh installations apply only `V1__initial_schema.sql`. Pre-publication V1–V13
+were squashed before the first public release; upgrading their development database
+is unsupported. Discard that local volume deliberately or configure an empty database.
+The migration creates structure only; runtime sources rebuild operational history.

@@ -1,7 +1,6 @@
 package org.mission1.crew.application;
 
 import java.time.*;
-import java.util.Set;
 import org.mission1.crew.domain.*;
 
 /** Configurable MISSION1 applicability policy, not provider cadence or accuracy. */
@@ -19,28 +18,8 @@ public record CrewReconciliationPolicy(
     this(primary, verification, observation, event, VERSION);
   }
 
-  /** Historical reference policy; immutable v1 revisions are never relabeled as v2. */
-  public static CrewReconciliationPolicy legacy() {
-    return new CrewReconciliationPolicy(
-        Duration.ofHours(6),
-        Duration.ofHours(6),
-        Duration.ofHours(72),
-        Duration.ofDays(14),
-        "crew-freshness-v1");
-  }
-
-  /** This Current milestone does not change the accepted public Replay applicability contract. */
-  public CrewReconciliationPolicy forReplay() {
-    return new CrewReconciliationPolicy(
-        primaryMaxAge,
-        verificationMaxAge,
-        Duration.ofHours(72),
-        eventImplicationMaxAge,
-        "crew-freshness-v1");
-  }
-
   public CrewReconciliationPolicy {
-    if (!Set.of("crew-freshness-v1", VERSION).contains(version))
+    if (!VERSION.equals(version))
       throw new IllegalArgumentException("Known freshness policy required");
     for (var d :
         new Duration[] {
@@ -62,9 +41,7 @@ public record CrewReconciliationPolicy(
   public boolean applicable(CrewVerificationEvidence e, Instant verifiedAt, Instant asOf) {
     return fresh(verifiedAt, verificationMaxAge, asOf)
         && fresh(
-            version.equals("crew-freshness-v1")
-                ? e.observation().sourcePublishedAt()
-                : CrewReconciliationEngine.effectiveTime(e),
+            CrewReconciliationEngine.effectiveTime(e),
             effectiveMaxAge(e),
             asOf);
   }
@@ -92,6 +69,6 @@ public record CrewReconciliationPolicy(
         + currentAssertionMaxAge
         + ":"
         + eventImplicationMaxAge
-        + (version.equals(VERSION) ? "/count=" + COUNT_MAX_AGE : "");
+        + "/count=" + COUNT_MAX_AGE;
   }
 }

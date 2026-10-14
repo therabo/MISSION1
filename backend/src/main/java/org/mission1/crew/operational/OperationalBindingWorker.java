@@ -86,7 +86,7 @@ public final class OperationalBindingWorker {
     try {
       Instant cut = clock.instant();
       var batch = inputs.load(cut);
-      if (batch.subjects().size() > 256) throw new IllegalStateException("S10_SUBJECT_BATCH_BOUND");
+      if (batch.subjects().size() > 256) throw new IllegalStateException("OPERATIONAL_SUBJECT_BATCH_BOUND");
       store.discover(OperationalResourceDiscovery.candidates(batch, agencySeeds, cut), cut);
       var evaluated =
           OperationalResolver.consistent(
@@ -102,7 +102,7 @@ public final class OperationalBindingWorker {
       System.getLogger(getClass().getName())
           .log(
               System.Logger.Level.INFO,
-              "s10_binding release="
+              "operational_subject_binding release="
                   + release.version()
                   + " evaluated={0} match={1} defer={2} conflict={3} revisions={4}"
                   + " truncated={5} missing_proof={6} threshold_failures={7} margin_failures={8}",
@@ -152,7 +152,7 @@ public final class OperationalBindingWorker {
       System.getLogger(getClass().getName())
           .log(
               System.Logger.Level.WARNING,
-              "s10_resource_validation_failed category={0}",
+              "operational_resource_validation_failed category={0}",
               capture.error() == null ? "SEMANTIC_VALIDATION" : capture.error());
     return true;
   }

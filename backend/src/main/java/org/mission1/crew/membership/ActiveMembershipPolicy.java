@@ -379,8 +379,8 @@ public final class ActiveMembershipPolicy {
               "IDENTITY",
               "RESOLVER_DEGRADED",
               in.cut().identityHealth().containsKey("mode")
-                  ? "S10_SCOPED_BINDING"
-                  : "V9_IDENTITY_RESOLVER",
+                  ? "OPERATIONAL_SUBJECT_BINDING"
+                  : "IDENTITY_RESEARCH_BINDING",
               "Pending, failed or incompatible retained evidence"));
     var health =
         !sourceUsable

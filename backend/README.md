@@ -2,10 +2,29 @@
 
 **Current bootstrap behavior — 2026-10-13:** [ADR-0022](../docs/adr/0022-durable-gp-eligibility-and-source-directed-resource-discovery.md) adds prompt normal GP startup, a durable request boundary and exact-deadline scheduling. [Dynamic resource discovery](../docs/crew/dynamic-resource-discovery.md) follows new source mission/Expedition/astronaut/relation observations through the existing paced resource and operational binding graph. Static mission locators are optional compatibility seeds. Identity gates, Current/Replay, UI and propagation remain unchanged.
 
-**Normal Crew production modes — ADR-0021 / Flyway V12 (2026-10-12):** `mission1.crew.operational-binding.mode=S10_SCOPED_BINDING` and `mission1.replay.crew.mode=UNIFIED_V10_S10` are defaults. The separate immutable production release preserves shadow rows/model/gates. V12 supplies truthful Operational Subject Binding lineage (including departure vetoes), guarded editorial/canonical lineage, exact subject index and durable source and binding notifications to Crew membership. `LEGACY_OPERATIONAL_BINDING` and Replay `LEGACY` are explicit emergency rollback; materialize the configured policy via the normal worker and restart, then restore defaults. Current ACTIVE_PROJECTION retains its existing publication failure contract. Existing operational-shadow/active-shadow schedule property names remain compatibility names for these workers: initial15m, Operational Subject Binding evaluation1m/acquisition5m, Crew Membership/Lifecycle bounded1m. `mission1.crew.operational-shadow.acquisition-enabled=false` pauses resource acquisition only for isolated validation; normal defaulttrue. GET never calls those workers. No runtime dependency was added; ICU4J78.3 and existing Java/PostgreSQL remain. [Final validation](../docs/crew/final-crew-architecture-validation/README.md). The [clean-room validation](../docs/bootstrap/clean-room-validation/README.md) now proves **LEVEL 3 — CURRENT ZERO-TOUCH** from two independent empty PostgreSQL stores. That dated baseline records reviewed reference inputs, source-window and scheduler/TLS findings. The subsequent [final bootstrap fixes](../docs/bootstrap/clean-room-validation/final-fixes.md) address initial GP, exact eligibility and future resource discovery. Historical coverage begins with observations acquired by this installation; pre-installation backfill is not a production requirement. Earlier dated shadow-only descriptions below are preserved milestone records.
+**Public database baseline — ADR-0023:** startup applies only
+`V1__initial_schema.sql`. It creates 80 domain tables with no preloaded observations,
+source captures, memberships or coordination rows. Application initialization creates
+six mutable coordination registers separately; the packaged reviewed identity manifest
+and frozen model remain explicit application reference inputs. All operational history
+comes from normal acquisition/workers. The pre-publication V1–V13 chain was squashed
+before first public release; old development databases are intentionally unsupported.
+Use a new database or deliberately discard the local development volume with
+`docker compose down -v`, then `docker compose up -d --wait postgres`.
 
+Production always uses qualified Operational Subject Binding, canonical identity and
+one membership lifecycle for Current/Historical. No old database names or rollback
+selectors are accepted. Scheduler namespaces are `mission1.crew.identity-research`,
+`mission1.crew.membership` and `mission1.crew.operational-binding`. Their existing
+cadences remain: initial 15m, research/binding/membership evaluation 1m and resource
+acquisition 5m. `mission1.crew.operational-binding.acquisition-enabled=false` disables
+resource acquisition for isolated validation. Current's `ACTIVE_PROJECTION` response
+label remains; Historical uses `UNIFIED_HISTORICAL`. GET cannot acquire, score or write.
 
-**Crew scheduling extension (2026-10-03):** [Event-aware refresh](../docs/crew/event-aware-refresh.md) uses the existing ingestion services with a one-minute eligibility coordinator. Baseline LL2/NASA remain 2h; event calendar is one GET/6h (15m initial delay). Precise crewed/unknown windows shorten NASA to 30m/1h; completed named NASA transfers permit LL2 1h follow-up, at most six attempts/24h. Provider Retry-After and the shared LL2 rolling-hour budget win. V5 adds operational history; Orbit/REST JSON/parser/reconciler are unchanged. `MISSION1_CREW_EVENT_AWARE_ENABLED=false` restores baseline schedulers; existing ingestion/verification flags still suppress their source. `MISSION1_CREW_EVENT_CATALOG_ENABLED=false` suppresses discovery. All detailed bounds and configuration are in the design. Default tests disable automatic refresh and use recorded/explicit TEST_ONLY inputs. Next milestone: **ISS CREW REPLAY INTEGRATION**, not started.
+[Publication schema and validation](../docs/architecture/database-publication-baseline.md),
+[current architecture](../docs/architecture/current-production.md) and
+[dynamic discovery](../docs/crew/dynamic-resource-discovery.md) describe the public
+runtime. The dated clean-room/crew dossiers below remain historical evidence.
 
 This is one Java 21 / Spring Boot 3.5.6 application, built with Maven. Run `mvn test` or `mvn verify` from this directory. Startup applies PostgreSQL migrations and starts HTTP, then promptly checks GP eligibility. An empty installation acquires its first real GP through the normal CelesTrak path. Crew retains its independent delayed schedules. The Earth View now consumes the existing read-only Crew REST endpoints through a DOM list/detail panel; backend behavior and the independent orbital track are unchanged. [Frontend evidence](../docs/frontend/crew-earth-view-panel-review/README.md).
 
@@ -21,7 +40,7 @@ Canonical units are meters for Cartesian position and WGS84 altitude, meters/sec
 
 ## PostgreSQL element history
 
-The `OrbitalElementSetRepository` port and Spring JDBC adapter accept an already obtained, validated set through `storeIfNew`. The adapter revalidates the TLE and its epoch/hash/catalog metadata, then atomically stores a unique source set and its retrieval observation. Flyway owns the schema. `findById`, bounded `recent(limit)`, and `latestUsable(asOf)` reconstruct domain objects. See [element-history semantics](../docs/telemetry/orbital-element-history.md) for identity, ordering, and timestamp rules. No fetched set is silently inserted on startup, and no quality result or computed orbital state is stored.
+The `OrbitalElementSetRepository` port and Spring JDBC adapter accept an already obtained, validated set through `storeIfNew`. The adapter revalidates the TLE and its epoch/hash/catalog metadata, then atomically stores a unique source set and its retrieval observation. Flyway owns the schema. `findById`, bounded `recent(limit)`, and `latestUsable(asOf)` reconstruct domain objects. See [element-history semantics](../docs/telemetry/orbital-element-history.md) for identity, ordering, and timestamp rules. Flyway inserts no fetched set, and no quality result or computed orbital state is stored.
 
 For local development, run `docker compose up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. Flyway applies the migration and the HTTP server starts on port 8080. The root Compose file contains only PostgreSQL. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose down` stops the database while retaining the named volume; `docker compose down -v` deliberately removes local database history.
 
@@ -85,7 +104,7 @@ disables scheduling. The former initial-delay property is removed. A durable rec
 successful retrieval or request reservation suppresses duplicate restart requests.
 TLE element epoch never controls source fetch eligibility.
 
-The service atomically reserves the cooldown in V13 before HTTP, then uses the
+The service atomically reserves the cooldown in `celestrak_request_state` before HTTP, then uses the
 unchanged production adapter, TLE validation and `storeIfNew`. One timer follows the
 actual `nextEligibleAt`, including after an early check and transport failure.
 Non-200 responses (including 403) suspend automatic acquisition across restart
@@ -131,6 +150,13 @@ The sample DTOs previously omitted the available physical velocity. They now add
 
 This additive contract enables frontend trajectory alignment; it supplies no verified attitude. [API contract](../docs/api/orbital-samples.md), [comparison contract](../docs/api/orbital-comparison.md), [measured review](../docs/frontend/inspection-orientation-review/README.md). Next milestone: **GP/TLE ↔ NASA OEM RTN TRAJECTORY-SEPARATION ANALYSIS**, not started.
 
+
+## Historical implementation notes
+
+The dated sections below describe development milestones and their validation
+checkouts. Their old migration counts, configuration selectors and source labels
+are historical evidence. Current setup, schema and supported modes are defined
+above and in ADR-0023; they do not require the development migration chain.
 
 ## Independent Crew source/domain foundation — 2026-10-03
 
@@ -253,7 +279,7 @@ Full Java21/PostgreSQL migration, backfill, rollback, source-identity, selector 
 [ADR-0014 implementation and validation](../docs/crew/nasa-editorial-roster-validation/README.md) adds generic NASA research-topic/taxonomy/Expedition acquisition and immutable V8 observations. `MISSION1_CREW_EDITORIAL_ENABLED` defaults true; initial delay15m and fixed delay2h are configurable conservatively. Discovery caches6h, taxonomy/personal resources7d and negative profile404 responses6h. A durable lease survives scheduler restart, and shared NASA budget/cooldown paces operational and editorial HTTP. No startup HTTP, GET acquisition, public editorial route, Current/Replay activation or automatic human identity decision is added. Set the flag false to pause scheduled collection while retaining internal read/explicit acquisition capabilities; do not reverse Flyway or delete source history.
 ## Automatic Crew identity SHADOW
 
-[ADR-0015 and validation](../docs/crew/automatic-identity-shadow-validation/README.md) add V9 automatic identity history/jobs/graph without changing production V7. `mission1.crew.automatic-shadow.enabled` defaults true; a bounded16-job worker polls every minute after15minutes, with a durable daily safety sweep. `false` pauses that worker; retained sources and public reads stay independent. Missing/invalid frozen model artifacts fail closed and expose separate resolver health. Scoring is Java21, retained-evidence-only and network-free. There is no production promotion flag, runtime training or per-person approval requirement for shadow. Explicit local validation uses the documented standalone runner outside application startup.
+[ADR-0015 and validation](../docs/crew/automatic-identity-shadow-validation/README.md) add V9 automatic identity history/jobs/graph without changing production V7. `mission1.crew.identity-research.enabled` defaults true; a bounded16-job worker polls every minute after15minutes, with a durable daily safety sweep. `false` pauses that worker; retained sources and public reads stay independent. Missing/invalid frozen model artifacts fail closed and expose separate resolver health. Scoring is Java21, retained-evidence-only and network-free. There is no production promotion flag, runtime training or per-person approval requirement for shadow. Explicit local validation uses the documented standalone runner outside application startup.
 
 ## Crew active membership shadow — ADR-0016 / Flyway V10
 
@@ -306,6 +332,6 @@ NASA operational parser1.2.0 emits conservative named onboard activity observati
 
 The retained-input `crew.operational` linker has no production consumer. `MISSION1_CREW_OPERATIONAL_SHADOW_ENABLED` defaults true; initial delay 15m, evaluation 1m and acquisition 5m are separate background schedules. Setting it false pauses scheduled work while retaining history and explicit internal validation capability. Never reverse V11 or delete history to roll back shadow evaluation.
 
-V11 adds immutable policy/resource/attempt/binding/candidate/proof history, mutable leased work and append-only request reservations. New cache bodies are deduplicated by URL/hash/parser; compatible V8 personal captures are referenced in place. Refresh is seven days, last-good proof validity 30 days and ordinary failure retry 1h; bounded Retry-After can extend it. Strict HTTPS/host/path classes, checked same-host redirects, public-address checks, 2MiB bodies, 20s requests and bounded host budgets constrain acquisition. The S10 LL2 budget is 3/hour, with a 15/hour combined guard and existing provider cooldown; NASA also uses its shared gate. Source discovery seeds can be overridden with `mission1.crew.operational-shadow.resource-seeds`; they are verified resource URLs, never human mappings. Unsupported source classes defer.
+V11 adds immutable policy/resource/attempt/binding/candidate/proof history, mutable leased work and append-only request reservations. New cache bodies are deduplicated by URL/hash/parser; compatible V8 personal captures are referenced in place. Refresh is seven days, last-good proof validity 30 days and ordinary failure retry 1h; bounded Retry-After can extend it. Strict HTTPS/host/path classes, checked same-host redirects, public-address checks, 2MiB bodies, 20s requests and bounded host budgets constrain acquisition. The S10 LL2 budget is 3/hour, with a 15/hour combined guard and existing provider cooldown; NASA also uses its shared gate. Source discovery seeds can be overridden with `mission1.crew.operational-binding.resource-seeds`; they are verified resource URLs, never human mappings. Unsupported source classes defer.
 
 The resolver uses pinned ICU4J 78.3 for generic comparison transliteration and the already frozen Java logistic scorer. No new AI, fitting API, Python runtime, semantic model, vector/graph database, broker or service is added. Missing proof, incomplete candidates, unknown publication target and contradictions fail closed. GET performs no S10 work. [Source/schema/threshold/correction/GET/performance/dependency acceptance](../docs/crew/operational-subject-binding-shadow-validation/README.md).

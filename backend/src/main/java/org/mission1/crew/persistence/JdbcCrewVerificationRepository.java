@@ -509,8 +509,7 @@ WHERE r.completed_at<=? ORDER BY p.person_id,r.completed_at DESC,r.id DESC
         // Recheck candidates when LL2 history grows. Reuse a prior audit only if its
         // decision still holds.
         if (existing != null
-            && (existing.resolverVersion().equals(CrewCanonicalPersonResolver.VERSION)
-                || existing.resolverVersion().equals(CrewPersonResolver.VERSION))
+            && existing.resolverVersion().equals(CrewCanonicalPersonResolver.VERSION)
             && Objects.equals(existing.personId(), decision.personId())
             && Objects.equals(existing.identityKey(), decision.nasaKey())
             && existing.candidates().equals(decision.candidates())

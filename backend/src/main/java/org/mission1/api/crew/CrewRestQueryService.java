@@ -43,57 +43,15 @@ public class CrewRestQueryService {
     public CurrentCrew crew() {
         var current = reconciled.current();
         var state = current.interpretation();
-        boolean activeMode =
-                membership.mode() == ProductionCurrentMembership.Mode.ACTIVE_PROJECTION;
-        if (!activeMode
-                && current.structuredPrimary().isEmpty()
-                && state.people().isEmpty()
-                && state.unresolved().isEmpty()
-                && state.officialCrewCount() == null)
-            throw new CrewReadException(STATE_UNAVAILABLE);
         var identity = people.identityAt(state.reconciliationAsOf());
-        var selected = activeMode ? membership.select(state.reconciliationAsOf(), identity) : null;
-        var persons =
-                activeMode
-                        ? Map.<UUID, CrewReadRepository.Person>of()
-                        : people.findPeople(
-                                state.people().stream()
-                                        .map(CrewReconciliationSnapshot.PersonState::personId)
-                                        .toList(),
-                                state.reconciliationAsOf());
-        var members =
-                activeMode
-                        ? selected.members().stream()
-                                .sorted(
-                                        Comparator.comparingInt(
-                                                        (CrewReadRepository.Person p) ->
-                                                                assignmentOrder(p.id(), current))
-                                                .thenComparing(p -> p.id().toString()))
-                                .map(
-                                        p ->
-                                                member(
-                                                        p,
-                                                        state.people().stream()
-                                                                .filter(
-                                                                        s ->
-                                                                                s.personId()
-                                                                                        .equals(
-                                                                                                p
-                                                                                                        .id()))
-                                                                .findFirst()
-                                                                .orElse(null),
-                                                        current,
-                                                        identity))
-                                .toList()
-                        : state.people().stream()
-                                .map(
-                                        p ->
-                                                member(
-                                                        requirePerson(persons, p.personId()),
-                                                        p,
-                                                        current,
-                                                        identity))
-                                .toList();
+        var selected = membership.select(state.reconciliationAsOf(), identity);
+        var members = selected.members().stream()
+                .sorted(Comparator.comparingInt((CrewReadRepository.Person p) -> assignmentOrder(p.id(), current))
+                        .thenComparing(p -> p.id().toString()))
+                .map(p -> member(p,
+                        state.people().stream().filter(person -> person.personId().equals(p.id())).findFirst().orElse(null),
+                        current, identity))
+                .toList();
         var snapshot = current.structuredPrimary().map(x -> x.snapshot().snapshot()).orElse(null);
         return new CurrentCrew(
                 ISS,
@@ -112,24 +70,22 @@ public class CrewRestQueryService {
                 reconciliation(current),
                 freshness(current),
                 provenance(current),
-                selected == null
-                        ? null
-                        : new MembershipProjection(
-                                membership.mode().name(),
-                                selected.projection().revision(),
-                                selected.projection().evaluatedAt(),
-                                selected.projection().result().policy(),
-                                selected.health().name(),
-                                Math.max(
-                                        0,
-                                        Duration.between(
-                                                        selected.projection().evaluatedAt(),
-                                                        state.reconciliationAsOf())
-                                                .toSeconds()),
-                                members.size(),
-                                selected.nonPublishableActive(),
-                                selected.canonicalCollisions(),
-                                selected.projection().result().counts().unresolvedActiveSlots()));
+                new MembershipProjection(
+                    membership.mode().name(),
+                    selected.projection().revision(),
+                    selected.projection().evaluatedAt(),
+                    selected.projection().result().policy(),
+                    selected.health().name(),
+                    Math.max(
+                            0,
+                            Duration.between(
+                                            selected.projection().evaluatedAt(),
+                                            state.reconciliationAsOf())
+                                    .toSeconds()),
+                    members.size(),
+                    selected.nonPublishableActive(),
+                    selected.canonicalCollisions(),
+                    selected.projection().result().counts().unresolvedActiveSlots()));
     }
 
     private static int assignmentOrder(UUID id, CrewReconciliationQueryService.Current current) {
@@ -258,11 +214,6 @@ public class CrewRestQueryService {
                         .orElse(null);
         return CrewCanonicalProfileMetadata.describe(
                 p, requested, identity, assignmentObservation, presence(state, current).evidence());
-    }
-
-    private static CrewReadRepository.Person requirePerson(
-            Map<UUID, CrewReadRepository.Person> people, UUID id) {
-        return Objects.requireNonNull(people.get(id), "Missing persisted Crew person");
     }
 
     private static Assignment assignment(UUID id, CrewReconciliationQueryService.Current current) {

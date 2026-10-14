@@ -44,3 +44,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0021](0021-production-operational-binding-and-unified-crew-replay.md): Production operational binding and unified Crew Replay — Accepted; S10 production, V9 shadow, one V10 lifecycle, clean-room bootstrap next.
 
 - [ADR-0022](0022-durable-gp-eligibility-and-source-directed-resource-discovery.md): Durable GP eligibility and source-directed resource discovery — Accepted; prompt normal GP startup, restart-safe pacing/suspension, deadline timers and bounded future Crew discovery; identity authority unchanged.
+
+- [ADR-0023: Public initial database schema](0023-public-initial-database-schema.md) — Accepted. One schema-only public V1; development databases and rollback selectors are unsupported.

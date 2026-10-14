@@ -232,7 +232,7 @@ export const decodeHistoricalCrew: Decode<C.HistoricalCrew> = (value) => {
   const { membership: _currentOnly, ...state } = decodeCrew({ ...v, membership: undefined });
   return {
     ...state,
-    ...(v.membership === undefined ? {} : { membership: membership(v.membership, 'HISTORICAL_V10_S10') }),
+    ...(v.membership === undefined ? {} : { membership: membership(v.membership, 'UNIFIED_HISTORICAL') }),
     counts: {
       ...state.counts,
       officialAboard: nc(c.officialAboard),

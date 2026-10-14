@@ -15,16 +15,16 @@ class ResearchMembershipIdentityTest {
     var evidence =
         new ObjectMapper()
             .readTree(
-                "{\"references\":[{\"table\":\"crew_editorial_roster_member\",\"id\":\"1:0\",\"hash\":\"HASH\"}]}");
+                "{\"references\":[{\"table\":\"crew_resource_roster_member\",\"id\":\"1:0\",\"hash\":\"HASH\"}]}");
     var d =
         new ResearchMembershipIdentity.Decision(
             1, "source", "LL2:PERSON:1", outcome, 1, evidence, true, true);
     var b = new ResearchMembershipIdentity(List.of(d), List.of("LL2:PERSON:1"));
     assertEquals(
         outcome.equals("AUTO_MATCH") ? "LL2:PERSON:1" : null,
-        b.bind("source", "crew_editorial_roster_member", "1:0", "HASH").human());
-    assertNull(b.bind("source", "crew_editorial_roster_member", "2:0", "HASH").human());
-    assertNull(b.bind("source", "crew_editorial_roster_member", "1:0", "CHANGED").human());
+        b.bind("source", "crew_resource_roster_member", "1:0", "HASH").human());
+    assertNull(b.bind("source", "crew_resource_roster_member", "2:0", "HASH").human());
+    assertNull(b.bind("source", "crew_resource_roster_member", "1:0", "CHANGED").human());
   }
 
   @ParameterizedTest

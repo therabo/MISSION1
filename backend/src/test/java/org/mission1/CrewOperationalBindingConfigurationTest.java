@@ -40,11 +40,11 @@ class CrewOperationalBindingConfigurationTest {
             .getDeclaredMethod("acquire")
             .getAnnotation(Scheduled.class);
     assertEquals(
-        "${mission1.crew.operational-shadow.fixed-delay:PT1M}", evaluation.fixedDelayString());
+        "${mission1.crew.operational-binding.fixed-delay:PT1M}", evaluation.fixedDelayString());
     assertEquals(
-        "${mission1.crew.operational-shadow.acquisition-delay:PT5M}",
+        "${mission1.crew.operational-binding.acquisition-delay:PT5M}",
         acquisition.fixedDelayString());
     assertEquals(
-        "${mission1.crew.operational-shadow.initial-delay:PT15M}", evaluation.initialDelayString());
+        "${mission1.crew.operational-binding.initial-delay:PT15M}", evaluation.initialDelayString());
   }
 }

@@ -93,16 +93,18 @@ The directory seed is a stable category, not a finite Crew mission whitelist.
 `OperationalDynamicDiscoveryPostgresTest` uses explicitly SYNTHETIC Crew-42 with
 zero configured seeds. Normal loopback LL2 adapter → ingestion → fresh retained
 assignment → automatic queue → existing budgeted official-resource transport with
-controlled source bodies → typed graph → production S10 evaluation yields MATCH
+controlled source bodies → typed graph → production Operational Subject Binding evaluation yields MATCH
 with an official named-roster and person-specific successful flight witness.
 Later Crew-73/Expedition-95/new-person and same-provider mission changes queue new
-work; changed V8 official relations queue new links immediately and rejected
+work; changed official resource relations queue new links immediately and rejected
 relations do not. Unchanged observations do not duplicate work. All fixture bytes remain test-only.
 
 Additional tests reject foreign/unsafe links, stale resources, unsupported numbers,
-unbounded fanout and unqualified evidence. Existing V8/S10 negative, wrong-link,
-contradiction, threshold, margin and completeness tests remain passing. V7 canonical
-authority, V9 SHADOW, S10 releases/thresholds/gates and V10 lifecycle are unchanged.
+unbounded fanout and unqualified evidence. Existing resource-acquisition and
+operational-binding negative, wrong-link, contradiction, threshold, margin and
+completeness tests remain passing. Canonical Identity authority, Identity Research
+SHADOW, Operational Subject Binding releases/thresholds/gates and Crew
+Membership/Lifecycle are unchanged.
 Historical coverage begins with observations acquired by this installation;
 pre-installation archive intake/backfill is not a production requirement.
 
@@ -110,9 +112,9 @@ pre-installation archive intake/backfill is not a production requirement.
 
 Controlled SYNTHETIC **Alex-1** and **Aurora** pass with zero static seeds and no
 production changes. Normal LL2 source intake supplies new astronaut IDs and
-person-specific flights with distinct mission IDs. Normal NASA V8 acquisition
+person-specific flights with distinct mission IDs. Normal NASA Crew Resource Acquisition
 and parsing retain an explicit official mission link in the roster member's
-source DOM; S10 automatically queues that exact `observed_url`, validates the
+source DOM; Operational Subject Binding automatically queues that exact `observed_url`, validates the
 mission HTML, follows official personal/typed-resource links and reaches MATCH
 through qualified personal-resource and successful-flight evidence. Both cases
 have empty recognized mission-token sets and GENERIC_ROLE_TEXT captions.
@@ -122,7 +124,7 @@ astronaut and flight identifiers preserving lineage. Renaming either mission to
 **Nimbus** while retaining IDs/relations leaves all work/deadlines unchanged and
 still MATCHes. Unchanged inputs add no work/requests; two same-name **Aurora**
 missions with distinct source relations queue distinct URLs. No resource work or
-S10 decision is manually inserted. Synthetic names/IDs do not occur in production.
+Operational Subject Binding decision is manually inserted. Synthetic names/IDs do not occur in production.
 
 The Crew-N slug fallback in `OperationalResourceDiscovery.missions`, recognized
 mission-token extraction in `IdentityFeatures.missions`, Crew-scoped named-roster

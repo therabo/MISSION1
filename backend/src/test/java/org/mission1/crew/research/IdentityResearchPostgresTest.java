@@ -7,7 +7,6 @@ import static org.mission1.crew.research.IdentityTestFixtures.*;
 import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
-import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -55,9 +54,9 @@ class IdentityResearchPostgresTest {
   @BeforeEach
   void clean() {
     jdbc.execute(
-        "TRUNCATE crew_auto_identity,crew_auto_release,crew_auto_graph_revision,crew_auto_job"
+        "TRUNCATE crew_identity_research_identity,crew_identity_research_release,crew_identity_research_graph_revision,crew_identity_research_job"
             + " RESTART IDENTITY CASCADE");
-    jdbc.update("UPDATE crew_auto_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
+    jdbc.update("UPDATE crew_identity_research_sweep_lease SET next_at='1970-01-01T00:00:00Z'");
     store.installRelease(FrozenIdentityModel.VERSION, IdentityPolicy.VERSION, TIME);
   }
 
@@ -89,29 +88,7 @@ class IdentityResearchPostgresTest {
     }
   }
 
-  @Test
-  void freshV9AndV8UpgradePreserveOriginalRows() {
-    var old =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_auto")
-            .target("8")
-            .load();
-    assertEquals(8, old.migrate().migrationsExecuted);
-    jdbc.update(
-        "INSERT INTO upgrade_auto.crew_person VALUES"
-            + " ('00000000-0000-0000-0000-000000000123',now())");
-    var before = jdbc.queryForList("SELECT * FROM upgrade_auto.crew_person");
-    var upgrade =
-        Flyway.configure()
-            .dataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword())
-            .schemas("upgrade_auto")
-            .load();
-    assertEquals(5, upgrade.migrate().migrationsExecuted);
-    upgrade.validate();
-    assertEquals(before, jdbc.queryForList("SELECT * FROM upgrade_auto.crew_person"));
-    assertEquals(13, count("flyway_schema_history"));
-  }
+
 
   @Test
   void deferMatchRevocationAndABAAppendRatherThanMutate() {
@@ -132,15 +109,15 @@ class IdentityResearchPostgresTest {
     store.retain(List.of(ll, nasa), TIME.plusSeconds(3));
     var fourth = evaluate();
     assertEquals(IdentityPolicy.Outcome.AUTO_MATCH, fourth.result().outcome());
-    assertEquals(4, count("crew_auto_decision_revision"));
-    assertEquals(4, count("crew_auto_observation"));
+    assertEquals(4, count("crew_identity_research_decision_revision"));
+    assertEquals(4, count("crew_identity_research_observation"));
     var chain =
-        jdbc.queryForList("SELECT id,predecessor_id FROM crew_auto_decision_revision ORDER BY id");
+        jdbc.queryForList("SELECT id,predecessor_id FROM crew_identity_research_decision_revision ORDER BY id");
     assertNull(chain.getFirst().get("predecessor_id"));
     for (int i = 1; i < chain.size(); i++)
       assertEquals(chain.get(i - 1).get("id"), chain.get(i).get("predecessor_id"));
     evaluate();
-    assertEquals(4, count("crew_auto_decision_revision"));
+    assertEquals(4, count("crew_identity_research_decision_revision"));
     assertEquals(0, count("crew_person_equivalence_decision"));
   }
 
@@ -174,7 +151,7 @@ class IdentityResearchPostgresTest {
         IdentityResearchGraph.project(
                 people.stream().map(IdentityEvidence::key).toList(), store.edges())
             .size());
-    assertEquals(2, count("crew_auto_decision_revision"));
+    assertEquals(2, count("crew_identity_research_decision_revision"));
     assertEquals(0, count("crew_person"));
   }
 
@@ -198,8 +175,8 @@ class IdentityResearchPostgresTest {
   void duplicateWorkAndRestartRemainIdempotent() {
     store.retain(List.of(ll, nasa), TIME);
     store.retain(List.of(ll, nasa), TIME);
-    assertEquals(2, count("crew_auto_observation"));
-    assertEquals(1, count("crew_auto_job"));
+    assertEquals(2, count("crew_identity_research_observation"));
+    assertEquals(1, count("crew_identity_research_job"));
     var first = store.claim(TIME.plusSeconds(1)).orElseThrow();
     assertTrue(store.claim(TIME.plusSeconds(2)).isEmpty());
     var restarted = store.claim(TIME.plusSeconds(302)).orElseThrow();
@@ -217,9 +194,9 @@ class IdentityResearchPostgresTest {
                 TIME.plusSeconds(400))
             .probability());
     store.finish(first, TIME.plusSeconds(401), false);
-    assertNotNull(jdbc.queryForObject("SELECT lease_token FROM crew_auto_job", UUID.class));
+    assertNotNull(jdbc.queryForObject("SELECT lease_token FROM crew_identity_research_job", UUID.class));
     store.finish(restarted, TIME.plusSeconds(402), false);
-    assertEquals(1, count("crew_auto_decision_revision"));
+    assertEquals(1, count("crew_identity_research_decision_revision"));
   }
 
   @Test
@@ -252,8 +229,8 @@ class IdentityResearchPostgresTest {
       start.countDown();
       assertEquals(a.get().revision(), b.get().revision());
     }
-    assertEquals(1, count("crew_auto_decision_revision"));
-    assertEquals(1, count("crew_auto_graph_application"));
+    assertEquals(1, count("crew_identity_research_decision_revision"));
+    assertEquals(1, count("crew_identity_research_graph_application"));
   }
 
   @Test
@@ -279,8 +256,8 @@ class IdentityResearchPostgresTest {
             "balanced-test-upgrade",
             TIME.plusSeconds(2));
     assertEquals(IdentityPolicy.Outcome.AUTO_MATCH, r.result().outcome());
-    assertEquals(2, count("crew_auto_decision_revision"));
-    assertEquals(2, count("crew_auto_release"));
+    assertEquals(2, count("crew_identity_research_decision_revision"));
+    assertEquals(2, count("crew_identity_research_release"));
   }
 
   @ParameterizedTest
@@ -313,15 +290,15 @@ class IdentityResearchPostgresTest {
   @ParameterizedTest
   @ValueSource(
       strings = {
-        "crew_auto_release",
-        "crew_auto_observation",
-        "crew_auto_candidate",
-        "crew_auto_feature_snapshot",
-        "crew_auto_decision_revision",
-        "crew_auto_decision_evidence",
-        "crew_auto_graph_revision",
-        "crew_auto_graph_application",
-        "crew_auto_identity"
+        "crew_identity_research_release",
+        "crew_identity_research_observation",
+        "crew_identity_research_candidate",
+        "crew_identity_research_feature_snapshot",
+        "crew_identity_research_decision_revision",
+        "crew_identity_research_decision_evidence",
+        "crew_identity_research_graph_revision",
+        "crew_identity_research_graph_application",
+        "crew_identity_research_identity"
       })
   void semanticHistoryIsImmutable(String table) {
     store.retain(List.of(ll, nasa), TIME);
@@ -336,7 +313,7 @@ class IdentityResearchPostgresTest {
         DataIntegrityViolationException.class,
         () ->
             jdbc.update(
-                "INSERT INTO crew_auto_feature_snapshot VALUES (?,?,?,'{}'::jsonb,'{}')",
+                "INSERT INTO crew_identity_research_feature_snapshot VALUES (?,?,?,'{}'::jsonb,'{}')",
                 "a".repeat(64),
                 store.inputs().getFirst().id(),
                 FrozenIdentityModel.SCHEMA));
@@ -351,10 +328,10 @@ class IdentityResearchPostgresTest {
         () ->
             jdbc.update(
                 "INSERT INTO"
-                    + " crew_auto_decision_revision(source_key,outcome,probability,runner_probability,margin,model_version,policy_version,feature_schema,model_sha,snapshot_hash,witnesses,conflicts,reasons,known_at,evaluated_at)"
+                    + " crew_identity_research_decision_revision(source_key,outcome,probability,runner_probability,margin,model_version,policy_version,feature_schema,model_sha,snapshot_hash,witnesses,conflicts,reasons,known_at,evaluated_at)"
                     + " SELECT"
                     + " source_key,outcome,probability,runner_probability,margin,model_version,policy_version,feature_schema,model_sha,snapshot_hash,witnesses,conflicts,reasons,known_at,evaluated_at"
-                    + " FROM crew_auto_decision_revision"));
+                    + " FROM crew_identity_research_decision_revision"));
   }
 
   @Test
@@ -378,13 +355,13 @@ class IdentityResearchPostgresTest {
   void readOnlyQueriesNeverAppendOrEnqueue() {
     store.retain(List.of(ll, nasa), TIME);
     evaluate();
-    var counts = jdbc.queryForList("SELECT * FROM crew_auto_job");
-    int revisions = count("crew_auto_decision_revision");
+    var counts = jdbc.queryForList("SELECT * FROM crew_identity_research_job");
+    int revisions = count("crew_identity_research_decision_revision");
     store.report();
     store.health(true, null, TIME);
     store.inputs();
     retained.load(TIME);
-    assertEquals(counts, jdbc.queryForList("SELECT * FROM crew_auto_job"));
-    assertEquals(revisions, count("crew_auto_decision_revision"));
+    assertEquals(counts, jdbc.queryForList("SELECT * FROM crew_identity_research_job"));
+    assertEquals(revisions, count("crew_identity_research_decision_revision"));
   }
 }
