@@ -28,15 +28,11 @@ export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: 
     closeLabel="Close module information" onClose={onClose} className="module-dock" sceneEscape onRestoreFocus={restoreFocus}>
     <section className="module-role"><h3>Function</h3><p>{shown.role ?? 'Role unavailable for this mapped component'}</p></section>
     <ModuleTelemetryReadings data={telemetry.data} loading={telemetry.loading} error={telemetry.error} />
-    <section><h3>Limitations / availability</h3>
-      <p className="module-caveat">NASA VTAD geometry may differ from the current ISS.</p>
-    </section>
     <section><h3>Supporting technical detail</h3><dl>
       <div><dt>Module ID</dt><dd className="module-code">{shown.componentId}</dd></div>
       <div><dt>Asset node</dt><dd className="module-code">{shown.nodeIndex}</dd></div>
       <div className="module-type-row"><dt>Component type</dt><dd>{shown.componentType}</dd></div>
-    </dl><ModuleTelemetryTechnical data={telemetry.data} /><p className="module-secondary">{shown.nodeName}</p>
-      <p className="module-secondary">Identity verified: {shown.identityVerifiedOn} · Earth View display: NOT TO SCALE</p>
+    </dl><ModuleTelemetryTechnical data={telemetry.data} />
     </section>
   </ContextDock>;
 }

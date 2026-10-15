@@ -269,8 +269,11 @@ App supplies selected component and accepted presentation time. ModuleInfo prese
 identity, Function, focus/close, scrolling and Inspection navigation. The card omits
 Configuration context, the Evidence & provenance model link/reference footer and
 the Identity mapping row. Supporting technical detail retains module/asset identifiers
-and grouped evidence for displayed readings. Normal categories show only recorded
-engineering/state readings with individual UTC dates/source. Raw channels and
+and grouped evidence for displayed readings. Limitations / availability and the
+bottom numbered module name, identity verification date and display scale note are omitted. Normal
+categories show only recorded engineering/state readings with individual UTC dates;
+source and retainer information stays in the existing **Telemetry evidence & provenance**
+disclosure, without repeated captions under each reading. Raw channels and
 definitions without observations are omitted, including their disclosures and empty
 categories; their catalog/API support is unchanged. Components without a verified
 mapping still show **No verified telemetry mapping**. Engineering display uses six

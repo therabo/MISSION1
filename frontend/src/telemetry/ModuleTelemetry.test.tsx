@@ -3,10 +3,18 @@ import { expect, it } from 'vitest';
 import { telemetryFixture } from '../test/telemetryFixture';
 import { ModuleTelemetryReadings, ModuleTelemetryTechnical, recordDate, engineeringValue } from './ModuleTelemetry';
 
-it('shows actual record date and concise retainer without freshness or age labels', () => {
-  const html = renderToStaticMarkup(<ModuleTelemetryReadings data={telemetryFixture()} loading={false} error={false} />);
+it.each(['ISS.live', 'SenseData', null])('keeps %s provenance in the existing disclosure and out of individual readings', provider => {
+  const data = telemetryFixture(); data.parameters[0].record!.source.retainingProvider = provider;
+  const html = renderToStaticMarkup(<ModuleTelemetryReadings data={data} loading={false} error={false} />);
+  const detail = renderToStaticMarkup(<ModuleTelemetryTechnical data={data} />);
   expect(html).toContain('52'); expect(html).toContain('%'); expect(html).toContain('Last telemetry record');
-  expect(html).toContain('14 Sep 2026'); expect(html).toContain('14:10:29 UTC'); expect(html).toContain('Retained by SenseData');
+  expect(html).toContain('Urine tank'); expect(html).toContain('14 Sep 2026'); expect(html).toContain('14:10:29 UTC');
+  expect(html).not.toContain('Public ISS telemetry'); expect(html).not.toContain('Retained by');
+  expect(detail).toContain('<summary>Telemetry evidence &amp; provenance</summary>');
+  expect(detail).toContain('Public ISS telemetry'); expect(detail).toContain('Lightstreamer ISSLIVE');
+  if (provider) expect(detail).toContain(`Retained by ${provider}`);
+  else expect(detail).not.toContain('Retained by');
+  expect(detail).toContain('Received by MISSION1'); expect(detail).toContain('Definition evidence 1');
   for (const forbidden of ['STALE', 'FRESH', 'LAST KNOWN', 'days old', 'NASA sample time']) expect(html).not.toContain(forbidden);
   expect(recordDate('2026-09-14T14:10:29Z')).toContain('14:10:29 UTC');
 });
@@ -40,7 +48,8 @@ it('omits missing definitions and empty categories while preserving recorded val
   }
   expect(html).not.toContain('<details');
   expect(html).toContain('Urine tank'); expect(html).toContain('52');
-  expect(html).toContain('Last telemetry record'); expect(html).toContain('Retained by SenseData');
+  expect(html).toContain('Last telemetry record'); expect(html).not.toContain('Retained by');
+  expect(detail).toContain('Retained by SenseData');
   expect(detail).toContain('Received by MISSION1'); expect(detail).toContain('Definition evidence 1');
   expect(data.parameters).toHaveLength(4);
 });

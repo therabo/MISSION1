@@ -8,6 +8,10 @@ and definitions without observations are omitted. Supporting technical detail ke
 module/asset identifiers and evidence for displayed readings. Configuration context
 and the model/reference footer are removed from this presentation. Navigation and
 camera behavior are unchanged. [Contract and limits](../docs/telemetry/module-telemetry.md).
+Source/retainer captions appear in the existing **Telemetry evidence & provenance**
+disclosure rather than under every reading. The card also omits Limitations /
+availability, the bottom numbered module name, identity verification date and display
+scale note; source metadata, mappings and model rendering remain intact.
 
 The public database rebaseline changes only Historical's development-era wire label
 to `UNIFIED_HISTORICAL` and its profile-policy terminology. REST fields, rendering,

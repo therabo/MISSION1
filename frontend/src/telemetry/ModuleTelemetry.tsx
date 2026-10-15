@@ -14,7 +14,6 @@ function Reading({ parameter }: { parameter: TelemetryParameter }) {
     <p className="module-telemetry-label">{parameter.label}</p>
     <p className="module-telemetry-value">{value.enumLabel ?? engineeringValue(value.numericValue)}{parameter.unit && <> {parameter.unit}</>}</p>
     <p className="module-secondary">Last telemetry record<time dateTime={value.recordTime}>{recordDate(value.recordTime)}</time></p>
-    <p className="module-secondary">Public ISS telemetry{value.source.retainingProvider && <> · Retained by {value.source.retainingProvider}</>}</p>
   </div>;
 }
 function Groups({ parameters }: { parameters: TelemetryParameter[] }) {

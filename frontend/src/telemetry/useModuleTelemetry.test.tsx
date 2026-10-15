@@ -71,11 +71,21 @@ it.each([null, '2026-09-15T00:00:00Z'])('renders recorded module telemetry and n
   expect(host.textContent).toContain(module.role);
   expect(host.querySelector('.module-telemetry-value')?.textContent).toBe('52 %');
   expect(host.querySelector('time')?.dateTime).toBe(data.parameters[0].record!.recordTime);
-  expect(host.textContent).toContain('Last telemetry record'); expect(host.textContent).toContain('Retained by SenseData');
+  const reading = host.querySelector('.module-telemetry-reading')!;
+  expect(reading.textContent).toContain('Last telemetry record');
+  expect(reading.textContent).not.toContain('Public ISS telemetry'); expect(reading.textContent).not.toContain('Retained by');
   const technical = [...host.querySelectorAll('section')].find(section => section.querySelector('h3')?.textContent === 'Supporting technical detail')!;
   expect(technical.textContent).toContain('Module ID'); expect(technical.textContent).toContain('Asset node');
   expect(technical.textContent).not.toContain('Identity mapping');
-  for (const removed of ['Evidence and provenance', 'Evidence & provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'No recorded value', 'Missing definition', 'Empty category']) {
+  const evidence = technical.querySelector('details')!;
+  expect(evidence.querySelector('summary')?.textContent).toBe('Telemetry evidence & provenance');
+  expect(evidence.open).toBe(false);
+  await act(async () => evidence.querySelector('summary')!.click());
+  expect(evidence.open).toBe(true);
+  expect(evidence.textContent).toContain('Retained by SenseData'); expect(evidence.textContent).toContain('Lightstreamer ISSLIVE');
+  expect(evidence.textContent).toContain('Received by MISSION1');
+  await act(async () => evidence.querySelector('summary')!.click()); expect(evidence.open).toBe(false);
+  for (const removed of ['Evidence and provenance', 'Evidence & provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'No recorded value', 'Missing definition', 'Empty category', 'Limitations / availability', 'Identity verified:', 'Earth View display:', 'NOT TO SCALE', module.nodeName]) {
     expect(host.textContent).not.toContain(removed);
   }
   expect(host.querySelector('footer')).toBeNull();
@@ -92,4 +102,6 @@ it.each([null, '2026-09-15T00:00:00Z'])('preserves the deliberate no-mapping mes
   expect(host.textContent).toContain('No verified telemetry mapping');
   expect(host.textContent).not.toContain('No recorded value'); expect(host.querySelector('.module-telemetry-reading')).toBeNull();
   expect(host.querySelector('h2')?.textContent).toBe('Cupola'); expect(host.textContent).toContain(module.role);
+  expect(host.textContent).toContain('Supporting technical detail');
+  for (const removed of ['Limitations / availability', 'Identity verified:', 'NOT TO SCALE', module.nodeName]) expect(host.textContent).not.toContain(removed);
 });

@@ -12,17 +12,16 @@ describe('verified static module information', () => {
         expect(html).toContain(module.displayName);
         expect(html).toContain(module.componentId);
         expect(html).toContain(module.componentType);
-        expect(html).toContain(module.nodeName);
+        expect(html).not.toContain(module.nodeName);
         expect(html).toContain('<h3>Function</h3>');
         expect(html).toContain(module.role);
         expect(html).toContain('Supporting technical detail');
-        for (const removed of ['Evidence and provenance', 'Evidence &amp; provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'Identity mapping', '<footer']) {
+        for (const removed of ['Evidence and provenance', 'Evidence &amp; provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'Identity mapping', 'Limitations / availability', 'NASA VTAD geometry may differ', 'Identity verified:', 'Earth View display:', 'NOT TO SCALE', '<footer']) {
           expect(html).not.toContain(removed);
         }
         expect(html).toContain('Telemetry');
         expect(html).toContain('Loading telemetry');
         expect(html).not.toContain('Last telemetry record');
-        expect(html).toContain('NOT TO SCALE');
         expect(html).not.toContain(ISS_MODEL.sourcePage);
       }
       expect(fetch).not.toHaveBeenCalled();
