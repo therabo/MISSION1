@@ -1,22 +1,25 @@
 # MISSION1 orbital core
 
-**Component telemetry — ADR-0024:** all 131 supported component definitions use
-native Lightstreamer and bounded SenseData/ISS.live retained bootstrap after readiness.
-Ordinary PostgreSQL/JDBC preserves immutable provider records and their original
-dates. Public V1 stays unchanged; schema-only V2 adds telemetry. Module cards read
-local Current or recordTime <= accepted Historical T, without interpolation/floor.
-[Configuration, APIs, provenance and limits](../docs/telemetry/module-telemetry.md),
-[validation](../docs/telemetry/module-telemetry-validation.md).
+**Component telemetry — ADR-0024/0025:** native SDK push remains continuous;
+SenseData and ISS.live now reconcile independently after readiness and every PT30M
+following successful acquisition, including empty/rejected/duplicate-only responses.
+Durable PostgreSQL deadlines survive restart; provider claims prevent duplicate
+fetches and failure backoff doubles to PT6H. Bounded I/O is outside the native worker.
+The common normalizer/admission/JDBC model and 131 definitions are unchanged.
+V1/V2 remain byte-identical; structure-only V3 adds provider coordination and
+immutable SenseData future-time rejection identities. No year rewrite or UI change.
 
-The corrected SenseData SSE bootstrap streams its complete bounded initial backfill,
-including multiple records per channel. See [coverage audit and safe failed-pass
-retry](../docs/telemetry/retained-coverage-audit.md); never reset telemetry history to
-retry acquisition. Successful provider/catalog passes remain idempotent.
-
-**Current bootstrap behavior — 2026-10-13:** [ADR-0022](../docs/adr/0022-durable-gp-eligibility-and-source-directed-resource-discovery.md) adds prompt normal GP startup, a durable request boundary and exact-deadline scheduling. [Dynamic resource discovery](../docs/crew/dynamic-resource-discovery.md) follows new source mission/Expedition/astronaut/relation observations through the existing paced resource and operational binding graph. Static mission locators are optional compatibility seeds. Identity gates, Current/Replay, UI and propagation remain unchanged.
+Configuration: `MISSION1_TELEMETRY_RETAINED_RECONCILIATION_ENABLED=true`,
+`MISSION1_TELEMETRY_RETAINED_RECONCILIATION_INTERVAL=PT30M`,
+`MISSION1_TELEMETRY_RETAINED_RECONCILIATION_MAXIMUM_BACKOFF=PT6H`.
+Existing bootstrap/native enablement and bounds remain; the failed-bootstrap retry
+override is retired. Diagnostics report both durable provider outcomes/deadlines.
+[Policy, APIs, provenance and bounds](../docs/telemetry/module-telemetry.md),
+[periodic validation](../docs/telemetry/retained-reconciliation-validation.md),
+[earlier coverage audit](../docs/telemetry/retained-coverage-audit.md).
 
 **Public database baseline — ADR-0023, followed by ADR-0024 telemetry:** startup applies
-`V1__initial_schema.sql` as the frozen baseline, followed by telemetry V2. V1 creates 80 domain tables with no preloaded observations,
+`V1__initial_schema.sql` as the frozen baseline, followed by telemetry V2 and retained-coordination V3. V1 creates 80 domain tables with no preloaded observations,
 source captures, memberships or coordination rows. Application initialization creates
 six mutable coordination registers separately; the packaged reviewed identity manifest
 and frozen model remain explicit application reference inputs. All operational history

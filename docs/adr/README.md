@@ -48,3 +48,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0023: Public initial database schema](0023-public-initial-database-schema.md) — Accepted. One schema-only public V1; development databases and rollback selectors are unsupported.
 
 - [ADR-0024: Component telemetry and qualified record history](0024-component-telemetry-record-history.md) — Accepted. Complete component catalog, separate native/retained adapters, immutable PostgreSQL evidence, original record dates and existing module cards.
+
+- [ADR-0025: Periodic retained telemetry reconciliation](0025-periodic-retained-telemetry-reconciliation.md) — Accepted. Supersedes ADR-0024 bootstrap-only acquisition; independent durable provider deadlines/backoff, common immutable admission, unchanged UI/history.

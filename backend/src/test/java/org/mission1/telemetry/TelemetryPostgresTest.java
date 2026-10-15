@@ -23,8 +23,8 @@ class TelemetryPostgresTest {
     @BeforeAll static void migrateV1ThenTelemetry() {
         var source=new DriverManagerDataSource(PG.getJdbcUrl(),PG.getUsername(),PG.getPassword());jdbc=new JdbcTemplate(source);
         assertEquals(1,Flyway.configure().dataSource(source).target("1").load().migrate().migrationsExecuted);
-        flyway=Flyway.configure().dataSource(source).load();assertEquals(1,flyway.migrate().migrationsExecuted);flyway.validate();
-        assertEquals(List.of("1","2"),jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank",String.class));
+        flyway=Flyway.configure().dataSource(source).load();assertEquals(2,flyway.migrate().migrationsExecuted);flyway.validate();
+        assertEquals(List.of("1","2","3"),jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank",String.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_acquisition",Integer.class));
@@ -32,7 +32,7 @@ class TelemetryPostgresTest {
     }
     @BeforeEach void emptyEvidence() {
         // Test-only disposal, never a production reset path.
-        jdbc.execute("TRUNCATE telemetry_record_evidence,telemetry_admission,telemetry_record,telemetry_acquisition,telemetry_bootstrap_state");
+        jdbc.execute("TRUNCATE telemetry_record_evidence,telemetry_admission,telemetry_record,telemetry_acquisition,telemetry_bootstrap_state,telemetry_provider_state,telemetry_time_rejection");
     }
     static TelemetryRepository.StoreResult store(TelemetryRecord... records) {
         String provider=records.length==0?"SENSEDATA":records[0].provider();
@@ -44,6 +44,7 @@ class TelemetryPostgresTest {
         assertEquals(131,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));repository.initialize(CATALOG);
         assertEquals(131,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));assertEquals(0,flyway.migrate().migrationsExecuted);
         assertEquals(-1371784637,jdbc.queryForObject("SELECT checksum FROM flyway_schema_history WHERE version='1'",Integer.class));
+        assertEquals(1338977865,jdbc.queryForObject("SELECT checksum FROM flyway_schema_history WHERE version='2'",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_name='historical_coverage_state'",Integer.class));
     }
     @Test void repeatedRetainedRecordKeepsDateReceiptAndImmutableValue() {
@@ -113,26 +114,27 @@ class TelemetryPostgresTest {
         assertEquals("NO_VERIFIED_MAPPING",query.component("PIRS",null).mappingStatus());
         assertThrows(TelemetryQueryService.UnknownResource.class,() -> query.component("NONE",null));
     }
-    @Test void durableBootstrapPacingSuccessAndRestart() {
-        assertTrue(repository.claimBootstrap("SENSEDATA",NOW));assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(10)));
-        assertTrue(repository.claimBootstrap("SENSEDATA",NOW.plus(Duration.ofDays(1))));repository.completeBootstrap("SENSEDATA");
-        var restarted=new JdbcTelemetryRepository(jdbc,tx,CATALOG,MAPPER);restarted.initialize(CATALOG);
-        assertFalse(restarted.claimBootstrap("SENSEDATA",NOW.plus(Duration.ofDays(2))));
+    @Test void existingBootstrapSeedsDurablePacingWithoutRewritingHistory() {
+        var coordinator=new org.mission1.telemetry.persistence.JdbcRetainedTelemetryState(jdbc,CATALOG);
+        jdbc.update("INSERT INTO telemetry_bootstrap_state VALUES('SENSEDATA',?,?,true)",CATALOG.version(),NOW.atOffset(ZoneOffset.UTC));
+        var original=jdbc.queryForMap("SELECT * FROM telemetry_bootstrap_state");
+        var state=coordinator.initializeProvider("SENSEDATA",NOW.plusSeconds(300),Duration.ofMinutes(30),Duration.ofHours(6));
+        assertEquals(NOW.plusSeconds(1800),state.nextEligibleAt());assertTrue(state.bootstrapCompleted());
+        assertNull(coordinator.claimProvider("SENSEDATA",NOW,NOW.plusSeconds(300),Duration.ofMinutes(30),Duration.ofHours(6),"RETAINED_RECONCILIATION"));
+        assertEquals(original,jdbc.queryForMap("SELECT * FROM telemetry_bootstrap_state"));
     }
-    @Test void explicitRetryRequiresActualFailedAttemptAndPreservesExistingEvidence() {
+    @Test void existingFailedBootstrapSeedsBackoffAndPreservesEvidence() {
         var retained=record("52",SEPT,"ISS_LIVE");store(retained);
-        assertTrue(repository.claimBootstrap("SENSEDATA",NOW));
-        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(1),true)); // in progress is not failed.
-        repository.store(new TelemetryRepository.Acquisition(UUID.randomUUID(),"SENSEDATA","RETAINED_BOOTSTRAP",
-                "https://test.invalid/",NOW.plusSeconds(2),"FAILED","IOException",0),List.of());
-        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3)));
-        assertTrue(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3),true));
-        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(3),true));
-        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(4),true));
-        assertEquals(retained.id(),head().id());
-        repository.completeBootstrap("SENSEDATA");
-        assertFalse(repository.claimBootstrap("SENSEDATA",NOW.plusSeconds(5),true));
-        assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
+        jdbc.update("INSERT INTO telemetry_bootstrap_state VALUES('SENSEDATA',?,?,false)",CATALOG.version(),NOW.atOffset(ZoneOffset.UTC));
+        var coordinator=new org.mission1.telemetry.persistence.JdbcRetainedTelemetryState(jdbc,CATALOG);
+        var state=coordinator.initializeProvider("SENSEDATA",NOW.plusSeconds(300),Duration.ofMinutes(30),Duration.ofHours(6));
+        assertEquals(1,state.consecutiveFailures());assertEquals(NOW.plusSeconds(3600),state.nextEligibleAt());
+        assertNull(coordinator.claimProvider("SENSEDATA",NOW,NOW.plusSeconds(300),Duration.ofMinutes(30),Duration.ofHours(6),"RETAINED_BOOTSTRAP"));
+        try(var claim=coordinator.claimProvider("SENSEDATA",NOW,NOW.plusSeconds(3600),Duration.ofMinutes(30),Duration.ofHours(6),"RETAINED_BOOTSTRAP")) {
+            assertNotNull(claim);claim.complete(NOW.plusSeconds(3600),true,RetainedTelemetryState.Result.EMPTY);
+        }
+        assertEquals(retained.id(),head().id());assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
+        assertTrue(coordinator.providerState("SENSEDATA").bootstrapCompleted());
     }
     @Test void everyDefinitionTraversesPersistenceToItsOwnComponentRestRepresentation() {
         var all=CATALOG.definitions().stream().map(d -> NORMALIZER.normalize(raw(d.rawItemId(),"0",NOW.minusSeconds(10),"NATIVE")).orElseThrow()).toArray(TelemetryRecord[]::new);
@@ -171,7 +173,8 @@ class TelemetryPostgresTest {
         server.start();var base="http://127.0.0.1:"+server.getAddress().getPort();var diagnostics=new TelemetryDiagnostics();
         try(var worker=new TelemetryIngestion(CATALOG,repository,NORMALIZER,diagnostics,Clock.fixed(NOW,ZoneOffset.UTC),
                 new TelemetryHttp(Duration.ofSeconds(5)),new SenseDataTelemetrySource(MAPPER,CATALOG),new IssLiveTelemetrySource(MAPPER,CATALOG),
-                8,64,true,false,java.net.URI.create(base+"/events"),java.net.URI.create(base+"/stats"),"https://push.lightstreamer.com","ISSLIVE",30000)) {
+                8,64,true,false,java.net.URI.create(base+"/events"),java.net.URI.create(base+"/stats"),"https://push.lightstreamer.com","ISSLIVE",30000)
+                .retained(new org.mission1.telemetry.persistence.JdbcRetainedTelemetryState(jdbc,CATALOG),TelemetryTimer.owned(Clock.fixed(NOW,ZoneOffset.UTC)),RetainedTelemetryReconciler.Policy.DEFAULT)) {
             worker.start();long deadline=System.nanoTime()+Duration.ofSeconds(30).toNanos();
             while (diagnostics.senseData==null && diagnostics.bootstrapFailures.get()==0 && System.nanoTime()<deadline) Thread.sleep(10);
             assertNotNull(diagnostics.senseData);assertEquals(6300,diagnostics.senseData.fetched());

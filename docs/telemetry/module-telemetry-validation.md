@@ -1,5 +1,11 @@
 # Component telemetry milestone validation
 
+Historical validation of the October14 milestone. Acquisition lifecycle is now
+extended by [periodic reconciliation](retained-reconciliation-validation.md) and
+[ADR-0025](../adr/0025-periodic-retained-telemetry-reconciliation.md); earlier
+bootstrap-only/retry observations below describe their original revision.
+
+
 Date: 2026-10-14. Starting accepted revision:
 `0a50f35eedde0a6e95771718aa597c7c4606a833`, clean main. The rejected Historical
 installation floor is absent. V1 SHA-256 remains

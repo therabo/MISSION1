@@ -7,12 +7,20 @@ import java.util.*;
 
 /** No calibration, defaults or source-status interpretation beyond documented resend policy. */
 public final class TelemetryNormalizer {
+    // Codec representation bound, not an inferred year or evidence of record recency.
+    private static final Instant MAXIMUM_RECORD_TIME=Instant.parse("9999-12-31T23:59:59.999999Z");
     public record Raw(String provider, String providerItemId, String rawItemId, String value,
             String time, Instant receivedAt, boolean snapshot, String statusClass,
             String statusIndicator, String statusColor, String calibratedData, String providerUnit, String changedFields) {}
     private final TelemetryCatalog catalog;
     public TelemetryNormalizer(TelemetryCatalog catalog) { this.catalog=catalog; }
-    public Optional<TelemetryRecord> normalize(Raw raw) {
+    public Optional<TelemetryRecord> normalize(Raw raw) { return normalize(raw,true); }
+    /** Preserves only fully parseable future SenseData identities; never an admitted observation. */
+    public Optional<TelemetryRecord> futureRejection(Raw raw) {
+        if (!"SENSEDATA".equals(raw.provider())) return Optional.empty();
+        return normalize(raw,false).filter(r -> r.recordTime().isAfter(raw.receivedAt().plusSeconds(120)));
+    }
+    private Optional<TelemetryRecord> normalize(Raw raw,boolean guardFuture) {
         var found=catalog.raw(raw.rawItemId());
         if (found.isEmpty()) return Optional.empty();
         var d=found.get();
@@ -52,7 +60,7 @@ public final class TelemetryNormalizer {
                     if (time==null) { role="UNQUALIFIED_NATIVE_TIME"; precision="UNKNOWN"; inferred=false; }
                 }
             }
-            if (time!=null && (time.isBefore(Instant.parse("1998-01-01T00:00:00Z")) || time.isAfter(raw.receivedAt().plusSeconds(120)))) return Optional.empty();
+            if (time!=null && (time.isBefore(Instant.parse("1998-01-01T00:00:00Z")) || time.isAfter(MAXIMUM_RECORD_TIME) || guardFuture && time.isAfter(raw.receivedAt().plusSeconds(120)))) return Optional.empty();
             String canonical=value.stripTrailingZeros().toPlainString();
             // Untimed callbacks deduplicate raw timestamp/value, never manufacture a dated head.
             // Native source fractions must survive even when dated presentation is

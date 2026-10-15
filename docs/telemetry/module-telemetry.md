@@ -1,6 +1,6 @@
 # Component telemetry
 
-ADR-0024 adds public record history to the existing ModuleInfo/ContextDock surface.
+ADR-0024, extended by [ADR-0025](../adr/0025-periodic-retained-telemetry-reconciliation.md), adds public record history to the existing ModuleInfo/ContextDock surface.
 One Java21/Spring backend and ordinary PostgreSQL remain the deployment. Orbit,
 NASA OEM, Crew, Historical, model mapping and camera pipelines are independent.
 Telemetry channels never supply orbital or visual-attitude authority.
@@ -55,7 +55,7 @@ The retained-lineage guard contains only a digest/count/original time boundary; 
 rejects the known 42-item SenseData component cohort when uniformly rebased, and
 cannot create observations or authenticate arbitrary deployment mode.
 
-## Sources and bootstrap
+## Sources, bootstrap and periodic reconciliation
 
 The maintained [official Lightstreamer Java SDK](https://github.com/Lightstreamer/Lightstreamer-lib-client-haxe)
 5.3.3 owns native protocol, reconnection and MERGE state. One client subscribes all
@@ -108,25 +108,47 @@ are excluded. Provider unit declarations stay separate from qualified units. Its
 [schema](https://api.iss.live/api/schema/) does not establish whether latest.t is
 measurement, collector or database time. Two unresolved electrical keys are excluded.
 
-After readiness, a separate daemon initializes definitions, attempts SenseData then
-ISS.live, then starts native acquisition. Core never waits for bootstrap network I/O.
-Failures do not disable Crew, Orbit, ISS rendering or readiness. Durable bootstrap
-state is per provider/catalog: successful bounded passes do not repeat on restart,
-even when some definitions have no upstream record. Failed/interrupted attempts can
-retry on a later startup after 24 hours. No continuous retained polling or UI-driven
-source fetch exists. A new catalog version has its own pass. Manually deleting
-evidence is not a supported recovery workflow.
+After readiness, the native worker initializes definitions and starts the independent
+retained lifecycle and native SDK. Neither external retained request runs on the SDK
+callback or native persistence worker. Two owned timer threads maintain one deadline
+per provider; repeated start is idempotent and close cancels deadlines/active HTTP,
+interrupts and joins owned workers. A failed provider does not postpone the other
+provider, native ingestion, Crew, Orbit or readiness.
 
-For an explicitly requested immediate retry, start with
-`MISSION1_TELEMETRY_RETRY_FAILED_BOOTSTRAP=true` (or
-`--mission1.telemetry.retry-failed-bootstrap=true`). The same atomic production claim
-requires a persisted FAILED acquisition since that provider/catalog attempt. An
-in-progress claim and every completed pass remain protected; advancing the claim
-also prevents concurrent retries consuming the same failure. Default pacing remains
-24 hours, including interrupted attempts without persisted failure. No data, history
-or coordination rows need manual deletion/update. A complete pass with all component
-dates rejected by policy is still a completed bounded acquisition, not a transport
-failure, and does not become a successful observation or a newer head.
+Initial acquisition remains bootstrap for a provider/catalog without a completed
+pass. Both providers are subsequently revisited automatically. **Default PT30M**
+after a completed successful acquisition, including empty, duplicate-only, older-only
+or rejected-only responses. This is fallback/recovery, not a live-stream approximation.
+`bootstrap-enabled=false` disables initial bootstrap but does not disable configured
+periodic reconciliation; `retained-reconciliation.enabled=false` leaves only initial
+bootstrap. Disable both to prevent retained acquisition.
+
+`telemetry_provider_state` stores last attempt/success, next eligible deadline,
+consecutive failures, outcome/kind and last pass counts/timings. Runtime initialization
+seeds pacing from existing bootstrap history; migrations insert no rows. A successful
+query five minutes ago remains about 25 minutes from eligibility after restart;
+overdue work runs shortly after readiness. Fresh bootstrap advances that same deadline,
+so it cannot race an immediate duplicate reconciliation. The completed bootstrap flag
+records initial completion, never permanent exhaustion.
+
+Every pass uses the same provider-wide PostgreSQL session advisory claim, including
+bootstrap. Ownership spans bounded I/O; no database transaction or telemetry writer
+lock spans I/O. At most two dedicated pool connections are held for retained claims.
+Slow requests cannot lose ownership through lease expiry. Process/connection death
+releases ownership, while a committed pessimistic failed-attempt deadline prevents
+restart hammering. A live owner prevents duplicate fetch even after its deadline.
+Normal operation completes a pass and schedules its exact durable deadline. Local
+coordination/ownership errors recheck after one minute without a source request.
+
+Failures back off at interval ×2^consecutiveFailures, capped at PT6H by default:
+60,120,240,360 minutes, then360. Successful processing resets failures to zero and
+returns to PT30M. The old `retry-failed-bootstrap` startup override is retired;
+ordinary durable scheduling provides recovery without state edits or forced retries.
+No jitter is added for the single-instance deployment. At PT30M, normal traffic is
+approximately **48 bounded SenseData connections/day and 48 ISS.live passes/day**;
+21 current qualified keys fit one ISS.live request/pass. No formal rate policy or
+SLA is asserted; bounds/timeouts and failure backoff limit unsuccessful traffic.
+No manual reconcile endpoint, browser source connection or GET-triggered fetch exists.
 
 ## Time, provenance and admission
 
@@ -151,10 +173,24 @@ Status-only callbacks cannot establish a newer dated reading.
 
 Records preserve provider/raw identity, original time, role/precision/policy,
 year inference, rounding/unit, catalog version and first actual acquisition/receipt.
-Separate acquisitions retain repeated retrievals and status amendments. Upstream is
+Separate acquisitions retain repeated retrievals and status amendments. The first
+actual acquisition method is read through its immutable acquisition FK; new periodic
+passes use RETAINED_RECONCILIATION, while original RETAINED_BOOTSTRAP,
+RETAINED_ARCHIVE_IMPORT and NATIVE_CALLBACK provenance is preserved. Upstream is
 public ISS telemetry/NASA origin as attributed by provider documentation; transport
 is Lightstreamer ISSLIVE; retainer is SenseData, ISS.live or none; acquisition method
 is separate. No onboard sampling time or independent calibration certificate is claimed.
+
+SenseData's future-date ambiguity remains unresolved. No year subtraction, new year
+inference or weakening of receivedAt+120s is introduced. Fully parseable future
+component representations are retained in immutable `telemetry_time_rejection`,
+including original value/date, first acquisition/receipt, time policy and record
+identity. This is rejection evidence, not a telemetry observation or head. The same
+identity remains excluded even after wall-clock catch-up or restart; formatting-only
+value changes cannot bypass it. A genuinely different qualified record follows the
+unchanged normalizer/admission policy. No old rejected payload is reinterpreted. The record codec rejects calendar dates
+beyond year9999 as unrepresentable input, including for rejection storage; those
+malformed dates cannot turn a completed source pass into a PostgreSQL date-range error.
 
 Identity hashes catalog/codec policy, provider, raw ID, qualified time and canonical
 numeric value. Native identity also retains the original fractional timestamp,
@@ -193,7 +229,10 @@ is bounded definition metadata only. Foreign keys, uniqueness, raw-unit/null che
 numeric bounds, time-second consistency and six immutable-table triggers protect
 evidence. Ten indexes include keys, raw-ID uniqueness, component lookup and parameter
 chronology. Selection references the actual record, with no duplicated mutable value
-head. V1 and checksum remain unchanged.
+head. V1/V2 bytes and checksums remain unchanged. Structure-only V3 adds
+telemetry_provider_state and telemetry_time_rejection, with an immutable rejection
+trigger. Bounded native and retained writes share the existing transaction writer
+lock; retained batches do not monopolize the native queue.
 
 - `GET /api/iss/components/{componentId}/telemetry` returns definitions and nullable
   latest admitted dated records, queried at the response clock.
@@ -205,6 +244,13 @@ head. V1 and checksum remain unchanged.
   order/immutable-ID ties and a validated parameter/range-scoped cursor.
 - `GET /api/iss/telemetry/diagnostics` returns connection/subscription and callback,
   rejection/conflict/queue/drop/persistence/bootstrap counters.
+  Its `retained` object exposes enabled/running and provider states with temporal
+  eligibility, last attempt/success, next eligible time, failures, outcome/kind,
+  scheduled/completed times and fetched/mapped/admitted/duplicate/rejected/head
+  counts, bytes and timings. State is persisted and cached on acquisition lifecycle
+  transitions; GET performs no write/network. Eligibility still requires the claim.
+  `fetchMilliseconds` for SenseData includes streaming parse/read; its parse timer
+  includes streamed reads and is not additive. Database time includes admission.
   Its nullable process-local `senseData` summary reconciles fetched/classified,
   malformed/unbound, normalized/rejected, inserted/admitted/conflicting/duplicate
   counts and event-byte/parse/database timings. It is absent after a restart that
@@ -234,8 +280,11 @@ hidden/closed docks do not poll. API failure stays local to telemetry.
 `mission1.telemetry.*` has matching MISSION1_TELEMETRY_* environment variables:
 enabled, native-enabled, bootstrap-enabled, native-endpoint, adapter-set, native-retry,
 sensedata-endpoint, isslive-endpoint, timeout, queue-size, batch-size,
-sensedata-bootstrap-timeout, sensedata-max-event-bytes, sensedata-max-records and
-retry-failed-bootstrap. Defaults:
+sensedata-bootstrap-timeout, sensedata-max-event-bytes, sensedata-max-records,
+retained-reconciliation.enabled, retained-reconciliation.interval and
+retained-reconciliation.maximum-backoff. Nested variables use the full uppercase
+name, e.g. MISSION1_TELEMETRY_RETAINED_RECONCILIATION_INTERVAL. Interval accepts
+PT1M..P1D; maximum backoff must be >=interval and <=P7D. Defaults:
 enabled, researched HTTPS endpoints, ISSLIVE, SDK retry 30 seconds, external deadline
 15 seconds, queue 1024/batch 64. Queue max 8192, batch max 256; field/body/item/deadline
 bounds apply. Endpoints are administrator configuration, never user request URLs.
@@ -244,7 +293,7 @@ HTTPS verification and no HTTP redirects apply. No new service/broker/database t
 Run Java21/Docker `mvn test` and `mvn verify`, and Node24 `npm test`,
 `npm run typecheck`, `npm run build`. Tests use TEST-only fixtures, SDK mocks and
 Testcontainers PostgreSQL, never live feeds. The frozen publication test targets V1;
-forward-migration tests cover V2. [Validation](module-telemetry-validation.md) records
+forward-migration tests cover V2/V3 and preserve both accepted checksums. [Validation](module-telemetry-validation.md) records
 counts, real bounded acquisition, restart/GET purity, timings and responsive evidence.
 The independent TEST definition reference verifies all 131 qualified mappings and
 provider bindings against the research; the all-definition PostgreSQL and frontend

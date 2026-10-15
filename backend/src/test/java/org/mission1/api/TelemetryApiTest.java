@@ -24,7 +24,8 @@ class TelemetryApiTest {
         mvc.perform(get("/api/iss/components/QUEST/telemetry")).andExpect(status().isOk()).andExpect(jsonPath("$.parameters.length()").value(57)).andExpect(jsonPath("$.parameters[0].record").doesNotExist());
         mvc.perform(get("/api/iss/components/CUPOLA/telemetry")).andExpect(status().isOk()).andExpect(jsonPath("$.mappingStatus").value("NO_VERIFIED_MAPPING")).andExpect(jsonPath("$.parameters.length()").value(0));
         mvc.perform(get("/api/iss/components/NONE/telemetry")).andExpect(status().isNotFound());
-        verify(repository,never()).store(any(),any());verify(repository,never()).initialize(any());verify(repository,never()).claimBootstrap(anyString(),any());
+        verify(repository,never()).store(any(),any());verify(repository,never()).initialize(any());verify(repository,never()).store(any(),any(),any());
+        verify(repository).selected("QUEST",NOW);verifyNoMoreInteractions(repository);
     }
     @Test void historicalUsesExactAcceptedTimeAndSourceSpecificRecord() throws Exception {
         Instant at=Instant.parse("2026-09-15T00:00:00Z"), t=Instant.parse("2026-09-14T14:10:29Z");

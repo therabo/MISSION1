@@ -5,6 +5,7 @@ import java.net.URI;
 import java.time.*;
 import org.mission1.telemetry.*;
 import org.mission1.telemetry.persistence.JdbcTelemetryRepository;
+import org.mission1.telemetry.persistence.JdbcRetainedTelemetryState;
 import org.mission1.source.telemetry.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
@@ -21,11 +22,12 @@ class TelemetryConfiguration {
     @Bean TelemetryRepository telemetryRepository(JdbcTemplate jdbc,PlatformTransactionManager tx,TelemetryCatalog catalog,ObjectMapper mapper) {
         return new JdbcTelemetryRepository(jdbc,new TransactionTemplate(tx),catalog,mapper);
     }
+    @Bean RetainedTelemetryState retainedTelemetryState(JdbcTemplate jdbc,TelemetryCatalog catalog) {return new JdbcRetainedTelemetryState(jdbc,catalog);}
     @Bean TelemetryDiagnostics telemetryDiagnostics() { return new TelemetryDiagnostics(); }
     @Bean TelemetryQueryService telemetryQueryService(TelemetryCatalog catalog,TelemetryRepository repository,Clock utcClock) { return new TelemetryQueryService(catalog,repository,utcClock); }
     @Bean(destroyMethod="close")
     @ConditionalOnProperty(name="mission1.telemetry.enabled",havingValue="true",matchIfMissing=true)
-    TelemetryIngestion telemetryIngestion(TelemetryCatalog catalog,TelemetryRepository repository,ObjectMapper mapper,TelemetryDiagnostics diagnostics,Clock utcClock,
+    TelemetryIngestion telemetryIngestion(TelemetryCatalog catalog,TelemetryRepository repository,ObjectMapper mapper,TelemetryDiagnostics diagnostics,Clock utcClock,RetainedTelemetryState retainedState,
             @Value("${mission1.telemetry.timeout:PT15S}") Duration timeout,
             @Value("${mission1.telemetry.queue-size:1024}") int queue,
             @Value("${mission1.telemetry.batch-size:64}") int batch,
@@ -39,7 +41,9 @@ class TelemetryConfiguration {
             @Value("${mission1.telemetry.sensedata-bootstrap-timeout:PT30S}") Duration senseTimeout,
             @Value("${mission1.telemetry.sensedata-max-event-bytes:4194304}") int senseBytes,
             @Value("${mission1.telemetry.sensedata-max-records:20700}") int senseRecords,
-            @Value("${mission1.telemetry.retry-failed-bootstrap:false}") boolean retryFailed) {
+            @Value("${mission1.telemetry.retained-reconciliation.enabled:true}") boolean reconcile,
+            @Value("${mission1.telemetry.retained-reconciliation.interval:PT30M}") Duration interval,
+            @Value("${mission1.telemetry.retained-reconciliation.maximum-backoff:PT6H}") Duration maximumBackoff) {
         if (queue<1 || queue>8192 || batch<1 || batch>256 || timeout.compareTo(Duration.ofSeconds(1))<0 || timeout.compareTo(Duration.ofSeconds(60))>0 || retry.compareTo(Duration.ofSeconds(5))<0)
             throw new IllegalArgumentException("Invalid bounded telemetry configuration");
         if (senseTimeout.compareTo(Duration.ofSeconds(1))<0 || senseTimeout.compareTo(Duration.ofSeconds(60))>0)
@@ -49,7 +53,8 @@ class TelemetryConfiguration {
                 throw new IllegalArgumentException("Telemetry endpoints require HTTPS without credentials/query");
         return new TelemetryIngestion(catalog,repository,new TelemetryNormalizer(catalog),diagnostics,utcClock,new TelemetryHttp(timeout),
                 new SenseDataTelemetrySource(mapper,catalog,new SenseDataTelemetrySource.Limits(senseBytes,senseRecords)),
-                new IssLiveTelemetrySource(mapper,catalog),queue,batch,bootstrap,nativeEnabled,sense,archive,nativeEndpoint.toString(),adapter,retry.toMillis(),retryFailed,senseTimeout);
+                new IssLiveTelemetrySource(mapper,catalog),queue,batch,bootstrap,nativeEnabled,sense,archive,nativeEndpoint.toString(),adapter,retry.toMillis(),senseTimeout)
+                .retained(retainedState,TelemetryTimer.owned(utcClock),new RetainedTelemetryReconciler.Policy(reconcile,interval,maximumBackoff));
     }
     @Bean @ConditionalOnProperty(name="mission1.telemetry.enabled",havingValue="true",matchIfMissing=true)
     TelemetryStartup telemetryStartup(TelemetryIngestion ingestion) { return new TelemetryStartup(ingestion); }

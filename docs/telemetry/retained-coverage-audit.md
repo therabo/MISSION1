@@ -1,5 +1,11 @@
 # Retained telemetry coverage correction and audit
 
+Historical validation of the October14 milestone. Acquisition lifecycle is now
+extended by [periodic reconciliation](retained-reconciliation-validation.md) and
+[ADR-0025](../adr/0025-periodic-retained-telemetry-reconciliation.md); earlier
+bootstrap-only/retry observations below describe their original revision.
+
+
 Verified: 2026-10-14. Starting revision: `da1b33f6466efc2a8982bad81231db7b89a3b20a`.
 This is a corrective acquisition/mapping milestone. No power dashboard, UI redesign,
 new service, catalog activation, timestamp reinterpretation or schema migration.

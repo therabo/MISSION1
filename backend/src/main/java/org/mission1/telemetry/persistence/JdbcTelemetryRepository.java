@@ -36,14 +36,25 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
         });
     }
     @Override public StoreResult store(Acquisition a, List<TelemetryRecord> records) {
-        if (records.size()>256) throw new IllegalArgumentException("Telemetry batch exceeds 256");
+        return store(a,records,List.of());
+    }
+    @Override public StoreResult store(Acquisition a,List<TelemetryRecord> records,List<TelemetryRecord> futureRejected) {
+        if (records.size()+futureRejected.size()>256) throw new IllegalArgumentException("Telemetry batch exceeds 256");
         return transaction.execute(tx -> {
             // One writer lock per capability across application instances; never held during network I/O.
             jdbc.execute("SELECT pg_advisory_xact_lock(74310124)");
             jdbc.update("INSERT INTO telemetry_acquisition VALUES(?,?,?,?,?,?,?,?)",a.id(),a.provider(),a.method(),a.endpoint(),utc(a.acquiredAt()),a.outcome(),a.diagnostic(),a.itemCount());
+            for (var r:futureRejected) jdbc.update("""
+                    INSERT INTO telemetry_time_rejection VALUES(?,?,?,?,?,?,?,?,?,?,'SENSEDATA_FUTURE_TIME',?,?) ON CONFLICT DO NOTHING
+                    """,r.id(),catalog.version(),r.parameterId(),r.providerItemId(),r.rawItemId(),r.rawValue(),r.originalTime(),utc(r.recordTime()),r.timePolicy(),r.statusClass(),a.id(),utc(r.receivedAt()));
             var unique=new LinkedHashMap<String,TelemetryRecord>();
             records.forEach(r -> unique.putIfAbsent(r.id(),r));
-            if (unique.isEmpty()) return new StoreResult(0,0,0);
+            int quarantined=0;
+            if (!unique.isEmpty()) {
+                var blocked=named.queryForList("SELECT record_id FROM telemetry_time_rejection WHERE record_id IN (:ids)",Map.of("ids",List.copyOf(unique.keySet())),String.class);
+                quarantined=(int)records.stream().filter(r -> blocked.contains(r.id())).count();blocked.forEach(unique::remove);
+            }
+            if (unique.isEmpty()) return new StoreResult(0,0,0,Set.of(),quarantined);
             var args=new ArrayList<Object[]>();
             var evidence=new ArrayList<Object[]>();
             for (var r:unique.values()) {
@@ -57,13 +68,14 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
             var parameters=unique.values().stream().map(TelemetryRecord::parameterId).distinct().toList();
             var latest=new HashMap<String,TelemetryRecord>();
             var values=Map.<String,Object>of("version",catalog.version(),"params",parameters);
-            named.query("SELECT DISTINCT ON (r.parameter_id) r.* FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED' WHERE r.catalog_version=:version AND r.parameter_id IN (:params) ORDER BY r.parameter_id,"+ORDER,values,(rs,n) -> read(rs))
+            named.query("SELECT DISTINCT ON (r.parameter_id) r.*,(SELECT method FROM telemetry_acquisition WHERE id=r.first_acquisition_id) acquisition_method FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED' WHERE r.catalog_version=:version AND r.parameter_id IN (:params) ORDER BY r.parameter_id,"+ORDER,values,(rs,n) -> read(rs))
                     .forEach(r -> latest.put(r.parameterId(),r));
+            var originalHeads=new HashMap<>(latest);
             var seconds=unique.values().stream().filter(r -> r.recordTime()!=null).map(r -> r.recordTime().getEpochSecond()).distinct().toList();
             var peers=new HashMap<String,TelemetryRecord>();
             if (!seconds.isEmpty()) {
                 var criteria=new HashMap<String,Object>(values);criteria.put("seconds",seconds);
-                named.query("SELECT DISTINCT ON (r.parameter_id,r.record_second) r.* FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED' WHERE r.catalog_version=:version AND r.parameter_id IN (:params) AND r.record_second IN (:seconds) ORDER BY r.parameter_id,r.record_second,"+RANK+" DESC,r.record_time DESC,r.id",criteria,(rs,n) -> read(rs))
+                named.query("SELECT DISTINCT ON (r.parameter_id,r.record_second) r.*,(SELECT method FROM telemetry_acquisition WHERE id=r.first_acquisition_id) acquisition_method FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED' WHERE r.catalog_version=:version AND r.parameter_id IN (:params) AND r.record_second IN (:seconds) ORDER BY r.parameter_id,r.record_second,"+RANK+" DESC,r.record_time DESC,r.id",criteria,(rs,n) -> read(rs))
                         .forEach(r -> peers.put(group(r),r));
             }
             var decisions=new ArrayList<Object[]>(); int accepted=0,conflicts=0;
@@ -82,7 +94,9 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
                 }
             }
             jdbc.batchUpdate("INSERT INTO telemetry_admission VALUES(?,?,?,?) ON CONFLICT DO NOTHING",decisions);
-            return new StoreResult((int)Arrays.stream(writes).filter(n -> n>0).count(),accepted,conflicts);
+            var advanced=new HashSet<String>();
+            latest.forEach((parameter,head) -> {if (!originalHeads.containsKey(parameter) || !head.id().equals(originalHeads.get(parameter).id())) advanced.add(parameter);});
+            return new StoreResult((int)Arrays.stream(writes).filter(n -> n>0).count(),accepted,conflicts,Set.copyOf(advanced),quarantined);
         });
     }
     private static String group(TelemetryRecord r) { return r.parameterId()+"|"+(r.recordTime()==null?"untimed":r.recordTime().getEpochSecond()); }
@@ -97,7 +111,7 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
         var result=new LinkedHashMap<String,TelemetryRecord>();
         jdbc.query("""
                 SELECT v.* FROM telemetry_parameter p JOIN LATERAL (
-                  SELECT r.* FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED'
+                  SELECT r.*,(SELECT method FROM telemetry_acquisition WHERE id=r.first_acquisition_id) acquisition_method FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED'
                   WHERE r.catalog_version=p.catalog_version AND r.parameter_id=p.parameter_id AND r.record_time<=?
                 """+" ORDER BY "+ORDER+" LIMIT 1) v ON true WHERE p.catalog_version=? AND p.component_id=?",(rs,n) -> read(rs),utc(at),catalog.version(),component)
                 .forEach(r -> result.put(r.parameterId(),r));
@@ -109,32 +123,14 @@ public final class JdbcTelemetryRepository implements TelemetryRepository {
         Instant lower=from.truncatedTo(java.time.temporal.ChronoUnit.MICROS);
         if (lower.isBefore(from)) lower=lower.plusNanos(1000);
         return jdbc.query("""
-                SELECT r.* FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED'
+                SELECT r.*,(SELECT method FROM telemetry_acquisition WHERE id=r.first_acquisition_id) acquisition_method FROM telemetry_record r JOIN telemetry_admission a ON a.record_id=r.id AND a.decision='ACCEPTED'
                 WHERE r.catalog_version=? AND r.parameter_id=? AND r.record_time>=? AND r.record_time<=?
                 AND (?::text IS NULL OR (r.record_time,r.id) > (SELECT record_time,id FROM telemetry_record WHERE id=? AND catalog_version=? AND parameter_id=?))
                 ORDER BY r.record_time,r.id LIMIT ?
                 """,(rs,n) -> read(rs),catalog.version(),parameter,utc(lower),utc(to),cursor,cursor,catalog.version(),parameter,limit);
     }
-    @Override public boolean claimBootstrap(String provider, Instant now) {
-        return claimBootstrap(provider,now,false);
-    }
-    @Override public boolean claimBootstrap(String provider, Instant now, boolean retryFailed) {
-        return jdbc.update("""
-                INSERT INTO telemetry_bootstrap_state VALUES(?,?,?,false)
-                ON CONFLICT(provider,catalog_version) DO UPDATE
-                SET attempted_at=greatest(EXCLUDED.attempted_at,telemetry_bootstrap_state.attempted_at+interval '1 microsecond')
-                WHERE NOT telemetry_bootstrap_state.completed AND (
-                  telemetry_bootstrap_state.attempted_at<=EXCLUDED.attempted_at-interval '24 hours'
-                  OR (? AND EXISTS(SELECT 1 FROM telemetry_acquisition a
-                    WHERE a.provider=telemetry_bootstrap_state.provider AND a.outcome='FAILED'
-                    AND a.acquired_at>=telemetry_bootstrap_state.attempted_at)))
-                """,provider,catalog.version(),utc(now),retryFailed)==1;
-    }
-    @Override public void completeBootstrap(String provider) {
-        jdbc.update("UPDATE telemetry_bootstrap_state SET completed=true WHERE provider=? AND catalog_version=?",provider,catalog.version());
-    }
     private static TelemetryRecord read(ResultSet r) throws SQLException {
-        return new TelemetryRecord(r.getString("id"),r.getString("parameter_id"),r.getString("provider"),r.getString("provider_item_id"),r.getString("raw_item_id"),r.getString("raw_value"),r.getBigDecimal("numeric_value"),r.getObject("enum_code",Long.class),r.getString("enum_label"),instant(r,"record_time"),r.getString("original_time"),r.getString("time_role"),r.getString("time_precision"),r.getString("time_policy"),r.getBoolean("year_inferred"),r.getObject("rounding_decimals",Integer.class),r.getString("provider_unit"),instant(r,"received_at"),false,null,null,null,null,null);
+        return new TelemetryRecord(r.getString("id"),r.getString("parameter_id"),r.getString("provider"),r.getString("provider_item_id"),r.getString("raw_item_id"),r.getString("raw_value"),r.getBigDecimal("numeric_value"),r.getObject("enum_code",Long.class),r.getString("enum_label"),instant(r,"record_time"),r.getString("original_time"),r.getString("time_role"),r.getString("time_precision"),r.getString("time_policy"),r.getBoolean("year_inferred"),r.getObject("rounding_decimals",Integer.class),r.getString("provider_unit"),instant(r,"received_at"),false,null,null,null,null,null,r.getString("acquisition_method"));
     }
     private static Instant instant(ResultSet r,String column) throws SQLException { var value=r.getObject(column,OffsetDateTime.class);return value==null?null:value.toInstant(); }
     private static OffsetDateTime utc(Instant t) { return t==null?null:t.truncatedTo(java.time.temporal.ChronoUnit.MICROS).atOffset(ZoneOffset.UTC); }

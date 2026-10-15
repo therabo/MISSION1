@@ -15,7 +15,7 @@ Java21/Spring application and PostgreSQL remain the complete backend deployment.
 | Historical Crew | `UnifiedCrewReplay`, the same pure lifecycle at effective T with present binding knowledge |
 | Dynamic Mission/Resource Discovery | `OperationalResourceDiscovery`, source-advertised qualified relations and bounded acquisition |
 | Orbit | CelesTrak GP/TLE acquisition, durable eligibility scheduler, Orekit propagation, NASA OEM |
-| Component Telemetry | 131-definition registry, native ISSLIVE, bounded SenseData/ISS.live bootstrap and immutable local current/as-of record queries |
+| Component Telemetry | 131-definition registry, native ISSLIVE, bounded SenseData/ISS.live bootstrap plus durable periodic reconciliation and immutable local current/as-of record queries |
 | Earth and Inspection | One Cesium Viewer with backend-derived physical samples, Earth Reset and Inspection transitions |
 
 General identity research cannot authorize canonical identity or production
@@ -31,15 +31,16 @@ is 2h10m and one timer follows `nextEligibleAt`. State is computed from retained
 elements, never live onboard telemetry. OEM remains a separately sourced prediction.
 No provider/source selection, propagation, camera timing or frame convention changed.
 
-Fresh PostgreSQL applies `V1__initial_schema.sql` and schema-only telemetry V2, defining the final schema
+Fresh PostgreSQL applies `V1__initial_schema.sql` and schema-only telemetry V2 and retained-coordination V3, defining the final schema
 without operational or coordination rows. Normal application initialization creates
-six mutable coordination registers; the existing packaged reviewed manifest and
+its core mutable coordination registers; telemetry adds provider/catalog coordination
+after readiness; the existing packaged reviewed manifest and
 frozen model initialize their own reference knowledge. Source pipelines populate
 all observations, resource work, identity decisions, memberships and orbital history.
 Telemetry initializes definitions asynchronously after readiness and acquires actual
 source records separately. Existing module cards show each record's date; telemetry
 Historical uses recordTime <= T without an installation floor. See
-[component telemetry](../telemetry/module-telemetry.md) and ADR-0024.
+[component telemetry](../telemetry/module-telemetry.md) and ADR-0024/0025.
 The development V1–V13 chain has been squashed before first public release. Upgrade
 from its databases is deliberately unsupported; those stores must be discarded.
 

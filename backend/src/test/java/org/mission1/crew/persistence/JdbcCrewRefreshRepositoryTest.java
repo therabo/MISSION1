@@ -969,9 +969,9 @@ class JdbcCrewRefreshRepositoryTest {
 
     @Test
     void emptyDatabaseUsesPublicBaseline() {
-        assertEquals(2, count("flyway_schema_history"));
+        assertEquals(3, count("flyway_schema_history"));
         assertEquals(
-                "2",
+                "3",
                 jdbc.queryForObject(
                         "SELECT version FROM flyway_schema_history WHERE success ORDER BY"
                                 + " installed_rank DESC LIMIT 1",

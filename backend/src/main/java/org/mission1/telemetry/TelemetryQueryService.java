@@ -48,6 +48,8 @@ public final class TelemetryQueryService {
     private Value value(TelemetryRecord r) {
         String retainer=switch(r.provider()) {case "SENSEDATA" -> "SenseData";case "ISS_LIVE" -> "ISS.live";default -> null;};
         String method=switch(r.provider()) {case "SENSEDATA" -> "RETAINED_BOOTSTRAP";case "ISS_LIVE" -> "RETAINED_ARCHIVE_IMPORT";default -> "NATIVE_CALLBACK";};
+        String actualMethod=r.acquisitionMethod();
+        if (actualMethod!=null) method=actualMethod;
         return new Value(r.numericValue(),r.enumCode(),r.enumLabel(),r.recordTime(),new Source("PUBLIC_ISS_TELEMETRY_NASA_ORIGIN_ATTRIBUTED_BY_PROVIDER","Lightstreamer ISSLIVE",retainer,method,
                 r.rawItemId(),r.providerItemId(),r.timeRole(),r.timePrecision(),r.timePolicy(),r.yearInferred(),r.roundingDecimals(),r.providerUnit(),r.receivedAt(),catalog.version()));
     }

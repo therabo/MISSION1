@@ -10,7 +10,8 @@ qualified unit or null, rawOnly, evidence/limitations and nullable record.
 
 An actual record has numericValue, nullable item-specific enumCode/enumLabel,
 recordTime and source detail: upstream attribution, transport, retainer, acquisition
-method, raw/provider ID, time role/precision/policy, inferred-year flag, provider
+method (the actual first acquisition: RETAINED_BOOTSTRAP, RETAINED_ARCHIVE_IMPORT,
+RETAINED_RECONCILIATION or NATIVE_CALLBACK), raw/provider ID, time role/precision/policy, inferred-year flag, provider
 rounding/unit, actual receivedAt and catalog version. `recordTime` is a qualified
 public record date, not an established NASA sampling instant. Definitions create
 no observations; missing records remain null. No freshness/age field is required.
@@ -31,3 +32,17 @@ Component/history reads use local PostgreSQL and read-only REPEATABLE READ/no-st
 Known unmapped components return NO_VERIFIED_MAPPING with no parameters. Historical
 includes later-acquired old records at or before T, preserves receipt, selects no
 future record and uses neither interpolation nor Current fallback/installation floor.
+
+`retained` adds enabled/running and a provider-keyed map. Each entry exposes
+`eligible` (deadline only; ownership still required) and `state`: lastAttemptAt,
+lastSuccessAt, nextEligibleAt, consecutiveFailures, lastOutcome, lastKind,
+scheduledAt, completedAt, bootstrapCompleted and result. Result contains fetched,
+mapped, admitted, duplicates, rejected, headsAdvanced, responseBytes,
+fetchMilliseconds, parseMilliseconds and databaseMilliseconds. Times are UTC.
+Counts describe the last pass; headsAdvanced counts distinct parameters advanced
+within that pass, not a claim that every admitted historical record became a head.
+Future SenseData rejections are successful source processing, not transport failures.
+State survives restart and is cached after provider lifecycle transitions; the
+initial map may be empty before asynchronous initialization. Source errors remain
+independent of spacecraft value quality. No new acquisition/control endpoint exists.
+See [reconciliation policy](../telemetry/module-telemetry.md#sources-bootstrap-and-periodic-reconciliation).

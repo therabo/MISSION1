@@ -1,6 +1,6 @@
 # ADR-0024: Component telemetry and qualified record history
 
-Status: Accepted
+Status: Accepted; bootstrap-only acquisition superseded by [ADR-0025](0025-periodic-retained-telemetry-reconciliation.md)
 Date: 2026-10-14
 
 ## Context
