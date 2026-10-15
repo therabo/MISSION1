@@ -57,6 +57,39 @@ it('clears obsolete context and keeps failures local to module telemetry', async
   fetchMock.mockResolvedValue(new Response('', { status: 503 }));
   const module = ISS_MODEL.semanticMappings.find(entry => entry.componentId === 'TRANQUILITY')!;
   await act(async () => root.render(<ModuleInfo module={module} onClose={() => {}} />));
-  expect(host.textContent).toContain('Telemetry could not be loaded'); expect(host.textContent).toContain('Function / role');
-  expect(host.textContent).toContain('Configuration context'); expect(host.querySelector('aside')?.dataset.entityId).toBe('TRANQUILITY');
+  expect(host.textContent).toContain('Telemetry could not be loaded'); expect(host.querySelector('h3')?.textContent).toBe('Function');
+  expect(host.textContent).toContain('Supporting technical detail'); expect(host.querySelector('aside')?.dataset.entityId).toBe('TRANQUILITY');
+});
+
+it.each([null, '2026-09-15T00:00:00Z'])('renders recorded module telemetry and no administrative controls at %s', async at => {
+  const data = telemetryFixture('TRANQUILITY', at);
+  data.parameters.push({ ...data.parameters[0], parameterId: 'test.missing', label: 'Missing definition', category: 'empty_category', record: null });
+  fetchMock.mockImplementation(() => Promise.resolve(Response.json(data)));
+  const module = ISS_MODEL.semanticMappings.find(entry => entry.componentId === 'TRANQUILITY')!;
+  await act(async () => root.render(<ModuleInfo module={module} historical={!!at} acceptedAt={at ?? undefined} onClose={() => {}} />));
+  expect(host.querySelector('h3')?.textContent).toBe('Function');
+  expect(host.textContent).toContain(module.role);
+  expect(host.querySelector('.module-telemetry-value')?.textContent).toBe('52 %');
+  expect(host.querySelector('time')?.dateTime).toBe(data.parameters[0].record!.recordTime);
+  expect(host.textContent).toContain('Last telemetry record'); expect(host.textContent).toContain('Retained by SenseData');
+  const technical = [...host.querySelectorAll('section')].find(section => section.querySelector('h3')?.textContent === 'Supporting technical detail')!;
+  expect(technical.textContent).toContain('Module ID'); expect(technical.textContent).toContain('Asset node');
+  expect(technical.textContent).not.toContain('Identity mapping');
+  for (const removed of ['Evidence and provenance', 'Evidence & provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'No recorded value', 'Missing definition', 'Empty category']) {
+    expect(host.textContent).not.toContain(removed);
+  }
+  expect(host.querySelector('footer')).toBeNull();
+  expect(fetchMock.mock.calls[0][0]).toBe('/api/iss/components/TRANQUILITY/telemetry' + (at ? `?at=${encodeURIComponent(at)}` : ''));
+  await act(async () => vi.advanceTimersByTime(TELEMETRY_REFRESH_MS));
+  expect(fetchMock).toHaveBeenCalledTimes(at ? 1 : 2);
+});
+
+it.each([null, '2026-09-15T00:00:00Z'])('preserves the deliberate no-mapping message at %s', async at => {
+  const data = telemetryFixture('CUPOLA', at); data.mappingStatus = 'NO_VERIFIED_MAPPING'; data.parameters = [];
+  fetchMock.mockResolvedValue(Response.json(data));
+  const module = ISS_MODEL.semanticMappings.find(entry => entry.componentId === 'CUPOLA')!;
+  await act(async () => root.render(<ModuleInfo module={module} historical={!!at} acceptedAt={at ?? undefined} onClose={() => {}} />));
+  expect(host.textContent).toContain('No verified telemetry mapping');
+  expect(host.textContent).not.toContain('No recorded value'); expect(host.querySelector('.module-telemetry-reading')).toBeNull();
+  expect(host.querySelector('h2')?.textContent).toBe('Cupola'); expect(host.textContent).toContain(module.role);
 });

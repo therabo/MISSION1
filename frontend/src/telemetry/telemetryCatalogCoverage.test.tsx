@@ -12,7 +12,7 @@ interface Definition {
 }
 // TEST_ONLY values; independent backend research projection carries definitions only.
 const reference = JSON.parse(readFileSync(new URL('../../../backend/src/test/resources/telemetry/TEST-qualified-component-reference.json', import.meta.url), 'utf8')) as { definitions: Definition[] };
-it.each([...new Set(reference.definitions.map(d => d.componentId))])('decodes and renders every recorded definition/category for %s without row loss', component => {
+it.each([...new Set(reference.definitions.map(d => d.componentId))])('decodes every definition for %s and renders only recorded engineering/state rows', component => {
   const data = telemetryFixture(component);
   const base = data.parameters[0].record!;
   data.parameters = reference.definitions.filter(d => d.componentId === component).map(d => ({
@@ -28,8 +28,14 @@ it.each([...new Set(reference.definitions.map(d => d.componentId))])('decodes an
   const technical = renderToStaticMarkup(<ModuleTelemetryTechnical data={decoded} />);
   for (const parameter of decoded.parameters) {
     const attribute = `data-parameter-id="${parameter.parameterId}"`;
-    expect(parameter.rawOnly ? technical : normal).toContain(attribute);
-    expect(parameter.rawOnly ? normal : technical).not.toContain(attribute);
+    if (parameter.rawOnly) {
+      expect(normal + technical).not.toContain(parameter.label);
+      expect(normal).not.toContain(attribute);
+    } else {
+      expect(normal).toContain(attribute);
+    }
+    expect(technical).not.toContain(attribute);
   }
-  expect((normal + technical).match(/data-parameter-id=/g)).toHaveLength(decoded.parameters.length);
+  expect(normal.match(/data-parameter-id=/g) ?? []).toHaveLength(decoded.parameters.filter(p => !p.rawOnly).length);
+  expect(normal + technical).not.toContain('Raw telemetry channels');
 });

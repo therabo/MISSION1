@@ -20,9 +20,6 @@
 .module-dock dt { color: var(--color-text-secondary); font-size: 13px; line-height: 19px; }
 .module-dock dd { min-width: 0; margin: 0; font-size: 14px; line-height: 20px; }
 .module-dock .module-code { font-family: var(--font-numeric); }
-.module-dock .context-dock-footer { flex: none; min-height: 100px; padding: 16px 24px 12px; display: flex; flex-direction: column; gap: 8px; }
-.module-dock .module-evidence { width: 100%; text-decoration: none; }
-.module-dock .context-dock-footer p { color: var(--color-text-secondary); font-size: 11px; line-height: 16px; }
 .module-dock a { color: inherit; }
 .module-dock .module-telemetry-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .module-dock .module-telemetry-group + .module-telemetry-group { margin-top: 8px; }
@@ -30,7 +27,7 @@
 .module-dock .module-telemetry-reading { padding: 8px 0; border-bottom: 1px solid var(--border-overlay); min-width: 0; }
 .module-dock .module-telemetry-reading p + p { margin-top: 4px; }
 .module-dock .module-telemetry-value { font-family: var(--font-numeric); font-size: 16px; }
-.module-dock .module-telemetry-missing, .module-dock .module-telemetry-technical, .module-dock .module-telemetry-evidence { color: var(--color-text-secondary); font: 400 12px/18px var(--font-interface); min-width: 0; }
+.module-dock .module-telemetry-technical, .module-dock .module-telemetry-evidence { color: var(--color-text-secondary); font: 400 12px/18px var(--font-interface); min-width: 0; }
 .module-dock summary { cursor: pointer; padding: 4px 0; overflow-wrap: anywhere; }
 .module-dock summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 2px; }
 .module-dock .module-telemetry-technical > .module-telemetry-group { margin-top: 8px; }
@@ -38,7 +35,6 @@
 @media (max-width: 1243px) {
   .context-dock.module-dock { margin: 12px 12px 32px; }
   .module-dock .context-dock-header .context-button { width: 44px; height: 44px; }
-  .module-dock .module-evidence { min-height: 44px; height: auto; }
 }
 @media (max-height: 620px) {
   .module-dock .module-telemetry-reading { scroll-margin-top: 108px; }
@@ -62,8 +58,6 @@
   .module-dock .module-role p { font-size: 14px; line-height: 20px; }
   .module-dock dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .module-dock dl > .module-type-row { display: grid; }
-  .module-dock .context-dock-footer { height: auto; padding: 12px; }
-  .module-dock .module-evidence { padding-inline: 6px; white-space: normal; text-align: center; font-size: 12px; }
 }
 @media (pointer: coarse) and (max-width: 1243px) {
   .context-dock.module-dock { margin-bottom: 56px; }

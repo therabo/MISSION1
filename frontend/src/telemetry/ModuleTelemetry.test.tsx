@@ -16,14 +16,33 @@ it('preserves unknown state labels and never creates a missing-value state', () 
   expect(renderToStaticMarkup(<ModuleTelemetryReadings data={data} loading={false} error={false} />)).toContain('Unknown code 2');
   data.parameters[0].record = null;
   const html = renderToStaticMarkup(<ModuleTelemetryReadings data={data} loading={false} error={false} />);
-  expect(html).toContain('No recorded value'); expect(html).not.toContain('Unknown code 2');
+  expect(html).toBe('');
+  expect(renderToStaticMarkup(<ModuleTelemetryTechnical data={data} />)).toBe('');
 });
-it('keeps raw channels in technical detail with no invented physical suffix', () => {
+it('omits raw channels from readings and technical detail without changing the response', () => {
   const data = telemetryFixture(); data.parameters[0].rawOnly = true; data.parameters[0].unit = null;
   const normal = renderToStaticMarkup(<ModuleTelemetryReadings data={data} loading={false} error={false} />);
   const detail = renderToStaticMarkup(<ModuleTelemetryTechnical data={data} />);
-  expect(normal).not.toContain('Urine tank'); expect(detail).toContain('Channel value (raw)');
-  expect(detail).not.toContain('52 %'); expect(detail).not.toContain('CNT'); expect(detail).toContain('Received by MISSION1');
+  expect(normal).toBe(''); expect(detail).toBe('');
+  expect(data.parameters[0].record!.numericValue).toBe(52);
+});
+it('omits missing definitions and empty categories while preserving recorded values and their evidence', () => {
+  const data = telemetryFixture();
+  data.parameters.push(
+    { ...data.parameters[0], parameterId: 'test.missing.same', label: 'Missing same category', record: null },
+    { ...data.parameters[0], parameterId: 'test.missing.other', label: 'Missing other category', category: 'empty_category', record: null },
+    { ...data.parameters[0], parameterId: 'test.raw', label: 'Raw-only value', category: 'raw_category', rawOnly: true, unit: null },
+  );
+  const html = renderToStaticMarkup(<ModuleTelemetryReadings data={data} loading={false} error={false} />);
+  const detail = renderToStaticMarkup(<ModuleTelemetryTechnical data={data} />);
+  for (const removed of ['Missing same category', 'Missing other category', 'Empty category', 'Raw-only value', 'Raw category', 'Raw telemetry channels', 'No recorded value', 'parameters without recorded values']) {
+    expect(html + detail).not.toContain(removed);
+  }
+  expect(html).not.toContain('<details');
+  expect(html).toContain('Urine tank'); expect(html).toContain('52');
+  expect(html).toContain('Last telemetry record'); expect(html).toContain('Retained by SenseData');
+  expect(detail).toContain('Received by MISSION1'); expect(detail).toContain('Definition evidence 1');
+  expect(data.parameters).toHaveLength(4);
 });
 it('distinguishes no mapping, loading and isolated API failure', () => {
   const data = telemetryFixture('CUPOLA'); data.parameters = []; data.mappingStatus = 'NO_VERIFIED_MAPPING';

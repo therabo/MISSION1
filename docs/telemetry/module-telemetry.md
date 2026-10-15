@@ -29,7 +29,8 @@ blocked IDs are explicit exclusions; nine have component associations. The addit
 | UNITY | 2 | 0 | 0 |
 
 Columbus, Pirs, Kibo Exposed Facility, Kibo Pressurized Module and Cupola have no
-verified mapping. Their existing identity/function/configuration remains. Mesh
+verified mapping. Their existing identity/function remains visible; configuration
+assessments remain in source metadata. Mesh
 indices and raw identifier prefixes never create a telemetry association.
 
 Semantic IDs, raw IDs, labels, units, exact item-specific enums, association notes
@@ -265,12 +266,16 @@ upper query bounds truncate downward to PostgreSQL microseconds to exclude futur
 ## UI, configuration and verification
 
 App supplies selected component and accepted presentation time. ModuleInfo preserves
-identity, configuration, footer, focus/close, scrolling and Inspection navigation;
-only its telemetry placeholder changes. Normal categories show engineering/state
-readings with individual UTC dates/source. Missing records remain absence detail.
-Raw channels and grouped provenance use existing Supporting technical detail.
-Engineering display uses six significant digits; full source precision survives in
-detail/API, and nonzero tiny values do not become zero. Raw numbers get no invented unit.
+identity, Function, focus/close, scrolling and Inspection navigation. The card omits
+Configuration context, the Evidence & provenance model link/reference footer and
+the Identity mapping row. Supporting technical detail retains module/asset identifiers
+and grouped evidence for displayed readings. Normal categories show only recorded
+engineering/state readings with individual UTC dates/source. Raw channels and
+definitions without observations are omitted, including their disclosures and empty
+categories; their catalog/API support is unchanged. Components without a verified
+mapping still show **No verified telemetry mapping**. Engineering display uses six
+significant digits; full source precision survives in detail/API, and nonzero tiny
+values do not become zero.
 
 Only the selected active dock loads. AbortController, generation and response
 component/mode/UTC validation reject late Current/old-module/old-time responses.
@@ -297,7 +302,8 @@ forward-migration tests cover V2/V3 and preserve both accepted checksums. [Valid
 counts, real bounded acquisition, restart/GET purity, timings and responsive evidence.
 The independent TEST definition reference verifies all 131 qualified mappings and
 provider bindings against the research; the all-definition PostgreSQL and frontend
-tests verify component selection, decoding and normal/raw rendering without row loss.
+tests verify component selection, complete decoding, recorded engineering/state
+rendering and omission of raw/missing rows from the module card.
 The [retained coverage audit](retained-coverage-audit.md) explains each module's actual
 source availability, policy exclusions and SQL→REST→UI reconciliation.
 

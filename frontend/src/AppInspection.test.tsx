@@ -10,6 +10,7 @@ import { ISS_MODEL } from './cesium/modelPresentation';
 import { nextViewMode, type ViewMode } from './cesium/inspectionMode';
 import type { SemanticMapping } from './cesium/modelPresentation';
 import { crewFixture, personFixture } from './test/crewFixture';
+import { telemetryFixture } from './test/telemetryFixture';
 
 // Synthetic TEST data only. Camera/astronomy are validated separately in real Cesium QA.
 const scene = vi.hoisted(() => ({ props: {} as any, mounts: 0, unmounts: 0,
@@ -207,9 +208,13 @@ it('renderer invalidation clears the dock without retaining old selected present
 });
 it('selected Historical detail uses accepted UTC and preserves the existing seek/mode guards', async () => {
   await click('Historical'); await enter(); const time = shown(), state = scene.props.replay.state, at = scene.props.replay.atMs;
-  await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[3]));
-  expect(node.querySelector('.module-dock time')?.getAttribute('datetime')).toBe(state.effectiveAt);
-  expect(node.querySelector('.module-dock')?.textContent).toContain('not reconstructed');
+  const telemetry = telemetryFixture('TRANQUILITY', state.effectiveAt);
+  const fetch = vi.fn().mockResolvedValue(Response.json(telemetry)); vi.stubGlobal('fetch', fetch);
+  await act(async () => scene.props.onModuleSelection(ISS_MODEL.semanticMappings[12]));
+  expect(fetch.mock.calls[0][0]).toBe(`/api/iss/components/TRANQUILITY/telemetry?at=${encodeURIComponent(state.effectiveAt)}`);
+  expect(node.querySelector('.module-dock time')?.getAttribute('datetime')).toBe(telemetry.parameters[0].record!.recordTime);
+  expect(node.querySelector('.module-telemetry-value')?.textContent).toBe('52 %');
+  expect(node.querySelector('.module-dock')?.textContent).not.toContain('Configuration context');
   expect(button('Current').disabled).toBe(true); expect(button('Historical').disabled).toBe(true);
   await click('Current'); expect(scene.props.replay.state).toBe(state); expect(scene.props.replay.atMs).toBe(at); expect(shown()).toBe(time);
 });

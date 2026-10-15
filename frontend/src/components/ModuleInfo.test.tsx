@@ -4,7 +4,7 @@ import { ISS_MODEL } from '../cesium/modelPresentation';
 import { ModuleInfo } from './ModuleInfo';
 
 describe('verified static module information', () => {
-  it('renders each approved identity, explicit telemetry absence, and no selection request', () => {
+  it('renders each approved identity with the simplified card and no selection request', () => {
     const fetch = vi.spyOn(globalThis, 'fetch');
     try {
       for (const module of ISS_MODEL.semanticMappings) {
@@ -13,28 +13,36 @@ describe('verified static module information', () => {
         expect(html).toContain(module.componentId);
         expect(html).toContain(module.componentType);
         expect(html).toContain(module.nodeName);
-        expect(html).toContain('Configuration context');
+        expect(html).toContain('<h3>Function</h3>');
+        expect(html).toContain(module.role);
+        expect(html).toContain('Supporting technical detail');
+        for (const removed of ['Evidence and provenance', 'Evidence &amp; provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'Identity mapping', '<footer']) {
+          expect(html).not.toContain(removed);
+        }
         expect(html).toContain('Telemetry');
         expect(html).toContain('Loading telemetry');
         expect(html).not.toContain('Last telemetry record');
         expect(html).toContain('NOT TO SCALE');
-        expect(html).toContain(ISS_MODEL.sourcePage);
+        expect(html).not.toContain(ISS_MODEL.sourcePage);
       }
       expect(fetch).not.toHaveBeenCalled();
     } finally {
       fetch.mockRestore();
     }
   });
-  it('shows removal distinctly from current configuration and tolerates optional metadata', () => {
+  it('keeps historical-asset identity and optional metadata fallbacks without configuration presentation', () => {
     const pirs = ISS_MODEL.semanticMappings.find((entry) => entry.componentId === 'PIRS')!;
     const historical = renderToStaticMarkup(<ModuleInfo module={pirs} onClose={() => {}} />);
-    expect(historical).toContain('Removed from current station');
-    expect(historical).toContain('Historical NASA VTAD asset representation');
+    expect(historical).toContain('Pirs');
+    expect(historical).toContain(pirs.role);
+    expect(historical).not.toContain('Removed from current station');
     expect(historical).toContain('Loading telemetry');
 
     const destiny = ISS_MODEL.semanticMappings[0];
     const current = renderToStaticMarkup(<ModuleInfo module={{ ...destiny, agency: undefined, role: undefined }} onClose={() => {}} />);
-    expect(current).toContain('Current station component confirmed');
+    expect(current).toContain('Agency unavailable');
+    expect(current).toContain('Role unavailable for this mapped component');
+    expect(current).not.toContain('Current station component confirmed');
     expect(current).not.toContain('Historical NASA VTAD asset representation');
     expect(current).toContain('Loading telemetry');
   });
