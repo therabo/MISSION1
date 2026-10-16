@@ -57,7 +57,7 @@ and destruction, picking, scene UTC, fallback, all five viewports and frame paci
 The NASA sky remains independently bundled and time-oriented; its offline tonal
 derivative introduces no new runtime provider.
 
-## 2026-10-16 quality refinement
+## 2026-10-16 initial 8K quality refinement
 
 The initial 2048×1024 representation is refined to verified 8192×4096 after matched
 2K/4K/8K crops show a meaningful gain in small cells/fronts and the bounded
@@ -69,3 +69,13 @@ acquiring an unsupported image; optional clouds remain absent on limited devices
 A subdued night RGB floor preserves shadow structure with unchanged texture alpha.
 This refines the accepted visual layer and creates no new architectural boundary.
 See the source record for evidence, filtering constraints and costs.
+
+## 2026-10-16 production 4K refinement
+
+Production uses verified 4096×2048 as the preferred quality/resource compromise,
+superseding the initial 8K selection. The accepted comparison already establishes
+its detail gain over 2K. The bounded stream cap is 2 MiB for the verified 1.50 MB
+sample; RGBA8 base estimates are 32 MiB active / 64 MiB during replacement.
+Exact dimension validation and the existing capability guard follow 4096×2048.
+Night lighting, alpha, sampling, lifecycle and Current/Historical ownership remain
+unchanged. This is a representation choice within the same accepted architecture.
