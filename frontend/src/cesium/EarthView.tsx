@@ -41,6 +41,8 @@ import type { CameraPose } from './inspectionTransition';
 import type { IssPick, ViewEvent, ViewMode } from './inspectionMode';
 import { enableEarthLighting } from './earthLighting';
 import { installEarthImagery } from './earthImagery';
+import { installClouds } from './cloudRendering';
+import type { CloudRefresh } from './cloudRefresh';
 import { GRAPHICS_QUALITY, resolutionScaleForDpr } from './graphicsQuality';
 import { createIssMaterialShader } from './issMaterialQuality';
 import { warmInspectionRendering } from './inspectionRenderingWarmup';
@@ -67,6 +69,7 @@ import type { EarthSceneControls } from '../components/SceneControls';
 import { applyWorkspaceProjection, createWorkspaceGlobeProjection, installWorkspacePicking, WorkspacePerspectiveFrustum } from './workspaceProjection';
 
 interface EarthViewProps {
+  currentClouds?: boolean;
   workspace?: WorkspaceGeometry | null;
   replay?: { atMs: number; state: ReplayState | null } | null;
   holding?: boolean;
@@ -89,12 +92,13 @@ interface EarthViewProps {
 
 interface CameraSnapshot extends CameraPose { near: number; far: number; transform: Matrix4 }
 
-export const EarthView = memo(function EarthView({ workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, moduleSelection = null, onViewModeChange, onControlsReady }: EarthViewProps) {
+export const EarthView = memo(function EarthView({ currentClouds = true, workspace = null, replay = null, holding = false, currentAtMs, window, comparison, selectedSource, onSourceUnavailable, onPosition, inspectionRequest, overviewRequest, onSceneTime, onSceneError, onModelStatus, onModuleSelection, moduleSelection = null, onViewModeChange, onControlsReady }: EarthViewProps) {
   const container = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef(workspace);
   workspaceRef.current = workspace;
   const resizeWorkspace = useRef<(() => void) | null>(null);
   const viewer = useRef<Viewer | null>(null);
+  const clouds = useRef<CloudRefresh | null>(null);
   const iss = useRef<Entity | null>(null);
   const active = useRef<VisualWindow | null>(null);
   const comparisonRef = useRef<ComparisonResponse | null>(null);
@@ -341,6 +345,8 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
     instance.clock.shouldAnimate = true;
 
     const disposeImagery = installEarthImagery(instance, message => errorCallback.current(message));
+    clouds.current = installClouds(instance);
+    clouds.current.setCurrent(currentClouds && !replay);
 
     // Give the non-streaming ISS textures, feature tables and first-use shaders
     // first use of the decoder/upload queue. Refine stars after Inspection is
@@ -1030,6 +1036,7 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
       controlsCallback.current?.(null);
       destroyed = true;
       disposeImagery();
+      clouds.current?.destroy(); clouds.current = null;
       viewportObserver.disconnect();
       removeComposition();
       removePicking();
@@ -1078,6 +1085,10 @@ export const EarthView = memo(function EarthView({ workspace = null, replay = nu
   }, []);
 
   useLayoutEffect(() => { selectionPresentation.current?.(moduleSelection); }, [moduleSelection]);
+
+  // Hide on Historical intent, including a pending UTC handoff. Cloud weather
+  // is outside the accepted orbital/scene-time reconstruction contract.
+  useLayoutEffect(() => { clouds.current?.setCurrent(currentClouds && !replay); }, [currentClouds, !!replay]);
 
   useEffect(() => { resizeWorkspace.current?.(); }, [workspace]);
 

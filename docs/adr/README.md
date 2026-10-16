@@ -50,3 +50,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0024: Component telemetry and qualified record history](0024-component-telemetry-record-history.md) — Accepted. Complete component catalog, separate native/retained adapters, immutable PostgreSQL evidence, original record dates and existing module cards.
 
 - [ADR-0025: Periodic retained telemetry reconciliation](0025-periodic-retained-telemetry-reconciliation.md) — Accepted. Supersedes ADR-0024 bootstrap-only acquisition; independent durable provider deadlines/backoff, common immutable admission, unchanged UI/history.
+
+- [ADR-0026: Optional Current cloud imagery](0026-current-only-optional-cloud-imagery.md) — Accepted. Bounded public visual-source revalidation, WGS84 shell, last-good fallback and no clouds in Historical.

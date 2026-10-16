@@ -1,5 +1,13 @@
 # Earth illumination and imagery
 
+## Current clouds and enhanced NASA Milky Way — 2026-10-16
+
+A separate optional WGS84 cloud shell uses automatically revalidated processed
+EUMETSAT-derived imagery. Historical always hides it. The existing NASA Tycho
+cubemap has an offline density/tonal treatment at the same resolution and celestial
+orientation. [Source, geometry, refresh, rights, generation and fallback](clouds-and-milky-way.md)
+· [ADR-0026](../adr/0026-current-only-optional-cloud-imagery.md).
+
 ## Restyled responsive overlays — 2026-10-08
 
 The redesigned shell uses `100dvh`; the Cesium canvas still fills the entire shell. Context, summary, evidence, Crew and Historical controls are overlays with their own bounded content. The calendar now derives its vertical space from the actual scene row, preserving navigation/summary on short screens. Compact native attribution is above chrome and has a bounded scrolling lightbox and 44px close target. No imagery, lighting, trajectory, resolution or physical camera change is involved. [Inventory and development/production responsive evidence](ui-restyling-responsive/README.md).

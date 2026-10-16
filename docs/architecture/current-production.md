@@ -18,6 +18,12 @@ Java21/Spring application and PostgreSQL remain the complete backend deployment.
 | Component Telemetry | 131-definition registry, native ISSLIVE, bounded SenseData/ISS.live bootstrap plus durable periodic reconciliation and immutable local current/as-of record queries |
 | Earth and Inspection | One Cesium Viewer with backend-derived physical samples, Earth Reset and Inspection transitions |
 
+Optional Current cloud imagery is an independent bounded browser visual source,
+hidden in Historical; it does not enter orbital/telemetry persistence or replay.
+[ADR-0026](../adr/0026-current-only-optional-cloud-imagery.md) and the
+[cloud/stellar source record](../frontend/clouds-and-milky-way.md) govern refresh,
+rights, fallback and the reproducible NASA sky derivative.
+
 General identity research cannot authorize canonical identity or production
 membership. Operational binding targets only existing publishable canonical humans;
 all frozen thresholds, margins, witnesses, contradictions and temporal gates remain.

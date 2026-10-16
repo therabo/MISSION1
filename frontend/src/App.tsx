@@ -176,6 +176,7 @@ export default function App() {
       className={`app-shell earth-current ${replaying && earthWorkspace ? "is-historical" : ""} ${stationFocused ? "is-inspecting" : ""} ${crewOpen ? "has-crew-panel" : ""}`}
     >
       <EarthView
+        currentClouds={!replaying}
         workspace={workspace}
         replay={
           presentationHistorical

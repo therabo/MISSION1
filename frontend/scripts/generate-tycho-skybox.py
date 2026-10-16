@@ -11,13 +11,25 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+import PIL
+from PIL import Image, ImageFilter
 
 SOURCE_URL = "https://svs.gsfc.nasa.gov/vis/a000000/a003500/a003572/TychoSkymapII.t5_16384x08192.tif"
 SOURCE_SHA256 = "2eb9baf5796c62bb04d8c87625b93356cd5ff4172bc56d6b731df554393de04f"
 SOURCE_SIZE = (16384, 8192)
 FACES = ("positiveX", "negativeX", "positiveY", "negativeY", "positiveZ", "negativeZ")
 Image.MAX_IMAGE_PIXELS = SOURCE_SIZE[0] * SOURCE_SIZE[1]
+PROCESSING = {
+    "version": "milky-way-density-v1",
+    "pointSpreadSourcePixels": 0.6,
+    "pointShoulder": "255 * (1 - exp(-RGB / 220))",
+    "densitySize": [2048, 1024],
+    "densityGaussianSigmaPixels": 14,
+    "densityBlackFloor": 1.5,
+    "densityGain": 6.0,
+    "composition": "screen(pointShoulder, densityAboveFloor); round only at final output",
+    "meaning": "tonal visualization of the same catalogue star density; no added sky dataset or physical nebulosity",
+}
 
 
 def sha256(path: Path) -> str:
@@ -25,17 +37,55 @@ def sha256(path: Path) -> str:
 
 
 def direction(face: str, u: np.ndarray, v: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    if face == "positiveX": return np.ones_like(u), -v, -u
-    if face == "negativeX": return -np.ones_like(u), -v, u
-    if face == "positiveY": return u, np.ones_like(u), v
-    if face == "negativeY": return u, -np.ones_like(u), -v
-    if face == "positiveZ": return u, -v, np.ones_like(u)
-    if face == "negativeZ": return -u, -v, -np.ones_like(u)
+    # v grows down the image. Cesium 1.145 CubeMap uploads DOM sources with
+    # flipY=true; account for that here, not by changing the celestial matrix.
+    if face == "positiveX": return np.ones_like(u), v, -u
+    if face == "negativeX": return -np.ones_like(u), v, u
+    if face == "positiveY": return u, np.ones_like(u), -v
+    if face == "negativeY": return u, -np.ones_like(u), v
+    if face == "positiveZ": return u, v, np.ones_like(u)
+    if face == "negativeZ": return -u, v, -np.ones_like(u)
     raise ValueError(face)
 
 
-def render_face(source: np.ndarray, face: str, size: int) -> Image.Image:
+def sample(source: np.ndarray, ra: np.ndarray, dec: np.ndarray, rows: int, size: int) -> np.ndarray:
     height, width, _ = source.shape
+    sx = np.broadcast_to(((0.5 - ra / (2 * np.pi)) % 1.0) * width, (rows, size))
+    sy = np.broadcast_to((0.5 - dec / np.pi) * (height - 1), (rows, size))
+    x0 = np.floor(sx).astype(np.int32) % width
+    x1 = (x0 + 1) % width
+    y0 = np.floor(sy).astype(np.int32)
+    y1 = np.minimum(y0 + 1, height - 1)
+    fx = (sx - np.floor(sx))[..., None]
+    fy = (sy - y0)[..., None]
+    top = source[y0, x0] * (1 - fx) + source[y0, x1] * fx
+    bottom = source[y1, x0] * (1 - fx) + source[y1, x1] * fx
+    return top * (1 - fy) + bottom * fy
+
+
+def density_field(image: Image.Image) -> np.ndarray:
+    """Filter before cube projection, so every face shares one continuous field.
+
+    Longitude wraps; latitude padding reflects across the pole with a half-turn
+    in RA. This is a presentation density filter, not additional astronomy.
+    Float filtering avoids quantizing the faint band into visible contour steps.
+    """
+    density = np.asarray(image.resize(tuple(PROCESSING["densitySize"]), Image.Resampling.BOX), dtype=np.float32)
+    sigma = PROCESSING["densityGaussianSigmaPixels"]
+    radius = 3 * sigma
+    kernel = np.exp(-0.5 * (np.arange(-radius, radius + 1) / sigma) ** 2)
+    kernel /= kernel.sum()
+    density = sum(weight * np.roll(density, shift, axis=1) for shift, weight in zip(range(-radius, radius + 1), kernel))
+    north = np.roll(density[1:radius + 1][::-1], density.shape[1] // 2, axis=1)
+    south = np.roll(density[-radius - 1:-1][::-1], density.shape[1] // 2, axis=1)
+    padded = np.concatenate([north, density, south])
+    density = sum(weight * padded[radius + shift:radius + shift + density.shape[0]]
+                  for shift, weight in zip(range(-radius, radius + 1), kernel))
+    luminance = density.mean(axis=2, keepdims=True)
+    return density * np.maximum(luminance - PROCESSING["densityBlackFloor"], 0) / np.maximum(luminance, 1e-6) * PROCESSING["densityGain"]
+
+
+def render_face(source: np.ndarray, face: str, size: int, density: np.ndarray) -> Image.Image:
     output = np.empty((size, size, 3), dtype=np.uint8)
     # Edge pixels sample the same direction on adjoining cube faces. This
     # avoids a one-pixel seam caused by independently clamped face textures.
@@ -49,17 +99,9 @@ def render_face(source: np.ndarray, face: str, size: int) -> Image.Image:
         dec = np.arctan2(dz, np.hypot(dx, dy))
         # The NASA plate-carree map has RA 0 at its center and RA increases
         # to the left. +X is RA 0, +Y is RA 90 deg, +Z is north celestial pole.
-        sx = np.broadcast_to(((0.5 - ra / (2 * np.pi)) % 1.0) * width, (rows, size))
-        sy = np.broadcast_to((0.5 - dec / np.pi) * (height - 1), (rows, size))
-        x0 = np.floor(sx).astype(np.int32) % width
-        x1 = (x0 + 1) % width
-        y0 = np.floor(sy).astype(np.int32)
-        y1 = np.minimum(y0 + 1, height - 1)
-        fx = (sx - np.floor(sx))[..., None]
-        fy = (sy - y0)[..., None]
-        top = source[y0, x0] * (1 - fx) + source[y0, x1] * fx
-        bottom = source[y1, x0] * (1 - fx) + source[y1, x1] * fx
-        output[row_start:row_start + rows] = np.rint(top * (1 - fy) + bottom * fy).astype(np.uint8)
+        points = 1 - np.exp(-sample(source, ra, dec, rows, size) / 220.0)
+        band = sample(density, ra, dec, rows, size) / 255.0
+        output[row_start:row_start + rows] = np.rint(255 * (points + band * (1 - points))).astype(np.uint8)
     return Image.fromarray(output, "RGB")
 
 
@@ -97,17 +139,22 @@ def main(source_path: Path, destination: Path, size: int, manifest_path: Path) -
     image = Image.open(source_path)
     if image.size != SOURCE_SIZE:
         raise ValueError("Unexpected NASA Tycho dimensions")
-    source = np.asarray(image.convert("RGB"))
+    image = image.convert("RGB")
+    density = density_field(image)
+    source = np.asarray(image.filter(ImageFilter.GaussianBlur(PROCESSING["pointSpreadSourcePixels"])))
+    image.close()
     destination.mkdir(parents=True, exist_ok=True)
     faces = {}
     rendered = {}
     for face in FACES:
         path = destination / f"tycho-{face}.webp"
-        rendered[face] = np.asarray(render_face(source, face, size))
+        rendered[face] = np.asarray(render_face(source, face, size, density))
         pixels = Image.fromarray(rendered[face], "RGB")
-        pixels.save(path, lossless=True, quality=100, method=4)
-        if not np.array_equal(np.asarray(Image.open(path).convert("RGB")), rendered[face]):
+        staging_path = path.with_name(f".{path.stem}.staging.webp")
+        pixels.save(staging_path, lossless=True, quality=100, method=4)
+        if not np.array_equal(np.asarray(Image.open(staging_path).convert("RGB")), rendered[face]):
             raise ValueError("Lossless WebP round trip changed source-derived pixels")
+        staging_path.replace(path)
         faces[face] = {"url": f"/skybox/{path.name}", "sha256": sha256(path), "bytes": path.stat().st_size,
                        "rgbaSha256": hashlib.sha256(pixels.convert("RGBA").tobytes()).hexdigest()}
         print(face, faces[face])
@@ -123,6 +170,13 @@ def main(source_path: Path, destination: Path, size: int, manifest_path: Path) -
         "faceSize": size,
         "faceFormat": "WebP RGB uint8 lossless (VP8L)",
         "projection": "plate-carree celestial RA/Dec to TEME-axis cube directions",
+        "uploadConvention": "Cesium 1.145 CubeMap DOM image flipY=true; image v grows down",
+        "generatedDate": "2026-10-16",
+        "credit": "NASA/Goddard Space Flight Center Scientific Visualization Studio",
+        "reuseBasis": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "processing": PROCESSING,
+        "generatorVersions": {"Pillow": PIL.__version__, "NumPy": np.__version__},
+        "edgeVerification": "12/12 shared cube edges pixel-identical, including reversed orientation",
         "faces": faces,
     }
     manifest_path.parent.mkdir(parents=True, exist_ok=True)

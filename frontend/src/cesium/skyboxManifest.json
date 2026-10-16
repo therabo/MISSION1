@@ -8,42 +8,65 @@
   "faceSize": 4096,
   "faceFormat": "WebP RGB uint8 lossless (VP8L)",
   "projection": "plate-carree celestial RA/Dec to TEME-axis cube directions",
+  "uploadConvention": "Cesium 1.145 CubeMap DOM image flipY=true; image v grows down",
+  "generatedDate": "2026-10-16",
+  "credit": "NASA/Goddard Space Flight Center Scientific Visualization Studio",
+  "reuseBasis": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "processing": {
+    "version": "milky-way-density-v1",
+    "pointSpreadSourcePixels": 0.6,
+    "pointShoulder": "255 * (1 - exp(-RGB / 220))",
+    "densitySize": [
+      2048,
+      1024
+    ],
+    "densityGaussianSigmaPixels": 14,
+    "densityBlackFloor": 1.5,
+    "densityGain": 6.0,
+    "composition": "screen(pointShoulder, densityAboveFloor); round only at final output",
+    "meaning": "tonal visualization of the same catalogue star density; no added sky dataset or physical nebulosity"
+  },
+  "generatorVersions": {
+    "Pillow": "12.3.0",
+    "NumPy": "2.3.5"
+  },
+  "edgeVerification": "12/12 shared cube edges pixel-identical, including reversed orientation",
   "faces": {
     "positiveX": {
       "url": "/skybox/tycho-positiveX.webp",
-      "sha256": "0c1f7a0e5c908afb9fe99fa1c015d2ff367090fdf2161726a11f703cb6ecae7e",
-      "bytes": 4300948,
-      "rgbaSha256": "84a4e6d5abf6415181793f7c1b54047fea04442b95963ded288e728febe7efe5"
+      "sha256": "bc6fedd65903122492ad729e87ace0f6738a5c752b78e1a7823746d9b1f130b0",
+      "bytes": 6048640,
+      "rgbaSha256": "212bec5330769590f18c91bf5a27486b8379be0f1996454db583965b58127d33"
     },
     "negativeX": {
       "url": "/skybox/tycho-negativeX.webp",
-      "sha256": "f3d2d5af961a48da9f0f610182301ed30d17f202d2427bdf913c0fe2ed5f4735",
-      "bytes": 3938734,
-      "rgbaSha256": "802b909b4b3a623d95a2ac728bcdfd89160102f574ad8fca854148ef8fa1c16b"
+      "sha256": "af56ca90fdd95312780e91c0989b26212ff4d78df58df601510046ae499619be",
+      "bytes": 5568396,
+      "rgbaSha256": "61fa61649672adfbb5a0c12a32e6b6fb5a7d91f747c1ba53df721f3754ef1c72"
     },
     "positiveY": {
       "url": "/skybox/tycho-positiveY.webp",
-      "sha256": "f0fad9f0ffb8baa39041231b21bc07387b4289c291b074efd5ee19cb618fd0fa",
-      "bytes": 6501276,
-      "rgbaSha256": "36e179b94fe200cac2c54dda99b8a6635ac247f5ccb93eef4a95f03404fedc42"
+      "sha256": "b7436c6199f7ef8986eff0abc432455176049e05d693d98201008aa237a773c3",
+      "bytes": 9265876,
+      "rgbaSha256": "d289bb7d0db7c6bc5cd900bbabe19482c01fb39e37e811f483c3a4d5ca0b0660"
     },
     "negativeY": {
       "url": "/skybox/tycho-negativeY.webp",
-      "sha256": "e6e33a3bddfd1fa724492465c8df8ad3dc8081c411d4a9d0e5a72be1975e26fc",
-      "bytes": 6679566,
-      "rgbaSha256": "495740aba6255cf28b54d4b9f66b2d5e97f12b8722a96f994f55a1a211d00ce9"
+      "sha256": "a45b6c87fba2af303657e35e3f613cd76d12f0aa5d00a111996f0051958f2b38",
+      "bytes": 9467514,
+      "rgbaSha256": "47c62c696a3671b7bed4a2d84f845646c19b0f6006fceb49bef62df5b21f1b1f"
     },
     "positiveZ": {
       "url": "/skybox/tycho-positiveZ.webp",
-      "sha256": "1fa29fe30a6021c9a6b7607b4b1f67a9f7b93d5e7243511cce811515e9972d80",
-      "bytes": 5844548,
-      "rgbaSha256": "5aa2d333c8787750516d8211353402ca35c1385dc9ae95f6be46b4fb79108333"
+      "sha256": "bdc317c90e29dc33116a448637c0c70cf60a1500878d394a5373ec9c4b466556",
+      "bytes": 8040928,
+      "rgbaSha256": "0a1931dc1e2d9e686fc1c3d48362bef76a0bd8aeca00c5f7aa0c855584d27a27"
     },
     "negativeZ": {
       "url": "/skybox/tycho-negativeZ.webp",
-      "sha256": "384d47c872b7507d2c7440a99572f66d4ccd78024f92f316666008084a9a2388",
-      "bytes": 7186608,
-      "rgbaSha256": "74d41cc565eedf143de7dc15f474ec8895c11fad73b2da80cf887d9b2880ca08"
+      "sha256": "dd0cc32b6d8720f15d45302b4ec6695fc24ac913f93f08639baeeb561019d95a",
+      "bytes": 9653868,
+      "rgbaSha256": "d6e14008370eee1eee4fd5e6cfcd8011b8851d0e0e013d76266c90c58a1b1304"
     }
   }
 }
