@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { OrbitalDelivery, BufferStatus } from '../orbital/bufferState';
 import { ISS_MODEL } from '../cesium/modelPresentation';
 import type { ModelLoadStatus } from '../cesium/modelPresentation';
@@ -37,7 +38,7 @@ function coordinate(value: number, positive: string, negative: string): string {
   return `${Math.abs(value).toFixed(3)}° ${value < 0 ? negative : positive}`;
 }
 
-function line(label: string, value: string, valueClass?: string) {
+function line(label: string, value: ReactNode, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
@@ -68,13 +69,13 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
       <span>{sceneError ?? delivery.message}</span>
     </div>}
 
-    <section className="panel-section">
+    <section className="panel-section orbital-position">
       <div className="section-title"><h2>Position</h2><span>WGS84</span></div>
       <p className="section-note">Physical sampled position at {dataTime}</p>
       <dl>
         {line('Latitude', physical ? coordinate(physical.latitudeDegrees, 'N', 'S') : '—')}
         {line('Longitude', physical ? coordinate(physical.longitudeDegrees, 'E', 'W') : '—')}
-        {line('Altitude', physical ? `${(physical.altitudeMeters / 1000).toFixed(1)} km` : '—')}
+        {line('Altitude', physical ? <>{(physical.altitudeMeters / 1000).toFixed(1)}<span className="orbital-unit"> km</span></> : '—')}
       </dl>
     </section>
 

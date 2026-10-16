@@ -21,7 +21,10 @@ export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: 
   if (module?.status === 'VERIFIED') last.current = module;
   const shown = module?.status === 'VERIFIED' ? module : last.current;
   const telemetry = useModuleTelemetry(shown?.componentId ?? '', historical ? acceptedAt ?? null : null, module?.status === 'VERIFIED' && (!historical || !!acceptedAt));
-  const restoreFocus = useCallback(() => document.querySelector<HTMLElement>('.inspection-modules')?.focus({ preventScroll: true }), []);
+  const restoreFocus = useCallback(() => {
+    const canvas = document.querySelector<HTMLCanvasElement>('.earth-view canvas');
+    if (canvas) { canvas.tabIndex = 0; canvas.focus({ preventScroll: true }); }
+  }, []);
   if (!shown) return null;
   return <ContextDock open={module?.status === 'VERIFIED'} title={shown.displayName}
     context={<><span>{shown.agency ?? 'Agency unavailable'}</span><span className="module-type"> · {shown.componentType}</span></>} entityId={shown.componentId}

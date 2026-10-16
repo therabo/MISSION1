@@ -1,10 +1,8 @@
-.inspection-strip { grid-area: operations; position: relative; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; pointer-events: auto; }
+.inspection-strip { grid-area: operations; position: relative; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; pointer-events: auto; }
 .inspection-strip > div { min-width: 0; min-height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
 .inspection-strip strong { color: var(--color-text-primary); font: 400 14px/20px var(--font-interface); }
 .inspection-strip .inspection-identity strong { font-weight: 700; }
 .inspection-strip span { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
-.inspection-strip .inspection-modules { width: 136px; border: 2px solid var(--color-interaction); }
-.inspection-strip .inspection-modules.has-selection { border: 1px solid var(--color-border); }
 .inspection-orbital-toggle > summary { width: 148px; display: flex; align-items: center; justify-content: center; padding: 0; list-style: none; cursor: pointer; }
 .inspection-orbital-toggle > summary::-webkit-details-marker { display: none; }
 .inspection-orbital-toggle[open] > summary { background: var(--control-selected); border-color: var(--color-interaction); }
@@ -12,29 +10,19 @@
 .inspection-ui > .orbital-status-evidence { grid-area: scene; overflow-wrap: anywhere; }
 .inspection-ui .context-button[aria-pressed="true"]:disabled { opacity: 1; cursor: default; }
 .inspection-ui .context-source-control:has(select:disabled) .context-source-value { opacity: 1; }
-.inspection-selection strong { max-width: 100%; overflow-wrap: anywhere; }
 @media (max-width: 1243px) {
   .inspection-strip .context-button { height: 44px; }
   .inspection-strip > div { min-height: 44px; }
   .inspection-strip { gap: 12px; padding-inline: 16px; }
-  .inspection-strip .inspection-modules, .inspection-orbital-toggle > summary { width: 100%; min-width: 0; padding-inline: 12px; }
   .inspection-orbital-toggle { width: 100%; }
+  .inspection-orbital-toggle > summary { width: 100%; min-width: 0; padding-inline: 12px; }
 }
 @media (max-width: 740px) {
-  .inspection-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-areas: "identity identity identity model model model" "selection selection modules modules orbit orbit"; gap: 8px 4px; padding: 8px 12px; }
+  .inspection-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "identity model" "over orbit"; gap: 8px 12px; padding: 8px 12px; }
   .inspection-identity { grid-area: identity; }
-  .inspection-selection { grid-area: selection; }
+  .inspection-over { grid-area: over; }
   .inspection-model { grid-area: model; }
-  .inspection-modules-cell { grid-area: modules; }
   .inspection-orbital-cell { grid-area: orbit; }
   .inspection-strip .inspection-identity strong { font-size: 13px; }
-  .inspection-strip .inspection-modules, .inspection-orbital-toggle { width: min(148px, 100%); }
-  /* Long verified names must fit without abbreviating their identity. This
-     changes chrome alone; the native scene stays full viewport. */
-  .earth-current:has(.inspection-modules.has-selection) { --operational-height: 132px; }
-  .inspection-strip:has(.has-selection) { grid-template-rows: minmax(40px, auto) minmax(68px, auto); row-gap: 4px; align-content: center; }
-  .inspection-strip:has(.has-selection) .inspection-identity,
-  .inspection-strip:has(.has-selection) .inspection-model { min-height: 40px; }
-  .inspection-strip:has(.has-selection) .inspection-selection { min-height: 68px; }
-  .inspection-strip:has(.has-selection) .inspection-selection strong { font-size: 12px; line-height: 16px; }
+  .inspection-orbital-toggle { width: min(148px, 100%); }
 }

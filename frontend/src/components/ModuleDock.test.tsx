@@ -6,7 +6,7 @@ import { ModuleInfo } from './ModuleInfo';
 import { ISS_MODEL, type SemanticMapping } from '../cesium/modelPresentation';
 import { telemetryFixture } from '../test/telemetryFixture';
 
-let root: Root, host: HTMLElement, origin: HTMLButtonElement, choose: Dispatch<SetStateAction<SemanticMapping | null>>;
+let root: Root, host: HTMLElement, origin: HTMLCanvasElement, choose: Dispatch<SetStateAction<SemanticMapping | null>>;
 let historical = false, at = '2026-10-05T12:00:00.000Z', reduced = false;
 const closed = vi.fn();
 function Harness() {
@@ -17,8 +17,8 @@ beforeEach(async () => {
   vi.useFakeTimers(); historical = false; reduced = false; at = '2026-10-05T12:00:00.000Z'; closed.mockClear();
   Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', { value: true, configurable: true });
   vi.stubGlobal('matchMedia', () => ({ get matches() { return reduced; }, addEventListener() {}, removeEventListener() {} }));
-  host = document.createElement('div'); origin = document.createElement('button'); origin.className = 'inspection-modules'; origin.textContent = 'Modules';
-  document.body.append(origin, host); origin.focus(); root = createRoot(host); await act(async () => root.render(<Harness />));
+  host = document.createElement('div'); origin = document.createElement('canvas'); host.className = 'earth-view'; host.append(origin);
+  document.body.append(host); origin.focus(); const mount = document.createElement('div'); host.append(mount); root = createRoot(mount); await act(async () => root.render(<Harness />));
 });
 afterEach(async () => { await act(async () => root.unmount()); host.remove(); origin.remove(); vi.useRealTimers(); vi.unstubAllGlobals(); });
 const select = async (index: number | null) => act(async () => choose(index === null ? null : ISS_MODEL.semanticMappings[index]));
@@ -64,8 +64,9 @@ it('honors a higher-priority dialog and an already handled Escape', async () => 
   const event = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }); event.preventDefault();
   await act(async () => document.dispatchEvent(event)); expect(closed).not.toHaveBeenCalled();
 });
-it('direct picking without a DOM trigger restores the stable Modules control', async () => {
-  origin.blur(); await select(0); await close(); expect(document.activeElement).toBe(origin);
+it('direct picking without a DOM trigger restores the stable 3D canvas', async () => {
+  expect(origin.hasAttribute('tabindex')).toBe(false);
+  origin.blur(); await select(0); await close(); expect(origin.tabIndex).toBe(0); expect(document.activeElement).toBe(origin);
 });
 it('external deselection does not steal focus from another control', async () => {
   await select(0); const other = document.createElement('button'); document.body.append(other); other.focus(); await select(null);

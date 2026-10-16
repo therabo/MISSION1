@@ -1,5 +1,37 @@
 # ISS Inspection Mode
 
+## Inspection interface refinement — 2026-10-16
+
+The bottom strip now contains four balanced fields: Inspection identity, **Over / —**,
+NASA VTAD reference credit and the existing Orbital detail disclosure. `Selected module`
+is removed from the visible strip. **Over is a static, non-functional visual placeholder.**
+It has no position/time/source input, location state, lookup, dataset, dependency,
+request, timer or scene callback. Geographic functionality is intentionally deferred
+to a future milestone; no country, continent or ocean detection is implemented.
+
+The Modules button and its layout/focus target are removed. Direct 3D semantic
+picking still owns module selection through EarthView → App → ModuleInfo, with
+the existing highlight, metadata, telemetry, selection switching and close/reset
+lifecycle. Closing the detail makes the existing scene canvas focusable and returns
+focus there when there is no other valid DOM origin. The strip no longer depends on selection
+or expands when a long module name is selected. Desktop uses four equal columns;
+compact screens use two rows with identity/credit above Over/orbital disclosure.
+
+Inspection orbital evidence now uses the shared graphite surface, border, radius,
+Inter labels and Roboto Mono values. Scene time is a restrained divider-separated
+section; Current position uses a three-column reading grid, reverting to concise
+rows at the existing narrow breakpoint. Historical retains its own evidence and
+lineage with the same typography. The bounded panel scrolls within the scene row;
+all existing fields, scientific labels, units, source lineage, quality and time
+semantics remain. Styling is scoped to Inspection; Earth evidence retains its
+existing presentation. No camera, model, source, orbital or backend change and no
+architectural decision/ADR are introduced.
+
+Validation/evidence: `/Users/daniel/.codex/exports/mission1-inspection-ui-refinement-2026-10-16/`.
+The original baseline, matching-UTC/source/camera before/after, real-backend
+Current/Historical GP/OEM matrix, native multiple-module picking, keyboard/focus,
+network and frontend gates are retained outside Git.
+
 ## Earth Reset path correction; Inspection restoration — 2026-10-13
 
 The dated Reset sections below are historical and superseded. Runtime tracing

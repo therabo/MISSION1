@@ -99,6 +99,32 @@ describe('App presentation wiring without a WebGL test double for domain state',
     expect(harness.comparison.mock.calls.every(([, enabled]) => enabled === true)).toBe(true);
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
+  it.each(['PRIMARY_GP_TLE', 'NASA_OEM'] as const)('preserves Current %s orbital evidence fields, units and source ownership in Inspection', async source => {
+    const comparison = availableComparison();
+    harness.comparison.mockReturnValue({ response: comparison, status: 'ready' });
+    await act(async () => root.render(<App />));
+    if (source === 'NASA_OEM') await choose(source);
+    const physical = { source, timeMs: Date.parse(orbitalPayload().generatedAt as string), latitudeDegrees: -12.345, longitudeDegrees: 45.678, altitudeMeters: 423400 };
+    await act(async () => {
+      (harness.props.onPosition as (p: PositionSnapshot) => void)(physical);
+      (harness.props.onViewModeChange as (m: ViewMode) => void)('ISS_INSPECTION');
+    });
+    const evidence = container.querySelector('#orbital-status-evidence')!;
+    const rows = Object.fromEntries([...evidence.querySelectorAll('.data-line')].map(e => [e.querySelector('dt')!.textContent, e.querySelector('dd')!.textContent]));
+    expect(rows.Latitude).toBe('12.345° S'); expect(rows.Longitude).toBe('45.678° E'); expect(rows.Altitude).toBe('423.4 km');
+    expect(evidence.textContent).toContain('WGS84'); expect(evidence.textContent).toContain('2026-09-28 15:00:00 UTC');
+    for (const field of ['GP orbital quality', 'CelesTrak acquisition', 'API delivery', 'Sample buffer', '3D model', 'Attitude']) expect(rows).toHaveProperty(field);
+    if (source === 'NASA_OEM') {
+      expect(rows.Product).toBe('NASA predicted ephemeris');
+      expect(rows['OEM hash']).toBe(comparison.oem.source!.sha256.slice(0, 12));
+      for (const field of ['Active OEM availability', 'Created', 'Coverage starts', 'Coverage ends', 'Retrieved']) expect(rows).toHaveProperty(field);
+    } else {
+      const snapshot = parseOrbitalWindow(orbitalPayload(), 0).response;
+      expect(rows['Element hash']).toBe(snapshot.source.elementSha256.slice(0, 12));
+      for (const field of ['Elements', 'Element epoch', 'Element age', 'Retrieved', 'Last successful fetch']) expect(rows).toHaveProperty(field);
+    }
+    expect(harness.props.selectedSource).toBe(source); expect(harness.mounts).toBe(1);
+  });
   it('cannot select unavailable OEM, and keeps accepted source guards when Inspection starts', async () => {
     await act(async () => root.render(<App />));
     const select = container.querySelector('select')!;

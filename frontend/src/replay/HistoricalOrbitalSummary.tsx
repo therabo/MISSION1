@@ -22,8 +22,8 @@ export function HistoricalOrbitalSummary({ data, at, loading, error, sceneError,
   const notice = sceneError ?? error ?? (waiting ? 'Loading historical state…' : !state ? 'Orbit history unavailable at this instant.' : null);
   if (detailOnly) return <>
     <div id="orbital-status-evidence" className="orbital-status-evidence" role="region" aria-label="Historical orbital state">
-      <h2>ISS historical state</h2>
-      <p>{state ? state.source.classification.replaceAll('_', ' ').toLowerCase() : 'Historical position unavailable'}</p>
+      <div className="panel-head"><h2>ISS historical state</h2>
+      <p>{state ? state.source.classification.replaceAll('_', ' ').toLowerCase() : 'Historical position unavailable'}</p></div>
       <dl>
         <div className="data-line"><dt>Effective UTC</dt><dd>{state?.effectiveAt ?? at}</dd></div>
         <div className="data-line"><dt>{label}</dt><dd>{status}</dd></div>
@@ -31,7 +31,7 @@ export function HistoricalOrbitalSummary({ data, at, loading, error, sceneError,
         <div className="data-line"><dt>Longitude</dt><dd>{state ? `${state.longitudeDegrees.toFixed(3)}°` : 'Unavailable'}</dd></div>
         <div className="data-line"><dt>Altitude</dt><dd>{state ? `${(state.altitudeMeters / 1000).toFixed(1)} km` : 'Unavailable'}</dd></div>
       </dl>
-      <p>{lineage}</p>
+      <p className="historical-lineage">{lineage}</p>
     </div>
     {notice && <p id="historical-orbit-notice" className="earth-current-notice" role={error || sceneError ? 'alert' : 'status'}>{notice}</p>}
   </>;
