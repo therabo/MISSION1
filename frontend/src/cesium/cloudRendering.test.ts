@@ -1,9 +1,45 @@
 // @vitest-environment jsdom
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Ellipsoid, Event, PrimitiveCollection, type Viewer, type Primitive, type MaterialAppearance, type Material } from 'cesium';
-import { CLOUD_DISPLAY_ALTITUDE_METERS, createCloudRenderer } from './cloudRendering';
+import { CLOUD_DISPLAY_ALTITUDE_METERS, createCloudRenderer, installClouds } from './cloudRendering';
+import { CLOUD_SOURCE } from './cloudSource';
+
+// Cesium checks browser image constructors while inferring vector uniforms; jsdom lacks these.
+beforeEach(() => { vi.stubGlobal('ImageBitmap', class {}); vi.stubGlobal('OffscreenCanvas', class {}); });
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); vi.useRealTimers(); });
 
 describe('one non-pickable WGS84 cloud shell', () => {
+  it.each([4096, 8192])('checks device capability %i before acquiring the selected representation', async limit => {
+    vi.useFakeTimers();
+    const fetch = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('TEST_ONLY provider outage'));
+    const primitives = new PrimitiveCollection();
+    const viewer = { canvas: { getContext: vi.fn().mockReturnValue({ MAX_TEXTURE_SIZE: 3379, getParameter: () => limit }) },
+      creditDisplay: { addStaticCredit: vi.fn() },
+      scene: { primitives, postRender: new Event(), requestRender: vi.fn() } } as unknown as Viewer;
+    const owner = installClouds(viewer);
+    try {
+      owner.setCurrent(true); await vi.advanceTimersByTimeAsync(0);
+      expect(fetch).toHaveBeenCalledTimes(limit >= CLOUD_SOURCE.width ? 1 : 0);
+      expect(owner.lastGood).toBeNull(); expect(primitives.get(0).show).toBe(false);
+      expect(vi.getTimerCount()).toBe(1);
+      owner.destroy(); expect(vi.getTimerCount()).toBe(0);
+    } finally { owner.destroy(); fetch.mockRestore(); vi.useRealTimers(); }
+  });
+
+  it('configures a perceptible cool shadow floor substantially below daylight brightness', () => {
+    const primitives = new PrimitiveCollection();
+    const viewer = { scene: { primitives, postRender: new Event(), requestRender: vi.fn() } } as unknown as Viewer;
+    const renderer = createCloudRenderer(viewer);
+    const material = (primitives.get(0).appearance as MaterialAppearance).material;
+    const luminance = (c: { x: number; y: number; z: number }) => .2126 * c.x + .7152 * c.y + .0722 * c.z;
+    const night = material.uniforms.nightTint, day = material.uniforms.dayTint;
+    expect(luminance(night)).toBeGreaterThan(.1);
+    expect(luminance(night)).toBeLessThan(.3 * luminance(day));
+    expect(night.z).toBeGreaterThan(night.x);
+    expect(material.uniforms.ready).toBe(0); // a nonzero shadow floor must not expose the default sampler
+    renderer.destroy();
+  });
+
   it('retains the geometry across image replacement, hides/restores it and explicitly releases its material', () => {
     const primitives = new PrimitiveCollection(), postRender = new Event();
     const viewer = { scene: { primitives, postRender, requestRender: vi.fn() } } as unknown as Viewer;

@@ -1,9 +1,10 @@
 /** Processed visual imagery, not a time-resolved meteorological observation. */
 export const CLOUD_SOURCE = {
-  url: 'https://clouds.matteason.co.uk/images/2048x1024/clouds.jpg',
-  width: 2048,
-  height: 1024,
-  maximumBytes: 2 * 1024 * 1024,
+  url: 'https://clouds.matteason.co.uk/images/8192x4096/clouds.jpg',
+  width: 8192,
+  height: 4096,
+  // Verified 8K JPEG samples: 5.16–5.34 MB. Keep bounded headroom, not arbitrary bodies.
+  maximumBytes: 8 * 1024 * 1024,
   timeoutMs: 15_000,
   checkMs: 30 * 60_000,
   retryMs: 5 * 60_000,

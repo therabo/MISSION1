@@ -13,7 +13,7 @@ Adopting a persistent external runtime dependency warrants this record.
 
 ## Decision
 
-Acquire the 2048×1024 processed cloud JPEG directly from the public
+Acquire the processed cloud JPEG directly from the public
 `clouds.matteason.co.uk` service, independently of all orbital/telemetry APIs.
 Use browser HTTP revalidation every 30 minutes while Current is presented,
 bounded requests and SHA-256 content identity. Keep the last decoded good image
@@ -56,3 +56,16 @@ mode transitions and repeated cycles. Browser evidence must verify texture swap
 and destruction, picking, scene UTC, fallback, all five viewports and frame pacing.
 The NASA sky remains independently bundled and time-oriented; its offline tonal
 derivative introduces no new runtime provider.
+
+## 2026-10-16 quality refinement
+
+The initial 2048×1024 representation is refined to verified 8192×4096 after matched
+2K/4K/8K crops show a meaningful gain in small cells/fronts and the bounded
+replacement/pacing checks pass. The same provider, rights, visual-only boundary,
+public Fabric owner and Current/Historical rule remain. Stream cap is 8 MiB,
+exact dimension validation remains, base RGBA8 estimates are 128 MiB active /
+256 MiB during replacement, without mipmaps. Public WebGL capability reads avoid
+acquiring an unsupported image; optional clouds remain absent on limited devices.
+A subdued night RGB floor preserves shadow structure with unchanged texture alpha.
+This refines the accepted visual layer and creates no new architectural boundary.
+See the source record for evidence, filtering constraints and costs.

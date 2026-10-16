@@ -27,8 +27,8 @@ describe('cloud decode ownership', () => {
     const { image, promise, revoke } = setup(); image.onerror!(new Event('error'));
     await expect(promise).rejects.toThrow('decoded'); expect(revoke).toHaveBeenCalledOnce();
   });
-  it('rejects unexpected dimensions', async () => {
-    const { image, promise, revoke } = setup(8192 as any, 4096 as any); image.onload!(new Event('load'));
+  it.each([[2048, 1024], [4096, 2048], [8192, 1024], [16384, 8192]])('rejects unexpected dimensions %ix%i', async (width, height) => {
+    const { image, promise, revoke } = setup(width as any, height as any); image.onload!(new Event('load'));
     await expect(promise).rejects.toThrow('dimensions'); expect(revoke).toHaveBeenCalledOnce();
   });
   it('aborts decode and releases the pending URL exactly once', async () => {

@@ -14,9 +14,10 @@ ALTITUDE**, a visual choice rather than cloud-height data. This remains an
 ellipsoid, with back-face culling, depth testing, no depth writes and
 `allowPicking: false`. The original Globe owns Earth locations and terrain.
 
-The 2048×1024 JPEG supplies red-channel coverage, with a conservative alpha curve.
+The 8192×4096 JPEG supplies red-channel coverage, with the original alpha curve.
 Cloud-only Fabric shading uses native `czm_sunDirectionEC` at scene UTC: light in
-daylight, dark at night. There is no second astronomy model, cloud rotation,
+daylight, with a subdued cool ambient floor in full shadow. There is no second
+astronomy model, cloud rotation,
 Globe shader patch, new Earth terminator, weather-height model or volume rendering.
 Existing city lights remain beneath the clouds.
 
@@ -32,16 +33,18 @@ Checked 2026-10-16 Europe/Rome; HTTP evidence starts 2026-10-15 UTC.
 | Evidence | Finding |
 | --- | --- |
 | Publisher | [live-cloud-maps](https://github.com/matteason/live-cloud-maps/tree/530c011db936adc166e89605e1de2a208fe9752c), current main `530c011db936adc166e89605e1de2a208fe9752c` at verification |
-| Runtime | [2048×1024 JPEG](https://clouds.matteason.co.uk/images/2048x1024/clouds.jpg), 430,367 bytes in the initial smoke |
+| Runtime | [8192×4096 JPEG](https://clouds.matteason.co.uk/images/8192x4096/clouds.jpg), 5,162,494 bytes in the refinement verification |
 | Publisher terms | [README](https://github.com/matteason/live-cloud-maps/blob/530c011db936adc166e89605e1de2a208fe9752c/README.md), [CC0 licence](https://github.com/matteason/live-cloud-maps/blob/530c011db936adc166e89605e1de2a208fe9752c/LICENSE.md); value-added images released under CC0, with EUMETSAT attribution required |
 | Underlying processing | Publisher `index.js` combines EUMETView `mumi:worldcloudmap_ir108`, `mumi:wideareacoverage_rgb_dust` and `mumi:wideareacoverage_rgb_natural`, thresholds and mirrored polar fill |
 | Authoritative metadata | [EUMETView WMS capabilities](https://view.eumetsat.int/geoserver/ows?service=WMS&request=GetCapabilities&version=1.3.0) identify those multimission layers, geographic bounds and EPSG:4326/CRS:84; service fees/access constraints advertise `none` |
 | Source-provider policy | [EUMETSAT Data Policy, amended 1 January 2025](https://www-cdn.eumetsat.int/files/2025-02/45173%20-%20Data_Policy%281442019%20V1%29.pdf), Articles 6–7: attribution and rights in value-added images; redistribution of original numerical Recommended Data remains restricted |
-| Runtime observations | HTTP 200, CORS `*`, `Cache-Control: public, max-age=7200, must-revalidate`, ETag `"3d99f78d3a90fadec80674f6878b5ed6"`; explicit conditional GET returned 304 |
+| Initial 2K HTTP observations | HTTP 200, CORS `*`, `Cache-Control: public, max-age=7200, must-revalidate`, ETag `"3d99f78d3a90fadec80674f6878b5ed6"`; explicit conditional GET returned 304 |
 | Browser smoke | Actual CORS fetch/decode succeeds; ETag is not CORS-exposed, Last-Modified absent; SHA-256 identity works independently |
-| Sample SHA-256 | `e0ccbd63589e28a4760874f03e3a49b7cf69469626ea831cc2654b445079dafb`; downloaded sample stays outside Git |
+| Initial 2K SHA-256 | `e0ccbd63589e28a4760874f03e3a49b7cf69469626ea831cc2654b445079dafb`; downloaded sample stays outside Git |
+| Selected 8K SHA-256 | `ecb423129abceca6a002f2ca76044a50c68a144d01bb2c493982d919b8f0b380`; original provider pixels, no upscaling |
 
-The final browser smoke at 2026-10-16 08:54:21 UTC also fetched and decoded the
+The initial milestone's final 2K browser smoke at 2026-10-16 08:54:21 UTC fetched
+and decoded the
 actual public endpoint: HTTP 200, 427,597 bytes, 2048×1024, SHA-256
 `33e6676f87b8d79803b28cfaf444d08944219492b4732bed428284aac4c7a235`.
 The distinct content proves that the published representation changed between
@@ -73,7 +76,7 @@ schedule, and `cloudRendering.ts` owns Cesium resources.
   timestamp query strings or forced cross-origin conditional headers are added.
   SHA-256 avoids decode/upload for identical bodies even when validators are hidden.
 - Acquisition omits credentials/referrer, expires after 15 seconds, accepts JPEG
-  only, caps streamed bodies at 2 MiB and requires exactly 2048×1024 decoded pixels.
+  only, caps streamed bodies at 8 MiB and requires exactly 8192×4096 decoded pixels.
   Object URLs are revoked on success, error and cancellation.
 - Failure retains the last good coverage; without one, normal Earth remains visible.
   Retry grows 5, 10, 20, 40, then 60 minutes, capped there. Success resumes the
@@ -91,12 +94,133 @@ Only fully decoded images reach the public Fabric sampler. Pinned Cesium 1.145
 alpha gate waits for geometry and sampler preparation; updates never blank an
 existing layer. Teardown removes primitive/material/listener, cancels timers,
 aborts fetch/decode and releases image references. One active cloud texture plus
-one possible staging texture costs 8/16 MiB RGBA8 base storage, with no generated
+one possible staging texture costs 128/256 MiB RGBA8 base storage, with no generated
 mipmaps. These are format estimates, not measured physical GPU residency.
 
 Session-local `lastGood` preserves SHA-256, acquisition time, nullable exposed
 HTTP validators and `observationTime: null`; `checkedAt` is independent. This is
 optional visual-source metadata, not persisted spacecraft telemetry.
+
+## Night visibility and quality refinement — 2026-10-16
+
+The initial shader already kept coverage independent from sunlight:
+`alpha = 0.82 * pow(smoothstep(0.08, 0.95, coverage), 1.15) * ready`.
+The defect was its near-black shadow RGB `(0.018, 0.026, 0.045)`. For sunlight
+≤ -0.10, the existing smoothstep selects this colour entirely. The flat native
+MaterialAppearance writes diffuse plus emission directly; HDR is off. At maximum
+coverage over black, the old RGB contribution is only about 4/5/9 eight-bit counts.
+Clouds therefore had too little useful contrast against night land/ocean imagery;
+coverage was neither removed nor multiplied by zero solar illumination.
+
+The public Fabric uniforms now set night RGB to `(0.16, 0.18, 0.22)` and retain
+exactly the original day tint `(0.76, 0.81, 0.86)`, day factor `0.70 + 0.30*max(μ,0)`
+and smooth transition `smoothstep(-0.10, 0.22, μ)`, where μ is the native scene-Sun
+normal dot product. This is a restrained visual ambient approximation, not measured
+moonlight or cloud emission. Shadow structure remains visible and substantially
+darker than daylight. Coverage, readiness alpha, UVs, height, geometry, depth and
+city-light imagery are unchanged; covered lights are still softened by the same
+texture-derived alpha. There is no new Globe terminator or atmosphere treatment.
+
+The current publisher revision remains `530c011db936adc166e89605e1de2a208fe9752c`.
+Its README explicitly links four JPEG resolutions; all four were independently
+fetched and decoded at 2026-10-16 10:14 UTC:
+
+| Representation | Encoded bytes | RGBA8 base estimate | Full mip-chain estimate, if used |
+| --- | ---: | ---: | ---: |
+| 1024×512 | 120,477 | 2 MiB | 2.67 MiB |
+| 2048×1024 | 427,597 | 8 MiB | 10.67 MiB |
+| 4096×2048 | 1,496,872 | 32 MiB | 42.67 MiB |
+| **8192×4096 — selected** | **5,162,494** | **128 MiB** | **170.67 MiB** |
+
+Each actual URL is the README-linked `/images/<dimensions>/clouds.jpg`, not an
+inferred filename. Each returned HTTP 200, image/jpeg, CORS `*`, public
+max-age=7200/must-revalidate and its own ETag. There is no Last-Modified or reliable
+pixel observation/publication time. The near-simultaneous variants have >0.9984
+correlation when reduced to 2K and maximum registration correlation at zero shift;
+the matched weather pattern supports detail comparisons, not a timestamp claim.
+
+Ungraded native-pixel crops show 4K's improvement over 2K and further meaningful
+8K detail in small cells and thin fronts, including normal Overview at desktop
+DPR 2 and closer Overview. Mobile and limb/pole views were also inspected. The
+128×256 shell geometry is already visually smooth and stays unchanged. Both
+poles retain the stretched/radial appearance of source fill. Mirrored polar fill,
+provider gaps, IR cold-ground confusion and JPEG/source processing limitations
+remain; more pixels do not turn those regions into measured weather.
+No sharpening, AI upscaling or fabricated weather detail is used.
+
+The 8K choice deliberately accepts 16× the initial texture's base pixel allocation
+and 4× the 4K allocation. One texture is 128 MiB; a replacement can briefly require
+256 MiB of GPU-format base storage plus decoded CPU images and encoded bodies.
+These are derived allocation estimates, not measured physical GPU residency.
+Real 8K bodies from two acquisitions are 5,162,494–5,338,586 bytes; an 8 MiB stream
+cap gives about 57% headroom above the larger measured sample while remaining
+bounded. It is not a guarantee about every future provider image. Oversize,
+unexpected dimensions or decode failures retain the last good image.
+
+The already-created Viewer canvas context is queried through standard WebGL
+`MAX_TEXTURE_SIZE`, without changing attributes. Devices unable to accept 8192
+pixels keep this optional cloud layer absent and make no cloud HTTP request;
+the existing bounded retry owner remains. There is one selected quality strategy,
+no user setting, alternate weather source or approximate size acceptance.
+
+Sampling is explicitly **LINEAR minification / LINEAR magnification**, with native
+CLAMP_TO_EDGE, DOM flipY=true, browser-default unpack colour conversion, RGBA8
+rather than an sRGB internal format, **no mipmaps**, and anisotropy **1**. Native
+WebGL upload instrumentation verifies these settings. The local extension supports
+16×, but Material's public decoded-image path exposes neither anisotropy nor a
+mipmap-generation/ownership hook. Renderer Texture/Sampler and Scene.context are
+private engine APIs; merely selecting a mip filter would make this non-mipmapped
+texture incomplete. A moderate/maximum anisotropy comparison is skipped because
+the safe public-path condition is not met. No engine patch or new texture owner
+is justified here. [Material API](https://cesium.com/learn/cesiumjs/ref-doc/Material.html).
+
+Quality screening uses three interleaved fresh-browser windows per resolution,
+1440×900 DPR 2, the same corrected lighting, pose, UTC and equivalent provider
+content: pooled 2K/4K/8K FPS 15.56/15.81/15.69 and p95 82.5/67.6/67.7 ms. Individual
+windows vary; these differences do not establish a performance advantage. The 8K
+candidate has no extreme pacing regression in this smoke. Repeated final 8K
+replacement records 43 requests, 18 uploads, at most one request, peak two textures,
+498 observed frames with no blank frame or primitive growth, and all resources
+released. Production still checks at 30 minutes; acceleration exists only outside
+Git.
+
+Final unmocked browser acquisition at 2026-10-16 11:03:09 UTC returns HTTP 200,
+image/jpeg, 5,162,494 bytes and exact 8192×4096, CORS `*`, SHA-256
+`ecb423129abceca6a002f2ca76044a50c68a144d01bb2c493982d919b8f0b380`.
+The application hash matches the actual body; browser-visible validators and
+observation time remain null. A separate named-verifier conditional request
+returns 304; an earlier Python-default-UA probe returned 403 and is retained in
+evidence. No guaranteed CDN availability or observation freshness is inferred.
+
+The actual-GLSL GPU probe passes positive/negative Sun-normal inputs, constant
+coverage alpha, readiness alpha zero and continuous transition boundaries.
+Full shadow is RGB 41/46/56 versus direct-day 194/207/219 in a non-HDR RGBA8
+functional probe, with identical maximum alpha 209. Ten final fixed-UTC views
+include full shadow, city lights, night limb and both poles. A 56-state matrix
+across 1440×900, 1024×768, 768×1024, 390×844 and 320×568 passes Current GP/OEM,
+Historical GP/OEM, Inspection/picking, return and Reset, with no page errors,
+overflow, Viewer/sky recreation or Historical weather request. Eight additional
+responsive terminator/limb states pass. Simulated MAX_TEXTURE_SIZE 4096 skips
+cloud HTTP/upload while the ISS scene remains ready. These Chromium/Metal checks
+do not certify native Safari or physical phones.
+
+Final actual-production accepted 2K versus final 8K smoke uses six interleaved
+fresh Chromium/Metal processes, three 12-second windows per version, at the same
+1440×900 DPR 2, UTC, camera and equivalent provider pattern. Pooled FPS is
+14.09 → 13.67, mean interval 70.96 → 73.14 ms and p95 84.3 → 85.0 ms. Individual
+p95 is 84.1/85.2/83.2 ms versus 84.9/85.2/84.8 ms. The roughly 3% FPS cost is
+accepted for the visible detail gain; no performance improvement is claimed.
+Absolute baseline pacing on this host is already low. Native browser AA true,
+MSAA 4, OIT true, resolutionScale 1, HDR false and one postprocess stage are
+identical, with no GL wrapper/readPixels in pacing windows. No deferred
+performance optimization is included.
+
+Full frontend validation is 898 tests / 76 files; typecheck and production build
+pass. Java 21 `mvn test` and `mvn verify` each pass 1,517 tests with zero failures,
+errors or skips. Backend production changes remain zero. All refinement evidence
+is outside the repository:
+
+`/Users/daniel/.codex/exports/mission1-cloud-quality-night-refinement-2026-10-16/`
 
 ## NASA stellar derivative
 
@@ -159,7 +283,7 @@ lossless compression cost. Refinement still waits for ISS readiness. Bundled
 Cesium stars remain visible during six-face loading and on load/capability failure.
 Camera transitions do not reload the sky.
 
-## Validation evidence
+## Initial milestone validation evidence — 2026-10-16
 
 Normal frontend tests mock HTTP; they do not require the public provider. Tests
 cover source/decode failures, last-good state, same/new images, cancellation,

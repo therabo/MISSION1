@@ -1,6 +1,7 @@
 import { Cartesian3, Credit, CullFace, Ellipsoid, EllipsoidGeometry, GeometryInstance,
-  Material, MaterialAppearance, Primitive, type Viewer } from 'cesium';
+  Material, MaterialAppearance, Primitive, TextureMagnificationFilter, TextureMinificationFilter, type Viewer } from 'cesium';
 import { CloudRefresh, type CloudRenderer } from './cloudRefresh';
+import { acquireCloudImage, CLOUD_SOURCE } from './cloudSource';
 
 /** DISPLAY CLOUD SHELL ALTITUDE; not a meteorological cloud-height assertion. */
 export const CLOUD_DISPLAY_ALTITUDE_METERS = 15_000;
@@ -15,9 +16,10 @@ czm_material czm_getMaterial(czm_materialInput materialInput) {
   vec3 normal = normalize(materialInput.normalEC);
   float sunlight = dot(normal, czm_sunDirectionEC);
   float day = smoothstep(-0.10, 0.22, sunlight);
-  vec3 nightColor = vec3(0.018, 0.026, 0.045);
-  vec3 dayColor = vec3(0.76, 0.81, 0.86) * (0.70 + 0.30 * max(sunlight, 0.0));
-  result.diffuse = mix(nightColor, dayColor, day);
+  // A subdued visual ambient floor keeps structure perceptible in full shadow.
+  // Solar illumination changes RGB only; coverage and the readiness gate stay independent.
+  vec3 dayColor = dayTint * (0.70 + 0.30 * max(sunlight, 0.0));
+  result.diffuse = mix(nightTint, dayColor, day);
   result.alpha = alpha * ready;
   return result;
 }`;
@@ -29,8 +31,10 @@ export function createCloudRenderer(viewer: Viewer): CloudRenderer {
   const radii = Cartesian3.add(Ellipsoid.WGS84.radii,
     new Cartesian3(CLOUD_DISPLAY_ALTITUDE_METERS, CLOUD_DISPLAY_ALTITUDE_METERS, CLOUD_DISPLAY_ALTITUDE_METERS), new Cartesian3());
   const material = new Material({ fabric: {
-    type: 'Mission1CloudCoverage', uniforms: { image: Material.DefaultImageId, ready: 0 }, source: CLOUD_MATERIAL,
-  }, translucent: true });
+    type: 'Mission1CloudCoverage', uniforms: { image: Material.DefaultImageId, ready: 0,
+      nightTint: new Cartesian3(0.16, 0.18, 0.22), dayTint: new Cartesian3(0.76, 0.81, 0.86) }, source: CLOUD_MATERIAL,
+  }, translucent: true, minificationFilter: TextureMinificationFilter.LINEAR,
+    magnificationFilter: TextureMagnificationFilter.LINEAR });
   const primitive = viewer.scene.primitives.add(new Primitive({
     geometryInstances: new GeometryInstance({ geometry: new EllipsoidGeometry({ radii,
       stackPartitions: 128, slicePartitions: 256, vertexFormat: MaterialAppearance.MaterialSupport.TEXTURED.vertexFormat }) }),
@@ -70,5 +74,13 @@ export function installClouds(viewer: Viewer): CloudRefresh {
     '<a href="https://github.com/matteason/live-cloud-maps" target="_blank" rel="noopener noreferrer">Cloud imagery: live-cloud-maps</a> · ' +
     '<a href="https://www.eumetsat.int/legal-framework/data-policy" target="_blank" rel="noopener noreferrer">Contains modified EUMETSAT data</a> · observation time unknown',
   ));
-  return new CloudRefresh(createCloudRenderer(viewer));
+  // Read the already-created canvas context through standard WebGL, without
+  // changing its attributes or reaching into Cesium's private texture owner.
+  const gl = viewer.canvas.getContext('webgl2') ?? viewer.canvas.getContext('webgl');
+  const supported = gl !== null && gl.getParameter(gl.MAX_TEXTURE_SIZE) >= CLOUD_SOURCE.width;
+  return new CloudRefresh(createCloudRenderer(viewer), supported ? acquireCloudImage : async () => {
+    // Optional clouds stay absent on limited devices; never attempt an invalid
+    // GPU upload, download an unusable image, or interrupt the Earth/ISS scene.
+    throw new Error('Cloud texture exceeds device capability');
+  });
 }
