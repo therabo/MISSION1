@@ -18,6 +18,11 @@ Java21/Spring application and PostgreSQL remain the complete backend deployment.
 | Component Telemetry | 131-definition registry, native ISSLIVE, bounded SenseData/ISS.live bootstrap plus durable periodic reconciliation and immutable local current/as-of record queries |
 | Earth and Inspection | One Cesium Viewer with backend-derived physical samples, Earth Reset and Inspection transitions |
 
+Earth-only camera interaction is bounded by the two supplied visual references;
+existing distance/SSE refinement bounds useful Earth detail. Inspection, Reset,
+scientific state and distant celestial visibility retain their existing owners.
+[Camera-envelope derivation and resource audit](../frontend/earth-camera-envelope.md).
+
 Optional Current cloud imagery is an independent bounded browser visual source,
 hidden in Historical; it does not enter orbital/telemetry persistence or replay.
 [ADR-0026](../adr/0026-current-only-optional-cloud-imagery.md) and the

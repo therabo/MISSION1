@@ -1,5 +1,16 @@
 # Earth View orbital delivery decision and validation
 
+## Earth camera interaction and detail envelope — 2026-10-16
+
+The existing Viewer/camera owner now enforces the two measured user-reference
+zoom limits through native controller settings and public scene events. The
+toolbar shares those physical limits. Inspection and Reset keep their separate
+ownership; scientific/API state and required distant celestial visuals remain
+independent of camera range. Existing view-dependent Globe/imagery refinement
+needs no extra provider cap. This reversible local policy adds no structural
+boundary or dependency and needs no new ADR.
+[Derivation and resource semantics](../frontend/earth-camera-envelope.md).
+
 ## Existing graphics controls restored — 2026-10-05
 
 Browser WebGL antialiasing is explicitly enabled again and historical Black Marble brightness returns to 1.8 (gamma/contrast 1). Cesium MSAA 4, retained FXAA, source/loading ownership and all delivery/camera boundaries remain unchanged. This supersedes the browser-AA removal described in the preceding dated milestone; it creates no architecture decision or new ADR. [Matched quality comparisons and measured frame cost](../frontend/rendering-quality-restoration/README.md).

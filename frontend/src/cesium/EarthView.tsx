@@ -35,6 +35,7 @@ import type { VisualWindow } from './visualWindow';
 import { earthOccludes, canInspect, INITIAL_VIEW_MODE, inspectionPresentation, nextViewMode, pickAction } from './inspectionMode';
 import { InspectionTransition, poseQuaternion, initialTangent, transitionDuration } from './inspectionTransition';
 import { EarthResetTransition, earthResetTarget } from './earthReset';
+import { earthZoomAmount, installEarthCameraEnvelope } from './earthCameraEnvelope';
 import { warmSkyRendering } from './skyRenderingWarmup';
 import { starBackgroundFactory, updateStarBackground } from './starBackground';
 import type { CameraPose } from './inspectionTransition';
@@ -241,6 +242,7 @@ export const EarthView = memo(function EarthView({ currentClouds = true, workspa
     reducedMotion.addEventListener('change', motionChanged);
     const removePicking = installWorkspacePicking(instance.scene,
       () => ({ width: viewportWidth, height: viewportHeight }), () => model.current);
+    const disposeEarthEnvelope = installEarthCameraEnvelope(instance, () => viewMode.current === 'EARTH_OVERVIEW');
     const applyControls = inspectionControlProfile(instance.scene.screenSpaceCameraController);
     const features = new InspectionFeatureState(() => model.current, () => reducedMotion.matches);
     const featureMotionChanged = () => features.reducedMotionChanged();
@@ -1013,10 +1015,18 @@ export const EarthView = memo(function EarthView({ currentClouds = true, workspa
     // the accepted initial Earth pose; never enter the Inspection pipeline here.
     controlsCallback.current?.({
       zoomIn: () => {
-        if (viewMode.current === 'EARTH_OVERVIEW') { finishEarthReset(); instance.camera.zoomIn(instance.camera.positionCartographic.height * 0.2); }
+        if (viewMode.current === 'EARTH_OVERVIEW') {
+          finishEarthReset();
+          const amount = earthZoomAmount(instance.camera, instance.camera.positionCartographic.height * 0.2);
+          if (amount !== 0) instance.camera.zoomIn(amount);
+        }
       },
       zoomOut: () => {
-        if (viewMode.current === 'EARTH_OVERVIEW') { finishEarthReset(); instance.camera.zoomOut(instance.camera.positionCartographic.height * 0.2); }
+        if (viewMode.current === 'EARTH_OVERVIEW') {
+          finishEarthReset();
+          const amount = earthZoomAmount(instance.camera, -instance.camera.positionCartographic.height * 0.2);
+          if (amount !== 0) instance.camera.zoomOut(-amount);
+        }
       },
       resetView: () => {
         if (viewMode.current !== 'EARTH_OVERVIEW' || held.current) return;
@@ -1036,6 +1046,7 @@ export const EarthView = memo(function EarthView({ currentClouds = true, workspa
       controlsCallback.current?.(null);
       destroyed = true;
       disposeImagery();
+      disposeEarthEnvelope();
       clouds.current?.destroy(); clouds.current = null;
       viewportObserver.disconnect();
       removeComposition();

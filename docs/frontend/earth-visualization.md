@@ -1,5 +1,14 @@
 # Earth illumination and imagery
 
+## Bounded Earth camera and useful detail — 2026-10-16
+
+The two supplied visual references define Earth-only WGS84 camera heights of
+7,098,413.244216m–78,704,202.447202m. Native gestures and toolbar controls share
+the range; Reset and Inspection retain their accepted ownership and framing.
+Distance/SSE naturally bounds reachable Earth refinement without changing imagery
+quality, global coverage, cloud resources or celestial visibility.
+[Derivation, controls, resource audit and evidence](earth-camera-envelope.md).
+
 ## Current clouds and enhanced NASA Milky Way — 2026-10-16
 
 A separate optional WGS84 cloud shell uses automatically revalidated processed

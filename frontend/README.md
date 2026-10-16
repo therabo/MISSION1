@@ -1,5 +1,10 @@
 # MISSION1 Earth View
 
+Earth zoom is bounded to the two measured user references through the existing
+camera owner. The shared range preserves Reset, independent Inspection, global
+Earth imagery and distant celestial visuals.
+[Derivation, responsive behavior and useful-detail audit](../docs/frontend/earth-camera-envelope.md).
+
 Earth includes an optional WGS84 cloud shell with automatically revalidated
 4096×2048 processed EUMETSAT-derived imagery and subdued night-side visibility.
 It is always hidden in Historical;
