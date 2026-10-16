@@ -14,7 +14,7 @@ ALTITUDE**, a visual choice rather than cloud-height data. This remains an
 ellipsoid, with back-face culling, depth testing, no depth writes and
 `allowPicking: false`. The original Globe owns Earth locations and terrain.
 
-The 4096×2048 JPEG supplies red-channel coverage, with the original alpha curve.
+The 8192×4096 JPEG supplies red-channel coverage, with the original alpha curve.
 Cloud-only Fabric shading uses native `czm_sunDirectionEC` at scene UTC: light in
 daylight, with a subdued cool ambient floor in full shadow. There is no second
 astronomy model, cloud rotation,
@@ -33,7 +33,7 @@ Checked 2026-10-16 Europe/Rome; HTTP evidence starts 2026-10-15 UTC.
 | Evidence | Finding |
 | --- | --- |
 | Publisher | [live-cloud-maps](https://github.com/matteason/live-cloud-maps/tree/530c011db936adc166e89605e1de2a208fe9752c), current main `530c011db936adc166e89605e1de2a208fe9752c` at verification |
-| Runtime | [4096×2048 JPEG](https://clouds.matteason.co.uk/images/4096x2048/clouds.jpg), 1,496,872 bytes in the production 4K verification |
+| Runtime | [8192×4096 JPEG](https://clouds.matteason.co.uk/images/8192x4096/clouds.jpg), 5,162,494 bytes in the restored 8K production verification |
 | Publisher terms | [README](https://github.com/matteason/live-cloud-maps/blob/530c011db936adc166e89605e1de2a208fe9752c/README.md), [CC0 licence](https://github.com/matteason/live-cloud-maps/blob/530c011db936adc166e89605e1de2a208fe9752c/LICENSE.md); value-added images released under CC0, with EUMETSAT attribution required |
 | Underlying processing | Publisher `index.js` combines EUMETView `mumi:worldcloudmap_ir108`, `mumi:wideareacoverage_rgb_dust` and `mumi:wideareacoverage_rgb_natural`, thresholds and mirrored polar fill |
 | Authoritative metadata | [EUMETView WMS capabilities](https://view.eumetsat.int/geoserver/ows?service=WMS&request=GetCapabilities&version=1.3.0) identify those multimission layers, geographic bounds and EPSG:4326/CRS:84; service fees/access constraints advertise `none` |
@@ -41,7 +41,7 @@ Checked 2026-10-16 Europe/Rome; HTTP evidence starts 2026-10-15 UTC.
 | Initial 2K HTTP observations | HTTP 200, CORS `*`, `Cache-Control: public, max-age=7200, must-revalidate`, ETag `"3d99f78d3a90fadec80674f6878b5ed6"`; explicit conditional GET returned 304 |
 | Browser smoke | Actual CORS fetch/decode succeeds; ETag is not CORS-exposed, Last-Modified absent; SHA-256 identity works independently |
 | Initial 2K SHA-256 | `e0ccbd63589e28a4760874f03e3a49b7cf69469626ea831cc2654b445079dafb`; downloaded sample stays outside Git |
-| Selected 4K SHA-256 | `5b245fea87613e17edf942603a9d6421e6b7a93b67d86d69598c59b2de5c9f3e`; original provider pixels, no upscaling |
+| Selected 8K SHA-256 | `ecb423129abceca6a002f2ca76044a50c68a144d01bb2c493982d919b8f0b380`; original provider pixels, no upscaling |
 
 The initial milestone's final 2K browser smoke at 2026-10-16 08:54:21 UTC fetched
 and decoded the
@@ -76,7 +76,7 @@ schedule, and `cloudRendering.ts` owns Cesium resources.
   timestamp query strings or forced cross-origin conditional headers are added.
   SHA-256 avoids decode/upload for identical bodies even when validators are hidden.
 - Acquisition omits credentials/referrer, expires after 15 seconds, accepts JPEG
-  only, caps streamed bodies at 2 MiB and requires exactly 4096×2048 decoded pixels.
+  only, caps streamed bodies at 8 MiB and requires exactly 8192×4096 decoded pixels.
   Object URLs are revoked on success, error and cancellation.
 - Failure retains the last good coverage; without one, normal Earth remains visible.
   Retry grows 5, 10, 20, 40, then 60 minutes, capped there. Success resumes the
@@ -94,16 +94,37 @@ Only fully decoded images reach the public Fabric sampler. Pinned Cesium 1.145
 alpha gate waits for geometry and sampler preparation; updates never blank an
 existing layer. Teardown removes primitive/material/listener, cancels timers,
 aborts fetch/decode and releases image references. One active cloud texture plus
-one possible staging texture costs 32/64 MiB RGBA8 base storage, with no generated
+one possible staging texture costs 128/256 MiB RGBA8 base storage, with no generated
 mipmaps. These are format estimates, not measured physical GPU residency.
 
 Session-local `lastGood` preserves SHA-256, acquisition time, nullable exposed
 HTTP validators and `observationTime: null`; `checkedAt` is independent. This is
 optional visual-source metadata, not persisted spacecraft telemetry.
 
-## Production 4K refinement — 2026-10-16
+## Production 8K restored — 2026-10-16
 
-Production now uses **4096×2048** as the preferred quality/resource compromise.
+Production again uses the previously validated **8192×4096 JPEG**, exact decoded
+size, **8 MiB** streamed body cap and the existing `MAX_TEXTURE_SIZE` guard.
+Hardware below 8192 keeps optional clouds absent, with no unsupported upload or
+dynamic 4K fallback. The real production browser fetch returns HTTP 200,
+image/jpeg, CORS `*`, 5,162,494 bytes and successful 8192×4096 decode/rendering.
+Observation/publication time remains unknown.
+
+Night shader, coverage/alpha, native Sun, 15 km WGS84 shell, UVs, LINEAR filtering,
+no mipmaps, anisotropy 1 and the complete refresh/swap/last-good lifecycle are
+unchanged. Current day/night rendering, Historical hide/suspend with no weather
+request, and retained Current restore pass focused browser checks. The accepted
+8K resource estimates return: 128 MiB RGBA8 base per texture, up to 256 MiB during
+replacement, plus CPU/encoded memory; not measured physical GPU residency. No
+quality comparison, broad performance investigation or new architecture is needed.
+
+Evidence: `/Users/daniel/.codex/exports/mission1-orbital-close-cloud-8k-2026-10-16/`.
+
+## Previous production 4K refinement — 2026-10-16
+
+This records the superseded 4K choice; current production is the 8K product above.
+
+At that checkpoint, production used **4096×2048** as the preferred quality/resource compromise.
 The accepted comparison already shows substantially better detail than the
 original 2K image. The 8K investigation below remains historical evidence; no
 broad comparison, responsive matrix or performance investigation is repeated.
@@ -129,7 +150,7 @@ Backend source is unchanged; unrelated backend validation is not repeated.
 ## Initial night visibility and 8K quality refinement — 2026-10-16
 
 The following records the accepted `1414a72` milestone. The production resolution
-and size bound are superseded by the 4K refinement above.
+and size bound were superseded by the 4K refinement, then restored as recorded above.
 
 The initial shader already kept coverage independent from sunlight:
 `alpha = 0.82 * pow(smoothstep(0.08, 0.95, coverage), 1.15) * ready`.

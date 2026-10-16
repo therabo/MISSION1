@@ -79,3 +79,11 @@ sample; RGBA8 base estimates are 32 MiB active / 64 MiB during replacement.
 Exact dimension validation and the existing capability guard follow 4096×2048.
 Night lighting, alpha, sampling, lifecycle and Current/Historical ownership remain
 unchanged. This is a representation choice within the same accepted architecture.
+
+## 2026-10-16 8K production restored
+
+The requested production choice returns to the already validated 8192×4096 JPEG,
+exact dimensions and 8 MiB bounded body cap. Existing capability protection below
+8192 remains; no dynamic fallback is introduced. Resource estimates return to
+128/256 MiB RGBA8 base active/replacement. Shader and lifecycle remain unchanged;
+this supersedes the temporary 4K representation without a new architectural decision.

@@ -9,6 +9,14 @@ const body = (data = 'TEST_ONLY_CLOUD_A', headers = {}) => new Response(data, {
 afterEach(() => vi.restoreAllMocks());
 
 describe('bounded processed cloud acquisition', () => {
+  it('accepts a verified-size 8K body above the retired 4K bound at the intended endpoint', async () => {
+    const fetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue(body('TEST_ONLY'.padEnd(5_338_586, 'X')));
+    const decode = vi.fn().mockResolvedValue(image);
+    expect((await acquireCloudImage(signal(), undefined, decode))?.image).toBe(image);
+    expect(fetch).toHaveBeenCalledWith('https://clouds.matteason.co.uk/images/8192x4096/clouds.jpg', expect.anything());
+    expect(decode).toHaveBeenCalledOnce();
+  });
+
   it('decodes a successful new body, preserves provenance and lets the browser revalidate', async () => {
     const fetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue(body());
     const decode = vi.fn().mockResolvedValue(image), abort = signal();

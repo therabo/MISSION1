@@ -1,4 +1,5 @@
 import { OperationalSummary } from '../components/OperationalSummary';
+import { OrbitalDetailsCloseButton } from '../components/OrbitalDetailsCloseButton';
 import { coherentHistoricalState, historicalSource } from './historicalPresentation';
 import type { ReplayResult } from './replayApi';
 
@@ -22,7 +23,7 @@ export function HistoricalOrbitalSummary({ data, at, loading, error, sceneError,
   const notice = sceneError ?? error ?? (waiting ? 'Loading historical state…' : !state ? 'Orbit history unavailable at this instant.' : null);
   if (detailOnly) return <>
     <div id="orbital-status-evidence" className="orbital-status-evidence" role="region" aria-label="Historical orbital state">
-      <div className="panel-head"><h2>ISS historical state</h2>
+      <div className="panel-head"><OrbitalDetailsCloseButton /><h2>ISS historical state</h2>
       <p>{state ? state.source.classification.replaceAll('_', ' ').toLowerCase() : 'Historical position unavailable'}</p></div>
       <dl>
         <div className="data-line"><dt>Effective UTC</dt><dd>{state?.effectiveAt ?? at}</dd></div>

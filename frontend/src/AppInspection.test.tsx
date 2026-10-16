@@ -198,6 +198,29 @@ it('orbital detail reuses the existing evidence region and keeps it outside the 
   expect(evidence.textContent).toContain('GP/TLE'); expect(node.querySelector('.inspection-orbital-toggle summary')?.getAttribute('aria-controls')).toBe(evidence.id);
   expect(node.querySelector('.status-panel,.replay-orbit')).toBeNull();
 });
+it.each(['Current', 'Historical'])('closes %s orbital details through the native disclosure and restores its trigger', async context => {
+  if (context === 'Historical') await click('Historical');
+  await enter();
+  const disclosure = node.querySelector<HTMLDetailsElement>('.inspection-orbital-toggle')!;
+  const trigger = disclosure.querySelector('summary')!;
+  const evidence = node.querySelector('#orbital-status-evidence')!;
+  const content = evidence.textContent, source = scene.props.selectedSource, replay = scene.props.replay;
+  const requests = [scene.props.inspectionRequest, scene.props.overviewRequest];
+  await act(async () => trigger.click()); expect(disclosure.open).toBe(true);
+  const close = button('Close Orbital Details');
+  expect(close.tagName).toBe('BUTTON'); expect(close.type).toBe('button');
+  expect(close.getAttribute('aria-controls')).toBe(evidence.id);
+  close.focus(); expect(document.activeElement).toBe(close);
+  await act(async () => close.click());
+  expect(disclosure.open).toBe(false); expect(document.activeElement).toBe(trigger);
+  await act(async () => trigger.click()); expect(disclosure.open).toBe(true);
+  expect(node.querySelector('#orbital-status-evidence')).toBe(evidence);
+  expect(evidence.textContent).toBe(content); expect(scene.props.selectedSource).toBe(source);
+  expect(scene.props.replay).toEqual(replay);
+  expect([scene.props.inspectionRequest, scene.props.overviewRequest]).toEqual(requests);
+  expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);
+  expect(node.querySelector('.inspection-over')?.textContent).toBe('Over—');
+});
 it('module close reconciles the authoritative renderer prop without leaving Inspection or changing source/time', async () => {
   await enter(); const module = ISS_MODEL.semanticMappings[5], time = shown(), source = scene.props.selectedSource;
   const requests = [scene.props.inspectionRequest, scene.props.overviewRequest], window = scene.props.window;

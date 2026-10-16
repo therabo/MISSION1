@@ -6,6 +6,7 @@ import { SOURCE_LABELS, oemUnavailableReason } from '../cesium/trajectorySelecti
 import type { PositionSnapshot, TrajectorySource } from '../cesium/trajectorySelection';
 import type { ComparisonDelivery } from '../api/useComparisonDelivery';
 import { OperationalSummary } from './OperationalSummary';
+import { OrbitalDetailsCloseButton } from './OrbitalDetailsCloseButton';
 
 interface OrbitalStatusProps {
   delivery: OrbitalDelivery;
@@ -53,6 +54,7 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
 
   const detailBody = <>
     <div className="panel-head">
+      {detailOnly && <OrbitalDetailsCloseButton />}
       <span className="eyebrow">ORBITAL STATE / ISS</span>
       <h1>ISS orbital state</h1>
       <p>{SOURCE_LABELS[selectedSource]}</p>

@@ -9,7 +9,7 @@ beforeEach(() => { vi.stubGlobal('ImageBitmap', class {}); vi.stubGlobal('Offscr
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); vi.useRealTimers(); });
 
 describe('one non-pickable WGS84 cloud shell', () => {
-  it.each([2048, 4096])('checks device capability %i before acquiring the selected representation', async limit => {
+  it.each([4096, 8192])('checks device capability %i before acquiring the selected representation', async limit => {
     vi.useFakeTimers();
     const fetch = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('TEST_ONLY provider outage'));
     const primitives = new PrimitiveCollection();

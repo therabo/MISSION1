@@ -27,6 +27,17 @@ semantics remain. Styling is scoped to Inspection; Earth evidence retains its
 existing presentation. No camera, model, source, orbital or backend change and no
 architectural decision/ADR are introduced.
 
+Orbital Details now includes a restrained top-right X in both Current and
+Historical headers, reusing the shared close glyph/control and existing surface
+colors. Its accessible name is **Close Orbital Details**. The real button supports
+Enter/Space and closes the existing native Orbital detail disclosure; no second
+open state is added. Focus returns to that disclosure summary when connected and
+not inert. Reserved header space prevents title/content overlap at all supported
+widths. Fields, lineage, native module selection/focus, camera and Over remain
+unchanged. Focused checks pass all five supported viewports in Current/Historical
+GP/OEM, including native click/Enter/Space, reopening and focus restoration;
+928 frontend tests, typecheck and production build pass. Focused evidence: `/Users/daniel/.codex/exports/mission1-orbital-close-cloud-8k-2026-10-16/`.
+
 Validation/evidence: `/Users/daniel/.codex/exports/mission1-inspection-ui-refinement-2026-10-16/`.
 The original baseline, matching-UTC/source/camera before/after, real-backend
 Current/Historical GP/OEM matrix, native multiple-module picking, keyboard/focus,

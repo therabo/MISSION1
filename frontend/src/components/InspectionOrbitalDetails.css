@@ -1,4 +1,6 @@
 /* Inspection presentation only. Current and Historical keep their own data owners. */
+.inspection-ui .orbital-status-evidence .panel-head { position: relative; padding-inline-end: 48px; }
+.inspection-ui .orbital-details-close { position: absolute; inset-block-start: 0; inset-inline-end: 0; width: 36px; padding: 0; }
 .inspection-ui > .orbital-status-evidence {
   width: min(420px, calc(100% - 48px));
   padding: 24px;
@@ -67,6 +69,19 @@
 .inspection-ui .orbital-status-evidence .orbital-position dd { text-align: left; font-size: 14px; line-height: 21px; }
 .inspection-ui .orbital-status-evidence .orbital-unit { color: var(--color-text-secondary); font-size: 12px; }
 @media (max-width: 1243px) {
+  .inspection-ui .orbital-status-evidence .panel-head { padding-inline-end: 56px; }
+  .inspection-ui .orbital-details-close {
+    isolation: isolate; width: var(--secondary-target); height: var(--secondary-target);
+    border: 0; background: transparent;
+  }
+  .inspection-ui .orbital-details-close::before {
+    content: ''; position: absolute; z-index: -1; inset: 50% auto auto 50%;
+    width: var(--secondary-face); height: var(--secondary-face); transform: translate(-50%, -50%);
+    border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--control-normal); pointer-events: none;
+  }
+  .inspection-ui .orbital-details-close:hover::before { background: var(--control-hover); }
+  .inspection-ui .orbital-details-close:hover { background: transparent; }
+  .inspection-ui .orbital-details-close:focus-visible { outline-offset: -2px; }
   .inspection-ui > .orbital-status-evidence { padding: 20px; }
 }
 @media (max-width: 740px) {

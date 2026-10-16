@@ -6,7 +6,7 @@ Earth imagery and distant celestial visuals.
 [Derivation, responsive behavior and useful-detail audit](../docs/frontend/earth-camera-envelope.md).
 
 Earth includes an optional WGS84 cloud shell with automatically revalidated
-4096×2048 processed EUMETSAT-derived imagery and subdued night-side visibility.
+8192×4096 processed EUMETSAT-derived imagery and subdued night-side visibility.
 It is always hidden in Historical;
 source failure retains the last good image or leaves Earth cloud-free. The NASA
 Tycho Milky Way treatment is generated offline at unchanged 4096² cube resolution.
