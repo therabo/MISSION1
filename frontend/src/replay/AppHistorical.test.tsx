@@ -90,7 +90,8 @@ it('aborts a seek in flight, never shows its old values under the new UTC, and a
   const final = pending[1]; await act(async () => final.resolve(Response.json(payload(final.url, 'NASA_OEM'))));
   expect(scene.props.replay.state.effectiveAt).toBe(time()); expect(scene.props.selectedSource).toBe('NASA_OEM');
   expect(node.querySelector('.trajectory-legend')?.textContent).toBe('NASA OEM');
-  expect(node.querySelector('.source-state-content')?.textContent).toBe('NASA OEM statusAvailable');
+  expect(node.querySelector('.source-state-content')).toBeNull();
+  expect([...node.querySelectorAll('.position-status-bar dt')].map(e => e.textContent)).toEqual(['Latitude', 'Longitude', 'Altitude', 'Over']);
   expect(scene.mounts).toBe(1);
 });
 

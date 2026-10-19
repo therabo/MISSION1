@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from "react";
 import { useOrbitalDelivery } from "./api/useOrbitalDelivery";
 import { useComparisonDelivery } from "./api/useComparisonDelivery";
 import { EarthView } from "./cesium/EarthView";
-import { OrbitalStatus } from "./components/OrbitalStatus";
+import { OrbitalNotice } from "./components/OrbitalNotice";
 import { TrajectorySelector } from "./components/TrajectorySelector";
 import { ModuleInfo } from "./components/ModuleInfo";
 import { CurrentCrewWorkspace } from "./crew/CurrentCrewWorkspace";
@@ -27,10 +27,10 @@ import { TopContextBar } from "./components/TopContextBar";
 import { TrajectoryLegend } from "./components/TrajectoryLegend";
 import { SceneControls, type EarthSceneControls } from "./components/SceneControls";
 import { HistoricalTimeBar } from "./replay/HistoricalTimeBar";
-import { HistoricalOrbitalSummary } from "./replay/HistoricalOrbitalSummary";
+import { HistoricalOrbitNotice } from "./replay/HistoricalOrbitNotice";
 import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./replay/historicalPresentation";
 import { useTemporalPresentation } from "./replay/useTemporalPresentation";
-import { InspectionStrip } from "./components/InspectionStrip";
+import { PositionStatusBar } from "./components/PositionStatusBar";
 import { useWorkspaceDissolve } from "./layout/useWorkspaceDissolve";
 
 const mission1Wordmark = `${import.meta.env.BASE_URL}branding/MISSION1-logo.png`;
@@ -49,10 +49,7 @@ export default function App() {
   const [sceneError, setSceneError] = useState<string | null>(null);
   const [inspectionRequest, setInspectionRequest] = useState(0);
   const [overviewRequest, setOverviewRequest] = useState(0);
-  const [modelState, setModelState] = useState<{
-    status: ModelLoadStatus;
-    loadMs: number | null;
-  }>({ status: "loading", loadMs: null });
+  const [modelStatus, setModelStatus] = useState<ModelLoadStatus>("loading");
   const [viewMode, setViewMode] = useState<ViewMode>("EARTH_OVERVIEW");
   const viewModeRef = useRef<ViewMode>("EARTH_OVERVIEW");
   const [crewOpen, setCrewOpen] = useState(false);
@@ -113,8 +110,7 @@ export default function App() {
     [],
   );
   const onModelStatus = useCallback(
-    (status: ModelLoadStatus, loadMs?: number) =>
-      setModelState({ status, loadMs: loadMs ?? null }),
+    (status: ModelLoadStatus) => setModelStatus(status),
     [],
   );
   const onModuleSelection = useCallback((module: SemanticMapping | null) => {
@@ -153,19 +149,6 @@ export default function App() {
     );
     setSourceNotice(null);
   };
-
-  const orbitalStatus = <OrbitalStatus
-    delivery={currentDelivery}
-    comparison={currentComparison}
-    buffer={buffer}
-    sceneTimeMs={sceneTimeMs}
-    sceneError={sceneError}
-    modelState={modelState}
-    inspecting={stationFocused}
-    selectedSource={currentSource}
-    position={position}
-    sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null}
-  />;
 
   return (
     <main
@@ -212,7 +195,7 @@ export default function App() {
             if (crewOpenRef.current) closeCrew();
             else if (stationFocused) setOverviewRequest(value => value + 1);
           }}
-          inspectionDisabled={temporal.holding || (presentationHistorical ? !replayState : !currentDelivery.window || buffer !== "active") || modelState.status !== "ready"}
+          inspectionDisabled={temporal.holding || (presentationHistorical ? !replayState : !currentDelivery.window || buffer !== "active") || modelStatus !== "ready"}
           onInspect={() => {
             crewOpenRef.current = false; setCrewOpen(false);
             setInspectionRequest(value => value + 1);
@@ -232,7 +215,7 @@ export default function App() {
         <HistoricalTimeBar open={replaying && !stationFocused && !crewOpen} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
           coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}
           presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
-        {stationFocused && <InspectionStrip viewMode={viewMode}
+        <PositionStatusBar describedBy={stationFocused ? "inspection-interaction-guidance" : undefined}
           position={presentationHistorical ? replayState && effectiveHistoricalSource ? {
             source: effectiveHistoricalSource, timeMs: Date.parse(replayState.effectiveAt),
             latitudeDegrees: replayState.latitudeDegrees, longitudeDegrees: replayState.longitudeDegrees,
@@ -240,8 +223,13 @@ export default function App() {
           } : null : position}
           selectedSource={earthSource}
           sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs}
-          buffer={presentationHistorical ? replayState ? 'active' : 'waiting' : buffer} />}
-        {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} inspecting={stationFocused} /> : orbitalStatus}
+          buffer={presentationHistorical ? replayState ? 'active' : 'waiting' : buffer} />
+        {stationFocused && <>
+          <p className="sr-only" id="inspection-interaction-guidance">Drag to orbit the ISS. Scroll or pinch to zoom. Select a verified module in the model. Attitude unavailable.</p>
+          {viewMode !== 'ISS_INSPECTION' && <p className="sr-only" role="status">{viewMode === 'ENTERING_INSPECTION' ? 'Approaching moving ISS target' : 'Returning to Earth View'}</p>}
+        </>}
+        {presentationHistorical ? <HistoricalOrbitNotice data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} inspecting={stationFocused} /> :
+          <OrbitalNotice buffer={buffer} message={currentDelivery.message} sceneError={sceneError} sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null} />}
         <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} historical={presentationHistorical} acceptedAt={presentedAt} />
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}

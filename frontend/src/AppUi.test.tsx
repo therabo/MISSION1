@@ -81,18 +81,18 @@ describe('App presentation wiring without a WebGL test double for domain state',
     expect(harness.zoomOut).toHaveBeenCalledOnce(); expect(harness.zoomIn).toHaveBeenCalledOnce(); expect(harness.resetView).toHaveBeenCalledOnce();
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
-  it('keeps source, hook enablement and Viewer lifetime through evidence and existing Crew presentation updates', async () => {
+  it('keeps source, hook enablement and Viewer lifetime through shared bar and existing Crew presentation updates', async () => {
     await act(async () => root.render(<App />));
     const originalWindow = harness.props.window;
-    await act(async () => container.querySelector('summary')!.click());
+    expect(container.querySelector('.source-state-slot summary')).toBeNull();
     await click('Crew');
-    expect(container.querySelector('.operational-summary')).not.toBeNull();
+    expect(container.querySelector('.position-status-bar')).not.toBeNull();
     expect(container.querySelector('main')?.classList.contains('has-crew-panel')).toBe(true);
     expect(container.querySelectorAll('.top-context-bar')).toHaveLength(1);
     expect(container.querySelector('.crew-workspace-host')).not.toBeNull();
     expect(container.textContent).toContain('Close Crew');
     await click('Close Crew');
-    expect(container.querySelector('.operational-summary')).not.toBeNull();
+    expect(container.querySelector('.position-status-bar')).not.toBeNull();
     expect(harness.props.window).toBe(originalWindow);
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE'); expect(harness.props.replay).toBeNull();
     expect(harness.orbital.mock.calls.every(([enabled]) => enabled === true)).toBe(true);
@@ -108,7 +108,7 @@ describe('App presentation wiring without a WebGL test double for domain state',
       (harness.props.onPosition as (p: PositionSnapshot) => void)(physical);
       (harness.props.onViewModeChange as (m: ViewMode) => void)('ISS_INSPECTION');
     });
-    const strip = container.querySelector('.inspection-strip')!;
+    const strip = container.querySelector('.position-status-bar')!;
     const rows = Object.fromEntries([...strip.querySelectorAll('.summary-position > div')].map(e => [e.querySelector('dt')!.textContent, e.querySelector('dd')!.textContent]));
     expect(rows).toEqual({ Latitude: '4.691° N', Longitude: '92.065° E', Altitude: '416.4 km' });
     expect(container.querySelector('#orbital-status-evidence')).toBeNull();
@@ -118,7 +118,7 @@ describe('App presentation wiring without a WebGL test double for domain state',
   it('does not reuse a previous source sample when switching GP → OEM → GP before Inspection', async () => {
     harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
     await act(async () => root.render(<App />));
-    const values = () => [...container.querySelectorAll('.inspection-strip dd')].map(e => e.textContent);
+    const values = () => [...container.querySelectorAll('.position-status-bar .summary-position dd')].map(e => e.textContent);
     const current = parseOrbitalWindow(orbitalPayload(), 0);
     for (const source of ['NASA_OEM', 'PRIMARY_GP_TLE'] as const) {
       await choose(source);
@@ -149,8 +149,8 @@ describe('App presentation wiring without a WebGL test double for domain state',
     await act(async () => { select.value = 'NASA_OEM'; select.dispatchEvent(new Event('change', { bubbles: true })); });
     expect(harness.props.selectedSource).toBe('NASA_OEM');
     expect(container.querySelector('.status-panel')).toBeNull();
-    expect(container.querySelector('.source-state-slot > summary')?.textContent).toBe('NASA OEM statusAvailable');
-    expect(container.querySelector('.operational-summary')?.textContent).not.toContain('General Perturbations quality');
+    expect(container.querySelector('.source-state-slot,#orbital-status-evidence')).toBeNull();
+    expect(container.querySelector('.position-status-bar')?.textContent).not.toContain('General Perturbations quality');
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
 });
@@ -166,12 +166,12 @@ describe('Orbital source guards and persistent application context', () => {
     expect(harness.props.selectedSource).toBe('NASA_OEM');
     expect(container.querySelectorAll('.trajectory-legend > span')).toHaveLength(1);
     expect(container.querySelectorAll('.summary-position dd')).toHaveLength(3);
-    expect(container.querySelector('.summary-quality')?.textContent).toBe('Available');
+    expect(container.querySelector('.summary-quality')).toBeNull();
     expect(container.querySelector('.trajectory-legend')?.textContent).toBe('NASA OEM');
-    expect(container.querySelector('.operational-summary')?.textContent).not.toContain('General Perturbations quality');
+    expect(container.querySelector('.position-status-bar')?.textContent).not.toContain('General Perturbations quality');
     await choose('PRIMARY_GP_TLE');
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE');
-    expect(container.querySelector('.summary-quality')?.textContent).toBe('Good');
+    expect(container.querySelector('.summary-quality')).toBeNull();
     expect(container.querySelector('.trajectory-legend')?.textContent).toBe('GP/TLE');
     expect(container.querySelector('.context-date time')?.textContent).toBe(originalUtc);
     expect(harness.replay.mock.calls.at(-1)?.[1]).toBe(replayAt);
@@ -191,7 +191,7 @@ describe('Orbital source guards and persistent application context', () => {
     expect(container.querySelector<HTMLOptionElement>('option[value="NASA_OEM"]')?.disabled).toBe(true);
     await choose('NASA_OEM');
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE');
-    expect(container.querySelector('.summary-quality')?.textContent).toBe('Good');
+    expect(container.querySelector('.summary-quality')).toBeNull();
     expect(container.querySelectorAll('.trajectory-legend > span')).toHaveLength(1);
   });
   it('uses the existing renderer fallback callback and announces its reason immediately', async () => {
@@ -201,7 +201,7 @@ describe('Orbital source guards and persistent application context', () => {
     expect(harness.props.selectedSource).toBe('PRIMARY_GP_TLE');
     expect(container.querySelector('.earth-current-notice')?.textContent).toContain('Returned to GP/TLE');
     expect(container.querySelector('.earth-current-notice')?.textContent).toContain('OEM does not cover scene time');
-    expect(container.querySelector('.summary-quality')?.textContent).toBe('Good');
+    expect(container.querySelector('.summary-quality')).toBeNull();
     expect(harness.mounts).toBe(1);
   });
   it('keeps OEM selected through the shared Crew workspace and its return', async () => {
@@ -210,7 +210,7 @@ describe('Orbital source guards and persistent application context', () => {
     await click('Crew'); expect(harness.props.selectedSource).toBe('NASA_OEM');
     await click('Close Crew');
     expect(container.querySelector('select')?.value).toBe('NASA_OEM');
-    expect(container.querySelector('.source-state-slot > summary')?.textContent).toBe('NASA OEM statusAvailable');
+    expect(container.querySelector('.source-state-slot,#orbital-status-evidence')).toBeNull();
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
   it('keeps the actual expired-buffer reason distinct from the renderer fallback notification', async () => {

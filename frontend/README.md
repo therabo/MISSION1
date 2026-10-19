@@ -1,12 +1,13 @@
 # MISSION1 Earth View
 
-Inspection's bottom strip now shows **ISS / Inspection | Over / — | Latitude |
-Longitude | Altitude**, with non-interactive physical position readouts. The
-dedicated Orbital Details button/panel/X/disclosure and its exclusive UI code
-are removed. Current and Historical reuse their existing physical state owners
-and the shared Earth-summary formatter; the Overview display lift is excluded.
-NASA VTAD is omitted only from the strip, retaining the model, GLB and attribution.
-Over remains a static placeholder. [Current Inspection contract](../docs/frontend/iss-inspection-mode.md).
+Earth View and ISS Inspection share one informational bottom bar:
+**Latitude | Longitude | Altitude | Over**. Both use identical typography,
+spacing and four desktop columns, with a 2×2 mobile layout. The visible ISS / WGS84,
+ISS / Inspection identities and General Perturbations quality status/detail
+presentation are removed. WGS84 and GP/TLE scientific quality/provenance remain
+in their existing state/contracts; physical values keep the accepted formatter
+and exclude Overview's display lift. Over remains a static —. Operational
+failure notices remain outside the bar. [Shared contract](../docs/frontend/position-status-bar.md).
 
 Earth zoom is bounded to the two measured user references through the existing
 camera owner. The shared range preserves Reset, independent Inspection, global
@@ -40,8 +41,9 @@ geometry and controls remain unchanged. [Publication validation](../docs/archite
 
 Current production uses `CurrentCrewWorkspace` → `CurrentCrewPanelView` /
 `ReplayCrewPanel`, with shared `CrewSourceEvidence` and `CrewProfile`.
-`TrajectorySelector` is the context-bar source selector; `OrbitalStatus` supplies
-the Current summary and retained evidence. `HistoricalTimeBar` and
+`TrajectorySelector` is the context-bar source selector; `PositionStatusBar` supplies
+the shared physical readouts. `OrbitalNotice` / `HistoricalOrbitNotice` retain real
+operational failure notices without the removed quality status/detail UI. `HistoricalTimeBar` and
 `HistoricalCalendar` own Historical navigation. Earth Reset and Inspection retain
 their accepted separate responsibilities.
 
@@ -207,7 +209,7 @@ The inspected strict-speed candidate is preserved in the [camera transition revi
 
 ## Current Inspection rendering — 2026-10-01
 
-Canonical desktop Inspection is 90 m behind/above the physical selected-source pivot at 42.5° elevation, zero lateral offset and 100° FOV. Entry takes 6 seconds; return takes 5. Both use the retained cubic path, or one Earth-clear arc when required. Partial Back starts at the actual pose and retains incoming position/orientation/FOV derivatives over a range-bounded interval of at most 0.4 seconds. Lift and silhouette follow the same path range; composition targets the actual displayed station. Back restores the captured world pose, frustum, transform and controller profile; narrow viewports adapt range. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth source/quality evidence remains available after return.
+Canonical desktop Inspection is 90 m behind/above the physical selected-source pivot at 42.5° elevation, zero lateral offset and 100° FOV. Entry takes 6 seconds; return takes 5. Both use the retained cubic path, or one Earth-clear arc when required. Partial Back starts at the actual pose and retains incoming position/orientation/FOV derivatives over a range-bounded interval of at most 0.4 seconds. Lift and silhouette follow the same path range; composition targets the actual displayed station. Back restores the captured world pose, frustum, transform and controller profile; narrow viewports adapt range. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth and Inspection share the four-field physical position bar; dedicated quality evidence UI is removed while scientific state remains.
 
 The unchanged NASA PNG model uses generated trilinear mipmaps. A stable captured ambient environment avoids shader regeneration on each kilometre of orbital/display motion; direct Sun and Earth lighting still follow UTC. Bounded specular antialiasing and MSAA 4 + retained FXAA (bypassed in Overview) address measured highlight and thin-edge shimmer at native device resolution. Ground fog is confined below 100 km (with compensated ground density), avoiding the model shader rebuild at Cesium's default 800 km ceiling. Close-view atmospheric shaders warm during model loading, including the zero-imagery variant that caused a measured first-return compile stall. Public layer alpha and atmosphere fade fields restore before Inspection is enabled; providers, cached textures and final quality are retained. A retained native-resolution FXAA stage uses a uniform bypass in Overview, so changing modes does not destroy/reallocate its GPU resources. No geometry, asset swap, orbital contract or source semantics changed. [Framing, diagnosis, raw performance and remaining limits](../docs/frontend/inspection-rendering-optimization-review/README.md). Earlier dated camera figures below are historical.
 
@@ -253,7 +255,7 @@ The 32.7 MB semantically enriched NASA GLB uses deduplicated, lossless source PN
 
 The browser validates frame (`ITRF_2020_IERS_2010`), meters, timestamps, uniform grids, bounded positions and source lineage. The primary short buffer uses linear degree-one `SampledPositionProperty(FIXED)` with no extrapolation. Optional OEM has its own bounded property from backend source-vector Hermite/ITRF samples. `selectedPositionAt` is the single physical source for model, loading locator, approach and moving Inspection pivot. Selection is immediate with no cross-source interpolation.
 
-The backend-aligned 1× scene clock starts at `generatedAt` plus half request duration. The position panel now shows Cesium WGS84 conversion of the same selected physical scene point, labeled with scene time and source; backend geographic/orbital state is unchanged. Requests refresh separately every 120 seconds after completion. Primary failure retains a labeled bounded buffer; expiry hides the pose and exits Inspection. Comparison failure hides the lines and explicitly returns selected OEM to primary. A normal slightly-ahead refreshed comparison waits on its preceding still-valid moving buffer until covered, preventing a false OEM loss at a clock seam. True unavailability is adopted immediately.
+The backend-aligned 1× scene clock starts at `generatedAt` plus half request duration. The shared position bar shows the accepted WGS84 physical coordinates for the selected scene/source, with the existing UTC/source context retained in the top bar; backend geographic/orbital state is unchanged. Requests refresh separately every 120 seconds after completion. Primary failure retains a labeled bounded buffer; expiry hides the pose and exits Inspection. Comparison failure hides the lines and explicitly returns selected OEM to primary. A normal slightly-ahead refreshed comparison waits on its preceding still-valid moving buffer until covered, preventing a false OEM loss at a clock seam. True unavailability is adopted immediately.
 
 Overview's accessible **Position / trajectory source** selector defaults to **MISSION1 GP/TLE**, with **NASA OEM** available only within source and sample coverage and the 300 s response display limit. Covered `DEGRADED` OEM is allowed with its status visible. Source controls lock during entry, Inspection and return. Selection is not persisted across sessions. OEM remains **NASA predicted ephemeris**; primary remains computed from orbital elements. GP quality, CelesTrak acquisition and OEM availability remain independent.
 

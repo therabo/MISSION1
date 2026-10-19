@@ -1,0 +1,13 @@
+.position-status-bar { grid-area: operations; position: relative; z-index: 3; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; pointer-events: auto; }
+.position-status-bar dl { display: contents; margin: 0; }
+.position-status-bar dl > div { min-width: 0; min-height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
+.position-status-bar dt { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
+.position-status-bar dd { margin: 0; color: var(--color-text-primary); font: 400 16px/21px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.position-status-bar dd.measurement-unavailable { font-family: var(--font-interface); font-size: 14px; }
+@media (max-width: 1243px) {
+  .position-status-bar { gap: 12px; padding-inline: 16px; }
+  .position-status-bar dl > div { min-height: 44px; }
+}
+@media (max-width: 740px) {
+  .position-status-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; padding: 8px 12px; }
+}

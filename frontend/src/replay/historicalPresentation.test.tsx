@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { stepHistoricalUtc, coherentHistoricalState, historicalSource } from './historicalPresentation';
-import { HistoricalOrbitalSummary } from './HistoricalOrbitalSummary';
+import { HistoricalOrbitNotice } from './HistoricalOrbitNotice';
 import { TrajectoryLegend } from '../components/TrajectoryLegend';
 import { decodeReplay } from './replayApi';
 import { historicalPayload } from '../test/historicalFixture';
@@ -31,21 +31,7 @@ describe('committed Historical UTC presentation', () => {
     expect(coherentHistoricalState(data, at)).toBeNull();
   });
 });
-describe('Historical source and five-slot semantics', () => {
-  it.each(['GOOD', 'STALE', 'UNKNOWN'])('shows the actual GP %s quality, never Current quality', quality => {
-    const data = decodeReplay(historicalPayload(at), at); data.orbit.primary!.quality = quality;
-    const html = renderToStaticMarkup(<HistoricalOrbitalSummary data={data} at={at} loading={false} error={null} sceneError={null} />);
-    expect(html).toContain('General Perturbations quality'); expect(html).toContain(`>${quality[0] + quality.slice(1).toLowerCase()}<`);
-    expect(html).toContain('4.691° N'); expect(html).toContain('416.4 km'); expect(html).toContain('TEST-retimed-source');
-    expect(html).not.toContain('NASA OEM status'); expect(html).not.toContain('is-oem');
-  });
-  it('uses OEM retained-state availability rather than its accuracy UNKNOWN or today’s expiry guard', () => {
-    const data = decodeReplay(historicalPayload(at, 'NASA_OEM'), at);
-    const html = renderToStaticMarkup(<HistoricalOrbitalSummary data={data} at={at} loading={false} error={null} sceneError={null} />);
-    expect(html).toContain('NASA OEM status'); expect(html).toContain('>Available<'); expect(html).not.toContain('Predicted ephemeris');
-    expect(html).not.toContain('General Perturbations quality'); expect(html).not.toContain('>Good<'); expect(html).not.toContain('>Expired<');
-    expect(html).toContain('source-state-slot'); expect(html).not.toContain('is-oem');
-  });
+describe('Historical source semantics and notices', () => {
   it.each(['GP_TLE','NASA_OEM'] as const)('derives one legend directly from the renderer’s %s primary state', kind => {
     const data = decodeReplay(historicalPayload(at, kind), at);
     const source = historicalSource(coherentHistoricalState(data, at));
@@ -53,16 +39,16 @@ describe('Historical source and five-slot semantics', () => {
     expect(html.match(/trajectory-swatch /g)).toHaveLength(1);
     expect(html).toContain(kind === 'NASA_OEM' ? '>NASA OEM<' : '>GP/TLE<');
   });
-  it('shows unavailable physical values and Waiting while a new seek has not resolved', () => {
+  it('preserves the loading notice while a new seek has not resolved', () => {
     const old = decodeReplay(historicalPayload(at), at);
-    const html = renderToStaticMarkup(<HistoricalOrbitalSummary data={old} at="2026-10-03T11:50:00Z" loading error={null} sceneError={null} />);
-    expect(html.match(/measurement-unavailable/g)).toHaveLength(3); expect(html).toContain('>Waiting<');
+    const html = renderToStaticMarkup(<HistoricalOrbitNotice inspecting={false} data={old} at="2026-10-03T11:50:00Z" loading error={null} sceneError={null} />);
+    expect(html).toContain('Loading historical state…');
     expect(html).not.toContain('4.691° N'); expect(html).not.toContain('416.4 km');
   });
   it('does not label absent evidence as an active GP/OEM source', () => {
     const data = decodeReplay(replayFixture(at), at);
-    const html = renderToStaticMarkup(<HistoricalOrbitalSummary data={data} at={at} loading={false} error={null} sceneError={null} />);
-    expect(html).toContain('Orbital source status'); expect(html).toContain('Orbit history unavailable');
+    const html = renderToStaticMarkup(<HistoricalOrbitNotice inspecting={false} data={data} at={at} loading={false} error={null} sceneError={null} />);
+    expect(html).toContain('Orbit history unavailable');
     expect(html).not.toContain('General Perturbations quality'); expect(historicalSource(null)).toBeNull();
     const legend = renderToStaticMarkup(<TrajectoryLegend selectedSource={null} oemReason={null} />);
     expect(legend).toContain('Unavailable'); expect(legend).not.toContain('trajectory-swatch');

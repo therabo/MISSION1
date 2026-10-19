@@ -1,5 +1,10 @@
 # Earth illumination and imagery
 
+Earth and Inspection now share **Latitude | Longitude | Altitude | Over** with
+identical layout and physical-state formatting. Identity blocks and dedicated
+GP-quality status/detail UI are removed; WGS84, GP/TLE quality/provenance and
+source validation remain internally. Over is static. [Presentation contract](position-status-bar.md).
+
 ## Bounded Earth camera and useful detail — 2026-10-16
 
 The two supplied visual references define Earth-only WGS84 camera heights of

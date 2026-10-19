@@ -17,7 +17,7 @@ Starting `ui/restyling`: `b4c0cd4098411b1fa75ca29c68f31a88dd82a049`. Main: `12be
 | Generic Close {title} | ContextDock foundation | Used by astronaut/module, no additional App dock |
 | Close crew panel, standalone | LegacyCrewPanel, compatibility branch; App always supplies workspace | Retained legacy presentation; audit only, unreachable from restyled App |
 
-Earth orbital source evidence, Crew assessment/source evidence, portrait rights and profile evidence use native disclosure summaries or the existing evidence toggle. They have no × action. Inspection has no Orbital Details panel, disclosure or X after the 2026-10-19 cleanup; its position fields are informational. Back to crew, Back to Earth, Exit Historical and refresh are separate actions and keep their semantics. Calendar has seven day columns, Close, three native UTC selects, Cancel and Apply; no visible previous/next month buttons. Its existing PageUp/PageDown keyboard month navigation stays intact.
+Crew assessment/source evidence, portrait rights and profile evidence use native disclosure summaries or the existing evidence toggle. They have no × action. Earth GP-quality status/evidence and both bottom-bar identity blocks were removed on 2026-10-19; Earth and Inspection now share four informational fields. Inspection has no Orbital Details panel, disclosure or X after the 2026-10-19 cleanup; its position fields are informational. Back to crew, Back to Earth, Exit Historical and refresh are separate actions and keep their semantics. Calendar has seven day columns, Close, three native UTC selects, Cancel and Apply; no visible previous/next month buttons. Its existing PageUp/PageDown keyboard month navigation stays intact.
 
 
 ## Final responsive dimensions

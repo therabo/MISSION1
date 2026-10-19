@@ -1,5 +1,7 @@
 # Mission and Crew metadata cleanup — 2026-10-09
 
+> Superseded for bottom-bar presentation on 2026-10-19: both identity blocks and dedicated quality status/evidence UI are removed. See the [shared four-field contract](../position-status-bar.md). Scientific state and WGS84 semantics remain.
+
 Starting clean, synchronized `main`: `30c0cd4828fe46c9e6283c9e8d6eeaaf2c1938e0`. This milestone changes presentation only, with zero backend/API/domain/resource changes and no new architectural decision.
 
 ## Earth presentation and attribution

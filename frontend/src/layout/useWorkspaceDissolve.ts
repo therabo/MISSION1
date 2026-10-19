@@ -20,7 +20,7 @@ export function useWorkspaceDissolve(root: RefObject<HTMLElement | null>, inspec
     const style = getComputedStyle(owner);
     const token = style.getPropertyValue(reduced ? '--motion-fast' : '--motion-workspace').trim();
     const duration = parseFloat(token) * (token.endsWith('ms') ? 1 : 1000);
-    for (const element of owner.querySelectorAll<HTMLElement>('.inspection-strip, .earth-current-ui > .operational-summary')) {
+    for (const element of owner.querySelectorAll<HTMLElement>('.earth-current-ui > .position-status-bar')) {
       if (element.animate) animations.current.push(element.animate({ opacity: [0, 1] }, {
         duration: Number.isFinite(duration) ? duration : reduced ? 120 : 280,
         easing: reduced ? 'linear' : style.getPropertyValue('--ease-state').trim() || 'cubic-bezier(0.42,0,0.58,1)',

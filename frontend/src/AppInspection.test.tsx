@@ -68,21 +68,22 @@ afterEach(async () => {
 
 it('sends entry to the existing bridge and changes chrome only after the renderer reports entering', async () => {
   await click('ISS Inspection'); expect(scene.props.inspectionRequest).toBe(1);
-  expect(node.querySelector('.inspection-strip')).toBeNull();
+  expect(node.querySelector('.position-status-bar')).not.toBeNull();
   await mode('ENTERING_INSPECTION');
-  expect(node.querySelector('.inspection-strip')).not.toBeNull();
+  expect(node.querySelector('.position-status-bar')).not.toBeNull();
   expect(button('ISS Inspection').getAttribute('aria-pressed')).toBe('true');
   expect(button('Earth').disabled).toBe(false); expect(button('Modules')).toBeUndefined();
   expect(node.textContent).toContain('Approaching moving ISS target');
 });
-it('renders five informational groups using the Current physical sample without model credit or orbital UI', async () => {
-  await enter(); const strip = node.querySelector('.inspection-strip')!;
-  expect(strip.textContent).toContain('ISS / Inspection'); expect(strip.textContent).toContain('Spatial investigation');
+it('renders the same four informational fields in Earth and Inspection from the Current physical sample', async () => {
+  const strip = node.querySelector('.position-status-bar')!;
+  await enter(); expect(node.querySelector('.position-status-bar')).toBe(strip);
+  expect(strip.textContent).not.toMatch(/ISS \/ WGS84|ISS \/ Inspection|Spatial investigation|General Perturbations quality/);
   expect(strip.textContent).not.toMatch(/NASA VTAD|Reference geometry/);
-  expect(node.querySelector('.inspection-over strong')?.textContent).toBe('—');
+  expect(node.querySelector('.position-over dd')?.textContent).toBe('—');
   expect(button('Modules')).toBeUndefined(); expect(strip.querySelector('summary,details,button,a,[tabindex]')).toBeNull();
-  expect([...strip.querySelectorAll('dt')].map(e => e.textContent)).toEqual(['Latitude', 'Longitude', 'Altitude']);
-  expect([...strip.querySelectorAll('dd')].map(e => e.textContent)).toEqual(['4.691° N', '92.065° E', '416.4 km']);
+  expect([...strip.querySelectorAll('dt')].map(e => e.textContent)).toEqual(['Latitude', 'Longitude', 'Altitude', 'Over']);
+  expect([...strip.querySelectorAll('.summary-position dd')].map(e => e.textContent)).toEqual(['4.691° N', '92.065° E', '416.4 km']);
   expect(node.querySelector('.inspection-hint,.status-panel,.replay-controls')).toBeNull();
 });
 it('keeps the shared top bar mounted and its accepted Current UTC unchanged during entry/exit', async () => {
@@ -94,6 +95,24 @@ it('keeps the shared top bar mounted and its accepted Current UTC unchanged duri
   expect(button('Earth').getAttribute('aria-pressed')).toBe('true');
   await mode('EARTH_OVERVIEW'); expect(node.querySelector('.top-context-bar')).toBe(context);
   expect(shown()).toBe(at); expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);
+});
+it.each(['Current', 'Historical'])('keeps one %s four-field bar and identical values throughout Earth ↔ Inspection', async context => {
+  if (context === 'Historical') await click('Historical');
+  const bar = node.querySelector('.position-status-bar')!;
+  const values = [...bar.querySelectorAll('dd')].map(e => e.textContent);
+  const quality = scene.props.window.response.qualityAtGeneratedAt;
+  const health = scene.props.window.response.sourceHealth;
+  for (const next of ['ENTERING_INSPECTION', 'ISS_INSPECTION', 'EXITING_INSPECTION', 'EARTH_OVERVIEW'] as const) {
+    await mode(next);
+    expect(node.querySelector('.position-status-bar')).toBe(bar);
+    expect([...bar.querySelectorAll('dt')].map(e => e.textContent)).toEqual(['Latitude', 'Longitude', 'Altitude', 'Over']);
+    expect([...bar.querySelectorAll('dd')].map(e => e.textContent)).toEqual(values);
+    expect(bar.querySelector('summary,details,button,a,[tabindex],[aria-controls],[aria-expanded]')).toBeNull();
+    expect(node.querySelector('#orbital-status-evidence,.source-state-slot,.summary-quality,.summary-identity,.inspection-identity')).toBeNull();
+    expect(bar.textContent).not.toMatch(/ISS \/ WGS84|ISS \/ Inspection|General Perturbations quality/);
+    expect(scene.props.window.response.qualityAtGeneratedAt).toBe(quality);
+    expect(scene.props.window.response.sourceHealth).toBe(health);
+  }
 });
 it('removes Earth controls and trajectory legend throughout entry, Inspection and exit', async () => {
   for (const state of ['ENTERING_INSPECTION', 'ISS_INSPECTION', 'EXITING_INSPECTION'] as const) {
@@ -153,9 +172,9 @@ it('keeps accepted Historical time, envelope, source and replayAt through Inspec
 it('returns safely when entry is interrupted and lets renderer completion decide the final layout', async () => {
   await click('ISS Inspection'); await mode('ENTERING_INSPECTION'); await click('Earth');
   expect(scene.props.overviewRequest).toBe(1); await mode('EXITING_INSPECTION');
-  expect(node.querySelector('.inspection-strip')).not.toBeNull();
+  expect(node.querySelector('.position-status-bar')).not.toBeNull();
   expect(nextViewMode('EXITING_INSPECTION', 'ENTRY_COMPLETE')).toBe('EXITING_INSPECTION');
-  await mode('EARTH_OVERVIEW'); expect(node.querySelector('.inspection-strip')).toBeNull();
+  await mode('EARTH_OVERVIEW'); expect(node.querySelector('.position-status-bar')).not.toBeNull();
   expect(button('ISS Inspection').disabled).toBe(false); expect(scene.mounts).toBe(1);
 });
 it('preserves the existing prohibition on re-entry before exit completes', async () => {
@@ -166,9 +185,9 @@ it('preserves the existing prohibition on re-entry before exit completes', async
 });
 it('keeps Over informational and static without adding lookups, loading, errors or recurring work', async () => {
   await enter();
-  const over = node.querySelector('.inspection-over')!;
+  const over = node.querySelector('.position-over > div')!;
   expect(over.textContent).toBe('Over—');
-  expect(node.querySelector('.inspection-strip')?.textContent).not.toContain('Selected module');
+  expect(node.querySelector('.position-status-bar')?.textContent).not.toContain('Selected module');
   expect(over.querySelector('button,a,input,[tabindex],[role],progress')).toBeNull();
   expect(over.hasAttribute('tabindex')).toBe(false); expect(over.hasAttribute('role')).toBe(false);
   expect(over.querySelector('[aria-busy],[aria-live],[title]')).toBeNull();
@@ -182,7 +201,7 @@ it('keeps Over informational and static without adding lookups, loading, errors 
 it('uses the verified picking state in one module dock without retaining the old panel', async () => {
   await enter(); const module = ISS_MODEL.semanticMappings.find(m => m.status === 'VERIFIED')!;
   await act(async () => scene.props.onModuleSelection(module as SemanticMapping));
-  expect(node.querySelector('.inspection-over strong')?.textContent).toBe('—');
+  expect(node.querySelector('.position-over dd')?.textContent).toBe('—');
   expect(node.querySelector('.context-dock')?.textContent).toContain(module.displayName);
   expect(node.querySelectorAll('.context-dock')).toHaveLength(1);
   expect(node.querySelector('.module-panel')).toBeNull();
@@ -191,7 +210,7 @@ it('uses the verified picking state in one module dock without retaining the old
   await act(async () => scene.props.onModuleSelection(next));
   expect(scene.props.moduleSelection).toBe(next);
   expect(node.querySelector('.context-dock h2')?.textContent).toBe(next.displayName);
-  expect(node.querySelector('.inspection-over strong')?.textContent).toBe('—');
+  expect(node.querySelector('.position-over dd')?.textContent).toBe('—');
   await act(async () => scene.props.onModuleSelection(null));
   expect(scene.props.moduleSelection).toBeNull();
 });
@@ -201,23 +220,23 @@ it.each(['Current', 'Historical'])('removes all %s Inspection orbital disclosure
     await mode(state);
     expect(node.querySelector('#orbital-status-evidence,.inspection-orbital-toggle,.orbital-details-close')).toBeNull();
     expect(button('Close Orbital Details')).toBeUndefined();
-    expect(node.querySelector('.inspection-strip')?.textContent).not.toContain('Orbital detail');
-    expect(node.querySelector('.inspection-strip summary,.inspection-strip details,.inspection-strip [tabindex],.inspection-strip [aria-expanded]')).toBeNull();
+    expect(node.querySelector('.position-status-bar')?.textContent).not.toContain('Orbital detail');
+    expect(node.querySelector('.position-status-bar summary,.position-status-bar details,.position-status-bar [tabindex],.position-status-bar [aria-expanded]')).toBeNull();
     expect(node.querySelector('[aria-controls="orbital-status-evidence"]')).toBeNull();
-    for (const element of node.querySelectorAll('.inspection-strip,.inspection-strip [aria-controls],.inspection-strip [aria-describedby],.inspection-strip [aria-labelledby]')) {
+    for (const element of node.querySelectorAll('.position-status-bar,.position-status-bar [aria-controls],.position-status-bar [aria-describedby],.position-status-bar [aria-labelledby]')) {
       for (const name of ['aria-controls', 'aria-describedby', 'aria-labelledby']) {
         for (const id of element.getAttribute(name)?.split(/\s+/) ?? []) expect(document.getElementById(id)).not.toBeNull();
       }
     }
   }
   await mode('EARTH_OVERVIEW');
-  if (context === 'Current') expect(node.querySelector('.source-state-slot summary')?.getAttribute('aria-controls')).toBe('orbital-status-evidence');
+  expect(node.querySelector('.source-state-slot,[aria-controls="orbital-status-evidence"],#orbital-status-evidence')).toBeNull();
 });
 it('module close reconciles the authoritative renderer prop without leaving Inspection or changing source/time', async () => {
   await enter(); const module = ISS_MODEL.semanticMappings[5], time = shown(), source = scene.props.selectedSource;
   const requests = [scene.props.inspectionRequest, scene.props.overviewRequest], window = scene.props.window;
   await act(async () => scene.props.onModuleSelection(module)); await click('Close module information');
-  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.inspection-over strong')?.textContent).toBe('—');
+  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.position-over dd')?.textContent).toBe('—');
   expect(node.querySelector('.module-dock')?.hasAttribute('inert')).toBe(true);
   expect(scene.props.selectedSource).toBe(source); expect(scene.props.window).toBe(window); expect(shown()).toBe(time);
   expect([scene.props.inspectionRequest, scene.props.overviewRequest]).toEqual(requests);
@@ -253,9 +272,14 @@ it.each(['GP_TLE', 'NASA_OEM'] as const)('uses accepted Historical %s physical f
     if (!histories.has(at)) histories.set(at, historicalPayload(at, kind));
     return { data: enabled ? histories.get(at) : null, loading: false, error: null, coverage: null };
   });
-  await click('Historical'); await enter();
+  await click('Historical');
+  const earthBar = node.querySelector('.position-status-bar');
+  const earthValues = [...node.querySelectorAll('.position-status-bar dd')].map(e => e.textContent);
+  await enter();
+  expect(node.querySelector('.position-status-bar')).toBe(earthBar);
+  expect([...node.querySelectorAll('.position-status-bar dd')].map(e => e.textContent)).toEqual(earthValues);
   const state = scene.props.replay.state;
-  const values = () => [...node.querySelectorAll('.inspection-strip dd')].map(e => e.textContent);
+  const values = () => [...node.querySelectorAll('.position-status-bar .summary-position dd')].map(e => e.textContent);
   const expected = [
     `${Math.abs(state.latitudeDegrees).toFixed(3)}° ${state.latitudeDegrees < 0 ? 'S' : 'N'}`,
     `${Math.abs(state.longitudeDegrees).toFixed(3)}° ${state.longitudeDegrees < 0 ? 'W' : 'E'}`,
@@ -271,7 +295,7 @@ it.each(['GP_TLE', 'NASA_OEM'] as const)('uses accepted Historical %s physical f
 });
 it('Current readouts follow renderer physical callbacks and reject an old instant or expired buffer', async () => {
   await enter();
-  const values = () => [...node.querySelectorAll('.inspection-strip dd')].map(e => e.textContent);
+  const values = () => [...node.querySelectorAll('.position-status-bar .summary-position dd')].map(e => e.textContent);
   await act(async () => scene.props.onSceneTime(scene.delivery.window.generatedMs + 1000));
   expect(values()).toEqual(Array(3).fill('Unavailable'));
   const physical = { source: 'PRIMARY_GP_TLE', timeMs: scene.delivery.window.generatedMs, ...scene.delivery.window.response.currentGeodetic };
@@ -294,10 +318,10 @@ it.each(['delivery', 'scene', 'expired', 'source fallback'])('preserves legitima
 });
 it('dissolves only presentation surfaces for 280ms and leaves the Viewer/canvas outside animation targets', async () => {
   await mode('ENTERING_INSPECTION'); const entry = scene.animations.at(-1)!;
-  expect(entry.element.className).toBe('inspection-strip'); expect(entry.options).toEqual({ duration: 280, easing: 'cubic-bezier(0.42,0,0.58,1)' });
+  expect(entry.element.className).toBe('position-status-bar'); expect(entry.options).toEqual({ duration: 280, easing: 'cubic-bezier(0.42,0,0.58,1)' });
   expect(entry.keys).toEqual({ opacity: [0, 1] });
   await mode('EARTH_OVERVIEW'); expect(entry.cancel).toHaveBeenCalledOnce();
-  expect(scene.animations.at(-1)?.element.className).toBe('operational-summary');
+  expect(scene.animations.at(-1)?.element.className).toBe('position-status-bar');
   expect(scene.animations.every(a => !a.element.matches('.earth-view,canvas,.top-context-bar'))).toBe(true);
 });
 it('uses <=120ms opacity-only presentation under reduced motion', async () => {
@@ -342,7 +366,7 @@ it('Module Selected → Crew clears the authoritative selection before Earth ret
   expect(node.querySelector('.crew-workspace')).not.toBeNull();
   await mode('EXITING_INSPECTION'); await mode('EARTH_OVERVIEW'); await click('Close crew panel');
   await act(async () => vi.advanceTimersByTimeAsync(240)); await enter();
-  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.inspection-over strong')?.textContent).toBe('—');
+  expect(scene.props.moduleSelection).toBeNull(); expect(node.querySelector('.position-over dd')?.textContent).toBe('—');
 });
 it('Crew can interrupt approach through the same return bridge', async () => {
   await click('ISS Inspection'); await mode('ENTERING_INSPECTION'); await click('Crew');
@@ -434,7 +458,7 @@ it('native ISS entry closes the active Crew workspace without replacing the exis
   await click('Crew'); await mode('ENTERING_INSPECTION');
   expect(node.querySelector('main')?.classList.contains('has-crew-panel')).toBe(false);
   expect(node.querySelector('.crew-workspace-host')?.hasAttribute('inert')).toBe(true);
-  expect(node.querySelector('.inspection-strip')).not.toBeNull();
+  expect(node.querySelector('.position-status-bar')).not.toBeNull();
   expect(scene.props.inspectionRequest).toBe(0); expect(scene.props.overviewRequest).toBe(0);
   await act(async () => vi.advanceTimersByTimeAsync(240)); expect(node.querySelector('.crew-panel')).toBeNull();
   expect(scene.mounts).toBe(1);

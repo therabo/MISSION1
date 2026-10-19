@@ -62,36 +62,10 @@ button { font: inherit; }
 .earth-view .cesium-viewer, .earth-view .cesium-widget { width: 100%; height: 100%; }
 .earth-view .cesium-widget-credits { right: 12px; left: auto; bottom: 8px; font-size: 10px; }
 .brand-wordmark { display: block; flex: none; }
-.eyebrow, .mini-label { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
-.panel-head h1 { margin: 8px 0 2px; font-size: 27px; font-weight: 620; letter-spacing: -.045em; }
-.panel-head p { margin: 0; color: #acc7cd; font-size: 12px; }
-.time-card { display: flex; flex-direction: column; gap: 5px; margin-top: 23px; padding: 15px; border: 1px solid rgba(102, 225, 217, .24); border-radius: 9px; background: linear-gradient(135deg, rgba(20, 69, 76, .57), rgba(10, 36, 51, .68)); }
-.time-card strong { font-size: 16px; font-weight: 610; font-variant-numeric: tabular-nums; }
-.time-card > span:last-child { color: var(--muted); font-size: 10px; }
-.notice { display: flex; flex-direction: column; gap: 5px; margin-top: 15px; padding: 11px 12px; border: 1px solid rgba(255, 193, 123, .38); border-radius: 8px; background: rgba(119, 73, 30, .21); color: #ffdab3; font-size: 11px; line-height: 1.45; }
-.notice-title { color: #ffcf94; font-weight: 750; text-transform: uppercase; letter-spacing: .09em; }
-.panel-section { margin-top: 22px; }
-.section-title { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-.section-title h2 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .025em; }
-.section-title span { color: #82a6ae; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
-.section-note { margin: 9px 0 6px; color: var(--muted); font-size: 11px; }
+.eyebrow { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
 dl { margin: 8px 0 0; }
-.data-line { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 12px; line-height: 1.4; }
-.data-line dt { flex: 0 0 105px; color: var(--muted); }
-.data-line dd { min-width: 0; margin: 0; text-align: right; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
-.status-value { font-weight: 760; letter-spacing: .045em; }
-.status-value.good { color: var(--good); }
-.status-value.warning { color: var(--warning); }
-.status-value.muted { color: #c4d4d9; }
-.provenance .data-line { font-size: 11px; }
-.provenance-note { margin: 22px 0 0; padding-top: 13px; border-top: 1px solid var(--border); color: #a6c0c7; font-size: 11px; line-height: 1.55; }
-.model-note { margin: 20px 0 0; color: #a6c0c7; font-size: 11px; line-height: 1.55; }
-.model-note a, .provenance-note a { color: #a9ebe7; text-decoration: underline; text-underline-offset: 2px; }
 .module-caveat { margin: 8px 0; color: #a9c5ca; font-size: 11px; line-height: 1.4; }
 @media (max-width: 720px) {
-  .panel-head h1 { font-size: 20px; }
-  .time-card { margin-top: 13px; }
-  .panel-section { margin-top: 15px; }
   .earth-view .cesium-widget-credits { bottom: 5px; right: 9px; }
 }
 
@@ -151,8 +125,10 @@ dl { margin: 8px 0 0; }
 .context-button:hover:not(:disabled) { background: var(--control-hover); }
 .context-button:active:not(:disabled) { opacity: .94; }
 .context-button[aria-pressed="true"] { background: var(--control-selected); border-color: var(--color-interaction); color: var(--color-interaction); font-weight: 700; transition: none; }
-.context-button:focus-visible, .context-source select:focus-visible, .orbital-status-disclosure > summary:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
+.context-button:focus-visible, .context-source select:focus-visible { outline: 2px solid var(--color-interaction); outline-offset: 3px; }
 .context-button:disabled { opacity: .5; cursor: not-allowed; }
+.inspection-ui .context-button[aria-pressed="true"]:disabled { opacity: 1; cursor: default; }
+.inspection-ui .context-source-control:has(select:disabled) .context-source-value { opacity: 1; }
 .context-action-icon, .historical-timestamp-compact { display: none; }
 .top-context-bar .context-action { gap: 6px; padding: 0; }
 .top-context-bar .context-action-icon { display: inline-flex; }
@@ -178,7 +154,6 @@ dl { margin: 8px 0 0; }
 .earth-current { height: 100dvh; min-height: 0; background: var(--color-background); color: var(--color-text-primary); font-family: var(--font-interface); font-optical-sizing: none; }
 .earth-current-ui { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-areas: "context" "scene" "operations"; grid-template-rows: auto minmax(0, 1fr) minmax(var(--operational-height), max-content); pointer-events: none; }
 .earth-current-ui > .top-context-bar { grid-area: context; pointer-events: auto; }
-.earth-current-ui > .operational-summary { grid-area: operations; pointer-events: auto; }
 .earth-scene-ui { grid-area: scene; position: relative; min-height: 0; pointer-events: none; }
 .earth-scene-ui > * { pointer-events: auto; }
 .top-context-bar { position: relative; z-index: 4; height: var(--context-height); display: flex; align-items: center; padding: 14px var(--space-primary); background: var(--surface-context); }
@@ -213,30 +188,6 @@ dl { margin: 8px 0 0; }
 .context-divider-crew { margin-right: 55px; }
 .context-crew { position: relative; width: 96px; padding: 0 24px 0 16px; }
 .crew-entry-chevron { position: absolute; right: 13.25px; top: 50%; transform: translateY(-50%); }
-.operational-summary { position: relative; z-index: 3; min-height: var(--operational-height); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; align-items: center; padding: 12px 24px; background: var(--surface-operational); text-align: center; }
-.summary-identity { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
-.summary-identity strong { font-size: 14px; line-height: 17px; font-weight: 700; }
-.summary-position { display: contents; margin: 0; }
-.summary-position > div { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; }
-.summary-position dt { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
-.summary-position dd.measurement-unavailable { font-family: var(--font-interface); font-size: 14px; }
-.source-state-slot { min-width: 0; min-height: 38px; }
-.summary-position dd { margin: 0; font: 400 16px/21px var(--font-numeric); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.orbital-status-disclosure > summary { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 38px; list-style: none; cursor: pointer; }
-.orbital-status-disclosure > summary::-webkit-details-marker { display: none; }
-.orbital-status-disclosure > summary > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
-.orbital-status-disclosure > summary:hover > span { text-decoration: underline; text-underline-offset: 3px; }
-.summary-quality { font-size: 14px; line-height: 17px; font-weight: 400; }
-.summary-quality.good { color: var(--color-success); }
-.summary-quality.warning { color: var(--color-warning); }
-.summary-quality.unknown { color: var(--color-text-secondary); }
-.summary-identity, .source-state-content, .orbital-status-disclosure > summary { overflow-wrap: anywhere; }
-.source-state-content { min-height: 38px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
-.source-state-content > span { color: var(--color-text-secondary); font-size: 12px; line-height: 15px; }
-.orbital-status-evidence { grid-area: scene; align-self: end; justify-self: end; position: relative; z-index: 5; display: none; width: min(420px, calc(100% - 48px)); max-height: calc(100% - 24px); margin: 12px 24px; overflow-y: auto; pointer-events: auto; padding: 24px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); text-align: left; }
-.earth-current-ui:has(.source-state-slot[open]) > .orbital-status-evidence { display: block; }
-.orbital-status-evidence .time-card { background: transparent; }
-.orbital-status-evidence .panel-head h1 { font-size: 18px; }
 .earth-current-notice { grid-area: scene; align-self: start; justify-self: start; position: relative; z-index: 4; max-width: calc(100% - 48px); max-height: max(48px, calc(100% - 112px)); overflow-y: auto; margin: 12px 24px; padding: 10px 14px; border: 1px solid var(--border-overlay); border-radius: var(--radius-surface); background: var(--surface-calendar); color: var(--color-warning); font-size: 13px; line-height: 19px; overflow-wrap: anywhere; }
 .trajectory-legend { position: absolute; bottom: 28px; left: 24px; z-index: 2; height: 28px; display: flex; align-items: center; gap: 28px; color: var(--color-text-secondary); font-size: 13px; line-height: 16px; }
 /* Local contrast protection: measured bare legend fell to 3:1 over Earth.
@@ -293,7 +244,6 @@ dl { margin: 8px 0 0; }
   .context-divider { display: none; }
   .top-context-bar .context-button, .earth-scene-controls .context-button, .context-source-control, .context-source select { height: 44px; }
   .earth-scene-controls { right: 16px; }
-  .source-state-slot, .source-state-content, .orbital-status-disclosure > summary { min-height: 50px; }
   .historical-time-bar { height: 60px; margin-top: 16px; }
   .historical-time-bar button { height: 44px; }
   .historical-calendar-trigger { width: 44px; }
@@ -335,12 +285,6 @@ dl { margin: 8px 0 0; }
      Inert/aria-hidden also remove the detached bar from interaction and speech. */
   .historical-time-bar[data-disclosure="CALENDAR_OPEN"] { visibility: hidden; pointer-events: none; }
   .earth-current { --operational-height: 120px; }
-  .operational-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "identity status status" "latitude longitude altitude"; gap: 8px 4px; padding: 12px; }
-  .summary-identity { grid-area: identity; }
-  .source-state-slot { grid-area: status; }
-  .summary-latitude { grid-area: latitude; }
-  .summary-longitude { grid-area: longitude; }
-  .summary-altitude { grid-area: altitude; }
 }
 @media (max-width: 600px) {
   .top-context-bar { grid-template-columns: 116px minmax(96px, 1fr) 44px; grid-template-areas: "identity spatial spatial" "source temporal crew" "date date date"; gap: 8px 12px; padding: 12px; }
@@ -352,7 +296,6 @@ dl { margin: 8px 0 0; }
   .earth-scene-controls { right: 12px; }
   .earth-current .cesium-viewer-bottom { left: 12px !important; }
   .earth-current-notice { margin: 8px 12px; max-width: calc(100% - 24px); }
-  .orbital-status-evidence { width: calc(100% - 24px); margin: 12px; }
   .historical-time-bar { width: calc(100% - 24px); margin-top: 12px; }
 }
 @media (max-width: 379px) {

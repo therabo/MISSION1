@@ -1,40 +1,23 @@
 # ISS Inspection Mode
 
-## Physical position status strip — 2026-10-19
+## Shared Earth / Inspection position bar — 2026-10-19
 
-The bottom strip contains five informational groups, in order: **ISS / Inspection**
-(with Spatial investigation), **Over / —**, **Latitude**, **Longitude**, **Altitude**.
-Desktop uses five balanced columns; at 740px and below, identity/Over occupy the
-first row and the three position readings share the second. Labels and values use
-the existing muted/primary typography and graphite surface; none is a control.
+Both modes now use exactly **Latitude | Longitude | Altitude | Over** through one
+persistent `PositionStatusBar`: four equal desktop columns and a 2×2 mobile grid.
+The previous five-field Inspection strip and Earth summary are superseded. The
+ISS / Inspection / Spatial investigation and ISS / WGS84 identity blocks and the
+General Perturbations quality status/disclosure/card are removed completely.
+WGS84 scientific semantics and GP/TLE quality, validation, source-health and
+provenance state remain internally; only their dedicated presentation is removed.
 
-The Orbital detail button, dedicated Inspection Orbital Details panel, header X,
-native disclosure, focus-restoration helper and panel-only CSS are removed from
-the rendered UI and source. The 2026-10-16 disclosure presentation is superseded.
-Earth's source/quality evidence, scientific state and operational warnings remain.
+The unchanged PositionReadouts guard/formatter consumes existing Current physical
+samples or the coherent Historical state at selected UTC/source. No display lift
+or camera coordinate is used. Over remains a static — without geographic logic.
+Delivery/scene/buffer/fallback and Historical failure notices remain separate;
+Inspection interaction guidance, model/module behavior and cameras are preserved.
 
-`PositionReadouts` shares the exact accepted Earth-summary formatting and physical
-sample guard with Inspection: three decimal degrees with N/S/E/W, altitude to one
-decimal km. Current uses App's existing EarthView `onPosition` sample and scene UTC;
-Historical uses `coherentHistoricalState` at the accepted Historical UTC, with its
-own source. Missing, expired, mismatched or non-finite samples show Unavailable.
-The camera and the 75km Overview display lift never supply these readings.
-
-The NASA VTAD / Reference geometry status item is removed only from the strip.
-NASA VTAD remains the accepted [ISS reference model](iss-model.md); its GLB,
-manifest, rendering and project attribution are unchanged. Direct semantic module
-picking, selection switching, highlighting, ModuleInfo and close/focus behavior
-remain owned by EarthView → App → ModuleInfo.
-
-**Over remains a static, non-functional placeholder.** It has no geographic lookup,
-classification, dataset, network request, timer or state. The new position fields
-reuse existing application updates; no new requests, polling, timers or per-frame
-UI computation are introduced. Camera formulas, transitions, Earth envelope,
-clouds/sky, Current/Historical semantics and backend are unchanged. This local UI
-cleanup needs no new architectural decision or ADR.
-
-QA and before/after evidence remain outside Git at
-`/Users/daniel/.codex/exports/mission1-inspection-position-bar-2026-10-19/`.
+[Full shared-bar contract](position-status-bar.md). Evidence remains outside Git:
+`/Users/daniel/.codex/exports/mission1-unified-bottom-bar-2026-10-19/`.
 
 ## Earth Reset path correction; Inspection restoration — 2026-10-13
 
@@ -215,7 +198,7 @@ The strict-speed candidate was inspected and reproduced before modification. Con
 
 ## Elevated Inspection and rendering stability — 2026-10-01
 
-The current canonical desktop camera uses a **90 m slant range**, **42.5° rear elevation**, zero lateral offset and **100° FOV**. Its trajectory-frame offset is calculated as `(-90 cos(42.5°), 0, 90 sin(42.5°))`, approximately **(−66.354960, 0, 60.803119) m**. Scale remains 1 and Overview minimumPixelSize remains 80. Narrow aspect ratios widen the range by `max(1, 1.2/aspect)` while retaining elevation. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth source/quality evidence remains available after return.
+The current canonical desktop camera uses a **90 m slant range**, **42.5° rear elevation**, zero lateral offset and **100° FOV**. Its trajectory-frame offset is calculated as `(-90 cos(42.5°), 0, 90 sin(42.5°))`, approximately **(−66.354960, 0, 60.803119) m**. Scale remains 1 and Overview minimumPixelSize remains 80. Narrow aspect ratios widen the range by `max(1, 1.2/aspect)` while retaining elevation. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth and Inspection share the four-field physical position bar; dedicated quality evidence UI is removed while scientific state remains.
 
 Entry takes **6 seconds**, return **5 seconds**. The inspected strict Cartesian-speed candidate was rejected because almost all close-up growth occurred in its final frame. Its cubic geometry, 8192-segment arc-length measurement and displayed-target correction remain. Timing now inverts a normalized hybrid metric: **20% log lens distance + 60% inverse lens distance/apparent scale + 20% viewing-direction travel**. Lens distance is displayed-target range times `tan(FOV/2)`. A 1024-interval monotone C1 Hermite inverse is built once; a C2 clock has 10% start/stop rate ramps and a uniform central 80%. No scene projection or table construction runs per frame. Physical speed intentionally varies. FOV completes its change during far travel and remains 100° in the close view. Lift/silhouette follow the same path range (100–1,000 km), with camera aim following the actual displayed target. Partial Back starts at the current actual pose and retains incoming world velocity, quaternion and FOV derivatives over a range-bounded interval of at most 0.4 seconds. Earth world pose, FOV, near/far, transform and controller state restore exactly. OEM unavailability immediately selects physical GP; a shared camera/model display translation settles over 0.8 seconds during return, never changing samples, readouts, velocity or trajectories. The stable Inspection pivot remains physical. [Perceptual traces, actual raster footprints, reversals and separate performance comparison](camera-transition-perfecting-review/perceptual/README.md).
 

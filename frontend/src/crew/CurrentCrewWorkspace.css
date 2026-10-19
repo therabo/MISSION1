@@ -56,7 +56,7 @@
 .crew-historical-evidence { overflow-wrap: anywhere; }
 .crew-workspace.crew-historical .crew-roster-columns { height: 36px; padding-top: 12px; }
 .crew-panel.crew-workspace.crew-historical { --crew-row-min-height: 65.55556px; }
-.earth-current.has-crew-panel .earth-scene-ui, .earth-current.has-crew-panel .operational-summary, .earth-current.has-crew-panel .historical-time-bar, .earth-current.has-crew-panel .orbital-status-evidence { visibility: hidden; pointer-events: none; }
+.earth-current.has-crew-panel .earth-scene-ui, .earth-current.has-crew-panel .position-status-bar, .earth-current.has-crew-panel .historical-time-bar { visibility: hidden; pointer-events: none; }
 .earth-current.has-crew-panel .cesium-viewer-bottom { bottom: 2px !important; }
 @media (max-width: 1399px) {
   .crew-workspace .crew-roster-summary { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(240px, 1.5fr); gap: 16px; }
