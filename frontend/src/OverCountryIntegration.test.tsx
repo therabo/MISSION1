@@ -15,6 +15,8 @@ import { fixture } from './test/comparisonFixture';
 const h = vi.hoisted(() => ({ props: {} as any, delivery: {} as any, comparison: {} as any,
   data: null as any, requestedAt: '', load: vi.fn(), mounts: 0 }));
 vi.mock('./geo/countryCatalog', () => ({ loadCountryCatalog: () => h.load() }));
+// Isolate the frozen country contract; the companion fallback has its own integration suite.
+vi.mock('./geo/marineCatalog', () => ({ loadMarineCatalog: () => Promise.reject(new Error('TEST marine unavailable')) }));
 vi.mock('./layout/useEarthWorkspace', () => ({ useEarthWorkspace: () => null }));
 vi.mock('./api/useOrbitalDelivery', () => ({ useOrbitalDelivery: () => h.delivery }));
 vi.mock('./api/useComparisonDelivery', () => ({ useComparisonDelivery: () => h.comparison }));

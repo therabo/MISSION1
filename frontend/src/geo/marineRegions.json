@@ -1,0 +1,82 @@
+{
+  "arctic": {
+    "id": "arctic",
+    "displayName": "Arctic Ocean",
+    "priority": 100
+  },
+  "southern": {
+    "id": "southern",
+    "displayName": "Southern Ocean",
+    "priority": 100
+  },
+  "atlantic": {
+    "id": "atlantic",
+    "displayName": "Atlantic Ocean",
+    "priority": 100
+  },
+  "pacific": {
+    "id": "pacific",
+    "displayName": "Pacific Ocean",
+    "priority": 100
+  },
+  "indian": {
+    "id": "indian",
+    "displayName": "Indian Ocean",
+    "priority": 100
+  },
+  "mediterranean": {
+    "id": "mediterranean",
+    "displayName": "Mediterranean Sea",
+    "priority": 200
+  },
+  "caribbean": {
+    "id": "caribbean",
+    "displayName": "Caribbean Sea",
+    "priority": 200
+  },
+  "gulf-of-mexico": {
+    "id": "gulf-of-mexico",
+    "displayName": "Gulf of Mexico",
+    "priority": 200
+  },
+  "arabian": {
+    "id": "arabian",
+    "displayName": "Arabian Sea",
+    "priority": 200
+  },
+  "red-sea": {
+    "id": "red-sea",
+    "displayName": "Red Sea",
+    "priority": 200
+  },
+  "black-sea": {
+    "id": "black-sea",
+    "displayName": "Black Sea",
+    "priority": 200
+  },
+  "bay-of-bengal": {
+    "id": "bay-of-bengal",
+    "displayName": "Bay of Bengal",
+    "priority": 200
+  },
+  "south-china-sea": {
+    "id": "south-china-sea",
+    "displayName": "South China Sea",
+    "priority": 200
+  },
+  "sea-of-japan": {
+    "id": "sea-of-japan",
+    "displayName": "Sea of Japan",
+    "priority": 200
+  },
+  "persian-gulf": {
+    "id": "persian-gulf",
+    "displayName": "Persian Gulf",
+    "priority": 200
+  },
+  "caspian-sea": {
+    "id": "caspian-sea",
+    "displayName": "Caspian Sea",
+    "priority": 200
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "policy": "ne10m-5.1.0-macro-v1",
+  "quantization": 100000,
+  "file": "marine-ne10m-5.1.0-d47dce464acf.delta.json",
+  "sha256": "d47dce464acf345710ef9d0ab3aab753e2beddf6cc62f97c3624de1184766645",
+  "bytes": 681127,
+  "gzip9Bytes": 272107,
+  "identityCount": 16,
+  "selectedFeatureCount": 297,
+  "polygonCount": 336,
+  "vertexCount": 58203,
+  "coordinateBufferBytes": 465624
+}

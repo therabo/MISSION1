@@ -1,0 +1,1614 @@
+{
+  "schema": 1,
+  "policy": "ne10m-5.1.0-macro-v1",
+  "quantization": 100000,
+  "regions": [
+    {
+      "id": "arctic",
+      "displayName": "Arctic Ocean",
+      "priority": 100
+    },
+    {
+      "id": "southern",
+      "displayName": "Southern Ocean",
+      "priority": 100
+    },
+    {
+      "id": "atlantic",
+      "displayName": "Atlantic Ocean",
+      "priority": 100
+    },
+    {
+      "id": "pacific",
+      "displayName": "Pacific Ocean",
+      "priority": 100
+    },
+    {
+      "id": "indian",
+      "displayName": "Indian Ocean",
+      "priority": 100
+    },
+    {
+      "id": "mediterranean",
+      "displayName": "Mediterranean Sea",
+      "priority": 200
+    },
+    {
+      "id": "caribbean",
+      "displayName": "Caribbean Sea",
+      "priority": 200
+    },
+    {
+      "id": "gulf-of-mexico",
+      "displayName": "Gulf of Mexico",
+      "priority": 200
+    },
+    {
+      "id": "arabian",
+      "displayName": "Arabian Sea",
+      "priority": 200
+    },
+    {
+      "id": "red-sea",
+      "displayName": "Red Sea",
+      "priority": 200
+    },
+    {
+      "id": "black-sea",
+      "displayName": "Black Sea",
+      "priority": 200
+    },
+    {
+      "id": "bay-of-bengal",
+      "displayName": "Bay of Bengal",
+      "priority": 200
+    },
+    {
+      "id": "south-china-sea",
+      "displayName": "South China Sea",
+      "priority": 200
+    },
+    {
+      "id": "sea-of-japan",
+      "displayName": "Sea of Japan",
+      "priority": 200
+    },
+    {
+      "id": "persian-gulf",
+      "displayName": "Persian Gulf",
+      "priority": 200
+    },
+    {
+      "id": "caspian-sea",
+      "displayName": "Caspian Sea",
+      "priority": 200
+    }
+  ],
+  "mapping": [
+    {
+      "ne_id": 1159115017,
+      "expectedName": "Arctic Ocean",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159115037,
+      "expectedName": "SOUTHERN OCEAN",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159115057,
+      "expectedName": "North Atlantic Ocean",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115079,
+      "expectedName": "North Pacific Ocean",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115099,
+      "expectedName": "South Pacific Ocean",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115123,
+      "expectedName": "INDIAN OCEAN",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159115149,
+      "expectedName": "South Atlantic Ocean",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115171,
+      "expectedName": "Black Sea",
+      "macroRegionId": "black-sea"
+    },
+    {
+      "ne_id": 1159115197,
+      "expectedName": "Philippine Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117285,
+      "expectedName": "Great Barrier Reef",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115233,
+      "expectedName": "Tasman Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115253,
+      "expectedName": "Bay of Bengal",
+      "macroRegionId": "bay-of-bengal"
+    },
+    {
+      "ne_id": 1159115273,
+      "expectedName": "South China Sea",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159115343,
+      "expectedName": "Arabian Sea",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159115359,
+      "expectedName": "Beaufort Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159115379,
+      "expectedName": "Caribbean Sea",
+      "macroRegionId": "caribbean"
+    },
+    {
+      "ne_id": 1159115399,
+      "expectedName": "Gulf of Mexico",
+      "macroRegionId": "gulf-of-mexico"
+    },
+    {
+      "ne_id": 1159115419,
+      "expectedName": "Labrador Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115441,
+      "expectedName": "Hudson Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115461,
+      "expectedName": "Caspian Sea",
+      "macroRegionId": "caspian-sea"
+    },
+    {
+      "ne_id": 1159115483,
+      "expectedName": "Baffin Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159115503,
+      "expectedName": "Gulf of Alaska",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115521,
+      "expectedName": "Red Sea",
+      "macroRegionId": "red-sea"
+    },
+    {
+      "ne_id": 1159115541,
+      "expectedName": "Sea of Okhotsk",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115579,
+      "expectedName": "Weddell Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159115597,
+      "expectedName": "Persian Gulf",
+      "macroRegionId": "persian-gulf"
+    },
+    {
+      "ne_id": 1159115635,
+      "expectedName": "Celebes Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115655,
+      "expectedName": "Sulu Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115675,
+      "expectedName": "Norwegian Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115695,
+      "expectedName": "Greenland Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115717,
+      "expectedName": "Banda Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115729,
+      "expectedName": "Luzon Strait",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159115749,
+      "expectedName": "Bay of Biscay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115771,
+      "expectedName": "Mozambique Channel",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159115791,
+      "expectedName": "Gulf of Guinea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115811,
+      "expectedName": "Scotia Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159115831,
+      "expectedName": "Baltic Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115861,
+      "expectedName": "Barents Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159115879,
+      "expectedName": "North Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115891,
+      "expectedName": "Bristol Channel",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115921,
+      "expectedName": "Inner Seas",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115935,
+      "expectedName": "Irish Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159115959,
+      "expectedName": "Java Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115987,
+      "expectedName": "Andaman Sea",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159115999,
+      "expectedName": "Yellow Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116027,
+      "expectedName": "East China Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116037,
+      "expectedName": "Chukchi Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159116059,
+      "expectedName": "Bahía de Campeche",
+      "macroRegionId": "gulf-of-mexico"
+    },
+    {
+      "ne_id": 1159116081,
+      "expectedName": "Arafura Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116101,
+      "expectedName": "Timor Sea",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159116123,
+      "expectedName": "Gulf of Thailand",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159116143,
+      "expectedName": "Laccadive Sea",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159116169,
+      "expectedName": "Bellingshausen Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159116181,
+      "expectedName": "Amundsen Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159116205,
+      "expectedName": "Davis Strait",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116231,
+      "expectedName": "Kara Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159116253,
+      "expectedName": "Laptev Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159116269,
+      "expectedName": "Drake Passage",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159116315,
+      "expectedName": "Great Australian Bight",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159116333,
+      "expectedName": "Gulf of Aden",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159116359,
+      "expectedName": "Gulf of Oman",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159116377,
+      "expectedName": "Tyrrhenian Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159116395,
+      "expectedName": "White Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159116409,
+      "expectedName": "Sea of Azov",
+      "macroRegionId": "black-sea"
+    },
+    {
+      "ne_id": 1159116431,
+      "expectedName": "James Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116451,
+      "expectedName": "Gulf of Carpentaria",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116479,
+      "expectedName": "Golfo de California",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116501,
+      "expectedName": "Hudson Strait",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116517,
+      "expectedName": "Gulf of Finland",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116535,
+      "expectedName": "English Channel",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116553,
+      "expectedName": "Gulf of Honduras",
+      "macroRegionId": "caribbean"
+    },
+    {
+      "ne_id": 1159116571,
+      "expectedName": "Golfe du Lion",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159116589,
+      "expectedName": "Gulf of Bothnia",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116607,
+      "expectedName": "Adriatic Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159116625,
+      "expectedName": "Straits of Florida",
+      "macroRegionId": "gulf-of-mexico"
+    },
+    {
+      "ne_id": 1159116643,
+      "expectedName": "Bay of Plenty",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116661,
+      "expectedName": "The North Western Passages",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159116679,
+      "expectedName": "Queen Charlotte Sound",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116697,
+      "expectedName": "Ionian Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159116715,
+      "expectedName": "Gulf of Saint Lawrence",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116731,
+      "expectedName": "Molucca Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116735,
+      "expectedName": "Bismarck Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116767,
+      "expectedName": "Solomon Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116787,
+      "expectedName": "Gulf of Tonkin",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159116797,
+      "expectedName": "Bay of Fundy",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116815,
+      "expectedName": "Río de la Plata",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159116835,
+      "expectedName": "Strait of Malacca",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159116861,
+      "expectedName": "Strait of Singapore",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159116881,
+      "expectedName": "Makassar Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116897,
+      "expectedName": "Ceram Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116927,
+      "expectedName": "Inner Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116947,
+      "expectedName": "Taiwan Strait",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159116967,
+      "expectedName": "Cook Inlet",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116991,
+      "expectedName": "Bristol Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159116999,
+      "expectedName": "Melville Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117021,
+      "expectedName": "Gulf of Maine",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117043,
+      "expectedName": "Chesapeake Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117067,
+      "expectedName": "Strait of Gibraltar",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159117077,
+      "expectedName": "Golfo San Jorge",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117105,
+      "expectedName": "Balearic Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159117123,
+      "expectedName": "Aegean Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159117135,
+      "expectedName": "Gulf of Mannar",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159117159,
+      "expectedName": "Shelikhova Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117171,
+      "expectedName": "Bo Hai",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117185,
+      "expectedName": "Gulf of Kutch",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159117203,
+      "expectedName": "Golfo de Panamá",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117223,
+      "expectedName": "Amundsen Gulf",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117247,
+      "expectedName": "Viscount Melville Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117265,
+      "expectedName": "Ungava Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117301,
+      "expectedName": "Yucatan Channel",
+      "macroRegionId": "caribbean"
+    },
+    {
+      "ne_id": 1159117319,
+      "expectedName": "Bering Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117337,
+      "expectedName": "East Siberian Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117355,
+      "expectedName": "Lincoln Sea",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117373,
+      "expectedName": "Bass Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117391,
+      "expectedName": "Franklin Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117409,
+      "expectedName": "Dixon Entrance",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117427,
+      "expectedName": "M'Clure Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117445,
+      "expectedName": "Boca Grande",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117463,
+      "expectedName": "Baía de Marajó",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117475,
+      "expectedName": "Golfo San Matías",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117489,
+      "expectedName": "Golfo Corcovado",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117505,
+      "expectedName": "Wrigley Gulf",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159117531,
+      "expectedName": "Sulzberger Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159117543,
+      "expectedName": "Ronne Entrance",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159117561,
+      "expectedName": "Bransfield Strait",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159117579,
+      "expectedName": "McMurdo Sound",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159117597,
+      "expectedName": "Baía de São Marcos",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117615,
+      "expectedName": "Cumberland Sound",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117633,
+      "expectedName": "Frobisher Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117651,
+      "expectedName": "Disko Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117665,
+      "expectedName": "Hamilton Inlet",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117683,
+      "expectedName": "Storfjorden",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117697,
+      "expectedName": "Vestfjorden",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117723,
+      "expectedName": "Skagerrak",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117755,
+      "expectedName": "Karskiye Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117771,
+      "expectedName": "Vil'kitskogo Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159117781,
+      "expectedName": "Sognefjorden",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117797,
+      "expectedName": "Trondheimsfjorden",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117819,
+      "expectedName": "Kattegat",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159117827,
+      "expectedName": "Gulf of Khambhät",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159117845,
+      "expectedName": "Palk Strait",
+      "macroRegionId": "bay-of-bengal"
+    },
+    {
+      "ne_id": 1159117867,
+      "expectedName": "Kronotskiy Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117883,
+      "expectedName": "Uda Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117901,
+      "expectedName": "Uchiura Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117919,
+      "expectedName": "Tsugaru Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117937,
+      "expectedName": "Tatar Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159117955,
+      "expectedName": "Shark Bay",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159117973,
+      "expectedName": "Gulf of Gabès",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159117989,
+      "expectedName": "Mackenzie Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118005,
+      "expectedName": "Norton Sound",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118029,
+      "expectedName": "Kotzebue Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118085,
+      "expectedName": "Gulf of Boothia",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118099,
+      "expectedName": "Kane Basin",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118111,
+      "expectedName": "Foxe Basin",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118133,
+      "expectedName": "Golfo de Tehuantepec",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118151,
+      "expectedName": "Golfo de Guayaquil",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118175,
+      "expectedName": "Gulf of Masira",
+      "macroRegionId": "arabian"
+    },
+    {
+      "ne_id": 1159118193,
+      "expectedName": "Gulf of Yana",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118213,
+      "expectedName": "Dmitriy Laptev Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118231,
+      "expectedName": "La Pérouse Strait",
+      "macroRegionId": "sea-of-japan"
+    },
+    {
+      "ne_id": 1159118247,
+      "expectedName": "East Korea Bay",
+      "macroRegionId": "sea-of-japan"
+    },
+    {
+      "ne_id": 1159118261,
+      "expectedName": "Qiongzhou Strait",
+      "macroRegionId": "south-china-sea"
+    },
+    {
+      "ne_id": 1159118281,
+      "expectedName": "Cook Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118303,
+      "expectedName": "Torres Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118321,
+      "expectedName": "Geographe Bay",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118329,
+      "expectedName": "Gulf of Papua",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118351,
+      "expectedName": "Gulf of Olen‘k",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159118365,
+      "expectedName": "Gulf of Riga",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118385,
+      "expectedName": "Waddenzee",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118407,
+      "expectedName": "Gulf of Sidra",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159118425,
+      "expectedName": "Sea of Crete",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159118439,
+      "expectedName": "Ligurian Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159118457,
+      "expectedName": "Alboran Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159118475,
+      "expectedName": "Bight of Benin",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118493,
+      "expectedName": "Bight of Biafra",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118511,
+      "expectedName": "Strait of Belle Isle",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118537,
+      "expectedName": "Prince William Sound",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118553,
+      "expectedName": "Estrecho de Magellanes",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118573,
+      "expectedName": "Bahía Blanca",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118589,
+      "expectedName": "Golfo de Penas",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118629,
+      "expectedName": "Bahía Grande",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118651,
+      "expectedName": "Marguerite Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118669,
+      "expectedName": "Prydz Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118683,
+      "expectedName": "Vincennes Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118705,
+      "expectedName": "Porpoise Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118715,
+      "expectedName": "Davis Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118743,
+      "expectedName": "Lützow-Holm Bay",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159118761,
+      "expectedName": "Antongila Bay",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118783,
+      "expectedName": "Hangzhou Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118803,
+      "expectedName": "Karaginskiy Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118817,
+      "expectedName": "Gulf of Kamchatka",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159118835,
+      "expectedName": "Bosporus",
+      "macroRegionId": "black-sea"
+    },
+    {
+      "ne_id": 1159118853,
+      "expectedName": "Bab el Mandeb",
+      "macroRegionId": "red-sea"
+    },
+    {
+      "ne_id": 1159118871,
+      "expectedName": "Gulf St. Vincent",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118877,
+      "expectedName": "Golfo de Urabá",
+      "macroRegionId": "caribbean"
+    },
+    {
+      "ne_id": 1159118905,
+      "expectedName": "Baia de Maputo",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118925,
+      "expectedName": "St. Helena Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118943,
+      "expectedName": "Boknafjorden",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159118959,
+      "expectedName": "Joseph Bonaparte Gulf",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118975,
+      "expectedName": "Gulf of Martaban",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159118989,
+      "expectedName": "Gulf of Sakhalin",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119013,
+      "expectedName": "Kangertittivaq",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119037,
+      "expectedName": "Saint Lawrence River",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159119047,
+      "expectedName": "Chaun Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119075,
+      "expectedName": "Khatanga Gulf",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119095,
+      "expectedName": "Garabogaz Bay",
+      "macroRegionId": "caspian-sea"
+    },
+    {
+      "ne_id": 1159119103,
+      "expectedName": "Gulf of Suez",
+      "macroRegionId": "red-sea"
+    },
+    {
+      "ne_id": 1159119119,
+      "expectedName": "Gulf of Ob",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119141,
+      "expectedName": "Yenisey Gulf",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119155,
+      "expectedName": "Dardanelles",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159119181,
+      "expectedName": "Sea of Marmara",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159119199,
+      "expectedName": "Gulf of Aqaba",
+      "macroRegionId": "red-sea"
+    },
+    {
+      "ne_id": 1159119215,
+      "expectedName": "Lago de Maracaibo",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159119235,
+      "expectedName": "Denmark Strait",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119247,
+      "expectedName": "Massachusetts Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119271,
+      "expectedName": "Delaware Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119293,
+      "expectedName": "Long Island Sound",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119313,
+      "expectedName": "Albemarle Sound",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119327,
+      "expectedName": "Pamlico Sound",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119343,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119367,
+      "expectedName": "Smith Sound",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119383,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119407,
+      "expectedName": "Queen Charlotte Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119417,
+      "expectedName": "Baird Inlet",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119435,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119455,
+      "expectedName": "Husky Lakes",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119471,
+      "expectedName": "Lake Pontchartrain",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159119491,
+      "expectedName": "Stettiner Haff",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119511,
+      "expectedName": "Darnley Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119523,
+      "expectedName": "",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119555,
+      "expectedName": "Prince of Wales Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119565,
+      "expectedName": "Minto Inlet",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119583,
+      "expectedName": "Richard Collinson Inlet",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119599,
+      "expectedName": "Prince ALbert Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119625,
+      "expectedName": "Liddon Gulf",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119635,
+      "expectedName": "Wynniatt Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119663,
+      "expectedName": "Hadley Bay",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119669,
+      "expectedName": "Bathurst Inlet",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119689,
+      "expectedName": "",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119707,
+      "expectedName": "Goldsmith Channel",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119727,
+      "expectedName": "Sherman Basin",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119745,
+      "expectedName": "Wager Bay",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159119761,
+      "expectedName": "Fury and Hecla Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119777,
+      "expectedName": "",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119795,
+      "expectedName": "Jones Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119813,
+      "expectedName": "Eclipse Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119831,
+      "expectedName": "Hall Basin",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119849,
+      "expectedName": "Uummannaq Fjord",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159119867,
+      "expectedName": "Peacock Sound",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159119885,
+      "expectedName": "George VI Sound",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159119901,
+      "expectedName": "Seno de Skyring",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119915,
+      "expectedName": "Seno Otway",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119925,
+      "expectedName": "Bay Inútil",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159119943,
+      "expectedName": "Lagoa dos Patos",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159119967,
+      "expectedName": "Amazon River",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159119983,
+      "expectedName": "Bras d'Or Lake",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159120003,
+      "expectedName": "Kaliningrad",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120015,
+      "expectedName": "Matochkin Shar Strait",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159120037,
+      "expectedName": "Ozero Mogotoyevo",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159120055,
+      "expectedName": "Guba Gusinaya",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159120073,
+      "expectedName": "Bali Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120091,
+      "expectedName": "Davao Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120109,
+      "expectedName": "Halmahera Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120135,
+      "expectedName": "Selat Bali",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120147,
+      "expectedName": "Gulf of Tomini",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120167,
+      "expectedName": "Flores Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120183,
+      "expectedName": "Sibuyan Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120201,
+      "expectedName": "Selat Dampier",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120217,
+      "expectedName": "Gulf of Buli",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120235,
+      "expectedName": "Gulf of Kau",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120253,
+      "expectedName": "Bohol Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120271,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120289,
+      "expectedName": "Surigao Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120309,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120315,
+      "expectedName": "Ragay Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120335,
+      "expectedName": "Samar Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120353,
+      "expectedName": "Tayabas Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120375,
+      "expectedName": "Leyte Gulf",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120401,
+      "expectedName": "Visayan Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120417,
+      "expectedName": "Savu Sea",
+      "macroRegionId": "indian"
+    },
+    {
+      "ne_id": 1159120441,
+      "expectedName": "Hecate Strait",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120451,
+      "expectedName": "Cordova Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120473,
+      "expectedName": "",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120493,
+      "expectedName": "Murchison Sound",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159120501,
+      "expectedName": "Robeson Channel",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159120519,
+      "expectedName": "Kennedy Channel",
+      "macroRegionId": "arctic"
+    },
+    {
+      "ne_id": 1159120537,
+      "expectedName": "",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120555,
+      "expectedName": "Canal Perigoso",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120573,
+      "expectedName": "Canal do Sul",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120591,
+      "expectedName": "Canal do Norte",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120609,
+      "expectedName": "Øresund",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120631,
+      "expectedName": "",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120643,
+      "expectedName": "Mecklenburger Bucht",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120667,
+      "expectedName": "Sargasso Sea",
+      "macroRegionId": "atlantic"
+    },
+    {
+      "ne_id": 1159120685,
+      "expectedName": "San Francisco Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120705,
+      "expectedName": "Monterey Bay",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120729,
+      "expectedName": "Yangtze River",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159120745,
+      "expectedName": "Columbia River",
+      "macroRegionId": null
+    },
+    {
+      "ne_id": 1159120759,
+      "expectedName": "Salish Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159120779,
+      "expectedName": "Gulf of Anadyr'",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115321,
+      "expectedName": "Mediterranean Sea",
+      "macroRegionId": "mediterranean"
+    },
+    {
+      "ne_id": 1159115615,
+      "expectedName": "Ross Sea",
+      "macroRegionId": "southern"
+    },
+    {
+      "ne_id": 1159115219,
+      "expectedName": "Coral Sea",
+      "macroRegionId": "pacific"
+    },
+    {
+      "ne_id": 1159115305,
+      "expectedName": "Sea of Japan",
+      "macroRegionId": "sea-of-japan"
+    },
+    {
+      "ne_id": 1159116907,
+      "expectedName": "Korea Strait",
+      "macroRegionId": "sea-of-japan"
+    }
+  ]
+}

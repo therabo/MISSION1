@@ -29,7 +29,7 @@ Unavailable. Current still uses EarthView's existing physical sample and scene
 UTC. Historical still uses coherentHistoricalState at accepted Historical UTC
 and its effective GP/TLE or OEM source. Earth and Inspection cannot derive
 coordinates independently. Camera/model display position and the 75 km Overview
-lift are excluded. No computation pipeline, request, timer or polling is added.
+lift are excluded. No physical-state computation pipeline, orbital request, timer or polling is added.
 
 **WGS84 scientific semantics remain. GP/TLE scientific quality/state remains.**
 The existing API responses, qualityAtGeneratedAt, sourceHealth, replay quality,
@@ -48,9 +48,17 @@ transition announcements remain outside the bar with a valid relationship.
 A one-time same-origin local Natural Earth 10m 5.1.1 catalog classifies country/territory
 with bbox/PIP, holes, disconnected geometry and all-match ambiguity handling.
 A unique country shows its canonical name and, when available, a local
-SVG flag filling a neutral 28×24 px squircle. Names use two visible lines maximum,
-ellipsis and full semantic text/title. No unique country, invalid input, loading
-or failed catalog displays —; missing artwork retains the country text.
+SVG flag filling a transparent 28×24 px squircle. Names use two visible lines maximum,
+ellipsis and full semantic text/title. Only a successful country no-country result enters a separate local marine
+10m 5.1.0 catalog, with exactly 16 approved macro names. Both asset loads start
+in parallel once after render, with independent cached success/failure. Marine
+values use text only, Inter 14/18 px, at most two visible lines, full text/title,
+no flag/icon or interaction. Regional priority 200 beats basin 100; distinct
+top-priority ties remain ambiguous-marine. No-region, ambiguity, invalid input
+or unavailable geography displays —; missing country artwork retains country
+text. Country diagnostics never fall through and marine readiness never blocks
+a valid country. Historical uses the same fixed installed catalogs; no-region
+does not imply international waters.
 No extra timer, source decision, backend API or external geography request is added.
 [Computed geographic classification, fixed Historical catalog and source record](over-country.md)
 and [ADR-0027](../adr/0027-local-country-classification-and-squircle-marks.md) govern this feature.
@@ -59,6 +67,9 @@ backend retain their owners.
 
 QA, before/after captures and audits remain outside Git under
 `/Users/daniel/.codex/exports/mission1-unified-bottom-bar-2026-10-19/`.
+
+Marine implementation QA is retained under
+`/Users/daniel/.codex/exports/mission1-over-marine-implementation-2026-10-19/`.
 
 Country implementation QA is retained separately under
 `/Users/daniel/.codex/exports/mission1-over-country-implementation-2026-10-19/`.

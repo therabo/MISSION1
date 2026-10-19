@@ -12,7 +12,7 @@ provenance state remain internally; only their dedicated presentation is removed
 
 The unchanged PositionReadouts guard/formatter consumes existing Current physical
 samples or the coherent Historical state at selected UTC/source. No display lift
-or camera coordinate is used. Over shares Earth’s computed country classification of this accepted state, using the installed fixed Natural Earth 10m 5.1.1 catalog. A local SVG fills a transparent squircle with proportional square/rectangular clipping and intrinsic portrait containment; canonical text uses two visible lines maximum. No unique classification or unavailable input/catalog shows —. [Country semantics and provenance](over-country.md).
+or camera coordinate is used. Over shares Earth’s computed country classification of this accepted state, using the installed fixed Natural Earth 10m 5.1.1 catalog. A local SVG fills a transparent squircle with proportional square/rectangular clipping and intrinsic portrait containment; canonical text uses two visible lines maximum. Only country no-country falls through to the separate local Natural Earth marine 10m 5.1.0 catalog: exactly 16 approved text-only macro names, Inter 14/18 px and maximum two lines. Independent catalog loads start in parallel after render; marine readiness never blocks a country and country diagnostics never fall through. No-region, unresolved ambiguity or unavailable input/catalog shows —. Historical uses both fixed installed catalogs, and no-region does not mean international waters. [Country/marine semantics and provenance](over-country.md).
 Delivery/scene/buffer/fallback and Historical failure notices remain separate;
 Inspection interaction guidance, model/module behavior and cameras are preserved.
 

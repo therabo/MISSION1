@@ -29,3 +29,51 @@ Country-only V1 displays — for no match, ambiguity or unavailable input/catalo
 The local encoded asset costs about 5.8 MB raw / 2.35 MB gzip and exactly 4,422,632 bytes of typed coordinate buffers plus ordinary catalog object overhead. Ordinary lookup is sub-millisecond; initialization and physical mobile performance must be measured separately. Cartographic scale is not positional accuracy: some border/coast/islet and gazetteer points remain mismatched. This is a **computed geographic classification** of accepted physical ISS state, not measured telemetry, legal airspace, territorial waters or survey-grade geography. Successful lookup never upgrades orbital quality/provenance. Pinned catalogs require explicit import review to change.
 
 Source/hash/repair/identity/flag evidence, reproducible maintenance instructions and failure/QA contracts are in [the country asset record](../frontend/over-country.md). Existing backend, orbital/source/time, Cesium/camera, asset and data boundaries remain unchanged.
+
+
+## Accepted marine extension — 2026-10-19
+
+The approved marine analysis extends this same geographic-classification owner;
+no separate ADR, service or position pipeline is needed. Preserve the entire
+accepted country implementation. Only its successful **no-country** result can
+enter a second, independent local Natural Earth Physical Labels **Geography
+marine polygons 5.1.0 / 10m** catalog. Country identity and all country diagnostics
+return unchanged before marine state/geometry is inspected.
+
+Keep the asset separate: measured merged compression provides no useful saving
+and would couple readiness, integrity, provenance and release/cache identity.
+Start both verified cached promises in parallel after initial render; marine
+readiness never blocks a country, and failure remains cached independently.
+The offline importer pins the approved archive SHA-256, validates version/schema/
+WGS84/all IDs and topology, preserves holes/parts/dateline geometry and emits
+10⁻⁵-degree ring deltas plus a complete separate source/rollup manifest.
+
+Use exactly the approved 16 stable macro IDs and explicit 305-source-ID mapping,
+including nine exclusions. Atlantic/Pacific remain unsplit North/South. Lookup
+collects every bbox/PIP/hole match, collapses same-macro duplicates, then applies
+regional priority 200 over basin priority 100. Distinct highest-priority ties are
+ambiguous-marine; feature order never chooses a winner. No nearest-region snap,
+hysteresis, retained prior label or gap-filling is allowed. No-region/ambiguity/
+marine loading/unavailability display — with distinct internal diagnostics.
+
+The application-level derivation consumes the unchanged country hook and same
+accepted physical snapshot as coordinates: existing approximately 1 Hz Current
+and coherent accepted Historical state. No new clock, timer, frame callback,
+camera dependency or source selection. Historical uses the fixed installed
+country/marine release; names/boundaries are not reconstructed for historical UTC.
+Marine values are canonical text only, Inter 14/18 px, maximum two lines with
+full text/title; no icon, flag, squircle, interaction or live announcement.
+Country marks/names remain unchanged.
+
+The second asset adds 681,127 raw bytes (about 272 kB gzip), 336 parts/58,203
+vertices and exactly 465,624 coordinate-buffer bytes. Desktop measurements keep
+marine lookup at hundredths of a millisecond and combined classification well
+below 1 ms on average; no index/worker/runtime GIS is justified. Public-domain
+publisher terms and voluntary Natural Earth attribution are retained. Generalized
+physical-region boundaries include finite precision, coastal gaps and possible
+boundary ambiguity; no legal maritime, territorial-water, navigation or
+hydrographic authority is implied. No-region does not mean international waters.
+
+The [extended Over record](../frontend/over-country.md) owns the full vocabulary,
+source/hash, exclusions, maintenance, failure contract and evidence locations.
+Backend, database, orbital computation and protected rendering owners are unchanged.

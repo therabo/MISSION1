@@ -20,11 +20,14 @@ Java21/Spring application and PostgreSQL remain the complete backend deployment.
 
 The shared Earth/Inspection Over value is a computed geographic classification
 of the same accepted physical WGS84 snapshot as the coordinate readouts. Pinned
-Natural Earth 10m 5.1.1 geometry and individual SVG flags are frontend static assets;
+Natural Earth country 10m 5.1.1 geometry and individual SVG flags are frontend static assets.
+Only country no-country falls through to a separate marine 10m 5.1.0 asset with
+16 approved text-only macro names, all-match/priority resolution and independent
+verified readiness. Both asset loads start in parallel after initial render;
 there is no geography backend, database, runtime GIS or external geocoder.
-Historical uses its coherent accepted state against the installed fixed catalog.
+Historical uses its coherent accepted state against the installed fixed catalogs.
 [ADR-0027](../adr/0027-local-country-classification-and-squircle-marks.md) and the
-[country source/behavior record](../frontend/over-country.md) govern identity,
+[country/marine source and behavior record](../frontend/over-country.md) govern identity,
 cartographic limits, local squircle marks and two-line names.
 
 Earth-only camera interaction is bounded by the two supplied visual references;

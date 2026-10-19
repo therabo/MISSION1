@@ -1,0 +1,253 @@
+{
+  "source": {
+    "file": "ne_10m_geography_marine_polys.zip",
+    "url": "https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_geography_marine_polys.zip",
+    "bytes": 940563,
+    "sha256": "a2d3395904c41e718e02c3ec5bc988712164c524c236fad32d95d282ca303b2a",
+    "retrievedAt": "2026-10-19T16:36:42.491265+00:00"
+  },
+  "product": "ne_10m_geography_marine_polys",
+  "publisher": "Natural Earth",
+  "version": "5.1.0",
+  "scale": "1:10,000,000",
+  "crs": "GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]",
+  "coordinateOrder": "longitude,latitude",
+  "schema": [
+    [
+      "featurecla",
+      "C",
+      32,
+      0
+    ],
+    [
+      "name",
+      "C",
+      254,
+      0
+    ],
+    [
+      "namealt",
+      "C",
+      254,
+      0
+    ],
+    [
+      "changed",
+      "C",
+      50,
+      0
+    ],
+    [
+      "note",
+      "C",
+      50,
+      0
+    ],
+    [
+      "name_fr",
+      "C",
+      200,
+      0
+    ],
+    [
+      "min_label",
+      "N",
+      6,
+      1
+    ],
+    [
+      "max_label",
+      "N",
+      6,
+      1
+    ],
+    [
+      "scalerank",
+      "N",
+      3,
+      0
+    ],
+    [
+      "label",
+      "C",
+      254,
+      0
+    ],
+    [
+      "wikidataid",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_ar",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_bn",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_de",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_en",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_es",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_el",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_hi",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_hu",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_id",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_it",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_ja",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_ko",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_nl",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_pl",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_pt",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_ru",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_sv",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_tr",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_vi",
+      "C",
+      254,
+      0
+    ],
+    [
+      "name_zh",
+      "C",
+      254,
+      0
+    ],
+    [
+      "ne_id",
+      "N",
+      10,
+      0
+    ],
+    [
+      "name_fa",
+      "C",
+      80,
+      0
+    ],
+    [
+      "name_he",
+      "C",
+      80,
+      0
+    ],
+    [
+      "name_uk",
+      "C",
+      80,
+      0
+    ],
+    [
+      "name_ur",
+      "C",
+      80,
+      0
+    ],
+    [
+      "name_zht",
+      "C",
+      80,
+      0
+    ]
+  ],
+  "featureCount": 306,
+  "uniqueIdCount": 305,
+  "sourcePartCount": 346,
+  "sourceVertexCount": 58666,
+  "selectedFeatureCount": 297,
+  "polygonCount": 336,
+  "vertexCount": 58203,
+  "coordinateBufferBytes": 465624,
+  "policySha256": "3bf0e2d369cedb0aaa18acab152a37ee0fb3988c6e575d06200130c0f82e1551",
+  "approval": {
+    "analysisDate": "2026-10-19",
+    "analysisMappingSha256": "a8980e8b770b1542964ac02727b1f85b3f8865b0b0fcf387d3c5a039da009665",
+    "status": "Approved production macro vocabulary and full source-ID rollup"
+  }
+}

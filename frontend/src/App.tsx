@@ -30,7 +30,7 @@ import { HistoricalTimeBar } from "./replay/HistoricalTimeBar";
 import { HistoricalOrbitNotice } from "./replay/HistoricalOrbitNotice";
 import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./replay/historicalPresentation";
 import { useTemporalPresentation } from "./replay/useTemporalPresentation";
-import { useOverCountry } from './geo/useOverCountry';
+import { useOverLocation } from './geo/useOverLocation';
 import type { PositionReadoutProps } from './orbital/positionAvailability';
 import { PositionStatusBar } from "./components/PositionStatusBar";
 import { useWorkspaceDissolve } from "./layout/useWorkspaceDissolve";
@@ -139,7 +139,7 @@ export default function App() {
     sceneTimeMs: presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs,
     buffer: presentationHistorical ? replayState ? 'active' : 'waiting' : buffer,
   };
-  const over = useOverCountry(positionContext);
+  const over = useOverLocation(positionContext);
   const earthSource = presentationHistorical ? effectiveHistoricalSource : currentSource;
   const historicalWaiting = !replayState && !replay.error && !presentedData;
   const changeTemporalMode = (enabled: boolean) => { setSelectedModule(null); setReplaying(enabled); };
