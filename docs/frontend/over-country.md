@@ -24,7 +24,7 @@ This cartographic product has bounded coastal, border, microstate and tiny-islan
 
 | Internal outcome | Over value |
 | --- | --- |
-| country with available artwork | decorative squircle + canonical name |
+| country with available artwork | decorative native flag + canonical name |
 | country without artwork / image load error | canonical name alone |
 | no-country | enter the marine stage below |
 | ambiguous-boundary | —; candidates retained internally |
@@ -34,9 +34,9 @@ This cartographic product has bounded coastal, border, microstate and tiny-islan
 
 Catalog or flag failure does not block the coordinates or scene. Neither no-country nor no-region means “International waters”. A successful country lookup never changes orbital quality/freshness/provenance.
 
-The mark remains **28×24 CSS px** with the existing squircle clipping path. The container is transparent: there is no background panel or decorative outline. Square and rectangular flags use proportional object-fit:cover across the full mark box with no padding or letterboxing; peripheral artwork may be cropped, without stretching or recoloring. Only intrinsic portrait artwork uses object-fit:contain with a 1 px safety inset, preserving Nepal’s natural transparent double pennon. The rule reads loaded image dimensions (width < height), without country-specific styling, new requests or timers. Source SVG bytes are unchanged. No filter, shadow or animation is added. This supersedes both the original reduced artwork box and the subsequent square/portrait containment rule.
+CountryMark renders the unmodified local SVG directly as one decorative image, **24 CSS px high with automatic intrinsic width** and object-fit:contain. There is no common outer shape, wrapper, clipping/mask, border, outline, background, padding, rounding or decorative frame. The entire source artwork remains visible without cropping, stretching or recoloring: rectangular flags retain their original proportions, Switzerland/Vatican remain square, and Nepal retains its transparent natural double pennon. All flags use the same rule; no image-load ratio state, portrait exception, extra request or timer is needed. This 2026-10-20 refinement supersedes the squircle, fixed 28×24 box, cover fitting and portrait inset. Source SVG bytes are unchanged. No filter, shadow or animation is added.
 
-The fixed mark and flexible name share a centered flex row (8 px gap, 6 px on mobile). Text uses Inter 14/18 px, -webkit-line-clamp:2 / line-clamp:2, hidden overflow and max-height:36px. The browser ellipsizes after the second line; overflow-wrap:anywhere bounds unbroken words. Full canonical text stays in the DOM and title, including when visually clamped. The mark is aria-hidden, img alt is empty, and the field adds no button, link, tab stop or live region. The existing four desktop columns / 2×2 mobile arrangement remains.
+The proportional flag and flexible name share a centered flex row (8 px gap, 6 px on mobile). Text uses Inter 14/18 px, -webkit-line-clamp:2 / line-clamp:2, hidden overflow and max-height:36px. The browser ellipsizes after the second line; overflow-wrap:anywhere bounds unbroken words. Full canonical text stays in the DOM and title, including when visually clamped. The mark is aria-hidden, img alt is empty, and the field adds no button, link, tab stop or live region. The existing four desktop columns / 2×2 mobile arrangement remains.
 
 ## Reproducible offline maintenance
 
@@ -83,7 +83,7 @@ Only a successful country **no-country** result enters marine lookup. A country,
 ambiguous-boundary, invalid-position, country dataset-loading or country
 dataset-unavailable returns unchanged without inspecting marine readiness or
 polygons. Country/territory/island geometry always wins, including overlapping
-marine polygons. Country geometry, ISO policy, naming, flags and squircle remain
+marine polygons. Country geometry, ISO policy, naming and source SVG bytes remain
 unchanged. `data-country-state` keeps the country-stage result independently of
 `data-over-state`; marine loading/unavailability additionally carries
 `data-geography-dataset="marine"`.

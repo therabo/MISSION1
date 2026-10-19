@@ -8,7 +8,8 @@ presentation are removed. WGS84 and GP/TLE scientific quality/provenance remain
 in their existing state/contracts; physical values keep the accepted formatter
 and exclude Overview's display lift. Over now classifies that same accepted physical
 state against pinned local Natural Earth country 10m 5.1.1 geometry, with individual
-local SVG flags in the unchanged transparent squircle. Only country no-country
+local SVG flags displayed directly at 24 px height and automatic native width,
+without a common shape, frame, background, distortion or cropping. Only country no-country
 falls through to a separate local marine 10m 5.1.0 catalog and 16 approved macro
 names, rendered as text only. Country diagnostics never fall through; marine
 readiness never blocks a country. No-region, ambiguity or unavailable geography

@@ -1,4 +1,4 @@
-# ADR-0027: Local country classification and squircle marks
+# ADR-0027: Local geographic classification and country flag artwork
 
 - Status: Accepted
 - Date: 2026-10-19
@@ -6,7 +6,7 @@
 
 ## Context
 
-The shared Latitude / Longitude / Altitude / Over bar already consumes one accepted physical WGS84 state in Current and Historical. Over needs deterministic country/territory classification with preserved source/time availability and no second orbital pipeline. The completed external analysis measured Natural Earth scales, lookup strategies and flag systems. The implementation instruction explicitly supersedes its hexagonal visual recommendation with a **squircle shell**, and limits country names to two visible lines.
+The shared Latitude / Longitude / Altitude / Over bar already consumes one accepted physical WGS84 state in Current and Historical. Over needs deterministic country/territory classification with preserved source/time availability and no second orbital pipeline. The completed external analysis measured Natural Earth scales, lookup strategies and flag systems. The initial 2026-10-19 instruction superseded its hexagonal visual recommendation with a squircle shell. The accepted 2026-10-20 visual refinement removes that shell entirely in favor of native flag geometry. Country names remain limited to two visible lines.
 
 ## Decision
 
@@ -16,13 +16,13 @@ Load/decode the static geometry once after initial render, outside the main JS b
 
 Derive the country result from the same accepted physical snapshot and availability/time/source contract as the coordinates: approximately 1 Hz Current, immediately on accepted Historical/source/availability changes. Pending Historical seeks keep only the previous coherently presented context. No country debounce, grace period or sticky cache. Camera position, model display lift and source-display retargeting are excluded.
 
-Use individual local unmodified SVGs from **hampusborgos/country-flags c09927e63705529bbf59ca6684cd9b23225dddad**. Validate passive content at import. Preserve per-file origin registry/checksums and its incomplete-origin caveats; the publisher's public-domain claim is not a universal ruling on national-symbol use. Source artwork bytes remain unmodified in a transparent **MISSION1 squircle** clipping container without a background panel or outline. The final 2026-10-19 visual clarification makes square and rectangular artwork proportionally cover the full 28×24 px box without padding; only intrinsic portrait artwork (width < height) is contained with a 1 px safety inset. This generic image-ratio rule fills square flags including Switzerland and Vatican City while preserving Nepal’s transparent double pennon. Peripheral artwork can be cropped; no stretching, recoloring, emoji or remote CDN. Text is primary, decorative mark aria-hidden, no new interaction. Names use at most two visible lines with ellipsis and retain the full canonical text/title semantically.
+Use individual local unmodified SVGs from **hampusborgos/country-flags c09927e63705529bbf59ca6684cd9b23225dddad**. Validate passive content at import. Preserve per-file origin registry/checksums and its incomplete-origin caveats; the publisher's public-domain claim is not a universal ruling on national-symbol use. The 2026-10-20 visual refinement displays the original SVG directly as one decorative image, 24 CSS px high with automatic intrinsic width and object-fit:contain. Remove both squircle wrappers, clipping/masks, fixed-width box, cover fitting, portrait inset and image-load ratio state. No border, outline, background, padding, rounding or frame is added. Rectangles retain native proportions; Switzerland and Vatican remain square; Nepal keeps its transparent double pennon. The whole flag remains visible without cropping or stretching. Source artwork bytes and the local SVG strategy remain unchanged; no country-specific exception, recoloring, emoji or remote CDN. Text is primary, decorative mark aria-hidden, no new interaction. Names use at most two visible lines with ellipsis and retain the full canonical text/title semantically.
 
 Country-only V1 displays — for no match, ambiguity or unavailable input/catalog, with distinct internal diagnostic variants. A valid identity with missing artwork retains its text. Antarctica remains a generic source identity without an invented national flag. Historical position uses the installed fixed geography/name/artwork release, not historical political cartography.
 
 ## Alternatives considered
 
-110m/50m lose material microstate/coast/island detail; 10m improves those cases within modest measured runtime cost. Higher-resolution and other boundary products change provenance, licensing and political/overlap policy; no substitution is needed for this bounded V1. Runtime reverse APIs add network latency, quotas, mutable semantics and privacy exposure; a self-hosted geocoder adds unjustified services. Grid/R-tree/current-country caches save insignificant CPU at the existing cadence. Full-bleed square/rectangular fitting trades peripheral flag detail for a filled compact mark; intrinsic portrait artwork retains its natural outline. The hexagonal analysis concept is intentionally superseded by the user's squircle decision.
+110m/50m lose material microstate/coast/island detail; 10m improves those cases within modest measured runtime cost. Higher-resolution and other boundary products change provenance, licensing and political/overlap policy; no substitution is needed for this bounded V1. Runtime reverse APIs add network latency, quotas, mutable semantics and privacy exposure; a self-hosted geocoder adds unjustified services. Grid/R-tree/current-country caches save insignificant CPU at the existing cadence. The earlier shared hexagonal/squircle shapes and full-bleed cover fitting are superseded by the 2026-10-20 native-geometry decision: they crop source artwork or impose a common shape. A single fixed height with intrinsic width preserves complete flags and removes obsolete presentation logic.
 
 ## Consequences
 

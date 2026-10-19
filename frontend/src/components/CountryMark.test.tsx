@@ -6,21 +6,19 @@ import { CountryMark } from './CountryMark';
 import { PositionStatusBar } from './PositionStatusBar';
 import { COUNTRY_POLICY, type CountryLookupResult } from '../geo/countryLookup';
 
-it('fills square/rectangular flags, contains natural portrait artwork and preserves missing-image text', async () => {
+it('renders local flags directly without a shell and preserves missing-image text', async () => {
   Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', { value: true, configurable: true });
   const host = document.createElement('div'), root = createRoot(host);
   const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
   try {
-    for (const [key, width, height] of [['ch',32,32],['va',2500,2500],['np',71.571,87.246],['us',190,100],['gb',2,1],['ca',2,1],['za',3,2],['kr',3,2],['br',10,7],['zz',2,2],['xy',1,2]] as const) {
+    for (const key of ['it','us','gb','jp','br','ch','va','np']) {
       await act(async () => root.render(<CountryMark flagKey={key} />));
       const img = host.querySelector('img')!;
-      // Browser image metadata controls fitting; no country-specific exception list.
-      Object.defineProperties(img, { naturalWidth: { value: width, configurable: true }, naturalHeight: { value: height, configurable: true } });
-      await act(async () => img.dispatchEvent(new Event('load')));
-      expect(img.hasAttribute('data-natural-fit')).toBe(width < height);
-      expect(host.querySelector('.country-mark-artwork')?.contains(img)).toBe(true);
+      expect(host.children).toHaveLength(1); expect(host.firstElementChild).toBe(img);
+      expect(img.className).toBe('country-mark'); expect(img.hasAttribute('data-natural-fit')).toBe(false);
+      expect(host.querySelector('span,svg')).toBeNull();
       expect(img.getAttribute('src')).toBe(`/flags/${key}.svg`); expect(img.alt).toBe('');
-      expect(host.querySelector('.country-mark')?.getAttribute('aria-hidden')).toBe('true');
+      expect(img.getAttribute('aria-hidden')).toBe('true'); expect(img.draggable).toBe(false);
       expect(host.querySelector('button,a,[tabindex]')).toBeNull();
     }
     const name = 'South Georgia and the South Sandwich Islands';

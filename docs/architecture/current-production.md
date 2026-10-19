@@ -28,7 +28,7 @@ there is no geography backend, database, runtime GIS or external geocoder.
 Historical uses its coherent accepted state against the installed fixed catalogs.
 [ADR-0027](../adr/0027-local-country-classification-and-squircle-marks.md) and the
 [country/marine source and behavior record](../frontend/over-country.md) govern identity,
-cartographic limits, local squircle marks and two-line names.
+cartographic limits, local flags with native geometry and two-line names.
 
 Earth-only camera interaction is bounded by the two supplied visual references;
 existing distance/SSE refinement bounds useful Earth detail. Inspection, Reset,

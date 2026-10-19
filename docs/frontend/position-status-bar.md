@@ -48,7 +48,8 @@ transition announcements remain outside the bar with a valid relationship.
 A one-time same-origin local Natural Earth 10m 5.1.1 catalog classifies country/territory
 with bbox/PIP, holes, disconnected geometry and all-match ambiguity handling.
 A unique country shows its canonical name and, when available, a local
-SVG flag filling a transparent 28×24 px squircle. Names use two visible lines maximum,
+SVG flag displayed directly at 24 px height and intrinsic proportional width,
+with no shell, clipping, border, background, rounding or crop. Names use two visible lines maximum,
 ellipsis and full semantic text/title. Only a successful country no-country result enters a separate local marine
 10m 5.1.0 catalog, with exactly 16 approved macro names. Both asset loads start
 in parallel once after render, with independent cached success/failure. Marine
