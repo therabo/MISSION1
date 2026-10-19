@@ -5,15 +5,23 @@ import './CountryMark.css';
 /** Decorative source artwork inside a neutral superellipse shell; not a national emblem. */
 export function CountryMark({ flagKey }: { flagKey: CountryIdentity['flagKey'] }) {
   const [failedKey, setFailedKey] = useState<string | null>(null);
+  const [naturalFitKey, setNaturalFitKey] = useState<string | null>(null);
   if (!flagKey || !/^[a-z]{2}$/.test(flagKey) || flagKey === failedKey) return null;
   return <span className="country-mark" aria-hidden="true">
+    <span className="country-mark-artwork">
+      <img src={`${import.meta.env.BASE_URL}flags/${flagKey}.svg`} alt="" draggable={false}
+        data-natural-fit={naturalFitKey === flagKey || undefined}
+        onLoad={event => {
+          const image = event.currentTarget;
+          setNaturalFitKey(image.naturalWidth <= image.naturalHeight ? flagKey : null);
+        }}
+        onError={() => {
+          setFailedKey(flagKey);
+          console.warn('[over-country] Local flag unavailable', flagKey);
+        }} />
+    </span>
     <svg className="country-mark-shell" viewBox="0 0 28 24" focusable="false">
       <path d="M14 1C25 1 27 2.7 27 12S25 23 14 23 1 21.3 1 12 3 1 14 1Z" />
     </svg>
-    <img src={`${import.meta.env.BASE_URL}flags/${flagKey}.svg`} alt="" draggable={false}
-      onError={() => {
-        setFailedKey(flagKey);
-        console.warn('[over-country] Local flag unavailable', flagKey);
-      }} />
   </span>;
 }

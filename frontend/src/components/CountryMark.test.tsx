@@ -2,21 +2,23 @@
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { expect, it, vi } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { CountryMark } from './CountryMark';
 import { PositionStatusBar } from './PositionStatusBar';
 import { COUNTRY_POLICY, type CountryLookupResult } from '../geo/countryLookup';
 
-it('fits intact local flags in a decorative squircle and preserves name when image loading fails', async () => {
+it('fills the squircle while preserving intrinsic square/portrait shapes and missing-image text', async () => {
   Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', { value: true, configurable: true });
   const host = document.createElement('div'), root = createRoot(host);
   const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-  const css = readFileSync('src/components/CountryMark.css', 'utf8');
-  expect(css).toContain('object-fit: contain'); expect(css).not.toMatch(/cover|clip-path|filter:|mask:/);
   try {
-    for (const key of ['ch','np','us','gb','ca','za','kr','br']) {
+    for (const [key, width, height] of [['ch',32,32],['np',71.571,87.246],['us',190,100],['gb',2,1],['ca',2,1],['za',3,2],['kr',3,2],['br',10,7],['zz',1,2]] as const) {
       await act(async () => root.render(<CountryMark flagKey={key} />));
       const img = host.querySelector('img')!;
+      // Browser image metadata controls fitting; no country-specific exception list.
+      Object.defineProperties(img, { naturalWidth: { value: width, configurable: true }, naturalHeight: { value: height, configurable: true } });
+      await act(async () => img.dispatchEvent(new Event('load')));
+      expect(img.hasAttribute('data-natural-fit')).toBe(width <= height);
+      expect(host.querySelector('.country-mark-artwork')?.contains(img)).toBe(true);
       expect(img.getAttribute('src')).toBe(`/flags/${key}.svg`); expect(img.alt).toBe('');
       expect(host.querySelector('.country-mark')?.getAttribute('aria-hidden')).toBe('true');
       expect(host.querySelector('svg')?.getAttribute('viewBox')).toBe('0 0 28 24');

@@ -53,4 +53,4 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 
 - [ADR-0026: Optional Current cloud imagery](0026-current-only-optional-cloud-imagery.md) — Accepted. Bounded public visual-source revalidation, WGS84 shell, last-good fallback and no clouds in Historical.
 
-- [ADR-0027: Local country classification and squircle marks](0027-local-country-classification-and-squircle-marks.md) — Accepted. Pinned local Natural Earth 10m, explicit country/territory identities, existing physical-state cadence and intact local SVGs in a squircle; no runtime geographic provider.
+- [ADR-0027: Local country classification and squircle marks](0027-local-country-classification-and-squircle-marks.md) — Accepted. Pinned local Natural Earth 10m, explicit country/territory identities, existing physical-state cadence and local SVGs in a squircle; no runtime geographic provider.

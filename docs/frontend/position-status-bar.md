@@ -47,8 +47,8 @@ transition announcements remain outside the bar with a valid relationship.
 **Over is operational** in both modes, using this same accepted physical state.
 A one-time same-origin local Natural Earth 10m 5.1.1 catalog classifies country/territory
 with bbox/PIP, holes, disconnected geometry and all-match ambiguity handling.
-A unique country shows its canonical name and, when available, an intact local
-SVG flag in a neutral 28×24 px squircle. Names use two visible lines maximum,
+A unique country shows its canonical name and, when available, a local
+SVG flag filling a neutral 28×24 px squircle. Names use two visible lines maximum,
 ellipsis and full semantic text/title. No unique country, invalid input, loading
 or failed catalog displays —; missing artwork retains the country text.
 No extra timer, source decision, backend API or external geography request is added.

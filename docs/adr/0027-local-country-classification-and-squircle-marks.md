@@ -1,4 +1,4 @@
-# ADR-0027: Local country classification and intact-flag squircle marks
+# ADR-0027: Local country classification and squircle marks
 
 - Status: Accepted
 - Date: 2026-10-19
@@ -16,13 +16,13 @@ Load/decode the static geometry once after initial render, outside the main JS b
 
 Derive the country result from the same accepted physical snapshot and availability/time/source contract as the coordinates: approximately 1 Hz Current, immediately on accepted Historical/source/availability changes. Pending Historical seeks keep only the previous coherently presented context. No country debounce, grace period or sticky cache. Camera position, model display lift and source-display retargeting are excluded.
 
-Use individual local unmodified SVGs from **hampusborgos/country-flags c09927e63705529bbf59ca6684cd9b23225dddad**. Validate passive content at import. Preserve per-file origin registry/checksums and its incomplete-origin caveats; the publisher's public-domain claim is not a universal ruling on national-symbol use. Artwork remains intact and contained at its intrinsic ratio in a neutral **MISSION1 squircle** shell. Switzerland stays square; Nepal stays a transparent double pennon. No recoloring, crop, emoji or remote CDN. Text is primary, decorative mark aria-hidden, no new interaction. Names use at most two visible lines with ellipsis and retain the full canonical text/title semantically.
+Use individual local unmodified SVGs from **hampusborgos/country-flags c09927e63705529bbf59ca6684cd9b23225dddad**. Validate passive content at import. Preserve per-file origin registry/checksums and its incomplete-origin caveats; the publisher's public-domain claim is not a universal ruling on national-symbol use. Source artwork bytes remain unmodified in a neutral **MISSION1 squircle** shell. The 2026-10-19 flag-fill clarification replaces the padded 20×16 px box: rectangular artwork proportionally covers the full 28×24 px box clipped to the squircle; intrinsic square/portrait artwork is contained with a 1 px safety inset. This generic image-ratio rule keeps Switzerland square and Nepal a transparent double pennon. Peripheral rectangular artwork can be cropped; no stretching, recoloring, emoji or remote CDN. Text is primary, decorative mark aria-hidden, no new interaction. Names use at most two visible lines with ellipsis and retain the full canonical text/title semantically.
 
 Country-only V1 displays — for no match, ambiguity or unavailable input/catalog, with distinct internal diagnostic variants. A valid identity with missing artwork retains its text. Antarctica remains a generic source identity without an invented national flag. Historical position uses the installed fixed geography/name/artwork release, not historical political cartography.
 
 ## Alternatives considered
 
-110m/50m lose material microstate/coast/island detail; 10m improves those cases within modest measured runtime cost. Higher-resolution and other boundary products change provenance, licensing and political/overlap policy; no substitution is needed for this bounded V1. Runtime reverse APIs add network latency, quotas, mutable semantics and privacy exposure; a self-hosted geocoder adds unjustified services. Grid/R-tree/current-country caches save insignificant CPU at the existing cadence. Cropped marks lose edge/canton/special-flag geometry. The hexagonal analysis concept is intentionally superseded by the user's squircle decision.
+110m/50m lose material microstate/coast/island detail; 10m improves those cases within modest measured runtime cost. Higher-resolution and other boundary products change provenance, licensing and political/overlap policy; no substitution is needed for this bounded V1. Runtime reverse APIs add network latency, quotas, mutable semantics and privacy exposure; a self-hosted geocoder adds unjustified services. Grid/R-tree/current-country caches save insignificant CPU at the existing cadence. Full-bleed rectangular fitting trades peripheral flag detail for a filled compact mark; intrinsic square/portrait artwork retains its natural outline. The hexagonal analysis concept is intentionally superseded by the user's squircle decision.
 
 ## Consequences
 
