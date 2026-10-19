@@ -13,15 +13,12 @@ export function CountryMark({ flagKey }: { flagKey: CountryIdentity['flagKey'] }
         data-natural-fit={naturalFitKey === flagKey || undefined}
         onLoad={event => {
           const image = event.currentTarget;
-          setNaturalFitKey(image.naturalWidth <= image.naturalHeight ? flagKey : null);
+          setNaturalFitKey(image.naturalWidth < image.naturalHeight ? flagKey : null);
         }}
         onError={() => {
           setFailedKey(flagKey);
           console.warn('[over-country] Local flag unavailable', flagKey);
         }} />
     </span>
-    <svg className="country-mark-shell" viewBox="0 0 28 24" focusable="false">
-      <path d="M14 1C25 1 27 2.7 27 12S25 23 14 23 1 21.3 1 12 3 1 14 1Z" />
-    </svg>
   </span>;
 }
