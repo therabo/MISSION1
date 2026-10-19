@@ -30,6 +30,8 @@ import { HistoricalTimeBar } from "./replay/HistoricalTimeBar";
 import { HistoricalOrbitNotice } from "./replay/HistoricalOrbitNotice";
 import { coherentHistoricalState, historicalSource, stepHistoricalUtc } from "./replay/historicalPresentation";
 import { useTemporalPresentation } from "./replay/useTemporalPresentation";
+import { useOverCountry } from './geo/useOverCountry';
+import type { PositionReadoutProps } from './orbital/positionAvailability';
 import { PositionStatusBar } from "./components/PositionStatusBar";
 import { useWorkspaceDissolve } from "./layout/useWorkspaceDissolve";
 
@@ -127,6 +129,17 @@ export default function App() {
   const earthWorkspace = !stationFocused && !crewOpen;
   const replayState = coherentHistoricalState(presentedData, presentedAt);
   const effectiveHistoricalSource = historicalSource(replayState);
+  const positionContext: PositionReadoutProps = {
+    position: presentationHistorical ? replayState && effectiveHistoricalSource ? {
+      source: effectiveHistoricalSource, timeMs: Date.parse(replayState.effectiveAt),
+      latitudeDegrees: replayState.latitudeDegrees, longitudeDegrees: replayState.longitudeDegrees,
+      altitudeMeters: replayState.altitudeMeters,
+    } : null : position,
+    selectedSource: presentationHistorical ? effectiveHistoricalSource : currentSource,
+    sceneTimeMs: presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs,
+    buffer: presentationHistorical ? replayState ? 'active' : 'waiting' : buffer,
+  };
+  const over = useOverCountry(positionContext);
   const earthSource = presentationHistorical ? effectiveHistoricalSource : currentSource;
   const historicalWaiting = !replayState && !replay.error && !presentedData;
   const changeTemporalMode = (enabled: boolean) => { setSelectedModule(null); setReplaying(enabled); };
@@ -216,14 +229,7 @@ export default function App() {
           coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}
           presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
         <PositionStatusBar describedBy={stationFocused ? "inspection-interaction-guidance" : undefined}
-          position={presentationHistorical ? replayState && effectiveHistoricalSource ? {
-            source: effectiveHistoricalSource, timeMs: Date.parse(replayState.effectiveAt),
-            latitudeDegrees: replayState.latitudeDegrees, longitudeDegrees: replayState.longitudeDegrees,
-            altitudeMeters: replayState.altitudeMeters,
-          } : null : position}
-          selectedSource={earthSource}
-          sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs}
-          buffer={presentationHistorical ? replayState ? 'active' : 'waiting' : buffer} />
+          {...positionContext} over={over} />
         {stationFocused && <>
           <p className="sr-only" id="inspection-interaction-guidance">Drag to orbit the ISS. Scroll or pinch to zoom. Select a verified module in the model. Attitude unavailable.</p>
           {viewMode !== 'ISS_INSPECTION' && <p className="sr-only" role="status">{viewMode === 'ENTERING_INSPECTION' ? 'Approaching moving ISS target' : 'Returning to Earth View'}</p>}

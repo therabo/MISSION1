@@ -1,5 +1,7 @@
 // @vitest-environment jsdom
 import { act, useEffect } from 'react';
+// Geographic loading is isolated here; real-catalog integration is covered in OverCountryIntegration.test.tsx.
+vi.mock('./geo/countryCatalog', () => ({ loadCountryCatalog: () => new Promise(() => {}) }));
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { parseOrbitalWindow } from './orbital/sampleMapping';

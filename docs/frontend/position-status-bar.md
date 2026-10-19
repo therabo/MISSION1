@@ -21,7 +21,8 @@ ARIA wiring, native disclosure owner and obsolete graphical tests. The removed
 card's model-load duration state is no longer retained by App; the existing
 ready/failed gate and renderer diagnostics are unchanged.
 
-`PositionReadouts` is reused without modification: same physical source/instant
+`PositionReadouts` preserves its formatting and shares its tiny accepted-position
+guard with Over: same physical source/instant
 and active-buffer checks, finite-value guard, three decimal degrees with N/S/E/W,
 and altitude in km to one decimal. Missing, expired or mismatched samples stay
 Unavailable. Current still uses EarthView's existing physical sample and scene
@@ -43,10 +44,21 @@ notices remain outside the four-field bar through OrbitalNotice and
 HistoricalOrbitNotice. Inspection's screen-reader interaction guidance and
 transition announcements remain outside the bar with a valid relationship.
 
-**Over / — is static in every mode.** It has no geographic classification,
-reverse geocoding, external service, location state or scheduled work. All
-protected science, cameras, model, modules, clouds/sky, Crew, telemetry and
-backend retain their owners. This local presentation consolidation needs no ADR.
+**Over is operational** in both modes, using this same accepted physical state.
+A one-time same-origin local Natural Earth 10m 5.1.1 catalog classifies country/territory
+with bbox/PIP, holes, disconnected geometry and all-match ambiguity handling.
+A unique country shows its canonical name and, when available, an intact local
+SVG flag in a neutral 28×24 px squircle. Names use two visible lines maximum,
+ellipsis and full semantic text/title. No unique country, invalid input, loading
+or failed catalog displays —; missing artwork retains the country text.
+No extra timer, source decision, backend API or external geography request is added.
+[Computed geographic classification, fixed Historical catalog and source record](over-country.md)
+and [ADR-0027](../adr/0027-local-country-classification-and-squircle-marks.md) govern this feature.
+All protected science, cameras, model, modules, clouds/sky, Crew, telemetry and
+backend retain their owners.
 
 QA, before/after captures and audits remain outside Git under
 `/Users/daniel/.codex/exports/mission1-unified-bottom-bar-2026-10-19/`.
+
+Country implementation QA is retained separately under
+`/Users/daniel/.codex/exports/mission1-over-country-implementation-2026-10-19/`.

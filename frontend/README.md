@@ -6,7 +6,11 @@ spacing and four desktop columns, with a 2×2 mobile layout. The visible ISS / W
 ISS / Inspection identities and General Perturbations quality status/detail
 presentation are removed. WGS84 and GP/TLE scientific quality/provenance remain
 in their existing state/contracts; physical values keep the accepted formatter
-and exclude Overview's display lift. Over remains a static —. Operational
+and exclude Overview's display lift. Over now classifies that same accepted physical
+state against pinned local Natural Earth 10m 5.1.1 geometry, with individual local
+SVG flags inside a neutral squircle and names clamped to two lines. No unique
+country or unavailable geography displays —. Historical uses coherent accepted
+state against the fixed installed catalog. [Country contract and provenance](../docs/frontend/over-country.md). Operational
 failure notices remain outside the bar. [Shared contract](../docs/frontend/position-status-bar.md).
 
 Earth zoom is bounded to the two measured user references through the existing

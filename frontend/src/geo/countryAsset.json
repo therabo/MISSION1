@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "policy": "ne10m-5.1.1-iso-rollup-v1",
+  "quantization": 100000,
+  "file": "countries-ne10m-5.1.1-a9501af4086c.delta.json",
+  "sha256": "a9501af4086c294e726ac0f0dcb15bda0bff0ca40d7034f8699026f3cb9fadca",
+  "bytes": 5762275,
+  "gzip9Bytes": 2361614,
+  "identityCount": 266,
+  "polygonCount": 4292,
+  "vertexCount": 552829,
+  "coordinateBufferBytes": 4422632
+}

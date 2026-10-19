@@ -18,6 +18,15 @@ Java21/Spring application and PostgreSQL remain the complete backend deployment.
 | Component Telemetry | 131-definition registry, native ISSLIVE, bounded SenseData/ISS.live bootstrap plus durable periodic reconciliation and immutable local current/as-of record queries |
 | Earth and Inspection | One Cesium Viewer with backend-derived physical samples, Earth Reset and Inspection transitions |
 
+The shared Earth/Inspection Over value is a computed geographic classification
+of the same accepted physical WGS84 snapshot as the coordinate readouts. Pinned
+Natural Earth 10m 5.1.1 geometry and individual SVG flags are frontend static assets;
+there is no geography backend, database, runtime GIS or external geocoder.
+Historical uses its coherent accepted state against the installed fixed catalog.
+[ADR-0027](../adr/0027-local-country-classification-and-squircle-marks.md) and the
+[country source/behavior record](../frontend/over-country.md) govern identity,
+cartographic limits, local squircle marks and two-line names.
+
 Earth-only camera interaction is bounded by the two supplied visual references;
 existing distance/SSE refinement bounds useful Earth detail. Inspection, Reset,
 scientific state and distant celestial visibility retain their existing owners.

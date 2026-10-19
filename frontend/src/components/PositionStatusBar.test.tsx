@@ -10,7 +10,7 @@ const window = parseOrbitalWindow(orbitalPayload(), 0);
 const position = { source: 'PRIMARY_GP_TLE' as const, timeMs: window.generatedMs, ...window.response.currentGeodetic };
 const positionProps = { position, selectedSource: position.source, sceneTimeMs: position.timeMs, buffer: 'active' as const };
 
-it('reserves Over as literal informational content with no lookup or scheduled work', async () => {
+it('renders unavailable Over as informational content with no component-owned lookup or scheduled work', async () => {
   Object.defineProperty(globalThis, 'IS_REACT_ACT_ENVIRONMENT', { value: true, configurable: true });
   vi.useFakeTimers();
   const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);

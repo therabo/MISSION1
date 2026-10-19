@@ -12,7 +12,7 @@ provenance state remain internally; only their dedicated presentation is removed
 
 The unchanged PositionReadouts guard/formatter consumes existing Current physical
 samples or the coherent Historical state at selected UTC/source. No display lift
-or camera coordinate is used. Over remains a static — without geographic logic.
+or camera coordinate is used. Over shares Earth’s computed country classification of this accepted state, using the installed fixed Natural Earth 10m 5.1.1 catalog. A local intact SVG fits inside a squircle; canonical text uses two visible lines maximum. No unique classification or unavailable input/catalog shows —. [Country semantics and provenance](over-country.md).
 Delivery/scene/buffer/fallback and Historical failure notices remain separate;
 Inspection interaction guidance, model/module behavior and cameras are preserved.
 

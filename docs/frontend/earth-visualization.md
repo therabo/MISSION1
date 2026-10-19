@@ -3,7 +3,7 @@
 Earth and Inspection now share **Latitude | Longitude | Altitude | Over** with
 identical layout and physical-state formatting. Identity blocks and dedicated
 GP-quality status/detail UI are removed; WGS84, GP/TLE quality/provenance and
-source validation remain internally. Over is static. [Presentation contract](position-status-bar.md).
+source validation remain internally. Over classifies the same accepted physical state against pinned local Natural Earth 10m 5.1.1 geometry, with intact local SVGs in a squircle and two-line names. [Country contract](over-country.md) · [Presentation contract](position-status-bar.md).
 
 ## Bounded Earth camera and useful detail — 2026-10-16
 

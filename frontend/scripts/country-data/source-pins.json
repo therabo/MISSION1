@@ -1,0 +1,24 @@
+{
+  "map_units": {
+    "file": "ne_10m_admin_0_map_units.zip",
+    "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_map_units.zip",
+    "sha256": "45bebe2aaf8bf42b9daf4428594925bcb11eabd32fe9dc6e0acf681438053eb5",
+    "retrievedAt": "2026-10-19T11:48:48.118531+00:00",
+    "version": "5.1.1"
+  },
+  "countries": {
+    "file": "ne_10m_admin_0_countries.zip",
+    "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+    "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+    "retrievedAt": "2026-10-19T11:48:48.235029+00:00",
+    "version": "5.1.1"
+  },
+  "flags": {
+    "file": "country-flags-pinned.tar.gz",
+    "url": "https://codeload.github.com/hampusborgos/country-flags/tar.gz/c09927e63705529bbf59ca6684cd9b23225dddad",
+    "sha256": "a0e028783137dba7e667b44366723e19dae50dbdfc0def2df653cf2e153cee9c",
+    "retrievedAt": "2026-10-19",
+    "repository": "https://github.com/hampusborgos/country-flags",
+    "commit": "c09927e63705529bbf59ca6684cd9b23225dddad"
+  }
+}
