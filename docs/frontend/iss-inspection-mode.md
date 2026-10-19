@@ -1,47 +1,40 @@
 # ISS Inspection Mode
 
-## Inspection interface refinement — 2026-10-16
+## Physical position status strip — 2026-10-19
 
-The bottom strip now contains four balanced fields: Inspection identity, **Over / —**,
-NASA VTAD reference credit and the existing Orbital detail disclosure. `Selected module`
-is removed from the visible strip. **Over is a static, non-functional visual placeholder.**
-It has no position/time/source input, location state, lookup, dataset, dependency,
-request, timer or scene callback. Geographic functionality is intentionally deferred
-to a future milestone; no country, continent or ocean detection is implemented.
+The bottom strip contains five informational groups, in order: **ISS / Inspection**
+(with Spatial investigation), **Over / —**, **Latitude**, **Longitude**, **Altitude**.
+Desktop uses five balanced columns; at 740px and below, identity/Over occupy the
+first row and the three position readings share the second. Labels and values use
+the existing muted/primary typography and graphite surface; none is a control.
 
-The Modules button and its layout/focus target are removed. Direct 3D semantic
-picking still owns module selection through EarthView → App → ModuleInfo, with
-the existing highlight, metadata, telemetry, selection switching and close/reset
-lifecycle. Closing the detail makes the existing scene canvas focusable and returns
-focus there when there is no other valid DOM origin. The strip no longer depends on selection
-or expands when a long module name is selected. Desktop uses four equal columns;
-compact screens use two rows with identity/credit above Over/orbital disclosure.
+The Orbital detail button, dedicated Inspection Orbital Details panel, header X,
+native disclosure, focus-restoration helper and panel-only CSS are removed from
+the rendered UI and source. The 2026-10-16 disclosure presentation is superseded.
+Earth's source/quality evidence, scientific state and operational warnings remain.
 
-Inspection orbital evidence now uses the shared graphite surface, border, radius,
-Inter labels and Roboto Mono values. Scene time is a restrained divider-separated
-section; Current position uses a three-column reading grid, reverting to concise
-rows at the existing narrow breakpoint. Historical retains its own evidence and
-lineage with the same typography. The bounded panel scrolls within the scene row;
-all existing fields, scientific labels, units, source lineage, quality and time
-semantics remain. Styling is scoped to Inspection; Earth evidence retains its
-existing presentation. No camera, model, source, orbital or backend change and no
-architectural decision/ADR are introduced.
+`PositionReadouts` shares the exact accepted Earth-summary formatting and physical
+sample guard with Inspection: three decimal degrees with N/S/E/W, altitude to one
+decimal km. Current uses App's existing EarthView `onPosition` sample and scene UTC;
+Historical uses `coherentHistoricalState` at the accepted Historical UTC, with its
+own source. Missing, expired, mismatched or non-finite samples show Unavailable.
+The camera and the 75km Overview display lift never supply these readings.
 
-Orbital Details now includes a restrained top-right X in both Current and
-Historical headers, reusing the shared close glyph/control and existing surface
-colors. Its accessible name is **Close Orbital Details**. The real button supports
-Enter/Space and closes the existing native Orbital detail disclosure; no second
-open state is added. Focus returns to that disclosure summary when connected and
-not inert. Reserved header space prevents title/content overlap at all supported
-widths. Fields, lineage, native module selection/focus, camera and Over remain
-unchanged. Focused checks pass all five supported viewports in Current/Historical
-GP/OEM, including native click/Enter/Space, reopening and focus restoration;
-928 frontend tests, typecheck and production build pass. Focused evidence: `/Users/daniel/.codex/exports/mission1-orbital-close-cloud-8k-2026-10-16/`.
+The NASA VTAD / Reference geometry status item is removed only from the strip.
+NASA VTAD remains the accepted [ISS reference model](iss-model.md); its GLB,
+manifest, rendering and project attribution are unchanged. Direct semantic module
+picking, selection switching, highlighting, ModuleInfo and close/focus behavior
+remain owned by EarthView → App → ModuleInfo.
 
-Validation/evidence: `/Users/daniel/.codex/exports/mission1-inspection-ui-refinement-2026-10-16/`.
-The original baseline, matching-UTC/source/camera before/after, real-backend
-Current/Historical GP/OEM matrix, native multiple-module picking, keyboard/focus,
-network and frontend gates are retained outside Git.
+**Over remains a static, non-functional placeholder.** It has no geographic lookup,
+classification, dataset, network request, timer or state. The new position fields
+reuse existing application updates; no new requests, polling, timers or per-frame
+UI computation are introduced. Camera formulas, transitions, Earth envelope,
+clouds/sky, Current/Historical semantics and backend are unchanged. This local UI
+cleanup needs no new architectural decision or ADR.
+
+QA and before/after evidence remain outside Git at
+`/Users/daniel/.codex/exports/mission1-inspection-position-bar-2026-10-19/`.
 
 ## Earth Reset path correction; Inspection restoration — 2026-10-13
 
@@ -222,7 +215,7 @@ The strict-speed candidate was inspected and reproduced before modification. Con
 
 ## Elevated Inspection and rendering stability — 2026-10-01
 
-The current canonical desktop camera uses a **90 m slant range**, **42.5° rear elevation**, zero lateral offset and **100° FOV**. Its trajectory-frame offset is calculated as `(-90 cos(42.5°), 0, 90 sin(42.5°))`, approximately **(−66.354960, 0, 60.803119) m**. Scale remains 1 and Overview minimumPixelSize remains 80. Narrow aspect ratios widen the range by `max(1, 1.2/aspect)` while retaining elevation. Orbital details stay collapsed through entry, Inspection and return, and remain keyboard-accessible. They reopen only after the Earth pose is restored, keeping the left solar array visible during close departure.
+The current canonical desktop camera uses a **90 m slant range**, **42.5° rear elevation**, zero lateral offset and **100° FOV**. Its trajectory-frame offset is calculated as `(-90 cos(42.5°), 0, 90 sin(42.5°))`, approximately **(−66.354960, 0, 60.803119) m**. Scale remains 1 and Overview minimumPixelSize remains 80. Narrow aspect ratios widen the range by `max(1, 1.2/aspect)` while retaining elevation. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth source/quality evidence remains available after return.
 
 Entry takes **6 seconds**, return **5 seconds**. The inspected strict Cartesian-speed candidate was rejected because almost all close-up growth occurred in its final frame. Its cubic geometry, 8192-segment arc-length measurement and displayed-target correction remain. Timing now inverts a normalized hybrid metric: **20% log lens distance + 60% inverse lens distance/apparent scale + 20% viewing-direction travel**. Lens distance is displayed-target range times `tan(FOV/2)`. A 1024-interval monotone C1 Hermite inverse is built once; a C2 clock has 10% start/stop rate ramps and a uniform central 80%. No scene projection or table construction runs per frame. Physical speed intentionally varies. FOV completes its change during far travel and remains 100° in the close view. Lift/silhouette follow the same path range (100–1,000 km), with camera aim following the actual displayed target. Partial Back starts at the current actual pose and retains incoming world velocity, quaternion and FOV derivatives over a range-bounded interval of at most 0.4 seconds. Earth world pose, FOV, near/far, transform and controller state restore exactly. OEM unavailability immediately selects physical GP; a shared camera/model display translation settles over 0.8 seconds during return, never changing samples, readouts, velocity or trajectories. The stable Inspection pivot remains physical. [Perceptual traces, actual raster footprints, reversals and separate performance comparison](camera-transition-perfecting-review/perceptual/README.md).
 

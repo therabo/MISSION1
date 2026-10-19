@@ -99,31 +99,35 @@ describe('App presentation wiring without a WebGL test double for domain state',
     expect(harness.comparison.mock.calls.every(([, enabled]) => enabled === true)).toBe(true);
     expect(harness.mounts).toBe(1); expect(harness.unmounts).toBe(0);
   });
-  it.each(['PRIMARY_GP_TLE', 'NASA_OEM'] as const)('preserves Current %s orbital evidence fields, units and source ownership in Inspection', async source => {
-    const comparison = availableComparison();
-    harness.comparison.mockReturnValue({ response: comparison, status: 'ready' });
+  it.each(['PRIMARY_GP_TLE', 'NASA_OEM'] as const)('presents Current %s physical fields with the accepted formatter in Inspection', async source => {
+    harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
     await act(async () => root.render(<App />));
     if (source === 'NASA_OEM') await choose(source);
-    const physical = { source, timeMs: Date.parse(orbitalPayload().generatedAt as string), latitudeDegrees: -12.345, longitudeDegrees: 45.678, altitudeMeters: 423400 };
+    const physical = { source, timeMs: Date.parse(orbitalPayload().generatedAt as string), ...parseOrbitalWindow(orbitalPayload(), 0).response.currentGeodetic };
     await act(async () => {
       (harness.props.onPosition as (p: PositionSnapshot) => void)(physical);
       (harness.props.onViewModeChange as (m: ViewMode) => void)('ISS_INSPECTION');
     });
-    const evidence = container.querySelector('#orbital-status-evidence')!;
-    const rows = Object.fromEntries([...evidence.querySelectorAll('.data-line')].map(e => [e.querySelector('dt')!.textContent, e.querySelector('dd')!.textContent]));
-    expect(rows.Latitude).toBe('12.345° S'); expect(rows.Longitude).toBe('45.678° E'); expect(rows.Altitude).toBe('423.4 km');
-    expect(evidence.textContent).toContain('WGS84'); expect(evidence.textContent).toContain('2026-09-28 15:00:00 UTC');
-    for (const field of ['GP orbital quality', 'CelesTrak acquisition', 'API delivery', 'Sample buffer', '3D model', 'Attitude']) expect(rows).toHaveProperty(field);
-    if (source === 'NASA_OEM') {
-      expect(rows.Product).toBe('NASA predicted ephemeris');
-      expect(rows['OEM hash']).toBe(comparison.oem.source!.sha256.slice(0, 12));
-      for (const field of ['Active OEM availability', 'Created', 'Coverage starts', 'Coverage ends', 'Retrieved']) expect(rows).toHaveProperty(field);
-    } else {
-      const snapshot = parseOrbitalWindow(orbitalPayload(), 0).response;
-      expect(rows['Element hash']).toBe(snapshot.source.elementSha256.slice(0, 12));
-      for (const field of ['Elements', 'Element epoch', 'Element age', 'Retrieved', 'Last successful fetch']) expect(rows).toHaveProperty(field);
-    }
+    const strip = container.querySelector('.inspection-strip')!;
+    const rows = Object.fromEntries([...strip.querySelectorAll('.summary-position > div')].map(e => [e.querySelector('dt')!.textContent, e.querySelector('dd')!.textContent]));
+    expect(rows).toEqual({ Latitude: '4.691° N', Longitude: '92.065° E', Altitude: '416.4 km' });
+    expect(container.querySelector('#orbital-status-evidence')).toBeNull();
+    expect(strip.querySelector('button,a,summary,[tabindex]')).toBeNull();
     expect(harness.props.selectedSource).toBe(source); expect(harness.mounts).toBe(1);
+  });
+  it('does not reuse a previous source sample when switching GP → OEM → GP before Inspection', async () => {
+    harness.comparison.mockReturnValue({ response: availableComparison(), status: 'ready' });
+    await act(async () => root.render(<App />));
+    const values = () => [...container.querySelectorAll('.inspection-strip dd')].map(e => e.textContent);
+    const current = parseOrbitalWindow(orbitalPayload(), 0);
+    for (const source of ['NASA_OEM', 'PRIMARY_GP_TLE'] as const) {
+      await choose(source);
+      await act(async () => (harness.props.onViewModeChange as (m: ViewMode) => void)('ISS_INSPECTION'));
+      expect(values()).toEqual(Array(3).fill('Unavailable'));
+      await act(async () => (harness.props.onPosition as (p: PositionSnapshot) => void)({ source, timeMs: current.generatedMs, ...current.response.currentGeodetic }));
+      expect(values()).toEqual(['4.691° N', '92.065° E', '416.4 km']);
+      await act(async () => (harness.props.onViewModeChange as (m: ViewMode) => void)('EARTH_OVERVIEW'));
+    }
   });
   it('cannot select unavailable OEM, and keeps accepted source guards when Inspection starts', async () => {
     await act(async () => root.render(<App />));

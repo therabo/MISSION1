@@ -6,7 +6,6 @@ import { SOURCE_LABELS, oemUnavailableReason } from '../cesium/trajectorySelecti
 import type { PositionSnapshot, TrajectorySource } from '../cesium/trajectorySelection';
 import type { ComparisonDelivery } from '../api/useComparisonDelivery';
 import { OperationalSummary } from './OperationalSummary';
-import { OrbitalDetailsCloseButton } from './OrbitalDetailsCloseButton';
 
 interface OrbitalStatusProps {
   delivery: OrbitalDelivery;
@@ -18,7 +17,6 @@ interface OrbitalStatusProps {
   inspecting: boolean;
   selectedSource: TrajectorySource;
   position: PositionSnapshot | null;
-  detailOnly?: boolean;
   sourceNotice?: string | null;
 }
 
@@ -43,7 +41,7 @@ function line(label: string, value: ReactNode, valueClass?: string) {
   return <div className="data-line" key={label}><dt>{label}</dt><dd className={valueClass}>{value}</dd></div>;
 }
 
-export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, selectedSource, position, detailOnly = false, sourceNotice = null }: OrbitalStatusProps) {
+export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, sceneError, modelState, inspecting, selectedSource, position, sourceNotice = null }: OrbitalStatusProps) {
   const snapshot = delivery.window?.response;
   const quality = snapshot?.qualityAtGeneratedAt;
   const health = snapshot?.sourceHealth;
@@ -54,7 +52,6 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
 
   const detailBody = <>
     <div className="panel-head">
-      {detailOnly && <OrbitalDetailsCloseButton />}
       <span className="eyebrow">ORBITAL STATE / ISS</span>
       <h1>ISS orbital state</h1>
       <p>{SOURCE_LABELS[selectedSource]}</p>
@@ -81,7 +78,7 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
       </dl>
     </section>
 
-    {!inspecting && <section className="panel-section">
+    <section className="panel-section">
       <div className="section-title"><h2>Trajectory comparison</h2><span>TWO SOURCES</span></div>
       <dl>
         {line('ISS model', nasaSelected ? 'NASA predicted ephemeris' : 'GP/TLE propagated')}
@@ -91,7 +88,7 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
         {comparison.response?.oem.source && line('OEM created', utc(comparison.response.oem.source.creationDate))}
       </dl>
       <p className="section-note">The selected source drives the model and Inspection. OEM remains a source-provided prediction.</p>
-    </section>}
+    </section>
 
     <section className="panel-section">
       <div className="section-title"><h2>Data state</h2><span>INDEPENDENT</span></div>
@@ -147,14 +144,15 @@ export function OrbitalStatus({ delivery, comparison, buffer, sceneTimeMs, scene
     sceneError ?? delivery.message ?? (buffer === 'expired' ? 'Orbital buffer expired · Position unavailable' :
       buffer === 'waiting' ? 'Waiting for orbital samples · Position unavailable' : null)].filter(Boolean).join(' · ');
   return <>
-    {!detailOnly && <OperationalSummary position={position} selectedSource={selectedSource} sceneTimeMs={sceneTimeMs} buffer={buffer}
+    {!inspecting && <><OperationalSummary position={position} selectedSource={selectedSource} sceneTimeMs={sceneTimeMs} buffer={buffer}
       sourceStatus={<details className="orbital-status-disclosure source-state-slot">
         <summary aria-controls="orbital-status-evidence" title={nasaSelected ? `OEM availability: ${availability ?? 'UNKNOWN'} · ${oemReason ?? 'Scene instant covered'} · Position buffer: ${buffer}` : quality ? `GP quality at ${utc(snapshot?.generatedAt)} · ${quality.reason}` : 'GP orbital quality unavailable'}>
           <span>{nasaSelected ? 'NASA OEM status' : 'General Perturbations quality'}</span>
           <strong className={`summary-quality ${tone}`}>{statusText}</strong>
         </summary>
-      </details>} />}
+      </details>} />
     <div id="orbital-status-evidence" className="orbital-status-evidence" role="region" aria-label="ISS orbital status">{detailBody}</div>
+    </>}
     {warning && <p className="earth-current-notice" role={sceneError ? 'alert' : 'status'}>{warning}</p>}
   </>;
 }

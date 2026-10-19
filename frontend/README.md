@@ -1,5 +1,13 @@
 # MISSION1 Earth View
 
+Inspection's bottom strip now shows **ISS / Inspection | Over / — | Latitude |
+Longitude | Altitude**, with non-interactive physical position readouts. The
+dedicated Orbital Details button/panel/X/disclosure and its exclusive UI code
+are removed. Current and Historical reuse their existing physical state owners
+and the shared Earth-summary formatter; the Overview display lift is excluded.
+NASA VTAD is omitted only from the strip, retaining the model, GLB and attribution.
+Over remains a static placeholder. [Current Inspection contract](../docs/frontend/iss-inspection-mode.md).
+
 Earth zoom is bounded to the two measured user references through the existing
 camera owner. The shared range preserves Reset, independent Inspection, global
 Earth imagery and distant celestial visuals.
@@ -199,7 +207,7 @@ The inspected strict-speed candidate is preserved in the [camera transition revi
 
 ## Current Inspection rendering — 2026-10-01
 
-Canonical desktop Inspection is 90 m behind/above the physical selected-source pivot at 42.5° elevation, zero lateral offset and 100° FOV. Entry takes 6 seconds; return takes 5. Both use the retained cubic path, or one Earth-clear arc when required. Partial Back starts at the actual pose and retains incoming position/orientation/FOV derivatives over a range-bounded interval of at most 0.4 seconds. Lift and silhouette follow the same path range; composition targets the actual displayed station. Back restores the captured world pose, frustum, transform and controller profile; narrow viewports adapt range. Orbital details stay collapsed during entry, Inspection and return, keeping the left array visible. They remain accessible and reopen when the Earth pose is restored.
+Canonical desktop Inspection is 90 m behind/above the physical selected-source pivot at 42.5° elevation, zero lateral offset and 100° FOV. Entry takes 6 seconds; return takes 5. Both use the retained cubic path, or one Earth-clear arc when required. Partial Back starts at the actual pose and retains incoming position/orientation/FOV derivatives over a range-bounded interval of at most 0.4 seconds. Lift and silhouette follow the same path range; composition targets the actual displayed station. Back restores the captured world pose, frustum, transform and controller profile; narrow viewports adapt range. Inspection has no dedicated orbital panel; physical position is shown directly in its bottom strip. Earth source/quality evidence remains available after return.
 
 The unchanged NASA PNG model uses generated trilinear mipmaps. A stable captured ambient environment avoids shader regeneration on each kilometre of orbital/display motion; direct Sun and Earth lighting still follow UTC. Bounded specular antialiasing and MSAA 4 + retained FXAA (bypassed in Overview) address measured highlight and thin-edge shimmer at native device resolution. Ground fog is confined below 100 km (with compensated ground density), avoiding the model shader rebuild at Cesium's default 800 km ceiling. Close-view atmospheric shaders warm during model loading, including the zero-imagery variant that caused a measured first-return compile stall. Public layer alpha and atmosphere fade fields restore before Inspection is enabled; providers, cached textures and final quality are retained. A retained native-resolution FXAA stage uses a uniform bypass in Overview, so changing modes does not destroy/reallocate its GPU resources. No geometry, asset swap, orbital contract or source semantics changed. [Framing, diagnosis, raw performance and remaining limits](../docs/frontend/inspection-rendering-optimization-review/README.md). Earlier dated camera figures below are historical.
 

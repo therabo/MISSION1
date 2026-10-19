@@ -164,7 +164,6 @@ export default function App() {
     inspecting={stationFocused}
     selectedSource={currentSource}
     position={position}
-    detailOnly={stationFocused}
     sourceNotice={sourceNotice ? (oemReason ?? sourceNotice) : null}
   />;
 
@@ -233,8 +232,16 @@ export default function App() {
         <HistoricalTimeBar open={replaying && !stationFocused && !crewOpen} at={replayAt} onStep={stepHistorical} pending={temporal.holding}
           coverage={replay.coverage?.orbit ?? null} onApply={setReplayAt}
           presentedAt={presentationHistorical ? presentedAt : sceneTimeMs === null ? undefined : new Date(sceneTimeMs).toISOString()} />
-        {stationFocused && <InspectionStrip viewMode={viewMode} />}
-        {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} detailOnly={stationFocused} /> : orbitalStatus}
+        {stationFocused && <InspectionStrip viewMode={viewMode}
+          position={presentationHistorical ? replayState && effectiveHistoricalSource ? {
+            source: effectiveHistoricalSource, timeMs: Date.parse(replayState.effectiveAt),
+            latitudeDegrees: replayState.latitudeDegrees, longitudeDegrees: replayState.longitudeDegrees,
+            altitudeMeters: replayState.altitudeMeters,
+          } : null : position}
+          selectedSource={earthSource}
+          sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs}
+          buffer={presentationHistorical ? replayState ? 'active' : 'waiting' : buffer} />}
+        {presentationHistorical ? <HistoricalOrbitalSummary data={presentedData} at={presentedAt} loading={false} error={replay.error} sceneError={sceneError} inspecting={stationFocused} /> : orbitalStatus}
         <ModuleInfo module={selectedModule} onClose={() => setSelectedModule(null)} historical={presentationHistorical} acceptedAt={presentedAt} />
         {temporal.holding && <p className="sr-only" role="status">{replaying ? 'Resolving Historical target' : 'Preparing Current context'} · Showing the previous coherent scene.</p>}
         {replay.error && !presentationHistorical && replaying && <p className="sr-only" role="alert">{replay.error}</p>}
