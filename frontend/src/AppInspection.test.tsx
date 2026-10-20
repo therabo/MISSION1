@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { act, useEffect } from 'react';
+import { act, useEffect, useMemo } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 // Geographic loading is isolated here; real-catalog integration is covered in OverCountryIntegration.test.tsx.
@@ -20,7 +20,7 @@ const scene = vi.hoisted(() => ({ props: {} as any, mounts: 0, unmounts: 0,
   retryCrew: vi.fn(), retryProfile: vi.fn(), reset: vi.fn(),
   animations: [] as { element: HTMLElement; keys: unknown; options: unknown; cancel: ReturnType<typeof vi.fn> }[] }));
 vi.mock('./api/useCrewResource', () => ({ useIssCrew: () => ({ data: crewFixture(), loading: false, error: scene.crewError, refresh: scene.retryCrew }),
-  useCrewMember: (id: string) => ({ data: { ...personFixture(), id }, loading: false, error: scene.profileError, refresh: scene.retryProfile }) }));
+  useCrewMember: (id: string) => ({ data: useMemo(() => ({ ...personFixture(), id }), [id]), loading: false, error: scene.profileError, refresh: scene.retryProfile }) }));
 vi.mock('./layout/useEarthWorkspace', () => ({ useEarthWorkspace: () => null }));
 vi.mock('./api/useOrbitalDelivery', () => ({ useOrbitalDelivery: () => scene.delivery }));
 vi.mock('./api/useComparisonDelivery', () => ({ useComparisonDelivery: () => ({ response: null, status: 'unavailable' }) }));

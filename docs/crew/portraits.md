@@ -23,16 +23,27 @@ previous Luke Delaney presentation. The viewport reserves its full size before
 loading; images and initials are positioned inside it without affecting its layout.
 Images use centered `object-fit: cover` to fill the frame with crop, without distortion.
 Detail images are revealed after native decoding completes, without a transition.
-The vertical scroll owner uses `overflow-y: scroll` to reserve classic scrollbar
-space before the lazy profile arrives, so adding Biography cannot reduce the
-portrait's content width. The whole dock owns scrolling on short screens;
-otherwise the profile body owns it. Overlay scrollbars retain the existing full
-content width. The settled portrait size and dock entrance motion are unchanged.
-Both scroll owners use the roster's native scrollbar colors: a border-token thumb
-on a transparent track. This prevents the forced, initially non-overflowing track
-from painting in the browser's contrasting default palette before the full profile
-arrives. The native thumb still appears and changes length with real overflow;
-scrolling, its reserved width and the responsive owner remain unchanged.
+The Current personal card mounts only after the selected UUID's full profile
+response has been decoded and accepted. `CurrentCrewProfileRequest`, keyed by that
+UUID, uses the existing lazy resource and reports readiness before paint. Until
+then, a small status (or safe error with retry/cancel) stays in the visible roster;
+the responsive detail layout is activated in the same render as the full card.
+Biography, Career, evidence and credit therefore contribute their final geometry
+from the first visible detail frame. An accepted `UNAVAILABLE` profile still
+renders its existing unavailable content; a failed request never renders a summary
+card. Switching selection aborts the old resource and removes its card immediately;
+late responses cannot reveal another UUID. Closing a ready card retains only its
+complete inert snapshot for the existing exit animation. Each newly ready card
+uses the existing entrance motion, without an added delay or masking animation.
+
+The vertical scroll owner retains `overflow-y: scroll`, reserving classic scrollbar
+space from first layout. The whole dock owns scrolling on short screens; otherwise
+the profile body owns it. The existing native border-token thumb and transparent
+track remain unchanged. Their palette alone does not prevent summary-to-full scroll
+state changes; waiting for the accepted profile removes that intermediate state.
+Overlay widths and settled portrait dimensions remain unchanged. Profiles stay
+lazy: local latency measurements did not justify seven speculative requests or a
+session cache. Historical loading and semantics are unaffected.
 The same exact provider original is preferred, then thumbnail,
 then existing reviewed fallback and initials. This is presentation ordering of the
 same eligible candidates, not a source, identity or rendering-policy change.

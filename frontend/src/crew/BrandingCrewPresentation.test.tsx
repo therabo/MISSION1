@@ -14,7 +14,6 @@ import { utc } from './presentation';
 import type { CrewPerson } from './types';
 
 const resource = vi.hoisted(() => ({ data: null as CrewPerson | null }));
-vi.mock('../api/useCrewResource', () => ({ useCrewMember: () => ({ ...resource, loading: false, error: null, refresh: vi.fn() }) }));
 const dom = (html: string) => { const root = document.createElement('div'); root.innerHTML = html; return root; };
 const removed = ['Membership and physical presence are separate', 'Current membership is source-supported', 'Available last-known information is retained', 'Data source & freshness', 'Source-supported membership; operational evidence is separate.', 'Operational presence evidence', 'Structured assignment does not confirm presence aboard.', 'Cumulative source totals; not elapsed time on this expedition.', 'Career totals / cumulative', 'Portrait credit & rights', 'Profile context', 'Profile observation', 'Original profile observation', 'Reuse permission unavailable'];
 beforeEach(() => { resource.data = null; Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true }); });
@@ -112,7 +111,7 @@ describe('branding and compact Crew presentation', () => {
   it('keeps Role then one Nationality in Structured assignment and career values unchanged', () => {
     const crew = crewFixture(), member = crew.members[0]; resource.data = { ...personFixture(), id: member.id };
     const before = structuredClone(resource.data);
-    const root = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
+    const root = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} person={resource.data} onClose={() => {}} />));
     const section = [...root.querySelectorAll('section')].find(s => s.querySelector('h3')?.textContent === 'Structured assignment')!;
     expect([...section.querySelectorAll('dt')].map(n => n.textContent)).toEqual(['Role', 'Nationality']);
     expect(root.querySelectorAll('dt').length).toBeGreaterThan(2);
@@ -122,18 +121,18 @@ describe('branding and compact Crew presentation', () => {
     expect(resource.data).toEqual(before);
     expect(resource.data.image).toEqual(before.image); expect(resource.data.currentPresence).toEqual(before.currentPresence);
   });
-  it('uses roster nationality before the lazy profile arrives', () => {
+  it('does not render a summary-only detail before the profile arrives', () => {
     const crew = crewFixture(), member = crew.members[0];
     member.nationalities = [{ displayName: 'TEST nationality', alpha2: null, alpha3: null }];
-    const root = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
-    expect(root.textContent).toContain('TEST nationality');
+    const root = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} person={resource.data} onClose={() => {}} />));
+    expect(root.querySelector('.astronaut-dock')).toBeNull();
   });
   it.each([null, true])('hides the dedicated reuse-permission caption while retaining singleUse=%s portrait metadata', singleUse => {
     const crew = crewFixture(), member = crew.members[0];
     resource.data = { ...personFixture(), id: member.id };
     resource.data.image = { ...resource.data.image!, credit: 'TEST rights credit', singleUse };
     const before = structuredClone(resource.data);
-    const current = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
+    const current = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} person={resource.data} onClose={() => {}} />));
     expect(current.querySelector('.astronaut-photo-credit')?.textContent).toBe('Photo: TEST rights credit');
     expect(current.querySelector('.astronaut-portrait-identity img')).not.toBeNull();
     expect(current.querySelector('.crew-portrait-detail img')?.hasAttribute('height')).toBe(false);

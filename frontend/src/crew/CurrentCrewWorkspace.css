@@ -51,7 +51,7 @@
 .crew-roster-chevron img { position: absolute; left: -.75px; top: -.75px; max-width: none; }
 .crew-roster-empty { padding: 16px 12px; }
 .crew-workspace .crew-loading, .crew-workspace .crew-error { flex: none; margin: 12px 0; }
-.crew-temporal-pending, .crew-historical-unavailable { flex: none; margin: 12px 0; overflow-wrap: anywhere; }
+.crew-profile-request, .crew-temporal-pending, .crew-historical-unavailable { flex: none; margin: 12px 0; overflow-wrap: anywhere; }
 .crew-workspace.crew-historical .crew-historical-evidence > summary { min-height: 16px; font: 400 11px/16px var(--font-interface); }
 .crew-historical-evidence { overflow-wrap: anywhere; }
 .crew-workspace.crew-historical .crew-roster-columns { height: 36px; padding-top: 12px; }

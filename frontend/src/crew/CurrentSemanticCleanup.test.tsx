@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
+import { crewFixture, historicalCrewFixture, personFixture } from '../test/crewFixture';
 import { decodeCrew, decodeHistoricalCrew } from './decode';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewSources } from './CrewSourceEvidence';
@@ -51,7 +51,7 @@ describe('Current semantics against the observed operational gap', () => {
       expect(html).toContain('No recent operational confirmation'); expect(html).toContain('2026-10-02 02:01:55 UTC');
       expect(html).not.toContain('Identity confirmed');
     }
-    const detail=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={()=>{}}/>);
+    const detail=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} person={{...personFixture(), id: member.id}} onClose={()=>{}}/>);
     expect(detail).not.toContain('Current membership'); expect(detail).not.toContain('Operational presence evidence');
   });
   it('preserves Historical count/report decoding and stale presentation', () => {

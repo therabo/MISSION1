@@ -51,18 +51,32 @@ it('focuses a meaningful nonmodal heading without trapping focus and restores it
   rows()[2].focus(); expect(document.activeElement).toBe(rows()[2]); await press('Close astronaut detail'); expect(document.activeElement).toBe(row);
 });
 it('marks selection separately from focus using aria-pressed and stable UUIDs', async () => { await show(); await select(2); rows()[0].focus(); expect(selected()).toEqual([rows()[2].dataset.memberId]); expect(document.activeElement).toBe(rows()[0]); });
-it('loads profiles locally while all roster rows remain usable', async () => {
-  fetchMock.mockImplementationOnce(() => Promise.resolve(Response.json(crew()))).mockImplementation(() => new Promise(() => {})); await show(); await select();
-  expect(dock().textContent).toContain('Loading astronaut profile'); expect(rows()).toHaveLength(9); expect(rows().every(b => !b.disabled)).toBe(true); expect(dock().querySelectorAll('[role="status"]')).toHaveLength(1);
+it('keeps the final card absent and every roster row usable while loading', async () => {
+  fetchMock.mockImplementationOnce(() => Promise.resolve(Response.json(crew()))).mockImplementation(() => new Promise(() => {}));
+  await show(); await select();
+  expect(dock()).toBeNull(); expect(node.querySelector('.has-astronaut')).toBeNull();
+  expect(node.textContent).toContain('Loading astronaut profile'); expect(rows()).toHaveLength(9);
+  expect(rows().every(b => !b.disabled)).toBe(true); expect(node.querySelectorAll('[role="status"]')).toHaveLength(1);
 });
-it('updates the same dock after the real profile resolves', async () => {
-  let resolve!: (r: Response) => void; fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise<Response>(r => { resolve = r; })); await show(); await select(); const same = dock();
-  const member = crew().members.find(m => m.id === same.dataset.entityId)!; await act(async () => resolve(Response.json(profile(member)))); expect(dock()).toBe(same); expect(dock().textContent).toContain('Career'); expect(dock().textContent).not.toContain('Loading astronaut profile');
+it('reveals the final card only with all accepted profile content in one render', async () => {
+  let resolve!: (r: Response) => void;
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise<Response>(r => { resolve = r; }));
+  await show(); await select();
+  expect(dock()).toBeNull(); expect(node.querySelector('.astronaut-profile-body')).toBeNull();
+  const member = crew().members.find(m => m.id === selected()[0])!;
+  await act(async () => resolve(Response.json(profile(member))));
+  expect(dock().dataset.entityId).toBe(member.id);
+  for (const text of ['Structured assignment', 'Mission context', 'Biography', 'Career', 'Profile source & presence evidence']) expect(dock().textContent).toContain(text);
+  expect(dock().querySelector('[role="status"]')).toBeNull();
 });
-it.each([404,500,503])('isolates HTTP%s in the selected dock and retries only the profile', async status => {
-  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(new Response('', { status })); await show(); await select(); const same = dock(), id = same.dataset.entityId;
-  expect(same.querySelector('[role="alert"]')).not.toBeNull(); expect(rows()).toHaveLength(9); expect(selected()).toEqual([id]); await press('Retry profile');
-  expect(dock()).toBe(same); expect(dock().textContent).toContain('Career'); expect(fetchMock.mock.calls.filter(c => c[0] === '/api/iss/crew')).toHaveLength(1);
+it.each([404,500,503])('isolates HTTP%s outside the final card and retries only the profile', async status => {
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(new Response('', { status }));
+  await show(); await select(); const id = selected()[0];
+  expect(dock()).toBeNull(); expect(node.querySelector('[role="alert"]')).not.toBeNull();
+  expect(node.querySelector('.has-astronaut')).toBeNull(); expect(rows()).toHaveLength(9);
+  expect(selected()).toEqual([id]); await press('Retry profile');
+  expect(dock().textContent).toContain('Career'); expect(dock().dataset.entityId).toBe(id);
+  expect(fetchMock.mock.calls.filter(c => c[0] === '/api/iss/crew')).toHaveLength(1);
 });
 it('keeps missing biography/career unavailable and uses only a reviewed same-person portrait', async () => {
   const m = crew().members[0], person = { ...profile(m), profileAvailability: 'UNAVAILABLE', biography: null, career: null, image: null, profileProvenance: null };
@@ -78,13 +92,13 @@ it('keeps identity after all portrait candidates fail', async () => {
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); const image = dock().querySelector('img')!;
   expect(image.alt).toBe(`Portrait of ${m.name}`); for(let i=0;i<4&&dock().querySelector('img');i++) await act(async () => dock().querySelector('img')!.dispatchEvent(new Event('error'))); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('Portrait unavailable'); expect(selected()).toEqual([m.id]);
 });
-it('replaces summary media when the exact selected profile supplies another portrait', async () => {
+it('starts with exact full-profile media without ever displaying summary media', async () => {
   const m = crew().members.find(m => m.image?.singleUse === false)!, person = profile(m);
   person.image = { ...m.image!, url:'https://example.com/updated-portrait.jpg', thumbnailUrl:null };
   let resolve!:(r:Response)=>void;
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise<Response>(r => { resolve=r; }));
   await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click());
-  await act(async () => dock().querySelector('img')!.dispatchEvent(new Event('load', { bubbles:true })));
+  expect(dock()).toBeNull();
   await act(async () => resolve(Response.json(person)));
   expect(dock().querySelector('img')!.src).toBe(person.image.url); expect(dock().querySelector('img')!.hasAttribute('height')).toBe(false);
   await act(async () => dock().querySelector('img')!.dispatchEvent(new Event('load', { bubbles:true })));
@@ -114,16 +128,16 @@ it('keeps the bottom evidence disclosure usable without a redundant shortcut or 
   expect(dock().querySelector('footer')).toBeNull(); expect(dock().textContent).not.toContain('Profile context');
   expect([...dock().querySelectorAll('button,a,summary')].some(e => e.textContent === 'Career history & evidence')).toBe(false);
 });
-it('switches A→B without recreating dock or roster, and moves one selected row', async () => {
-  await show(); await select(); const same = dock(), roster = node.querySelector('.crew-roster-rows'); await select(1); expect(dock()).toBe(same); expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(selected()).toEqual([rows()[1].dataset.memberId]); expect(dock().dataset.entityId).toBe(rows()[1].dataset.memberId);
+it('switches A→B with a complete new card while preserving roster and one selected row', async () => {
+  await show(); await select(); const same = dock(), roster = node.querySelector('.crew-roster-rows'); await select(1); expect(dock()).not.toBe(same); expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(selected()).toEqual([rows()[1].dataset.memberId]); expect(dock().dataset.entityId).toBe(rows()[1].dataset.memberId);
 });
 it('aborts A→B→C and ignores every late A/B response and error', async () => {
   const requests: {resolve:(r:Response)=>void; reject:(e:Error)=>void; signal:AbortSignal; member:CrewMember}[] = [];
   fetchMock.mockImplementation((url:string, options:any) => url === '/api/iss/crew' ? Promise.resolve(Response.json(crew())) : new Promise<Response>((resolve,reject) => requests.push({resolve,reject,signal:options.signal,member:crew().members.find(m => url.endsWith(m.id))!})));
-  await show(); await select(); await select(1); await select(2); const same = dock(); expect(requests[0].signal.aborted).toBe(true); expect(requests[1].signal.aborted).toBe(true); expect(requests[2].signal.aborted).toBe(false);
+  await show(); await select(); await select(1); await select(2); expect(dock()).toBeNull(); expect(requests[0].signal.aborted).toBe(true); expect(requests[1].signal.aborted).toBe(true); expect(requests[2].signal.aborted).toBe(false);
   const c = { ...profile(requests[2].member), biography:'TEST ONLY — latest C profile' }; await act(async () => requests[2].resolve(Response.json(c)));
   await act(async () => requests[0].resolve(Response.json({ ...profile(requests[0].member), biography:'TEST ONLY — obsolete A' }))); await act(async () => requests[1].reject(new Error('TEST ONLY — obsolete error')));
-  expect(dock()).toBe(same); expect(dock().textContent).toContain(c.biography); expect(dock().textContent).not.toContain('obsolete'); expect(dock().textContent).not.toContain('Loading astronaut profile'); expect(selected()).toEqual([requests[2].member.id]);
+  expect(dock().dataset.entityId).toBe(requests[2].member.id); expect(dock().textContent).toContain(c.biography); expect(dock().textContent).not.toContain('obsolete'); expect(dock().textContent).not.toContain('Loading astronaut profile'); expect(selected()).toEqual([requests[2].member.id]);
 });
 it('retains a valid UUID when the supplied roster updates without a new profile request', async () => {
   await showPanel(); await select(); const id = dock().dataset.entityId, same = dock(); const changed = crew(); changed.members.pop();
@@ -137,15 +151,15 @@ it('Escape consumes one level per event, from detail or exposed scene', async ()
   await show(); await select(); const event = () => new KeyboardEvent('keydown', { key:'Escape',bubbles:true,cancelable:true }); await act(async () => dock().querySelector('h2')!.dispatchEvent(event())); expect(close).not.toHaveBeenCalled(); expect(selected()).toEqual([]);
   await act(async () => document.dispatchEvent(event())); expect(close).toHaveBeenCalledOnce();
 });
-it('close aborts the pending profile after its inert bounded exit and cannot resurrect it', async () => {
+it('cancel aborts a pending profile immediately and cannot resurrect it', async () => {
   let resolve!:(r:Response)=>void; fetchMock.mockResolvedValueOnce(Response.json(crew())).mockImplementationOnce(() => new Promise<Response>(r => {resolve=r;})); await show(); await select(); const signal = fetchMock.mock.calls[1][1].signal;
-  await press('Close astronaut detail'); expect(dock().hasAttribute('inert')).toBe(true); await settleExit(); expect(signal.aborted).toBe(true); await act(async () => resolve(Response.json(personFixture()))); expect(dock()).toBeNull(); expect(node.querySelector('.crew-workspace')).not.toBeNull();
+  await press('Close astronaut detail'); expect(dock()).toBeNull(); expect(signal.aborted).toBe(true); await act(async () => resolve(Response.json(personFixture()))); expect(dock()).toBeNull(); expect(node.querySelector('.crew-workspace')).not.toBeNull();
 });
 it('close during entry / reopen B during exit cannot remove the active B dock', async () => {
-  await show(); await select(); const same = dock(); await press('Close astronaut detail'); await act(async () => vi.advanceTimersByTimeAsync(50)); await select(1); await settleExit(); expect(dock()).toBe(same); expect(dock().dataset.state).toBe('open'); expect(dock().hasAttribute('inert')).toBe(false); expect(selected()).toEqual([rows()[1].dataset.memberId]);
+  await show(); await select(); const same = dock(); await press('Close astronaut detail'); await act(async () => vi.advanceTimersByTimeAsync(50)); await select(1); await settleExit(); expect(dock()).not.toBe(same); expect(dock().dataset.state).toBe('open'); expect(dock().hasAttribute('inert')).toBe(false); expect(selected()).toEqual([rows()[1].dataset.memberId]);
 });
-it('A→B during entry does not replay the dock animation or rebuild the active surface', async () => {
-  await show(); await select(); const count = motions.filter(m => m.element.classList.contains('astronaut-dock')).length; await select(1); expect(motions.filter(m => m.element.classList.contains('astronaut-dock'))).toHaveLength(count); expect(dock().dataset.entityId).toBe(rows()[1].dataset.memberId);
+it('A→B uses one normal entrance for each newly ready card', async () => {
+  await show(); await select(); const count = motions.filter(m => m.element.classList.contains('astronaut-dock')).length; await select(1); expect(motions.filter(m => m.element.classList.contains('astronaut-dock'))).toHaveLength(count + 1); expect(dock().dataset.entityId).toBe(rows()[1].dataset.memberId);
 });
 it('uses the approved 240ms enter and 200ms exit with only opacity/x', async () => {
   await show(); await select(); let motion = motions.filter(m => m.element.classList.contains('astronaut-dock')).at(-1)!; expect(motion.keys).toEqual({opacity:[0,1],transform:['translateX(16px)','translateX(0px)']}); expect(motion.options).toEqual({duration:240,easing:'cubic-bezier(0,0,.58,1)'});
@@ -188,4 +202,19 @@ it('keeps roster, selected UUID, profile DOM, scroll and lazy request across res
     expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(selected()).toEqual([id]); expect(body.scrollTop).toBe(160);
   }
   expect(fetchMock).toHaveBeenCalledTimes(requests);
+});
+
+it('removes ready A immediately while B is pending and keeps every roster row usable', async () => {
+  await show(); await select(); fetchMock.mockImplementationOnce(() => new Promise(() => {}));
+  const roster = node.querySelector('.crew-roster-rows'); await select(1);
+  expect(dock()).toBeNull(); expect(node.querySelector('.has-astronaut')).toBeNull();
+  expect(node.querySelector('.crew-roster-rows')).toBe(roster); expect(rows().every(row => !row.disabled)).toBe(true);
+  await select(2); expect(dock().dataset.entityId).toBe(rows()[2].dataset.memberId);
+});
+
+it('handles a mismatched completed canonical UUID as unavailable rather than leaving pending', async () => {
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(profile(crew().members[1])));
+  await show(); await select(); expect(dock()).toBeNull();
+  expect(node.querySelector('[role="alert"]')?.textContent).toContain('profile is unavailable');
+  expect(node.querySelector('[role="status"]')).toBeNull();
 });

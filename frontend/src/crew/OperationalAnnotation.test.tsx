@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { crewFixture } from '../test/crewFixture';
+import { crewFixture, personFixture } from '../test/crewFixture';
 import { operationalAnnotation } from './presentation';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewAstronautDock } from './CrewAstronautDock';
@@ -40,7 +40,7 @@ describe('Current membership and dated operational annotations', () => {
   });
   it('separates detail membership, assignment and source precision', () => {
     const crew=crewFixture();const member={...crew.members[0],presence:evidence()};
-    const html=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={()=>{}} />);
+    const html=renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} person={{...personFixture(), id: member.id}} onClose={()=>{}} />);
     expect(html).not.toContain('Current membership');expect(html).not.toContain('Current member');expect(html).toContain('Structured assignment');
     expect(html).not.toContain('Operational presence evidence');expect(html).not.toContain('Publication-time proxy');expect(html).not.toContain('Operational source'); expect(member.presence.evidence[0].provenance.sourcePublishedAt).toBe(at);
     expect(html).not.toContain('Identity confirmed in Crew assessment');

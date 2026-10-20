@@ -8,7 +8,6 @@ import { crewFixture, personFixture } from '../test/crewFixture';
 import type { CrewPerson } from './types';
 
 const resource = vi.hoisted(() => ({ data: null as CrewPerson | null }));
-vi.mock('../api/useCrewResource', () => ({ useCrewMember: () => ({ ...resource, loading: false, error: null, refresh: vi.fn() }) }));
 let node: HTMLDivElement, root: Root;
 // TEST ONLY: canonical fixture using the reviewed Watkins resource selector.
 const crew = () => {
@@ -28,7 +27,7 @@ beforeEach(() => {
 });
 afterEach(async () => { await act(async () => root.unmount()); node.remove(); vi.unstubAllGlobals(); });
 const show = async () => act(async () => root.render(<><CurrentCrewRoster crew={crew()} onMember={() => {}} />
-  <CrewAstronautDock crew={crew()} member={crew().members[0]} onClose={() => {}} /></>));
+  <CrewAstronautDock crew={crew()} member={crew().members[0]} person={resource.data} onClose={() => {}} /></>));
 const figure = () => node.querySelector('figure.astronaut-portrait-identity')!;
 const fail = async () => act(async () => figure().querySelector('img')!.dispatchEvent(new Event('error')));
 
