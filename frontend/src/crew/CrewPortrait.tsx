@@ -10,7 +10,7 @@ export function CrewPortrait({ name, portrait, variant = 'roster' }: { name: str
       .map((part) => [...part][0])
       .join('') || '?';
   return (
-    <span className={`crew-portrait crew-portrait-${variant}`}>
+    <span className={`crew-portrait crew-portrait-${variant}`} data-state={variant === 'detail' ? portrait.state : undefined}>
       {portrait.candidate ? (
         <img
           key={portrait.imageKey}
@@ -20,7 +20,15 @@ export function CrewPortrait({ name, portrait, variant = 'roster' }: { name: str
           height={variant === 'roster' ? 48 : undefined}
           loading="lazy"
           referrerPolicy="no-referrer"
-          onLoad={portrait.onLoad}
+          onLoad={variant === 'detail' ? async event => {
+            const image = event.currentTarget;
+            try {
+              if (typeof image.decode === 'function') await image.decode();
+              portrait.onLoad();
+            } catch {
+              portrait.onError();
+            }
+          } : portrait.onLoad}
           onError={portrait.onError}
         />
       ) : (

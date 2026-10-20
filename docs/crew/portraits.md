@@ -19,9 +19,11 @@ errors advance to the next distinct URL. Native lazy loading and no-referrer rem
 Roster portraits retain compact 40px cover frames and thumbnail-first preference.
 The Current personal/detail variant fills the padded card content width with one
 shared 877:1000 viewport (288×328.39px at the accepted desktop width), matching the
-previous Luke Delaney presentation. Images use `object-fit: contain` inside that
-viewport to preserve source proportions without cropping or distortion. It prefers
-the same exact provider original, then thumbnail,
+previous Luke Delaney presentation. The viewport reserves its full size before
+loading; images and initials are positioned inside it without affecting its layout.
+Images use centered `object-fit: cover` to fill the frame with crop, without distortion.
+Detail images are revealed after native decoding completes, without a transition.
+The same exact provider original is preferred, then thumbnail,
 then existing reviewed fallback and initials. This is presentation ordering of the
 same eligible candidates, not a source, identity or rendering-policy change.
 Historical detail does not gain a portrait block.

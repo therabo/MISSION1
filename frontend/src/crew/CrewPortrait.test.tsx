@@ -169,3 +169,32 @@ it('uses the thumbnail in detail when the original is unsafe and never retries a
   await act(async () => root.render(<Portrait person={person} variant="detail" />));
   await event('error'); expect(image()).toBeNull();
 });
+
+it('reveals detail only after native decoding completes, with the same viewport throughout', async () => {
+  const person = future();
+  await act(async () => root.render(<Portrait person={person} variant="detail" />));
+  const viewport = image().parentElement;
+  let finish!: () => void;
+  image().decode = () => new Promise<void>(resolve => { finish = resolve; });
+  await event('load');
+  expect(latest.state).toBe('loading'); expect(viewport?.getAttribute('data-state')).toBe('loading');
+  await act(async () => finish());
+  expect(latest.state).toBe('ready'); expect(viewport?.getAttribute('data-state')).toBe('ready');
+  expect(image().parentElement).toBe(viewport); expect(image().src).toBe(person.image!.url);
+  await event('error'); expect(image().parentElement).toBe(viewport);
+  expect(viewport?.getAttribute('data-state')).toBe('loading');
+  await event('error'); expect(viewport?.getAttribute('data-state')).toBe('unavailable');
+});
+it('ignores stale detail decoding and advances a current decode failure through the same-person fallback', async () => {
+  const a = future('A', '10001'), b = future('B', '10002');
+  await act(async () => root.render(<Portrait person={a} variant="detail" />));
+  let failA!: (e: Error) => void;
+  image().decode = () => new Promise<void>((_, reject) => { failA = reject; });
+  await event('load');
+  await act(async () => root.render(<Portrait person={b} variant="detail" />));
+  await act(async () => failA(new Error('TEST ONLY stale decoder failure')));
+  expect(image().src).toBe(b.image!.url); expect(latest.state).toBe('loading');
+  image().decode = () => Promise.reject(new Error('TEST ONLY current decoder failure'));
+  await event('load');
+  expect(image().src).toBe(b.image!.thumbnailUrl); expect(latest.state).toBe('loading');
+});
