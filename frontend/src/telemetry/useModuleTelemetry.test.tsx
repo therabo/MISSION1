@@ -77,14 +77,17 @@ it.each([null, '2026-09-15T00:00:00Z'])('renders recorded module telemetry and n
   const technical = [...host.querySelectorAll('section')].find(section => section.querySelector('h3')?.textContent === 'Supporting technical detail')!;
   expect(technical.textContent).toContain('Module ID'); expect(technical.textContent).toContain('Asset node');
   expect(technical.textContent).not.toContain('Identity mapping');
-  const evidence = technical.querySelector('details')!;
-  expect(evidence.querySelector('summary')?.textContent).toBe('Telemetry evidence & provenance');
-  expect(evidence.open).toBe(false);
-  await act(async () => evidence.querySelector('summary')!.click());
-  expect(evidence.open).toBe(true);
-  expect(evidence.textContent).toContain('Retained by SenseData'); expect(evidence.textContent).toContain('Lightstreamer ISSLIVE');
-  expect(evidence.textContent).toContain('Received by MISSION1');
-  await act(async () => evidence.querySelector('summary')!.click()); expect(evidence.open).toBe(false);
+  const source = technical.querySelector('.module-telemetry-source')!;
+  expect(source.querySelector('h4')?.textContent).toBe('Telemetry source');
+  expect(source.textContent).toContain('ISS Live · Lightstreamer');
+  expect(host.querySelectorAll('a')).toHaveLength(1);
+  const link = source.querySelector('a')!;
+  expect(link.href).toBe('https://demos.lightstreamer.com/ISSLive/');
+  expect(link.textContent).toBe('Source ↗'); expect(link.target).toBe('_blank'); expect(link.rel).toBe('noreferrer');
+  expect(host.querySelector('details, summary, [aria-expanded], [aria-controls]')).toBeNull();
+  expect(source.querySelectorAll('button, [tabindex]')).toHaveLength(0);
+  expect(source.textContent).not.toContain('Retained by'); expect(source.textContent).not.toContain('Received by MISSION1');
+  expect(data.parameters[0].record!.source.retainingProvider).toBe('SenseData');
   for (const removed of ['Evidence and provenance', 'Evidence & provenance', 'Function / role', 'Configuration context', 'Component reference', 'Configuration evidence', 'Raw telemetry channels', 'No recorded value', 'Missing definition', 'Empty category', 'Limitations / availability', 'Identity verified:', 'Earth View display:', 'NOT TO SCALE', module.nodeName]) {
     expect(host.textContent).not.toContain(removed);
   }

@@ -269,15 +269,19 @@ App supplies selected component and accepted presentation time. ModuleInfo prese
 identity, Function, focus/close, scrolling and Inspection navigation. The card omits
 Configuration context, the Evidence & provenance model link/reference footer and
 the Identity mapping row. Supporting technical detail retains module/asset identifiers
-and grouped evidence for displayed readings. Limitations / availability and the
+and one compact telemetry source entry. Limitations / availability and the
 bottom numbered module name, identity verification date and display scale note are omitted. Normal
 categories show only recorded engineering/state readings with individual UTC dates;
-source and retainer information stays in the existing **Telemetry evidence & provenance**
-disclosure, without repeated captions under each reading. Raw channels and
+**Telemetry source** shows **ISS Live · Lightstreamer** with exactly one **Source ↗**
+link to `https://demos.lightstreamer.com/ISSLive/`, the existing verified
+`lightstreamer_live_demo` in `source-registry.yaml`. Source disclosures, per-parameter
+evidence links and technical provenance are omitted from this card. Full source,
+retainer, timestamp-policy and evidence metadata remain in the API and internal
+acquisition, reconciliation, diagnostics and Historical systems. Raw channels and
 definitions without observations are omitted, including their disclosures and empty
 categories; their catalog/API support is unchanged. Components without a verified
 mapping still show **No verified telemetry mapping**. Engineering display uses six
-significant digits; full source precision survives in detail/API, and nonzero tiny
+significant digits; full source precision survives in the API, and nonzero tiny
 values do not become zero.
 
 Only the selected active dock loads. AbortController, generation and response

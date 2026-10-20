@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it } from 'vitest';
 import { telemetryFixture } from '../test/telemetryFixture';
 import { decodeModuleTelemetry, type TelemetryParameter } from './telemetryApi';
-import { ModuleTelemetryReadings, ModuleTelemetryTechnical } from './ModuleTelemetry';
+import { ModuleTelemetryReadings, ModuleTelemetrySource } from './ModuleTelemetry';
 
 interface Definition {
   parameterId: string; rawItemId: string; componentId: string; label: string; category: string;
@@ -25,7 +25,7 @@ it.each([...new Set(reference.definitions.map(d => d.componentId))])('decodes ev
   const decoded = decodeModuleTelemetry(data);
   expect(decoded.parameters).toHaveLength(data.parameters.length);
   const normal = renderToStaticMarkup(<ModuleTelemetryReadings data={decoded} loading={false} error={false} />);
-  const technical = renderToStaticMarkup(<ModuleTelemetryTechnical data={decoded} />);
+  const technical = renderToStaticMarkup(<ModuleTelemetrySource data={decoded} />);
   for (const parameter of decoded.parameters) {
     const attribute = `data-parameter-id="${parameter.parameterId}"`;
     if (parameter.rawOnly) {

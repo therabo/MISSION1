@@ -36,11 +36,15 @@ records refresh through local REST every 60 seconds while visible; Historical us
 the accepted UTC and does not poll. Each value retains its Last telemetry record date.
 The card emphasizes Function and recorded engineering/state readings; raw channels
 and definitions without observations are omitted. Supporting technical detail keeps
-module/asset identifiers and evidence for displayed readings. Configuration context
+module/asset identifiers and one compact telemetry source entry. Configuration context
 and the model/reference footer are removed from this presentation. Navigation and
 camera behavior are unchanged. [Contract and limits](../docs/telemetry/module-telemetry.md).
-Source/retainer captions appear in the existing **Telemetry evidence & provenance**
-disclosure rather than under every reading. The card also omits Limitations /
+**Telemetry source** shows **ISS Live · Lightstreamer** and one **Source ↗** link to
+the [official demo](https://demos.lightstreamer.com/ISSLive/), reusing the verified
+`lightstreamer_live_demo` URL in the source registry. No nested source disclosures,
+per-parameter evidence links or technical provenance are shown here; full precision,
+source/retainer metadata and evidence remain in the API and internal systems.
+The card also omits Limitations /
 availability, the bottom numbered module name, identity verification date and display
 scale note; source metadata, mappings and model rendering remain intact.
 

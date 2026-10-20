@@ -36,27 +36,13 @@ export function ModuleTelemetryReadings({ data, loading, error }: { data: Module
     {error && data && <p className="module-secondary" role="status">Telemetry could not be reloaded.</p>}
   </section>;
 }
-export function ModuleTelemetryTechnical({ data }: { data: ModuleTelemetry | null }) {
-  if (!data || data.mappingStatus === 'NO_VERIFIED_MAPPING') return null;
-  const recorded = data.parameters.filter(parameter => !parameter.rawOnly && parameter.record);
-  const sources = new Map(recorded.map(parameter => {
-    const source = parameter.record!.source;
-    return [`${source.retainingProvider}|${source.timeRole}|${source.timestampPolicy}`, source] as const;
-  }));
-  return <>
-    {sources.size > 0 && <details className="module-telemetry-technical"><summary>Telemetry evidence &amp; provenance</summary>
-      {[...sources].map(([key, source]) => <div key={key} className="module-telemetry-group">
-        <p className="module-secondary">Public ISS telemetry · {source.transport}{source.retainingProvider && <> · Retained by {source.retainingProvider}</>}</p>
-        <p className="module-secondary">{source.retainingProvider === 'SenseData' ? 'Provider reconstructed record time; inferred year and second precision.'
-          : source.retainingProvider === 'ISS.live' ? 'Provider record time; measurement/generator role unspecified.' : 'MISSION1 reconstructed record time; inferred year.'}</p>
-        <p className="module-secondary">{source.catalogVersion}</p>
-      </div>)}
-      {recorded.map(parameter => <details key={parameter.parameterId} className="module-telemetry-evidence"><summary>{parameter.label}</summary>
-        <p className="module-secondary">Source channel value: {String(parameter.record!.numericValue)}{parameter.record!.enumCode !== null && <> · State code {parameter.record!.enumCode}</>}</p>
-        <p className="module-secondary">Received by MISSION1<time dateTime={parameter.record!.source.receivedAt}>{recordDate(parameter.record!.source.receivedAt)}</time></p>
-        {parameter.record!.source.roundingDecimals !== null && <p className="module-secondary">Provider rounding: {parameter.record!.source.roundingDecimals} decimal places</p>}
-        {parameter.evidence.filter(url => url.startsWith('https://')).map((url, index) => <p className="module-secondary" key={url}><a href={url} target="_blank" rel="noreferrer">Definition evidence {index + 1}</a></p>)}
-      </details>)}
-    </details>}
-  </>;
+export function ModuleTelemetrySource({ data }: { data: ModuleTelemetry | null }) {
+  if (!data || data.mappingStatus === 'NO_VERIFIED_MAPPING'
+      || !data.parameters.some(parameter => !parameter.rawOnly && parameter.record)) return null;
+  return <section className="module-telemetry-source">
+    <h4>Telemetry source</h4>
+    <p>ISS Live · Lightstreamer</p>
+    {/* Verified lightstreamer_live_demo in docs/telemetry/source-registry.yaml. */}
+    <p className="module-secondary"><a href="https://demos.lightstreamer.com/ISSLive/" target="_blank" rel="noreferrer">Source <span aria-hidden="true">↗</span></a></p>
+  </section>;
 }

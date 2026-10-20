@@ -3,7 +3,7 @@ import type { SemanticMapping } from '../cesium/modelPresentation';
 import { ContextDock } from './ContextDock';
 import './ModuleInfo.css';
 import { useModuleTelemetry } from '../telemetry/useModuleTelemetry';
-import { ModuleTelemetryReadings, ModuleTelemetryTechnical } from '../telemetry/ModuleTelemetry';
+import { ModuleTelemetryReadings, ModuleTelemetrySource } from '../telemetry/ModuleTelemetry';
 
 interface ModuleInfoProps {
   module: SemanticMapping | null;
@@ -35,7 +35,7 @@ export function ModuleInfo({ module, onClose, historical = false, acceptedAt }: 
       <div><dt>Module ID</dt><dd className="module-code">{shown.componentId}</dd></div>
       <div><dt>Asset node</dt><dd className="module-code">{shown.nodeIndex}</dd></div>
       <div className="module-type-row"><dt>Component type</dt><dd>{shown.componentType}</dd></div>
-    </dl><ModuleTelemetryTechnical data={telemetry.data} />
+    </dl><ModuleTelemetrySource data={telemetry.data} />
     </section>
   </ContextDock>;
 }
