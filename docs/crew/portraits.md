@@ -17,9 +17,11 @@ extensions are not a MIME guarantee. Unsafe/malformed URLs are skipped; load/dec
 errors advance to the next distinct URL. Native lazy loading and no-referrer remain.
 
 Roster portraits retain compact 40px cover frames and thumbnail-first preference.
-The Current personal/detail variant fills the padded card content width with natural
-image proportions (`width: 100%; height: auto; object-fit: contain`) and no fixed
-avatar dimensions. It prefers the same exact provider original, then thumbnail,
+The Current personal/detail variant fills the padded card content width with one
+shared 877:1000 viewport (288×328.39px at the accepted desktop width), matching the
+previous Luke Delaney presentation. Images use `object-fit: contain` inside that
+viewport to preserve source proportions without cropping or distortion. It prefers
+the same exact provider original, then thumbnail,
 then existing reviewed fallback and initials. This is presentation ordering of the
 same eligible candidates, not a source, identity or rendering-policy change.
 Historical detail does not gain a portrait block.

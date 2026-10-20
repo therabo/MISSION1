@@ -86,13 +86,16 @@ describe('partial/safe astronaut profiles', () => {
     expect(html).toContain('No structured assignment');
     expect(html).toContain('Career statistics unavailable');
     expect(html).not.toContain('0 s');
+    expect(html).toContain('Biography unavailable.');
+    expect(html).not.toContain('Read biography');
   });
-  it('collapses a long biography and displays multiple nationalities', () => {
+  it('shows the complete long biography directly and displays multiple nationalities', () => {
     const person = personFixture();
     person.biography = 'Long biography. '.repeat(200);
     person.nationalities.push({ displayName: 'Test nationality', alpha2: null, alpha3: null });
     const html = renderToStaticMarkup(<CrewProfile person={person} />);
-    expect(html).toContain('Read biography');
+    expect(html).not.toContain('Read biography');
+    expect(html).toContain('<section class="crew-biography"><h3>Biography</h3><p>' + person.biography + '</p>');
     expect(html).toContain('Test nationality');
   });
   it('keeps original portrait credit/license metadata without a verbose rights disclosure', () => {

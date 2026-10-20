@@ -28,7 +28,7 @@
 .crew-workspace .crew-assessment-evidence.is-aligned > summary { color: var(--color-success); }
 .crew-assessment-evidence > p { margin: 8px 0; }
 .crew-assessment-evidence .crew-unresolved, .crew-assessment-evidence .crew-sources { margin: 12px 0; }
-.crew-workspace .crew-roster-columns { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) 140px 80px 232px; gap: 16px; padding: 0 32px 0 12px; height: 24px; color: var(--color-text-secondary); font: 700 11px/16px var(--font-interface); }
+.crew-workspace .crew-roster-columns { flex: none; display: grid; grid-template-columns: minmax(0, 1fr) 140px 80px 232px; gap: 16px; padding: calc(var(--space-primary) / 3) 32px 0 12px; height: 24px; color: var(--color-text-secondary); font: 700 11px/16px var(--font-interface); }
 .crew-panel.crew-workspace .crew-roster-rows { flex: 1 0 auto; min-height: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
 .crew-roster-rows > li { display: flex; flex: 1 0 auto; min-height: var(--crew-row-min-height); }
 .crew-panel.crew-workspace .crew-roster-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 140px 80px 232px 4px; gap: 16px; align-items: center; width: 100%; min-height: var(--crew-row-min-height); height: auto; padding: 8px 12px; margin: 0; border: 0; border-bottom: 1px solid rgb(42 53 66 / .50); border-radius: 0; background: transparent; color: var(--color-text-primary); font-family: var(--font-interface); text-align: left; }
@@ -115,7 +115,8 @@
 .crew-historical-detail .context-dock-header { flex: none; min-height: 89px; padding: 16px 24px; border-bottom-color: rgb(42 53 66 / .55); }
 .crew-historical-detail .context-dock-identity { min-width: 0; flex: 1; }
 .crew-historical-detail .context-dock-header h3 { margin: 0; font: 700 18px/26px var(--font-interface); }
-.crew-historical-profile-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; padding: 20px 24px; }
+.crew-historical-profile-body { flex: 1; min-width: 0; min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; padding: 20px 24px; }
+.crew-historical-profile-body > * { min-width: 0; max-width: 100%; }
 .crew-historical-profile-body h3 { font-size: 13px; margin: 18px 0 8px; }
 .crew-historical-profile-body dl > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; margin: 12px 0; }
 .crew-historical-profile-body dt { color: var(--color-text-secondary); font-size: 12px; }

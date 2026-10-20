@@ -32,7 +32,7 @@ const show = async () => act(async () => root.render(<><CurrentCrewRoster crew={
 const figure = () => node.querySelector('figure.astronaut-portrait-identity')!;
 const fail = async () => act(async () => figure().querySelector('img')!.dispatchEvent(new Event('error')));
 
-it('shows one active credit directly below the natural-size detail image, with none in Mission', async () => {
+it('shows one active credit directly below the shared detail viewport, with none in Mission', async () => {
   await show(); const image = figure().querySelector('img')!, caption = figure().querySelector('figcaption')!;
   expect(image.src).toBe(resource.data!.image!.url);
   expect(caption.textContent).toBe('Photo: TEST provider credit');
@@ -61,4 +61,17 @@ it('retains a long source credit once as plain caption text', async () => {
   const credit = 'TEST ONLY long credit '.repeat(30); resource.data!.image!.credit = credit; await show();
   expect(figure().querySelector('figcaption')!.textContent).toBe('Photo: ' + credit);
   expect(figure().querySelectorAll('figcaption')).toHaveLength(1); expect(figure().querySelector('button,details,a')).toBeNull();
+});
+
+it.each(['TEST ONLY short biography.', 'TEST ONLY long biography. '.repeat(100), 'TEST_ONLY_UNBROKEN_TEXT_'.repeat(120), null])('shows the complete biography directly without a disclosure (case %#)', async biography => {
+  resource.data!.biography = biography;
+  const before = structuredClone(resource.data);
+  await show();
+  const section = node.querySelector('.astronaut-dock .crew-biography')!;
+  expect(section.querySelector('h3')!.textContent).toBe('Biography');
+  expect(section.querySelector('h3')!.nextElementSibling?.textContent).toBe(biography ?? 'Biography unavailable.');
+  expect(section.querySelector('details, summary, button, [aria-expanded], [hidden]')).toBeNull();
+  expect(node.textContent).not.toContain('Biography / retained profile');
+  expect(node.textContent).not.toContain('Read biography');
+  expect(resource.data).toEqual(before);
 });

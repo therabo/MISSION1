@@ -57,7 +57,7 @@ function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: 
       </div>}
       {person && <>
         {person.profileAvailability === 'UNAVAILABLE' && <p className="astronaut-secondary">Structured profile unavailable. Available identity and NASA presence context are shown.</p>}
-        <section><h3>Biography / retained profile</h3>{person.biography ? person.biography.length > 700 ? <details className="astronaut-biography"><summary>Read biography</summary><p>{person.biography}</p></details> : <p>{person.biography}</p> : <p className="astronaut-secondary">Biography unavailable.</p>}</section>
+        <section className="crew-biography"><h3>Biography</h3>{person.biography ? <p>{person.biography}</p> : <p className="astronaut-secondary">Biography unavailable.</p>}</section>
         <section><h3>Career</h3>{person.career ? <dl>
           <div><dt>Time in space</dt><dd className="astronaut-numeric">{formatDuration(person.career.timeInSpace)}</dd></div>
           <div><dt>EVA time</dt><dd className="astronaut-numeric">{formatDuration(person.career.evaTime)}</dd></div>

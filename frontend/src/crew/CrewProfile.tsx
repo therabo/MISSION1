@@ -48,14 +48,7 @@ export function CrewProfile({ person, replayAt, historicalMember }: { person: Cr
       {person.biography ? (
         <section className="crew-biography">
           <h3>Biography</h3>
-          {person.biography.length > 700 ? (
-            <details>
-              <summary>Read biography</summary>
-              <p>{person.biography}</p>
-            </details>
-          ) : (
-            <p>{person.biography}</p>
-          )}
+          <p>{person.biography}</p>
         </section>
       ) : (
         <p className="crew-note">Biography unavailable.</p>
