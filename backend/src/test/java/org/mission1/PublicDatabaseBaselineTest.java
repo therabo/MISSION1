@@ -24,8 +24,9 @@ class PublicDatabaseBaselineTest {
         var source = new DriverManagerDataSource(PG.getJdbcUrl(), PG.getUsername(), PG.getPassword());
         jdbc = new JdbcTemplate(source);
         assertEquals(0, count("SELECT count(*) FROM pg_tables WHERE schemaname='public'"));
-        // This frozen publication contract verifies V1 independently of forward migrations.
-        flyway = Flyway.configure().dataSource(source).target("1").load();
+        // The complete clean-install contract is one canonical V1, including telemetry.
+        flyway = Flyway.configure().dataSource(source).load();
+        assertEquals(1, flyway.info().all().length);
         assertEquals(1, flyway.migrate().migrationsExecuted);
     }
 
@@ -43,7 +44,7 @@ class PublicDatabaseBaselineTest {
     }
 
     @Test void schemaAloneHasNoDomainOrCoordinationRows() {
-        assertEquals(80, tables().size());
+        assertEquals(89, tables().size());
         for (var table : tables()) assertEquals(0, count("SELECT count(*) FROM " + table), table);
     }
 
@@ -51,13 +52,16 @@ class PublicDatabaseBaselineTest {
         assertTrue(tables().containsAll(List.of("orbital_element_sets", "orbital_element_observations", "nasa_oem_ephemerides", "celestrak_request_state",
                 "crew_person", "crew_identity_binding_version", "crew_person_equivalence_decision", "crew_resource", "crew_resource_acquisition",
                 "crew_resource_relation", "crew_identity_research_decision_revision", "crew_operational_subject_binding_revision",
-                "crew_membership_projection_revision", "crew_membership_projection_binding", "crew_subject_version_link")));
-        assertEquals(634, count("SELECT count(*) FROM information_schema.columns WHERE table_schema='public' AND table_name IN (SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename<>'flyway_schema_history')"));
-        assertEquals(555, count("SELECT count(*) FROM pg_constraint WHERE connamespace='public'::regnamespace AND conrelid<>'flyway_schema_history'::regclass"));
+                "crew_membership_projection_revision", "crew_membership_projection_binding", "crew_subject_version_link",
+                "telemetry_catalog", "telemetry_parameter", "telemetry_acquisition", "telemetry_record",
+                "telemetry_record_evidence", "telemetry_admission", "telemetry_bootstrap_state",
+                "telemetry_provider_state", "telemetry_time_rejection")));
+        assertEquals(726, count("SELECT count(*) FROM information_schema.columns WHERE table_schema='public' AND table_name IN (SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename<>'flyway_schema_history')"));
+        assertEquals(592, count("SELECT count(*) FROM pg_constraint WHERE connamespace='public'::regnamespace AND conrelid<>'flyway_schema_history'::regclass"));
     }
 
     @Test void indexCoverageAndIdentitySequencesArePreserved() {
-        assertEquals(172, count("SELECT count(*) FROM pg_indexes WHERE schemaname='public' AND tablename<>'flyway_schema_history'"));
+        assertEquals(184, count("SELECT count(*) FROM pg_indexes WHERE schemaname='public' AND tablename<>'flyway_schema_history'"));
         assertEquals(29, count("SELECT count(*) FROM pg_sequences WHERE schemaname='public'"));
         assertTrue(jdbc.queryForList("SELECT indexdef FROM pg_indexes WHERE tablename='crew_operational_subject_binding_revision'", String.class)
                 .stream().anyMatch(s -> s.contains("evidence_id, subject_index, id DESC")));
@@ -78,8 +82,8 @@ class PublicDatabaseBaselineTest {
     }
 
     @Test void atomicLineageAndImmutableHistoryGuardsRemainInstalled() {
-        assertEquals(25, count("SELECT count(*) FROM pg_proc WHERE pronamespace='public'::regnamespace"));
-        assertEquals(117, count("SELECT count(*) FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid WHERE c.relnamespace='public'::regnamespace AND NOT t.tgisinternal"));
+        assertEquals(26, count("SELECT count(*) FROM pg_proc WHERE pronamespace='public'::regnamespace"));
+        assertEquals(124, count("SELECT count(*) FROM pg_trigger t JOIN pg_class c ON c.oid=t.tgrelid WHERE c.relnamespace='public'::regnamespace AND NOT t.tgisinternal"));
         assertEquals(2, count("SELECT count(*) FROM pg_views WHERE schemaname='public'"));
         assertEquals(0, count("SELECT count(*) FROM pg_type WHERE typnamespace='public'::regnamespace AND typtype NOT IN ('c','b')"));
         assertEquals(1, count("SELECT count(*) FROM pg_trigger WHERE tgname='crew_membership_production_atomic' AND tgdeferrable AND tginitdeferred"));

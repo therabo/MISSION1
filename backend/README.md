@@ -6,8 +6,8 @@ following successful acquisition, including empty/rejected/duplicate-only respon
 Durable PostgreSQL deadlines survive restart; provider claims prevent duplicate
 fetches and failure backoff doubles to PT6H. Bounded I/O is outside the native worker.
 The common normalizer/admission/JDBC model and 131 definitions are unchanged.
-V1/V2 remain byte-identical; structure-only V3 adds provider coordination and
-immutable SenseData future-time rejection identities. No year rewrite or UI change.
+The canonical V1 includes provider coordination and immutable SenseData future-time
+rejection identities alongside the telemetry schema. No year rewrite or UI change.
 
 Configuration: `MISSION1_TELEMETRY_RETAINED_RECONCILIATION_ENABLED=true`,
 `MISSION1_TELEMETRY_RETAINED_RECONCILIATION_INTERVAL=PT30M`,
@@ -18,15 +18,24 @@ override is retired. Diagnostics report both durable provider outcomes/deadlines
 [periodic validation](../docs/telemetry/retained-reconciliation-validation.md),
 [earlier coverage audit](../docs/telemetry/retained-coverage-audit.md).
 
-**Public database baseline — ADR-0023, followed by ADR-0024 telemetry:** startup applies
-`V1__initial_schema.sql` as the frozen baseline, followed by telemetry V2 and retained-coordination V3. V1 creates 80 domain tables with no preloaded observations,
-source captures, memberships or coordination rows. Application initialization creates
-six mutable coordination registers separately; the packaged reviewed identity manifest
-and frozen model remain explicit application reference inputs. All operational history
-comes from normal acquisition/workers. The pre-publication V1–V13 chain was squashed
-before first public release; old development databases are intentionally unsupported.
-Use a new database or deliberately discard the local development volume with
-`docker compose down -v`, then `docker compose up -d --wait postgres`.
+**Final clean-install database baseline — ADR-0023/0024/0025:** startup applies only
+`V1__initial_schema.sql`. It creates all 89 domain tables, including telemetry and
+retained-provider coordination, without preloaded observations, source captures,
+memberships or coordination rows. Application initialization separately creates
+six core coordination registers; reviewed identities, frozen research resources,
+telemetry definitions and provider coordination keep their existing runtime owners.
+All operational history comes from normal acquisition/workers.
+
+The previous V1/V2/V3 chain is consolidated for the final clean-install release.
+Its Flyway checksums/history are intentionally incompatible with this baseline;
+there is no production upgrade claim, automatic repair or baseline-on-migrate path.
+Use a new empty database through `MISSION1_DB_URL` or deliberately recreate the local
+development database. Existing databases are never reset automatically. If discarding
+local history is intended, `docker compose down -v` followed by
+`docker compose up -d --wait postgres` recreates that development store.
+Run `mvn clean verify` after pulling the consolidation so obsolete V2/V3 files cannot
+remain in `target/classes`; ordinary future builds use the one-file resource set.
+The earlier development V1–V13 chain and dated dossiers remain historical evidence.
 
 Production always uses qualified Operational Subject Binding, canonical identity and
 one membership lifecycle for Current/Historical. No old database names or rollback
@@ -156,9 +165,9 @@ At the one-hour time the independent reference yields TEME position `(5245553.22
 
 `GET /api/iss/orbit/comparison` is a separate Earth View contract; see its [field and failure specification](../docs/api/orbital-comparison.md). It returns 181 computed GP/TLE points from request time through one mean-motion revolution, with current index 0, and an optional NASA OEM predicted ephemeris path limited to actual vector coverage. The short `/samples` buffer remains mandatory and drives the default GP/TLE position. The frontend may select bounded OEM positions for the model and Inspection camera; `/state` retains its canonical computed GP/TLE semantics. Neither product is an onboard measurement or designated truth.
 
-The NASA/JSC TOPO [current XML OEM](https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml) is fetched through a separate source adapter and validated for ISS/Earth/EME2000/UTC, CCSDS OEM 2.0, ordinal-year epochs and explicit km/km/s units. Source vectors are normalized to SI, bounded cubic Hermite interpolation supplies aligned display points, and Orekit transforms EME2000 to the pinned ITRF frame. PostgreSQL Flyway V2 keeps exact source bytes by SHA-256 and separate OEM creation, HTTP Last-Modified and MISSION1 retrieval times. The NASA current URL is mutable; no publication timestamp or per-point accuracy flag is invented. Successful fetches are cached for two hours; failures back off for 15 minutes. A stored file can be used within its covered time span with `DEGRADED` availability; absence or invalid coverage gives `UNAVAILABLE` within an otherwise successful primary response. These request intervals are local policy, not NASA cadence guarantees.
+The NASA/JSC TOPO [current XML OEM](https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.xml) is fetched through a separate source adapter and validated for ISS/Earth/EME2000/UTC, CCSDS OEM 2.0, ordinal-year epochs and explicit km/km/s units. Source vectors are normalized to SI, bounded cubic Hermite interpolation supplies aligned display points, and Orekit transforms EME2000 to the pinned ITRF frame. The canonical PostgreSQL Flyway V1 keeps exact source bytes by SHA-256 and separate OEM creation, HTTP Last-Modified and MISSION1 retrieval times. The NASA current URL is mutable; no publication timestamp or per-point accuracy flag is invented. Successful fetches are cached for two hours; failures back off for 15 minutes. A stored file can be used within its covered time span with `DEGRADED` availability; absence or invalid coverage gives `UNAVAILABLE` within an otherwise successful primary response. These request intervals are local policy, not NASA cadence guarantees.
 
-Offline tests use a labeled 2026-09-30 NASA XML excerpt for parsing, unit/frame rejection, time alignment and OEM failure, plus Testcontainers for V2 persistence and API contract coverage. The fixture is not a runtime fallback. `mvn test` and `mvn verify` do not require NASA availability.
+Offline tests use a labeled 2026-09-30 NASA XML excerpt for parsing, unit/frame rejection, time alignment and OEM failure, plus Testcontainers for OEM persistence and API contract coverage. The fixture is not a runtime fallback. `mvn test` and `mvn verify` do not require NASA availability.
 
 ## ITRF velocity delivery for visual orientation — 2026-09-30
 

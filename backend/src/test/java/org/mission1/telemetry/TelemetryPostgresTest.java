@@ -20,11 +20,10 @@ class TelemetryPostgresTest {
     @Container static final PostgreSQLContainer<?> PG=new PostgreSQLContainer<>("postgres:16.10");
     static JdbcTemplate jdbc;static Flyway flyway;static TransactionTemplate tx;static JdbcTelemetryRepository repository;
     static final Instant SEPT=Instant.parse("2026-09-14T14:10:29Z");
-    @BeforeAll static void migrateV1ThenTelemetry() {
+    @BeforeAll static void migrateCanonicalV1() {
         var source=new DriverManagerDataSource(PG.getJdbcUrl(),PG.getUsername(),PG.getPassword());jdbc=new JdbcTemplate(source);
-        assertEquals(1,Flyway.configure().dataSource(source).target("1").load().migrate().migrationsExecuted);
-        flyway=Flyway.configure().dataSource(source).load();assertEquals(2,flyway.migrate().migrationsExecuted);flyway.validate();
-        assertEquals(List.of("1","2","3"),jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank",String.class));
+        flyway=Flyway.configure().dataSource(source).load();assertEquals(1,flyway.migrate().migrationsExecuted);flyway.validate();
+        assertEquals(List.of("1"),jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank",String.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_record",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_acquisition",Integer.class));
@@ -43,8 +42,7 @@ class TelemetryPostgresTest {
     @Test void migrationIsStructureOnlyAndRegistryInitializationIsIdempotent() {
         assertEquals(131,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));repository.initialize(CATALOG);
         assertEquals(131,jdbc.queryForObject("SELECT count(*) FROM telemetry_parameter",Integer.class));assertEquals(0,flyway.migrate().migrationsExecuted);
-        assertEquals(-1371784637,jdbc.queryForObject("SELECT checksum FROM flyway_schema_history WHERE version='1'",Integer.class));
-        assertEquals(1338977865,jdbc.queryForObject("SELECT checksum FROM flyway_schema_history WHERE version='2'",Integer.class));
+        assertEquals(-1347770931,jdbc.queryForObject("SELECT checksum FROM flyway_schema_history WHERE version='1'",Integer.class));
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_name='historical_coverage_state'",Integer.class));
     }
     @Test void repeatedRetainedRecordKeepsDateReceiptAndImmutableValue() {

@@ -27,7 +27,9 @@ From the repository root, start PostgreSQL with `docker compose up -d --wait pos
 then run `mvn spring-boot:run` in `backend/` and `npm run dev` in `frontend/`.
 Java21 and Node24 are required.
 
-Fresh installations apply public `V1__initial_schema.sql` and telemetry V2. Pre-publication V1–V13
-were squashed before the first public release; upgrading their development database
-is unsupported. Discard that local volume deliberately or configure an empty database.
-The migration creates structure only; runtime sources rebuild operational history.
+Fresh installations apply only `V1__initial_schema.sql`, including telemetry and
+retained-provider coordination. The final consolidation replaces the previous
+V1/V2/V3 chain; databases carrying that history require deliberate recreation or a
+new empty database. No upgrade/repair compatibility is provided. After pulling this
+change, run `mvn clean verify` in `backend/` to remove stale compiled migrations.
+Flyway creates structure only; runtime sources rebuild operational history.

@@ -56,8 +56,9 @@ is 2h10m and one timer follows `nextEligibleAt`. State is computed from retained
 elements, never live onboard telemetry. OEM remains a separately sourced prediction.
 No provider/source selection, propagation, camera timing or frame convention changed.
 
-Fresh PostgreSQL applies `V1__initial_schema.sql` and schema-only telemetry V2 and retained-coordination V3, defining the final schema
-without operational or coordination rows. Normal application initialization creates
+Fresh PostgreSQL applies only canonical `V1__initial_schema.sql`, including telemetry
+and retained-provider coordination, without operational or coordination rows. Normal
+application initialization creates
 its core mutable coordination registers; telemetry adds provider/catalog coordination
 after readiness; the existing packaged reviewed manifest and
 frozen model initialize their own reference knowledge. Source pipelines populate
@@ -66,8 +67,10 @@ Telemetry initializes definitions asynchronously after readiness and acquires ac
 source records separately. Existing module cards show each record's date; telemetry
 Historical uses recordTime <= T without an installation floor. See
 [component telemetry](../telemetry/module-telemetry.md) and ADR-0024/0025.
-The development V1–V13 chain has been squashed before first public release. Upgrade
-from its databases is deliberately unsupported; those stores must be discarded.
+The final clean-install baseline consolidates the previous V1/V2/V3 chain as well
+as the earlier development history. Their checksums/history are not upgrade-compatible;
+use a new empty database or deliberately recreate the development store. Run a clean
+backend build after updating so removed migration resources cannot remain on the classpath.
 
 Production operational binding and unified Historical are the only production paths.
 Current retains its `ACTIVE_PROJECTION` wire label; Historical uses `UNIFIED_HISTORICAL`.

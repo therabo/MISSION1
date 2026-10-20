@@ -4,6 +4,12 @@ Status: Accepted
 Date: 2026-10-15
 Supersedes the bootstrap-only acquisition policy in [ADR-0024](0024-component-telemetry-record-history.md); its catalog, admission, history and UI decisions remain active.
 
+**Schema placement clarification — 2026-10-21:** the final clean-install
+[baseline consolidation](../architecture/database-publication-baseline.md#final-clean-install-consolidation--2026-10-21)
+incorporates all former V1/V2/V3 schema effects into canonical V1. Previous development
+Flyway histories require deliberate recreation. Migration labels below retain their
+dated meaning; schema, data authority and acquisition decisions are unchanged.
+
 ## Context
 
 Native push and visible Current refresh already work autonomously. Completed

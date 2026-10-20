@@ -1,5 +1,38 @@
 # Public initial database baseline — 2026-10-14
 
+## Final clean-install consolidation — 2026-10-21
+
+The current installation contract is one `V1__initial_schema.sql` containing the
+complete accepted schema: **89 tables, 726 table columns, 184 indexes, 592 constraints,
+29 identity sequences, two views, 26 functions and 124 application triggers**.
+It incorporates the seven telemetry tables previously introduced by V2 and both
+retained-provider/rejection tables previously introduced by V3, with all their
+keys, checks, indexes and immutability guards. Existing V1 objects are unchanged.
+All domain tables remain empty after Flyway; reference/coordination initialization
+retains its application owners. No top-level data statements are introduced.
+
+The former V1/V2/V3 chain and the canonical V1 were applied independently to empty
+PostgreSQL16.10 databases. Catalog comparison found zero differences in schema,
+column types/nullability/defaults/identity, constraints, indexes, sequence ownership,
+views, functions, trigger behavior/order, policies, types and comments. Only Flyway
+history intentionally changes from three successful entries to one. The
+[current schema inventory](database-publication-schema.md) includes all nine
+telemetry tables. Testcontainers covers the complete canonical V1 and all existing
+storage behavior; no old migration is hidden by targeting only version1.
+
+An existing development database with the previous checksums/history must be
+recreated deliberately or replaced by a new empty database. No automatic repair,
+baselineOnMigrate, compatibility migration or deployed-production upgrade is claimed.
+Run `mvn clean verify` after pulling this change to remove obsolete compiled V2/V3
+resources before startup. The normal development database is not destroyed by the
+application or by the validation procedure.
+
+This is the final consolidation of the existing one-baseline contract, without a
+schema/architecture redesign or new ADR. The original dated publication dossier
+below preserves its then-current counts, checksums and validation history.
+
+## Original publication dossier — 2026-10-14
+
 Starting revision: `a9bf258bd382cea8e5083c201a6515a82f80b352`, clean `main`.
 The final revision is the single ordinary commit containing this dossier; its SHA
 and remote equality are recorded in the external Git proof and project context.

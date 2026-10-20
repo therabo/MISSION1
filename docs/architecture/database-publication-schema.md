@@ -1,12 +1,12 @@
 # Public database schema inventory
 
-Generated from PostgreSQL 16.10 after the normal artifact applied the public V1,
+Generated from PostgreSQL 16.10 after canonical V1 (including telemetry and retained coordination),
 before application reference/coordination initialization. Flyway metadata is excluded.
 
-80 tables · 634 columns · 172 indexes (including constraint-backed indexes) ·
-555 constraints (including five deferred constraint triggers) · 29 identity sequences ·
-2 views · 25 guard/notification functions · 117 application triggers · no custom enum/domain types.
-PostgreSQL's 82 implicit composite row types and 82 array types are also inventoried
+89 tables · 726 table columns · 184 indexes (including constraint-backed indexes) ·
+592 constraints (including five deferred constraint triggers) · 29 identity sequences ·
+2 views · 26 guard/notification functions · 124 application triggers · no custom enum/domain types.
+PostgreSQL's 91 implicit composite row types and 91 array types are also inventoried
 and pass the complete object-name audit.
 
 All domain rows: **0**. Full column/type/nullability/default, constraint, index,
@@ -96,6 +96,15 @@ the external validation evidence, not loaded by the application.
 | `nasa_oem_ephemerides` | 7 | 2 | 3 | 0 |
 | `orbital_element_observations` | 2 | 1 | 2 | 0 |
 | `orbital_element_sets` | 12 | 3 | 11 | 0 |
+| `telemetry_acquisition` | 8 | 1 | 3 | 1 |
+| `telemetry_admission` | 4 | 1 | 4 | 1 |
+| `telemetry_bootstrap_state` | 4 | 1 | 3 | 0 |
+| `telemetry_catalog` | 3 | 1 | 1 | 1 |
+| `telemetry_parameter` | 11 | 3 | 7 | 1 |
+| `telemetry_provider_state` | 20 | 1 | 4 | 0 |
+| `telemetry_record` | 21 | 2 | 8 | 1 |
+| `telemetry_record_evidence` | 8 | 1 | 3 | 1 |
+| `telemetry_time_rejection` | 13 | 1 | 4 | 1 |
 
 The views are `crew_current_person_equivalence` and `crew_current_identity_binding`.
 Every identity sequence is owned by its table/column and retains start 1, increment 1,

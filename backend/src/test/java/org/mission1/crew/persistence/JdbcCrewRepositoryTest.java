@@ -68,7 +68,7 @@ class JdbcCrewRepositoryTest {
     }
 
     @Test void cleanDatabaseMigratesPublicBaselineAndTelemetryWithoutChangingCrewSchema() {
-        assertEquals(List.of("1","2","3"), jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank", String.class));
+        assertEquals(List.of("1"), jdbc.queryForList("SELECT version FROM flyway_schema_history WHERE success ORDER BY installed_rank", String.class));
         assertEquals(78, jdbc.queryForObject("SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"
                             + " AND table_name LIKE 'crew_%'", Integer.class));
         assertTrue(query.latest(CrewSource.LAUNCH_LIBRARY_2, Station.ISS).isEmpty());

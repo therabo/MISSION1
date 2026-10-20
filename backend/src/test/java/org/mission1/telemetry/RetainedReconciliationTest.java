@@ -46,7 +46,7 @@ class RetainedReconciliationTest {
     volatile boolean senseFailure,archiveFailure;volatile CountDownLatch senseEntered,senseRelease;
     @BeforeAll static void database(){
         var source=new DriverManagerDataSource(PG.getJdbcUrl(),PG.getUsername(),PG.getPassword());jdbc=new JdbcTemplate(source);
-        var flyway=Flyway.configure().dataSource(source).load();assertEquals(3,flyway.migrate().migrationsExecuted);flyway.validate();
+        var flyway=Flyway.configure().dataSource(source).load();assertEquals(1,flyway.migrate().migrationsExecuted);flyway.validate();
         assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM telemetry_provider_state",Integer.class));
         records=new JdbcTelemetryRepository(jdbc,new TransactionTemplate(new DataSourceTransactionManager(source)),CATALOG,MAPPER);records.initialize(CATALOG);
         state=new JdbcRetainedTelemetryState(jdbc,CATALOG);

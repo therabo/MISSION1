@@ -1,5 +1,10 @@
 # Crew persistence and ingestion
 
+**Final database initialization — 2026-10-21:** all Crew and telemetry DDL is now
+contained in the single [canonical V1](../architecture/database-publication-baseline.md#final-clean-install-consolidation--2026-10-21).
+Existing development Flyway histories require deliberate recreation; numbered
+migration references below describe their original historical milestones.
+
 ## Source occurrence versioning — 2026-10-10
 
 Flyway V6 adds eight immutable article/observation, assertion/version/scope and subject/metadata/link tables around the existing evidence. Primary/unique/composite foreign keys prevent contradictory memberships; rejection triggers preserve history. Idempotent startup backfill runs after Flyway and before HTTP acceptance, under the verification source lock. Successful NASA ingestion maintains associations atomically with evidence and successful-run completion. Existing rows/hashes and identity audits are preserved.

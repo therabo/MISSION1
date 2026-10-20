@@ -3,6 +3,12 @@
 Status: Accepted
 Date: 2026-10-14
 
+**Schema placement clarification — 2026-10-21:** the final clean-install
+[baseline consolidation](../architecture/database-publication-baseline.md#final-clean-install-consolidation--2026-10-21)
+incorporates all former V1/V2/V3 schema effects into canonical V1. Previous development
+Flyway histories require deliberate recreation. Migration labels below retain their
+dated meaning; schema, data authority and acquisition decisions are unchanged.
+
 ## Context
 
 MISSION1 is preparing its first public installation. The development schema grew

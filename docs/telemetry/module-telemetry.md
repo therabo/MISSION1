@@ -223,16 +223,18 @@ provider evidence irreversibly.
 
 ## PostgreSQL and APIs
 
-Schema-only V2 adds telemetry_catalog, telemetry_parameter, telemetry_acquisition,
+The schema-only canonical V1 includes telemetry_catalog, telemetry_parameter, telemetry_acquisition,
 telemetry_record, telemetry_record_evidence, telemetry_admission and
 telemetry_bootstrap_state. Values, times, providers and admission are typed; JSONB
 is bounded definition metadata only. Foreign keys, uniqueness, raw-unit/null checks,
 numeric bounds, time-second consistency and six immutable-table triggers protect
 evidence. Ten indexes include keys, raw-ID uniqueness, component lookup and parameter
 chronology. Selection references the actual record, with no duplicated mutable value
-head. V1/V2 bytes and checksums remain unchanged. Structure-only V3 adds
-telemetry_provider_state and telemetry_time_rejection, with an immutable rejection
-trigger. Bounded native and retained writes share the existing transaction writer
+head. The same canonical V1 also includes telemetry_provider_state and
+telemetry_time_rejection, with an immutable rejection trigger. The former V1/V2/V3
+chain was consolidated for clean installations; previous development histories
+require deliberate recreation, without repair or an upgrade compatibility path.
+Bounded native and retained writes share the existing transaction writer
 lock; retained batches do not monopolize the native queue.
 
 - `GET /api/iss/components/{componentId}/telemetry` returns definitions and nullable
@@ -304,8 +306,11 @@ HTTPS verification and no HTTP redirects apply. No new service/broker/database t
 
 Run Java21/Docker `mvn test` and `mvn verify`, and Node24 `npm test`,
 `npm run typecheck`, `npm run build`. Tests use TEST-only fixtures, SDK mocks and
-Testcontainers PostgreSQL, never live feeds. The frozen publication test targets V1;
-forward-migration tests cover V2/V3 and preserve both accepted checksums. [Validation](module-telemetry-validation.md) records
+Testcontainers PostgreSQL, never live feeds. The installation test discovers exactly
+one canonical V1 and asserts the complete empty schema; telemetry tests validate
+that baseline checksum, typed persistence, immutable history and idempotent registry
+initialization. Run `mvn clean verify` after updating to remove obsolete compiled
+migrations. [Validation](module-telemetry-validation.md) records
 counts, real bounded acquisition, restart/GET purity, timings and responsive evidence.
 The independent TEST definition reference verifies all 131 qualified mappings and
 provider bindings against the research; the all-definition PostgreSQL and frontend
