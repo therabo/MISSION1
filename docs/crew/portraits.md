@@ -23,6 +23,11 @@ previous Luke Delaney presentation. The viewport reserves its full size before
 loading; images and initials are positioned inside it without affecting its layout.
 Images use centered `object-fit: cover` to fill the frame with crop, without distortion.
 Detail images are revealed after native decoding completes, without a transition.
+The vertical scroll owner uses `overflow-y: scroll` to reserve classic scrollbar
+space before the lazy profile arrives, so adding Biography cannot reduce the
+portrait's content width. The whole dock owns scrolling on short screens;
+otherwise the profile body owns it. Overlay scrollbars retain the existing full
+content width. The settled portrait size and dock entrance motion are unchanged.
 The same exact provider original is preferred, then thumbnail,
 then existing reviewed fallback and initials. This is presentation ordering of the
 same eligible candidates, not a source, identity or rendering-policy change.

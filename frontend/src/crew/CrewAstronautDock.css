@@ -7,7 +7,8 @@
 .astronaut-dock .context-dock-identity p { margin: 0; color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); overflow-wrap: anywhere; }
 .astronaut-dock .context-dock-header h2 { overflow-wrap: anywhere; }
 .astronaut-dock .context-dock-content { display: contents; }
-.astronaut-profile-body { flex: 1; min-width: 0; min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px; overflow-wrap: anywhere; }
+/* Reserve classic scrollbar space before the lazy profile adds overflowing content. */
+.astronaut-profile-body { flex: 1; min-width: 0; min-height: 0; overflow-x: hidden; overflow-y: scroll; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px; overflow-wrap: anywhere; }
 .astronaut-profile-body > * { min-width: 0; max-width: 100%; }
 .astronaut-profile-body > section { flex: none; display: flex; flex-direction: column; gap: 6px; }
 .astronaut-dock h3 { margin: 0; color: var(--color-text-secondary); font: 700 12px/17px var(--font-interface); }
@@ -31,7 +32,7 @@
   .astronaut-dock summary { min-height: 44px; }
 }
 @media (max-height: 620px) {
-  .context-dock.astronaut-dock { display: block; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
+  .context-dock.astronaut-dock { display: block; overflow-x: hidden; overflow-y: scroll; overscroll-behavior: contain; touch-action: pan-y; scrollbar-width: thin; outline: 1px solid var(--border-overlay); outline-offset: -1px; }
   .astronaut-dock::after { display: none; }
   .astronaut-dock .context-dock-header { position: sticky; top: 0; z-index: 1; background: var(--surface-context); }
   .astronaut-profile-body { overflow: visible; }
