@@ -28,6 +28,11 @@ space before the lazy profile arrives, so adding Biography cannot reduce the
 portrait's content width. The whole dock owns scrolling on short screens;
 otherwise the profile body owns it. Overlay scrollbars retain the existing full
 content width. The settled portrait size and dock entrance motion are unchanged.
+Both scroll owners use the roster's native scrollbar colors: a border-token thumb
+on a transparent track. This prevents the forced, initially non-overflowing track
+from painting in the browser's contrasting default palette before the full profile
+arrives. The native thumb still appears and changes length with real overflow;
+scrolling, its reserved width and the responsive owner remain unchanged.
 The same exact provider original is preferred, then thumbnail,
 then existing reviewed fallback and initials. This is presentation ordering of the
 same eligible candidates, not a source, identity or rendering-policy change.
