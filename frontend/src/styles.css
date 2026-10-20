@@ -50,7 +50,6 @@
   --border: rgba(126, 184, 194, .22);
   --muted: #9bb5bd;
   --accent: #69e2dc;
-  --good: #7ce4b2;
   --warning: #ffc17b;
 }
 
@@ -64,7 +63,6 @@ button { font: inherit; }
 .brand-wordmark { display: block; flex: none; }
 .eyebrow { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
 dl { margin: 8px 0 0; }
-.module-caveat { margin: 8px 0; color: #a9c5ca; font-size: 11px; line-height: 1.4; }
 @media (max-width: 720px) {
   .earth-view .cesium-widget-credits { bottom: 5px; right: 9px; }
 }

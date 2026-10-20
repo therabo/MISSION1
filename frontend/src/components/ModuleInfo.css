@@ -12,7 +12,6 @@
 .module-dock .module-role p { font-weight: 700; font-size: 16px; line-height: 23px; }
 .module-dock .module-secondary { color: var(--color-text-secondary); font-size: 12px; line-height: 17px; }
 .module-dock time { display: block; font-family: var(--font-numeric); }
-.module-dock .module-unavailable, .module-dock .module-unavailable strong { color: var(--color-warning); font-weight: 400; }
 .module-dock dl { margin: 0; display: grid; gap: 6px; }
 .module-dock dl > div { min-height: 26px; display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 8px; align-items: center; }
 .module-dock dl > .module-type-row { display: none; }
