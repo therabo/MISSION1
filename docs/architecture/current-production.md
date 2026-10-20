@@ -1,5 +1,7 @@
 # Current production architecture
 
+Crew portraits are presentation enrichment under [ADR-0028](../adr/0028-dynamic-crew-portraits.md): exact provider HTTPS thumbnail/original, optional reviewed same-person fallback, initials. Source metadata is preserved and no longer gates display; no API/backend/schema changes or bundled portrait requirement. [Contract](../crew/portraits.md).
+
 Accepted semantics are governed by ADR-0021 and ADR-0022; ADR-0023 establishes the
 first public database baseline and removes pre-publication compatibility. One
 Java21/Spring application and PostgreSQL remain the complete backend deployment.

@@ -1,5 +1,7 @@
 # ISS Crew REST API
 
+**2026-10-20 portrait policy:** Existing nullable media and typed person identities are sufficient for [dynamic portrait rendering](../crew/portraits.md). No JSON/endpoint change. Rights metadata remains source provenance; frontend HTTPS eligibility no longer requires NASA-only reuse fields.
+
 **Production binding update — ADR-0021 / 2026-10-12:** Current inclusion remains committed V10 ACTIVE through V7. Operational annotations now share the exact S10 production binding consumer used by V10 and Historical. Accepted matches consume automatically; incompatible/deferred/conflicting/superseded heads fail closed. No public score or per-match approval API is added. Existing profile/alias routes and latest canonical field authority remain unchanged.
 
 

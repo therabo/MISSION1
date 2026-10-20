@@ -1,5 +1,7 @@
 # ISS Crew operational context
 
+**2026-10-20 — dynamic portraits:** [Portrait presentation](portraits.md) and [ADR-0028](../adr/0028-dynamic-crew-portraits.md) replace the NASA-only frontend gate. Exact attached HTTPS media works automatically; source rights metadata and every identity/membership/temporal authority remain unchanged.
+
 The public runtime and schema are described in [current architecture](../architecture/current-production.md)
 and the [publication baseline](../architecture/database-publication-baseline.md).
 Fresh installations use only `V1__initial_schema.sql`; pre-publication databases and

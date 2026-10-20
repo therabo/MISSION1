@@ -99,7 +99,7 @@ it('leaves higher-priority dialogs and handled Escape events alone',async()=>{
   await act(async()=>dialog.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true})));expect(close).not.toHaveBeenCalled();dialog.remove();
   const event=new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true});event.preventDefault();await act(async()=>document.dispatchEvent(event));expect(close).not.toHaveBeenCalled();
 });
-it('falls back to initials when the existing permitted portrait fails',async()=>{
+it('exhausts attached and reviewed portrait candidates before initials',async()=>{
   await show();const image=node.querySelector<HTMLImageElement>('.crew-portrait img')!;expect(image).not.toBeNull();const parent=image.parentElement!;
-  await act(async()=>image.dispatchEvent(new Event('error')));expect(parent.querySelector('img')).toBeNull();expect(parent.textContent).not.toBe('');
+  for(let i=0;i<4&&parent.querySelector('img');i++) await act(async()=>parent.querySelector('img')!.dispatchEvent(new Event('error')));expect(parent.querySelector('img')).toBeNull();expect(parent.textContent).not.toBe('');
 });

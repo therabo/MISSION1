@@ -1,5 +1,7 @@
 # Branding refresh and Crew presentation — 2026-10-12
 
+**Portrait update 2026-10-20:** [ADR-0028](../../adr/0028-dynamic-crew-portraits.md) replaces the earlier NASA-only rendering gate. Exact provider HTTPS media is primary and available credit follows the active candidate; source rights metadata remains preserved. The compact presentation and dated evidence below remain applicable.
+
 ## Actual Earth Reset correction and selective Inspection restoration — 2026-10-13
 
 Baseline: clean direct `main`, **6a71fb6d4950a87e4b0a16097fe3636b018e72e9**.

@@ -3,12 +3,10 @@ import {
   assertionLabel,
   formatDuration,
   memberGroups,
-  permittedPortrait,
   safeHttps,
   utc,
 } from './presentation';
 import { crewFixture, historicalCrewFixture } from '../test/crewFixture';
-import type { CrewMedia } from './types';
 
 describe('elapsed career duration formatting', () => {
   it.each([
@@ -35,34 +33,7 @@ describe('elapsed career duration formatting', () => {
     ['garbage', 'Unavailable'],
   ])('formats %s as %s', (value, expected) => expect(formatDuration(value)).toBe(expected));
 });
-describe('media permission and safe links', () => {
-  const permitted: CrewMedia = {
-    url: 'https://example.org/photo.jpg',
-    thumbnailUrl: null,
-    credit: 'NASA',
-    licenseName: 'NASA Image and Media Guidelines',
-    licenseUrl: 'https://www.nasa.gov/nasa-brand-center/images-and-media/',
-    singleUse: false,
-  };
-  it('uses the source URL for explicitly permitted NASA informational media', () =>
-    expect(permittedPortrait(permitted)).toBe(permitted.url));
-  it.each([
-    { singleUse: true },
-    { singleUse: null },
-    { licenseName: 'Unknown' },
-    { licenseUrl: null },
-    { credit: null },
-    { credit: 'Third party' },
-    { url: 'javascript:alert(1)' },
-  ])('withholds unapproved media (%j)', (override) =>
-    expect(permittedPortrait({ ...permitted, ...override })).toBeUndefined(),
-  );
-  it('handles a missing image and prefers a valid thumbnail', () => {
-    expect(permittedPortrait(null)).toBeUndefined();
-    expect(permittedPortrait({ ...permitted, thumbnailUrl: 'https://example.org/thumb.jpg' })).toContain(
-      'thumb.jpg',
-    );
-  });
+describe('safe source links', () => {
   it.each([
     null,
     'javascript:alert(1)',

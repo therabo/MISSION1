@@ -64,21 +64,21 @@ it.each([404,500,503])('isolates HTTP%s in the selected dock and retries only th
   expect(same.querySelector('[role="alert"]')).not.toBeNull(); expect(rows()).toHaveLength(9); expect(selected()).toEqual([id]); await press('Retry profile');
   expect(dock()).toBe(same); expect(dock().textContent).toContain('Career'); expect(fetchMock.mock.calls.filter(c => c[0] === '/api/iss/crew')).toHaveLength(1);
 });
-it('does not fabricate a missing profile, biography, career or portrait', async () => {
+it('keeps missing biography/career unavailable and uses only a reviewed same-person portrait', async () => {
   const m = crew().members[0], person = { ...profile(m), profileAvailability: 'UNAVAILABLE', biography: null, career: null, image: null, profileProvenance: null };
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click());
-  expect(dock().textContent).toContain('Structured profile unavailable'); expect(dock().textContent).toContain('Biography unavailable'); expect(dock().textContent).toContain('Career statistics unavailable'); expect(dock().querySelector('img')).toBeNull(); expect(selected()).toEqual([m.id]);
+  expect(dock().textContent).toContain('Structured profile unavailable'); expect(dock().textContent).toContain('Biography unavailable'); expect(dock().textContent).toContain('Career statistics unavailable'); expect(dock().querySelector('img')?.src).toContain('anna-kikina-portrait_52232656702_o'); expect(selected()).toEqual([m.id]);
 });
-it('withholds portraits under the original rights rules', async () => {
+it('renders exact profile media with singleUse metadata preserved', async () => {
   const m = crew().members[0], person = profile(m); person.image = { url:'https://example.com/portrait.jpg', thumbnailUrl:null, credit:'NASA', licenseName:'NASA Image and Media Guidelines', licenseUrl:'https://www.nasa.gov/nasa-brand-center/images-and-media/', singleUse:true };
-  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).not.toContain('Reuse permission unavailable'); expect(dock().querySelector('.astronaut-portrait-identity small')).toBeNull(); expect(dock().textContent).not.toContain('Portrait credit & rights'); expect(person.image?.singleUse).toBe(true);
+  fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); expect(dock().querySelector('img')?.src).toBe(person.image.url); expect(dock().textContent).not.toContain('Reuse permission unavailable'); expect(dock().querySelector('.astronaut-portrait-identity small')?.textContent).toBe('Photo: NASA'); expect(dock().textContent).not.toContain('Portrait credit & rights'); expect(person.image?.singleUse).toBe(true);
 });
-it('keeps identity and credit when a permitted portrait fails', async () => {
+it('keeps identity after all portrait candidates fail', async () => {
   const m = crew().members.find(m => m.image?.singleUse === false)!, person = profile(m); person.image = m.image;
   fetchMock.mockResolvedValueOnce(Response.json(crew())).mockResolvedValueOnce(Response.json(person)); await show(); await act(async () => rows().find(b => b.dataset.memberId === m.id)!.click()); const image = dock().querySelector('img')!;
-  expect(image.alt).toBe(`Portrait of ${m.name}`); await act(async () => image.dispatchEvent(new Event('error', { bubbles:true }))); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('image failed to load'); expect(selected()).toEqual([m.id]);
+  expect(image.alt).toBe(`Portrait of ${m.name}`); for(let i=0;i<4&&dock().querySelector('img');i++) await act(async () => dock().querySelector('img')!.dispatchEvent(new Event('error'))); expect(dock().querySelector('img')).toBeNull(); expect(dock().textContent).toContain('Image unavailable'); expect(selected()).toEqual([m.id]);
 });
-it('treats a different permitted profile portrait as loading after the roster portrait loaded', async () => {
+it('treats a different attached profile portrait as loading after the roster portrait loaded', async () => {
   const m = crew().members.find(m => m.image?.singleUse === false)!, person = profile(m);
   person.image = { ...m.image!, url:'https://example.com/updated-portrait.jpg', thumbnailUrl:null };
   let resolve!:(r:Response)=>void;

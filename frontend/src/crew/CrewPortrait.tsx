@@ -1,10 +1,6 @@
-import { useState } from 'react';
-import type { CrewMedia } from './types';
-import { permittedPortrait } from './presentation';
+import type { CrewPortraitResolution } from './useCrewPortrait';
 
-export function CrewPortrait({ name, media }: { name: string | null; media: CrewMedia | null }) {
-  const url = permittedPortrait(media);
-  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+export function CrewPortrait({ name, portrait }: { name: string | null; portrait: CrewPortraitResolution }) {
   const initials =
     name
       ?.trim()
@@ -15,15 +11,17 @@ export function CrewPortrait({ name, media }: { name: string | null; media: Crew
       .join('') || '?';
   return (
     <span className="crew-portrait">
-      {url && failedUrl !== url ? (
+      {portrait.candidate ? (
         <img
-          src={url}
+          key={portrait.imageKey}
+          src={portrait.candidate.url}
           alt={`Portrait of ${name ?? 'crew member'}`}
           width="48"
           height="48"
           loading="lazy"
           referrerPolicy="no-referrer"
-          onError={() => setFailedUrl(url)}
+          onLoad={portrait.onLoad}
+          onError={portrait.onError}
         />
       ) : (
         <span aria-hidden="true">{initials}</span>

@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useCrewMember } from '../api/useCrewResource';
 import { ContextDock } from '../components/ContextDock';
 import { ContextButton } from '../components/ContextButton';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewProfileEvidence } from './CrewProfile';
-import { formatDuration, permittedPortrait, utc } from './presentation';
+import { formatDuration, utc } from './presentation';
+import { useCrewPortrait } from './useCrewPortrait';
 import type { CrewMember, CurrentCrew } from './types';
 import './CrewAstronautDock.css';
 import { CrewDetailActions } from './CrewDetailActions';
@@ -29,18 +30,15 @@ export function CrewAstronautDock({ member, crew, onClose }: { member: CrewMembe
 function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: CurrentCrew }) {
   const resource = useCrewMember(member.id);
   const person = resource.data?.id === member.id ? resource.data : null;
-  const [portraitResult, setPortraitResult] = useState<{ url: string | undefined; state: 'ready' | 'failed' } | null>(null);
-  const media = person ? person.image : member.image;
-  const permitted = permittedPortrait(media);
-  const portraitState = portraitResult && portraitResult.url === permitted ? portraitResult.state : 'loading';
+  const portrait = useCrewPortrait(person ?? member);
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
   return <>
     <div className="astronaut-profile-body" data-profile-member-id={member.id}>
       <div className="astronaut-identity">
-        <div className="astronaut-portrait-identity" onLoadCapture={() => setPortraitResult({ url: permitted, state: 'ready' })} onErrorCapture={() => setPortraitResult({ url: permitted, state: 'failed' })}>
-          <CrewPortrait name={member.name} media={media} />
-          <div><p>{permitted ? portraitState === 'failed' ? 'Portrait unavailable' : portraitState === 'ready' ? 'Portrait' : 'Loading portrait…' : 'Portrait unavailable'}</p>
-            {(permitted || !media) && <small>{permitted ? `Photo: ${media?.credit}${portraitState === 'failed' ? ' · image failed to load' : ''}` : 'Image unavailable'}</small>}
+        <div className="astronaut-portrait-identity">
+          <CrewPortrait name={member.name} portrait={portrait} />
+          <div><p>{portrait.state === 'unavailable' ? 'Portrait unavailable' : portrait.state === 'ready' ? 'Portrait' : 'Loading portrait…'}</p>
+            {portrait.candidate?.media.credit ? <small>Photo: {portrait.candidate.media.credit}</small> : portrait.state === 'unavailable' ? <small>Image unavailable</small> : null}
           </div>
         </div>
       </div>

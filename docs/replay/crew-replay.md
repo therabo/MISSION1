@@ -1,5 +1,7 @@
 # Crew effective-time reconstruction
 
+**2026-10-20 portrait policy:** Historical uses the shared [dynamic portrait presentation](../crew/portraits.md), below its accepted canonical people and latest-retained metadata policy. Thumbnail/original failure never changes membership, effective time or accepted replay state.
+
 **Normal unified lifecycle — ADR-0021 / 2026-10-12:** Replay uses V7 + S10 + the same pure V10 policy as Current, explicitly in HISTORICAL context. Operational evidence uses effective≤T and today's exact latest compatible binding; structured observations use successful capture≤T with completion committed by knowledge time, and editorial observations use acquisition completion≤T. No current roster or later capture is backdated. OBSERVED applicability is seven days inclusive; entry/departure presence implication fourteen days; counts seventy-two hours. A completed departure veto persists beyond presence freshness until a strictly later qualified operational reentry. Editorial-only supports participate in coverage. No per-T rows are persisted. Later source/binding correction may change best-current reconstruction; immutable prior rows retain their original meaning. Public status remains the existing PARTIAL_MATCH enum; modern membership metadata is `HISTORICAL_V10_S10`, revision0/age0 indicating an unpersisted evaluation. Original source and sealed binding knowledge provenance remain auditable. The earlier legacy-engine descriptions below now apply only to explicit `mission1.replay.crew.mode=LEGACY` rollback/comparison.
 
 

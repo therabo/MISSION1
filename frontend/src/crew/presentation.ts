@@ -1,4 +1,4 @@
-import type { Assertion, CrewMedia, CrewMember, CrewAssessment, Presence, PresenceState, ReconciliationStatus } from './types';
+import type { Assertion, CrewMember, CrewAssessment, Presence, PresenceState, ReconciliationStatus } from './types';
 
 /** Latest successful source collection update, not assertion/event time or
  * read-time evaluation. Return an existing API value unchanged; failures and
@@ -101,18 +101,6 @@ export function safeHttps(value: string | null): string | undefined {
   } catch {
     return undefined;
   }
-}
-/** Conservative reviewed permission, not a generic license-name heuristic. Unknown/single-use media stays hidden. */
-export function permittedPortrait(media: CrewMedia | null): string | undefined {
-  if (
-    !media ||
-    media.singleUse !== false ||
-    media.credit !== 'NASA' ||
-    media.licenseName !== 'NASA Image and Media Guidelines' ||
-    safeHttps(media.licenseUrl) !== 'https://www.nasa.gov/nasa-brand-center/images-and-media/'
-  )
-    return undefined;
-  return safeHttps(media.thumbnailUrl) ?? safeHttps(media.url);
 }
 export function assertionLabel(evidence: Assertion): string {
   const labels: Record<string, string> = {

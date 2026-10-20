@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import { CrewReports } from './CrewSourceEvidence';
 import { CurrentCrewRoster } from './CurrentCrewRoster';
 import { CrewProfile } from './CrewProfile';
-import { CrewPortrait } from './CrewPortrait';
 import { crewFixture, historicalCrewFixture, personFixture } from '../test/crewFixture';
 import { HISTORICAL_PRESENCE, QUALITY } from './presentation';
 import type { PresenceState, ReconciliationStatus } from './types';
@@ -96,14 +95,11 @@ describe('partial/safe astronaut profiles', () => {
     expect(html).toContain('Read biography');
     expect(html).toContain('Test nationality');
   });
-  it('keeps portrait credit/license metadata and rejects restricted images', () => {
+  it('keeps original portrait credit/license metadata without a verbose rights disclosure', () => {
     const person = personFixture();
     person.image = crewFixture().members.find((m) => m.image?.singleUse)!.image;
     const html = renderToStaticMarkup(<CrewProfile person={person} />);
     expect(html).not.toContain('Portrait credit');
     expect(html).not.toContain('Single-use restriction'); expect(person.image?.singleUse).toBe(true);
-    const avatar = renderToStaticMarkup(<CrewPortrait media={person.image} name={person.name} />);
-    expect(avatar).not.toContain('<img');
-    expect(avatar).toContain('aria-hidden');
   });
 });

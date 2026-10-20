@@ -4,7 +4,6 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { CurrentCrewPanelView } from './CurrentCrewPanel';
 import { useIssCrew } from '../api/useCrewResource';
-import { CrewPortrait } from './CrewPortrait';
 import { memberGroups } from './presentation';
 import { crewFixture, personFixture } from '../test/crewFixture';
 
@@ -165,14 +164,5 @@ describe('Crew list/detail resource lifecycle and keyboard', () => {
         .dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })),
     );
     expect(close).toHaveBeenCalledOnce();
-  });
-  it('uses an initials fallback after a permitted image fails', async () => {
-    const media = crewFixture().members.find((member) => member.image?.singleUse === false)!.image;
-    await act(async () => root.render(<CrewPortrait name="Test Astronaut" media={media} />));
-    const img = container.querySelector('img');
-    expect(img?.getAttribute('alt')).toBe('Portrait of Test Astronaut');
-    await act(async () => img!.dispatchEvent(new Event('error')));
-    expect(container.querySelector('img')).toBeNull();
-    expect(container.textContent).toBe('TA');
   });
 });

@@ -1,7 +1,8 @@
 import type { CrewAssessment, CrewMember } from './types';
 import { CrewPortrait } from './CrewPortrait';
 import { CrewReports, CrewSources } from './CrewSourceEvidence';
-import { latestCrewSourceUpdate, memberGroups, permittedPortrait, HISTORICAL_PRESENCE, operationalAnnotation, QUALITY, utc } from './presentation';
+import { latestCrewSourceUpdate, memberGroups, HISTORICAL_PRESENCE, operationalAnnotation, QUALITY, utc } from './presentation';
+import { useCrewPortrait } from './useCrewPortrait';
 import profileChevron from '../assets/interface/crew-chevron.svg';
 import type { Coverage } from '../replay/replayApi';
 
@@ -60,6 +61,7 @@ export function CurrentCrewRoster({ crew, onMember, selectedMemberId = null, his
 }
 
 function CrewRosterRow({ member, crew, onMember, selected, historical }: { member: CrewMember; crew: CrewAssessment; onMember: (id: string) => void; selected: boolean; historical?: HistoricalRosterContext }) {
+  const portrait = useCrewPortrait(member);
   const unifiedHistorical = historical && crew.membership?.mode === 'UNIFIED_HISTORICAL';
   const operationalPresentation = !historical || unifiedHistorical;
   const role = member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment');
@@ -74,10 +76,10 @@ function CrewRosterRow({ member, crew, onMember, selected, historical }: { membe
   return <button type="button" className="crew-member crew-roster-row" data-member-id={member.id} aria-pressed={selected}
     onClick={() => onMember(member.id)} aria-label={`${member.name ?? 'Name unavailable'} — open profile`}
     aria-describedby={`crew-context-${member.id} crew-presence-${member.id}`}>
-    <CrewPortrait name={member.name} media={member.image} />
+    <CrewPortrait name={member.name} portrait={portrait} />
     <span className="crew-roster-identity" id={`crew-context-${member.id}`} title={historical ? `Assignment effective at ${utc(historical.at)}. Identity metadata is latest-retained.` : undefined}><strong>{member.name ?? 'Name unavailable'}</strong>{!historical && <span className="crew-current-membership">Current member</span>}{unifiedHistorical && <span className="crew-historical-membership">Member at Historical UTC</span>}<span>{role}</span></span>
     <span className="crew-roster-mission"><span className="crew-roster-field-label">Mission</span><span>{mission}</span>
-      {permittedPortrait(member.image) && <small>Photo: {member.image?.credit}</small>}
+      {portrait.candidate?.media.credit && <small>Photo: {portrait.candidate.media.credit}</small>}
     </span>
     <span className="crew-roster-agency"><span className="crew-roster-field-label">Agency</span>{member.agency?.abbreviation ?? member.agency?.name ?? 'Unavailable'}</span>
     <span id={`crew-presence-${member.id}`} className={`crew-roster-presence${operationalPresentation ? ' is-operational' : ` state-${presence.state.toLowerCase()}`}`} title={operationalPresentation ? `${operational.precision}: ${utc(presence.asOf)}` : `Presence as of ${utc(presence.asOf)}`}>

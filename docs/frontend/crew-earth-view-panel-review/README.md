@@ -1,5 +1,7 @@
 # ISS Crew Earth View panel review
 
+**Policy update 2026-10-20:** The portrait permission gate described in this dated review is superseded by [ADR-0028](../../adr/0028-dynamic-crew-portraits.md) and [dynamic portrait presentation](../../crew/portraits.md). Keep the original measurements below as historical evidence.
+
 The 2026-10-12 [Crew presentation and correction milestones](../branding-crew-simplification/README.md) supersede the visible source/detail layout: essential Data source follows the roster as the original initially collapsed native accordion; detail emphasizes assignment, Nationality after Role and Career, with Profile context and Profile observation hidden. Earlier validation and architectural evidence below remain historical.
 
 > Historical QA record: generated captures, raw reports and intermediate snapshots were removed during final repository hygiene. See the [artifact policy](../qa-artifact-policy.md) for archive recovery and current evidence.

@@ -78,6 +78,22 @@ it('keeps latest-retained metadata explicit without pretending portraits/biograp
   expect(node.textContent).toContain('Career'); expect(node.textContent).toContain('latest retained metadata');
   expect(node.textContent).toContain('Assignment at replay time'); expect(fetch).not.toHaveBeenCalled();
 });
+it('keeps portrait failure presentation-only and resets to the next accepted Historical person without Current fallback', async () => {
+  const first = data(t1), second = data(t2);
+  first.crew.state!.members = [first.crew.state!.members[0]];
+  second.crew.state!.members = [second.crew.state!.members[1]];
+  const before = structuredClone(first), next = second.crew.state!.members[0];
+  await show(first);
+  for (let i = 0; i < 4 && node.querySelector('.crew-portrait img'); i++) {
+    await act(async () => node.querySelector('.crew-portrait img')!.dispatchEvent(new Event('error')));
+  }
+  expect(node.querySelector('.crew-portrait img')).toBeNull(); expect(rows()).toHaveLength(1); expect(first).toEqual(before);
+  await show(second);
+  expect(rows()[0].dataset.memberId).toBe(next.id);
+  expect(node.querySelector<HTMLImageElement>('.crew-portrait img')!.src).toBe(next.image!.thumbnailUrl ?? next.image!.url);
+  expect(node.querySelector<HTMLImageElement>('.crew-portrait img')!.alt).toBe(`Portrait of ${next.name}`);
+  expect(fetch).not.toHaveBeenCalled();
+});
 it('does not label historical presence/counts as Current confirmation', async () => {
   const result = data(); result.crew.state!.counts.officialAboard = null; await show(result);
   expect(node.querySelector('.crew-roster-summary')?.textContent).not.toContain('current count unverified');
@@ -121,7 +137,7 @@ it('keeps accepted roster on seek error and invokes only the real retry callback
 });
 it.each([1, 3, 24])('supports %i historical members with long names/missions, nullable counts and missing portraits', async count => {
   const result = data(), original = result.crew.state!.members;
-  result.crew.state!.members = Array.from({ length: count }, (_, i) => ({ ...original[i % original.length], id: 'TEST-only-' + i, name: 'TEST ONLY long identity '.repeat(5), image: null }));
+  result.crew.state!.members = Array.from({ length: count }, (_, i) => ({ ...original[i % original.length], id: 'TEST-only-' + i, externalIds: [], name: 'TEST ONLY long identity '.repeat(5), image: null }));
   result.crew.state!.expedition!.name = 'TEST ONLY historical mission '.repeat(5); result.crew.state!.counts.officialAboard = null;
   await show(result); expect(rows()).toHaveLength(count); expect(node.querySelectorAll('.crew-portrait img')).toHaveLength(0);
   expect(node.textContent).toContain('TEST ONLY historical mission'); expect(node.querySelector('.crew-count-unavailable')?.textContent).toBe('Unavailable');
