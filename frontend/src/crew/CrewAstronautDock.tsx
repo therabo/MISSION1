@@ -30,18 +30,17 @@ export function CrewAstronautDock({ member, crew, onClose }: { member: CrewMembe
 function AstronautProfileResource({ member, crew }: { member: CrewMember; crew: CurrentCrew }) {
   const resource = useCrewMember(member.id);
   const person = resource.data?.id === member.id ? resource.data : null;
-  const portrait = useCrewPortrait(person ?? member);
+  const portrait = useCrewPortrait(person ?? member, 'detail');
+  const credit = portrait.candidate?.media.credit;
+  const usefulCredit = credit?.trim() && credit.trim().toLowerCase() !== 'unknown';
   const mission = member.assignment?.expeditionId === crew.expedition?.id ? crew.expedition?.name : null;
   return <>
     <div className="astronaut-profile-body" data-profile-member-id={member.id}>
-      <div className="astronaut-identity">
-        <div className="astronaut-portrait-identity">
-          <CrewPortrait name={member.name} portrait={portrait} />
-          <div><p>{portrait.state === 'unavailable' ? 'Portrait unavailable' : portrait.state === 'ready' ? 'Portrait' : 'Loading portrait…'}</p>
-            {portrait.candidate?.media.credit ? <small>Photo: {portrait.candidate.media.credit}</small> : portrait.state === 'unavailable' ? <small>Image unavailable</small> : null}
-          </div>
-        </div>
-      </div>
+      <figure className="astronaut-portrait-identity">
+        <CrewPortrait name={member.name} portrait={portrait} variant="detail" />
+        {usefulCredit && <figcaption className="astronaut-photo-credit">Photo: {credit}</figcaption>}
+        {portrait.state === 'unavailable' && <p className="astronaut-secondary">Portrait unavailable</p>}
+      </figure>
       <section><h3>Structured assignment</h3><dl><div><dt>Role</dt><dd>{member.assignment?.role ?? (member.assignment ? 'Role unavailable' : 'No structured assignment')}</dd></div>
         <div><dt>Nationality</dt><dd>{(person?.nationalities ?? member.nationalities).map(n => n.displayName ?? n.alpha3 ?? n.alpha2 ?? 'Unavailable').join(', ') || 'Unavailable'}</dd></div></dl>
         <p>{member.agency?.name ?? member.agency?.abbreviation ?? person?.agency?.name ?? person?.agency?.abbreviation ?? 'Agency unavailable'}</p>

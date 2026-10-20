@@ -34,7 +34,7 @@
 .crew-panel.crew-workspace .crew-roster-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 140px 80px 232px 4px; gap: 16px; align-items: center; width: 100%; min-height: var(--crew-row-min-height); height: auto; padding: 8px 12px; margin: 0; border: 0; border-bottom: 1px solid rgb(42 53 66 / .50); border-radius: 0; background: transparent; color: var(--color-text-primary); font-family: var(--font-interface); text-align: left; }
 .crew-panel.crew-workspace .crew-roster-row:hover { background: rgb(29 40 52 / .35); }
 .crew-panel.crew-workspace .crew-roster-row:active { background: rgb(36 61 76 / .45); }
-.crew-workspace .crew-portrait { width: 40px; height: 40px; border: 0; border-radius: 4px; background: rgb(29 40 52 / .70); color: var(--color-text-secondary); font: 700 14px/20px var(--font-interface); }
+.crew-workspace .crew-portrait-roster { width: 40px; height: 40px; border: 0; border-radius: 4px; background: rgb(29 40 52 / .70); color: var(--color-text-secondary); font: 700 14px/20px var(--font-interface); }
 .crew-roster-identity, .crew-roster-mission, .crew-roster-presence { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .crew-roster-identity strong { font: 700 16px/23px var(--font-interface); }
 .crew-roster-row > span { min-width: 0; overflow-wrap: anywhere; }

@@ -134,9 +134,9 @@ describe('branding and compact Crew presentation', () => {
     resource.data.image = { ...resource.data.image!, credit: 'TEST rights credit', singleUse };
     const before = structuredClone(resource.data);
     const current = dom(renderToStaticMarkup(<CrewAstronautDock crew={crew} member={member} onClose={() => {}} />));
-    expect(current.querySelector('.astronaut-portrait-identity small')?.textContent).toBe('Photo: TEST rights credit');
+    expect(current.querySelector('.astronaut-photo-credit')?.textContent).toBe('Photo: TEST rights credit');
     expect(current.querySelector('.astronaut-portrait-identity img')).not.toBeNull();
-    expect(current.textContent).toContain('Loading portrait');
+    expect(current.querySelector('.crew-portrait-detail img')?.hasAttribute('height')).toBe(false);
     const historical = dom(renderToStaticMarkup(<CrewProfile person={resource.data} replayAt="2026-10-03T12:00:00Z" historicalMember={member} />));
     for (const text of removed) { expect(current.textContent).not.toContain(text); expect(historical.textContent).not.toContain(text); }
     expect(resource.data).toEqual(before);

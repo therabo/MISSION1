@@ -16,10 +16,18 @@ no credentials/whitespace. Browser decoding checks actual image usability;
 extensions are not a MIME guarantee. Unsafe/malformed URLs are skipped; load/decode
 errors advance to the next distinct URL. Native lazy loading and no-referrer remain.
 
+Roster portraits retain compact 40px cover frames and thumbnail-first preference.
+The Current personal/detail variant fills the padded card content width with natural
+image proportions (`width: 100%; height: auto; object-fit: contain`) and no fixed
+avatar dimensions. It prefers the same exact provider original, then thumbnail,
+then existing reviewed fallback and initials. This is presentation ordering of the
+same eligible candidates, not a source, identity or rendering-policy change.
+Historical detail does not gain a portrait block.
+
 Incomplete credit/license, non-NASA credit/policy links and `singleUse=true`
 do not suppress exact-person remote images. Original metadata remains intact;
 display does not assert NASA ownership, public domain or unrestricted permission.
-Normal cards show only available credit belonging to the active candidate.
+The Current personal card shows useful credit belonging to the active candidate, once beneath its portrait. Mission/roster metadata contains no photo credit; blank or Unknown credit is omitted.
 
 `reviewedPortraits.ts` optionally appends five individually reviewed NASA/CSA
 resources after provider candidates. The selector is the canonical person's

@@ -79,7 +79,6 @@ function CrewRosterRow({ member, crew, onMember, selected, historical }: { membe
     <CrewPortrait name={member.name} portrait={portrait} />
     <span className="crew-roster-identity" id={`crew-context-${member.id}`} title={historical ? `Assignment effective at ${utc(historical.at)}. Identity metadata is latest-retained.` : undefined}><strong>{member.name ?? 'Name unavailable'}</strong>{!historical && <span className="crew-current-membership">Current member</span>}{unifiedHistorical && <span className="crew-historical-membership">Member at Historical UTC</span>}<span>{role}</span></span>
     <span className="crew-roster-mission"><span className="crew-roster-field-label">Mission</span><span>{mission}</span>
-      {portrait.candidate?.media.credit && <small>Photo: {portrait.candidate.media.credit}</small>}
     </span>
     <span className="crew-roster-agency"><span className="crew-roster-field-label">Agency</span>{member.agency?.abbreviation ?? member.agency?.name ?? 'Unavailable'}</span>
     <span id={`crew-presence-${member.id}`} className={`crew-roster-presence${operationalPresentation ? ' is-operational' : ` state-${presence.state.toLowerCase()}`}`} title={operationalPresentation ? `${operational.precision}: ${utc(presence.asOf)}` : `Presence as of ${utc(presence.asOf)}`}>

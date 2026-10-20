@@ -34,7 +34,7 @@ describe('S7 assessment and roster presentation', () => {
   });
   it('keeps agency and mission unavailable when no structured assignment exists', () => {
     const crew = crewFixture(); crew.members = [{...crew.members[0], assignment:null, agency:null, image:null}];
-    const html = render(crew); expect(html).toContain('No structured assignment'); expect(html).toContain('Unavailable'); expect(html).toContain('Photo: NASA/Josh Valcarcel');
+    const html = render(crew); expect(html).toContain('No structured assignment'); expect(html).toContain('Unavailable'); expect(html).not.toContain('Photo:');
   });
   it('does not assign the current expedition name to a different assignment id', () => {
     const crew = crewFixture(); crew.members = [{...crew.members[0], assignment:{...crew.members[0].assignment!,expeditionId:'TEST-other-expedition'}}];
@@ -59,10 +59,10 @@ describe('S7 assessment and roster presentation', () => {
     expect(html).toContain('Original observation'); expect(html).toContain('Last successful fetch');
     expect(crew.freshness.verification.lastRefreshFailed).toBe(true); expect(crew.freshness.stale).toBe(true);
   });
-  it('renders attached media regardless of rights metadata and shows credit only when supplied', () => {
+  it('renders attached media regardless of rights metadata without photo credit in Mission', () => {
     const crew = crewFixture(); const denied = crew.members.find(m=>m.image?.singleUse)!, allowed=crew.members.find(m=>m.image?.singleUse===false)!;
     crew.members=[denied]; expect(render(crew)).toContain('Portrait of'); expect(render(crew)).not.toContain('Photo:');
-    crew.members=[allowed]; expect(render(crew)).toContain('Portrait of'); expect(render(crew)).toContain('Photo:');
+    crew.members=[allowed]; expect(render(crew)).toContain('Portrait of'); expect(render(crew)).not.toContain('Photo:');
   });
   it('exposes profile button identity, keyboard semantics and separately described role/presence', () => {
     const crew = crewFixture(); const html=render(crew);

@@ -85,8 +85,12 @@ dl { margin: 8px 0 0; }
 .crew-members li + li { margin-top: 6px; }
 .crew-panel .crew-member { display: flex; align-items: center; width: 100%; gap: 10px; padding: 10px 8px; text-align: left; background: transparent; border-color: transparent; }
 .crew-panel .crew-member:hover { background: var(--surface-soft); border-color: var(--border); }
-.crew-portrait { display: grid; place-items: center; flex: none; width: 48px; height: 48px; overflow: hidden; border-radius: 9px; background: #163340; border: 1px solid var(--border); color: #b4d3da; font-size: 16px; font-weight: 600; }
-.crew-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.crew-portrait { flex: none; }
+.crew-portrait-roster { display: grid; place-items: center; width: 48px; height: 48px; overflow: hidden; border-radius: 9px; background: #163340; border: 1px solid var(--border); color: #b4d3da; font-size: 16px; font-weight: 600; }
+.crew-portrait-roster img { width: 100%; height: 100%; object-fit: cover; }
+.crew-portrait-detail { display: block; width: 100%; min-width: 0; }
+.crew-portrait-detail img { display: block; width: 100%; height: auto; object-fit: contain; }
+.crew-portrait-detail > span { display: grid; place-items: center; padding: 24px; background: rgb(29 40 52 / .9); color: var(--color-text-secondary); font: 700 18px/26px var(--font-interface); }
 .crew-panel small { display: block; color: var(--muted); font-size: 11px; }
 .crew-unresolved { margin-top: 22px; padding-top: 4px; border-top: 1px solid var(--border); }
 .crew-unresolved > p, .crew-note { color: var(--muted); font-size: 12px; }

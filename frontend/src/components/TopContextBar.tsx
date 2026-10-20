@@ -43,7 +43,7 @@ export function TopContextBar({ brand, source, sceneTimeMs, inspectionDisabled, 
       <ContextButton aria-label="Historical" icon={<ControlIcon name="historical" />} selected={historical} disabled={stationFocused} title={guard} aria-describedby={guard ? 'inspection-navigation-guard' : undefined} onClick={onHistorical}>Historical</ContextButton>
     </nav>
     <span className="context-divider context-divider-crew" aria-hidden="true" />
-    <ContextButton id="crew-launcher" className="context-crew" aria-label="Crew" icon={<ControlIcon name="crew" />} selected={crewOpen}
+    <ContextButton id="crew-launcher" className="context-crew" aria-label="Crew" icon={<ControlIcon name="crew" />}
       title={stationFocused && !crewOpen ? 'Open Crew and return to Earth View' : undefined}
       aria-controls="crew-panel" aria-expanded={crewOpen} onClick={onCrew}>
       Crew<img className="crew-entry-chevron" src={crewChevron} alt="" />

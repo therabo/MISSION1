@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { portraitCandidates, type PortraitPerson } from './portrait';
 
-/** One bounded resolution cycle shared by image, credit and loading caption. */
-export function useCrewPortrait(person: PortraitPerson) {
-  const candidates = portraitCandidates(person);
-  const key = JSON.stringify([person.id, person.externalIds, person.image, candidates]);
+export type CrewPortraitVariant = 'roster' | 'detail';
+
+/** One bounded resolution cycle shared by image, credit and loading state. */
+export function useCrewPortrait(person: PortraitPerson, variant: CrewPortraitVariant = 'roster') {
+  const attached = portraitCandidates(person);
+  const original = variant === 'detail'
+    ? attached.find(candidate => candidate.origin === 'PROVIDER_PROFILE' && candidate.variant === 'original') : undefined;
+  // Presentation preference only: same eligible, deduplicated person resources.
+  const candidates = original ? [original, ...attached.filter(candidate => candidate !== original)] : attached;
+  const key = JSON.stringify([variant, person.id, person.externalIds, person.image, candidates]);
   const [attempt, setAttempt] = useState({ key, cycle: 0, index: 0, loaded: false });
   let current = attempt;
   if (attempt.key !== key) {

@@ -13,11 +13,8 @@
 .astronaut-dock p { margin: 0; color: var(--color-text-primary); font: 400 13px/19px var(--font-interface); }
 .astronaut-dock .astronaut-secondary { color: var(--color-text-secondary); font: 400 12px/17px var(--font-interface); }
 .astronaut-dock .astronaut-small { color: var(--color-text-secondary); font: 400 11px/16px var(--font-interface); }
-.astronaut-portrait-identity { display: flex; gap: 12px; align-items: center; min-height: 54px; }
-.astronaut-portrait-identity > div { flex: 1; min-width: 0; }
-.astronaut-dock .crew-portrait { flex: none; width: 54px; height: 54px; border: 0; border-radius: 4px; background: rgb(29 40 52 / .9); color: var(--color-text-secondary); font: 700 18px/26px var(--font-interface); }
-.astronaut-portrait-identity p { color: var(--color-text-secondary); }
-.astronaut-portrait-identity small { display: block; margin-top: 3px; color: var(--color-text-secondary); font: 400 11px/16px var(--font-interface); }
+.astronaut-portrait-identity { flex: none; min-width: 0; margin: 0; }
+.astronaut-photo-credit { margin-top: 4px; color: var(--color-text-secondary); font: 400 11px/16px var(--font-interface); overflow-wrap: anywhere; }
 .astronaut-dock dl { margin: 0; display: grid; gap: 6px; }
 .astronaut-dock dl > div { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 8px; min-height: 26px; align-items: center; }
 .astronaut-dock dt { color: var(--color-text-secondary); font: 400 13px/19px var(--font-interface); }

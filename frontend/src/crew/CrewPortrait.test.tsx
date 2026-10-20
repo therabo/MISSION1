@@ -4,7 +4,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { CrewPortrait } from './CrewPortrait';
 import { portraitCandidates, portraitUrl, type PortraitPerson } from './portrait';
-import { useCrewPortrait, type CrewPortraitResolution } from './useCrewPortrait';
+import { useCrewPortrait, type CrewPortraitResolution, type CrewPortraitVariant } from './useCrewPortrait';
 import { reviewedPortraits } from './reviewedPortraits';
 import { crewFixture, personFixture } from '../test/crewFixture';
 import { decodePerson } from './decode';
@@ -85,9 +85,9 @@ describe('exact canonical profile portrait candidates', () => {
 });
 
 let root: Root, node: HTMLDivElement, latest: CrewPortraitResolution;
-function Portrait({ person, name = 'TEST Future Astronaut' }: { person: PortraitPerson; name?: string | null }) {
-  latest = useCrewPortrait(person);
-  return <><CrewPortrait name={name} portrait={latest} /><output>{latest.state}:{latest.candidate?.media.credit}</output></>;
+function Portrait({ person, name = 'TEST Future Astronaut', variant = 'roster' }: { person: PortraitPerson; name?: string | null; variant?: CrewPortraitVariant }) {
+  latest = useCrewPortrait(person, variant);
+  return <><CrewPortrait name={name} portrait={latest} variant={variant} /><output>{latest.state}:{latest.candidate?.media.credit}</output></>;
 }
 beforeEach(() => {
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
@@ -139,4 +139,33 @@ it('preserves recorded Current membership and media while resolving every availa
   const crew = crewFixture(), before = structuredClone(crew);
   for (const member of crew.members) if (member.image) expect(portraitCandidates(member)[0].origin).toBe('PROVIDER_PROFILE');
   expect(crew).toEqual(before);
+});
+
+it('keeps roster dimensions while detail uses original first without fixed image dimensions', async () => {
+  const person = future(); await show(person);
+  expect(image().getAttribute('width')).toBe('48'); expect(image().getAttribute('height')).toBe('48');
+  expect(image().parentElement?.classList.contains('crew-portrait-roster')).toBe(true);
+  await act(async () => root.render(<Portrait person={person} variant="detail" />));
+  expect(image().src).toBe(person.image!.url); expect(latest.candidate?.variant).toBe('original');
+  expect(image().hasAttribute('width')).toBe(false); expect(image().hasAttribute('height')).toBe(false);
+  expect(image().parentElement?.classList.contains('crew-portrait-detail')).toBe(true);
+  expect(image().alt).toBe('Portrait of TEST Future Astronaut');
+  await event('error'); expect(image().src).toBe(person.image!.thumbnailUrl);
+  await event('error'); expect(image()).toBeNull();
+});
+it('keeps the reviewed same-person fallback after both detail provider candidates, without changing eligibility', async () => {
+  const person = future('canonical-Watkins', '582'), before = structuredClone(person);
+  await act(async () => root.render(<Portrait person={person} variant="detail" />));
+  expect(image().src).toBe(person.image!.url); await event('error'); expect(image().src).toBe(person.image!.thumbnailUrl);
+  await event('error'); expect(latest.candidate?.origin).toBe('REVIEWED_OFFICIAL');
+  expect(latest.candidate?.canonicalPersonId).toBe(person.id); expect(person).toEqual(before);
+  await event('error'); expect(image()).toBeNull();
+});
+it('uses the thumbnail in detail when the original is unsafe and never retries a duplicate URL', async () => {
+  const person = future(); person.image!.url = 'javascript:alert(1)';
+  await act(async () => root.render(<Portrait person={person} variant="detail" />));
+  expect(image().src).toBe(person.image!.thumbnailUrl); await event('error'); expect(image()).toBeNull();
+  person.image!.url = person.image!.thumbnailUrl;
+  await act(async () => root.render(<Portrait person={person} variant="detail" />));
+  await event('error'); expect(image()).toBeNull();
 });

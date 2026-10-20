@@ -339,7 +339,7 @@ it('Earth → Crew preserves the shared context, source, time and mounted scene'
   await click('Crew');
   expect(node.querySelector('.crew-workspace')).not.toBeNull();
   expect(node.querySelector('.top-context-bar')).toBe(context);
-  expect(button('Crew').getAttribute('aria-pressed')).toBe('true'); expect(button('Crew').getAttribute('aria-expanded')).toBe('true');
+  expect(button('Crew').hasAttribute('aria-pressed')).toBe(false); expect(button('Crew').getAttribute('aria-expanded')).toBe('true');
   expect(scene.props.window).toBe(window); expect(scene.props.selectedSource).toBe(source); expect(shown()).toBe(at);
   expect(scene.props.inspectionRequest).toBe(0); expect(scene.props.overviewRequest).toBe(0);
   expect(scene.mounts).toBe(1); expect(scene.unmounts).toBe(0);

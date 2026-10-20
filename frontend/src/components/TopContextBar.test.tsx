@@ -30,7 +30,7 @@ it('retains desktop action text and gives every compact glyph a stable accessibl
   }
   expect(node.querySelector('.context-date time')?.textContent).toBe('2026-10-03 12:04:00 UTC');
 });
-it('preserves independent spatial, temporal and Crew selection and inspection guards', async () => {
+it('preserves spatial and temporal selection, Crew disclosure state and inspection guards', async () => {
   await render({ historical: true, viewMode: 'ISS_INSPECTION' });
   expect(button('ISS Inspection').getAttribute('aria-pressed')).toBe('true');
   expect(button('Earth').getAttribute('aria-pressed')).toBe('false');
@@ -39,7 +39,7 @@ it('preserves independent spatial, temporal and Crew selection and inspection gu
   expect(button('Historical').getAttribute('aria-describedby')).toBe('inspection-navigation-guard');
   expect(button('Historical').title).toBe('Return to Earth View to change temporal context.');
   await render({ crewOpen: true, viewMode: 'EXITING_INSPECTION' });
-  expect(button('Crew').getAttribute('aria-pressed')).toBe('true');
+  expect(button('Crew').getAttribute('aria-pressed')).toBeNull();
   expect(button('Crew').getAttribute('aria-expanded')).toBe('true');
   expect(button('Crew').hasAttribute('aria-busy')).toBe(false);
   expect(button('Crew').disabled).toBe(false);
@@ -58,4 +58,25 @@ it('places the real accessible brand in the navigation identity cell', async () 
   expect(brand?.getAttribute('alt')).toBe('MISSION1');
   expect(brand?.closest('[aria-hidden="true"]')).toBeNull();
   expect(brand?.closest('.top-context-bar')).not.toBeNull();
+});
+
+it('uses disclosure semantics without a pressed highlight across repeated Crew openings', async () => {
+  for (let cycle = 0; cycle < 3; cycle++) {
+    await render({ crewOpen: false });
+    const trigger = button('Crew');
+    expect(trigger.getAttribute('aria-controls')).toBe('crew-panel');
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+    expect(trigger.hasAttribute('aria-pressed')).toBe(false);
+    trigger.focus();
+    expect(document.activeElement).toBe(trigger);
+    await act(async () => trigger.click());
+    await render({ crewOpen: true });
+    expect(button('Crew').getAttribute('aria-expanded')).toBe('true');
+    expect(button('Crew').hasAttribute('aria-pressed')).toBe(false);
+    expect(document.activeElement).toBe(trigger);
+    await act(async () => trigger.click());
+  }
+  await render({ crewOpen: false });
+  expect(button('Crew').getAttribute('aria-expanded')).toBe('false');
+  expect(onCrew).toHaveBeenCalledTimes(6);
 });
