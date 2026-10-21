@@ -217,7 +217,6 @@ def generate(directory: Path, output: Path):
         prefix = next(iter(roots)) + '/'
         read = lambda name: archive.extractfile(prefix + name).read()
         registry = json.loads(read('scripts/flags.json'))
-        flag_readme = read('README.md').decode()
         package = json.loads(read('package.json'))
         if package['version'] != '1.2.10' or package['license'] != 'PD':
             raise ValueError('Unexpected flag package metadata')
@@ -254,9 +253,6 @@ def generate(directory: Path, output: Path):
         if previous.name != filename: previous.unlink()
     (geo / 'country-provenance-ne10m-5.1.1.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False)+'\n')
     for key, data in flag_files.items(): (flags / (key + '.svg')).write_bytes(data)
-    (flags / 'SOURCE.txt').write_text('# Local national/territory flag artwork\n\n'+
-        'Pinned hampusborgos/country-flags commit '+PINS['flags']['commit']+'.\n\n'+
-        '248 allowlisted unmodified SVGs. Full per-file source registry/checksums and unresolved origins are retained in ../geo/country-provenance-ne10m-5.1.1.json. National-symbol use restrictions are independent of copyright. No Antarctica national flag is asserted.\n\n'+flag_readme)
     descriptor = {'schema': 1, 'policy': POLICY, 'quantization': Q, **manifest['asset']}
     (output / 'src/geo').mkdir(parents=True, exist_ok=True)
     (output / 'src/geo/countryAsset.json').write_text(json.dumps(descriptor, indent=2)+'\n')

@@ -126,10 +126,3 @@ or missing records remain explicit. The station model is a historical visual ass
 not a guarantee of today's configuration; visual trajectory alignment is not
 measured spacecraft attitude. Earth imagery and the star map are visualization
 assets, not current weather or ISS measurements.
-
-## Credits and licensing
-
-Asset acknowledgments, upstream terms and font licenses are listed in
-[Third-party notices](THIRD_PARTY_NOTICES.txt). Runtime provider credits and source
-provenance remain available in the application. MISSION1 does not claim agency
-endorsement.
