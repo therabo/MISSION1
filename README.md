@@ -130,6 +130,6 @@ assets, not current weather or ISS measurements.
 ## Credits and licensing
 
 Asset acknowledgments, upstream terms and font licenses are listed in
-[Third-party notices](THIRD_PARTY_NOTICES.md). Runtime provider credits and source
+[Third-party notices](THIRD_PARTY_NOTICES.txt). Runtime provider credits and source
 provenance remain available in the application. MISSION1 does not claim agency
 endorsement.
