@@ -200,7 +200,7 @@ export default function App() {
       />
       <div className={`earth-current-ui${stationFocused ? ' inspection-ui' : ''}`}>
         <TopContextBar brand={<img className="brand-wordmark" src={mission1Wordmark} alt="MISSION1"
-          width={2172} height={724} draggable={false} />}
+          width={2155} height={730} draggable={false} />}
           sceneTimeMs={presentationHistorical ? Date.parse(presentedAt) : sceneTimeMs} historical={replaying}
           presentedHistorical={presentationHistorical}
           onCurrent={() => changeTemporalMode(false)}

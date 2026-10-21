@@ -21,8 +21,8 @@ it('keeps the standalone accessible wordmark mounted in LIVE and REPLAY',async()
   const logo=node.querySelector<HTMLImageElement>('.top-brand img');
   expect(logo?.getAttribute('src')).toBe(mission1Wordmark);
   expect(logo?.alt).toBe('MISSION1');
-  expect(logo?.width).toBe(2172);
-  expect(logo?.height).toBe(724);
+  expect(logo?.width).toBe(2155);
+  expect(logo?.height).toBe(730);
   expect(logo?.closest('[aria-hidden="true"], a, button')).toBeNull();
   expect(node.querySelector('.top-brand')?.textContent?.trim()).toBe('');
   await click('Historical');

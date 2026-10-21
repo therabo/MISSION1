@@ -22,12 +22,12 @@ describe('branding and compact Crew presentation', () => {
   it('uses one full-resolution transparent canonical PNG in README and application', () => {
     const asset = readFileSync('public/branding/MISSION1-logo.png');
     expect(asset.subarray(1, 4).toString()).toBe('PNG');
-    expect(asset.readUInt32BE(16)).toBe(2172); expect(asset.readUInt32BE(20)).toBe(724);
-    expect(createHash('sha256').update(asset).digest('hex')).toBe('1e24b1ad4e9f0a79eb1f8a85e2ce7d0d3aeb8ee1935e62f305542350d5e3339f');
+    expect(asset.readUInt32BE(16)).toBe(2155); expect(asset.readUInt32BE(20)).toBe(730);
+    expect(createHash('sha256').update(asset).digest('hex')).toBe('2762a21ed6f16de7188da991477daed0650f51c778bf8b791ba8ef02d2542845');
     expect(asset[25]).toBe(6); // RGBA PNG, no downscale.
     const readme = readFileSync('../README.md', 'utf8');
-    expect(readme).toContain('src="frontend/public/branding/MISSION1-logo.png"');
-    expect(readme).not.toContain('src="MISSION1-logo.png"');
+    expect(readme).toContain('src="MISSION1-logo.png"');
+    expect(readme).not.toContain('src="frontend/public/branding/MISSION1-logo.png"');
     const app = readFileSync('src/App.tsx', 'utf8');
     expect(app).toContain('import.meta.env.BASE_URL}branding/MISSION1-logo.png');
   });
