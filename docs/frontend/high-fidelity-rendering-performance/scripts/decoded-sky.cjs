@@ -1,7 +1,0 @@
-const fs=require('fs'),path=require('path'),assert=require('assert/strict');
-const {chromium}=require(process.env.MISSION1_PLAYWRIGHT_MODULE||'playwright');
-const manifest=require('../../../../frontend/src/cesium/skyboxManifest.json');
-(async()=>{const b=await chromium.launch({headless:true});try{const p=await b.newPage();await p.goto('http://127.0.0.1:4175');const rows=[];for(const [face,asset] of Object.entries(manifest.faces)){
-const result=await p.evaluate(async asset=>{const image=new Image();image.src=asset.url;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const c=canvas.getContext('2d',{willReadFrequently:true});c.drawImage(image,0,0);const rgba=c.getImageData(0,0,canvas.width,canvas.height).data;const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',rgba))].map(x=>x.toString(16).padStart(2,'0')).join('');return {width:image.width,height:image.height,rgbaSha256:hash};},asset);
-assert.equal(result.rgbaSha256,asset.rgbaSha256);assert.equal(result.width,manifest.faceSize);rows.push({face,url:asset.url,...result,identicalToSourceDerivedRgba:true});}
-fs.writeFileSync(path.resolve(__dirname,'../evidence/decoded-sky.json'),JSON.stringify({browser:b.version(),rows},null,2));console.log('6/6 browser-decoded WebP faces exactly match source-derived RGBA bytes');}finally{await b.close()}})().catch(e=>{console.error(e);process.exitCode=1});

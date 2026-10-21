@@ -31,8 +31,8 @@ The default port binds only to your own machine, not the LAN.
 Healthy containers mean the platform is ready. Mission data arrives asynchronously;
 a temporary public-provider failure does not mean installation failed. Crew has
 initial acquisition gates of approximately 5–15 minutes and can take longer to
-publish qualified data. Missing data remains unavailable. See [source behavior and
-first-run details](backend/README.md).
+publish qualified data. Missing data remains unavailable; source health and retained
+record dates stay distinct from platform readiness.
 
 ## Stop, restart and update
 
@@ -87,7 +87,7 @@ Remote internet hosting requires an intentional access/security configuration.
 
 ## Develop MISSION1
 
-For native hot reload, use Java 21, Maven 3.9.x and Node 24.15+ with npm
+For native hot reload, use Java 21, Maven 3.9.x and Node 24.15+ within 24.x with npm 11
 ([frontend/.nvmrc](frontend/.nvmrc) records the tested native version).
 Start only the developer database with the explicit override and a separate project:
 
@@ -105,19 +105,31 @@ Backend tests: `mvn clean verify` with Java 21 and Docker/Testcontainers.
 Frontend: `npm test`, `npm run typecheck`, `npm run build` with the supported Node.
 Vite preview is a local build check; ordinary installation serves production static files.
 
-## Architecture and contracts
+## Capabilities and data
 
-- [Backend setup, acquisition and APIs](backend/README.md)
-- [Earth View, Inspection and native frontend setup](frontend/README.md)
-- [Current production architecture](docs/architecture/current-production.md)
-- [Installation decision](docs/adr/0029-one-command-self-hosted-installation.md)
-- [Architecture decisions](docs/adr/README.md)
-- [Public database baseline](docs/architecture/database-publication-baseline.md)
-- [Component telemetry, record dates and source limits](docs/telemetry/module-telemetry.md)
-- [Production cleanup inventory and validation](docs/maintenance/production-code-cleanup.md)
+- Earth View with selectable GP/TLE and NASA OEM trajectories, plus station Inspection.
+- Crew roster and profiles, component telemetry where verified source mappings exist,
+  and installation-relative Historical playback of retained observations.
+- Read-only same-origin APIs for orbital state, trajectory samples/comparison, Crew,
+  telemetry and replay; PostgreSQL retains observations and their provenance.
 
-The backend owns acquisition, normalization, persistence and read-only APIs.
-Crew uses canonical identity, source-directed resource acquisition, shadow identity
-research, qualified operational binding and one membership/lifecycle policy shared
-by Current and installation-relative Historical. No operational source history is
-bundled in a fresh database.
+The backend owns acquisition, normalization, persistence and read-only APIs. The
+frontend displays backend results without propagating orbits in the browser.
+PostgreSQL, the Spring backend and static nginx frontend are the three Compose services.
+Crew uses canonical identity, qualified source binding and one membership policy
+shared by Current and Historical. No operational source history is bundled in a
+fresh database; Historical coverage grows through this installation's acquisition.
+
+GP/TLE positions are computed from retained elements; NASA OEM describes a predicted
+trajectory. Neither is live onboard position telemetry. Source failures and stale
+or missing records remain explicit. The station model is a historical visual asset,
+not a guarantee of today's configuration; visual trajectory alignment is not
+measured spacecraft attitude. Earth imagery and the star map are visualization
+assets, not current weather or ISS measurements.
+
+## Credits and licensing
+
+Asset acknowledgments, upstream terms and font licenses are listed in
+[Third-party notices](THIRD_PARTY_NOTICES.md). Runtime provider credits and source
+provenance remain available in the application. MISSION1 does not claim agency
+endorsement.

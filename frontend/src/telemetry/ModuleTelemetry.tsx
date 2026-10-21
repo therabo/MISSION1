@@ -42,7 +42,6 @@ export function ModuleTelemetrySource({ data }: { data: ModuleTelemetry | null }
   return <section className="module-telemetry-source">
     <h4>Telemetry source</h4>
     <p>ISS Live · Lightstreamer</p>
-    {/* Verified lightstreamer_live_demo in docs/telemetry/source-registry.yaml. */}
     <p className="module-secondary"><a href="https://demos.lightstreamer.com/ISSLive/" target="_blank" rel="noreferrer">Source <span aria-hidden="true">↗</span></a></p>
   </section>;
 }

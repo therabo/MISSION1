@@ -1018,24 +1018,10 @@ class UnifiedCrewLifecyclePostgresTest {
     awaitCurrent(7);
     Instant entry = start.plus(Duration.ofHours(2)).plusSeconds(1);
     Instant departure = start.plus(Duration.ofHours(4)).plusSeconds(2);
-    try (var browser = BrowserAcceptance.start(serverPort, start, entry, departure)) {
-      if (browser != null) browser.await("initial-observed");
-      scheduled.next(entry, feed(INCOMING, "arrival", entry));
-      awaitCurrent(11);
-      if (browser != null) {
-        browser.signal("arrival-ready");
-        browser.await("arrival-observed");
-      }
-      scheduled.next(departure, feed(OUTGOING, "departure", departure));
-      awaitCurrent(7);
-      if (browser != null) {
-        browser.signal("departure-ready");
-        browser.await("historical-initial-observed");
-        browser.await("historical-arrival-observed");
-        browser.await("completed");
-        browser.assertSuccessful();
-      }
-    }
+    scheduled.next(entry, feed(INCOMING, "arrival", entry));
+    awaitCurrent(11);
+    scheduled.next(departure, feed(OUTGOING, "departure", departure));
+    awaitCurrent(7);
     scheduled.disable();
     assertNull(scheduled.failure.get());
     assertTrue(scheduled.acquisitions.get() >= 3);
@@ -1059,8 +1045,7 @@ class UnifiedCrewLifecyclePostgresTest {
   }
 
   void awaitCurrent(int expected) {
-    Duration timeout =
-        Duration.ofSeconds(Boolean.parseBoolean(System.getenv("MISSION1_BROWSER_E2E")) ? 60 : 30);
+    Duration timeout = Duration.ofSeconds(30);
     Awaitility.await()
         .ignoreException(CurrentProjectionUnavailable.class)
         .pollInterval(Duration.ofMillis(25))
@@ -1072,89 +1057,4 @@ class UnifiedCrewLifecyclePostgresTest {
             });
   }
 
-  /** Optional browser acceptance adds a real browser to this ordinary, always-executed test. */
-  static final class BrowserAcceptance implements AutoCloseable {
-    final java.nio.file.Path directory;
-    final Process process;
-
-    BrowserAcceptance(java.nio.file.Path directory, Process process) {
-      this.directory = directory;
-      this.process = process;
-    }
-
-    static BrowserAcceptance start(int port, Instant start, Instant entry, Instant departure)
-        throws Exception {
-      if (!Boolean.parseBoolean(System.getenv("MISSION1_BROWSER_E2E"))) return null;
-      String script = System.getenv("MISSION1_BROWSER_E2E_SCRIPT");
-      assertNotNull(script, "Explicit browser acceptance requires MISSION1_BROWSER_E2E_SCRIPT");
-      String root =
-          System.getenv()
-              .getOrDefault(
-                  "MISSION1_BROWSER_E2E_DIR",
-                  "/Users/daniel/.codex/exports/mission1-final-crew/subagents/e/browser-acceptance");
-      var directory = java.nio.file.Path.of(root).resolve("scenario-" + UUID.randomUUID());
-      java.nio.file.Files.createDirectories(directory);
-      String api = "http://127.0.0.1:" + port;
-      java.nio.file.Files.writeString(
-          directory.resolve("scenario.json"),
-          "{\"apiBase\":\""
-              + api
-              + "\",\"start\":\""
-              + start
-              + "\",\"entry\":\""
-              + entry
-              + "\",\"departure\":\""
-              + departure
-              + "\",\"selectedOutgoingName\":\"Jessica Watkins\"}");
-      var command =
-          List.of(
-              System.getenv()
-                  .getOrDefault("MISSION1_BROWSER_E2E_NODE", "/opt/homebrew/opt/node@24/bin/node"),
-              script,
-              "--api",
-              api,
-              "--scenario",
-              directory.toString(),
-              "--frontend",
-              System.getenv()
-                  .getOrDefault("MISSION1_BROWSER_E2E_FRONTEND_URL", "http://localhost:5175"));
-      var process =
-          new ProcessBuilder(command)
-              .redirectErrorStream(true)
-              .redirectOutput(directory.resolve("browser.log").toFile())
-              .start();
-      System.out.println("SCHEDULER_BROWSER_ACCEPTANCE " + directory);
-      return new BrowserAcceptance(directory, process);
-    }
-
-    void signal(String name) throws Exception {
-      java.nio.file.Files.writeString(directory.resolve(name), "ready\n");
-    }
-
-    void await(String name) {
-      Awaitility.await()
-          .pollInterval(Duration.ofMillis(100))
-          .atMost(Duration.ofSeconds(60))
-          .untilAsserted(
-              () -> {
-                assertTrue(
-                    process.isAlive() || process.exitValue() == 0,
-                    "Browser failed; inspect " + directory.resolve("browser.log"));
-                assertTrue(
-                    java.nio.file.Files.exists(directory.resolve(name)),
-                    "Waiting for browser " + name);
-              });
-    }
-
-    void assertSuccessful() throws Exception {
-      assertTrue(
-          process.waitFor(10, java.util.concurrent.TimeUnit.SECONDS),
-          "Browser did not exit after completed signal");
-      assertEquals(0, process.exitValue(), "Inspect " + directory.resolve("browser.log"));
-    }
-
-    public void close() {
-      if (process.isAlive()) process.destroyForcibly();
-    }
-  }
 }

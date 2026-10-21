@@ -3,7 +3,7 @@ WORKDIR /workspace/frontend
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 COPY . ./
-COPY --from=crew_fixtures /crew-response.json /person-response.json /workspace/docs/crew/rest-api-validation/
+COPY --from=crew_fixtures /crew-response.json /person-response.json /workspace/test-fixtures/frontend/crew/
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:1.30.6-alpine3.24@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03

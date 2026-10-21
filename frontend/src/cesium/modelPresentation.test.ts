@@ -9,10 +9,10 @@ import { createVisualWindow } from './visualWindow';
 import { ISS_MODEL, MAX_MODULE_PICK_DISTANCE_METERS, labelVisible, markerVisible, modelLoadTransition, modelVisible, modulePickingAvailable, parseModelManifest, representationForState, resolveVerifiedModulePick } from './modelPresentation';
 
 const glb = readFileSync(new URL('../../public/models/iss-vtad-source-png.glb', import.meta.url));
-const inventory = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-model-inventory.json', import.meta.url), 'utf8')) as {
+const inventory = JSON.parse(readFileSync(new URL('../../../test-fixtures/frontend/model/iss-model-inventory.json', import.meta.url), 'utf8')) as {
   nodes: Array<{ index: number; name: string; parent: number | null; mesh: string | null }>;
 };
-const review = JSON.parse(readFileSync(new URL('../../../docs/frontend/iss-semantic-review.json', import.meta.url), 'utf8')) as {
+const review = JSON.parse(readFileSync(new URL('../../../test-fixtures/frontend/model/iss-semantic-review.json', import.meta.url), 'utf8')) as {
   nodes: Array<{ nodeIndex: number; assetNodeName: string; meshIndices: number[]; reviewClass: string; mappingStatus: string; proposedSemanticId: string | null; configurationStatus: string }>;
 };
 

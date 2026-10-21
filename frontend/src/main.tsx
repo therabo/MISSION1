@@ -4,7 +4,7 @@ import App from './App';
 import './styles.css';
 
 // Direct NASA/local content needs no ion logo; retain all provider credits.
-// See docs/frontend/cesium-attribution-audit/README.md before changing providers.
+// See THIRD_PARTY_NOTICES.md before changing providers.
 CreditDisplay.cesiumCredit = new Credit('');
 
 const container = document.getElementById('root');

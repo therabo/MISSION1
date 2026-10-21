@@ -11,14 +11,3 @@ frontend/dist/
 /qa-output/
 /qa-exports/
 /mission1-responsive-review/
-/docs/frontend/**/qa-output/
-/docs/frontend/ui-restyling-responsive/validation/audit/
-/docs/frontend/ui-restyling-responsive/validation/edge/
-/docs/frontend/ui-restyling-responsive/validation/edge-states/
-/docs/frontend/ui-restyling-responsive/validation/final/
-/docs/frontend/ui-restyling-responsive/validation/golden/
-/docs/frontend/ui-restyling-responsive/validation/interactions/
-/docs/frontend/ui-restyling-responsive/validation/iteration-*/
-/docs/frontend/ui-restyling-responsive/validation/native/
-/docs/frontend/ui-restyling-responsive/validation/review/
-/docs/frontend/ui-restyling-responsive/validation/regression-runs.json

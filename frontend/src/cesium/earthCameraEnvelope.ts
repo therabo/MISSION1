@@ -1,8 +1,8 @@
 import { Cartesian3, Cartographic, Ellipsoid, Matrix4, type Camera, type Viewer } from 'cesium';
 
 /** Measured Earth limb diameters in the two 2880px-wide user references.
- * The existing Cesium lens is 60° along the longer canvas dimension. See
- * docs/frontend/earth-camera-envelope.md for measurement and uncertainty.
+ * The existing Cesium lens is 60° along the longer canvas dimension.
+ * These measurements define visual framing, not a physical accuracy claim.
  */
 export const EARTH_VIEW_REFERENCE = { longSidePixels: 2880, farDiameterPixels: 375,
   nearDiameterPixels: 2680, fovRadians: Math.PI / 3 } as const;

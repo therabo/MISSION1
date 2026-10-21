@@ -1,7 +1,0 @@
-{
-  "type": "urn:mission1:problem:person-not-found",
-  "title": "Crew person not found",
-  "status": 404,
-  "detail": "No persisted MISSION1 person has this UUID.",
-  "instance": "/api/iss/crew/93fb517b-ef9d-4715-9a40-66b136b0ae71"
-}

@@ -1,4 +1,4 @@
-/** Public MISSION1 REST contract; docs/api/crew-api.md is authoritative. */
+/** Public MISSION1 REST types for the backend CrewController responses. */
 export type ReconciliationStatus =
   | 'MATCH'
   | 'NASA_AHEAD'

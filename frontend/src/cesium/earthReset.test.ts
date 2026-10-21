@@ -135,7 +135,7 @@ describe('Earth Reset keeps scene/source/viewport semantics', () => {
   });
   it.each(['primary','oem'] as const)('%s targets accepted Current/Historical physical positions without changing UTC or samples', source => {
     // Real retained backend samples, deterministic TEST input only.
-    const real=parseComparison(JSON.parse(readFileSync(new URL('../../../docs/frontend/inspection-orientation-review/real-comparison.json',import.meta.url),'utf8')));
+    const real=parseComparison(JSON.parse(readFileSync(new URL('../../../test-fixtures/frontend/orbital/real-comparison.json',import.meta.url),'utf8')));
     const samples=real[source].samples,original=JSON.stringify(samples),positions=makeSampledPosition(samples);
     for(const historical of [false,true]){
       const selected=JulianDate.fromIso8601(samples[1].time),utc=JulianDate.toIso8601(selected),start=pose(-80,20,80_000_000);
