@@ -39,7 +39,7 @@ services:
       context: ./frontend
       # Existing typecheck includes test helpers importing these recorded JSON fixtures.
       additional_contexts:
-        crew_fixtures: ./test-fixtures/frontend/crew
+        crew_fixtures: ./frontend/src/test/fixtures/crew
     restart: unless-stopped
     ports:
       - "127.0.0.1:${MISSION1_HTTP_PORT:-8080}:8080"

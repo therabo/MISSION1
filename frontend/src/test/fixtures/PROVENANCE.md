@@ -13,6 +13,6 @@ never runtime seeds, live source authority or a data-unavailable fallback.
   NASA VTAD model hierarchy and semantic mapping metadata used to compare the
   shipped GLB with its manifest. These are asset reference data, not ISS telemetry.
 
-Source acknowledgments remain in [third-party notices](../../THIRD_PARTY_NOTICES.md),
-the [model manifest](../../frontend/src/cesium/issModelManifest.json), and embedded
+Source acknowledgments remain in [third-party notices](../../../../THIRD_PARTY_NOTICES.md),
+the [model manifest](../../cesium/issModelManifest.json), and embedded
 record metadata. JSON bytes are preserved from their original recordings/reviews.

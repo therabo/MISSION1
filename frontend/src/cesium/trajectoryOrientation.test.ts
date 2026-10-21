@@ -6,7 +6,7 @@ import { makeVelocityProperty } from './velocityProperty';
 import { makeSampledPosition } from './sampleProperty';
 import { clampInspectionOffset, inspectionControlProfile, inspectionZoomRange, inspectionPinchRange, rearInspectionOffset } from './inspectionControls';
 import { parseComparison } from '../orbital/comparison';
-const real = parseComparison(JSON.parse(readFileSync(new URL('../../../test-fixtures/frontend/orbital/real-comparison.json', import.meta.url), 'utf8')));
+const real = parseComparison(JSON.parse(readFileSync(new URL('../test/fixtures/orbital/real-comparison.json', import.meta.url), 'utf8')));
 
 describe('trajectory visual orientation and moving rear camera', () => {
   for (const source of ['primary', 'oem'] as const) it(`${source}: uses physical velocity, the verified asset axis and a continuous right-handed frame`, () => {

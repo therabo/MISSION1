@@ -10,7 +10,7 @@ import { modelDisplayPosition } from './earthViewPresentation';
 import { selectedPositionAt, oemPositionProperty } from './trajectorySelection';
 
 // Recorded real-source observations, used only for deterministic offline tests.
-const observation = (name: string) => JSON.parse(readFileSync(new URL(`../../../test-fixtures/frontend/orbital/real-${name}.json`, import.meta.url), 'utf8'));
+const observation = (name: string) => JSON.parse(readFileSync(new URL(`../test/fixtures/orbital/real-${name}.json`, import.meta.url), 'utf8'));
 beforeAll(() => { for (const name of ['HTMLCanvasElement', 'HTMLImageElement', 'ImageBitmap', 'OffscreenCanvas']) vi.stubGlobal(name, class {}); });
 afterAll(() => vi.unstubAllGlobals());
 

@@ -17,7 +17,7 @@ const end = rearInspectionOffset(16 / 9, new Cartesian3());
 describe('coordinated physical-pivot camera transitions', () => {
   for (const source of ['primary', 'oem'] as const) it(`${source}: preserves the canonical desktop endpoint from arbitrary Earth poses`, () => {
     // Recorded real backend fixture, used only for deterministic TEST geometry.
-    const real = parseComparison(JSON.parse(readFileSync(new URL('../../../test-fixtures/frontend/orbital/real-comparison.json', import.meta.url), 'utf8')));
+    const real = parseComparison(JSON.parse(readFileSync(new URL('../test/fixtures/orbital/real-comparison.json', import.meta.url), 'utf8')));
     const time = JulianDate.fromIso8601('2026-09-30T15:45:59.975908Z');
     const physical = makeSampledPosition(real[source].samples).getValue(time)!;
     const velocity = makeVelocityProperty(real[source].samples).getValue(time)!;
