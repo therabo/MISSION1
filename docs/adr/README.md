@@ -56,3 +56,5 @@ ADR-0009 has a dated 2026-10-11 clarification for completed named operational de
 - [ADR-0027: Local geographic classification and country flag artwork](0027-local-country-classification-and-squircle-marks.md) — Accepted. Pinned local Natural Earth 10m, explicit country/territory identities, existing physical-state cadence and local SVGs at native proportions without a shared outer shape; no runtime geographic provider.
 
 - [ADR-0028: Dynamic exact-person Crew portraits](0028-dynamic-crew-portraits.md) — Accepted. Attached provider HTTPS media first, bounded thumbnail/original/reviewed fallback, unchanged metadata and Crew authority.
+
+- [ADR-0029: Source-built Compose for single-host installation](0029-one-command-self-hosted-installation.md) — Accepted. Three containers, one loopback HTTP port, internal platform health and preserved native development.

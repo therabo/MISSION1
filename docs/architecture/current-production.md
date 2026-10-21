@@ -1,5 +1,21 @@
 # Current production architecture
 
+[ADR-0029](../adr/0029-one-command-self-hosted-installation.md) defines the official
+single-host installation: `docker compose up --build --wait` builds and starts
+PostgreSQL 16.10, the Java 21 backend and a static nginx frontend/reverse proxy.
+Only `127.0.0.1:${MISSION1_HTTP_PORT:-8080}` is host-published. JDBC uses
+`postgres:5432`; nginx resolves `backend:8080` through Docker DNS. A named volume
+persists through stop/rebuild/update; only deliberate `down -v` deletes it.
+
+Startup waits for PostgreSQL, backend readiness (Spring accepting traffic plus
+database connectivity after Flyway), then frontend HTTP health. Liveness follows
+Spring liveness only. Public-source failures do not control either probe; nginx
+blocks Actuator and no management details are exposed. Runtime app users are
+nonroot; `unless-stopped` policies do not restart merely unhealthy containers.
+Native Maven/Vite development uses the explicit `compose.dev.yaml` override with
+only PostgreSQL selected and a separate `mission1-dev` project. Domain ownership,
+source scheduling, APIs and all scientific/visual assets remain unchanged.
+
 Crew portraits are presentation enrichment under [ADR-0028](../adr/0028-dynamic-crew-portraits.md): exact provider HTTPS thumbnail/original, optional reviewed same-person fallback, initials. Source metadata is preserved and no longer gates display; no API/backend/schema changes or bundled portrait requirement. [Contract](../crew/portraits.md).
 
 Accepted semantics are governed by ADR-0021 and ADR-0022; ADR-0023 establishes the

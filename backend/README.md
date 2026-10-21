@@ -1,5 +1,12 @@
 # MISSION1 orbital core
 
+Ordinary installation uses the [root Quick Start](../README.md): source-built
+Compose runs this backend in a nonroot Java 21 JRE container with internal HTTP.
+Native Maven commands below are for contributors. Platform health is internal:
+`/actuator/health/liveness` follows Spring liveness; readiness adds database
+connectivity after Flyway. Remote mission-data availability does not affect either
+probe. Only health is exposed by Actuator, without details; nginx blocks management.
+
 **Component telemetry — ADR-0024/0025:** native SDK push remains continuous;
 SenseData and ISS.live now reconcile independently after readiness and every PT30M
 following successful acquisition, including empty/rejected/duplicate-only responses.
@@ -31,8 +38,8 @@ Its Flyway checksums/history are intentionally incompatible with this baseline;
 there is no production upgrade claim, automatic repair or baseline-on-migrate path.
 Use a new empty database through `MISSION1_DB_URL` or deliberately recreate the local
 development database. Existing databases are never reset automatically. If discarding
-local history is intended, `docker compose down -v` followed by
-`docker compose up -d --wait postgres` recreates that development store.
+local history is intended, `docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml down -v` followed by
+`docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml up -d --wait postgres` recreates that development store.
 Run `mvn clean verify` after pulling the consolidation so obsolete V2/V3 files cannot
 remain in `target/classes`; ordinary future builds use the one-file resource set.
 The earlier development V1–V13 chain and dated dossiers remain historical evidence.
@@ -67,7 +74,7 @@ Canonical units are meters for Cartesian position and WGS84 altitude, meters/sec
 
 The `OrbitalElementSetRepository` port and Spring JDBC adapter accept an already obtained, validated set through `storeIfNew`. The adapter revalidates the TLE and its epoch/hash/catalog metadata, then atomically stores a unique source set and its retrieval observation. Flyway owns the schema. `findById`, bounded `recent(limit)`, and `latestUsable(asOf)` reconstruct domain objects. See [element-history semantics](../docs/telemetry/orbital-element-history.md) for identity, ordering, and timestamp rules. Flyway inserts no fetched set, and no quality result or computed orbital state is stored.
 
-For local development, run `docker compose up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. Flyway applies the migration and the HTTP server starts on port 8080. The root Compose file contains only PostgreSQL. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose down` stops the database while retaining the named volume; `docker compose down -v` deliberately removes local database history.
+For local development, run `docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml up -d --wait postgres` from the repository root, then `mvn spring-boot:run` from `backend/`. Flyway applies the migration and the HTTP server starts on port 8080. The root Compose file runs the complete self-hosted application; the explicit development override/project publishes only this selected PostgreSQL service to the host. Defaults are `jdbc:postgresql://localhost:5432/mission1`, user `mission1`, and password `mission1_local`: these are **local-only development values**. Override `MISSION1_DB_URL`, `MISSION1_DB_USER`, and `MISSION1_DB_PASSWORD` outside a local machine. `docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml down` stops the database while retaining the named volume; `docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml down -v` deliberately removes local database history.
 
 `mvn test` and `mvn verify` run the existing offline orbital tests plus PostgreSQL integration tests using Testcontainers. Docker must be available for the latter. Those tests use the frozen real TLE fixture and a clearly marked test-only altered revision, never CelesTrak network calls or H2.
 

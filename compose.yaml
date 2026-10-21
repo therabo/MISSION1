@@ -1,19 +1,55 @@
 services:
   postgres:
-    image: postgres:16.10
+    image: postgres:16.10@sha256:21f6013073bc6b92830a2129570e2f5ec42a6c734b5a985a41e83aa58f54c3c1
+    restart: unless-stopped
     environment:
       POSTGRES_DB: mission1
       POSTGRES_USER: mission1
-      # Local development only; override MISSION1_DB_PASSWORD outside a local machine.
+      # Local installation only; the database has no default host port.
       POSTGRES_PASSWORD: ${MISSION1_DB_PASSWORD:-mission1_local}
-    ports:
-      - "127.0.0.1:5432:5432"
     volumes:
       - mission1-postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mission1 -d mission1"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U mission1 -d mission1"]
       interval: 5s
       timeout: 3s
+      retries: 10
+
+  backend:
+    stop_grace_period: 30s
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      MISSION1_DB_URL: jdbc:postgresql://postgres:5432/mission1
+      MISSION1_DB_USER: mission1
+      MISSION1_DB_PASSWORD: ${MISSION1_DB_PASSWORD:-mission1_local}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--show-error", "--max-time", "3", "http://127.0.0.1:8080/actuator/health/readiness"]
+      interval: 5s
+      timeout: 4s
+      start_period: 60s
+      retries: 12
+
+  frontend:
+    build:
+      context: ./frontend
+      # Existing typecheck includes test helpers importing these recorded JSON fixtures.
+      additional_contexts:
+        crew_fixtures: ./docs/crew/rest-api-validation
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MISSION1_HTTP_PORT:-8080}:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--output-document=/dev/null", "--timeout=3", "http://127.0.0.1:8080/healthz"]
+      interval: 5s
+      timeout: 4s
       retries: 10
 
 volumes:

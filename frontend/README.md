@@ -228,12 +228,19 @@ The unchanged NASA PNG model uses generated trilinear mipmaps. A stable captured
 
 The Earth View is a React 19 / TypeScript 7 / Vite 8 / CesiumJS 1.145 client. It consumes the [bounded orbital samples contract](../docs/api/orbital-samples.md) for the ISS model and the separate [trajectory comparison contract](../docs/api/orbital-comparison.md) for the two globe lines. It does not fetch orbital elements or propagate an orbit in the browser. The [NASA ISS model record](../docs/frontend/iss-model.md) documents the selected asset, provenance, scale, configuration limits, validation and reproducible optimization.
 
-## Local run
+## Self-hosted installation
 
-Use Node.js **24 LTS** (`.nvmrc` pins the tested 24.21.0 release) and npm 11. From the repository root:
+Use the [root Quick Start](../README.md). Compose builds the unchanged frontend
+with Node 24 and serves static dist through nonroot nginx, including all public
+and Cesium assets. `/api` is proxied to the internal backend; Vite is not the user
+runtime. No frontend environment file or browser API secret is required.
+
+## Native development
+
+Use Node.js **24.15+ within 24.x** (`.nvmrc` pins the tested 24.21.0 release) and npm 11. From the repository root:
 
 ```sh
-docker compose up -d --wait postgres
+docker compose -p mission1-dev -f compose.yaml -f compose.dev.yaml up -d --wait postgres
 ```
 
 In a second terminal, from `backend/`:
@@ -249,7 +256,7 @@ npm ci
 npm run dev
 ```
 
-Open the URL printed by Vite. The `/api` development proxy points to Spring on `127.0.0.1:8080`. The frontend uses relative `/api/iss/orbit/samples` and `/api/iss/orbit/comparison` requests. No backend CORS setting or frontend API secret is needed. The backend intentionally makes no CelesTrak request at startup; a fresh database yields HTTP 503 and the Earth View shows an empty orbital state until the existing provider-respecting acquisition workflow stores a valid set. For the browser verification of this milestone, PostgreSQL already contained the verified CelesTrak ISS TLE observation from 2026-09-28 13:58:32 UTC. The UI labeled its source and element epoch; it was not a production fallback.
+Open the URL printed by Vite. The `/api` development proxy points to Spring on `127.0.0.1:8080`. The frontend uses relative `/api/iss/orbit/samples` and `/api/iss/orbit/comparison` requests. No backend CORS setting or frontend API secret is needed. After backend readiness, the normal CelesTrak eligibility check runs promptly. A fresh database can return HTTP 503 and an unavailable orbital state until a real valid set has been acquired; container readiness does not wait for that data. For the browser verification of this milestone, PostgreSQL already contained the verified CelesTrak ISS TLE observation from 2026-09-28 13:58:32 UTC. The UI labeled its source and element epoch; it was not a production fallback.
 
 ## Build and test
 
