@@ -19,14 +19,18 @@ const removed = ['Membership and physical presence are separate', 'Current membe
 beforeEach(() => { resource.data = null; Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true }); });
 
 describe('branding and compact Crew presentation', () => {
-  it('uses one full-resolution transparent canonical PNG in README and application', () => {
+  it('uses the canonical application PNG and theme-specific root logos in README', () => {
     const asset = readFileSync('public/branding/MISSION1-logo.png');
     expect(asset.subarray(1, 4).toString()).toBe('PNG');
     expect(asset.readUInt32BE(16)).toBe(2155); expect(asset.readUInt32BE(20)).toBe(730);
     expect(createHash('sha256').update(asset).digest('hex')).toBe('2762a21ed6f16de7188da991477daed0650f51c778bf8b791ba8ef02d2542845');
     expect(asset[25]).toBe(6); // RGBA PNG, no downscale.
     const readme = readFileSync('../README.md', 'utf8');
-    expect(readme).toContain('src="MISSION1-logo.png"');
+    const logo = dom(readme);
+    expect(logo.querySelector('source[media="(prefers-color-scheme: dark)"]')?.getAttribute('srcset')).toBe('MISSION1-logo.png');
+    expect(logo.querySelector('source[media="(prefers-color-scheme: light)"]')?.getAttribute('srcset')).toBe('MISSION1-logo-black.png');
+    expect(logo.querySelector('picture img')?.getAttribute('src')).toBe('MISSION1-logo-black.png');
+    expect(logo.textContent?.trim()).toBe('');
     expect(readme).not.toContain('src="frontend/public/branding/MISSION1-logo.png"');
     const app = readFileSync('src/App.tsx', 'utf8');
     expect(app).toContain('import.meta.env.BASE_URL}branding/MISSION1-logo.png');
