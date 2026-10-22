@@ -1,4 +1,5 @@
-.context-dock.module-dock { grid-area: scene; align-self: stretch; justify-self: end; position: relative; top: auto; right: auto; bottom: auto; width: 336px; margin: 24px; border: 0; pointer-events: auto; box-shadow: none; backdrop-filter: none; }
+/* Crew's native scrollbar palette inherits into the body and responsive card scroll owners. */
+.context-dock.module-dock { grid-area: scene; align-self: stretch; justify-self: end; position: relative; top: auto; right: auto; bottom: auto; width: 336px; margin: 24px; border: 0; pointer-events: auto; box-shadow: none; backdrop-filter: none; scrollbar-color: var(--color-border) transparent; }
 .module-dock::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border-overlay); border-radius: inherit; pointer-events: none; }
 .module-dock .context-dock-header { min-height: 89px; max-height: 50%; flex: none; padding: 16px 24px; border-color: rgb(42 53 66 / .55); }
 /* Leave room for the body when exceptional metadata enlarges the header. */
