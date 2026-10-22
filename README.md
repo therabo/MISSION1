@@ -8,7 +8,7 @@
 
 ---
 
-## Overview
+### Overview
 
 <p align="center">
   <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
@@ -16,7 +16,7 @@
 
 ---
 
-## ISS Tracking & Historical position
+### ISS Tracking & Historical position
 
 <p align="center">
   <img src="assets/readme/earth-historical.gif" alt="MISSION1 Earth historical exploration demo" width="100%">
@@ -24,7 +24,7 @@
 
 ---
 
-## ISS Telemetry
+### ISS Telemetry
 
 <p align="center">
   <img src="assets/readme/iss-telemetry.gif" alt="MISSION1 ISS telemetry demo" width="100%">
@@ -32,7 +32,7 @@
 
 ---
 
-## Crew
+### Crew
 
 <p align="center">
   <img src="assets/readme/crew.gif" alt="MISSION1 crew exploration demo" width="100%">
@@ -40,7 +40,7 @@
 
 ---
 
-## Install
+### Install
 
 Requires Docker Engine with Docker Compose v2. From the repository root, start the application with:
 
