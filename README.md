@@ -6,11 +6,25 @@
   </picture>
 </p>
 
+<hr>
+
 ## Overview
 
 <p align="center">
   <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
 </p>
+
+<hr>
+
+## Install
+
+Requires Docker Engine with Docker Compose v2. From the repository root, start the application with:
+
+```bash
+docker compose up --build
+```
+
+When the services are ready, open [http://localhost:8080](http://localhost:8080).
 
 <hr>
 
