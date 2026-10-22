@@ -9,3 +9,15 @@
 <p align="center">
   <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
 </p>
+
+<p align="center">
+  <img src="assets/readme/earth-historical.gif" alt="MISSION1 Earth historical exploration demo" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/iss-telemetry.gif" alt="MISSION1 ISS telemetry demo" width="100%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/crew.gif" alt="MISSION1 crew exploration demo" width="100%">
+</p>
