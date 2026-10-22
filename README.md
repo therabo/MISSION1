@@ -5,3 +5,7 @@
     <img src="MISSION1-logo-black.png?v=73f4fd8" alt="MISSION1" width="800">
   </picture>
 </p>
+
+<p align="center">
+  <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
+</p>
