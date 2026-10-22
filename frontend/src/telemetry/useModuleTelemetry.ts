@@ -4,9 +4,16 @@ import { getModuleTelemetry, type ModuleTelemetry } from './telemetryApi';
 export const TELEMETRY_REFRESH_MS = 60_000;
 /** Serial local reads; selected identity and accepted time invalidate obsolete results. */
 export function useModuleTelemetry(componentId: string, at: string | null, active: boolean) {
-  const key = `${componentId}|${at ?? 'CURRENT'}`;
+  const key = `${componentId}|${at ?? 'CURRENT'}|${active}`;
   const generation = useRef(0);
   const [result, setResult] = useState<{ key: string; data: ModuleTelemetry | null; error: boolean; loading: boolean }>({ key, data: null, error: false, loading: active });
+  // A new selection, accepted UTC or reopening starts a new resource lifetime.
+  // Reset before paint so a previous opening cannot expose a stale ready card.
+  let currentResult = result;
+  if (result.key !== key) {
+    currentResult = { key, data: null, error: false, loading: active };
+    setResult(currentResult);
+  }
   useEffect(() => {
     const id = ++generation.current;
     if (!active) return;
@@ -33,5 +40,5 @@ export function useModuleTelemetry(componentId: string, at: string | null, activ
     document.addEventListener('visibilitychange', visibility);
     return () => { current = false; clearTimeout(timer); controller?.abort(); document.removeEventListener('visibilitychange', visibility); };
   }, [componentId, at, active, key]);
-  return result.key === key ? result : { key, data: null, error: false, loading: active };
+  return currentResult;
 }
