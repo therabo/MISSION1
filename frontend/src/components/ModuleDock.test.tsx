@@ -39,11 +39,10 @@ it('close is immediately inert and restores focus, then removes the exit snapsho
   expect(dock.getAttribute('aria-hidden')).toBe('true'); expect(dock.hasAttribute('inert')).toBe(true); expect(document.activeElement).toBe(origin);
   await tick(199); expect(host.querySelector('aside')).not.toBeNull(); await tick(1); expect(host.querySelector('aside')).toBeNull();
 });
-it('A→B→C reveals a complete card for each selection and only the final identity remains selected', async () => {
+it('A→B→C updates the same dock and only the final identity remains selected', async () => {
   await select(0); const dock = host.querySelector('aside'); await select(1); await select(2);
-  expect(host.querySelector('aside')).not.toBe(dock); expect(host.querySelector('h2')?.textContent).toBe('Harmony');
-  expect(host.querySelectorAll('aside')).toHaveLength(1); expect(host.querySelector('aside')?.getAttribute('data-entity-id')).toBe('HARMONY');
-  expect(host.querySelector('aside')?.textContent).not.toContain('Loading telemetry');
+  expect(host.querySelector('aside')).toBe(dock); expect(host.querySelector('h2')?.textContent).toBe('Harmony');
+  expect(host.querySelectorAll('aside')).toHaveLength(1); expect(dock?.getAttribute('data-entity-id')).toBe('HARMONY');
 });
 it('close during enter and reopen during exit cannot let an old timer remove the new dock', async () => {
   await select(0); await tick(40); await close(); await tick(70); await select(1); await tick(1000);

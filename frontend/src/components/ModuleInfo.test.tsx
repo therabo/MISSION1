@@ -2,13 +2,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import { ISS_MODEL } from '../cesium/modelPresentation';
 import { ModuleInfo } from './ModuleInfo';
-import { telemetryFixture } from '../test/telemetryFixture';
-
-// Static presentation checks use a settled test-only resource. Pending request
-// and complete-card reveal behavior are covered in ModuleInfoLifecycle.test.tsx.
-vi.mock('../telemetry/useModuleTelemetry', () => ({
-  useModuleTelemetry: (componentId: string) => ({ data: { ...telemetryFixture(componentId), mappingStatus: 'NO_VERIFIED_MAPPING', parameters: [] }, loading: false, error: false }),
-}));
 
 describe('verified static module information', () => {
   it('renders each approved identity with the simplified card and no selection request', () => {
@@ -27,7 +20,7 @@ describe('verified static module information', () => {
           expect(html).not.toContain(removed);
         }
         expect(html).toContain('Telemetry');
-        expect(html).toContain('No verified telemetry mapping');
+        expect(html).toContain('Loading telemetry');
         expect(html).not.toContain('Last telemetry record');
         expect(html).not.toContain(ISS_MODEL.sourcePage);
       }
@@ -42,7 +35,7 @@ describe('verified static module information', () => {
     expect(historical).toContain('Pirs');
     expect(historical).toContain(pirs.role);
     expect(historical).not.toContain('Removed from current station');
-    expect(historical).toContain('No verified telemetry mapping');
+    expect(historical).toContain('Loading telemetry');
 
     const destiny = ISS_MODEL.semanticMappings[0];
     const current = renderToStaticMarkup(<ModuleInfo module={{ ...destiny, agency: undefined, role: undefined }} onClose={() => {}} />);
@@ -50,6 +43,6 @@ describe('verified static module information', () => {
     expect(current).toContain('Role unavailable for this mapped component');
     expect(current).not.toContain('Current station component confirmed');
     expect(current).not.toContain('Historical NASA VTAD asset representation');
-    expect(current).toContain('No verified telemetry mapping');
+    expect(current).toContain('Loading telemetry');
   });
 });
