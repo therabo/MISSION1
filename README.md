@@ -17,7 +17,7 @@ Users can follow the ISS orbit, move between current and historical states, insp
   <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
 </p>
 <p align="center">
-  <em>Explore the ISS from global tracking to close-range station inspection.</em>
+  <em>Explore MISSION1 through ISS tracking, station telemetry, close-range inspection and crew exploration.</em>
 </p>
 
 ---
