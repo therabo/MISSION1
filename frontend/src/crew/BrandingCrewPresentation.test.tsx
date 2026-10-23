@@ -19,21 +19,21 @@ const removed = ['Membership and physical presence are separate', 'Current membe
 beforeEach(() => { resource.data = null; Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true }); });
 
 describe('branding and compact Crew presentation', () => {
-  it('uses the canonical application PNG and theme-specific root logos in README', () => {
+  it('uses the canonical application PNG and theme-specific asset logos in README', () => {
     const asset = readFileSync('public/branding/MISSION1-logo.png');
     expect(asset.subarray(1, 4).toString()).toBe('PNG');
     expect(asset.readUInt32BE(16)).toBe(2155); expect(asset.readUInt32BE(20)).toBe(730);
     expect(createHash('sha256').update(asset).digest('hex')).toBe('2762a21ed6f16de7188da991477daed0650f51c778bf8b791ba8ef02d2542845');
     expect(asset[25]).toBe(6); // RGBA PNG, no downscale.
-    expect(readFileSync('../MISSION1-logo.png')).toEqual(asset);
-    const blackAsset = readFileSync('../MISSION1-logo-black.png');
+    expect(readFileSync('../assets/readme/MISSION1-logo.png')).toEqual(asset);
+    const blackAsset = readFileSync('../assets/readme/MISSION1-logo-black.png');
     expect(blackAsset.subarray(16, 26)).toEqual(asset.subarray(16, 26)); // Same canvas, bit depth and RGBA.
     expect(createHash('sha256').update(blackAsset).digest('hex')).toBe('73f4fd815be4b387af96e0ae08b616867d88da22ecc4e3a6b64ca2dcdc3c4c57');
     const readme = readFileSync('../README.md', 'utf8');
-    const logo = dom(readme);
-    expect(logo.querySelector('source[media="(prefers-color-scheme: dark)"]')?.getAttribute('srcset')).toBe('MISSION1-logo.png');
-    expect(logo.querySelector('source[media="(prefers-color-scheme: light)"]')?.getAttribute('srcset')).toBe('MISSION1-logo-black.png?v=73f4fd8');
-    expect(logo.querySelector('picture img')?.getAttribute('src')).toBe('MISSION1-logo-black.png?v=73f4fd8');
+    const logo = dom(readme).querySelector('p[align="center"]')!;
+    expect(logo.querySelector('img[src$="#gh-dark-mode-only"]')?.getAttribute('src')).toBe('assets/readme/MISSION1-logo.png#gh-dark-mode-only');
+    expect(logo.querySelector('img[src$="#gh-light-mode-only"]')?.getAttribute('src')).toBe('assets/readme/MISSION1-logo-black.png?v=73f4fd8#gh-light-mode-only');
+    expect(logo.querySelectorAll('img')).toHaveLength(2);
     expect(logo.textContent?.trim()).toBe('');
     expect(readme).not.toContain('src="frontend/public/branding/MISSION1-logo.png"');
     const app = readFileSync('src/App.tsx', 'utf8');

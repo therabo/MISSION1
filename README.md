@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="MISSION1-logo.png#gh-dark-mode-only" alt="MISSION1" width="800">
-  <img src="MISSION1-logo-black.png?v=73f4fd8#gh-light-mode-only" alt="MISSION1" width="800">
+  <img src="assets/readme/MISSION1-logo.png#gh-dark-mode-only" alt="MISSION1" width="800">
+  <img src="assets/readme/MISSION1-logo-black.png?v=73f4fd8#gh-light-mode-only" alt="MISSION1" width="800">
 </p>
 
 ---
@@ -16,6 +16,9 @@ Users can follow the ISS orbit, move between current and historical states, insp
 <p align="center">
   <img src="assets/readme/mission1-demo.gif" alt="MISSION1 interactive ISS exploration demo" width="100%">
 </p>
+<p align="center">
+  <em>Explore the ISS from global tracking to close-range station inspection.</em>
+</p>
 
 ---
 
@@ -27,6 +30,9 @@ Historical mode reconstructs the station position at a selected UTC time from re
 
 <p align="center">
   <img src="assets/readme/earth-historical.gif" alt="MISSION1 Earth historical exploration demo" width="100%">
+</p>
+<p align="center">
+  <em>Follow the current orbit or reconstruct the ISS position at a selected UTC time.</em>
 </p>
 
 ---
@@ -40,6 +46,9 @@ Unavailable data is represented explicitly rather than being synthesized or sile
 <p align="center">
   <img src="assets/readme/iss-telemetry.gif" alt="MISSION1 ISS telemetry demo" width="100%">
 </p>
+<p align="center">
+  <em>Inspect ISS modules and explore the telemetry available for their components.</em>
+</p>
 
 ---
 
@@ -51,6 +60,9 @@ Astronaut profiles enrich that operational data with agencies, biographies and c
 
 <p align="center">
   <img src="assets/readme/crew.gif" alt="MISSION1 crew exploration demo" width="100%">
+</p>
+<p align="center">
+  <em>Explore current and historical crew membership together with astronaut profiles.</em>
 </p>
 
 ---
